@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **interfaces** | **[str]** | Specifies the network interfaces | [optional] 
 **ipset_names** | **[str]** | Specifies the ip sets. | [optional] 
 **is_implicit** | **bool, none_type** |  | [optional] [readonly] 
+**profile** | **str, none_type** | Specifies the firewall profile. | [optional] 
+**subnets** | **[str]** | Specifies the subnets. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -74,6 +74,7 @@ class CommonSourceRegistrationRequestParams(ModelNormal):
             'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KNIMBLE': "kNimble",
             'KNETAPP': "kNetapp",
+            'KNUTANIXFS': "kNutanixFS",
             'KGENERICNAS': "kGenericNas",
             'KISILON': "kIsilon",
             'KFLASHBLADE': "kFlashBlade",
@@ -88,10 +89,19 @@ class CommonSourceRegistrationRequestParams(ModelNormal):
             'KHDFS': "kHdfs",
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
+            'KSAPHANA': "kSAPHANA",
             'KUDA': "kUDA",
             'KSQL': "kSQL",
             'KORACLE': "kOracle",
+            'KS3COMPATIBLE': "kS3Compatible",
             'KSFDC': "kSfdc",
+            'KEXPERIMENTALADAPTER': "kExperimentalAdapter",
+            'KMONGODBPHYSICAL': "kMongoDBPhysical",
+            'KGOOGLEWORKSPACE': "kGoogleWorkspace",
+            'KDB2': "kDB2",
+            'KEWSEXCHANGE': "kEwsExchange",
+            'KSERVICENOW': "kServiceNow",
+            'KPOSTGRES': "kPostgres",
         },
     }
 
@@ -116,9 +126,11 @@ class CommonSourceRegistrationRequestParams(ModelNormal):
         return {
             'environment': (str, none_type,),  # noqa: E501
             'advanced_configs': ([KeyValuePair], none_type,),  # noqa: E501
+            'async_registration': (bool, none_type,),  # noqa: E501
             'connection_id': (int, none_type,),  # noqa: E501
             'connections': ([ConnectionConfig], none_type,),  # noqa: E501
             'connector_group_id': (int, none_type,),  # noqa: E501
+            'data_source_connection_id': (str, none_type,),  # noqa: E501
             'encryption_key': (str, none_type,),  # noqa: E501
             'is_internal_encrypted': (bool, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
@@ -133,9 +145,11 @@ class CommonSourceRegistrationRequestParams(ModelNormal):
     attribute_map = {
         'environment': 'environment',  # noqa: E501
         'advanced_configs': 'advancedConfigs',  # noqa: E501
+        'async_registration': 'asyncRegistration',  # noqa: E501
         'connection_id': 'connectionId',  # noqa: E501
         'connections': 'connections',  # noqa: E501
         'connector_group_id': 'connectorGroupId',  # noqa: E501
+        'data_source_connection_id': 'dataSourceConnectionId',  # noqa: E501
         'encryption_key': 'encryptionKey',  # noqa: E501
         'is_internal_encrypted': 'isInternalEncrypted',  # noqa: E501
         'name': 'name',  # noqa: E501
@@ -192,9 +206,11 @@ class CommonSourceRegistrationRequestParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             advanced_configs ([KeyValuePair], none_type): Specifies the advanced configuration for a protection source.. [optional]  # noqa: E501
+            async_registration (bool, none_type): Indicates whether the source should be registered asynchronously. Currently supported only for VMware sources.. [optional]  # noqa: E501
             connection_id (int, none_type): Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user.. [optional]  # noqa: E501
             connections ([ConnectionConfig], none_type): Specfies the list of connections for the source.. [optional]  # noqa: E501
             connector_group_id (int, none_type): Specifies the connector group id of connector groups.. [optional]  # noqa: E501
+            data_source_connection_id (str, none_type): Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user. Also, this is the 'string' of connectionId. This property was added to accommodate for ID values that exceed 2^53 - 1, which is the max value for which JS maintains precision.. [optional]  # noqa: E501
             encryption_key (str, none_type): Specifies the key that user has encrypted the credential with.. [optional]  # noqa: E501
             is_internal_encrypted (bool, none_type): Specifies if credentials are encrypted by internal key.. [optional]  # noqa: E501
             name (str, none_type): A user specified name for this source.. [optional]  # noqa: E501

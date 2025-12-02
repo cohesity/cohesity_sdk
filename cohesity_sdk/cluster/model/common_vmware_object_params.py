@@ -80,6 +80,7 @@ class CommonVmwareObjectParams(ModelNormal):
         lazy_import()
         return {
             'exclude_disks': ([DiskInfo],),  # noqa: E501
+            'include_disks': ([DiskInfo],),  # noqa: E501
             'truncate_exchange_logs': (bool, none_type,),  # noqa: E501
         }
 
@@ -91,6 +92,7 @@ class CommonVmwareObjectParams(ModelNormal):
 
     attribute_map = {
         'exclude_disks': 'excludeDisks',  # noqa: E501
+        'include_disks': 'includeDisks',  # noqa: E501
         'truncate_exchange_logs': 'truncateExchangeLogs',  # noqa: E501
     }
 
@@ -142,6 +144,7 @@ class CommonVmwareObjectParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             exclude_disks ([DiskInfo]): Specifies a list of disks to exclude from being protected. This is only applicable to VM objects.. [optional]  # noqa: E501
+            include_disks ([DiskInfo]): Specifies a list of disks to be protected. This is only applicable to VM objects.. [optional]  # noqa: E501
             truncate_exchange_logs (bool, none_type): Specifies whether or not to truncate MS Exchange logs while taking an app consistent snapshot of this object. This is only applicable to objects which have a registered MS Exchange app.. [optional]  # noqa: E501
         """
 

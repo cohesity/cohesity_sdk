@@ -27,8 +27,40 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.common_download_file_and_folder_params import CommonDownloadFileAndFolderParams
     from cohesity_sdk.cluster.model.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
+    from cohesity_sdk.cluster.model.recover_aws_aurora_params import RecoverAwsAuroraParams
+    from cohesity_sdk.cluster.model.recover_aws_document_db_params import RecoverAWSDocumentDBParams
+    from cohesity_sdk.cluster.model.recover_aws_file_and_folder_params import RecoverAwsFileAndFolderParams
+    from cohesity_sdk.cluster.model.recover_aws_rds_aurora_my_sql_params import RecoverAwsRdsAuroraMySqlParams
+    from cohesity_sdk.cluster.model.recover_aws_rds_aurora_postgres_db_params import RecoverAwsRdsAuroraPostgresDbParams
+    from cohesity_sdk.cluster.model.recover_aws_rds_my_sql_params import RecoverAwsRdsMySqlParams
+    from cohesity_sdk.cluster.model.recover_aws_rds_oracle_params import RecoverAwsRDSOracleParams
+    from cohesity_sdk.cluster.model.recover_aws_rds_params import RecoverAwsRdsParams
+    from cohesity_sdk.cluster.model.recover_aws_rds_postgres_db_params import RecoverAwsRdsPostgresDbParams
+    from cohesity_sdk.cluster.model.recover_aws_redshift_params import RecoverAwsRedshiftParams
+    from cohesity_sdk.cluster.model.recover_aws_s3_bucket_params import RecoverAwsS3BucketParams
+    from cohesity_sdk.cluster.model.recover_aws_vm_params import RecoverAwsVmParams
+    from cohesity_sdk.cluster.model.recover_dynamo_db_params import RecoverDynamoDBParams
+    from cohesity_sdk.cluster.model.recover_rds_ms_sql_params import RecoverRdsMsSQLParams
+    from cohesity_sdk.cluster.model.recover_rds_postgres_params import RecoverRDSPostgresParams
+    globals()['CommonDownloadFileAndFolderParams'] = CommonDownloadFileAndFolderParams
     globals()['CommonRecoverObjectSnapshotParams'] = CommonRecoverObjectSnapshotParams
+    globals()['RecoverAWSDocumentDBParams'] = RecoverAWSDocumentDBParams
+    globals()['RecoverAwsAuroraParams'] = RecoverAwsAuroraParams
+    globals()['RecoverAwsFileAndFolderParams'] = RecoverAwsFileAndFolderParams
+    globals()['RecoverAwsRDSOracleParams'] = RecoverAwsRDSOracleParams
+    globals()['RecoverAwsRdsAuroraMySqlParams'] = RecoverAwsRdsAuroraMySqlParams
+    globals()['RecoverAwsRdsAuroraPostgresDbParams'] = RecoverAwsRdsAuroraPostgresDbParams
+    globals()['RecoverAwsRdsMySqlParams'] = RecoverAwsRdsMySqlParams
+    globals()['RecoverAwsRdsParams'] = RecoverAwsRdsParams
+    globals()['RecoverAwsRdsPostgresDbParams'] = RecoverAwsRdsPostgresDbParams
+    globals()['RecoverAwsRedshiftParams'] = RecoverAwsRedshiftParams
+    globals()['RecoverAwsS3BucketParams'] = RecoverAwsS3BucketParams
+    globals()['RecoverAwsVmParams'] = RecoverAwsVmParams
+    globals()['RecoverDynamoDBParams'] = RecoverDynamoDBParams
+    globals()['RecoverRDSPostgresParams'] = RecoverRDSPostgresParams
+    globals()['RecoverRdsMsSQLParams'] = RecoverRdsMsSQLParams
 
 
 class RecoverAwsParams(ModelNormal):
@@ -65,6 +97,15 @@ class RecoverAwsParams(ModelNormal):
             'RECOVERFILES': "RecoverFiles",
             'RECOVERS3BUCKETS': "RecoverS3Buckets",
             'RECOVERRDSPOSTGRES': "RecoverRDSPostgres",
+            'RECOVERAWSDYNAMODB': "RecoverAwsDynamoDB",
+            'RECOVERRDSMYSQL': "RecoverRDSMySQL",
+            'RECOVERRDSAURORAMYSQL': "RecoverRDSAuroraMySQL",
+            'RECOVERRDSORACLE': "RecoverRDSOracle",
+            'RECOVERAWSDOCUMENTDB': "RecoverAWSDocumentDB",
+            'RECOVERAWSRDSPOSTGRESDB': "RecoverAWSRDSPostgresDB",
+            'RECOVERAWSAURORAPOSTGRESDB': "RecoverAWSAuroraPostgresDB",
+            'RECOVERAWSRDSMSSQL': "RecoverAWSRDSMSSQL",
+            'RECOVERAWSREDSHIFT': "RecoverAWSRedshift",
         },
     }
 
@@ -88,14 +129,23 @@ class RecoverAwsParams(ModelNormal):
         lazy_import()
         return {
             'recovery_action': (str,),  # noqa: E501
-            'download_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'download_file_and_folder_params': (CommonDownloadFileAndFolderParams,),  # noqa: E501
             'objects': ([CommonRecoverObjectSnapshotParams], none_type,),  # noqa: E501
-            'recover_aurora_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'recover_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'recover_rds_ingest_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'recover_rds_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'recover_s3_bucket_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'recover_vm_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'recover_aws_document_db_params': (RecoverAWSDocumentDBParams,),  # noqa: E501
+            'recover_aurora_params': (RecoverAwsAuroraParams,),  # noqa: E501
+            'recover_dynamo_db_params': (RecoverDynamoDBParams,),  # noqa: E501
+            'recover_file_and_folder_params': (RecoverAwsFileAndFolderParams,),  # noqa: E501
+            'recover_rds_aurora_my_sql_params': (RecoverAwsRdsAuroraMySqlParams,),  # noqa: E501
+            'recover_rds_aurora_postgres_db_params': (RecoverAwsRdsAuroraPostgresDbParams,),  # noqa: E501
+            'recover_rds_ingest_params': (RecoverRDSPostgresParams,),  # noqa: E501
+            'recover_rds_ms_sql_params': (RecoverRdsMsSQLParams,),  # noqa: E501
+            'recover_rds_my_sql_params': (RecoverAwsRdsMySqlParams,),  # noqa: E501
+            'recover_rds_oracle_params': (RecoverAwsRDSOracleParams,),  # noqa: E501
+            'recover_rds_params': (RecoverAwsRdsParams,),  # noqa: E501
+            'recover_rds_postgres_db_params': (RecoverAwsRdsPostgresDbParams,),  # noqa: E501
+            'recover_redshift_params': (RecoverAwsRedshiftParams,),  # noqa: E501
+            'recover_s3_bucket_params': (RecoverAwsS3BucketParams,),  # noqa: E501
+            'recover_vm_params': (RecoverAwsVmParams,),  # noqa: E501
         }
 
     @cached_property
@@ -108,10 +158,19 @@ class RecoverAwsParams(ModelNormal):
         'recovery_action': 'recoveryAction',  # noqa: E501
         'download_file_and_folder_params': 'downloadFileAndFolderParams',  # noqa: E501
         'objects': 'objects',  # noqa: E501
+        'recover_aws_document_db_params': 'recoverAWSDocumentDBParams',  # noqa: E501
         'recover_aurora_params': 'recoverAuroraParams',  # noqa: E501
+        'recover_dynamo_db_params': 'recoverDynamoDBParams',  # noqa: E501
         'recover_file_and_folder_params': 'recoverFileAndFolderParams',  # noqa: E501
+        'recover_rds_aurora_my_sql_params': 'recoverRdsAuroraMySqlParams',  # noqa: E501
+        'recover_rds_aurora_postgres_db_params': 'recoverRdsAuroraPostgresDbParams',  # noqa: E501
         'recover_rds_ingest_params': 'recoverRdsIngestParams',  # noqa: E501
+        'recover_rds_ms_sql_params': 'recoverRdsMsSqlParams',  # noqa: E501
+        'recover_rds_my_sql_params': 'recoverRdsMySqlParams',  # noqa: E501
+        'recover_rds_oracle_params': 'recoverRdsOracleParams',  # noqa: E501
         'recover_rds_params': 'recoverRdsParams',  # noqa: E501
+        'recover_rds_postgres_db_params': 'recoverRdsPostgresDbParams',  # noqa: E501
+        'recover_redshift_params': 'recoverRedshiftParams',  # noqa: E501
         'recover_s3_bucket_params': 'recoverS3BucketParams',  # noqa: E501
         'recover_vm_params': 'recoverVmParams',  # noqa: E501
     }
@@ -166,14 +225,23 @@ class RecoverAwsParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            download_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to download files and folders.. [optional]  # noqa: E501
+            download_file_and_folder_params (CommonDownloadFileAndFolderParams): [optional]  # noqa: E501
             objects ([CommonRecoverObjectSnapshotParams], none_type): Specifies the list of recover Object parameters. This property is mandatory for all recovery action types except recover vms. While recovering VMs, a user can specify snapshots of VM's or a Protection Group Run details to recover all the VM's that are backed up by that Run. For recovering files, specifies the object contains the file to recover.. [optional]  # noqa: E501
-            recover_aurora_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover AWS Aurora.. [optional]  # noqa: E501
-            recover_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover files and folders.. [optional]  # noqa: E501
-            recover_rds_ingest_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover AWS RDS Ingest.. [optional]  # noqa: E501
-            recover_rds_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover AWS RDS.. [optional]  # noqa: E501
-            recover_s3_bucket_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover AWS S3 Buckets.. [optional]  # noqa: E501
-            recover_vm_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover AWS VM.. [optional]  # noqa: E501
+            recover_aws_document_db_params (RecoverAWSDocumentDBParams): [optional]  # noqa: E501
+            recover_aurora_params (RecoverAwsAuroraParams): [optional]  # noqa: E501
+            recover_dynamo_db_params (RecoverDynamoDBParams): [optional]  # noqa: E501
+            recover_file_and_folder_params (RecoverAwsFileAndFolderParams): [optional]  # noqa: E501
+            recover_rds_aurora_my_sql_params (RecoverAwsRdsAuroraMySqlParams): [optional]  # noqa: E501
+            recover_rds_aurora_postgres_db_params (RecoverAwsRdsAuroraPostgresDbParams): [optional]  # noqa: E501
+            recover_rds_ingest_params (RecoverRDSPostgresParams): [optional]  # noqa: E501
+            recover_rds_ms_sql_params (RecoverRdsMsSQLParams): [optional]  # noqa: E501
+            recover_rds_my_sql_params (RecoverAwsRdsMySqlParams): [optional]  # noqa: E501
+            recover_rds_oracle_params (RecoverAwsRDSOracleParams): [optional]  # noqa: E501
+            recover_rds_params (RecoverAwsRdsParams): [optional]  # noqa: E501
+            recover_rds_postgres_db_params (RecoverAwsRdsPostgresDbParams): [optional]  # noqa: E501
+            recover_redshift_params (RecoverAwsRedshiftParams): [optional]  # noqa: E501
+            recover_s3_bucket_params (RecoverAwsS3BucketParams): [optional]  # noqa: E501
+            recover_vm_params (RecoverAwsVmParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

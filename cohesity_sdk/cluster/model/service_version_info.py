@@ -103,8 +103,13 @@ class ServiceVersionInfo(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, last_commit_time, service_name, service_version, *args, **kwargs):  # noqa: E501
         """ServiceVersionInfo - a model defined in OpenAPI
+
+        Args:
+            last_commit_time (str): LastCommitTime of the service.
+            service_name (str): Name of the service.
+            service_version (str): Version of the service.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -138,9 +143,6 @@ class ServiceVersionInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            last_commit_time (str): LastCommitTime of the service.. [optional]  # noqa: E501
-            service_name (str): Name of the service.. [optional]  # noqa: E501
-            service_version (str): Version of the service.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -167,6 +169,9 @@ class ServiceVersionInfo(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.last_commit_time = last_commit_time
+        self.service_name = service_name
+        self.service_version = service_version
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

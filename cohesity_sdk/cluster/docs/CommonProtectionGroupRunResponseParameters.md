@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **id** | **str, none_type** | Specifies the ID of the Protection Group run. | [optional] 
 **is_cloud_archival_direct** | **bool, none_type** | Specifies whether the run is a CAD run if cloud archive direct feature is enabled. If this field is true, the primary backup copy will only be available at the given archived location. | [optional] 
 **is_local_snapshots_deleted** | **bool, none_type** | Specifies if snapshots for this run has been deleted. | [optional] 
+**is_metadata_deleted** | **bool, none_type** | Specifies if snapshots metadata for this run has been deleted. | [optional] 
 **is_replication_run** | **bool, none_type** | Specifies if this protection run is a replication run. | [optional] 
 **local_backup_info** | [**BackupRunSummary**](BackupRunSummary.md) |  | [optional] 
 **objects** | [**[ObjectRunResult]**](ObjectRunResult.md) | Snapahot, replication, archival results for each object. | [optional] 
@@ -20,11 +21,12 @@ Name | Type | Description | Notes
 **origin_cluster_identifier** | [**ClusterIdentifier**](ClusterIdentifier.md) |  | [optional] 
 **origin_protection_group_id** | **str, none_type** | ProtectionGroupId to which this run belongs on the primary cluster if this run is a replication run. | [optional] 
 **original_backup_info** | [**BackupRunSummary**](BackupRunSummary.md) |  | [optional] 
-**permissions** | [**[Tenant], none_type**](Tenant.md) | Specifies the list of tenants that have permissions for this protection group run. | [optional] 
+**permissions** | [**[Tenant], none_type**](TenantInfo.md) | Specifies the list of tenants that have permissions for this protection group run. | [optional] 
 **protection_group_id** | **str, none_type** | ProtectionGroupId to which this run belongs. | [optional] 
 **protection_group_instance_id** | **int, none_type** | Protection Group instance Id. This field will be removed later. | [optional] 
 **protection_group_name** | **str, none_type** | Name of the Protection Group to which this run belongs. | [optional] 
 **replication_info** | [**ReplicationRunSummary**](ReplicationRunSummary.md) |  | [optional] 
+**replication_runs** | [**[ReplicationRunSummary], none_type**](ReplicationRunSummary.md) | Summary information about all replication runs for this backup run. replicationInfo provides information about the latest replication run for this backup run. whereas this field provides information about all historical replication runs for this backup run. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

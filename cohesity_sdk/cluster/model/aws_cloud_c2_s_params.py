@@ -54,6 +54,11 @@ class AwsCloudC2SParams(ModelNormal):
     """
 
     allowed_values = {
+        ('c2s_type',): {
+            'None': None,
+            'C2S': "C2S",
+            'SC2S': "SC2S",
+        },
     }
 
     validations = {
@@ -76,11 +81,12 @@ class AwsCloudC2SParams(ModelNormal):
         return {
             'agency': (str, none_type,),  # noqa: E501
             'base_url': (str, none_type,),  # noqa: E501
+            'mission': (str, none_type,),  # noqa: E501
+            'role': (str, none_type,),  # noqa: E501
+            'c2s_type': (str, none_type,),  # noqa: E501
             'client_certificate': (str, none_type,),  # noqa: E501
             'client_certificate_password': (str, none_type,),  # noqa: E501
             'client_private_key': (str, none_type,),  # noqa: E501
-            'mission': (str, none_type,),  # noqa: E501
-            'role': (str, none_type,),  # noqa: E501
             'server_ca_trusted_certificate': (str, none_type,),  # noqa: E501
         }
 
@@ -93,11 +99,12 @@ class AwsCloudC2SParams(ModelNormal):
     attribute_map = {
         'agency': 'agency',  # noqa: E501
         'base_url': 'baseURL',  # noqa: E501
+        'mission': 'mission',  # noqa: E501
+        'role': 'role',  # noqa: E501
+        'c2s_type': 'c2sType',  # noqa: E501
         'client_certificate': 'clientCertificate',  # noqa: E501
         'client_certificate_password': 'clientCertificatePassword',  # noqa: E501
         'client_private_key': 'clientPrivateKey',  # noqa: E501
-        'mission': 'mission',  # noqa: E501
-        'role': 'role',  # noqa: E501
         'server_ca_trusted_certificate': 'serverCATrustedCertificate',  # noqa: E501
     }
 
@@ -113,18 +120,14 @@ class AwsCloudC2SParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, agency, base_url, client_certificate, client_certificate_password, client_private_key, mission, role, server_ca_trusted_certificate, *args, **kwargs):  # noqa: E501
+    def __init__(self, agency, base_url, mission, role, *args, **kwargs):  # noqa: E501
         """AwsCloudC2SParams - a model defined in OpenAPI
 
         Args:
             agency (str, none_type): Specifies agency of the External Target.
             base_url (str, none_type): Specifies base url of the External Target.
-            client_certificate (str, none_type): Specifies client certificate of the External Target
-            client_certificate_password (str, none_type): Specifies client certificate password of the External Target
-            client_private_key (str, none_type): Specifies client private key of the External Target
             mission (str, none_type): Specifies mission of the External Target
             role (str, none_type): Specifies role of the External Target
-            server_ca_trusted_certificate (str, none_type): Specifies server CA trusted certificate of the External Target
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -158,6 +161,11 @@ class AwsCloudC2SParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            c2s_type (str, none_type): Specifies C2S type of the External Target C2S or SC2S. C2S is for Top secrect Cloud Services. In case the type is not provided, default value is assumed as C2S.. [optional]  # noqa: E501
+            client_certificate (str, none_type): Specifies client certificate of the External Target. [optional]  # noqa: E501
+            client_certificate_password (str, none_type): Specifies client certificate password of the External Target. [optional]  # noqa: E501
+            client_private_key (str, none_type): Specifies client private key of the External Target. [optional]  # noqa: E501
+            server_ca_trusted_certificate (str, none_type): Specifies server CA trusted certificate of the External Target. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -186,12 +194,8 @@ class AwsCloudC2SParams(ModelNormal):
 
         self.agency = agency
         self.base_url = base_url
-        self.client_certificate = client_certificate
-        self.client_certificate_password = client_certificate_password
-        self.client_private_key = client_private_key
         self.mission = mission
         self.role = role
-        self.server_ca_trusted_certificate = server_ca_trusted_certificate
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -74,12 +74,25 @@ class AzureSourceRegistrationParams(ModelNormal):
             'None': None,
             'KVIRTUALMACHINE': "kVirtualMachine",
             'KSQL': "kSQL",
+            'KENTRAID': "kEntraID",
+            'KFILESHARE': "kFileShare",
+            'KKUBERNETES': "kKubernetes",
+            'KMYSQL': "kMySQL",
+            'KMYSQLFLEXIBLESERVER': "kMySQLFlexibleServer",
+            'KCOSMOSDBCASSANDRAACCOUNT': "kCosmosDBCassandraAccount",
+            'KAZURECOSMOSDBNOSQLACCOUNT': "kAzureCosmosDBNoSQLAccount",
+            'KAZURECOSMOSDBMONGODBACCOUNT': "kAzureCosmosDBMongoDBAccount",
+            'KCOSMOSDBTABLEAPIACCOUNT': "kCosmosDBTableAPIAccount",
+            'KBLOBSTORAGE': "kBlobStorage",
+            'KSTORAGETABLE': "kStorageTable",
+            'KAZURESQLMI': "kAzureSQLMI",
+            'KAZURESQLDB': "kAzureSQLDB",
+            'KPOSTGRESQLFLEXIBLESERVER': "kPostgreSQLFlexibleServer",
         },
     }
 
     validations = {
         ('subscription_details',): {
-            'min_items': 1,
         },
 
         ('use_cases',): {
@@ -108,6 +121,8 @@ class AzureSourceRegistrationParams(ModelNormal):
             'registration_workflow': (str, none_type,),  # noqa: E501
             'application_credentials': ([AzureApplicationCredentials],),  # noqa: E501
             'azure_tenant_id': (str, none_type,),  # noqa: E501
+            'graph_access_token': (str, none_type,),  # noqa: E501
+            'management_access_token': (str, none_type,),  # noqa: E501
             'subscription_details': ([AzureSubscription],),  # noqa: E501
             'use_cases': ([str], none_type,),  # noqa: E501
         }
@@ -123,6 +138,8 @@ class AzureSourceRegistrationParams(ModelNormal):
         'registration_workflow': 'registrationWorkflow',  # noqa: E501
         'application_credentials': 'applicationCredentials',  # noqa: E501
         'azure_tenant_id': 'azureTenantId',  # noqa: E501
+        'graph_access_token': 'graphAccessToken',  # noqa: E501
+        'management_access_token': 'managementAccessToken',  # noqa: E501
         'subscription_details': 'subscriptionDetails',  # noqa: E501
         'use_cases': 'useCases',  # noqa: E501
     }
@@ -180,6 +197,8 @@ class AzureSourceRegistrationParams(ModelNormal):
 
             application_credentials ([AzureApplicationCredentials]): Specifies the credentials for a list of applications from azure active directory.. [optional]  # noqa: E501
             azure_tenant_id (str, none_type): Specifies Tenant Id of the active directory of Azure account. Accpets both Azure tanant Id and tenant domain name.. [optional]  # noqa: E501
+            graph_access_token (str, none_type): Specifies the graph access token for using Azure graph API's.. [optional]  # noqa: E501
+            management_access_token (str, none_type): Specifies the management access token for using Azure management API's.. [optional]  # noqa: E501
             subscription_details ([AzureSubscription]): Specifies the list subscription ids to be registered.. [optional]  # noqa: E501
             use_cases ([str], none_type): The use cases for which the source is to be registered.. [optional]  # noqa: E501
         """

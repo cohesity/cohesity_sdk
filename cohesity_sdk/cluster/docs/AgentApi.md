@@ -14,11 +14,13 @@ Method | HTTP request | Description
 
 Create an upgrade task
 
-Create a schedule based agent upgrade task.
+**Privileges:** ```AGENT_UPGRADE_MODIFY``` <br><br>Create a schedule based agent upgrade task.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.agent_upgrade_task_state import AgentUpgradeTaskState
@@ -69,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -90,11 +92,13 @@ Name | Type | Description  | Notes
 
 Download agent
 
-Download agent for different hosts.
+**Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Download agent for different hosts.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -156,7 +160,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -177,11 +181,13 @@ Name | Type | Description  | Notes
 
 Get upgrade tasks
 
-Get the list of agent upgrade tasks.
+**Privileges:** ```AGENT_UPGRADE_VIEW``` <br><br>Get the list of agent upgrade tasks.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -231,7 +237,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -252,11 +258,13 @@ Name | Type | Description  | Notes
 
 Perform action on an upgrade task.
 
-Perform actions on an agent upgrade task.
+**Privileges:** ```AGENT_UPGRADE_MODIFY``` <br><br>Perform actions on an agent upgrade task.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.agent_upgrade_task_action_request import AgentUpgradeTaskActionRequest
@@ -301,7 +309,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 

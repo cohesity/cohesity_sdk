@@ -19,11 +19,13 @@ Method | HTTP request | Description
 
 Create a External Target.
 
-Create a External Target.
+**Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Create a External Target.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.external_target import ExternalTarget
@@ -64,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -85,11 +87,13 @@ Name | Type | Description  | Notes
 
 Delete a External Target.
 
-Returns Success if the External Target is deleted.
+**Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Returns Success if the External Target is deleted.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -138,7 +142,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -159,11 +163,13 @@ void (empty response body)
 
 List details about single External Target.
 
-Returns the External Target corresponding to the specified Group id.
+**Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Returns the External Target corresponding to the specified Group id.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.external_target import ExternalTarget
@@ -204,7 +210,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -225,11 +231,13 @@ Name | Type | Description  | Notes
 
 Get the encryption key info for an external target
 
-Get the encryption key info for an external target
+**Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Get the encryption key info for an external target
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -269,7 +277,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -290,11 +298,13 @@ Name | Type | Description  | Notes
 
 List archive media information
 
-Returns the media information about the specified archive service uid (such as a QStar tape archive service).
+```Unknown Privileges``` <br><br>Returns the media information about the specified archive service uid (such as a QStar tape archive service).
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -354,7 +364,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -375,11 +385,13 @@ Name | Type | Description  | Notes
 
 Get the list of External Target Settings.
 
-Get the list of External Target Settings
+**Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Get the list of External Target Settings
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.external_target import ExternalTarget
@@ -416,7 +428,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -437,11 +449,13 @@ This endpoint does not need any parameter.
 
 Get the list of External Targets.
 
-Get the list of External Targets.
+**Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Get the list of External Targets.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -509,7 +523,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -530,11 +544,13 @@ Name | Type | Description  | Notes
 
 Update a External Target.
 
-Update the specified External Target.
+**Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Update the specified External Target.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.external_target import ExternalTarget
@@ -577,7 +593,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -598,11 +614,13 @@ Name | Type | Description  | Notes
 
 Update External Target Settings
 
-Update External Target Settings
+**Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Update External Target Settings
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.global_bandwidth_settings import GlobalBandwidthSettings
@@ -620,8 +638,110 @@ client = ClusterClient(
 
 
 body = GlobalBandwidthSettings(
-        archival_params=ArchivalBandwidthSettings(),
-        tiering_params=TieringBandwidthSettings(),
+        archival_params=CommonBandwidthSettings(
+            download=BandwidthThrottling(
+                rate_limit_bytes_per_sec=1,
+                bandwidth_limit_overrides=[
+                    BandwidthThrottlingOverride(
+                        bytes_per_second=1,
+                        time_periods=TimeOfAWeek(
+                            days=[
+                                "Sunday",
+                            ],
+                            end_time=TimeOfDay(
+                                hour=0,
+                                minute=0,
+                                time_zone="America/Los_Angeles",
+                            ),
+                            is_all_day=True,
+                            start_time=TimeOfDay(
+                                hour=0,
+                                minute=0,
+                                time_zone="America/Los_Angeles",
+                            ),
+                        ),
+                    ),
+                ],
+                timezone="timezone_example",
+            ),
+            upload=BandwidthThrottling(
+                rate_limit_bytes_per_sec=1,
+                bandwidth_limit_overrides=[
+                    BandwidthThrottlingOverride(
+                        bytes_per_second=1,
+                        time_periods=TimeOfAWeek(
+                            days=[
+                                "Sunday",
+                            ],
+                            end_time=TimeOfDay(
+                                hour=0,
+                                minute=0,
+                                time_zone="America/Los_Angeles",
+                            ),
+                            is_all_day=True,
+                            start_time=TimeOfDay(
+                                hour=0,
+                                minute=0,
+                                time_zone="America/Los_Angeles",
+                            ),
+                        ),
+                    ),
+                ],
+                timezone="timezone_example",
+            ),
+        ),
+        tiering_params=CommonBandwidthSettings(
+            download=BandwidthThrottling(
+                rate_limit_bytes_per_sec=1,
+                bandwidth_limit_overrides=[
+                    BandwidthThrottlingOverride(
+                        bytes_per_second=1,
+                        time_periods=TimeOfAWeek(
+                            days=[
+                                "Sunday",
+                            ],
+                            end_time=TimeOfDay(
+                                hour=0,
+                                minute=0,
+                                time_zone="America/Los_Angeles",
+                            ),
+                            is_all_day=True,
+                            start_time=TimeOfDay(
+                                hour=0,
+                                minute=0,
+                                time_zone="America/Los_Angeles",
+                            ),
+                        ),
+                    ),
+                ],
+                timezone="timezone_example",
+            ),
+            upload=BandwidthThrottling(
+                rate_limit_bytes_per_sec=1,
+                bandwidth_limit_overrides=[
+                    BandwidthThrottlingOverride(
+                        bytes_per_second=1,
+                        time_periods=TimeOfAWeek(
+                            days=[
+                                "Sunday",
+                            ],
+                            end_time=TimeOfDay(
+                                hour=0,
+                                minute=0,
+                                time_zone="America/Los_Angeles",
+                            ),
+                            is_all_day=True,
+                            start_time=TimeOfDay(
+                                hour=0,
+                                minute=0,
+                                time_zone="America/Los_Angeles",
+                            ),
+                        ),
+                    ),
+                ],
+                timezone="timezone_example",
+            ),
+        ),
     ) # GlobalBandwidthSettings | Specifies the parameters to update a External Target Settings.
 
 # example passing only required values which don't have defaults set
@@ -646,7 +766,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 

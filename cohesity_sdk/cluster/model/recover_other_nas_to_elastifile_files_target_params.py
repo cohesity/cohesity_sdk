@@ -28,8 +28,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.filter_ip_config import FilterIpConfig
+    from cohesity_sdk.cluster.model.recover_target import RecoverTarget
     from cohesity_sdk.cluster.model.recovery_vlan_config import RecoveryVlanConfig
     globals()['FilterIpConfig'] = FilterIpConfig
+    globals()['RecoverTarget'] = RecoverTarget
     globals()['RecoveryVlanConfig'] = RecoveryVlanConfig
 
 
@@ -82,7 +84,7 @@ class RecoverOtherNasToElastifileFilesTargetParams(ModelNormal):
         lazy_import()
         return {
             'alternate_path': (str, none_type,),  # noqa: E501
-            'volume': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'volume': (RecoverTarget,),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
             'encryption_enabled': (bool, none_type,),  # noqa: E501
             'filter_ip_config': (FilterIpConfig,),  # noqa: E501
@@ -127,7 +129,7 @@ class RecoverOtherNasToElastifileFilesTargetParams(ModelNormal):
 
         Args:
             alternate_path (str, none_type): Specifies the path location to recover files to.
-            volume ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the id and name of the parent NAS to recover to. This volume will be the target of the recovery.
+            volume (RecoverTarget):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

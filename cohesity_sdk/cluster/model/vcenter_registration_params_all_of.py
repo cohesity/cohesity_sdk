@@ -87,6 +87,7 @@ class VcenterRegistrationParamsAllOf(ModelNormal):
             'min_free_datastore_space_for_backup_gb': (int, none_type,),  # noqa: E501
             'min_free_datastore_space_for_backup_percentage': (int, none_type,),  # noqa: E501
             'throttling_params': (VmwareThrottlingParams,),  # noqa: E501
+            'update_last_backup_details': (bool, none_type,),  # noqa: E501
             'use_vm_bios_uuid': (bool, none_type,),  # noqa: E501
         }
 
@@ -103,6 +104,7 @@ class VcenterRegistrationParamsAllOf(ModelNormal):
         'min_free_datastore_space_for_backup_gb': 'minFreeDatastoreSpaceForBackupGb',  # noqa: E501
         'min_free_datastore_space_for_backup_percentage': 'minFreeDatastoreSpaceForBackupPercentage',  # noqa: E501
         'throttling_params': 'throttlingParams',  # noqa: E501
+        'update_last_backup_details': 'updateLastBackupDetails',  # noqa: E501
         'use_vm_bios_uuid': 'useVmBiosUuid',  # noqa: E501
     }
 
@@ -159,6 +161,7 @@ class VcenterRegistrationParamsAllOf(ModelNormal):
             min_free_datastore_space_for_backup_gb (int, none_type): Specifies the minimum free space (in GB) expected to be available in the datastore where the virtual disks of the VM being backed up reside. If the space available is lower than the specified value, backup will be aborted.. [optional]  # noqa: E501
             min_free_datastore_space_for_backup_percentage (int, none_type): Specifies the minimum free space (in percentage) expected to be available in the datastore where the virtual disks of the VM being backed up reside. If the space available is lower than the specified value, backup will be aborted.. [optional]  # noqa: E501
             throttling_params (VmwareThrottlingParams): [optional]  # noqa: E501
+            update_last_backup_details (bool, none_type): Specifies whether to update the last backup details, including the time of the backup attempt and backup status, for the virtual machines on the vCenter.. [optional]  # noqa: E501
             use_vm_bios_uuid (bool, none_type): Specifies to use VM BIOS UUID to track virtual machines in the host.. [optional]  # noqa: E501
         """
 

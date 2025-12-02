@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **source_side_deduplication** | **bool, none_type** | Specifies the Source Side Deduplication setting for the Azure external target | [optional] 
 **worm_specific_target_params** | [**WormSpecificTargetParams**](WormSpecificTargetParams.md) |  | [optional] 
 **archive_blob_params** | [**AzureArchiveBlobParams**](AzureArchiveBlobParams.md) |  | [optional] 
+**cold_blob_params** | [**AzureColdBlobParams**](AzureColdBlobParams.md) |  | [optional] 
 **cool_blob_params** | [**AzureCoolBlobParams**](AzureCoolBlobParams.md) |  | [optional] 
 **hot_blob_params** | [**AzureHotBlobParams**](AzureHotBlobParams.md) |  | [optional] 
 

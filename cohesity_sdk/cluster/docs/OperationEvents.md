@@ -1,6 +1,6 @@
 # OperationEvents
 
-Specifes the list of events that took place during the operation.
+List of events that took place during the operation.
 
 ## Properties
 Name | Type | Description | Notes

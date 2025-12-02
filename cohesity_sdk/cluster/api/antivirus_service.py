@@ -54,7 +54,7 @@ class AntivirusServiceApi(object):
         ):
             """Create an Antivirus Service group.  # noqa: E501
 
-            Create Antivirus Service group.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Create Antivirus Service group.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -119,7 +119,9 @@ class AntivirusServiceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/antivirus-service/groups',
                 'operation_id': 'create_antivirus_group',
@@ -176,7 +178,7 @@ class AntivirusServiceApi(object):
         ):
             """Delete an Antivirus Service group  # noqa: E501
 
-            Deletes an Antivirus service group based on given id.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Deletes an Antivirus service group based on given id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -241,7 +243,9 @@ class AntivirusServiceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/antivirus-service/groups/{id}',
                 'operation_id': 'delete_antivirus_group',
@@ -297,7 +301,7 @@ class AntivirusServiceApi(object):
         ):
             """Delete infected files.  # noqa: E501
 
-            Delete infected files.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete infected files.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -362,7 +366,9 @@ class AntivirusServiceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/antivirus-service/infected-files',
                 'operation_id': 'delete_infected_files',
@@ -419,7 +425,7 @@ class AntivirusServiceApi(object):
         ):
             """Delete infected objects permanently.  # noqa: E501
 
-            Delete infected objects permanently.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete infected objects permanently.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -484,7 +490,9 @@ class AntivirusServiceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/antivirus-service/infected-objects',
                 'operation_id': 'delete_infected_objects',
@@ -540,7 +548,7 @@ class AntivirusServiceApi(object):
         ):
             """Get Antivirus Service groups.  # noqa: E501
 
-            Get Antivirus Service groups.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Get Antivirus Service groups.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -601,7 +609,9 @@ class AntivirusServiceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/antivirus-service/groups',
                 'operation_id': 'get_antivirus_service_groups',
@@ -649,7 +659,7 @@ class AntivirusServiceApi(object):
         ):
             """Get ICAP Uri connection status.  # noqa: E501
 
-            Get ICAP Uri connection status.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Get ICAP Uri connection status.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -711,7 +721,9 @@ class AntivirusServiceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/antivirus-service/icap-uri-connection-status',
                 'operation_id': 'get_icap_uri_connection_status',
@@ -765,7 +777,7 @@ class AntivirusServiceApi(object):
         ):
             """Get infected entities.  # noqa: E501
 
-            Get infected entities.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Get infected entities.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -831,7 +843,9 @@ class AntivirusServiceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/antivirus-service/infected-files',
                 'operation_id': 'get_infected_files',
@@ -914,7 +928,7 @@ class AntivirusServiceApi(object):
         ):
             """Update an Antivirus Service group with given parameters or if state is specified, enable or disable given group.  # noqa: E501
 
-            Update an Antivirus Service group.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Update an Antivirus Service group.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -982,7 +996,9 @@ class AntivirusServiceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/antivirus-service/groups/{id}',
                 'operation_id': 'update_antivirus_group',
@@ -1045,7 +1061,7 @@ class AntivirusServiceApi(object):
         ):
             """Update infected entities state.  # noqa: E501
 
-            Update infected entities state.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update infected entities state.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1110,7 +1126,9 @@ class AntivirusServiceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/antivirus-service/infected-files',
                 'operation_id': 'update_infected_files',

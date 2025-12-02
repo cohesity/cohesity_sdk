@@ -57,7 +57,7 @@ class FailoverApi(object):
         ):
             """Cancel failover workflow.  # noqa: E501
 
-            Specifies the request to cancel failover workflow. The cancellation request should not be made if '/backupActivation' or '/backupDeactivaetion' are already called on replication or source cluster respectively.  # noqa: E501
+            **Privileges:** ```RESTORE_MODIFY``` <br><br>Specifies the request to cancel failover workflow. The cancellation request should not be made if '/backupActivation' or '/backupDeactivaetion' are already called on replication or source cluster respectively.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -122,7 +122,9 @@ class FailoverApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/{id}/cancel',
                 'operation_id': 'cancel_failover',
@@ -178,7 +180,7 @@ class FailoverApi(object):
         ):
             """Cancel View Failover Task.  # noqa: E501
 
-            Cancel an in progress view failover task.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Cancel an in progress view failover task.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -243,7 +245,9 @@ class FailoverApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/views/{id}/cancel',
                 'operation_id': 'cancel_view_failover',
@@ -300,7 +304,7 @@ class FailoverApi(object):
         ):
             """Create a planned run for backup and replication.  # noqa: E501
 
-            Specifies the configuration required for executing a special run as a part of failover workflow. This special run is triggered during palnned failover to sync the source cluster to replication cluster with minimum possible delta.  # noqa: E501
+            **Privileges:** ```RESTORE_MODIFY``` <br><br>Specifies the configuration required for executing a special run as a part of failover workflow. This special run is triggered during palnned failover to sync the source cluster to replication cluster with minimum possible delta.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -368,7 +372,9 @@ class FailoverApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/{id}/planned-run',
                 'operation_id': 'create_planned_run',
@@ -432,7 +438,7 @@ class FailoverApi(object):
         ):
             """Create View Failover Task.  # noqa: E501
 
-            Create a view failover task.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Create a view failover task.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -500,7 +506,9 @@ class FailoverApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/views/{id}',
                 'operation_id': 'create_view_failover',
@@ -563,7 +571,7 @@ class FailoverApi(object):
         ):
             """Gets all the failover operations which can be performed on this view.  # noqa: E501
 
-            Gets all the failover operations which can be performed on this view.  # noqa: E501
+            **Privileges:** ```STORAGE_VIEW``` <br><br>Gets all the failover operations which can be performed on this view.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -628,7 +636,9 @@ class FailoverApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/views/{id}/operations',
                 'operation_id': 'get_failover_ops',
@@ -684,7 +694,7 @@ class FailoverApi(object):
         ):
             """Get tracking View Id  # noqa: E501
 
-            Get tracking View Id  # noqa: E501
+            **Privileges:** ```STORAGE_VIEW``` <br><br>Get tracking View Id  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -750,7 +760,9 @@ class FailoverApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/views/trackingViewId/{id}',
                 'operation_id': 'get_tracking_view_id',
@@ -811,7 +823,7 @@ class FailoverApi(object):
         ):
             """Get View Failover.  # noqa: E501
 
-            Get failover tasks of a View.  # noqa: E501
+            **Privileges:** ```STORAGE_VIEW``` <br><br>Get failover tasks of a View.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -876,7 +888,9 @@ class FailoverApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/views/{id}',
                 'operation_id': 'get_view_failover',
@@ -933,7 +947,7 @@ class FailoverApi(object):
         ):
             """Initiate a failover request.  # noqa: E501
 
-            Initiate a failover request.  # noqa: E501
+            **Privileges:** ```RESTORE_MODIFY``` <br><br>Initiate a failover request.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1001,7 +1015,9 @@ class FailoverApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/{id}',
                 'operation_id': 'init_failover',
@@ -1065,7 +1081,7 @@ class FailoverApi(object):
         ):
             """Linking between replicated objects and failover objects  # noqa: E501
 
-            Specifies the request to link failover objects on replication cluster to the replicated entity from source cluster. This linking need to be done after perforing recoveries for failed entities on replication cluster. This linkage will be useful when merging snapshots of object across replications and failovers.  # noqa: E501
+            **Privileges:** ```RESTORE_MODIFY``` <br><br>Specifies the request to link failover objects on replication cluster to the replicated entity from source cluster. This linking need to be done after perforing recoveries for failed entities on replication cluster. This linkage will be useful when merging snapshots of object across replications and failovers.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1133,7 +1149,9 @@ class FailoverApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/{id}/object-linkage',
                 'operation_id': 'object_linkage',
@@ -1196,7 +1214,7 @@ class FailoverApi(object):
         ):
             """Get the list of failover planned runs.  # noqa: E501
 
-            Poll to see whether planned run has been scheduled or not.  # noqa: E501
+            **Privileges:** ```RESTORE_MODIFY``` <br><br>Poll to see whether planned run has been scheduled or not.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1263,7 +1281,9 @@ class FailoverApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/planned-runs',
                 'operation_id': 'poll_planned_runs',
@@ -1332,7 +1352,7 @@ class FailoverApi(object):
         ):
             """Activate failover entity backup on replication clsuter.  # noqa: E501
 
-            Specifies the configuration required for activating backup for failover objects on replication cluster. Here orchastrator can call this API multiple times as long as full set of object are non-overlapping. They can also use the existing job if its compatible to backup failover objects.  # noqa: E501
+            **Privileges:** ```RESTORE_MODIFY``` <br><br>Specifies the configuration required for activating backup for failover objects on replication cluster. Here orchastrator can call this API multiple times as long as full set of object are non-overlapping. They can also use the existing job if its compatible to backup failover objects.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1400,7 +1420,9 @@ class FailoverApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/{id}/backup-activation',
                 'operation_id': 'replication_backup_activation',
@@ -1464,7 +1486,7 @@ class FailoverApi(object):
         ):
             """Deactivate failover entity backup on source clsuter.  # noqa: E501
 
-            Specifies the configuration required for deactivating backup for failover entities on source cluster.  # noqa: E501
+            **Privileges:** ```RESTORE_MODIFY``` <br><br>Specifies the configuration required for deactivating backup for failover entities on source cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1532,7 +1554,9 @@ class FailoverApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/{id}/backup-deactivation',
                 'operation_id': 'source_backup_deactivation',

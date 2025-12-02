@@ -47,7 +47,7 @@ class SearchApi(object):
         ):
             """List indexed objects.  # noqa: E501
 
-            List all the indexed objects like files and folders, emails, mailboxes etc., that match the specified search and filter criteria from protected objects.  # noqa: E501
+            **Privileges:** ```RESTORE_VIEW``` <br><br>List all the indexed objects like files and folders, emails, mailboxes etc., that match the specified search and filter criteria from protected objects.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -112,7 +112,9 @@ class SearchApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/search/indexed-objects',
                 'operation_id': 'search_indexed_objects',
@@ -168,7 +170,7 @@ class SearchApi(object):
         ):
             """List Objects.  # noqa: E501
 
-            List objects.  # noqa: E501
+            **Privileges:** ```OBJECT_SEARCH``` <br><br>List objects.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -192,8 +194,10 @@ class SearchApi(object):
                 azure_uuids ([str]): Specifies the Azure UUID for the Microsoft365 objects. If specified, the objects with the matching Azure UUIDs will be returned.. [optional]
                 source_ids ([int]): Specifies a list of Protection Source object ids to filter the objects. If specified, the object which are present in those Sources will be returned.. [optional]
                 source_uuids ([str]): Specifies a list of Protection Source object uuids to filter the objects. If specified, the object which are present in those Sources will be returned.. [optional]
+                object_uuids ([str]): Specifies a list of object uuids to filter the object, based on the object uuid. These uuid are vendor specific and should be of the form, <sourceUuid_uuid>.. [optional]
                 is_protected (bool): Specifies the protection status of objects. If set to true, only protected objects will be returned. If set to false, only unprotected objects will be returned. If not specified, all objects will be returned.. [optional]
                 is_deleted (bool): If set to true, then objects which are deleted on atleast one cluster will be returned. If not set or set to false then objects which are registered on atleast one cluster are returned.. [optional]
+                only_deleted (bool): If set to true, then only the objects which are deleted on atleast one cluster will be returned.. [optional]
                 last_run_status_list ([str]): Specifies a list of status of the object's last protection run. Only objects with last run status of these will be returned.. [optional]
                 region_ids ([str]): Specifies a list of region ids. Only records from clusters having these region ids will be returned.. [optional]
                 cluster_identifiers ([str]): Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.. [optional]
@@ -206,7 +210,11 @@ class SearchApi(object):
                 must_have_snapshot_tag_ids ([str]): Specifies snapshot tags which must be all present in the document.. [optional]
                 might_have_snapshot_tag_ids ([str]): Specifies list of snapshot tags, one or more of which might be present in the document. These are OR'ed together and the resulting criteria AND'ed with the rest of the query.. [optional]
                 tag_search_name (str): Specifies the tag name to filter the tagged objects and snapshots. User can specify a wildcard character '*' as a suffix to a string where all object's tag names are matched with the prefix string.. [optional]
-                tag_names ([str]): Specifies the tag names to filter the tagged objects and snapshots. [optional]
+                tag_names ([str]): Specifies the tag names to filter the tagged objects and snapshots only for non system tags. [optional]
+                anomaly_tags ([str]): Specifies the Anomaly's tag names to filter the tagged snapshots. [optional]
+                data_classification_tags ([str]): Specifies the Data classification's tag names to filter the tagged snapshots. [optional]
+                threat_tags ([str]): Specifies the threat tag's names to filter the tagged snapshots. [optional]
+                tag_names_excluded ([str]): Specifies the tag names to not include in the tagged snapshots response. [optional]
                 tag_types ([str]): Specifies the tag type to filter the objects and snapshots.. [optional]
                 tag_categories ([str]): Specifies the tag category to filter the objects and snapshots.. [optional]
                 tag_sub_categories ([str]): Specifies the tag subcategory to filter the objects and snapshots. [optional]
@@ -264,7 +272,9 @@ class SearchApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/search/objects',
                 'operation_id': 'search_objects',
@@ -288,8 +298,10 @@ class SearchApi(object):
                     'azure_uuids',
                     'source_ids',
                     'source_uuids',
+                    'object_uuids',
                     'is_protected',
                     'is_deleted',
+                    'only_deleted',
                     'last_run_status_list',
                     'region_ids',
                     'cluster_identifiers',
@@ -303,6 +315,10 @@ class SearchApi(object):
                     'might_have_snapshot_tag_ids',
                     'tag_search_name',
                     'tag_names',
+                    'anomaly_tags',
+                    'data_classification_tags',
+                    'threat_tags',
+                    'tag_names_excluded',
                     'tag_types',
                     'tag_categories',
                     'tag_sub_categories',
@@ -321,6 +337,9 @@ class SearchApi(object):
                     'azure_object_types',
                     'aws_object_types',
                     'last_run_status_list',
+                    'anomaly_tags',
+                    'data_classification_tags',
+                    'threat_tags',
                     'tag_types',
                     'tag_categories',
                     'tag_sub_categories',
@@ -371,6 +390,13 @@ class SearchApi(object):
                         "KAWS": "kAWS",
                         "KACROPOLIS": "kAcropolis",
                         "KGCP": "kGCP",
+                        "KGCPBIGQUERY": "kGCPBigQuery",
+                        "KGCPMYSQL": "kGCPMySQL",
+                        "KGOOGLESPANNER": "kGoogleSpanner",
+                        "KGCPPOSTGRESQL": "kGCPPostgreSQL",
+                        "KGCPALLOYDBPOSTGRESQL": "kGCPAlloyDBPostgreSQL",
+                        "KGCPSQLSERVER": "kGCPSQLServer",
+                        "KGCPFIRESTORE": "kGCPFirestore",
                         "KPHYSICAL": "kPhysical",
                         "KPHYSICALFILES": "kPhysicalFiles",
                         "KISILON": "kIsilon",
@@ -396,8 +422,39 @@ class SearchApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
+                        "KS3COMPATIBLE": "kS3Compatible",
+                        "KSAPHANA": "kSAPHANA",
                         "KUDA": "kUDA",
-                        "KSFDC": "kSfdc"
+                        "KSFDC": "kSfdc",
+                        "KEXPERIMENTALADAPTER": "kExperimentalAdapter",
+                        "KAZUREENTRAID": "kAzureEntraID",
+                        "KAZUREMYSQL": "kAzureMySQL",
+                        "KAZURECOSMOSDBNOSQL": "kAzureCosmosDBNoSQL",
+                        "KAZURECOSMOSDBMONGODB": "kAzureCosmosDBMongoDB",
+                        "KAZURECOSMOSDBCASSANDRA": "kAzureCosmosDBCassandra",
+                        "KAZUREPOSTGRESQLSERVER": "kAzurePostgreSQLServer",
+                        "KAZURESQL": "kAzureSQL",
+                        "KAZURESQLDB": "kAzureSQLDB",
+                        "KAZURESQLMI": "kAzureSQLMI",
+                        "KAZURETABLESTORAGE": "kAzureTableStorage",
+                        "KAZUREBLOBSTORAGE": "kAzureBlobStorage",
+                        "KAZURETABLEAPI": "kAzureTableAPI",
+                        "KMONGODBPHYSICAL": "kMongoDBPhysical",
+                        "KGOOGLEWORKSPACE": "kGoogleWorkspace",
+                        "KDB2": "kDB2",
+                        "KSERVICENOW": "kServiceNow",
+                        "KPOSTGRES": "kPostgres",
+                        "KNUTANIXFS": "kNutanixFS",
+                        "KAWSAURORAMYSQL": "kAWSAuroraMySQL",
+                        "KAWSMYSQL": "kAWSMySQL",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAWSRDSMSSQL": "kAWSRDSMSSQL",
+                        "KAWSRDSORACLE": "kAWSRdsOracle",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KAWSDOCUMENTDB": "kAWSDocumentDB",
+                        "KAWSRDSPOSTGRESDB": "kAWSRDSPostgresDB",
+                        "KAWSAURORAPOSTGRESDB": "kAWSAuroraPostgresDB",
+                        "KAWSREDSHIFT": "kAWSRedshift"
                     },
                     ('protection_types',): {
 
@@ -405,12 +462,54 @@ class SearchApi(object):
                         "KNATIVE": "kNative",
                         "KSNAPSHOTMANAGER": "kSnapshotManager",
                         "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KRDSPOSTGRESSNAPSHOTMANAGER": "kRDSPostgresSnapshotManager",
+                        "KRDSMYSQLSNAPSHOTMANAGER": "kRDSMySQLSnapshotManager",
+                        "KRDSMSSQLSNAPSHOTMANAGER": "kRDSMSSQLSnapshotManager",
+                        "KRDSORACLESNAPSHOTMANAGER": "kRDSOracleSnapshotManager",
+                        "KRDSMARIADBSNAPSHOTMANAGER": "kRDSMariaDBSnapshotManager",
+                        "KRDSCUSTOMMSSQLSNAPSHOTMANAGER": "kRDSCustomMSSQLSnapshotManager",
+                        "KRDSCUSTOMORACLESNAPSHOTMANAGER": "kRDSCustomOracleSnapshotManager",
                         "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAURORAPOSTGRESSNAPSHOTMANAGER": "kAuroraPostgresSnapshotManager",
+                        "KAURORAMYSQLSNAPSHOTMANAGER": "kAuroraMySQLSnapshotManager",
                         "KAWSS3": "kAwsS3",
                         "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAWSAURORAPOSTGRES": "kAwsAuroraPostgres",
+                        "KAWSRDSPOSTGRES": "kAwsRDSPostgres",
+                        "KAWSMYSQL": "kAWSMySQL",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KAWSDYNAMODB": "kAwsDynamoDB",
+                        "KAWSAURORAMYSQL": "kAWSAuroraMySQL",
+                        "KAWSRDSORACLE": "kAWSRdsOracle",
+                        "KAWSDOCUMENTDB": "kAWSDocumentDB",
+                        "KAWSRDSPOSTGRESDB": "kAWSRDSPostgresDB",
+                        "KAWSAURORAPOSTGRESDB": "kAWSAuroraPostgresDB",
+                        "KAWSRDSMSSQL": "kAWSRDSMSSQL",
+                        "KAWSREDSHIFT": "kAWSRedshift",
                         "KAZURESQL": "kAzureSQL",
+                        "KAZUREENTRAID": "kAzureEntraID",
+                        "KAZUREMYSQL": "kAzureMySQL",
+                        "KAZURECOSMOSDBNOSQL": "kAzureCosmosDBNoSQL",
+                        "KAZURECOSMOSDBMONGODB": "kAzureCosmosDBMongoDB",
+                        "KAZURECOSMOSDBCASSANDRA": "kAzureCosmosDBCassandra",
+                        "KAZUREBLOBSTORAGE": "kAzureBlobStorage",
+                        "KAZUREPOSTGRESQLSERVER": "kAzurePostgreSQLServer",
+                        "KAZURESQLDB": "kAzureSQLDB",
+                        "KAZURESQLMI": "kAzureSQLMI",
+                        "KAZURETABLESTORAGE": "kAzureTableStorage",
+                        "KAZURETABLEAPI": "kAzureTableAPI",
+                        "KKUBERNETES": "kKubernetes",
+                        "KGCPBIGQUERY": "kGCPBigQuery",
+                        "KGOOGLESPANNER": "kGoogleSpanner",
+                        "KGCPFIRESTORE": "kGCPFirestore",
+                        "KGCPMYSQL": "kGCPMySQL",
+                        "KGCPPOSTGRESQL": "kGCPPostgreSQL",
+                        "KGCPALLOYDBPOSTGRESQL": "kGCPAlloyDBPostgreSQL",
+                        "KGCPSQLSERVER": "kGCPSQLServer",
                         "KFILE": "kFile",
-                        "KVOLUME": "kVolume"
+                        "KVOLUME": "kVolume",
+                        "KGMAIL": "kGmail",
+                        "KGOOGLEDRIVE": "kGoogleDrive"
                     },
                     ('os_types',): {
 
@@ -462,9 +561,28 @@ class SearchApi(object):
                         "KCOMPUTEOPTIONS": "kComputeOptions",
                         "KSNAPSHOTMANAGERPERMIT": "kSnapshotManagerPermit",
                         "KTAG": "kTag",
+                        "KREGION": "kRegion",
                         "KAVAILABILITYSET": "kAvailabilitySet",
                         "KSQLSERVER": "kSQLServer",
-                        "KSQLDATABASE": "kSQLDatabase"
+                        "KSQLDATABASE": "kSQLDatabase",
+                        "KSQLMANAGEDINSTANCE": "kSQLManagedInstance",
+                        "KMYSQLDATABASE": "kMySQLDatabase",
+                        "KMYSQLFLEXIBLESERVER": "kMySQLFlexibleServer",
+                        "KAZUREKUBERNETESCLUSTER": "kAzureKubernetesCluster",
+                        "KAZUREKUBERNETESNAMESPACE": "kAzureKubernetesNamespace",
+                        "KCOSMOSDBCASSANDRAACCOUNT": "kCosmosDBCassandraAccount",
+                        "KCOSMOSDBCASSANDRAKEYSPACE": "kCosmosDBCassandraKeyspace",
+                        "KAZURECOSMOSDBNOSQLACCOUNT": "kAzureCosmosDBNoSQLAccount",
+                        "KAZURECOSMOSDBNOSQLDATABASE": "kAzureCosmosDBNoSQLDatabase",
+                        "KAZURECOSMOSDBMONGODBACCOUNT": "kAzureCosmosDBMongoDBAccount",
+                        "KAZURECOSMOSDBMONGODBDATABASE": "kAzureCosmosDBMongoDBDatabase",
+                        "KCOSMOSDBTABLEACCOUNT": "kCosmosDBTableAccount",
+                        "KCOSMOSDBTABLEAPI": "kCosmosDBTableAPI",
+                        "KSQLMIDATABASE": "kSQLMIDatabase",
+                        "KPOSTGRESQLFLEXIBLESERVER": "kPostgreSQLFlexibleServer",
+                        "KPOSTGRESQLDATABASE": "kPostgreSQLDatabase",
+                        "KCOSMOSDBTABLEAPITABLE": "kCosmosDBTableAPITable",
+                        "KENTRAID": "kEntraID"
                     },
                     ('aws_object_types',): {
 
@@ -481,17 +599,38 @@ class SearchApi(object):
                         "KRDSOPTIONGROUP": "kRDSOptionGroup",
                         "KRDSPARAMETERGROUP": "kRDSParameterGroup",
                         "KRDSINSTANCE": "kRDSInstance",
+                        "KRDSPOSTGRESINSTANCE": "kRDSPostgresInstance",
+                        "KRDSMYSQLINSTANCE": "kRDSMySQLInstance",
+                        "KRDSMSSQLINSTANCE": "kRDSMSSQLInstance",
+                        "KRDSORACLEINSTANCE": "kRDSOracleInstance",
+                        "KRDSMARIADBINSTANCE": "kRDSMariaDBInstance",
+                        "KRDSCUSTOMMSSQLINSTANCE": "kRDSCustomMSSQLInstance",
+                        "KRDSCUSTOMORACLEINSTANCE": "kRDSCustomOracleInstance",
                         "KRDSSUBNET": "kRDSSubnet",
                         "KRDSTAG": "kRDSTag",
+                        "KREDSHIFTTAG": "kRedshiftTag",
                         "KAURORATAG": "kAuroraTag",
                         "KAURORACLUSTER": "kAuroraCluster",
+                        "KAURORAPOSTGRESCLUSTER": "kAuroraPostgresCluster",
+                        "KAURORAMYSQLCLUSTER": "kAuroraMySQLCluster",
                         "KACCOUNT": "kAccount",
                         "KSUBTASKPERMIT": "kSubTaskPermit",
                         "KS3BUCKET": "kS3Bucket",
                         "KS3TAG": "kS3Tag",
                         "KKMSKEY": "kKmsKey",
                         "KRDSPOSTGRESDB": "kRDSPostgresDb",
-                        "KAURORACLUSTERPOSTGRESDB": "kAuroraClusterPostgresDb"
+                        "KAURORACLUSTERPOSTGRESDB": "kAuroraClusterPostgresDb",
+                        "KRDSMYSQLDB": "kRDSMySQLDb",
+                        "KAURORAMYSQLDB": "kAuroraMySQLDb",
+                        "KRDSMSSQLDB": "kRDSMSSQLDb",
+                        "KRDSORACLEDB": "kRDSOracleDb",
+                        "KRDSMARIADBDB": "kRDSMariaDBDb",
+                        "KRDSCUSTOMMSSQLDB": "kRDSCustomMSSQLDb",
+                        "KRDSCUSTOMORACLEDB": "kRDSCustomOracleDb",
+                        "KAWSREDSHIFTCLUSTER": "kAWSRedshiftCluster",
+                        "KAWSREDSHIFTDATABASE": "kAWSRedshiftDatabase",
+                        "KAWSDOCUMENTDBCLUSTER": "kAWSDocumentDBCluster",
+                        "KAWSDOCUMENTDBDB": "kAWSDocumentDBdb"
                     },
                     ('last_run_status_list',): {
 
@@ -507,6 +646,24 @@ class SearchApi(object):
                         "FINALIZING": "Finalizing",
                         "SKIPPED": "Skipped",
                         "LEGALHOLD": "LegalHold"
+                    },
+                    ('anomaly_tags',): {
+
+                        "CRITICAL_RANSOMWARE_DETECTED": "Critical Ransomware Detected",
+                        "WARNING_RANSOMWARE_DETECTED": "Warning Ransomware Detected",
+                        "NO_RANSOMWARE_DETECTED": "No Ransomware Detected"
+                    },
+                    ('data_classification_tags',): {
+
+                        "HIGH_SENSITIVITY_DETECTED": "High Sensitivity Detected",
+                        "MEDIUM_SENSITIVITY_DETECTED": "Medium Sensitivity Detected",
+                        "LOW_SENSITIVITY_DETECTED": "Low Sensitivity Detected",
+                        "NO_SENSITIVITY_DETECTED": "No Sensitivity Detected"
+                    },
+                    ('threat_tags',): {
+
+                        "THREATS_MATCHED": "Threats Matched",
+                        "NO_THREATS_MATCHED": "No Threats Matched"
                     },
                     ('tag_types',): {
 
@@ -557,9 +714,13 @@ class SearchApi(object):
                         ([int],),
                     'source_uuids':
                         ([str],),
+                    'object_uuids':
+                        ([str],),
                     'is_protected':
                         (bool,),
                     'is_deleted':
+                        (bool,),
+                    'only_deleted':
                         (bool,),
                     'last_run_status_list':
                         ([str],),
@@ -586,6 +747,14 @@ class SearchApi(object):
                     'tag_search_name':
                         (str,),
                     'tag_names':
+                        ([str],),
+                    'anomaly_tags':
+                        ([str],),
+                    'data_classification_tags':
+                        ([str],),
+                    'threat_tags':
+                        ([str],),
+                    'tag_names_excluded':
                         ([str],),
                     'tag_types':
                         ([str],),
@@ -614,8 +783,10 @@ class SearchApi(object):
                     'azure_uuids': 'azureUuids',
                     'source_ids': 'sourceIds',
                     'source_uuids': 'sourceUuids',
+                    'object_uuids': 'objectUuids',
                     'is_protected': 'isProtected',
                     'is_deleted': 'isDeleted',
+                    'only_deleted': 'onlyDeleted',
                     'last_run_status_list': 'lastRunStatusList',
                     'region_ids': 'regionIds',
                     'cluster_identifiers': 'clusterIdentifiers',
@@ -629,6 +800,10 @@ class SearchApi(object):
                     'might_have_snapshot_tag_ids': 'mightHaveSnapshotTagIds',
                     'tag_search_name': 'tagSearchName',
                     'tag_names': 'tagNames',
+                    'anomaly_tags': 'anomalyTags',
+                    'data_classification_tags': 'dataClassificationTags',
+                    'threat_tags': 'threatTags',
+                    'tag_names_excluded': 'tagNamesExcluded',
                     'tag_types': 'tagTypes',
                     'tag_categories': 'tagCategories',
                     'tag_sub_categories': 'tagSubCategories',
@@ -651,8 +826,10 @@ class SearchApi(object):
                     'azure_uuids': 'query',
                     'source_ids': 'query',
                     'source_uuids': 'query',
+                    'object_uuids': 'query',
                     'is_protected': 'query',
                     'is_deleted': 'query',
+                    'only_deleted': 'query',
                     'last_run_status_list': 'query',
                     'region_ids': 'query',
                     'cluster_identifiers': 'query',
@@ -666,6 +843,10 @@ class SearchApi(object):
                     'might_have_snapshot_tag_ids': 'query',
                     'tag_search_name': 'query',
                     'tag_names': 'query',
+                    'anomaly_tags': 'query',
+                    'data_classification_tags': 'query',
+                    'threat_tags': 'query',
+                    'tag_names_excluded': 'query',
                     'tag_types': 'query',
                     'tag_categories': 'query',
                     'tag_sub_categories': 'query',
@@ -685,6 +866,7 @@ class SearchApi(object):
                     'azure_uuids': 'csv',
                     'source_ids': 'csv',
                     'source_uuids': 'csv',
+                    'object_uuids': 'csv',
                     'last_run_status_list': 'csv',
                     'region_ids': 'csv',
                     'cluster_identifiers': 'csv',
@@ -694,6 +876,10 @@ class SearchApi(object):
                     'must_have_snapshot_tag_ids': 'csv',
                     'might_have_snapshot_tag_ids': 'csv',
                     'tag_names': 'csv',
+                    'anomaly_tags': 'csv',
+                    'data_classification_tags': 'csv',
+                    'threat_tags': 'csv',
+                    'tag_names_excluded': 'csv',
                     'tag_types': 'csv',
                     'tag_categories': 'csv',
                     'tag_sub_categories': 'csv',
@@ -716,7 +902,7 @@ class SearchApi(object):
         ):
             """List Protected Objects.  # noqa: E501
 
-            List protected objects and corresponding detail information from registered sources filtered by specified query parameters. If no search pattern or filter parameters are specified, all protected objects currently found are returned.  # noqa: E501
+            **Privileges:** ```RESTORE_VIEW``` <br><br>List protected objects and corresponding detail information from registered sources filtered by specified query parameters. If no search pattern or filter parameters are specified, all protected objects currently found are returned.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -796,7 +982,9 @@ class SearchApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/search/protected-objects',
                 'operation_id': 'search_protected_objects',
@@ -866,6 +1054,13 @@ class SearchApi(object):
                         "KAWS": "kAWS",
                         "KACROPOLIS": "kAcropolis",
                         "KGCP": "kGCP",
+                        "KGCPBIGQUERY": "kGCPBigQuery",
+                        "KGCPMYSQL": "kGCPMySQL",
+                        "KGOOGLESPANNER": "kGoogleSpanner",
+                        "KGCPPOSTGRESQL": "kGCPPostgreSQL",
+                        "KGCPALLOYDBPOSTGRESQL": "kGCPAlloyDBPostgreSQL",
+                        "KGCPSQLSERVER": "kGCPSQLServer",
+                        "KGCPFIRESTORE": "kGCPFirestore",
                         "KPHYSICAL": "kPhysical",
                         "KPHYSICALFILES": "kPhysicalFiles",
                         "KISILON": "kIsilon",
@@ -891,8 +1086,39 @@ class SearchApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
+                        "KS3COMPATIBLE": "kS3Compatible",
+                        "KSAPHANA": "kSAPHANA",
                         "KUDA": "kUDA",
-                        "KSFDC": "kSfdc"
+                        "KSFDC": "kSfdc",
+                        "KEXPERIMENTALADAPTER": "kExperimentalAdapter",
+                        "KAZUREENTRAID": "kAzureEntraID",
+                        "KAZUREMYSQL": "kAzureMySQL",
+                        "KAZURECOSMOSDBNOSQL": "kAzureCosmosDBNoSQL",
+                        "KAZURECOSMOSDBMONGODB": "kAzureCosmosDBMongoDB",
+                        "KAZURECOSMOSDBCASSANDRA": "kAzureCosmosDBCassandra",
+                        "KAZUREPOSTGRESQLSERVER": "kAzurePostgreSQLServer",
+                        "KAZURESQL": "kAzureSQL",
+                        "KAZURESQLDB": "kAzureSQLDB",
+                        "KAZURESQLMI": "kAzureSQLMI",
+                        "KAZURETABLESTORAGE": "kAzureTableStorage",
+                        "KAZUREBLOBSTORAGE": "kAzureBlobStorage",
+                        "KAZURETABLEAPI": "kAzureTableAPI",
+                        "KMONGODBPHYSICAL": "kMongoDBPhysical",
+                        "KGOOGLEWORKSPACE": "kGoogleWorkspace",
+                        "KDB2": "kDB2",
+                        "KSERVICENOW": "kServiceNow",
+                        "KPOSTGRES": "kPostgres",
+                        "KNUTANIXFS": "kNutanixFS",
+                        "KAWSAURORAMYSQL": "kAWSAuroraMySQL",
+                        "KAWSMYSQL": "kAWSMySQL",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAWSRDSMSSQL": "kAWSRDSMSSQL",
+                        "KAWSRDSORACLE": "kAWSRdsOracle",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KAWSDOCUMENTDB": "kAWSDocumentDB",
+                        "KAWSRDSPOSTGRESDB": "kAWSRDSPostgresDB",
+                        "KAWSAURORAPOSTGRESDB": "kAWSAuroraPostgresDB",
+                        "KAWSREDSHIFT": "kAWSRedshift"
                     },
                     ('snapshot_actions',): {
 
@@ -906,6 +1132,7 @@ class SearchApi(object):
                         "RECOVERAURORA": "RecoverAurora",
                         "RECOVERS3BUCKETS": "RecoverS3Buckets",
                         "RECOVERAPPS": "RecoverApps",
+                        "RECOVERAPPFILES": "RecoverAppFiles",
                         "RECOVERNASVOLUME": "RecoverNasVolume",
                         "RECOVERPHYSICALVOLUMES": "RecoverPhysicalVolumes",
                         "RECOVERSYSTEM": "RecoverSystem",
@@ -927,7 +1154,37 @@ class SearchApi(object):
                         "RECOVERRDSPOSTGRES": "RecoverRDSPostgres",
                         "RECOVERMAILBOXCSM": "RecoverMailboxCSM",
                         "RECOVERONEDRIVECSM": "RecoverOneDriveCSM",
-                        "RECOVERSHAREPOINTCSM": "RecoverSharePointCSM"
+                        "RECOVERSHAREPOINTCSM": "RecoverSharePointCSM",
+                        "RECOVERAZUREENTRAID": "RecoverAzureEntraID",
+                        "RECOVERAWSDYNAMODB": "RecoverAwsDynamoDB",
+                        "RECOVERMONGODBCLUSTERS": "RecoverMongodbClusters",
+                        "RECOVERO365TOEXCHANGESERVER": "RecoverO365ToExchangeServer",
+                        "RECOVERAZUREMYSQL": "RecoverAzureMySQL",
+                        "RECOVERAZURECOSMOSDBCASSANDRA": "RecoverAzureCosmosDBCassandra",
+                        "RECOVERAZUREPOSTGRESQL": "RecoverAzurePostgreSQL",
+                        "RECOVERAZURECOSMOSDBNOSQL": "RecoverAzureCosmosDBNoSQL",
+                        "RECOVERAZURECOSMOSDBMONGODB": "RecoverAzureCosmosDBMongoDB",
+                        "RECOVERAZUREBLOBSTORAGE": "RecoverAzureBlobStorage",
+                        "RECOVERAZURESQLDB": "RecoverAzureSQLDB",
+                        "RECOVERAZURESQLMI": "RecoverAzureSQLMI",
+                        "RECOVERRDSMYSQL": "RecoverRDSMySQL",
+                        "RECOVERRDSAURORAMYSQL": "RecoverRDSAuroraMySQL",
+                        "RECOVERGCPBIGQUERY": "RecoverGCPBigQuery",
+                        "RECOVERGCPSQLSERVER": "RecoverGCPSQLServer",
+                        "RECOVERGCPFIRESTORE": "RecoverGCPFirestore",
+                        "RECOVERAZURETABLESTORAGE": "RecoverAzureTableStorage",
+                        "RECOVERAZURETABLEAPI": "RecoverAzureTableAPI",
+                        "RECOVERNUTANIXFS": "RecoverNutanixFS",
+                        "RECOVERGOOGLESPANNER": "RecoverGoogleSpanner",
+                        "RECOVERGCPMYSQL": "RecoverGCPMySQL",
+                        "RECOVERRDSORACLE": "RecoverRDSOracle",
+                        "RECOVERGCPPOSTGRESQL": "RecoverGCPPostgreSQL",
+                        "RECOVERGCPALLOYDBPOSTGRESQL": "RecoverGCPAlloyDBPostgreSQL",
+                        "RECOVERAWSDOCUMENTDB": "RecoverAWSDocumentDB",
+                        "RECOVERAWSRDSPOSTGRESDB": "RecoverAWSRDSPostgresDB",
+                        "RECOVERAWSAURORAPOSTGRESDB": "RecoverAWSAuroraPostgresDB",
+                        "RECOVERAWSRDSMSSQL": "RecoverAWSRDSMSSQL",
+                        "RECOVERAWSREDSHIFT": "RecoverAWSRedshift"
                     },
                     ('object_action_key',): {
                         'None': None,
@@ -936,6 +1193,13 @@ class SearchApi(object):
                         "KVCD": "kVCD",
                         "KAZURE": "kAzure",
                         "KGCP": "kGCP",
+                        "KGCPBIGQUERY": "kGCPBigQuery",
+                        "KGCPMYSQL": "kGCPMySQL",
+                        "KGOOGLESPANNER": "kGoogleSpanner",
+                        "KGCPPOSTGRESQL": "kGCPPostgreSQL",
+                        "KGCPALLOYDBPOSTGRESQL": "kGCPAlloyDBPostgreSQL",
+                        "KGCPSQLSERVER": "kGCPSQLServer",
+                        "KGCPFIRESTORE": "kGCPFirestore",
                         "KKVM": "kKVM",
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
@@ -943,16 +1207,48 @@ class SearchApi(object):
                         "KAWSS3": "kAwsS3",
                         "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
                         "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KRDSPOSTGRESSNAPSHOTMANAGER": "kRDSPostgresSnapshotManager",
+                        "KRDSMYSQLSNAPSHOTMANAGER": "kRDSMySQLSnapshotManager",
+                        "KRDSMSSQLSNAPSHOTMANAGER": "kRDSMSSQLSnapshotManager",
+                        "KRDSORACLESNAPSHOTMANAGER": "kRDSOracleSnapshotManager",
+                        "KRDSMARIADBSNAPSHOTMANAGER": "kRDSMariaDBSnapshotManager",
+                        "KRDSCUSTOMMSSQLSNAPSHOTMANAGER": "kRDSCustomMSSQLSnapshotManager",
+                        "KRDSCUSTOMORACLESNAPSHOTMANAGER": "kRDSCustomOracleSnapshotManager",
                         "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAURORAPOSTGRESSNAPSHOTMANAGER": "kAuroraPostgresSnapshotManager",
+                        "KAURORAMYSQLSNAPSHOTMANAGER": "kAuroraMySQLSnapshotManager",
                         "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAWSRDSPOSTGRES": "kAwsRDSPostgres",
+                        "KAWSAURORAPOSTGRES": "kAwsAuroraPostgres",
+                        "KAWSMYSQL": "kAWSMySQL",
+                        "KAWSAURORAMYSQL": "kAWSAuroraMySQL",
+                        "KAWSDYNAMODB": "kAwsDynamoDB",
+                        "KAWSRDSORACLE": "kAWSRdsOracle",
+                        "KAWSDOCUMENTDB": "kAWSDocumentDB",
+                        "KAWSRDSPOSTGRESDB": "kAWSRDSPostgresDB",
+                        "KAWSAURORAPOSTGRESDB": "kAWSAuroraPostgresDB",
+                        "KAWSRDSMSSQL": "kAWSRDSMSSQL",
+                        "KAWSREDSHIFT": "kAWSRedshift",
                         "KAZURENATIVE": "kAzureNative",
                         "KAZURESQL": "kAzureSQL",
+                        "KAZUREENTRAID": "kAzureEntraID",
+                        "KAZUREMYSQL": "kAzureMySQL",
+                        "KAZURECOSMOSDBNOSQL": "kAzureCosmosDBNoSQL",
+                        "KAZURECOSMOSDBMONGODB": "kAzureCosmosDBMongoDB",
+                        "KAZURECOSMOSDBCASSANDRA": "kAzureCosmosDBCassandra",
+                        "KAZUREPOSTGRESQLSERVER": "kAzurePostgreSQLServer",
+                        "KAZURESQLDB": "kAzureSQLDB",
+                        "KAZURESQLMI": "kAzureSQLMI",
+                        "KAZURETABLESTORAGE": "kAzureTableStorage",
+                        "KAZUREBLOBSTORAGE": "kAzureBlobStorage",
+                        "KAZURETABLEAPI": "kAzureTableAPI",
                         "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KPHYSICALFILES": "kPhysicalFiles",
                         "KGPFS": "kGPFS",
                         "KELASTIFILE": "kElastifile",
                         "KNETAPP": "kNetapp",
+                        "KNUTANIXFS": "kNutanixFS",
                         "KGENERICNAS": "kGenericNas",
                         "KISILON": "kIsilon",
                         "KFLASHBLADE": "kFlashBlade",
@@ -978,11 +1274,21 @@ class SearchApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
+                        "KSAPHANA": "kSAPHANA",
                         "KUDA": "kUDA",
+                        "KS3COMPATIBLE": "kS3Compatible",
                         "KSFDC": "kSfdc",
                         "KO365EXCHANGECSM": "kO365ExchangeCSM",
                         "KO365ONEDRIVECSM": "kO365OneDriveCSM",
-                        "KO365SHAREPOINTCSM": "kO365SharePointCSM"
+                        "KO365SHAREPOINTCSM": "kO365SharepointCSM",
+                        "KEXPERIMENTALADAPTER": "kExperimentalAdapter",
+                        "KMONGODBPHYSICAL": "kMongoDBPhysical",
+                        "KGOOGLEWORKSPACE": "kGoogleWorkspace",
+                        "KGMAIL": "kGmail",
+                        "KGOOGLEDRIVE": "kGoogleDrive",
+                        "KDB2": "kDB2",
+                        "KSERVICENOW": "kServiceNow",
+                        "KPOSTGRES": "kPostgres"
                     },
                     ('os_types',): {
 

@@ -58,6 +58,11 @@ class IsilonObjectProtectionParams(ModelNormal):
     """
 
     allowed_values = {
+        ('nfs_version_preference',): {
+            'None': None,
+            'KNFS3': "kNfs3",
+            'KNFS4_1': "kNfs4_1",
+        },
         ('protocol',): {
             'None': None,
             'KNOPROTOCOL': "kNoProtocol",
@@ -89,6 +94,7 @@ class IsilonObjectProtectionParams(ModelNormal):
         lazy_import()
         return {
             'continuous_snapshots': (ContinuousSnapshotParams,),  # noqa: E501
+            'nfs_version_preference': (str, none_type,),  # noqa: E501
             'protocol': (str, none_type,),  # noqa: E501
             'use_changelist': (bool, none_type,),  # noqa: E501
         }
@@ -101,6 +107,7 @@ class IsilonObjectProtectionParams(ModelNormal):
 
     attribute_map = {
         'continuous_snapshots': 'continuousSnapshots',  # noqa: E501
+        'nfs_version_preference': 'nfsVersionPreference',  # noqa: E501
         'protocol': 'protocol',  # noqa: E501
         'use_changelist': 'useChangelist',  # noqa: E501
     }
@@ -153,6 +160,7 @@ class IsilonObjectProtectionParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             continuous_snapshots (ContinuousSnapshotParams): [optional]  # noqa: E501
+            nfs_version_preference (str, none_type): Specifies the preference of NFS version to be used for backing up Isilon.. [optional]  # noqa: E501
             protocol (str, none_type): Specifies the protocol of the NAS device being backed up.. [optional]  # noqa: E501
             use_changelist (bool, none_type): Specify whether to use the Isilon Changelist API to directly discover changed files/directories for faster incremental backup. Cohesity will keep an extra snapshot which will be deleted by the next successful backup.. [optional]  # noqa: E501
         """

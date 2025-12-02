@@ -28,8 +28,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.cluster_node_operation_status import ClusterNodeOperationStatus
+    from cohesity_sdk.cluster.model.cluster_operation_attribute import ClusterOperationAttribute
+    from cohesity_sdk.cluster.model.node_assessment_results import NodeAssessmentResults
     from cohesity_sdk.cluster.model.operation_events import OperationEvents
     globals()['ClusterNodeOperationStatus'] = ClusterNodeOperationStatus
+    globals()['ClusterOperationAttribute'] = ClusterOperationAttribute
+    globals()['NodeAssessmentResults'] = NodeAssessmentResults
     globals()['OperationEvents'] = OperationEvents
 
 
@@ -60,20 +64,35 @@ class ClusterOperationStatus(ModelNormal):
     """
 
     allowed_values = {
+        ('operation_type',): {
+            'DESTROY': "Destroy",
+            'CREATE': "Create",
+            'NODEADDITION': "NodeAddition",
+            'NODEREMOVAL': "NodeRemoval",
+            'DOWNLOADUPGRADEPACKAGE': "DownloadUpgradePackage",
+            'DOWNLOADPATCHPACKAGE': "DownloadPatchPackage",
+            'DOWNLOADUPGRADEANDPATCHPACKAGES': "DownloadUpgradeAndPatchPackages",
+            'DOWNLOADANDUPGRADE': "DownloadAndUpgrade",
+            'DOWNLOADANDAPPLYPATCH': "DownloadAndApplyPatch",
+            'DOWNLOADANDUPGRADEWITHPATCH': "DownloadAndUpgradeWithPatch",
+            'UPGRADE': "Upgrade",
+            'APPLYPATCH': "ApplyPatch",
+            'REVERTPATCH': "RevertPatch",
+            'UPGRADEANDPATCH': "UpgradeAndPatch",
+            'ASSESSSOFTWAREUPDATE': "AssessSoftwareUpdate",
+            'ABORTAPPLYPATCH': "AbortApplyPatch",
+            'ABORTUPGRADE': "AbortUpgrade",
+        },
         ('status',): {
             'INPROGRESS': "InProgress",
             'SUCCESS': "Success",
             'FAILED': "Failed",
-        },
-        ('type',): {
-            'DESTROY': "Destroy",
-            'CREATE': "Create",
-            'NODEADDITION': "NodeAddition",
-            'UPGRADE': "Upgrade",
-            'UPLOADPACKAGEBYURL': "UploadPackageByUrl",
-            'UPLOADPACKAGEANDUPGRADE': "UploadPackageAndUpgrade",
-            'NODEREMOVAL': "NodeRemoval",
-            'PACKAGEREMOVAL': "PackageRemoval",
+            'PAUSED': "Paused",
+            'PARTIALLYCOMPLETED': "PartiallyCompleted",
+            'CANCELED': "Canceled",
+            'CANCELPENDING': "CancelPending",
+            'SKIPPED': "Skipped",
+            'ERROR': "Error",
         },
     }
 
@@ -96,14 +115,20 @@ class ClusterOperationStatus(ModelNormal):
         """
         lazy_import()
         return {
+            'error_message': (str,),  # noqa: E501
+            'attributes': ([ClusterOperationAttribute],),  # noqa: E501
             'cluster_id': (int,),  # noqa: E501
             'cluster_incarnation_id': (int,),  # noqa: E501
             'events': ([OperationEvents],),  # noqa: E501
+            'finish_time_seconds': (int, none_type,),  # noqa: E501
+            'nodes_assessment_results': ([NodeAssessmentResults],),  # noqa: E501
             'nodes_operation_status': ([ClusterNodeOperationStatus],),  # noqa: E501
+            'operation_id': (str,),  # noqa: E501
+            'operation_type': (str,),  # noqa: E501
             'percentage': (int,),  # noqa: E501
+            'start_time_seconds': (int, none_type,),  # noqa: E501
             'status': (str,),  # noqa: E501
             'time_remaining_seconds': (int,),  # noqa: E501
-            'type': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -113,14 +138,20 @@ class ClusterOperationStatus(ModelNormal):
 
 
     attribute_map = {
+        'error_message': 'errorMessage',  # noqa: E501
+        'attributes': 'attributes',  # noqa: E501
         'cluster_id': 'clusterId',  # noqa: E501
         'cluster_incarnation_id': 'clusterIncarnationId',  # noqa: E501
         'events': 'events',  # noqa: E501
+        'finish_time_seconds': 'finishTimeSeconds',  # noqa: E501
+        'nodes_assessment_results': 'nodesAssessmentResults',  # noqa: E501
         'nodes_operation_status': 'nodesOperationStatus',  # noqa: E501
+        'operation_id': 'operationId',  # noqa: E501
+        'operation_type': 'operationType',  # noqa: E501
         'percentage': 'percentage',  # noqa: E501
+        'start_time_seconds': 'startTimeSeconds',  # noqa: E501
         'status': 'status',  # noqa: E501
         'time_remaining_seconds': 'timeRemainingSeconds',  # noqa: E501
-        'type': 'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -135,8 +166,11 @@ class ClusterOperationStatus(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, error_message, *args, **kwargs):  # noqa: E501
         """ClusterOperationStatus - a model defined in OpenAPI
+
+        Args:
+            error_message (str): Specifies the error message for the operation.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -170,14 +204,19 @@ class ClusterOperationStatus(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            cluster_id (int): Specifies the id of the cluster.. [optional]  # noqa: E501
+            attributes ([ClusterOperationAttribute]): Specifies the attributes of the operation to provide more context for the operation. For example: Use name 'kPackageNameAttribute' and value '7.0.1-p1-2023Jul04-cc6d7c5f' to indicate package being installed when operation type involves installation of package such as 'Upgrade' or 'Patch'. Attribute list will differ based on the type of operation. . [optional]  # noqa: E501
+            cluster_id (int): Specifies the ID of the cluster.. [optional]  # noqa: E501
             cluster_incarnation_id (int): Specifies the incarnation id of the cluster.. [optional]  # noqa: E501
-            events ([OperationEvents]): Specifies the list of events that took place during the operation.. [optional]  # noqa: E501
-            nodes_operation_status ([ClusterNodeOperationStatus]): Specifies the operation status of the nodes.. [optional]  # noqa: E501
-            percentage (int): Specifies an approximate completion percentage for the operation.. [optional]  # noqa: E501
-            status (str): Specifies the status of the operation. 'Success' indicates the operation is successful. 'Failed' indicates the operation failed due to an error. 'InProgress' indicates the operation is in progress.. [optional]  # noqa: E501
-            time_remaining_seconds (int): Specifies an estimated number of seconds until the operation is complete.. [optional]  # noqa: E501
-            type (str): Specifies the type of cluster operation. 'Destroy' indicates cluster destroy operation. 'Create' indicates cluster create operation. 'NodeAddition' indicates the operation to add nodes to the cluster. 'Upgrade' indicates cluster upgrade operation. 'UploadPackageByUrl' indicates the operation to upload a package by URL. 'UploadPackageAndUpgrade' indicates the operation to upload package by URL and upgrade the cluster. 'NodeRemoval' indicates a node removal operation. 'PackageRemoval' indicates the operation to remove a software package from the cluster.. [optional]  # noqa: E501
+            events ([OperationEvents]): Specifies the list of events that took place during the operation. . [optional]  # noqa: E501
+            finish_time_seconds (int, none_type): Specifies unix epoch finish time of operation.. [optional]  # noqa: E501
+            nodes_assessment_results ([NodeAssessmentResults]): Specifies the result of running assessment on the cluster nodes.. [optional]  # noqa: E501
+            nodes_operation_status ([ClusterNodeOperationStatus]): Specifies the status of operation on the cluster nodes.. [optional]  # noqa: E501
+            operation_id (str): Specifies the operation Id of cluster operation. . [optional]  # noqa: E501
+            operation_type (str): Specifies the type of cluster operation. * `Destroy` indicates cluster destroy operation. * `Create` indicates cluster create operation. * `NodeAddition` indicates the operation to add nodes to the cluster. * `NodeRemoval` indicates a node removal operation. *  Operation types related to software update are detailed in   [UpdateClusterSoftware](#tag/Platform/operation/UpdateClusterSoftware). . [optional]  # noqa: E501
+            percentage (int): Specifies an approximate completion percentage for the operation. . [optional]  # noqa: E501
+            start_time_seconds (int, none_type): Specifies unix epoch start time of operation.. [optional]  # noqa: E501
+            status (str): Specifies the status of the operation. * 'Success' indicates the operation is successful. * 'Failed' indicates the operation failed due to an error. * 'InProgress' indicates the operation is in progress. . [optional]  # noqa: E501
+            time_remaining_seconds (int): Specifies an estimated number of seconds until the operation is complete. . [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -204,6 +243,7 @@ class ClusterOperationStatus(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.error_message = error_message
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

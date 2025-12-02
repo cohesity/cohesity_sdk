@@ -28,10 +28,14 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.aws_kms_configuration import AwsKmsConfiguration
+    from cohesity_sdk.cluster.model.gcp_kms_configuration import GcpKmsConfiguration
+    from cohesity_sdk.cluster.model.ibm_kms_configuration import IbmKmsConfiguration
     from cohesity_sdk.cluster.model.kmip_kms_configuration import KmipKmsConfiguration
     from cohesity_sdk.cluster.model.kms_configuration_add_update_params import KmsConfigurationAddUpdateParams
     from cohesity_sdk.cluster.model.kms_configuration_create_params_all_of import KmsConfigurationCreateParamsAllOf
     globals()['AwsKmsConfiguration'] = AwsKmsConfiguration
+    globals()['GcpKmsConfiguration'] = GcpKmsConfiguration
+    globals()['IbmKmsConfiguration'] = IbmKmsConfiguration
     globals()['KmipKmsConfiguration'] = KmipKmsConfiguration
     globals()['KmsConfigurationAddUpdateParams'] = KmsConfigurationAddUpdateParams
     globals()['KmsConfigurationCreateParamsAllOf'] = KmsConfigurationCreateParamsAllOf
@@ -68,11 +72,14 @@ class KmsConfigurationCreateParams(ModelComposed):
             'INTERNALKMS': "InternalKms",
             'AWSKMS': "AwsKms",
             'KMIPKMS': "KmipKms",
+            'IBMKMS': "IbmKms",
+            'GCPKMS': "GcpKms",
         },
         ('ownership_context',): {
             'None': None,
             'LOCAL': "Local",
             'FORTKNOX': "FortKnox",
+            'FORTKNOXONPREM': "FortKnoxOnprem",
         },
         ('usage_type',): {
             'None': None,
@@ -103,6 +110,8 @@ class KmsConfigurationCreateParams(ModelComposed):
             'type': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'aws_kms_params': (AwsKmsConfiguration,),  # noqa: E501
+            'gcp_kms_params': (GcpKmsConfiguration,),  # noqa: E501
+            'ibm_kms_params': (IbmKmsConfiguration,),  # noqa: E501
             'ownership_context': (str, none_type,),  # noqa: E501
             'usage_type': (str, none_type,),  # noqa: E501
             'external_target_ids': ([int], none_type,),  # noqa: E501
@@ -120,6 +129,8 @@ class KmsConfigurationCreateParams(ModelComposed):
         'type': 'type',  # noqa: E501
         'name': 'name',  # noqa: E501
         'aws_kms_params': 'awsKmsParams',  # noqa: E501
+        'gcp_kms_params': 'gcpKmsParams',  # noqa: E501
+        'ibm_kms_params': 'ibmKmsParams',  # noqa: E501
         'ownership_context': 'ownershipContext',  # noqa: E501
         'usage_type': 'usageType',  # noqa: E501
         'external_target_ids': 'externalTargetIds',  # noqa: E501
@@ -180,6 +191,8 @@ class KmsConfigurationCreateParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             aws_kms_params (AwsKmsConfiguration): [optional]  # noqa: E501
+            gcp_kms_params (GcpKmsConfiguration): [optional]  # noqa: E501
+            ibm_kms_params (IbmKmsConfiguration): [optional]  # noqa: E501
             ownership_context (str, none_type): Specifies the ownership context of the kms config. 'Local' indicates this is used for regular archival. 'FortKnox' indicates this is used for FortKnox only.. [optional]  # noqa: E501
             usage_type (str, none_type): Specifies the usage type of the kms config. 'kArchival' indicates this is used for regular archival. 'kRpaasArchival' indicates this is used for RPaaS only.. [optional]  # noqa: E501
             external_target_ids ([int], none_type): Ids of external targets used to assign the KMS for encryption. Once an external KMS (AWS KMS or KIMP KMS) is assigned to an external target, it cannot be changed.. [optional]  # noqa: E501

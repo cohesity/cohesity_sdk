@@ -27,8 +27,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.remote_cluster import RemoteCluster
-    globals()['RemoteCluster'] = RemoteCluster
+    from cohesity_sdk.cluster.model.update_remote_cluster_params import UpdateRemoteClusterParams
+    globals()['UpdateRemoteClusterParams'] = UpdateRemoteClusterParams
 
 
 class RemoteClusters(ModelNormal):

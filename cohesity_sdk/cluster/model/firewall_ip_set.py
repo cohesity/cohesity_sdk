@@ -57,10 +57,6 @@ class FirewallIPSet(ModelNormal):
     }
 
     validations = {
-        ('subnets',): {
-            'min_items': 1,
-        },
-
     }
 
     additional_properties_type = None
@@ -105,12 +101,8 @@ class FirewallIPSet(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, subnets, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """FirewallIPSet - a model defined in OpenAPI
-
-        Args:
-            name (str, none_type): Specifies the name of the IP set.
-            subnets ([str]): Specifies the subnets in the IP set.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -144,6 +136,8 @@ class FirewallIPSet(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            name (str, none_type): Specifies the name of the IP set.. [optional]  # noqa: E501
+            subnets ([str]): Specifies the subnets in the IP set.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -170,8 +164,6 @@ class FirewallIPSet(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.name = name
-        self.subnets = subnets
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

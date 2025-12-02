@@ -74,7 +74,8 @@ class DiskIdentify(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'identify': (bool, none_type,),  # noqa: E501
+            'identify': (bool,),  # noqa: E501
+            'disk_id': (int, none_type,),  # noqa: E501
             'node_id': (int, none_type,),  # noqa: E501
             'serial_number': (str, none_type,),  # noqa: E501
         }
@@ -87,6 +88,7 @@ class DiskIdentify(ModelNormal):
 
     attribute_map = {
         'identify': 'identify',  # noqa: E501
+        'disk_id': 'diskId',  # noqa: E501
         'node_id': 'nodeId',  # noqa: E501
         'serial_number': 'serialNumber',  # noqa: E501
     }
@@ -103,13 +105,11 @@ class DiskIdentify(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, identify, node_id, serial_number, *args, **kwargs):  # noqa: E501
+    def __init__(self, identify, *args, **kwargs):  # noqa: E501
         """DiskIdentify - a model defined in OpenAPI
 
         Args:
-            identify (bool, none_type): Turn on/off led light if it is set to true/false
-            node_id (int, none_type): Specifies the node id of node that disk belongs to.
-            serial_number (str, none_type): Specifies serial number of disk.
+            identify (bool): Turn on/off led light if it is set to true/false
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -143,6 +143,9 @@ class DiskIdentify(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            disk_id (int, none_type): Specifies the disk id of the disk. This parameter is incompatible with 'nodeId' and 'serialNumber'.. [optional]  # noqa: E501
+            node_id (int, none_type): Specifies the node id of node that disk belongs to. This parameter is incompatible with 'diskId'. Must be used together with 'serialNumber'.. [optional]  # noqa: E501
+            serial_number (str, none_type): Specifies serial number of disk. This parameter is incompatible with 'diskId'. Must be used together with 'nodeId'.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -170,8 +173,6 @@ class DiskIdentify(ModelNormal):
 
 
         self.identify = identify
-        self.node_id = node_id
-        self.serial_number = serial_number
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

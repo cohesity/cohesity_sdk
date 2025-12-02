@@ -29,9 +29,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.create_group_params import CreateGroupParams
     from cohesity_sdk.cluster.model.group_params_all_of import GroupParamsAllOf
+    from cohesity_sdk.cluster.model.local_group_params import LocalGroupParams
     from cohesity_sdk.cluster.model.smb_principal import SMBPrincipal
     globals()['CreateGroupParams'] = CreateGroupParams
     globals()['GroupParamsAllOf'] = GroupParamsAllOf
+    globals()['LocalGroupParams'] = LocalGroupParams
     globals()['SMBPrincipal'] = SMBPrincipal
 
 
@@ -62,6 +64,11 @@ class GroupParams(ModelComposed):
     """
 
     allowed_values = {
+        ('group_type',): {
+            'LOCAL': "Local",
+            'AD': "AD",
+            'IDP': "IDP",
+        },
     }
 
     validations = {
@@ -84,12 +91,13 @@ class GroupParams(ModelComposed):
         lazy_import()
         return {
             'domain': (str,),  # noqa: E501
+            'group_type': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
-            'local_group_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'restricted': (bool, none_type,),  # noqa: E501
             'roles': ([str],),  # noqa: E501
             'tenant_ids': ([str],),  # noqa: E501
+            'local_group_params': (LocalGroupParams,),  # noqa: E501
             'created_time_msecs': (int, none_type,),  # noqa: E501
             'last_updated_time_msecs': (int, none_type,),  # noqa: E501
             'sid': (str, none_type,),  # noqa: E501
@@ -104,12 +112,13 @@ class GroupParams(ModelComposed):
 
     attribute_map = {
         'domain': 'domain',  # noqa: E501
+        'group_type': 'groupType',  # noqa: E501
         'name': 'name',  # noqa: E501
         'description': 'description',  # noqa: E501
-        'local_group_params': 'localGroupParams',  # noqa: E501
         'restricted': 'restricted',  # noqa: E501
         'roles': 'roles',  # noqa: E501
         'tenant_ids': 'tenantIds',  # noqa: E501
+        'local_group_params': 'localGroupParams',  # noqa: E501
         'created_time_msecs': 'createdTimeMsecs',  # noqa: E501
         'last_updated_time_msecs': 'lastUpdatedTimeMsecs',  # noqa: E501
         'sid': 'sid',  # noqa: E501
@@ -129,11 +138,12 @@ class GroupParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, domain, name, *args, **kwargs):  # noqa: E501
+    def __init__(self, domain, group_type, name, *args, **kwargs):  # noqa: E501
         """GroupParams - a model defined in OpenAPI
 
         Args:
             domain (str): Specifies the domain of the group. For active directories, this is the fully qualified domain name (FQDN). It is 'LOCAL' for local groups on the Cohesity Cluster. A group is uniquely identified by combination of the name and the domain.
+            group_type (str): Specifies the type of group: local, ad, or idp.
             name (str): Specifies the name of the group.
 
         Keyword Args:
@@ -169,10 +179,10 @@ class GroupParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             description (str, none_type): Specifies the description of the group.. [optional]  # noqa: E501
-            local_group_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the LOCAL group properties.. [optional]  # noqa: E501
             restricted (bool, none_type): Specifies whether the Group is restricted. A restricted group can only view & manage the objects it has permissions to.. [optional]  # noqa: E501
             roles ([str]): Specifies the Cohesity roles to associate with the group. The Cohesity roles determine privileges on the Cohesity Cluster for this group.. [optional]  # noqa: E501
             tenant_ids ([str]): Specifies a list of tenant ids who can access this group.. [optional]  # noqa: E501
+            local_group_params (LocalGroupParams): [optional]  # noqa: E501
             created_time_msecs (int, none_type): Specifies the epoch time in milliseconds when the group was created.. [optional]  # noqa: E501
             last_updated_time_msecs (int, none_type): Specifies the epoch time in milliseconds when the group was last modified.. [optional]  # noqa: E501
             sid (str, none_type): Specifies the sid of the Group.. [optional]  # noqa: E501
@@ -212,6 +222,7 @@ class GroupParams(ModelComposed):
         }
         required_args = {
             'domain': domain,
+            'group_type': group_type,
             'name': name,
         }
         model_args = {}

@@ -28,10 +28,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.group import Group
-    from cohesity_sdk.cluster.model.tenant import Tenant
+    from cohesity_sdk.cluster.model.tenant_info import TenantInfo
     from cohesity_sdk.cluster.model.user import User
     globals()['Group'] = Group
-    globals()['Tenant'] = Tenant
+    globals()['TenantInfo'] = TenantInfo
     globals()['User'] = User
 
 
@@ -85,7 +85,7 @@ class PermissionInfo(ModelNormal):
         return {
             'groups': ([Group], none_type,),  # noqa: E501
             'object_id': (int, none_type,),  # noqa: E501
-            'tenant': (Tenant,),  # noqa: E501
+            'tenant': (TenantInfo,),  # noqa: E501
             'users': ([User], none_type,),  # noqa: E501
         }
 
@@ -151,7 +151,7 @@ class PermissionInfo(ModelNormal):
 
             groups ([Group], none_type): Specifies the list of user groups which has permissions to the object.. [optional]  # noqa: E501
             object_id (int, none_type): Specifies the id of the object.. [optional]  # noqa: E501
-            tenant (Tenant): [optional]  # noqa: E501
+            tenant (TenantInfo): [optional]  # noqa: E501
             users ([User], none_type): Specifies the list of users which has the permissions to the object.. [optional]  # noqa: E501
         """
 

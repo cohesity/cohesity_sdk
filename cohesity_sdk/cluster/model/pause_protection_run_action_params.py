@@ -81,6 +81,7 @@ class PauseProtectionRunActionParams(ModelNormal):
         """
         return {
             'run_id': (str, none_type,),  # noqa: E501
+            'paused_note': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,6 +92,7 @@ class PauseProtectionRunActionParams(ModelNormal):
 
     attribute_map = {
         'run_id': 'runId',  # noqa: E501
+        'paused_note': 'pausedNote',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,6 +145,7 @@ class PauseProtectionRunActionParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            paused_note (str, none_type): A note from the current user explaining the reason for pausing runs, if applicable.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

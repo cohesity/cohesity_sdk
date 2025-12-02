@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **pre_post_script** | [**HostBasedBackupScriptParams**](HostBasedBackupScriptParams.md) |  | [optional] 
 **throttling_config** | [**NasThrottlingConfig**](NasThrottlingConfig.md) |  | [optional] 
 **continuous_snapshots** | [**ContinuousSnapshotParams**](ContinuousSnapshotParams.md) |  | [optional] 
+**nfs_version_preference** | **str, none_type** | Specifies the preference of NFS version to be used for backing up Isilon. | [optional] 
 **protocol** | **str, none_type** | Specifies the protocol of the NAS device being backed up. | [optional] 
 **use_changelist** | **bool, none_type** | Specify whether to use the Isilon Changelist API to directly discover changed files/directories for faster incremental backup. Cohesity will keep an extra snapshot which will be deleted by the next successful backup. | [optional] 
 

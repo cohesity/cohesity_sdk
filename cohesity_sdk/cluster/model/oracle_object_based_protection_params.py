@@ -60,6 +60,15 @@ class OracleObjectBasedProtectionParams(ModelNormal):
     """
 
     allowed_values = {
+        ('nfs_protocol',): {
+            'None': None,
+            'KNOPROTOCOL': "kNoProtocol",
+            'KNFS3': "kNfs3",
+            'KNFS4_1': "kNfs4_1",
+            'KCIFS1': "kCifs1",
+            'KCIFS2': "kCifs2",
+            'KCIFS3': "kCifs3",
+        },
     }
 
     validations = {
@@ -89,6 +98,7 @@ class OracleObjectBasedProtectionParams(ModelNormal):
             'full_auto_kill_timeout_secs': (int, none_type,),  # noqa: E501
             'incr_auto_kill_timeout_secs': (int, none_type,),  # noqa: E501
             'log_auto_kill_timeout_secs': (int, none_type,),  # noqa: E501
+            'nfs_protocol': (str, none_type,),  # noqa: E501
             'persist_mountpoints': (bool, none_type,),  # noqa: E501
             'vlan_params': (VlanParams,),  # noqa: E501
         }
@@ -104,6 +114,7 @@ class OracleObjectBasedProtectionParams(ModelNormal):
         'full_auto_kill_timeout_secs': 'fullAutoKillTimeoutSecs',  # noqa: E501
         'incr_auto_kill_timeout_secs': 'incrAutoKillTimeoutSecs',  # noqa: E501
         'log_auto_kill_timeout_secs': 'logAutoKillTimeoutSecs',  # noqa: E501
+        'nfs_protocol': 'nfsProtocol',  # noqa: E501
         'persist_mountpoints': 'persistMountpoints',  # noqa: E501
         'vlan_params': 'vlanParams',  # noqa: E501
     }
@@ -161,6 +172,7 @@ class OracleObjectBasedProtectionParams(ModelNormal):
             full_auto_kill_timeout_secs (int, none_type): Time in seconds after which the full backup of the database in given backup job should be auto-killed.. [optional]  # noqa: E501
             incr_auto_kill_timeout_secs (int, none_type): Time in seconds after which the incremental backup of the database in given backup job should be auto-killed.. [optional]  # noqa: E501
             log_auto_kill_timeout_secs (int, none_type): Time in seconds after which the log backup of the database in given backup job should be auto-killed.. [optional]  # noqa: E501
+            nfs_protocol (str, none_type): Specifies the preferred protocol to use if this device supports multiple protocols.. [optional]  # noqa: E501
             persist_mountpoints (bool, none_type): Specifies whether the mountpoints created while backing up Oracle DBs should be persisted.Defaults to true if value is null to handle the backward compatibility for the upgrade case.. [optional] if omitted the server will use the default value of True  # noqa: E501
             vlan_params (VlanParams): [optional]  # noqa: E501
         """

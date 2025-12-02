@@ -11,11 +11,13 @@ Method | HTTP request | Description
 
 Download the azure resource template.
 
-Download the azure resource template.
+**Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Download the azure resource template.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -51,7 +53,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 

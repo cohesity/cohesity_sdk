@@ -44,7 +44,7 @@ class RegistrationApi(object):
         ):
             """Lists the Helios Registration Config.  # noqa: E501
 
-            Lists the Helios Registration Config.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Lists the Helios Registration Config.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -105,7 +105,9 @@ class RegistrationApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/helios-registration-config',
                 'operation_id': 'get_helios_reg_config',
@@ -154,7 +156,7 @@ class RegistrationApi(object):
         ):
             """Register to Helios.  # noqa: E501
 
-            Claim to Helios.  # noqa: E501
+            **Privileges:** ```MCM_MODIFY``` <br><br>Claim to Helios.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -219,7 +221,9 @@ class RegistrationApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/helios-registration',
                 'operation_id': 'helios_claim',

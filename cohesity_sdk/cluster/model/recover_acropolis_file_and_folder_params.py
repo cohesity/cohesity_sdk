@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.acropolis_target_params_for_recover_file_and_folder import AcropolisTargetParamsForRecoverFileAndFolder
     from cohesity_sdk.cluster.model.common_recover_file_and_folder_info import CommonRecoverFileAndFolderInfo
+    globals()['AcropolisTargetParamsForRecoverFileAndFolder'] = AcropolisTargetParamsForRecoverFileAndFolder
     globals()['CommonRecoverFileAndFolderInfo'] = CommonRecoverFileAndFolderInfo
 
 
@@ -84,7 +86,7 @@ class RecoverAcropolisFileAndFolderParams(ModelNormal):
         return {
             'files_and_folders': ([CommonRecoverFileAndFolderInfo], none_type,),  # noqa: E501
             'target_environment': (str,),  # noqa: E501
-            'acropolis_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'acropolis_target_params': (AcropolisTargetParamsForRecoverFileAndFolder,),  # noqa: E501
         }
 
     @cached_property
@@ -150,7 +152,7 @@ class RecoverAcropolisFileAndFolderParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            acropolis_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for recovering to an Acropolis target.. [optional]  # noqa: E501
+            acropolis_target_params (AcropolisTargetParamsForRecoverFileAndFolder): [optional]  # noqa: E501
         """
 
         target_environment = kwargs.get('target_environment', "kAcropolis")

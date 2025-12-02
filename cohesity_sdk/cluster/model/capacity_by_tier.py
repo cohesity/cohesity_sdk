@@ -145,7 +145,7 @@ class CapacityByTier(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             max_physical_capacity_bytes_tier (int, none_type): maxPhysicalCapacityBytesTier is the maximum physical capacity in bytes of the storage tier.. [optional]  # noqa: E501
-            storage_tier (str, none_type): StorageTier is the type of StorageTier. StorageTierType represents the various values for the Storage Tier. 'kPCIeSSD' indicates storage tier type of Pci Solid State Drive. 'kSATAHDD' indicates storage tier type of SATA Solid State Drive. 'kSATAHDD' indicates storage tier type of SATA Hard Disk Drive. 'kCLOUD' indicates storage tier type of Cloud.. [optional]  # noqa: E501
+            storage_tier (str, none_type): StorageTier is the type of StorageTier. StorageTierType represents the various values for the Storage Tier. 'PCIeSSD' indicates storage tier type of Pci Solid State Drive. 'SATASSD' indicates storage tier type of SATA Solid State Drive. 'SATAHDD' indicates storage tier type of SATA Hard Disk Drive. 'CLOUD' indicates storage tier type of Cloud.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -13,11 +13,13 @@ Method | HTTP request | Description
 
 Create a cloud retrieve task.
 
-Create a cloud retrieve task.
+```Unknown Privileges``` <br><br>Create a cloud retrieve task.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.create_cloud_retrieve_task_request import CreateCloudRetrieveTaskRequest
@@ -70,7 +72,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -91,11 +93,13 @@ Name | Type | Description  | Notes
 
 List details about the cloud retrieve task with the specific job id.
 
-Returns the cloud retrieve task corresponding to the job id.
+```Unknown Privileges``` <br><br>Returns the cloud retrieve task corresponding to the job id.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.cloud_retrieve_task import CloudRetrieveTask
@@ -136,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -157,11 +161,13 @@ Name | Type | Description  | Notes
 
 Get the list of cloud retrieve tasks.
 
-Get the list of cloud retrieve tasks.
+```Unknown Privileges``` <br><br>Get the list of cloud retrieve tasks.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -198,7 +204,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 

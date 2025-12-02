@@ -47,7 +47,7 @@ class CloudRetrieveTaskApi(object):
         ):
             """Create a cloud retrieve task.  # noqa: E501
 
-            Create a cloud retrieve task.  # noqa: E501
+            ```Unknown Privileges``` <br><br>Create a cloud retrieve task.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -112,7 +112,9 @@ class CloudRetrieveTaskApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/retrieve',
                 'operation_id': 'create_cloud_retrieve_task',
@@ -169,7 +171,7 @@ class CloudRetrieveTaskApi(object):
         ):
             """List details about the cloud retrieve task with the specific job id.  # noqa: E501
 
-            Returns the cloud retrieve task corresponding to the job id.  # noqa: E501
+            ```Unknown Privileges``` <br><br>Returns the cloud retrieve task corresponding to the job id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -234,7 +236,9 @@ class CloudRetrieveTaskApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/retrieve/{jobId}',
                 'operation_id': 'get_cloud_retrieve_task_by_job_id',
@@ -289,7 +293,7 @@ class CloudRetrieveTaskApi(object):
         ):
             """Get the list of cloud retrieve tasks.  # noqa: E501
 
-            Get the list of cloud retrieve tasks.  # noqa: E501
+            ```Unknown Privileges``` <br><br>Get the list of cloud retrieve tasks.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -350,7 +354,9 @@ class CloudRetrieveTaskApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/retrieve',
                 'operation_id': 'get_cloud_retrieve_tasks',

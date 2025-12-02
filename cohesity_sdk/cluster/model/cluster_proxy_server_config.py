@@ -76,6 +76,7 @@ class ClusterProxyServerConfig(ModelNormal):
         return {
             'ip': (str, none_type,),  # noqa: E501
             'port': (int, none_type,),  # noqa: E501
+            'is_disabled': (bool, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'password': (str, none_type,),  # noqa: E501
             'username': (str, none_type,),  # noqa: E501
@@ -90,6 +91,7 @@ class ClusterProxyServerConfig(ModelNormal):
     attribute_map = {
         'ip': 'ip',  # noqa: E501
         'port': 'port',  # noqa: E501
+        'is_disabled': 'isDisabled',  # noqa: E501
         'name': 'name',  # noqa: E501
         'password': 'password',  # noqa: E501
         'username': 'username',  # noqa: E501
@@ -146,6 +148,7 @@ class ClusterProxyServerConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            is_disabled (bool, none_type): Disable proxy is used to turn the proxy on and off.. [optional]  # noqa: E501
             name (str, none_type): Specifies the unique name of the proxy server.. [optional]  # noqa: E501
             password (str, none_type): Specifies the password for the proxy.. [optional]  # noqa: E501
             username (str, none_type): Specifies the username for the proxy.. [optional]  # noqa: E501

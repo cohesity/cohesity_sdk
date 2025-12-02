@@ -27,8 +27,20 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.big_query_protection_group_params import BigQueryProtectionGroupParams
+    from cohesity_sdk.cluster.model.firestore_protection_group_params import FirestoreProtectionGroupParams
+    from cohesity_sdk.cluster.model.gcp_my_sql_protection_group_params import GcpMySqlProtectionGroupParams
     from cohesity_sdk.cluster.model.gcp_native_protection_group_params import GcpNativeProtectionGroupParams
+    from cohesity_sdk.cluster.model.gcp_postgre_sql_protection_group_params import GcpPostgreSQLProtectionGroupParams
+    from cohesity_sdk.cluster.model.gcp_sql_server_protection_group_params import GcpSqlServerProtectionGroupParams
+    from cohesity_sdk.cluster.model.spanner_protection_group_params import SpannerProtectionGroupParams
+    globals()['BigQueryProtectionGroupParams'] = BigQueryProtectionGroupParams
+    globals()['FirestoreProtectionGroupParams'] = FirestoreProtectionGroupParams
+    globals()['GcpMySqlProtectionGroupParams'] = GcpMySqlProtectionGroupParams
     globals()['GcpNativeProtectionGroupParams'] = GcpNativeProtectionGroupParams
+    globals()['GcpPostgreSQLProtectionGroupParams'] = GcpPostgreSQLProtectionGroupParams
+    globals()['GcpSqlServerProtectionGroupParams'] = GcpSqlServerProtectionGroupParams
+    globals()['SpannerProtectionGroupParams'] = SpannerProtectionGroupParams
 
 
 class GcpProtectionGroupParams(ModelNormal):
@@ -60,6 +72,13 @@ class GcpProtectionGroupParams(ModelNormal):
     allowed_values = {
         ('protection_type',): {
             'KNATIVE': "kNative",
+            'KGCPBIGQUERY': "kGCPBigQuery",
+            'KGOOGLESPANNER': "kGoogleSpanner",
+            'KGCPFIRESTORE': "kGCPFirestore",
+            'KGCPMYSQL': "kGCPMySQL",
+            'KGCPPOSTGRESQL': "kGCPPostgreSQL",
+            'KGCPALLOYDBPOSTGRESQL': "kGCPAlloyDBPostgreSQL",
+            'KGCPSQLSERVER': "kGCPSQLServer",
         },
     }
 
@@ -83,7 +102,13 @@ class GcpProtectionGroupParams(ModelNormal):
         lazy_import()
         return {
             'protection_type': (str,),  # noqa: E501
+            'big_query_protection_type_params': (BigQueryProtectionGroupParams,),  # noqa: E501
+            'firestore_protection_type_params': (FirestoreProtectionGroupParams,),  # noqa: E501
+            'my_sql_protection_type_params': (GcpMySqlProtectionGroupParams,),  # noqa: E501
             'native_protection_type_params': (GcpNativeProtectionGroupParams,),  # noqa: E501
+            'postgre_sql_protection_type_params': (GcpPostgreSQLProtectionGroupParams,),  # noqa: E501
+            'spanner_protection_type_params': (SpannerProtectionGroupParams,),  # noqa: E501
+            'sql_server_protection_type_params': (GcpSqlServerProtectionGroupParams,),  # noqa: E501
         }
 
     @cached_property
@@ -94,7 +119,13 @@ class GcpProtectionGroupParams(ModelNormal):
 
     attribute_map = {
         'protection_type': 'protectionType',  # noqa: E501
+        'big_query_protection_type_params': 'bigQueryProtectionTypeParams',  # noqa: E501
+        'firestore_protection_type_params': 'firestoreProtectionTypeParams',  # noqa: E501
+        'my_sql_protection_type_params': 'mySqlProtectionTypeParams',  # noqa: E501
         'native_protection_type_params': 'nativeProtectionTypeParams',  # noqa: E501
+        'postgre_sql_protection_type_params': 'postgreSqlProtectionTypeParams',  # noqa: E501
+        'spanner_protection_type_params': 'spannerProtectionTypeParams',  # noqa: E501
+        'sql_server_protection_type_params': 'sqlServerProtectionTypeParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -109,13 +140,13 @@ class GcpProtectionGroupParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, protection_type, *args, **kwargs):  # noqa: E501
         """GcpProtectionGroupParams - a model defined in OpenAPI
 
         Args:
+            protection_type (str): Specifies the GCP Protection Group type.
 
         Keyword Args:
-            protection_type (str): Specifies the GCP Protection Group type.. defaults to "kNative", must be one of ["kNative", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -147,10 +178,15 @@ class GcpProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            big_query_protection_type_params (BigQueryProtectionGroupParams): [optional]  # noqa: E501
+            firestore_protection_type_params (FirestoreProtectionGroupParams): [optional]  # noqa: E501
+            my_sql_protection_type_params (GcpMySqlProtectionGroupParams): [optional]  # noqa: E501
             native_protection_type_params (GcpNativeProtectionGroupParams): [optional]  # noqa: E501
+            postgre_sql_protection_type_params (GcpPostgreSQLProtectionGroupParams): [optional]  # noqa: E501
+            spanner_protection_type_params (SpannerProtectionGroupParams): [optional]  # noqa: E501
+            sql_server_protection_type_params (GcpSqlServerProtectionGroupParams): [optional]  # noqa: E501
         """
 
-        protection_type = kwargs.get('protection_type', "kNative")
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

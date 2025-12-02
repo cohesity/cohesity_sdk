@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **auth_type** | **str, none_type** | Authentication type. | [optional] [readonly] 
 **namenode_address** | **str** | The HDFS Namenode IP or hostname. | [optional] [readonly] 
 **webhdfs_port** | **int** | The HDFS WebHDFS port. | [optional] [readonly] 
+**connection_type** | **str, none_type** | HDFS Connection Type. | [optional] 
 **kerberos_principal** | **str, none_type** | The kerberos principal to be used to connect to this HDFS source. | [optional] 
 **ssh_password_credentials** | [**HbaseSourceRegistrationParamsAllOfSshPasswordCredentials**](HbaseSourceRegistrationParamsAllOfSshPasswordCredentials.md) |  | [optional] 
 **ssh_private_key_credentials** | [**HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials**](HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials.md) |  | [optional] 

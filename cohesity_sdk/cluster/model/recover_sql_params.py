@@ -27,8 +27,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.recover_sql_app_files_params import RecoverSqlAppFilesParams
     from cohesity_sdk.cluster.model.recover_sql_app_params import RecoverSqlAppParams
+    from cohesity_sdk.cluster.model.recovery_vlan_config import RecoveryVlanConfig
+    globals()['RecoverSqlAppFilesParams'] = RecoverSqlAppFilesParams
     globals()['RecoverSqlAppParams'] = RecoverSqlAppParams
+    globals()['RecoveryVlanConfig'] = RecoveryVlanConfig
 
 
 class RecoverSqlParams(ModelNormal):
@@ -61,10 +65,15 @@ class RecoverSqlParams(ModelNormal):
         ('recovery_action',): {
             'RECOVERAPPS': "RecoverApps",
             'CLONEAPPS': "CloneApps",
+            'RECOVERAPPFILES': "RecoverAppFiles",
         },
     }
 
     validations = {
+        ('recover_app_files_params',): {
+            'min_items': 1,
+        },
+
         ('recover_app_params',): {
             'min_items': 1,
         },
@@ -88,8 +97,9 @@ class RecoverSqlParams(ModelNormal):
         lazy_import()
         return {
             'recovery_action': (str,),  # noqa: E501
+            'recover_app_files_params': ([RecoverSqlAppFilesParams], none_type,),  # noqa: E501
             'recover_app_params': ([RecoverSqlAppParams], none_type,),  # noqa: E501
-            'vlan_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'vlan_config': (RecoveryVlanConfig,),  # noqa: E501
         }
 
     @cached_property
@@ -100,6 +110,7 @@ class RecoverSqlParams(ModelNormal):
 
     attribute_map = {
         'recovery_action': 'recoveryAction',  # noqa: E501
+        'recover_app_files_params': 'recoverAppFilesParams',  # noqa: E501
         'recover_app_params': 'recoverAppParams',  # noqa: E501
         'vlan_config': 'vlanConfig',  # noqa: E501
     }
@@ -154,8 +165,9 @@ class RecoverSqlParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            recover_app_files_params ([RecoverSqlAppFilesParams], none_type): Specifies parameters for recovering SQL databases as flat files. Includes options to set the destination path and control whether existing files should be overwritten.. [optional]  # noqa: E501
             recover_app_params ([RecoverSqlAppParams], none_type): Specifies the parameters to recover Sql databases.. [optional]  # noqa: E501
-            vlan_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery.. [optional]  # noqa: E501
+            vlan_config (RecoveryVlanConfig): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

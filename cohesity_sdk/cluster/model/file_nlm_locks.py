@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.file_id import FileId
     from cohesity_sdk.cluster.model.nlm_lock import NlmLock
+    globals()['FileId'] = FileId
     globals()['NlmLock'] = NlmLock
 
 
@@ -79,7 +81,7 @@ class FileNlmLocks(ModelNormal):
         """
         lazy_import()
         return {
-            'file_id': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'file_id': (FileId,),  # noqa: E501
             'nlm_locks': ([NlmLock], none_type,),  # noqa: E501
         }
 
@@ -141,7 +143,7 @@ class FileNlmLocks(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            file_id ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): File identitfiers.. [optional]  # noqa: E501
+            file_id (FileId): [optional]  # noqa: E501
             nlm_locks ([NlmLock], none_type): Specifies the list of NLM locks.. [optional]  # noqa: E501
         """
 

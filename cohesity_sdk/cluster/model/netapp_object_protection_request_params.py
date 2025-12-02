@@ -78,6 +78,11 @@ class NetappObjectProtectionRequestParams(ModelComposed):
     """
 
     allowed_values = {
+        ('nfs_version_preference',): {
+            'None': None,
+            'KNFS3': "kNfs3",
+            'KNFS4_1': "kNfs4_1",
+        },
         ('protocol',): {
             'None': None,
             'KNOPROTOCOL': "kNoProtocol",
@@ -126,6 +131,7 @@ class NetappObjectProtectionRequestParams(ModelComposed):
             'backup_existing_snapshot': (bool, none_type,),  # noqa: E501
             'continuous_snapshots': (ContinuousSnapshotParams,),  # noqa: E501
             'exclude_object_ids': ([int], none_type,),  # noqa: E501
+            'nfs_version_preference': (str, none_type,),  # noqa: E501
             'protocol': (str, none_type,),  # noqa: E501
             'snapshot_label': (SnapshotLabel,),  # noqa: E501
         }
@@ -148,6 +154,7 @@ class NetappObjectProtectionRequestParams(ModelComposed):
         'backup_existing_snapshot': 'backupExistingSnapshot',  # noqa: E501
         'continuous_snapshots': 'continuousSnapshots',  # noqa: E501
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
+        'nfs_version_preference': 'nfsVersionPreference',  # noqa: E501
         'protocol': 'protocol',  # noqa: E501
         'snapshot_label': 'snapshotLabel',  # noqa: E501
     }
@@ -213,6 +220,7 @@ class NetappObjectProtectionRequestParams(ModelComposed):
             backup_existing_snapshot (bool, none_type): Specifies that snapshot label is not set for Data-Protect Netapp Volumes backup. If field is set to true, existing oldest snapshot is used for backup and subsequent incremental will be selected in ascending order of snapshot create time on the source. If snapshot label is set, this field is set to false.. [optional]  # noqa: E501
             continuous_snapshots (ContinuousSnapshotParams): [optional]  # noqa: E501
             exclude_object_ids ([int], none_type): Specifies the objects to be excluded in the Protection.. [optional]  # noqa: E501
+            nfs_version_preference (str, none_type): Specifies the preference of NFS version to be backed up. [optional]  # noqa: E501
             protocol (str, none_type): Specifies the protocol of the NAS device being backed up.. [optional]  # noqa: E501
             snapshot_label (SnapshotLabel): [optional]  # noqa: E501
         """

@@ -11,11 +11,13 @@ Method | HTTP request | Description
 
 Get Privileges.
 
-Get Privileges.
+**Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Privileges.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.privileges import Privileges
@@ -59,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 

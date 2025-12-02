@@ -62,6 +62,7 @@ class ArchivalTargetSummaryInfo(ModelNormal):
             'None': None,
             'LOCAL': "Local",
             'FORTKNOX': "FortKnox",
+            'FORTKNOXONPREM': "FortKnoxOnprem",
         },
         ('target_type',): {
             'None': None,
@@ -74,6 +75,7 @@ class ArchivalTargetSummaryInfo(ModelNormal):
             'ARCHIVAL': "Archival",
             'TIERING': "Tiering",
             'RPAAS': "Rpaas",
+            'LOGBACKUP': "Logbackup",
         },
     }
 

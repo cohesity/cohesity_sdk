@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **indexing_policy** | [**IndexingPolicy**](IndexingPolicy.md) |  | [optional] 
 **modify_source_permissions** | **bool, none_type** | Specifies if the Isilon source permissions should be modified internally to allow backups. | [optional] 
 **native_format** | **bool, none_type** | Specifies whether or not to enable native format for direct archive job. This field is set to true if native format should be used for archiving. | [optional] 
+**nfs_version_preference** | **str, none_type** | Specifies the preference of NFS version to be used for backing up Isilon. | [optional] 
 **pre_post_script** | [**HostBasedBackupScriptParams**](HostBasedBackupScriptParams.md) |  | [optional] 
 **protocol** | **str, none_type** | Specifies the preferred protocol to use if this device supports multiple protocols. | [optional] 
 **source_id** | **int, none_type** | Specifies the id of the parent of the objects. | [optional] [readonly] 

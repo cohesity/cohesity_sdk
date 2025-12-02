@@ -42,7 +42,7 @@ class TemplatesApi(object):
         ):
             """Download the azure resource template.  # noqa: E501
 
-            Download the azure resource template.  # noqa: E501
+            **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Download the azure resource template.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -103,7 +103,9 @@ class TemplatesApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/templates/downloadArtFile',
                 'operation_id': 'download_art_file',

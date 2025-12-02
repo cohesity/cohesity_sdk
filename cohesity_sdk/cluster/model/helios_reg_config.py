@@ -66,6 +66,7 @@ class HeliosRegConfig(ModelNormal):
             'CLUSTER': "Cluster",
             'COHESION': "Cohesion",
             'IBMSTORAGEPROTECT': "IBMStorageProtect",
+            'CLOUDNATIVEDATAPLANE': "CloudNativeDataplane",
         },
     }
 

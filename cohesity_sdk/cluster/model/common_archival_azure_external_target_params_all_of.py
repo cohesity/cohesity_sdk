@@ -63,6 +63,7 @@ class CommonArchivalAzureExternalTargetParamsAllOf(ModelNormal):
             'AZUREARCHIVEBLOB': "AzureArchiveBlob",
             'AZURECOOLBLOB': "AzureCoolBlob",
             'AZUREHOTBLOB': "AzureHotBlob",
+            'AZURECOLDBLOB': "AzureColdBlob",
         },
     }
 

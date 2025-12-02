@@ -27,10 +27,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.object_linking_params import ObjectLinkingParams
-    from cohesity_sdk.cluster.model.object_un_linking_params import ObjectUnLinkingParams
-    globals()['ObjectLinkingParams'] = ObjectLinkingParams
-    globals()['ObjectUnLinkingParams'] = ObjectUnLinkingParams
+    from cohesity_sdk.cluster.model.common_objects_action_params import CommonObjectsActionParams
+    globals()['CommonObjectsActionParams'] = CommonObjectsActionParams
 
 
 class ObjectsActionRequest(ModelNormal):
@@ -93,9 +91,9 @@ class ObjectsActionRequest(ModelNormal):
         lazy_import()
         return {
             'action': (str, none_type,),  # noqa: E501
-            'link_params': (ObjectLinkingParams,),  # noqa: E501
+            'link_params': (CommonObjectsActionParams,),  # noqa: E501
             'link_type': (str, none_type,),  # noqa: E501
-            'un_link_params': (ObjectUnLinkingParams,),  # noqa: E501
+            'un_link_params': (CommonObjectsActionParams,),  # noqa: E501
         }
 
     @cached_property
@@ -159,9 +157,9 @@ class ObjectsActionRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             action (str, none_type): Specifies the action type that need to be performed.. [optional]  # noqa: E501
-            link_params (ObjectLinkingParams): [optional]  # noqa: E501
+            link_params (CommonObjectsActionParams): [optional]  # noqa: E501
             link_type (str, none_type): Specifies the link type for the link/unlink action.. [optional]  # noqa: E501
-            un_link_params (ObjectUnLinkingParams): [optional]  # noqa: E501
+            un_link_params (CommonObjectsActionParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

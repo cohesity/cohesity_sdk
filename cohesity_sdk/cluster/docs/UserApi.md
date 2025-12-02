@@ -3,6 +3,7 @@
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**add_principals**](UserApi.md#add_principals) | **POST** /principals | Add the specified principals for the users or groups created on the Cohesity Cluster.
 [**create_group**](UserApi.md#create_group) | **POST** /groups | Create Groups
 [**create_session**](UserApi.md#create_session) | **POST** /users/sessions | Create a user session
 [**create_user_api_key**](UserApi.md#create_user_api_key) | **POST** /users/{userSid}/api-keys | Create a new user API key.
@@ -22,26 +23,113 @@ Method | HTTP request | Description
 [**get_user_api_key_by_id**](UserApi.md#get_user_api_key_by_id) | **GET** /users/{userSid}/api-keys/{id} | Get the API key by id.
 [**get_user_api_keys**](UserApi.md#get_user_api_keys) | **GET** /users/{userSid}/api-keys | Get the list of API keys owned by the user.
 [**get_user_by_sid**](UserApi.md#get_user_by_sid) | **GET** /users/{sid} | Get User by SID.
+[**get_user_task_notifications**](UserApi.md#get_user_task_notifications) | **GET** /users/{sid}/notifications | Get task notifications for the given user.
 [**get_users**](UserApi.md#get_users) | **GET** /users | Get Users.
 [**regenerate_s3_key**](UserApi.md#regenerate_s3_key) | **POST** /users/{sid}/s3-secret-key | Reset S3 secret access key
 [**rotate_user_api_key**](UserApi.md#rotate_user_api_key) | **POST** /users/{userSid}/api-keys/{id}/rotate | Refresh an existing user API key.
 [**update_group**](UserApi.md#update_group) | **PUT** /groups/{sid} | Update Group
+[**update_linux_credentials_v2**](UserApi.md#update_linux_credentials_v2) | **PUT** /users/linux-password | Update or validate linux user password.
 [**update_principal_sources**](UserApi.md#update_principal_sources) | **PUT** /security-principals/{sid}/sources | Update protection sources assigned to a user/group.
 [**update_user**](UserApi.md#update_user) | **PUT** /users/{sid} | Update User information.
 [**update_user_api_key_by_id**](UserApi.md#update_user_api_key_by_id) | **PUT** /users/{userSid}/api-keys/{id} | Update a user API key.
 [**update_user_s3_keys**](UserApi.md#update_user_s3_keys) | **POST** /users/{sid}/update-s3-keys | Update S3 keys for a User
+[**verify_user_otp**](UserApi.md#verify_user_otp) | **POST** /users/verify-otp | Verify the OTP for a user.
 
+
+# **add_principals**
+> AddedPrincipalResponseObject add_principals(body)
+
+Add the specified principals for the users or groups created on the Cohesity Cluster.
+
+**Privileges:** ```PRINCIPAL_MODIFY``` <br><br>After a group or user has been added to a Cohesity Cluster, the referenced principal can be used by the group or user. In addition, this operation maps Cohesity roles with a group or user and this mapping defines the privileges allowed on the Cohesity Cluster for the group or user.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.added_principal_response_object import AddedPrincipalResponseObject
+from cohesity_sdk.cluster.model.create_principal_request_params import CreatePrincipalRequestParams
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+body = CreatePrincipalRequestParams(
+        principal_type="SSOUser",
+        sso_user_principal_params=[
+            SSOUserPrincipalParameters(
+                domain="domain_example",
+                name="name_example",
+                restricted=True,
+                roles=[
+                    "roles_example",
+                ],
+                tenant_id="tenant_id_example",
+            ),
+        ],
+    ) # CreatePrincipalRequestParams | Specifies parameters to add multiple principals.
+
+# example passing only required values which don't have defaults set
+try:
+	# Add the specified principals for the users or groups created on the Cohesity Cluster.
+	api_response = client.user.add_principals(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling UserApi->add_principals: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**CreatePrincipalRequestParams**](CreatePrincipalRequestParams.md)| Specifies parameters to add multiple principals. |
+
+### Return type
+
+[**AddedPrincipalResponseObject**](AddedPrincipalResponseObject.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_group**
 > Groups create_group(body)
 
 Create Groups
 
-If an Active Directory/IdP domain is specified, a new group is added to the Cohesity Cluster for the specified Active Directory/IdP group principal. If the LOCAL domain is specified, a new group is created directly in the default LOCAL domain on the Cohesity Cluster.
+**Privileges:** ```PRINCIPAL_MODIFY``` <br><br>If an Active Directory/IdP domain is specified, a new group is added to the Cohesity Cluster for the specified Active Directory/IdP group principal. If the LOCAL domain is specified, a new group is created directly in the default LOCAL domain on the Cohesity Cluster.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.create_groups_params import CreateGroupsParams
@@ -59,21 +147,11 @@ client = ClusterClient(
 )
 
 
-body = CreateGroupsParams([
-        CreateGroupParams(
-            description="description_example",
-            domain="domain_example",
-            local_group_params={},
-            name="name_example",
-            restricted=True,
-            roles=[
-                "roles_example",
-            ],
-            tenant_ids=[
-                "tenant_ids_example",
-            ],
-        ),
-    ]) # CreateGroupsParams | Specifies the new group parameters.
+body = CreateGroupsParams(
+        groups=[
+            CreateGroupParams(),
+        ],
+    ) # CreateGroupsParams | Specifies the new group parameters.
 
 # example passing only required values which don't have defaults set
 try:
@@ -97,7 +175,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -118,11 +196,10 @@ Name | Type | Description  | Notes
 
 Create a user session
 
-Create a user session
+```No Privileges Required``` <br><br>Creates a new user session. Session Management must be enabled before exercising this endpoint. <br/>Subsequent requests to other Cohesity REST API operations must specify the returned session token and 'session-id' in the http header in the following format: `session-id: generated-session-key` 
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.create_user_session_request_params import CreateUserSessionRequestParams
@@ -132,13 +209,7 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
+client = ClusterClient(cluster_vip)
 
 body = CreateUserSessionRequestParams(
         certificate="certificate_example",
@@ -172,7 +243,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -193,11 +264,13 @@ Name | Type | Description  | Notes
 
 Create a new user API key.
 
-Create a new user API key.
+```No Privileges Required``` <br><br>Create a new user API key.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.created_user_api_key import CreatedUserAPIKey
@@ -245,7 +318,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -266,11 +339,13 @@ Name | Type | Description  | Notes
 
 Add one or more users to Cohesity Cluster.
 
-Add one or more users to Cohesity Cluster.
+**Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Add one or more users to Cohesity Cluster.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.users_list import UsersList
@@ -289,21 +364,7 @@ client = ClusterClient(
 
 
 body = CreateUsersParameters([
-        CreateUserParameters(
-            s3_access_keys={},
-            allow_smb_access_token=True,
-            description="description_example",
-            domain="domain_example",
-            effective_time_msecs=1,
-            expiry_time_msecs=1,
-            local_user_params={},
-            locked=True,
-            restricted=True,
-            roles=[
-                "roles_example",
-            ],
-            username="username_example",
-        ),
+        CreateUserParameters(),
     ]) # CreateUsersParameters | If an Active Directory or an IdP domain is specified, a new user is added to the Cohesity Cluster against the specified Active Directory/IdP user principal. If the LOCAL domain is specified, a new user is created directly in the default LOCAL domain on the Cohesity Cluster.
 
 # example passing only required values which don't have defaults set
@@ -328,7 +389,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -349,11 +410,13 @@ Name | Type | Description  | Notes
 
 Delete Group
 
-If the group on the Cohesity Cluster was added for an Active Directory/IdP group, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.
+**Privileges:** ```PRINCIPAL_MODIFY``` <br><br>If the group on the Cohesity Cluster was added for an Active Directory/IdP group, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -392,7 +455,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -413,11 +476,13 @@ void (empty response body)
 
 Delete Groups
 
-If the Cohesity group was created against an Active Directory/IdP, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.
+**Privileges:** ```PRINCIPAL_MODIFY``` <br><br>If the Cohesity group was created against an Active Directory/IdP, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.delete_groups_request import DeleteGroupsRequest
@@ -461,7 +526,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -482,11 +547,13 @@ void (empty response body)
 
 Delete user sessions
 
-Deletes all sessions for given user sid or system wide sessions
+```No Privileges Required``` <br><br>Deletes all sessions for given user sid or system wide sessions
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -526,7 +593,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -547,11 +614,13 @@ void (empty response body)
 
 Delete a Cohesity (LOCAL/IdP/AD) user.
 
-Delete a Cohesity user.
+**Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete a Cohesity user.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -590,7 +659,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -611,11 +680,13 @@ void (empty response body)
 
 Delete a user API key.
 
-Delete a user API key.
+```No Privileges Required``` <br><br>Delete a user API key.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -656,7 +727,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -677,11 +748,13 @@ void (empty response body)
 
 Delete one or more Cohesity users.
 
-Delete one or more Cohesity users.
+**Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete one or more Cohesity users.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.delete_users_request import DeleteUsersRequest
@@ -725,7 +798,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -746,11 +819,13 @@ void (empty response body)
 
 Get sessions count
 
-Get the number of user sessions.
+**Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get the number of user sessions.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.active_sessions_count_params import ActiveSessionsCountParams
@@ -794,7 +869,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -815,11 +890,13 @@ Name | Type | Description  | Notes
 
 Get the list of all API keys which are created or owned by the user.
 
-Get the list of all API keys which are created or owned by the user.
+```No Privileges Required``` <br><br>Get the list of all API keys which are created or owned by the user.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -871,7 +948,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -892,11 +969,13 @@ Name | Type | Description  | Notes
 
 Get Group by SID
 
-Get Group by SID.
+```No Privileges Required``` <br><br>Get Group by SID.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -937,7 +1016,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -958,11 +1037,13 @@ Name | Type | Description  | Notes
 
 Get Groups.
 
-Get groups on the Cohesity cluster.
+```No Privileges Required``` <br><br>Get groups on the Cohesity cluster.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1024,7 +1105,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1045,11 +1126,13 @@ Name | Type | Description  | Notes
 
 Fetch sources & views assigned to a user/group.
 
-Fetches all the sources assigned to a principal.
+```No Privileges Required``` <br><br>Fetches all the sources assigned to a principal.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1090,7 +1173,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1111,11 +1194,13 @@ Name | Type | Description  | Notes
 
 Get Security Principals.
 
-Get Security Principals
+**Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Security Principals
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.security_principals import SecurityPrincipals
@@ -1158,7 +1243,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1179,11 +1264,13 @@ Name | Type | Description  | Notes
 
 Get the API key by id.
 
-Get the API key by id.
+```No Privileges Required``` <br><br>Get the API key by id.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1226,7 +1313,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1247,11 +1334,13 @@ Name | Type | Description  | Notes
 
 Get the list of API keys owned by the user.
 
-Returns the list of API keys owned by the user. For security reasons there is no way to retrieve the key itself after it's created.
+```No Privileges Required``` <br><br>Returns the list of API keys owned by the user. For security reasons there is no way to retrieve the key itself after it's created.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1309,7 +1398,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1330,11 +1419,13 @@ Name | Type | Description  | Notes
 
 Get User by SID.
 
-Get User by SID.
+```No Privileges Required``` <br><br>Get User by SID.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1375,7 +1466,88 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_user_task_notifications**
+> GetUserTaskNotificationsResponseObject get_user_task_notifications(sid)
+
+Get task notifications for the given user.
+
+**Privileges:** ```CLUSTER_VIEW, TENANT_VIEW``` <br><br>Get task notifications for the given user.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.get_user_task_notifications_response_object import GetUserTaskNotificationsResponseObject
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+sid = "sid_example" # str | Specify the SID of the user.
+include_count = True # bool | Specifies whether the notification count is needed or not. (optional)
+exclude_event_logs = True # bool | Specifies whether to exclude event logs within the response. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Get task notifications for the given user.
+	api_response = client.user.get_user_task_notifications(sid)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling UserApi->get_user_task_notifications: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get task notifications for the given user.
+	api_response = client.user.get_user_task_notifications(sid, include_count=include_count, exclude_event_logs=exclude_event_logs)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling UserApi->get_user_task_notifications: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **sid** | **str**| Specify the SID of the user. |
+ **include_count** | **bool**| Specifies whether the notification count is needed or not. | [optional]
+ **exclude_event_logs** | **bool**| Specifies whether to exclude event logs within the response. | [optional]
+
+### Return type
+
+[**GetUserTaskNotificationsResponseObject**](GetUserTaskNotificationsResponseObject.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1396,11 +1568,13 @@ Name | Type | Description  | Notes
 
 Get Users.
 
-Get Users.
+```No Privileges Required``` <br><br>Get Users.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.users_list import UsersList
@@ -1466,7 +1640,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1487,11 +1661,13 @@ Name | Type | Description  | Notes
 
 Reset S3 secret access key
 
-Reset the S3 secret access key for the specified user on the Cohesity Cluster. Admin users who have the Manage Users privilege can generate keys for other users. When generating a new key, anyone using the old key will lose access until they retrieve and use the newly generated key. The user must have the following privilege to access this endpoint, 'Manage S3 Keys'.
+```No Privileges Required``` <br><br>Reset the S3 secret access key for the specified user on the Cohesity Cluster. Admin users who have the Manage Users privilege can generate keys for other users. When generating a new key, anyone using the old key will lose access until they retrieve and use the newly generated key. The user must have the following privilege to access this endpoint, 'Manage S3 Keys'.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1532,7 +1708,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1553,11 +1729,13 @@ Name | Type | Description  | Notes
 
 Refresh an existing user API key.
 
-Refresh an existing user API key.
+```No Privileges Required``` <br><br>Refresh an existing user API key.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.created_user_api_key import CreatedUserAPIKey
@@ -1600,7 +1778,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1621,11 +1799,13 @@ Name | Type | Description  | Notes
 
 Update Group
 
-Only group settings on the Cohesity Cluster are updated. No changes are made to the referenced group principal on the Active Directory/IdP.
+**Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Only group settings on the Cohesity Cluster are updated. No changes are made to the referenced group principal on the Active Directory/IdP.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1646,7 +1826,11 @@ client = ClusterClient(
 sid = "sid_example" # str | Specify the SID of the group.
 body = UpdateGroupParameters(
         description="description_example",
-        local_group_params={},
+        local_group_params=LocalGroupParams(
+            user_sids=[
+                "user_sids_example",
+            ],
+        ),
         restricted=True,
         roles=[
             "roles_example",
@@ -1679,7 +1863,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1695,16 +1879,92 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **update_linux_credentials_v2**
+> SuccessResp update_linux_credentials_v2(body)
+
+Update or validate linux user password.
+
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Update or validate linux user password.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.update_linux_password_request import UpdateLinuxPasswordRequest
+from cohesity_sdk.cluster.model.success_resp import SuccessResp
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+body = UpdateLinuxPasswordRequest(
+        current_password="current_password_example",
+        new_password="new_password_example",
+        username="username_example",
+        verify_password=True,
+    ) # UpdateLinuxPasswordRequest | Specifies the linux user parameters.
+
+# example passing only required values which don't have defaults set
+try:
+	# Update or validate linux user password.
+	api_response = client.user.update_linux_credentials_v2(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling UserApi->update_linux_credentials_v2: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**UpdateLinuxPasswordRequest**](UpdateLinuxPasswordRequest.md)| Specifies the linux user parameters. |
+
+### Return type
+
+[**SuccessResp**](SuccessResp.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_principal_sources**
 > AssignedSources update_principal_sources(sid, body)
 
 Update protection sources assigned to a user/group.
 
-Update protection sources assigned to a user/group.
+```No Privileges Required``` <br><br>Update protection sources assigned to a user/group.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1754,7 +2014,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1775,11 +2035,13 @@ Name | Type | Description  | Notes
 
 Update User information.
 
-Update an existing user on the Cohesity Cluster. Only user settings on the Cohesity Cluster are updated. No changes are made to the referenced user principal on the Active Directory/IdP.
+```No Privileges Required``` <br><br>Update an existing user on the Cohesity Cluster. Only user settings on the Cohesity Cluster are updated. No changes are made to the referenced user principal on the Active Directory/IdP.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.update_user_parameters import UpdateUserParameters
@@ -1823,7 +2085,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1844,11 +2106,13 @@ Name | Type | Description  | Notes
 
 Update a user API key.
 
-Update a user API key.
+```No Privileges Required``` <br><br>Update a user API key.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1898,7 +2162,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1919,11 +2183,13 @@ Name | Type | Description  | Notes
 
 Update S3 keys for a User
 
-Update the S3 Access/Secret Keys for a User on the Cohesity Cluster.
+```No Privileges Required``` <br><br>Update the S3 Access/Secret Keys for a User on the Cohesity Cluster.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1968,7 +2234,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1980,6 +2246,78 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **verify_user_otp**
+> UserOtpResponseObject verify_user_otp(body)
+
+Verify the OTP for a user.
+
+```No Privileges Required``` <br><br>Returns the user info if the otp verification is successful.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.user_otp_response_object import UserOtpResponseObject
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.user_otp_params import UserOtpParams
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+body = UserOtpParams(
+        otp="otp_example",
+        otp_type="Totp",
+    ) # UserOtpParams | Request to verify OTP.
+
+# example passing only required values which don't have defaults set
+try:
+	# Verify the OTP for a user.
+	api_response = client.user.verify_user_otp(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling UserApi->verify_user_otp: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**UserOtpParams**](UserOtpParams.md)| Request to verify OTP. |
+
+### Return type
+
+[**UserOtpResponseObject**](UserOtpResponseObject.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
 **0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

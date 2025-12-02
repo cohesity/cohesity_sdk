@@ -13,11 +13,13 @@ Method | HTTP request | Description
 
 List indexed objects.
 
-List all the indexed objects like files and folders, emails, mailboxes etc., that match the specified search and filter criteria from protected objects.
+**Privileges:** ```RESTORE_VIEW``` <br><br>List all the indexed objects like files and folders, emails, mailboxes etc., that match the specified search and filter criteria from protected objects.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.search_indexed_objects_request import SearchIndexedObjectsRequest
@@ -59,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -80,11 +82,13 @@ Name | Type | Description  | Notes
 
 List Objects.
 
-List objects.
+**Privileges:** ```OBJECT_SEARCH``` <br><br>List objects.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.objects_search_response_body import ObjectsSearchResponseBody
@@ -140,8 +144,12 @@ source_ids = [
 source_uuids = [
         "sourceUuids_example",
     ] # [str] | Specifies a list of Protection Source object uuids to filter the objects. If specified, the object which are present in those Sources will be returned. (optional)
+object_uuids = [
+        "objectUuids_example",
+    ] # [str] | Specifies a list of object uuids to filter the object, based on the object uuid. These uuid are vendor specific and should be of the form, <sourceUuid_uuid>. (optional)
 is_protected = True # bool | Specifies the protection status of objects. If set to true, only protected objects will be returned. If set to false, only unprotected objects will be returned. If not specified, all objects will be returned. (optional)
 is_deleted = True # bool | If set to true, then objects which are deleted on atleast one cluster will be returned. If not set or set to false then objects which are registered on atleast one cluster are returned. (optional)
+only_deleted = True # bool | If set to true, then only the objects which are deleted on atleast one cluster will be returned. (optional)
 last_run_status_list = [
         "Accepted",
     ] # [str] | Specifies a list of status of the object's last protection run. Only objects with last run status of these will be returned. (optional)
@@ -172,7 +180,19 @@ might_have_snapshot_tag_ids = [
 tag_search_name = "tagSearchName_example" # str | Specifies the tag name to filter the tagged objects and snapshots. User can specify a wildcard character '*' as a suffix to a string where all object's tag names are matched with the prefix string. (optional)
 tag_names = [
         "tagNames_example",
-    ] # [str] | Specifies the tag names to filter the tagged objects and snapshots (optional)
+    ] # [str] | Specifies the tag names to filter the tagged objects and snapshots only for non system tags (optional)
+anomaly_tags = [
+        "Critical Ransomware Detected",
+    ] # [str] | Specifies the Anomaly's tag names to filter the tagged snapshots (optional)
+data_classification_tags = [
+        "High Sensitivity Detected",
+    ] # [str] | Specifies the Data classification's tag names to filter the tagged snapshots (optional)
+threat_tags = [
+        "Threats Matched",
+    ] # [str] | Specifies the threat tag's names to filter the tagged snapshots (optional)
+tag_names_excluded = [
+        "tagNamesExcluded_example",
+    ] # [str] | Specifies the tag names to not include in the tagged snapshots response (optional)
 tag_types = [
         "System",
     ] # [str] | Specifies the tag type to filter the objects and snapshots. (optional)
@@ -191,7 +211,7 @@ external_filters = [
 # and optional values
 try:
 	# List Objects.
-	api_response = client.search.search_objects(request_initiator_type=request_initiator_type, search_string=search_string, environments=environments, protection_types=protection_types, tenant_ids=tenant_ids, include_tenants=include_tenants, protection_group_ids=protection_group_ids, object_ids=object_ids, os_types=os_types, o365_object_types=o365_object_types, azure_object_types=azure_object_types, aws_object_types=aws_object_types, azure_uuids=azure_uuids, source_ids=source_ids, source_uuids=source_uuids, is_protected=is_protected, is_deleted=is_deleted, last_run_status_list=last_run_status_list, region_ids=region_ids, cluster_identifiers=cluster_identifiers, storage_domain_ids=storage_domain_ids, include_deleted_objects=include_deleted_objects, pagination_cookie=pagination_cookie, count=count, must_have_tag_ids=must_have_tag_ids, might_have_tag_ids=might_have_tag_ids, must_have_snapshot_tag_ids=must_have_snapshot_tag_ids, might_have_snapshot_tag_ids=might_have_snapshot_tag_ids, tag_search_name=tag_search_name, tag_names=tag_names, tag_types=tag_types, tag_categories=tag_categories, tag_sub_categories=tag_sub_categories, include_helios_tag_info_for_objects=include_helios_tag_info_for_objects, external_filters=external_filters)
+	api_response = client.search.search_objects(request_initiator_type=request_initiator_type, search_string=search_string, environments=environments, protection_types=protection_types, tenant_ids=tenant_ids, include_tenants=include_tenants, protection_group_ids=protection_group_ids, object_ids=object_ids, os_types=os_types, o365_object_types=o365_object_types, azure_object_types=azure_object_types, aws_object_types=aws_object_types, azure_uuids=azure_uuids, source_ids=source_ids, source_uuids=source_uuids, object_uuids=object_uuids, is_protected=is_protected, is_deleted=is_deleted, only_deleted=only_deleted, last_run_status_list=last_run_status_list, region_ids=region_ids, cluster_identifiers=cluster_identifiers, storage_domain_ids=storage_domain_ids, include_deleted_objects=include_deleted_objects, pagination_cookie=pagination_cookie, count=count, must_have_tag_ids=must_have_tag_ids, might_have_tag_ids=might_have_tag_ids, must_have_snapshot_tag_ids=must_have_snapshot_tag_ids, might_have_snapshot_tag_ids=might_have_snapshot_tag_ids, tag_search_name=tag_search_name, tag_names=tag_names, anomaly_tags=anomaly_tags, data_classification_tags=data_classification_tags, threat_tags=threat_tags, tag_names_excluded=tag_names_excluded, tag_types=tag_types, tag_categories=tag_categories, tag_sub_categories=tag_sub_categories, include_helios_tag_info_for_objects=include_helios_tag_info_for_objects, external_filters=external_filters)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling SearchApi->search_objects: %s\n" % e)
@@ -217,8 +237,10 @@ Name | Type | Description  | Notes
  **azure_uuids** | **[str]**| Specifies the Azure UUID for the Microsoft365 objects. If specified, the objects with the matching Azure UUIDs will be returned. | [optional]
  **source_ids** | **[int]**| Specifies a list of Protection Source object ids to filter the objects. If specified, the object which are present in those Sources will be returned. | [optional]
  **source_uuids** | **[str]**| Specifies a list of Protection Source object uuids to filter the objects. If specified, the object which are present in those Sources will be returned. | [optional]
+ **object_uuids** | **[str]**| Specifies a list of object uuids to filter the object, based on the object uuid. These uuid are vendor specific and should be of the form, &lt;sourceUuid_uuid&gt;. | [optional]
  **is_protected** | **bool**| Specifies the protection status of objects. If set to true, only protected objects will be returned. If set to false, only unprotected objects will be returned. If not specified, all objects will be returned. | [optional]
  **is_deleted** | **bool**| If set to true, then objects which are deleted on atleast one cluster will be returned. If not set or set to false then objects which are registered on atleast one cluster are returned. | [optional]
+ **only_deleted** | **bool**| If set to true, then only the objects which are deleted on atleast one cluster will be returned. | [optional]
  **last_run_status_list** | **[str]**| Specifies a list of status of the object&#39;s last protection run. Only objects with last run status of these will be returned. | [optional]
  **region_ids** | **[str]**| Specifies a list of region ids. Only records from clusters having these region ids will be returned. | [optional]
  **cluster_identifiers** | **[str]**| Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned. | [optional]
@@ -231,7 +253,11 @@ Name | Type | Description  | Notes
  **must_have_snapshot_tag_ids** | **[str]**| Specifies snapshot tags which must be all present in the document. | [optional]
  **might_have_snapshot_tag_ids** | **[str]**| Specifies list of snapshot tags, one or more of which might be present in the document. These are OR&#39;ed together and the resulting criteria AND&#39;ed with the rest of the query. | [optional]
  **tag_search_name** | **str**| Specifies the tag name to filter the tagged objects and snapshots. User can specify a wildcard character &#39;*&#39; as a suffix to a string where all object&#39;s tag names are matched with the prefix string. | [optional]
- **tag_names** | **[str]**| Specifies the tag names to filter the tagged objects and snapshots | [optional]
+ **tag_names** | **[str]**| Specifies the tag names to filter the tagged objects and snapshots only for non system tags | [optional]
+ **anomaly_tags** | **[str]**| Specifies the Anomaly&#39;s tag names to filter the tagged snapshots | [optional]
+ **data_classification_tags** | **[str]**| Specifies the Data classification&#39;s tag names to filter the tagged snapshots | [optional]
+ **threat_tags** | **[str]**| Specifies the threat tag&#39;s names to filter the tagged snapshots | [optional]
+ **tag_names_excluded** | **[str]**| Specifies the tag names to not include in the tagged snapshots response | [optional]
  **tag_types** | **[str]**| Specifies the tag type to filter the objects and snapshots. | [optional]
  **tag_categories** | **[str]**| Specifies the tag category to filter the objects and snapshots. | [optional]
  **tag_sub_categories** | **[str]**| Specifies the tag subcategory to filter the objects and snapshots | [optional]
@@ -244,7 +270,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -265,11 +291,13 @@ Name | Type | Description  | Notes
 
 List Protected Objects.
 
-List protected objects and corresponding detail information from registered sources filtered by specified query parameters. If no search pattern or filter parameters are specified, all protected objects currently found are returned.
+**Privileges:** ```RESTORE_VIEW``` <br><br>List protected objects and corresponding detail information from registered sources filtered by specified query parameters. If no search pattern or filter parameters are specified, all protected objects currently found are returned.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -367,7 +395,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 

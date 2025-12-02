@@ -27,11 +27,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.day_schedule import DaySchedule
+    from cohesity_sdk.cluster.model.frequency_schedule import FrequencySchedule
     from cohesity_sdk.cluster.model.month_schedule import MonthSchedule
     from cohesity_sdk.cluster.model.time_of_day import TimeOfDay
     from cohesity_sdk.cluster.model.week_schedule import WeekSchedule
-    globals()['DaySchedule'] = DaySchedule
+    globals()['FrequencySchedule'] = FrequencySchedule
     globals()['MonthSchedule'] = MonthSchedule
     globals()['TimeOfDay'] = TimeOfDay
     globals()['WeekSchedule'] = WeekSchedule
@@ -91,7 +91,7 @@ class DataTieringSchedule(ModelNormal):
         """
         lazy_import()
         return {
-            'day_schedule': (DaySchedule,),  # noqa: E501
+            'day_schedule': (FrequencySchedule,),  # noqa: E501
             'month_schedule': (MonthSchedule,),  # noqa: E501
             'start_time': (TimeOfDay,),  # noqa: E501
             'unit': (str, none_type,),  # noqa: E501
@@ -159,7 +159,7 @@ class DataTieringSchedule(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            day_schedule (DaySchedule): [optional]  # noqa: E501
+            day_schedule (FrequencySchedule): [optional]  # noqa: E501
             month_schedule (MonthSchedule): [optional]  # noqa: E501
             start_time (TimeOfDay): [optional]  # noqa: E501
             unit (str, none_type): Specifies how often to migrate data from source to target. [optional]  # noqa: E501

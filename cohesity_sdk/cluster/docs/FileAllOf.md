@@ -4,13 +4,15 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**hash** | **str, none_type** | Specifies hash value for this file. | [optional] 
+**modified_time_usecs** | **int, none_type** | Specifies modification time for this file in usecs. | [optional] 
 **name** | **str, none_type** | Specifies the file name. | [optional] 
 **path** | **str, none_type** | Specifies the path to this file. | [optional] 
 **policy_id** | **str, none_type** | Specifies the protection policy id for this file. | [optional] 
 **policy_name** | **str, none_type** | Specifies the protection policy name for this file. | [optional] 
 **protection_group_id** | **str, none_type** | \&quot;Specifies the protection group id which contains this file.\&quot; | [optional] 
 **protection_group_name** | **str, none_type** | \&quot;Specifies the protection group name which contains this file.\&quot; | [optional] 
-**source_info** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the Source Object information. | [optional] 
+**source_info** | [**Object**](Object.md) |  | [optional] 
 **storage_domain_id** | **int, none_type** | \&quot;Specifies the Storage Domain id where the backup data of Object is present.\&quot; | [optional] 
 **type** | **str, none_type** | Specifies the file type. | [optional] 
 

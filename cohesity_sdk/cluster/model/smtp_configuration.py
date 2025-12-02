@@ -77,6 +77,7 @@ class SMTPConfiguration(ModelNormal):
             'hostname': (str,),  # noqa: E501
             'port': (int,),  # noqa: E501
             'is_active': (bool, none_type,),  # noqa: E501
+            'sender_email_address': (str, none_type,),  # noqa: E501
             'use_ssl': (bool, none_type,),  # noqa: E501
             'username': (str, none_type,),  # noqa: E501
         }
@@ -91,6 +92,7 @@ class SMTPConfiguration(ModelNormal):
         'hostname': 'hostname',  # noqa: E501
         'port': 'port',  # noqa: E501
         'is_active': 'isActive',  # noqa: E501
+        'sender_email_address': 'senderEmailAddress',  # noqa: E501
         'use_ssl': 'useSSL',  # noqa: E501
         'username': 'username',  # noqa: E501
     }
@@ -147,6 +149,7 @@ class SMTPConfiguration(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             is_active (bool, none_type): Specifies if the SMTP configuration is active.. [optional] if omitted the server will use the default value of True  # noqa: E501
+            sender_email_address (str, none_type): This is used for setting \"Sender\" field in SMTP header. This has to be in valid email format, and could be different from username, and it's a required field if the username is not of valid email address. . [optional]  # noqa: E501
             use_ssl (bool, none_type): This is set to true when the SMTP server uses SSL/TLS without supporting STARTTLS. Typically, this is used for port 465.. [optional] if omitted the server will use the default value of False  # noqa: E501
             username (str, none_type): Specifies the username which will be used to connect to the SMTP server. If username is not specified, then it would imply that SMTP server is set up for unauthenticated access.. [optional]  # noqa: E501
         """

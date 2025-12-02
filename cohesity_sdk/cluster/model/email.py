@@ -66,6 +66,13 @@ class Email(ModelComposed):
     """
 
     allowed_values = {
+        ('folder_root_type',): {
+            'None': None,
+            'MSGFOLDERROOT': "MsgFolderRoot",
+            'ARCHIVEMSGFOLDERROOT': "ArchiveMsgFolderRoot",
+            'RECOVERABLEITEMSFOLDERROOT': "RecoverableItemsFolderRoot",
+            'ARCHIVERECOVERABLEITEMSFOLDERROOT': "ArchiveRecoverableItemsFolderRoot",
+        },
         ('task_status',): {
             'None': None,
             'NOTSTARTED': "NotStarted",
@@ -82,6 +89,10 @@ class Email(ModelComposed):
             'CONTACT': "Contact",
             'TASK': "Task",
             'NOTE': "Note",
+            'CALENDARFOLDER': "CalendarFolder",
+            'CONTACTFOLDER': "ContactFolder",
+            'TASKFOLDER': "TaskFolder",
+            'SEARCHFOLDER': "SearchFolder",
         },
     }
 
@@ -112,6 +123,7 @@ class Email(ModelComposed):
             'email_subject': (str, none_type,),  # noqa: E501
             'first_name': (str, none_type,),  # noqa: E501
             'folder_name': (str, none_type,),  # noqa: E501
+            'folder_root_type': (str, none_type,),  # noqa: E501
             'has_attachment': (bool, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'last_modification_name': (str, none_type,),  # noqa: E501
@@ -154,6 +166,7 @@ class Email(ModelComposed):
         'email_subject': 'emailSubject',  # noqa: E501
         'first_name': 'firstName',  # noqa: E501
         'folder_name': 'folderName',  # noqa: E501
+        'folder_root_type': 'folderRootType',  # noqa: E501
         'has_attachment': 'hasAttachment',  # noqa: E501
         'id': 'id',  # noqa: E501
         'last_modification_name': 'lastModificationName',  # noqa: E501
@@ -237,6 +250,7 @@ class Email(ModelComposed):
             email_subject (str, none_type): Specifies the subject of this email.. [optional]  # noqa: E501
             first_name (str, none_type): Specifies the contact's first name.. [optional]  # noqa: E501
             folder_name (str, none_type): Specify the name of the email folder.. [optional]  # noqa: E501
+            folder_root_type (str, none_type): Specifies which folder root the email belongs to.. [optional]  # noqa: E501
             has_attachment (bool, none_type): Specifies whether email has an attachment.. [optional]  # noqa: E501
             id (str, none_type): Specifies the id of the email object.. [optional]  # noqa: E501
             last_modification_name (str, none_type): \"Specifies the name of the person who modified this item.\". [optional]  # noqa: E501

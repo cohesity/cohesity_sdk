@@ -74,6 +74,7 @@ class DeleteHostsParameters(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'domain_names': ([str],),  # noqa: E501
             'ips': ([str],),  # noqa: E501
         }
 
@@ -84,6 +85,7 @@ class DeleteHostsParameters(ModelNormal):
 
 
     attribute_map = {
+        'domain_names': 'domainNames',  # noqa: E501
         'ips': 'ips',  # noqa: E501
     }
 
@@ -134,6 +136,7 @@ class DeleteHostsParameters(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            domain_names ([str]): Specifies the list of domain names to be deleted. [optional]  # noqa: E501
             ips ([str]): Specifies the list of IPs to be deleted. [optional]  # noqa: E501
         """
 

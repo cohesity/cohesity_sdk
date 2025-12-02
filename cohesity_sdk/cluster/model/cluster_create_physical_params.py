@@ -28,7 +28,15 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.cluster_create_node_params import ClusterCreateNodeParams
+    from cohesity_sdk.cluster.model.encryption_configuration_params import EncryptionConfigurationParams
+    from cohesity_sdk.cluster.model.ipmi_configuration_params import IpmiConfigurationParams
+    from cohesity_sdk.cluster.model.node_config_params import NodeConfigParams
+    from cohesity_sdk.cluster.model.node_group import NodeGroup
     globals()['ClusterCreateNodeParams'] = ClusterCreateNodeParams
+    globals()['EncryptionConfigurationParams'] = EncryptionConfigurationParams
+    globals()['IpmiConfigurationParams'] = IpmiConfigurationParams
+    globals()['NodeConfigParams'] = NodeConfigParams
+    globals()['NodeGroup'] = NodeGroup
 
 
 class ClusterCreatePhysicalParams(ModelNormal):
@@ -83,7 +91,21 @@ class ClusterCreatePhysicalParams(ModelNormal):
         """
         lazy_import()
         return {
+            'allow_api_based_fetch': (bool, none_type,),  # noqa: E501
+            'apps_subnet_ip': (str, none_type,),  # noqa: E501
+            'apps_subnet_ip_v6': (str, none_type,),  # noqa: E501
+            'apps_subnet_mask': (str, none_type,),  # noqa: E501
+            'apps_subnet_mask_v6': (str, none_type,),  # noqa: E501
+            'cluster_destroy_hmac_key': (str, none_type,),  # noqa: E501
+            'cluster_subnet_groups': ([NodeGroup], none_type,),  # noqa: E501
+            'enable_cluster_destroy': (bool, none_type,),  # noqa: E501
+            'encryption_config': (EncryptionConfigurationParams,),  # noqa: E501
+            'ip_preference': (int, none_type,),  # noqa: E501
+            'ipmi_config': (IpmiConfigurationParams,),  # noqa: E501
+            'metadata_fault_tolerance': (int, none_type,),  # noqa: E501
+            'node_configs': ([NodeConfigParams],),  # noqa: E501
             'nodes': ([ClusterCreateNodeParams],),  # noqa: E501
+            'trust_domain': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -93,7 +115,21 @@ class ClusterCreatePhysicalParams(ModelNormal):
 
 
     attribute_map = {
+        'allow_api_based_fetch': 'allowApiBasedFetch',  # noqa: E501
+        'apps_subnet_ip': 'appsSubnetIp',  # noqa: E501
+        'apps_subnet_ip_v6': 'appsSubnetIpV6',  # noqa: E501
+        'apps_subnet_mask': 'appsSubnetMask',  # noqa: E501
+        'apps_subnet_mask_v6': 'appsSubnetMaskV6',  # noqa: E501
+        'cluster_destroy_hmac_key': 'clusterDestroyHmacKey',  # noqa: E501
+        'cluster_subnet_groups': 'clusterSubnetGroups',  # noqa: E501
+        'enable_cluster_destroy': 'enableClusterDestroy',  # noqa: E501
+        'encryption_config': 'encryptionConfig',  # noqa: E501
+        'ip_preference': 'ipPreference',  # noqa: E501
+        'ipmi_config': 'ipmiConfig',  # noqa: E501
+        'metadata_fault_tolerance': 'metadataFaultTolerance',  # noqa: E501
+        'node_configs': 'nodeConfigs',  # noqa: E501
         'nodes': 'nodes',  # noqa: E501
+        'trust_domain': 'trustDomain',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,7 +179,21 @@ class ClusterCreatePhysicalParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            allow_api_based_fetch (bool, none_type): Specifies if API based GET should be enabled for cluster destroy params. [optional]  # noqa: E501
+            apps_subnet_ip (str, none_type): Specifies the IP for apps subnet. [optional]  # noqa: E501
+            apps_subnet_ip_v6 (str, none_type): Specifies the IPv6 for apps subnet. [optional]  # noqa: E501
+            apps_subnet_mask (str, none_type): Specifies the Mask for apps subnet. [optional]  # noqa: E501
+            apps_subnet_mask_v6 (str, none_type): Specifies the MaskV6 for apps subnet. [optional]  # noqa: E501
+            cluster_destroy_hmac_key (str, none_type): Specifies HMAC secret key that will be used to validate OTP used for destroy request. [optional]  # noqa: E501
+            cluster_subnet_groups ([NodeGroup], none_type): List of cluster subnet groups this cluster should be configured with. [optional]  # noqa: E501
+            enable_cluster_destroy (bool, none_type): Specifies if cluster destroy op is enabled on this cluster. [optional]  # noqa: E501
+            encryption_config (EncryptionConfigurationParams): [optional]  # noqa: E501
+            ip_preference (int, none_type): Specifies IP preference. [optional]  # noqa: E501
+            ipmi_config (IpmiConfigurationParams): [optional]  # noqa: E501
+            metadata_fault_tolerance (int, none_type): Specifies the metadata fault tolerance.. [optional]  # noqa: E501
+            node_configs ([NodeConfigParams]): Configuration of the nodes.. [optional]  # noqa: E501
             nodes ([ClusterCreateNodeParams]): [optional]  # noqa: E501
+            trust_domain (str, none_type): Specifies Trust Domain used for Service Identity. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

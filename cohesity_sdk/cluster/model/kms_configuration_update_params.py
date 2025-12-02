@@ -28,10 +28,14 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.aws_kms_configuration_update_params import AwsKmsConfigurationUpdateParams
+    from cohesity_sdk.cluster.model.gcp_kms_configuration_update_params import GcpKmsConfigurationUpdateParams
+    from cohesity_sdk.cluster.model.ibm_kms_configuration_update_params import IbmKmsConfigurationUpdateParams
     from cohesity_sdk.cluster.model.kmip_kms_configuration import KmipKmsConfiguration
     from cohesity_sdk.cluster.model.kms_configuration_add_update_params import KmsConfigurationAddUpdateParams
     from cohesity_sdk.cluster.model.kms_configuration_update_params_all_of import KmsConfigurationUpdateParamsAllOf
     globals()['AwsKmsConfigurationUpdateParams'] = AwsKmsConfigurationUpdateParams
+    globals()['GcpKmsConfigurationUpdateParams'] = GcpKmsConfigurationUpdateParams
+    globals()['IbmKmsConfigurationUpdateParams'] = IbmKmsConfigurationUpdateParams
     globals()['KmipKmsConfiguration'] = KmipKmsConfiguration
     globals()['KmsConfigurationAddUpdateParams'] = KmsConfigurationAddUpdateParams
     globals()['KmsConfigurationUpdateParamsAllOf'] = KmsConfigurationUpdateParamsAllOf
@@ -87,6 +91,8 @@ class KmsConfigurationUpdateParams(ModelComposed):
         return {
             'name': (str,),  # noqa: E501
             'aws_kms_params': (AwsKmsConfigurationUpdateParams,),  # noqa: E501
+            'gcp_kms_params': (GcpKmsConfigurationUpdateParams,),  # noqa: E501
+            'ibm_kms_params': (IbmKmsConfigurationUpdateParams,),  # noqa: E501
             'external_target_ids': ([int], none_type,),  # noqa: E501
             'kmip_kms_params': (KmipKmsConfiguration,),  # noqa: E501
             'storage_domain_ids': ([int], none_type,),  # noqa: E501
@@ -101,6 +107,8 @@ class KmsConfigurationUpdateParams(ModelComposed):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'aws_kms_params': 'awsKmsParams',  # noqa: E501
+        'gcp_kms_params': 'gcpKmsParams',  # noqa: E501
+        'ibm_kms_params': 'ibmKmsParams',  # noqa: E501
         'external_target_ids': 'externalTargetIds',  # noqa: E501
         'kmip_kms_params': 'kmipKmsParams',  # noqa: E501
         'storage_domain_ids': 'storageDomainIds',  # noqa: E501
@@ -158,6 +166,8 @@ class KmsConfigurationUpdateParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             aws_kms_params (AwsKmsConfigurationUpdateParams): [optional]  # noqa: E501
+            gcp_kms_params (GcpKmsConfigurationUpdateParams): [optional]  # noqa: E501
+            ibm_kms_params (IbmKmsConfigurationUpdateParams): [optional]  # noqa: E501
             external_target_ids ([int], none_type): Ids of external targets used to assign the KMS for encryption. Once an external KMS (AWS KMS or KIMP KMS) is assigned to an external target, it cannot be changed.. [optional]  # noqa: E501
             kmip_kms_params (KmipKmsConfiguration): [optional]  # noqa: E501
             storage_domain_ids ([int], none_type): Ids of storage domains used to assign the KMS for encryption. Once an external KMS (AWS KMS or KIMP KMS) is assigned to a storage domain, it cannot be changed.. [optional]  # noqa: E501

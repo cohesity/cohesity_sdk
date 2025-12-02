@@ -79,6 +79,7 @@ class RemoveDisk(ModelNormal):
         """
         lazy_import()
         return {
+            'has_cleared_pre_check_result': (bool, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'marked_for_removal': (bool, none_type,),  # noqa: E501
             'timestamp_secs': (int, none_type,),  # noqa: E501
@@ -92,6 +93,7 @@ class RemoveDisk(ModelNormal):
 
 
     attribute_map = {
+        'has_cleared_pre_check_result': 'hasClearedPreCheckResult',  # noqa: E501
         'id': 'id',  # noqa: E501
         'marked_for_removal': 'markedForRemoval',  # noqa: E501
         'timestamp_secs': 'timestampSecs',  # noqa: E501
@@ -145,6 +147,7 @@ class RemoveDisk(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            has_cleared_pre_check_result (bool, none_type): If true, pre check results have been cleared.. [optional] if omitted the server will use the default value of False  # noqa: E501
             id (int, none_type): Specifies id of the disk.. [optional]  # noqa: E501
             marked_for_removal (bool, none_type): If true, Disk is marked for removal.. [optional]  # noqa: E501
             timestamp_secs (int, none_type): Specifies the last run time of the pre-checks execution in Unix epoch timestamp (in seconds).. [optional]  # noqa: E501

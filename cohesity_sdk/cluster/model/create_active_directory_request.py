@@ -27,14 +27,18 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.active_directory_admin_params import ActiveDirectoryAdminParams
     from cohesity_sdk.cluster.model.common_active_directory_params import CommonActiveDirectoryParams
     from cohesity_sdk.cluster.model.create_active_directory_request_all_of import CreateActiveDirectoryRequestAllOf
     from cohesity_sdk.cluster.model.domain_controller import DomainController
     from cohesity_sdk.cluster.model.machine_account import MachineAccount
+    from cohesity_sdk.cluster.model.trusted_domain_params import TrustedDomainParams
+    globals()['ActiveDirectoryAdminParams'] = ActiveDirectoryAdminParams
     globals()['CommonActiveDirectoryParams'] = CommonActiveDirectoryParams
     globals()['CreateActiveDirectoryRequestAllOf'] = CreateActiveDirectoryRequestAllOf
     globals()['DomainController'] = DomainController
     globals()['MachineAccount'] = MachineAccount
+    globals()['TrustedDomainParams'] = TrustedDomainParams
 
 
 class CreateActiveDirectoryRequest(ModelComposed):
@@ -96,7 +100,7 @@ class CreateActiveDirectoryRequest(ModelComposed):
         lazy_import()
         return {
             'machine_accounts': ([MachineAccount], none_type,),  # noqa: E501
-            'active_directory_admin_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'active_directory_admin_params': (ActiveDirectoryAdminParams,),  # noqa: E501
             'domain_name': (str, none_type,),  # noqa: E501
             'connection_id': (int, none_type,),  # noqa: E501
             'domain_controllers_deny_list': ([str, none_type],),  # noqa: E501
@@ -105,7 +109,7 @@ class CreateActiveDirectoryRequest(ModelComposed):
             'nis_provider_domain_name': (str, none_type,),  # noqa: E501
             'organizational_unit_name': (str, none_type,),  # noqa: E501
             'preferred_domain_controllers': ([DomainController], none_type,),  # noqa: E501
-            'trusted_domain_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'trusted_domain_params': (TrustedDomainParams,),  # noqa: E501
             'work_group_name': (str, none_type,),  # noqa: E501
             'overwrite_machine_accounts': (bool, none_type,),  # noqa: E501
         }
@@ -150,7 +154,7 @@ class CreateActiveDirectoryRequest(ModelComposed):
 
         Args:
             machine_accounts ([MachineAccount], none_type): Specifies a list of computer names used to identify the Cohesity Cluster on the Active Directory domain. The first machine account is used as primary machine account and it can not be modified.
-            active_directory_admin_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params of a user with administrative privilege of this Active Directory.
+            active_directory_admin_params (ActiveDirectoryAdminParams):
             domain_name (str, none_type): Specifies the domain name of the Active Directory.
 
         Keyword Args:
@@ -192,7 +196,7 @@ class CreateActiveDirectoryRequest(ModelComposed):
             nis_provider_domain_name (str, none_type): Specifies the name of the NIS Provider which is mapped to this Active Directory.. [optional]  # noqa: E501
             organizational_unit_name (str, none_type): Specifies an optional organizational unit name.. [optional]  # noqa: E501
             preferred_domain_controllers ([DomainController], none_type): Specifies a list of preferred domain controllers of this Active Directory.. [optional]  # noqa: E501
-            trusted_domain_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params of trusted domain info of an Active Directory.. [optional]  # noqa: E501
+            trusted_domain_params (TrustedDomainParams): [optional]  # noqa: E501
             work_group_name (str, none_type): Specifies a work group name.. [optional]  # noqa: E501
             overwrite_machine_accounts (bool, none_type): Specifies if specified machine accounts should overwrite existing machine accounts.. [optional]  # noqa: E501
         """

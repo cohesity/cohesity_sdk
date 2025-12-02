@@ -14,11 +14,13 @@ Method | HTTP request | Description
 
 Create a Node Group.
 
-Create the Node Group and returns the newly created node group object.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Create the Node Group and returns the newly created node group object.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.node_group_response import NodeGroupResponse
@@ -60,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -81,11 +83,13 @@ Name | Type | Description  | Notes
 
 Delete a Node Group.
 
-Deletes a Node Group based on given node group name.
+```Unknown Privileges``` <br><br>Deletes a Node Group based on given node group name.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -124,7 +128,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -145,11 +149,13 @@ void (empty response body)
 
 List Node Groups based on provided filtering parameters.
 
-List node groups.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>List node groups.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.node_group_response import NodeGroupResponse
@@ -195,7 +201,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -216,11 +222,13 @@ Name | Type | Description  | Notes
 
 Update a Node Group.
 
-Specifies the request to update the existing Node Group. On successful update, returns the updated node group object.
+```Unknown Privileges``` <br><br>Specifies the request to update the existing Node Group. On successful update, returns the updated node group object.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.node_group_response import NodeGroupResponse
@@ -264,7 +272,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 

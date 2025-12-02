@@ -54,6 +54,16 @@ class PublicFolderItemAllOf(ModelNormal):
     """
 
     allowed_values = {
+        ('type',): {
+            'None': None,
+            'CALENDAR': "Calendar",
+            'CONTACT': "Contact",
+            'POST': "Post",
+            'FOLDER': "Folder",
+            'TASK': "Task",
+            'JOURNAL': "Journal",
+            'NOTE': "Note",
+        },
     }
 
     validations = {

@@ -64,6 +64,12 @@ class ReplicationTargetSummaryInfo(ModelComposed):
     """
 
     allowed_values = {
+        ('ownership_context',): {
+            'None': None,
+            'LOCAL': "Local",
+            'FORTKNOX': "FortKnox",
+            'FORTKNOXONPREM': "FortKnoxOnprem",
+        },
     }
 
     validations = {
@@ -90,6 +96,10 @@ class ReplicationTargetSummaryInfo(ModelComposed):
             'cluster_name': (str, none_type,),  # noqa: E501
             'aws_target_config': (AWSTargetConfig,),  # noqa: E501
             'azure_target_config': (AzureTargetConfig,),  # noqa: E501
+            'logical_size_bytes': (int, none_type,),  # noqa: E501
+            'object_ids': ([str], none_type,),  # noqa: E501
+            'ownership_context': (str, none_type,),  # noqa: E501
+            'snapshot_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -104,6 +114,10 @@ class ReplicationTargetSummaryInfo(ModelComposed):
         'cluster_name': 'clusterName',  # noqa: E501
         'aws_target_config': 'awsTargetConfig',  # noqa: E501
         'azure_target_config': 'azureTargetConfig',  # noqa: E501
+        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
+        'object_ids': 'objectIds',  # noqa: E501
+        'ownership_context': 'ownershipContext',  # noqa: E501
+        'snapshot_id': 'snapshotId',  # noqa: E501
     }
 
     required_properties = set([
@@ -159,6 +173,10 @@ class ReplicationTargetSummaryInfo(ModelComposed):
             cluster_name (str, none_type): Specifies the name of the cluster.. [optional]  # noqa: E501
             aws_target_config (AWSTargetConfig): [optional]  # noqa: E501
             azure_target_config (AzureTargetConfig): [optional]  # noqa: E501
+            logical_size_bytes (int, none_type): Specifies the logical size of this snapshot in bytes.. [optional]  # noqa: E501
+            object_ids ([str], none_type): Specifies the list of object ids for which this replication run was performed.. [optional]  # noqa: E501
+            ownership_context (str, none_type): Specifies the ownership context for the replication. This will only be populated when the replication target is a remote cluster.. [optional]  # noqa: E501
+            snapshot_id (str, none_type): Specifies the id of the replication snapshot for the object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

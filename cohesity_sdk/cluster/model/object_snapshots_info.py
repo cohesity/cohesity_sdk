@@ -28,7 +28,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.object_archival_snapshot_info import ObjectArchivalSnapshotInfo
+    from cohesity_sdk.cluster.model.object_local_snapshot_info import ObjectLocalSnapshotInfo
+    from cohesity_sdk.cluster.model.replication_target_summary_info import ReplicationTargetSummaryInfo
     globals()['ObjectArchivalSnapshotInfo'] = ObjectArchivalSnapshotInfo
+    globals()['ObjectLocalSnapshotInfo'] = ObjectLocalSnapshotInfo
+    globals()['ReplicationTargetSummaryInfo'] = ReplicationTargetSummaryInfo
 
 
 class ObjectSnapshotsInfo(ModelNormal):
@@ -97,12 +101,13 @@ class ObjectSnapshotsInfo(ModelNormal):
         return {
             'archival_snapshots_info': ([ObjectArchivalSnapshotInfo], none_type,),  # noqa: E501
             'indexing_status': (str, none_type,),  # noqa: E501
-            'local_snapshot_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'local_snapshot_info': (ObjectLocalSnapshotInfo,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'protection_group_name': (str, none_type,),  # noqa: E501
             'protection_run_end_time_usecs': (int, none_type,),  # noqa: E501
             'protection_run_id': (str, none_type,),  # noqa: E501
             'protection_run_start_time_usecs': (int, none_type,),  # noqa: E501
+            'replication_snapshot_info': (ReplicationTargetSummaryInfo,),  # noqa: E501
             'run_instance_id': (int, none_type,),  # noqa: E501
             'run_type': (str, none_type,),  # noqa: E501
             'source_group_id': (str, none_type,),  # noqa: E501
@@ -125,6 +130,7 @@ class ObjectSnapshotsInfo(ModelNormal):
         'protection_run_end_time_usecs': 'protectionRunEndTimeUsecs',  # noqa: E501
         'protection_run_id': 'protectionRunId',  # noqa: E501
         'protection_run_start_time_usecs': 'protectionRunStartTimeUsecs',  # noqa: E501
+        'replication_snapshot_info': 'replicationSnapshotInfo',  # noqa: E501
         'run_instance_id': 'runInstanceId',  # noqa: E501
         'run_type': 'runType',  # noqa: E501
         'source_group_id': 'sourceGroupId',  # noqa: E501
@@ -181,12 +187,13 @@ class ObjectSnapshotsInfo(ModelNormal):
 
             archival_snapshots_info ([ObjectArchivalSnapshotInfo], none_type): Specifies the archival snapshots information.. [optional]  # noqa: E501
             indexing_status (str, none_type): Specifies the indexing status of objects in this snapshot.<br> 'InProgress' indicates the indexing is in progress.<br> 'Done' indicates indexing is done.<br> 'NoIndex' indicates indexing is not applicable.<br> 'Error' indicates indexing failed with error.. [optional]  # noqa: E501
-            local_snapshot_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the local snapshot information.. [optional]  # noqa: E501
+            local_snapshot_info (ObjectLocalSnapshotInfo): [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies id of the Protection Group.. [optional]  # noqa: E501
             protection_group_name (str, none_type): Specifies name of the Protection Group.. [optional]  # noqa: E501
             protection_run_end_time_usecs (int, none_type): Specifies the end time of Protection Group Run in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
             protection_run_id (str, none_type): Specifies the id of Protection Group Run.. [optional]  # noqa: E501
             protection_run_start_time_usecs (int, none_type): Specifies the start time of Protection Group Run in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
+            replication_snapshot_info (ReplicationTargetSummaryInfo): [optional]  # noqa: E501
             run_instance_id (int, none_type): Specifies the instance id of the protection run which create the snapshot.. [optional]  # noqa: E501
             run_type (str, none_type): Specifies the type of protection run created this snapshot.. [optional]  # noqa: E501
             source_group_id (str, none_type): Specifies the source protection group id in case of replication.. [optional]  # noqa: E501

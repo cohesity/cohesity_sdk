@@ -60,6 +60,13 @@ class SupportMfaConfigInfo(ModelNormal):
             'TOTP': "totp",
             'SALESFORCE': "salesforce",
         },
+        ('otp_verification_state',): {
+            'None': None,
+            'KNOTSTARTED': "kNotStarted",
+            'KSUCCESS': "kSuccess",
+            'KFAILURE': "kFailure",
+            'KPENDING': "kPending",
+        },
     }
 
     validations = {
@@ -80,10 +87,15 @@ class SupportMfaConfigInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'current_password': (str, none_type,),  # noqa: E501
             'email': (str, none_type,),  # noqa: E501
             'enabled': (bool,),  # noqa: E501
+            'is_quorum_managed': (bool, none_type,),  # noqa: E501
             'mfa_code': (str, none_type,),  # noqa: E501
             'mfa_type': (str, none_type,),  # noqa: E501
+            'otp_verification_state': (str, none_type,),  # noqa: E501
+            'reference_id': (str, none_type,),  # noqa: E501
+            'requires_password_auth': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -93,10 +105,15 @@ class SupportMfaConfigInfo(ModelNormal):
 
 
     attribute_map = {
+        'current_password': 'currentPassword',  # noqa: E501
         'email': 'email',  # noqa: E501
         'enabled': 'enabled',  # noqa: E501
+        'is_quorum_managed': 'isQuorumManaged',  # noqa: E501
         'mfa_code': 'mfaCode',  # noqa: E501
         'mfa_type': 'mfaType',  # noqa: E501
+        'otp_verification_state': 'otpVerificationState',  # noqa: E501
+        'reference_id': 'referenceId',  # noqa: E501
+        'requires_password_auth': 'requiresPasswordAuth',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -146,10 +163,15 @@ class SupportMfaConfigInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            email (str, none_type): Specifies email address of the support user. Used when MFA mode is email.. [optional]  # noqa: E501
+            current_password (str, none_type): Specifies the current password of the support user, required for making updates to the configuration.. [optional]  # noqa: E501
+            email (str, none_type): This field is deprecated, use PUT /v2/support-user/mfa. Specifies email address of the support user. Used when MFA mode is email.. [optional]  # noqa: E501
             enabled (bool): Specifies whether MFA is enabled for support user.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            is_quorum_managed (bool, none_type): Specifies whether the MFA configuration is managed by quorum.. [optional] if omitted the server will use the default value of False  # noqa: E501
             mfa_code (str, none_type): MFA code that needs to be passed when disabling MFA or changing email address when email based MFA is configured.. [optional]  # noqa: E501
-            mfa_type (str, none_type): Specifies the mechanism to receive the OTP code.. [optional]  # noqa: E501
+            mfa_type (str, none_type): This field is deprecated, use PUT /v2/support-user/mfa. Specifies the mechanism to receive the OTP code.. [optional]  # noqa: E501
+            otp_verification_state (str, none_type): Specifies the status of otp verification.. [optional]  # noqa: E501
+            reference_id (str, none_type): Specifies a reference ID of OTP verification, required if mfaCode is not specified. [optional]  # noqa: E501
+            requires_password_auth (bool): Specifies that this API requires current support user password for enabling/disabling MFA, and for updating mfaType and email.. [optional] if omitted the server will use the default value of True  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

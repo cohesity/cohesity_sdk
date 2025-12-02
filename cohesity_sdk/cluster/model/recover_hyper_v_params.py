@@ -27,8 +27,16 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.common_download_file_and_folder_params import CommonDownloadFileAndFolderParams
     from cohesity_sdk.cluster.model.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
+    from cohesity_sdk.cluster.model.mount_hyper_v_volume_params import MountHyperVVolumeParams
+    from cohesity_sdk.cluster.model.recover_hyper_v_file_and_folder_params import RecoverHyperVFileAndFolderParams
+    from cohesity_sdk.cluster.model.recover_hyper_vvm_params import RecoverHyperVVmParams
+    globals()['CommonDownloadFileAndFolderParams'] = CommonDownloadFileAndFolderParams
     globals()['CommonRecoverObjectSnapshotParams'] = CommonRecoverObjectSnapshotParams
+    globals()['MountHyperVVolumeParams'] = MountHyperVVolumeParams
+    globals()['RecoverHyperVFileAndFolderParams'] = RecoverHyperVFileAndFolderParams
+    globals()['RecoverHyperVVmParams'] = RecoverHyperVVmParams
 
 
 class RecoverHyperVParams(ModelNormal):
@@ -85,11 +93,11 @@ class RecoverHyperVParams(ModelNormal):
         lazy_import()
         return {
             'recovery_action': (str,),  # noqa: E501
-            'download_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'mount_volume_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'download_file_and_folder_params': (CommonDownloadFileAndFolderParams,),  # noqa: E501
+            'mount_volume_params': (MountHyperVVolumeParams,),  # noqa: E501
             'objects': ([CommonRecoverObjectSnapshotParams], none_type,),  # noqa: E501
-            'recover_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'recover_vm_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'recover_file_and_folder_params': (RecoverHyperVFileAndFolderParams,),  # noqa: E501
+            'recover_vm_params': (RecoverHyperVVmParams,),  # noqa: E501
         }
 
     @cached_property
@@ -157,11 +165,11 @@ class RecoverHyperVParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            download_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to download files and folders.. [optional]  # noqa: E501
-            mount_volume_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to mount HyperV Volumes.. [optional]  # noqa: E501
+            download_file_and_folder_params (CommonDownloadFileAndFolderParams): [optional]  # noqa: E501
+            mount_volume_params (MountHyperVVolumeParams): [optional]  # noqa: E501
             objects ([CommonRecoverObjectSnapshotParams], none_type): Specifies the list of recover Object parameters. This property is mandatory for all recovery action types except recover vms. While recovering VMs, a user can specify snapshots of VM's or a Protection Group Run details to recover all the VM's that are backed up by that Run. For recovering files, specifies the object contains the file to recover.. [optional]  # noqa: E501
-            recover_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover files and folders.. [optional]  # noqa: E501
-            recover_vm_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover HyperV VM.. [optional]  # noqa: E501
+            recover_file_and_folder_params (RecoverHyperVFileAndFolderParams): [optional]  # noqa: E501
+            recover_vm_params (RecoverHyperVVmParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

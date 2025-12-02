@@ -58,6 +58,7 @@ class TenantActionBody(ModelNormal):
             'None': None,
             'ACTIVATE': "Activate",
             'DEACTIVATE': "Deactivate",
+            'SUSPEND': "Suspend",
         },
     }
 

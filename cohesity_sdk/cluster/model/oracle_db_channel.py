@@ -28,8 +28,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.credentials import Credentials
+    from cohesity_sdk.cluster.model.dg_role_based_backup import DgRoleBasedBackup
     from cohesity_sdk.cluster.model.oracle_database_host import OracleDatabaseHost
     globals()['Credentials'] = Credentials
+    globals()['DgRoleBasedBackup'] = DgRoleBasedBackup
     globals()['OracleDatabaseHost'] = OracleDatabaseHost
 
 
@@ -93,6 +95,7 @@ class OracleDbChannel(ModelNormal):
             'database_unique_name': (str, none_type,),  # noqa: E501
             'database_uuid': (str, none_type,),  # noqa: E501
             'default_channel_count': (int, none_type,),  # noqa: E501
+            'dg_role_based_backup': (DgRoleBasedBackup,),  # noqa: E501
             'enable_dg_primary_backup': (bool, none_type,),  # noqa: E501
             'max_host_count': (int, none_type,),  # noqa: E501
             'rman_backup_type': (str,),  # noqa: E501
@@ -112,6 +115,7 @@ class OracleDbChannel(ModelNormal):
         'database_unique_name': 'databaseUniqueName',  # noqa: E501
         'database_uuid': 'databaseUuid',  # noqa: E501
         'default_channel_count': 'defaultChannelCount',  # noqa: E501
+        'dg_role_based_backup': 'dgRoleBasedBackup',  # noqa: E501
         'enable_dg_primary_backup': 'enableDgPrimaryBackup',  # noqa: E501
         'max_host_count': 'maxHostCount',  # noqa: E501
         'rman_backup_type': 'rmanBackupType',  # noqa: E501
@@ -171,6 +175,7 @@ class OracleDbChannel(ModelNormal):
             database_unique_name (str, none_type): Specifies the unique Name of the database.. [optional]  # noqa: E501
             database_uuid (str, none_type): Specifies the database unique id. This is an internal field and is filled by magneto master based on corresponding app entity id.. [optional]  # noqa: E501
             default_channel_count (int, none_type): Specifies the default number of channels to use per node per database. This value is used on all Oracle Database Nodes unless databaseNodeList item's channelCount is specified for the node. Default value for the number of channels will be calculated as the minimum of number of nodes in Cohesity cluster and 2 * number of CPU on the host. If the number of channels is unspecified here and unspecified within databaseNodeList, the above formula will be used to determine the same.. [optional]  # noqa: E501
+            dg_role_based_backup (DgRoleBasedBackup): [optional]  # noqa: E501
             enable_dg_primary_backup (bool, none_type): Specifies whether the database having the Primary role within Data Guard configuration is to be backed up.. [optional]  # noqa: E501
             max_host_count (int, none_type): Specifies the maximum number of hosts from which backup/restore is allowed in parallel. This will be less than or equal to the number of databaseNode specified within databaseNodeList.. [optional]  # noqa: E501
             rman_backup_type (str): Specifies the type of Oracle RMAN backup requested. [optional]  # noqa: E501

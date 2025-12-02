@@ -3,6 +3,7 @@
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**configure_support_mfa_config**](MFAApi.md#configure_support_mfa_config) | **PUT** /support-user/mfa | Stores the updated MFA configuration.
 [**create_email_otp**](MFAApi.md#create_email_otp) | **POST** /email-otp | Creates a new OTP to be sent to the user email.
 [**create_totp_key**](MFAApi.md#create_totp_key) | **POST** /totp-key | Create a new TOTP secret URI and store the secret key.
 [**get_mfa_config**](MFAApi.md#get_mfa_config) | **GET** /mfa-config | Returns the current MFA configuration.
@@ -14,16 +15,91 @@ Method | HTTP request | Description
 [**verify_support_user_totp**](MFAApi.md#verify_support_user_totp) | **POST** /support-user/verify-totp | Verify the totp code for support user.
 
 
+# **configure_support_mfa_config**
+> UpdateMFAResult configure_support_mfa_config(body)
+
+Stores the updated MFA configuration.
+
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Configures MFA configuration for support user.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.configure_support_user_mfa_params import ConfigureSupportUserMfaParams
+from cohesity_sdk.cluster.model.update_mfa_result import UpdateMFAResult
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+body = ConfigureSupportUserMfaParams(
+        current_password="current_password_example",
+        email="email_example",
+        mfa_type="email",
+    ) # ConfigureSupportUserMfaParams | The update request for MFA Settings
+
+# example passing only required values which don't have defaults set
+try:
+	# Stores the updated MFA configuration.
+	api_response = client.mfa.configure_support_mfa_config(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling MFAApi->configure_support_mfa_config: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**ConfigureSupportUserMfaParams**](ConfigureSupportUserMfaParams.md)| The update request for MFA Settings |
+
+### Return type
+
+[**UpdateMFAResult**](UpdateMFAResult.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **create_email_otp**
 > create_email_otp()
 
 Creates a new OTP to be sent to the user email.
 
-Creates a new One Time Password for the user email. This is used for API login.
+```No Privileges Required``` <br><br>Creates a new One Time Password for the user email. This is used for API login.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -68,7 +144,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -89,11 +165,13 @@ void (empty response body)
 
 Create a new TOTP secret URI and store the secret key.
 
-Create a TOTP key.
+```No Privileges Required``` <br><br>Create a TOTP key.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -137,7 +215,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -158,11 +236,13 @@ Name | Type | Description  | Notes
 
 Returns the current MFA configuration.
 
-Returns the current MFA configuration for the cluster.
+```No Privileges Required``` <br><br>Returns the current MFA configuration for the cluster.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -199,7 +279,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -220,11 +300,13 @@ This endpoint does not need any parameter.
 
 Returns the current MFA configuration.
 
-Returns the current MFA configuration for support user.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>Returns the current MFA configuration for support user.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -261,7 +343,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -282,11 +364,13 @@ This endpoint does not need any parameter.
 
 Creates a new OTP to be sent to the user email.
 
-Creates a new One Time Password for the user email
+```No Privileges Required``` <br><br>Creates a new One Time Password for the user email
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -321,7 +405,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -342,11 +426,13 @@ void (empty response body)
 
 Creates a new OTP to be sent to the linux support user email.
 
-Creates a new one time password for linux support user email
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Creates a new one time password for linux support user email
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -381,7 +467,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -402,11 +488,13 @@ void (empty response body)
 
 Stores the updated MFA configuration.
 
-Stores the updated MFA configuration for the cluster.
+**Privileges:** ```MFA_MODIFY``` <br><br>Stores the updated MFA configuration for the cluster.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -453,7 +541,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -474,11 +562,13 @@ Name | Type | Description  | Notes
 
 Stores the updated MFA configuration.
 
-Update MFA configuration for support user.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Update MFA configuration for support user. NOTE: Some functionality of this API is deprecated. It is recommended to use PUT /v2/support-user/mfa for setting MFA type and updating email. This API should be used only for enabling/disabling MFA.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.update_mfa_result import UpdateMFAResult
@@ -497,10 +587,13 @@ client = ClusterClient(
 
 
 body = SupportMfaConfigInfo(
+        current_password="current_password_example",
         email="email_example",
         enabled=False,
         mfa_code="mfa_code_example",
         mfa_type="email",
+        otp_verification_state="kNotStarted",
+        reference_id="reference_id_example",
     ) # SupportMfaConfigInfo | The update request for the MFA Settings
 
 # example passing only required values which don't have defaults set
@@ -525,7 +618,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -546,11 +639,13 @@ Name | Type | Description  | Notes
 
 Verify the totp code for support user.
 
-Verify totp code for support user.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Verify totp code for support user.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.verify_totp_result import VerifyTotpResult
@@ -569,6 +664,8 @@ client = ClusterClient(
 
 
 body = VerifyTotpRequest(
+        purpose="DisableMfa",
+        support_user_password="support_user_password_example",
         totp_code="totp_code_example",
     ) # VerifyTotpRequest | Totp code to be verified.
 
@@ -594,7 +691,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 

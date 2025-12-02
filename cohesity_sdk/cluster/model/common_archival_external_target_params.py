@@ -27,8 +27,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.cloud_archival_direct_config import CloudArchivalDirectConfig
     from cohesity_sdk.cluster.model.encryption_settings import EncryptionSettings
     from cohesity_sdk.cluster.model.target_bandwidth_throttlings import TargetBandwidthThrottlings
+    globals()['CloudArchivalDirectConfig'] = CloudArchivalDirectConfig
     globals()['EncryptionSettings'] = EncryptionSettings
     globals()['TargetBandwidthThrottlings'] = TargetBandwidthThrottlings
 
@@ -70,6 +72,7 @@ class CommonArchivalExternalTargetParams(ModelNormal):
             'NAS': "NAS",
             'QSTARTAPE': "QStarTape",
             'S3COMPATIBLE': "S3Compatible",
+            'IBM': "IBM",
         },
     }
 
@@ -94,6 +97,7 @@ class CommonArchivalExternalTargetParams(ModelNormal):
         return {
             'encryption': (EncryptionSettings,),  # noqa: E501
             'storage_type': (str, none_type,),  # noqa: E501
+            'cad_config': (CloudArchivalDirectConfig,),  # noqa: E501
             'target_bandwidth_throttlings': (TargetBandwidthThrottlings,),  # noqa: E501
         }
 
@@ -106,6 +110,7 @@ class CommonArchivalExternalTargetParams(ModelNormal):
     attribute_map = {
         'encryption': 'encryption',  # noqa: E501
         'storage_type': 'storageType',  # noqa: E501
+        'cad_config': 'cadConfig',  # noqa: E501
         'target_bandwidth_throttlings': 'targetBandwidthThrottlings',  # noqa: E501
     }
 
@@ -160,6 +165,7 @@ class CommonArchivalExternalTargetParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            cad_config (CloudArchivalDirectConfig): [optional]  # noqa: E501
             target_bandwidth_throttlings (TargetBandwidthThrottlings): [optional]  # noqa: E501
         """
 

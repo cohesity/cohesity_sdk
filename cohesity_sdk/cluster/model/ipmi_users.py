@@ -27,10 +27,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.cluster_ipmi_user import ClusterIpmiUser
-    from cohesity_sdk.cluster.model.node_ipmi_user import NodeIpmiUser
-    globals()['ClusterIpmiUser'] = ClusterIpmiUser
-    globals()['NodeIpmiUser'] = NodeIpmiUser
+    from cohesity_sdk.cluster.model.ipmi_user_info import IpmiUserInfo
+    globals()['IpmiUserInfo'] = IpmiUserInfo
 
 
 class IpmiUsers(ModelNormal):
@@ -81,8 +79,9 @@ class IpmiUsers(ModelNormal):
         """
         lazy_import()
         return {
-            'cluster_ipmi_user': (ClusterIpmiUser,),  # noqa: E501
-            'nodes_impi_user': ([NodeIpmiUser], none_type,),  # noqa: E501
+            'channel': (int, none_type,),  # noqa: E501
+            'max_user_id': (int, none_type,),  # noqa: E501
+            'user_list': ([IpmiUserInfo], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +91,9 @@ class IpmiUsers(ModelNormal):
 
 
     attribute_map = {
-        'cluster_ipmi_user': 'clusterIpmiUser',  # noqa: E501
-        'nodes_impi_user': 'nodesImpiUser',  # noqa: E501
+        'channel': 'channel',  # noqa: E501
+        'max_user_id': 'maxUserId',  # noqa: E501
+        'user_list': 'userList',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,8 +143,9 @@ class IpmiUsers(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            cluster_ipmi_user (ClusterIpmiUser): [optional]  # noqa: E501
-            nodes_impi_user ([NodeIpmiUser], none_type): Nodes IPMI user parameters.. [optional]  # noqa: E501
+            channel (int, none_type): Specifies the channel through which the IPMI interface communicates on the network.. [optional]  # noqa: E501
+            max_user_id (int, none_type): Specifies the highest occupied ID up to which no free user IDs are available. If a new user is created, it is assigned a user ID of maxUserId + 1.. [optional]  # noqa: E501
+            user_list ([IpmiUserInfo], none_type): Specifies the list of ipmi users with their permissions.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

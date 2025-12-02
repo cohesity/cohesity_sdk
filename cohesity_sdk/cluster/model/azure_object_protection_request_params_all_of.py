@@ -27,8 +27,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.azure_entra_id_object_protection_params import AzureEntraIDObjectProtectionParams
     from cohesity_sdk.cluster.model.azure_native_object_protection_params import AzureNativeObjectProtectionParams
     from cohesity_sdk.cluster.model.azure_sql_object_protection_params import AzureSqlObjectProtectionParams
+    globals()['AzureEntraIDObjectProtectionParams'] = AzureEntraIDObjectProtectionParams
     globals()['AzureNativeObjectProtectionParams'] = AzureNativeObjectProtectionParams
     globals()['AzureSqlObjectProtectionParams'] = AzureSqlObjectProtectionParams
 
@@ -81,6 +83,7 @@ class AzureObjectProtectionRequestParamsAllOf(ModelNormal):
         """
         lazy_import()
         return {
+            'azure_entra_id_protection_type_params': (AzureEntraIDObjectProtectionParams,),  # noqa: E501
             'azure_sql_protection_type_params': (AzureSqlObjectProtectionParams,),  # noqa: E501
             'native_protection_type_params': (AzureNativeObjectProtectionParams,),  # noqa: E501
         }
@@ -92,6 +95,7 @@ class AzureObjectProtectionRequestParamsAllOf(ModelNormal):
 
 
     attribute_map = {
+        'azure_entra_id_protection_type_params': 'azureEntraIdProtectionTypeParams',  # noqa: E501
         'azure_sql_protection_type_params': 'azureSqlProtectionTypeParams',  # noqa: E501
         'native_protection_type_params': 'nativeProtectionTypeParams',  # noqa: E501
     }
@@ -143,6 +147,7 @@ class AzureObjectProtectionRequestParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            azure_entra_id_protection_type_params (AzureEntraIDObjectProtectionParams): [optional]  # noqa: E501
             azure_sql_protection_type_params (AzureSqlObjectProtectionParams): [optional]  # noqa: E501
             native_protection_type_params (AzureNativeObjectProtectionParams): [optional]  # noqa: E501
         """

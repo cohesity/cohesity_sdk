@@ -114,6 +114,8 @@ class ArchivalAwsExternalTargetParams(ModelComposed):
             'bucket_owner_account_id': (str, none_type,),  # noqa: E501
             'is_forever_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
+            'lambda_private_endpoint': (str, none_type,),  # noqa: E501
+            'private_endpoint': (str, none_type,),  # noqa: E501
             'source_side_deduplication': (bool, none_type,),  # noqa: E501
             'aws_glacier_params': (AwsGlacierParams,),  # noqa: E501
             'aws_s3_glacier_deep_archive_params': (AwsS3GlacierDeepArchiveParams,),  # noqa: E501
@@ -138,6 +140,8 @@ class ArchivalAwsExternalTargetParams(ModelComposed):
         'bucket_owner_account_id': 'bucketOwnerAccountId',  # noqa: E501
         'is_forever_incremental_archival_enabled': 'isForeverIncrementalArchivalEnabled',  # noqa: E501
         'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
+        'lambda_private_endpoint': 'lambdaPrivateEndpoint',  # noqa: E501
+        'private_endpoint': 'privateEndpoint',  # noqa: E501
         'source_side_deduplication': 'sourceSideDeduplication',  # noqa: E501
         'aws_glacier_params': 'awsGlacierParams',  # noqa: E501
         'aws_s3_glacier_deep_archive_params': 'awsS3GlacierDeepArchiveParams',  # noqa: E501
@@ -205,6 +209,8 @@ class ArchivalAwsExternalTargetParams(ModelComposed):
             bucket_owner_account_id (str, none_type): Specifies the account Id of the S3 bucket owner.. [optional]  # noqa: E501
             is_forever_incremental_archival_enabled (bool, none_type): Specifies if Forever Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
+            lambda_private_endpoint (str, none_type): Lambda private endpoint if the traffic needs to be routed through a private link.. [optional]  # noqa: E501
+            private_endpoint (str, none_type): Private endpoint if specified.. [optional]  # noqa: E501
             source_side_deduplication (bool, none_type): Specifies the Source Side Deduplication setting for the AWS external target. [optional]  # noqa: E501
             aws_glacier_params (AwsGlacierParams): [optional]  # noqa: E501
             aws_s3_glacier_deep_archive_params (AwsS3GlacierDeepArchiveParams): [optional]  # noqa: E501

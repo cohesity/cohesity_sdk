@@ -75,9 +75,11 @@ class ViewClientsSummaryInfo(ModelNormal):
         """
         return {
             'nfs_client_count': (int, none_type,),  # noqa: E501
+            'nfs_open_file_count': (int, none_type,),  # noqa: E501
             'node_ip': (str, none_type,),  # noqa: E501
             'server_ip': (str, none_type,),  # noqa: E501
             'smb_client_count': (int, none_type,),  # noqa: E501
+            'smb_open_file_count': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -88,9 +90,11 @@ class ViewClientsSummaryInfo(ModelNormal):
 
     attribute_map = {
         'nfs_client_count': 'nfsClientCount',  # noqa: E501
+        'nfs_open_file_count': 'nfsOpenFileCount',  # noqa: E501
         'node_ip': 'nodeIp',  # noqa: E501
         'server_ip': 'serverIp',  # noqa: E501
         'smb_client_count': 'smbClientCount',  # noqa: E501
+        'smb_open_file_count': 'smbOpenFileCount',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,9 +145,11 @@ class ViewClientsSummaryInfo(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             nfs_client_count (int, none_type): Specifies the number of NFS clients.. [optional]  # noqa: E501
+            nfs_open_file_count (int, none_type): Specifies the number of files open over the NFS4 protocol.. [optional]  # noqa: E501
             node_ip (str, none_type): Specifies the node ip the clients are connected to.. [optional]  # noqa: E501
             server_ip (str, none_type): Specifies the server ip the clients are connected to.. [optional]  # noqa: E501
             smb_client_count (int, none_type): Specifies the number of SMB clients.. [optional]  # noqa: E501
+            smb_open_file_count (int, none_type): Specifies the number of files open over the SMB protocol.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

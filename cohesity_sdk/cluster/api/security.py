@@ -22,12 +22,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from cohesity_sdk.cluster.model.ciphers_resp import CiphersResp
+from cohesity_sdk.cluster.model.common_csr_request_params import CommonCsrRequestParams
 from cohesity_sdk.cluster.model.common_csr_response_params import CommonCsrResponseParams
 from cohesity_sdk.cluster.model.create_clientcsr_response_body import CreateClientcsrResponseBody
-from cohesity_sdk.cluster.model.create_csr_request import CreateCsrRequest
-from cohesity_sdk.cluster.model.create_csr_response_body import CreateCsrResponseBody
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.get_csr_list_response_body import GetCsrListResponseBody
+from cohesity_sdk.cluster.model.get_ssl_certificates_result import GetSslCertificatesResult
 from cohesity_sdk.cluster.model.import_certificate_by_clientcsr_request import ImportCertificateByClientcsrRequest
 from cohesity_sdk.cluster.model.import_certificate_by_clientcsr_response_body import ImportCertificateByClientcsrResponseBody
 from cohesity_sdk.cluster.model.list_trusted_cas_result import ListTrustedCasResult
@@ -35,11 +35,11 @@ from cohesity_sdk.cluster.model.modify_ciphers_request_body import ModifyCiphers
 from cohesity_sdk.cluster.model.modify_object_store_ciphers_request_body import ModifyObjectStoreCiphersRequestBody
 from cohesity_sdk.cluster.model.object_store_ciphers_resp import ObjectStoreCiphersResp
 from cohesity_sdk.cluster.model.register_trusted_cas import RegisterTrustedCas
+from cohesity_sdk.cluster.model.security_config import SecurityConfig
 from cohesity_sdk.cluster.model.security_config_response import SecurityConfigResponse
 from cohesity_sdk.cluster.model.trusted_ca import TrustedCa
 from cohesity_sdk.cluster.model.update_certificate_by_csr_request import UpdateCertificateByCsrRequest
 from cohesity_sdk.cluster.model.update_certificate_by_csr_response_body import UpdateCertificateByCsrResponseBody
-from cohesity_sdk.cluster.model.update_security_config_request import UpdateSecurityConfigRequest
 
 
 class SecurityApi(object):
@@ -61,7 +61,7 @@ class SecurityApi(object):
         ):
             """Create Certificate Signing Requests on the cluster.  # noqa: E501
 
-            Create two Certificate Signing Request on the cluster with the given details one each for client and server. Each service can have at most one outstanding pair of CSR.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Create two Certificate Signing Request on the cluster with the given details one each for client and server. Each service can have at most one outstanding pair of CSR.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -69,7 +69,7 @@ class SecurityApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CreateCsrRequest): Specifies the parameters to create the Certificate Signing Requests.
+                body (CommonCsrRequestParams): Specifies the parameters to create the Certificate Signing Requests.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -126,7 +126,9 @@ class SecurityApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/client-csr',
                 'operation_id': 'create_clientcsr',
@@ -154,7 +156,7 @@ class SecurityApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CreateCsrRequest,),
+                        (CommonCsrRequestParams,),
                 },
                 'attribute_map': {
                 },
@@ -183,7 +185,7 @@ class SecurityApi(object):
         ):
             """Create a Certificate Signing Request on the cluster.  # noqa: E501
 
-            Create a Certificate Signing Request on the cluster with the given details. Each service has at most one outstanding CSR.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Create a Certificate Signing Request on the cluster with the given details. Each service has at most one outstanding CSR.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -191,7 +193,7 @@ class SecurityApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CreateCsrRequest): Specifies the parameters to create a Certificate Signing Request.
+                body (CommonCsrRequestParams): Specifies the parameters to create a Certificate Signing Request.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -215,7 +217,7 @@ class SecurityApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CreateCsrResponseBody
+                CommonCsrResponseParams
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -244,11 +246,13 @@ class SecurityApi(object):
 
         self.create_csr = _Endpoint(
             settings={
-                'response_type': (CreateCsrResponseBody,),
+                'response_type': (CommonCsrResponseParams,),
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/csr',
                 'operation_id': 'create_csr',
@@ -276,7 +280,7 @@ class SecurityApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CreateCsrRequest,),
+                        (CommonCsrRequestParams,),
                 },
                 'attribute_map': {
                 },
@@ -305,7 +309,7 @@ class SecurityApi(object):
         ):
             """Delete a Certificate Signing Request on the cluster.  # noqa: E501
 
-            Delete a Certificate Signing Request on the cluster.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete a Certificate Signing Request on the cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -370,7 +374,9 @@ class SecurityApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/csr/{id}',
                 'operation_id': 'delete_csr',
@@ -425,7 +431,7 @@ class SecurityApi(object):
         ):
             """Gets the list of ciphers enabled on the cluster.  # noqa: E501
 
-            Gets the list of ciphers enabled on the cluster.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Gets the list of ciphers enabled on the cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -486,7 +492,9 @@ class SecurityApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/security/ciphers',
                 'operation_id': 'get_ciphers',
@@ -535,7 +543,7 @@ class SecurityApi(object):
         ):
             """List the specified Certificate Signing Request.  # noqa: E501
 
-            List the specified Certificate Signing Request.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>List the specified Certificate Signing Request.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -600,7 +608,9 @@ class SecurityApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/csr/{id}',
                 'operation_id': 'get_csr_by_id',
@@ -655,7 +665,7 @@ class SecurityApi(object):
         ):
             """List Certificate Signing Requests on the cluster.  # noqa: E501
 
-            List Certificate Signing Requests on the cluster with service name filtering.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>List Certificate Signing Requests on the cluster with service name filtering.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -664,7 +674,7 @@ class SecurityApi(object):
 
 
             Keyword Args:
-                service_name (str): Specifies the Cohesity service name for which the CSR is generated. If this is not specified, all the csrs on the cluster will be returned.. [optional] if omitted the server will use the default value of "iris"
+                service_name (str): Specifies the Cohesity service name for which the CSR is generated. If this is not specified, all the csrs on the cluster will be returned.. [optional]
                 ids ([str]): Specifies the ids of the csrs. If this is not specified, all the csrs on the cluster will be returned.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -718,7 +728,9 @@ class SecurityApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/csr',
                 'operation_id': 'get_csr_list',
@@ -745,7 +757,8 @@ class SecurityApi(object):
                 'allowed_values': {
                     ('service_name',): {
 
-                        "IRIS": "iris"
+                        "IRIS": "iris",
+                        "HELIOS_UI_HELIOS_SELF_MANAGED": "helios_ui_helios_self_managed"
                     },
                 },
                 'openapi_types': {
@@ -782,7 +795,7 @@ class SecurityApi(object):
         ):
             """Gets the list of object store ciphers enabled on the cluster.  # noqa: E501
 
-            Gets the list of object store ciphers enabled on the cluster.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Gets the list of object store ciphers enabled on the cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -843,7 +856,9 @@ class SecurityApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/security/object-store-ciphers',
                 'operation_id': 'get_object_store_ciphers',
@@ -891,7 +906,7 @@ class SecurityApi(object):
         ):
             """Get cluster security settings.  # noqa: E501
 
-            Get cluster security settings.  # noqa: E501
+            **Privileges:** ```SECURITY_ADVISOR_VIEW, TENANT_VIEW``` <br><br>Get cluster security settings.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -952,7 +967,9 @@ class SecurityApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/security-config',
                 'operation_id': 'get_security_config',
@@ -994,6 +1011,129 @@ class SecurityApi(object):
             callable=__get_security_config
         )
 
+        def __get_ssl_certificates(
+            self,
+            **kwargs
+        ):
+            """Get list of SSL certificates.  # noqa: E501
+
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Get list of SSL certificates.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_ssl_certificates(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                service_name (str): Specifies the service name for which the certificate details needs to be returned. If this is not specified, all certificates are returned.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GetSslCertificatesResult
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_ssl_certificates = _Endpoint(
+            settings={
+                'response_type': (GetSslCertificatesResult,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/ssl-certificates',
+                'operation_id': 'get_ssl_certificates',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'service_name',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                    'service_name',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('service_name',): {
+
+                        "IRIS": "iris",
+                        "HELIOS_UI_HELIOS_SELF_MANAGED": "helios_ui_helios_self_managed"
+                    },
+                },
+                'openapi_types': {
+                    'service_name':
+                        (str,),
+                },
+                'attribute_map': {
+                    'service_name': 'serviceName',
+                },
+                'location_map': {
+                    'service_name': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_ssl_certificates
+        )
+
         def __import_certificate_by_clientcsr(
             self,
             body,
@@ -1001,7 +1141,7 @@ class SecurityApi(object):
         ):
             """Import the signed certificates on the cluster after the Certificate Signing Requests are created.  # noqa: E501
 
-            Import the signed certificates on the cluster after the Certificate Signing Requests are created.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Import the signed certificates on the cluster after the Certificate Signing Requests are created.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1066,7 +1206,9 @@ class SecurityApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/client-csr/certificate',
                 'operation_id': 'import_certificate_by_clientcsr',
@@ -1123,7 +1265,7 @@ class SecurityApi(object):
         ):
             """List the specified Certificate.  # noqa: E501
 
-            List the specified Certificate.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>List the specified Certificate.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1188,7 +1330,9 @@ class SecurityApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/trusted-cas/{id}',
                 'operation_id': 'list_trusted_ca_by_id',
@@ -1243,7 +1387,7 @@ class SecurityApi(object):
         ):
             """List all Certificates with cluster trust store.  # noqa: E501
 
-            List all trusted certificates in cluster trust store.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>List all trusted certificates in cluster trust store.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1306,7 +1450,9 @@ class SecurityApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/trusted-cas',
                 'operation_id': 'list_trusted_cas',
@@ -1367,7 +1513,7 @@ class SecurityApi(object):
         ):
             """Enable/Disable a list of ciphers on the cluster. Iris must be restarted for the change to take effect.  # noqa: E501
 
-            Enable/Disable a list of ciphers on the cluster.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Enable/Disable a list of ciphers on the cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1432,7 +1578,9 @@ class SecurityApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/security/ciphers',
                 'operation_id': 'modify_ciphers',
@@ -1489,7 +1637,7 @@ class SecurityApi(object):
         ):
             """Enable/Disable a list of object store ciphers on the cluster. Bridge must be restarted for the change to take effect.  # noqa: E501
 
-            Enable/Disable a list of object store ciphers on the cluster.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Enable/Disable a list of object store ciphers on the cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1554,7 +1702,9 @@ class SecurityApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/security/object-store-ciphers',
                 'operation_id': 'modify_object_store_ciphers',
@@ -1611,7 +1761,7 @@ class SecurityApi(object):
         ):
             """Register CA Certificate to the cluster trust store.  # noqa: E501
 
-            Register CA Certificate to the cluster trust store.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Register CA Certificate to the cluster trust store.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1676,7 +1826,9 @@ class SecurityApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/trusted-cas',
                 'operation_id': 'register_trusted_cas',
@@ -1733,7 +1885,7 @@ class SecurityApi(object):
         ):
             """Unregister CA Certificate from the cluster trust store.  # noqa: E501
 
-            Unregister CA Certificate from the cluster trust store.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Unregister CA Certificate from the cluster trust store.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1798,7 +1950,9 @@ class SecurityApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/trusted-cas/{id}',
                 'operation_id': 'unregister_trusted_ca',
@@ -1854,7 +2008,7 @@ class SecurityApi(object):
         ):
             """Update the signed certificate on the cluster after a Certificate Signing Request is created.  # noqa: E501
 
-            Update the signed certificate on the cluster after a Certificate Signing Request is created.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the signed certificate on the cluster after a Certificate Signing Request is created.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1919,7 +2073,9 @@ class SecurityApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/csr/certificate',
                 'operation_id': 'update_certificate_by_csr',
@@ -1976,7 +2132,7 @@ class SecurityApi(object):
         ):
             """Update cluster security settings.  # noqa: E501
 
-            Update cluster security settings.  # noqa: E501
+            **Privileges:** ```SECURITY_ADVISOR_MODIFY``` <br><br>Update cluster security settings.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1984,7 +2140,7 @@ class SecurityApi(object):
             >>> result = thread.get()
 
             Args:
-                body (UpdateSecurityConfigRequest): Specifies the parameters to update security config.
+                body (SecurityConfig): Specifies the parameters to update security config.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -2041,7 +2197,9 @@ class SecurityApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/security-config',
                 'operation_id': 'update_security_config',
@@ -2069,7 +2227,7 @@ class SecurityApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (UpdateSecurityConfigRequest,),
+                        (SecurityConfig,),
                 },
                 'attribute_map': {
                 },
@@ -2098,7 +2256,7 @@ class SecurityApi(object):
         ):
             """Validate CA Certificate.  # noqa: E501
 
-            Certificate will be checked for Expiration and Revocation.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Certificate will be checked for Expiration and Revocation.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2163,7 +2321,9 @@ class SecurityApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/trusted-cas/{id}/validate',
                 'operation_id': 'validate_trusted_ca_by_id',

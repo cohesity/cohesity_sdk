@@ -90,6 +90,7 @@ class RunCloudReplicationConfig(ModelNormal):
             'target_type': (str,),  # noqa: E501
             'aws_target': (AWSTargetConfig,),  # noqa: E501
             'azure_target': (AzureTargetConfig,),  # noqa: E501
+            'on_legal_hold': (bool, none_type,),  # noqa: E501
             'retention': (Retention,),  # noqa: E501
         }
 
@@ -103,6 +104,7 @@ class RunCloudReplicationConfig(ModelNormal):
         'target_type': 'targetType',  # noqa: E501
         'aws_target': 'awsTarget',  # noqa: E501
         'azure_target': 'azureTarget',  # noqa: E501
+        'on_legal_hold': 'onLegalHold',  # noqa: E501
         'retention': 'retention',  # noqa: E501
     }
 
@@ -158,6 +160,7 @@ class RunCloudReplicationConfig(ModelNormal):
 
             aws_target (AWSTargetConfig): [optional]  # noqa: E501
             azure_target (AzureTargetConfig): [optional]  # noqa: E501
+            on_legal_hold (bool, none_type): Specifies if the Run is on legal hold.. [optional]  # noqa: E501
             retention (Retention): [optional]  # noqa: E501
         """
 

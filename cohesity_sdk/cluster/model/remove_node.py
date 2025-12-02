@@ -79,6 +79,7 @@ class RemoveNode(ModelNormal):
         """
         lazy_import()
         return {
+            'cleared_pre_check_result': (bool, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'marked_for_removal': (bool, none_type,),  # noqa: E501
             'timestamp_secs': (int, none_type,),  # noqa: E501
@@ -92,6 +93,7 @@ class RemoveNode(ModelNormal):
 
 
     attribute_map = {
+        'cleared_pre_check_result': 'clearedPreCheckResult',  # noqa: E501
         'id': 'id',  # noqa: E501
         'marked_for_removal': 'markedForRemoval',  # noqa: E501
         'timestamp_secs': 'timestampSecs',  # noqa: E501
@@ -145,6 +147,7 @@ class RemoveNode(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            cleared_pre_check_result (bool, none_type): If true, pre check results have been cleared.. [optional] if omitted the server will use the default value of False  # noqa: E501
             id (int, none_type): Specifies id of the node.. [optional]  # noqa: E501
             marked_for_removal (bool, none_type): If true, Node is marked for removal.. [optional]  # noqa: E501
             timestamp_secs (int, none_type): Specifies the last run time of the pre-checks execution in Unix epoch timestamp (in seconds).. [optional]  # noqa: E501

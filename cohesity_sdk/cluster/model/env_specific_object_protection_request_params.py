@@ -32,36 +32,48 @@ def lazy_import():
     from cohesity_sdk.cluster.model.common_env_specific_object_protection_params import CommonEnvSpecificObjectProtectionParams
     from cohesity_sdk.cluster.model.elastifile_object_protection_request_params import ElastifileObjectProtectionRequestParams
     from cohesity_sdk.cluster.model.env_specific_object_protection_request_params_all_of import EnvSpecificObjectProtectionRequestParamsAllOf
+    from cohesity_sdk.cluster.model.experimental_adapter_object_protection_params import ExperimentalAdapterObjectProtectionParams
     from cohesity_sdk.cluster.model.flashblade_object_protection_request_params import FlashbladeObjectProtectionRequestParams
     from cohesity_sdk.cluster.model.generic_nas_object_protection_request_params import GenericNasObjectProtectionRequestParams
+    from cohesity_sdk.cluster.model.google_workspace_object_protection_params import GoogleWorkspaceObjectProtectionParams
     from cohesity_sdk.cluster.model.gpfs_object_protection_request_params import GpfsObjectProtectionRequestParams
     from cohesity_sdk.cluster.model.hyper_v_object_protection_request_params import HyperVObjectProtectionRequestParams
     from cohesity_sdk.cluster.model.isilon_object_protection_request_params import IsilonObjectProtectionRequestParams
-    from cohesity_sdk.cluster.model.mssql_object_protection_request_params import MssqlObjectProtectionRequestParams
+    from cohesity_sdk.cluster.model.kubernetes_object_protection_params import KubernetesObjectProtectionParams
+    from cohesity_sdk.cluster.model.mssql_object_protection_params import MssqlObjectProtectionParams
     from cohesity_sdk.cluster.model.netapp_object_protection_request_params import NetappObjectProtectionRequestParams
-    from cohesity_sdk.cluster.model.office365_object_protection_request_params import Office365ObjectProtectionRequestParams
-    from cohesity_sdk.cluster.model.oracle_object_protection_request_params import OracleObjectProtectionRequestParams
-    from cohesity_sdk.cluster.model.physical_object_protection_request_params import PhysicalObjectProtectionRequestParams
-    from cohesity_sdk.cluster.model.sfdc_object_protection_request_params import SfdcObjectProtectionRequestParams
-    from cohesity_sdk.cluster.model.uda_object_protection_request_params import UdaObjectProtectionRequestParams
+    from cohesity_sdk.cluster.model.nutanix_fs_object_protection_request_params import NutanixFSObjectProtectionRequestParams
+    from cohesity_sdk.cluster.model.office365_object_protection_params import Office365ObjectProtectionParams
+    from cohesity_sdk.cluster.model.oracle_object_based_protection_params import OracleObjectBasedProtectionParams
+    from cohesity_sdk.cluster.model.physical_object_protection_params import PhysicalObjectProtectionParams
+    from cohesity_sdk.cluster.model.sap_hana_object_protection_params import SapHanaObjectProtectionParams
+    from cohesity_sdk.cluster.model.service_now_object_protection_params import ServiceNowObjectProtectionParams
+    from cohesity_sdk.cluster.model.sfdc_object_protection_params import SfdcObjectProtectionParams
+    from cohesity_sdk.cluster.model.uda_object_protection_params import UdaObjectProtectionParams
     from cohesity_sdk.cluster.model.vmware_object_protection_request_params import VmwareObjectProtectionRequestParams
     globals()['AwsObjectProtectionRequestParams'] = AwsObjectProtectionRequestParams
     globals()['AzureObjectProtectionRequestParams'] = AzureObjectProtectionRequestParams
     globals()['CommonEnvSpecificObjectProtectionParams'] = CommonEnvSpecificObjectProtectionParams
     globals()['ElastifileObjectProtectionRequestParams'] = ElastifileObjectProtectionRequestParams
     globals()['EnvSpecificObjectProtectionRequestParamsAllOf'] = EnvSpecificObjectProtectionRequestParamsAllOf
+    globals()['ExperimentalAdapterObjectProtectionParams'] = ExperimentalAdapterObjectProtectionParams
     globals()['FlashbladeObjectProtectionRequestParams'] = FlashbladeObjectProtectionRequestParams
     globals()['GenericNasObjectProtectionRequestParams'] = GenericNasObjectProtectionRequestParams
+    globals()['GoogleWorkspaceObjectProtectionParams'] = GoogleWorkspaceObjectProtectionParams
     globals()['GpfsObjectProtectionRequestParams'] = GpfsObjectProtectionRequestParams
     globals()['HyperVObjectProtectionRequestParams'] = HyperVObjectProtectionRequestParams
     globals()['IsilonObjectProtectionRequestParams'] = IsilonObjectProtectionRequestParams
-    globals()['MssqlObjectProtectionRequestParams'] = MssqlObjectProtectionRequestParams
+    globals()['KubernetesObjectProtectionParams'] = KubernetesObjectProtectionParams
+    globals()['MssqlObjectProtectionParams'] = MssqlObjectProtectionParams
     globals()['NetappObjectProtectionRequestParams'] = NetappObjectProtectionRequestParams
-    globals()['Office365ObjectProtectionRequestParams'] = Office365ObjectProtectionRequestParams
-    globals()['OracleObjectProtectionRequestParams'] = OracleObjectProtectionRequestParams
-    globals()['PhysicalObjectProtectionRequestParams'] = PhysicalObjectProtectionRequestParams
-    globals()['SfdcObjectProtectionRequestParams'] = SfdcObjectProtectionRequestParams
-    globals()['UdaObjectProtectionRequestParams'] = UdaObjectProtectionRequestParams
+    globals()['NutanixFSObjectProtectionRequestParams'] = NutanixFSObjectProtectionRequestParams
+    globals()['Office365ObjectProtectionParams'] = Office365ObjectProtectionParams
+    globals()['OracleObjectBasedProtectionParams'] = OracleObjectBasedProtectionParams
+    globals()['PhysicalObjectProtectionParams'] = PhysicalObjectProtectionParams
+    globals()['SapHanaObjectProtectionParams'] = SapHanaObjectProtectionParams
+    globals()['ServiceNowObjectProtectionParams'] = ServiceNowObjectProtectionParams
+    globals()['SfdcObjectProtectionParams'] = SfdcObjectProtectionParams
+    globals()['UdaObjectProtectionParams'] = UdaObjectProtectionParams
     globals()['VmwareObjectProtectionRequestParams'] = VmwareObjectProtectionRequestParams
 
 
@@ -99,6 +111,13 @@ class EnvSpecificObjectProtectionRequestParams(ModelComposed):
             'KVCD': "kVCD",
             'KAZURE': "kAzure",
             'KGCP': "kGCP",
+            'KGCPBIGQUERY': "kGCPBigQuery",
+            'KGCPMYSQL': "kGCPMySQL",
+            'KGOOGLESPANNER': "kGoogleSpanner",
+            'KGCPPOSTGRESQL': "kGCPPostgreSQL",
+            'KGCPALLOYDBPOSTGRESQL': "kGCPAlloyDBPostgreSQL",
+            'KGCPSQLSERVER': "kGCPSQLServer",
+            'KGCPFIRESTORE': "kGCPFirestore",
             'KKVM': "kKVM",
             'KACROPOLIS': "kAcropolis",
             'KAWS': "kAWS",
@@ -106,16 +125,48 @@ class EnvSpecificObjectProtectionRequestParams(ModelComposed):
             'KAWSS3': "kAwsS3",
             'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KRDSPOSTGRESSNAPSHOTMANAGER': "kRDSPostgresSnapshotManager",
+            'KRDSMYSQLSNAPSHOTMANAGER': "kRDSMySQLSnapshotManager",
+            'KRDSMSSQLSNAPSHOTMANAGER': "kRDSMSSQLSnapshotManager",
+            'KRDSORACLESNAPSHOTMANAGER': "kRDSOracleSnapshotManager",
+            'KRDSMARIADBSNAPSHOTMANAGER': "kRDSMariaDBSnapshotManager",
+            'KRDSCUSTOMMSSQLSNAPSHOTMANAGER': "kRDSCustomMSSQLSnapshotManager",
+            'KRDSCUSTOMORACLESNAPSHOTMANAGER': "kRDSCustomOracleSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAURORAPOSTGRESSNAPSHOTMANAGER': "kAuroraPostgresSnapshotManager",
+            'KAURORAMYSQLSNAPSHOTMANAGER': "kAuroraMySQLSnapshotManager",
             'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAWSRDSPOSTGRES': "kAwsRDSPostgres",
+            'KAWSAURORAPOSTGRES': "kAwsAuroraPostgres",
+            'KAWSMYSQL': "kAWSMySQL",
+            'KAWSAURORAMYSQL': "kAWSAuroraMySQL",
+            'KAWSDYNAMODB': "kAwsDynamoDB",
+            'KAWSRDSORACLE': "kAWSRdsOracle",
+            'KAWSDOCUMENTDB': "kAWSDocumentDB",
+            'KAWSRDSPOSTGRESDB': "kAWSRDSPostgresDB",
+            'KAWSAURORAPOSTGRESDB': "kAWSAuroraPostgresDB",
+            'KAWSRDSMSSQL': "kAWSRDSMSSQL",
+            'KAWSREDSHIFT': "kAWSRedshift",
             'KAZURENATIVE': "kAzureNative",
             'KAZURESQL': "kAzureSQL",
+            'KAZUREENTRAID': "kAzureEntraID",
+            'KAZUREMYSQL': "kAzureMySQL",
+            'KAZURECOSMOSDBNOSQL': "kAzureCosmosDBNoSQL",
+            'KAZURECOSMOSDBMONGODB': "kAzureCosmosDBMongoDB",
+            'KAZURECOSMOSDBCASSANDRA': "kAzureCosmosDBCassandra",
+            'KAZUREPOSTGRESQLSERVER': "kAzurePostgreSQLServer",
+            'KAZURESQLDB': "kAzureSQLDB",
+            'KAZURESQLMI': "kAzureSQLMI",
+            'KAZURETABLESTORAGE': "kAzureTableStorage",
+            'KAZUREBLOBSTORAGE': "kAzureBlobStorage",
+            'KAZURETABLEAPI': "kAzureTableAPI",
             'KAZURESNAPSHOTMANAGER': "kAzureSnapshotManager",
             'KPHYSICAL': "kPhysical",
             'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
             'KNETAPP': "kNetapp",
+            'KNUTANIXFS': "kNutanixFS",
             'KGENERICNAS': "kGenericNas",
             'KISILON': "kIsilon",
             'KFLASHBLADE': "kFlashBlade",
@@ -141,11 +192,21 @@ class EnvSpecificObjectProtectionRequestParams(ModelComposed):
             'KHDFS': "kHdfs",
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
+            'KSAPHANA': "kSAPHANA",
             'KUDA': "kUDA",
+            'KS3COMPATIBLE': "kS3Compatible",
             'KSFDC': "kSfdc",
             'KO365EXCHANGECSM': "kO365ExchangeCSM",
             'KO365ONEDRIVECSM': "kO365OneDriveCSM",
-            'KO365SHAREPOINTCSM': "kO365SharePointCSM",
+            'KO365SHAREPOINTCSM': "kO365SharepointCSM",
+            'KEXPERIMENTALADAPTER': "kExperimentalAdapter",
+            'KMONGODBPHYSICAL': "kMongoDBPhysical",
+            'KGOOGLEWORKSPACE': "kGoogleWorkspace",
+            'KGMAIL': "kGmail",
+            'KGOOGLEDRIVE': "kGoogleDrive",
+            'KDB2': "kDB2",
+            'KSERVICENOW': "kServiceNow",
+            'KPOSTGRES': "kPostgres",
         },
     }
 
@@ -172,18 +233,24 @@ class EnvSpecificObjectProtectionRequestParams(ModelComposed):
             'aws_params': (AwsObjectProtectionRequestParams,),  # noqa: E501
             'azure_params': (AzureObjectProtectionRequestParams,),  # noqa: E501
             'elastifile_params': (ElastifileObjectProtectionRequestParams,),  # noqa: E501
+            'experimental_adapter_params': (ExperimentalAdapterObjectProtectionParams,),  # noqa: E501
             'flashblade_params': (FlashbladeObjectProtectionRequestParams,),  # noqa: E501
             'generic_nas_params': (GenericNasObjectProtectionRequestParams,),  # noqa: E501
+            'google_workspace_params': (GoogleWorkspaceObjectProtectionParams,),  # noqa: E501
             'gpfs_params': (GpfsObjectProtectionRequestParams,),  # noqa: E501
             'hyperv_params': (HyperVObjectProtectionRequestParams,),  # noqa: E501
             'isilon_params': (IsilonObjectProtectionRequestParams,),  # noqa: E501
-            'mssql_params': (MssqlObjectProtectionRequestParams,),  # noqa: E501
+            'kubernetes_params': (KubernetesObjectProtectionParams,),  # noqa: E501
+            'mssql_params': (MssqlObjectProtectionParams,),  # noqa: E501
             'netapp_params': (NetappObjectProtectionRequestParams,),  # noqa: E501
-            'office365_params': (Office365ObjectProtectionRequestParams,),  # noqa: E501
-            'oracle_params': (OracleObjectProtectionRequestParams,),  # noqa: E501
-            'physical_params': (PhysicalObjectProtectionRequestParams,),  # noqa: E501
-            'sfdc_params': (SfdcObjectProtectionRequestParams,),  # noqa: E501
-            'uda_params': (UdaObjectProtectionRequestParams,),  # noqa: E501
+            'nutanix_fs_params': (NutanixFSObjectProtectionRequestParams,),  # noqa: E501
+            'office365_params': (Office365ObjectProtectionParams,),  # noqa: E501
+            'oracle_params': (OracleObjectBasedProtectionParams,),  # noqa: E501
+            'physical_params': (PhysicalObjectProtectionParams,),  # noqa: E501
+            'sap_hana_params': (SapHanaObjectProtectionParams,),  # noqa: E501
+            'service_now_params': (ServiceNowObjectProtectionParams,),  # noqa: E501
+            'sfdc_params': (SfdcObjectProtectionParams,),  # noqa: E501
+            'uda_params': (UdaObjectProtectionParams,),  # noqa: E501
             'vmware_params': (VmwareObjectProtectionRequestParams,),  # noqa: E501
         }
 
@@ -198,16 +265,22 @@ class EnvSpecificObjectProtectionRequestParams(ModelComposed):
         'aws_params': 'awsParams',  # noqa: E501
         'azure_params': 'azureParams',  # noqa: E501
         'elastifile_params': 'elastifileParams',  # noqa: E501
+        'experimental_adapter_params': 'experimentalAdapterParams',  # noqa: E501
         'flashblade_params': 'flashbladeParams',  # noqa: E501
         'generic_nas_params': 'genericNasParams',  # noqa: E501
+        'google_workspace_params': 'googleWorkspaceParams',  # noqa: E501
         'gpfs_params': 'gpfsParams',  # noqa: E501
         'hyperv_params': 'hypervParams',  # noqa: E501
         'isilon_params': 'isilonParams',  # noqa: E501
+        'kubernetes_params': 'kubernetesParams',  # noqa: E501
         'mssql_params': 'mssqlParams',  # noqa: E501
         'netapp_params': 'netappParams',  # noqa: E501
+        'nutanix_fs_params': 'nutanixFSParams',  # noqa: E501
         'office365_params': 'office365Params',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
+        'sap_hana_params': 'sapHanaParams',  # noqa: E501
+        'service_now_params': 'serviceNowParams',  # noqa: E501
         'sfdc_params': 'sfdcParams',  # noqa: E501
         'uda_params': 'udaParams',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
@@ -265,18 +338,24 @@ class EnvSpecificObjectProtectionRequestParams(ModelComposed):
             aws_params (AwsObjectProtectionRequestParams): [optional]  # noqa: E501
             azure_params (AzureObjectProtectionRequestParams): [optional]  # noqa: E501
             elastifile_params (ElastifileObjectProtectionRequestParams): [optional]  # noqa: E501
+            experimental_adapter_params (ExperimentalAdapterObjectProtectionParams): [optional]  # noqa: E501
             flashblade_params (FlashbladeObjectProtectionRequestParams): [optional]  # noqa: E501
             generic_nas_params (GenericNasObjectProtectionRequestParams): [optional]  # noqa: E501
+            google_workspace_params (GoogleWorkspaceObjectProtectionParams): [optional]  # noqa: E501
             gpfs_params (GpfsObjectProtectionRequestParams): [optional]  # noqa: E501
             hyperv_params (HyperVObjectProtectionRequestParams): [optional]  # noqa: E501
             isilon_params (IsilonObjectProtectionRequestParams): [optional]  # noqa: E501
-            mssql_params (MssqlObjectProtectionRequestParams): [optional]  # noqa: E501
+            kubernetes_params (KubernetesObjectProtectionParams): [optional]  # noqa: E501
+            mssql_params (MssqlObjectProtectionParams): [optional]  # noqa: E501
             netapp_params (NetappObjectProtectionRequestParams): [optional]  # noqa: E501
-            office365_params (Office365ObjectProtectionRequestParams): [optional]  # noqa: E501
-            oracle_params (OracleObjectProtectionRequestParams): [optional]  # noqa: E501
-            physical_params (PhysicalObjectProtectionRequestParams): [optional]  # noqa: E501
-            sfdc_params (SfdcObjectProtectionRequestParams): [optional]  # noqa: E501
-            uda_params (UdaObjectProtectionRequestParams): [optional]  # noqa: E501
+            nutanix_fs_params (NutanixFSObjectProtectionRequestParams): [optional]  # noqa: E501
+            office365_params (Office365ObjectProtectionParams): [optional]  # noqa: E501
+            oracle_params (OracleObjectBasedProtectionParams): [optional]  # noqa: E501
+            physical_params (PhysicalObjectProtectionParams): [optional]  # noqa: E501
+            sap_hana_params (SapHanaObjectProtectionParams): [optional]  # noqa: E501
+            service_now_params (ServiceNowObjectProtectionParams): [optional]  # noqa: E501
+            sfdc_params (SfdcObjectProtectionParams): [optional]  # noqa: E501
+            uda_params (UdaObjectProtectionParams): [optional]  # noqa: E501
             vmware_params (VmwareObjectProtectionRequestParams): [optional]  # noqa: E501
         """
 

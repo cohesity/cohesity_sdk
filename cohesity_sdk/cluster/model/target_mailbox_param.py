@@ -74,11 +74,11 @@ class TargetMailboxParam(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'target_folder_path': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'parent_source_id': (int, none_type,),  # noqa: E501
             'primary_smtp_address': (str, none_type,),  # noqa: E501
+            'target_folder_path': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -88,11 +88,11 @@ class TargetMailboxParam(ModelNormal):
 
 
     attribute_map = {
-        'target_folder_path': 'targetFolderPath',  # noqa: E501
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
         'parent_source_id': 'parentSourceId',  # noqa: E501
         'primary_smtp_address': 'primarySmtpAddress',  # noqa: E501
+        'target_folder_path': 'targetFolderPath',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -107,11 +107,8 @@ class TargetMailboxParam(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, target_folder_path, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """TargetMailboxParam - a model defined in OpenAPI
-
-        Args:
-            target_folder_path (str, none_type): Specifies the path to the target folder.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -149,6 +146,7 @@ class TargetMailboxParam(ModelNormal):
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
             parent_source_id (int, none_type): Specifies the id of the domain for alternate domain recovery.. [optional]  # noqa: E501
             primary_smtp_address (str, none_type): Specifies the primary SMTP address of the target mailbox. Atleast one of id or primarySMTPAddress needs to be defined. In case both id and primarySMTPAddress are defined then id takes precedence.. [optional]  # noqa: E501
+            target_folder_path (str, none_type): Specifies the path to the target folder.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -175,7 +173,6 @@ class TargetMailboxParam(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.target_folder_path = target_folder_path
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

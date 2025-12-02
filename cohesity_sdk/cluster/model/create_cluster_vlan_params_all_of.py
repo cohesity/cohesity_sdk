@@ -74,7 +74,7 @@ class CreateClusterVlanParamsAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'interface_name': (str,),  # noqa: E501
+            'vlan_interface_group_name': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -84,7 +84,7 @@ class CreateClusterVlanParamsAllOf(ModelNormal):
 
 
     attribute_map = {
-        'interface_name': 'interfaceName',  # noqa: E501
+        'vlan_interface_group_name': 'vlanInterfaceGroupName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -99,11 +99,11 @@ class CreateClusterVlanParamsAllOf(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, interface_name, *args, **kwargs):  # noqa: E501
+    def __init__(self, vlan_interface_group_name, *args, **kwargs):  # noqa: E501
         """CreateClusterVlanParamsAllOf - a model defined in OpenAPI
 
         Args:
-            interface_name (str): Vlan interface name, it should be in interface_group_name.vlan_id format.
+            vlan_interface_group_name (str): Vlan interface group name, it should be in interface_group_name.vlan_id format.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -163,7 +163,7 @@ class CreateClusterVlanParamsAllOf(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.interface_name = interface_name
+        self.vlan_interface_group_name = vlan_interface_group_name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

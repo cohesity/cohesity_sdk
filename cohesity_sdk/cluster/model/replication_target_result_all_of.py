@@ -107,6 +107,7 @@ class ReplicationTargetResultAllOf(ModelNormal):
             'multi_object_replication': (bool, none_type,),  # noqa: E501
             'on_legal_hold': (bool, none_type,),  # noqa: E501
             'percentage_completed': (int, none_type,),  # noqa: E501
+            'progress_task_id': (str, none_type,),  # noqa: E501
             'queued_time_usecs': (int, none_type,),  # noqa: E501
             'replication_task_id': (str, none_type,),  # noqa: E501
             'start_time_usecs': (int, none_type,),  # noqa: E501
@@ -131,6 +132,7 @@ class ReplicationTargetResultAllOf(ModelNormal):
         'multi_object_replication': 'multiObjectReplication',  # noqa: E501
         'on_legal_hold': 'onLegalHold',  # noqa: E501
         'percentage_completed': 'percentageCompleted',  # noqa: E501
+        'progress_task_id': 'progressTaskId',  # noqa: E501
         'queued_time_usecs': 'queuedTimeUsecs',  # noqa: E501
         'replication_task_id': 'replicationTaskId',  # noqa: E501
         'start_time_usecs': 'startTimeUsecs',  # noqa: E501
@@ -195,6 +197,7 @@ class ReplicationTargetResultAllOf(ModelNormal):
             multi_object_replication (bool, none_type): Specifies whether view based replication was used. In this case, the view containing all objects is replicated as a whole instead of replicating on a per object basis.. [optional]  # noqa: E501
             on_legal_hold (bool, none_type): Specifies the legal hold status for a replication target.. [optional]  # noqa: E501
             percentage_completed (int, none_type): Specifies the progress in percentage.. [optional]  # noqa: E501
+            progress_task_id (str, none_type): Progress monitor task id.. [optional]  # noqa: E501
             queued_time_usecs (int, none_type): Specifies the time when the replication is queued for schedule in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
             replication_task_id (str, none_type): Task UID for a replication protection run. This is for tasks that are replicated from another cluster.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of replication in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501

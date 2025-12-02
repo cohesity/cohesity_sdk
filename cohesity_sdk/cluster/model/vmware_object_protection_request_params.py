@@ -91,6 +91,7 @@ class VmwareObjectProtectionRequestParams(ModelComposed):
         return {
             'objects': ([VmwareObjectProtectionRequest],),  # noqa: E501
             'global_exclude_disks': ([DiskInfo], none_type,),  # noqa: E501
+            'global_include_disks': ([DiskInfo], none_type,),  # noqa: E501
             'app_consistent_snapshot': (bool, none_type,),  # noqa: E501
             'enable_nbdssl_fallback': (bool, none_type,),  # noqa: E501
             'fallback_to_crash_consistent_snapshot': (bool, none_type,),  # noqa: E501
@@ -109,6 +110,7 @@ class VmwareObjectProtectionRequestParams(ModelComposed):
     attribute_map = {
         'objects': 'objects',  # noqa: E501
         'global_exclude_disks': 'globalExcludeDisks',  # noqa: E501
+        'global_include_disks': 'globalIncludeDisks',  # noqa: E501
         'app_consistent_snapshot': 'appConsistentSnapshot',  # noqa: E501
         'enable_nbdssl_fallback': 'enableNBDSSLFallback',  # noqa: E501
         'fallback_to_crash_consistent_snapshot': 'fallbackToCrashConsistentSnapshot',  # noqa: E501
@@ -170,6 +172,7 @@ class VmwareObjectProtectionRequestParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             global_exclude_disks ([DiskInfo], none_type): Specifies a list of disks to exclude from the backup.. [optional]  # noqa: E501
+            global_include_disks ([DiskInfo], none_type): Specifies a list of disks to include in the backup.. [optional]  # noqa: E501
             app_consistent_snapshot (bool, none_type): Specifies whether or not to quiesce apps and the file system in order to take app consistent snapshots.. [optional]  # noqa: E501
             enable_nbdssl_fallback (bool, none_type): If this field is set to true and SAN transport backup fails, then backup will fallback to use NBDSSL transport. This field only applies if 'leverageSanTransport' is set to true.. [optional]  # noqa: E501
             fallback_to_crash_consistent_snapshot (bool, none_type): Specifies whether or not to fallback to a crash consistent snapshot in the event that an app consistent snapshot fails. This parameter defaults to true and only changes the behavior of the operation if 'appConsistentSnapshot' is set to 'true'.. [optional]  # noqa: E501

@@ -86,6 +86,8 @@ class Attachment(ModelNormal):
             'interfaces': ([str],),  # noqa: E501
             'ipset_names': ([str],),  # noqa: E501
             'is_implicit': (bool, none_type,),  # noqa: E501
+            'profile': (str, none_type,),  # noqa: E501
+            'subnets': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -101,6 +103,8 @@ class Attachment(ModelNormal):
         'interfaces': 'interfaces',  # noqa: E501
         'ipset_names': 'ipsetNames',  # noqa: E501
         'is_implicit': 'isImplicit',  # noqa: E501
+        'profile': 'profile',  # noqa: E501
+        'subnets': 'subnets',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -156,6 +160,8 @@ class Attachment(ModelNormal):
             interfaces ([str]): Specifies the network interfaces. [optional]  # noqa: E501
             ipset_names ([str]): Specifies the ip sets.. [optional]  # noqa: E501
             is_implicit (bool, none_type): [optional]  # noqa: E501
+            profile (str, none_type): Specifies the firewall profile.. [optional]  # noqa: E501
+            subnets ([str]): Specifies the subnets.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

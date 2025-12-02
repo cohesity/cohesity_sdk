@@ -28,10 +28,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.file_all_of import FileAllOf
+    from cohesity_sdk.cluster.model.object import Object
     from cohesity_sdk.cluster.model.snapshot_tag_info import SnapshotTagInfo
     from cohesity_sdk.cluster.model.tag_info import TagInfo
     from cohesity_sdk.cluster.model.tag_object import TagObject
     globals()['FileAllOf'] = FileAllOf
+    globals()['Object'] = Object
     globals()['SnapshotTagInfo'] = SnapshotTagInfo
     globals()['TagInfo'] = TagInfo
     globals()['TagObject'] = TagObject
@@ -69,6 +71,7 @@ class File(ModelComposed):
             'FILE': "File",
             'DIRECTORY': "Directory",
             'SYMLINK': "Symlink",
+            'ONENOTENOTEBOOK': "OneNoteNotebook",
         },
     }
 
@@ -91,13 +94,15 @@ class File(ModelComposed):
         """
         lazy_import()
         return {
+            'hash': (str, none_type,),  # noqa: E501
+            'modified_time_usecs': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'path': (str, none_type,),  # noqa: E501
             'policy_id': (str, none_type,),  # noqa: E501
             'policy_name': (str, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'protection_group_name': (str, none_type,),  # noqa: E501
-            'source_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'source_info': (Object,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
             'snapshot_tags': ([SnapshotTagInfo], none_type,),  # noqa: E501
@@ -111,6 +116,8 @@ class File(ModelComposed):
 
 
     attribute_map = {
+        'hash': 'hash',  # noqa: E501
+        'modified_time_usecs': 'modifiedTimeUsecs',  # noqa: E501
         'name': 'name',  # noqa: E501
         'path': 'path',  # noqa: E501
         'policy_id': 'policyId',  # noqa: E501
@@ -172,13 +179,15 @@ class File(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            hash (str, none_type): Specifies hash value for this file.. [optional]  # noqa: E501
+            modified_time_usecs (int, none_type): Specifies modification time for this file in usecs.. [optional]  # noqa: E501
             name (str, none_type): Specifies the file name.. [optional]  # noqa: E501
             path (str, none_type): Specifies the path to this file.. [optional]  # noqa: E501
             policy_id (str, none_type): Specifies the protection policy id for this file.. [optional]  # noqa: E501
             policy_name (str, none_type): Specifies the protection policy name for this file.. [optional]  # noqa: E501
             protection_group_id (str, none_type): \"Specifies the protection group id which contains this file.\". [optional]  # noqa: E501
             protection_group_name (str, none_type): \"Specifies the protection group name which contains this file.\". [optional]  # noqa: E501
-            source_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Source Object information.. [optional]  # noqa: E501
+            source_info (Object): [optional]  # noqa: E501
             storage_domain_id (int, none_type): \"Specifies the Storage Domain id where the backup data of Object is present.\". [optional]  # noqa: E501
             type (str, none_type): Specifies the file type.. [optional]  # noqa: E501
             snapshot_tags ([SnapshotTagInfo], none_type): Specifies snapshot tags applied to the object.. [optional]  # noqa: E501

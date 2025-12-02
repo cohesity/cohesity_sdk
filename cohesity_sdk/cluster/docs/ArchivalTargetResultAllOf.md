@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **progress_task_id** | **str, none_type** | Progress monitor task id for archival. | [optional] 
 **queued_time_usecs** | **int, none_type** | Specifies the time when the archival is queued for schedule in Unix epoch Timestamp(in microseconds) for a target. | [optional] 
 **run_type** | **str, none_type** | Type of Protection Group run. &#39;kRegular&#39; indicates an incremental (CBT) backup. Incremental backups utilizing CBT (if supported) are captured of the target protection objects. The first run of a kRegular schedule captures all the blocks. &#39;kFull&#39; indicates a full (no CBT) backup. A complete backup (all blocks) of the target protection objects are always captured and Change Block Tracking (CBT) is not utilized. &#39;kLog&#39; indicates a Database Log backup. Capture the database transaction logs to allow rolling back to a specific point in time. &#39;kSystem&#39; indicates system volume backup. It produces an image for bare metal recovery. | [optional] 
+**skipped_app_objects_count** | **int, none_type** | Specifies the count of app objects for which backup was skipped. | [optional] 
 **snapshot_id** | **str, none_type** | Snapshot id for a successful snapshot. This field will not be set if the archival Run fails to take the snapshot. | [optional] 
 **start_time_usecs** | **int, none_type** | Specifies the start time of replication run in Unix epoch Timestamp(in microseconds) for an archival target. | [optional] 
 **stats** | [**ArchivalDataStats**](ArchivalDataStats.md) |  | [optional] 

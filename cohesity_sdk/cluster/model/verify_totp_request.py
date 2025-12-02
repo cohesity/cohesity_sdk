@@ -54,9 +54,18 @@ class VerifyTotpRequest(ModelNormal):
     """
 
     allowed_values = {
+        ('purpose',): {
+            'None': None,
+            'DISABLEMFA': "DisableMfa",
+            'VERIFYOTP': "VerifyOtp",
+        },
     }
 
     validations = {
+        ('support_user_password',): {
+            'min_length': 1,
+        },
+
     }
 
     additional_properties_type = None
@@ -74,6 +83,8 @@ class VerifyTotpRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'purpose': (str, none_type,),  # noqa: E501
+            'support_user_password': (str, none_type,),  # noqa: E501
             'totp_code': (str, none_type,),  # noqa: E501
         }
 
@@ -84,6 +95,8 @@ class VerifyTotpRequest(ModelNormal):
 
 
     attribute_map = {
+        'purpose': 'purpose',  # noqa: E501
+        'support_user_password': 'supportUserPassword',  # noqa: E501
         'totp_code': 'totpCode',  # noqa: E501
     }
 
@@ -134,6 +147,8 @@ class VerifyTotpRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            purpose (str, none_type): Specifies the purpose of the totp code verification. * `DisableMfa` - To be used when disabling the MFA. * `VerifyOtp` (Default) - To be used when verifying OTP.. [optional]  # noqa: E501
+            support_user_password (str, none_type): Specifies the support user password, required for totp verification while disabling MFA.. [optional]  # noqa: E501
             totp_code (str, none_type): Specifies the Totp code.. [optional]  # noqa: E501
         """
 

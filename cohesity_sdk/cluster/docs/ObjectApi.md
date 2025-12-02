@@ -7,11 +7,14 @@ Method | HTTP request | Description
 [**browse_object_contents**](ObjectApi.md#browse_object_contents) | **POST** /data-protect/objects/{id}/browse | Fetch the contents (files &amp; folders) for the specified object.
 [**cancel_object_runs**](ObjectApi.md#cancel_object_runs) | **POST** /data-protect/objects/runs/cancel | Cancel object runs.
 [**construct_meta_info**](ObjectApi.md#construct_meta_info) | **POST** /data-protect/snapshots/{snapshotId}/meta-info | Construct meta info for any workflow from object snapshot and some other information.
+[**delete_entity_metadata**](ObjectApi.md#delete_entity_metadata) | **DELETE** /data-protect/objects/metadata/{id} | Delete Metadata with Entity
 [**filter_objects**](ObjectApi.md#filter_objects) | **POST** /data-protect/filter/objects | List all the filtered objects.
 [**get_all_indexed_object_snapshots**](ObjectApi.md#get_all_indexed_object_snapshots) | **GET** /data-protect/objects/{objectId}/indexed-objects/snapshots | Get snapshots of indexed object.
 [**get_entity_metadata**](ObjectApi.md#get_entity_metadata) | **GET** /data-protect/objects/{sourceId}/metadata | Get Metadata of Entities
 [**get_indexed_object_snapshots**](ObjectApi.md#get_indexed_object_snapshots) | **GET** /data-protect/objects/{objectId}/protection-groups/{protectionGroupId}/indexed-objects/snapshots | Get snapshots of indexed object.
 [**get_object_run_by_run_id**](ObjectApi.md#get_object_run_by_run_id) | **GET** /data-protect/objects/{id}/runs/{runId} | Get a run for an object.
+[**get_object_run_messages_report**](ObjectApi.md#get_object_run_messages_report) | **GET** /data-protect/objects/{id}/runs/{runId}/messages | Get the CSV of various Messages for a given run.
+[**get_object_run_success_files**](ObjectApi.md#get_object_run_success_files) | **GET** /data-protect/objects/{id}/runs/{runId}/downloadFiles | Get the CSV of errors/warnings for a given run and an object.
 [**get_object_runs**](ObjectApi.md#get_object_runs) | **GET** /data-protect/objects/{id}/runs | Get the list of runs for an object.
 [**get_object_snapshot_info**](ObjectApi.md#get_object_snapshot_info) | **GET** /data-protect/snapshots/{snapshotId} | Get details of object snapshot.
 [**get_object_snapshot_volume_info**](ObjectApi.md#get_object_snapshot_volume_info) | **GET** /data-protect/snapshots/{snapshotId}/volume | Get volume info of object snapshot.
@@ -24,6 +27,7 @@ Method | HTTP request | Description
 [**get_protected_objects_of_any_type**](ObjectApi.md#get_protected_objects_of_any_type) | **GET** /data-protect/objects | Get Objects.
 [**get_snapshot_diff**](ObjectApi.md#get_snapshot_diff) | **POST** /data-protect/objects/{id}/snapshot-diff | Get diff between two snapshots of a given object.
 [**get_source_hierarchy_objects**](ObjectApi.md#get_source_hierarchy_objects) | **GET** /data-protect/sources/{sourceId}/objects | List objects on a source which can be used for data protection.
+[**modify_source_hierarchy_objects**](ObjectApi.md#modify_source_hierarchy_objects) | **PUT** /data-protect/sources/{sourceId}/objects | Modify objects in source hierarchy.
 [**objects_actions**](ObjectApi.md#objects_actions) | **POST** /data-protect/objects/actions | Actions on Objects
 [**perform_action_on_object**](ObjectApi.md#perform_action_on_object) | **POST** /data-protect/objects/{id}/actions | Perform an action on an object.
 [**update_object_snapshot**](ObjectApi.md#update_object_snapshot) | **PUT** /data-protect/objects/{id}/snapshots/{snapshotId} | Update an object snapshot.
@@ -34,11 +38,13 @@ Method | HTTP request | Description
 
 Associate Metadata with Entity
 
-Associates metadata with entities in the entity hierarchy. This metadata can be of various types (eg. Credentials). Returns a list of entity id and corresponding errors encountered (if any) while associating metadata with that entity. Note that a partial success response is possible where we succeed in associating metadata with some of the entities but fail for others. The API also expects the entities being updated belong to same source.
+**Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Associates metadata with entities in the entity hierarchy. This metadata can be of various types (eg. Credentials). Returns a list of entity id and corresponding errors encountered (if any) while associating metadata with that entity. Note that a partial success response is possible where we succeed in associating metadata with some of the entities but fail for others. The API also expects the entities being updated belong to same source.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.associate_entity_metadata_result import AssociateEntityMetadataResult
@@ -60,13 +66,108 @@ body = AssociateEntityMetadataRequest(
         entity_list=[
             EntityMetadataParams(
                 aws_params=AwsEntityMetadata(
+                    aurora_params=AwsAuroraEntityMetadata(
+                        db_engine_id="db_engine_id_example",
+                        metadata_list=[
+                            AwsPostgresMetadata(
+                                metadata_type="Credentials",
+                                standard_credentials=AwsCredentials(
+                                    auth_type="kUseIAMUser",
+                                    directory_dns_address="directory_dns_address_example",
+                                    password="password_example",
+                                    realm_name="realm_name_example",
+                                    username="username_example",
+                                ),
+                            ),
+                        ],
+                    ),
+                    child_metadata=AwsEntityChildMetadata(
+                        aurora_metadata=AwsAuroraEntityMetadata(
+                            db_engine_id="db_engine_id_example",
+                            metadata_list=[
+                                AwsPostgresMetadata(
+                                    metadata_type="Credentials",
+                                    standard_credentials=AwsCredentials(
+                                        auth_type="kUseIAMUser",
+                                        directory_dns_address="directory_dns_address_example",
+                                        password="password_example",
+                                        realm_name="realm_name_example",
+                                        username="username_example",
+                                    ),
+                                ),
+                            ],
+                        ),
+                        document_db_metadata=AwsDocumentDBEntityMetadata(
+                            db_engine_id="db_engine_id_example",
+                            metadata_list=[
+                                AwsDocumentDBMetadata(
+                                    metadata_type="Credentials",
+                                    standard_credentials=AwsCredentials(
+                                        auth_type="kUseIAMUser",
+                                        directory_dns_address="directory_dns_address_example",
+                                        password="password_example",
+                                        realm_name="realm_name_example",
+                                        username="username_example",
+                                    ),
+                                ),
+                            ],
+                        ),
+                        rds_metadata=AwsRdsEntityMetadata(
+                            db_engine_id="db_engine_id_example",
+                            metadata_list=[
+                                AwsPostgresMetadata(
+                                    metadata_type="Credentials",
+                                    standard_credentials=AwsCredentials(
+                                        auth_type="kUseIAMUser",
+                                        directory_dns_address="directory_dns_address_example",
+                                        password="password_example",
+                                        realm_name="realm_name_example",
+                                        username="username_example",
+                                    ),
+                                ),
+                            ],
+                        ),
+                    ),
+                    document_db_params=AwsDocumentDBEntityMetadata(
+                        db_engine_id="db_engine_id_example",
+                        metadata_list=[
+                            AwsDocumentDBMetadata(
+                                metadata_type="Credentials",
+                                standard_credentials=AwsCredentials(
+                                    auth_type="kUseIAMUser",
+                                    directory_dns_address="directory_dns_address_example",
+                                    password="password_example",
+                                    realm_name="realm_name_example",
+                                    username="username_example",
+                                ),
+                            ),
+                        ],
+                    ),
                     postgres_params=AwsPostgresEntityMetadata(
                         db_engine_id="db_engine_id_example",
                         metadata_list=[
                             AwsPostgresMetadata(
                                 metadata_type="Credentials",
-                                standard_credentials=Credentials(
+                                standard_credentials=AwsCredentials(
+                                    auth_type="kUseIAMUser",
+                                    directory_dns_address="directory_dns_address_example",
                                     password="password_example",
+                                    realm_name="realm_name_example",
+                                    username="username_example",
+                                ),
+                            ),
+                        ],
+                    ),
+                    rds_params=AwsRdsEntityMetadata(
+                        db_engine_id="db_engine_id_example",
+                        metadata_list=[
+                            AwsPostgresMetadata(
+                                metadata_type="Credentials",
+                                standard_credentials=AwsCredentials(
+                                    auth_type="kUseIAMUser",
+                                    directory_dns_address="directory_dns_address_example",
+                                    password="password_example",
+                                    realm_name="realm_name_example",
                                     username="username_example",
                                 ),
                             ),
@@ -74,6 +175,108 @@ body = AssociateEntityMetadataRequest(
                     ),
                 ),
                 azure_params=AzureEntityMetadata(
+                    azure_cosmos_db_cassandra_params=AzureCosmosDBCassandraEntityMetadata(
+                        metadata_list=[
+                            AzureCosmosDBCassandraMetadata(
+                                credentials=AzureCredentials(
+                                    auth_type="UserPassword",
+                                    managed_identity_client_id="managed_identity_client_id_example",
+                                    password="password_example",
+                                    username="username_example",
+                                ),
+                            ),
+                        ],
+                    ),
+                    azure_cosmos_db_mongo_db_params=AzureCosmosDBMongoDBEntityMetadata(
+                        metadata_list=[
+                            AzureCosmosDBMongoDBMetadata(
+                                credentials=AzureCredentials(
+                                    auth_type="UserPassword",
+                                    managed_identity_client_id="managed_identity_client_id_example",
+                                    password="password_example",
+                                    username="username_example",
+                                ),
+                            ),
+                        ],
+                    ),
+                    azure_cosmos_dbno_sql_params=AzureCosmosDBNoSQLEntityMetadata(
+                        metadata_list=[
+                            AzureCosmosDBNoSQLMetadata(
+                                credentials=AzureCredentials(
+                                    auth_type="UserPassword",
+                                    managed_identity_client_id="managed_identity_client_id_example",
+                                    password="password_example",
+                                    username="username_example",
+                                ),
+                            ),
+                        ],
+                    ),
+                    azure_kubernetes_params=AzureKubernetesEntityMetadata(
+                        client_private_key="client_private_key_example",
+                        data_mover_image_location="data_mover_image_location_example",
+                        datamover_service_type="kNodePort",
+                        init_container_image_location="init_container_image_location_example",
+                        san_fields=[
+                            "san_fields_example",
+                        ],
+                        service_annotations=[
+                            KubernetesServiceAnnotationObject(
+                                key="key_example",
+                                value="value_example",
+                            ),
+                        ],
+                        velero_aws_plugin_image_location="velero_aws_plugin_image_location_example",
+                        velero_image_location="velero_image_location_example",
+                        velero_kubevirt_plugin_image_location="velero_kubevirt_plugin_image_location_example",
+                    ),
+                    azure_my_sql_params=AzureMySqlEntityMetadata(
+                        metadata_list=[
+                            AzureMySqlMetadata(
+                                credentials=AzureCredentials(
+                                    auth_type="UserPassword",
+                                    managed_identity_client_id="managed_identity_client_id_example",
+                                    password="password_example",
+                                    username="username_example",
+                                ),
+                            ),
+                        ],
+                    ),
+                    azure_postgre_sql_params=AzurePostgreSQLEntityMetadata(
+                        metadata_list=[
+                            AzurePostgreSQLMetadata(
+                                credentials=AzureCredentials(
+                                    auth_type="UserPassword",
+                                    managed_identity_client_id="managed_identity_client_id_example",
+                                    password="password_example",
+                                    username="username_example",
+                                ),
+                            ),
+                        ],
+                    ),
+                    azure_sql_db_params=AzureSqlDBEntityMetadata(
+                        metadata_list=[
+                            AzureSqlDBMetadata(
+                                credentials=AzureCredentials(
+                                    auth_type="UserPassword",
+                                    managed_identity_client_id="managed_identity_client_id_example",
+                                    password="password_example",
+                                    username="username_example",
+                                ),
+                            ),
+                        ],
+                    ),
+                    azure_sql_mi_params=AzureSqlMIEntityMetadata(
+                        metadata_list=[
+                            AzureSqlMIMetadata(
+                                credentials=AzureCredentials(
+                                    auth_type="UserPassword",
+                                    managed_identity_client_id="managed_identity_client_id_example",
+                                    password="password_example",
+                                    username="username_example",
+                                ),
+                            ),
+                        ],
+                    ),
                     azure_sql_params=AzureSqlEntityMetadata(
                         metadata_list=[
                             AzureSqlMetadata(
@@ -87,6 +290,50 @@ body = AssociateEntityMetadataRequest(
                     ),
                 ),
                 entity_id=1,
+                experimental_adapter_params=ExperimentalAdapterEntityMetadata(
+                    custom_metadata_params="custom_metadata_params_example",
+                    id="id_example",
+                    password="password_example",
+                    username="username_example",
+                ),
+                gcp_params=GCPEntityMetadata(
+                    alloy_db_postgre_sql_params=GcpAlloyDBPostgreSQLEntityMetadata(
+                        metadata_list=[
+                            GcpAlloyDBPostgreSQLMetadata(
+                                credentials=Credentials(
+                                    password="password_example",
+                                    username="username_example",
+                                ),
+                            ),
+                        ],
+                    ),
+                    gcp_sql_params=GcpSqlServerMetadata(
+                        standard_credentials=Credentials(
+                            password="password_example",
+                            username="username_example",
+                        ),
+                    ),
+                    my_sql_params=GcpMySQLEntityMetadata(
+                        metadata_list=[
+                            GcpMySQLMetadata(
+                                credentials=Credentials(
+                                    password="password_example",
+                                    username="username_example",
+                                ),
+                            ),
+                        ],
+                    ),
+                    postgre_sql_params=GcpPostgreSQLEntityMetadata(
+                        metadata_list=[
+                            GcpPostgreSQLMetadata(
+                                credentials=Credentials(
+                                    password="password_example",
+                                    username="username_example",
+                                ),
+                            ),
+                        ],
+                    ),
+                ),
                 maintenance_mode_config=MaintenanceModeConfig(
                     activation_time_intervals=[
                         TimeRangeUsecs(
@@ -125,6 +372,14 @@ body = AssociateEntityMetadataRequest(
                         ),
                     ],
                 ),
+                user_tag_attributes=[
+                    TagAttributeParams(
+                        key="key_example",
+                        tag_type="SystemTag",
+                        uuid="uuid_example",
+                        value="value_example",
+                    ),
+                ],
             ),
         ],
         source_id=1,
@@ -152,7 +407,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -173,11 +428,13 @@ Name | Type | Description  | Notes
 
 Fetch the contents (files & folders) for the specified object.
 
-Fetch the contents (files & folders) of the specified path inside the specified object.
+**Privileges:** ```RESTORE_VIEW``` <br><br>Fetch the contents (files & folders) of the specified path inside the specified object.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.object_browse_request import ObjectBrowseRequest
@@ -221,7 +478,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -242,11 +499,13 @@ Name | Type | Description  | Notes
 
 Cancel object runs.
 
-Cancel object runs for object based protection. This does not apply to Group based protection.
+**Privileges:** ```PROTECTION_MODIFY``` <br><br>Cancel object runs for object based protection. This does not apply to Group based protection.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.cancel_object_runs_results import CancelObjectRunsResults
@@ -315,7 +574,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -336,11 +595,13 @@ Name | Type | Description  | Notes
 
 Construct meta info for any workflow from object snapshot and some other information.
 
-Construct meta info from object snapshot and some additional params.
+**Privileges:** ```RESTORE_VIEW``` <br><br>Construct meta info from object snapshot and some additional params.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -360,9 +621,24 @@ client = ClusterClient(
 
 snapshot_id = "snapshotId_example" # str | Specifies the snapshot id.
 body = ConstructMetaInfoRequest(
-        environment="environment_example",
-        oracle_params={},
-        sfdc_params={},
+        environment="kVMware",
+        kubernetes_params=ConstructMetaInfoKubernetesParams(
+            object_id=1,
+        ),
+        oracle_params=ConstructRestoreMetaInfoOracleParams(
+            base_dir="base_dir_example",
+            db_file_destination="db_file_destination_example",
+            db_name="db_name_example",
+            home_dir="home_dir_example",
+            is_clone=True,
+            is_disaster_recovery=True,
+            is_granular_restore=True,
+            is_recovery_validation=True,
+        ),
+        sfdc_params=ConstructMetaInfoSfdcParams(
+            meta_info_type="DependentObjects",
+            object_name="object_name_example",
+        ),
     ) # ConstructMetaInfoRequest | Specifies the parameters to construct meta info for desired workflow.
 
 # example passing only required values which don't have defaults set
@@ -388,7 +664,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -404,16 +680,96 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **delete_entity_metadata**
+> delete_entity_metadata(id)
+
+Delete Metadata with Entity
+
+**Privileges:** ```PROTECTION_MODIFY``` <br><br>Deletes entity metadata for the given entity Id. Currently only supported for RDS and Aurora Postgres Credential metadata.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+id = 1 # int | Specifies a unique id of the Entity.
+metadata_type = "Credentials" # str | Specifies the metadata type to be deleted. This is a required field currently and the API will error out if this field is not provided. (optional)
+environment_type = "kAwsAuroraPostgres" # str | Specifies the environment type for the Credentials metadata to be deleted. This will be only set when the metadata type is Credentials. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Delete Metadata with Entity
+	client.object.delete_entity_metadata(id)
+except ApiException as e:
+	print("Exception when calling ObjectApi->delete_entity_metadata: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Delete Metadata with Entity
+	client.object.delete_entity_metadata(id, metadata_type=metadata_type, environment_type=environment_type)
+except ApiException as e:
+	print("Exception when calling ObjectApi->delete_entity_metadata: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Specifies a unique id of the Entity. |
+ **metadata_type** | **str**| Specifies the metadata type to be deleted. This is a required field currently and the API will error out if this field is not provided. | [optional]
+ **environment_type** | **str**| Specifies the environment type for the Credentials metadata to be deleted. This will be only set when the metadata type is Credentials. | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **filter_objects**
 > FilteredObjectsResponseBody filter_objects(body)
 
 List all the filtered objects.
 
-List all the filtered objects using given regular expressions and wildcard supported search strings. We are currenly supporting this for only SQL adapter.
+**Privileges:** ```RESTORE_VIEW``` <br><br>List all the filtered objects using given regular expressions and wildcard supported search strings. We are currenly supporting this for only SQL adapter.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -471,7 +827,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -492,11 +848,13 @@ Name | Type | Description  | Notes
 
 Get snapshots of indexed object.
 
-Get snapshots of indexed object.
+**Privileges:** ```RESTORE_VIEW``` <br><br>Get snapshots of indexed object.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -524,6 +882,7 @@ run_types = [
     ] # [str] | Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field. (optional)
 use_cached_data = True # bool | Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. (optional)
 object_action_key = "kVMware" # str | Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id. (optional)
+filename = "filename_example" # str | Specifies the name of the file or folder to find in the snapshots. (optional)
 
 # example passing only required values which don't have defaults set
 try:
@@ -537,7 +896,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Get snapshots of indexed object.
-	api_response = client.object.get_all_indexed_object_snapshots(object_id, indexed_object_name, protection_group_id=protection_group_id, include_indexed_snapshots_only=include_indexed_snapshots_only, from_time_usecs=from_time_usecs, to_time_usecs=to_time_usecs, run_types=run_types, use_cached_data=use_cached_data, object_action_key=object_action_key)
+	api_response = client.object.get_all_indexed_object_snapshots(object_id, indexed_object_name, protection_group_id=protection_group_id, include_indexed_snapshots_only=include_indexed_snapshots_only, from_time_usecs=from_time_usecs, to_time_usecs=to_time_usecs, run_types=run_types, use_cached_data=use_cached_data, object_action_key=object_action_key, filename=filename)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ObjectApi->get_all_indexed_object_snapshots: %s\n" % e)
@@ -557,6 +916,7 @@ Name | Type | Description  | Notes
  **run_types** | **[str]**| Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field. | [optional]
  **use_cached_data** | **bool**| Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. | [optional]
  **object_action_key** | **str**| Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id. | [optional]
+ **filename** | **str**| Specifies the name of the file or folder to find in the snapshots. | [optional]
 
 ### Return type
 
@@ -564,7 +924,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -585,11 +945,13 @@ Name | Type | Description  | Notes
 
 Get Metadata of Entities
 
-Gets entity metadata for entities. This can be used as a input for the PUT API. 
+**Privileges:** ```PROTECTION_VIEW``` <br><br>Gets entity metadata for entities. This can be used as a input for the PUT API. 
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -643,7 +1005,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -664,11 +1026,13 @@ Name | Type | Description  | Notes
 
 Get snapshots of indexed object.
 
-Get snapshots of indexed object.
+**Privileges:** ```RESTORE_VIEW``` <br><br>Get snapshots of indexed object.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -696,6 +1060,8 @@ run_types = [
     ] # [str] | Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field. (optional)
 use_cached_data = True # bool | Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. (optional)
 object_action_key = "kVMware" # str | Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id. (optional)
+from_file_mtime_usecs = 1 # int | Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime after and equal to this value. If not specified and toFileMtimeUsecs is specified, then the fromFileMtimeUsecs will be set to 7 days before toFileMtimeUsecs. (optional)
+to_file_mtime_usecs = 1 # int | Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime before and equal to this value. If not specified and fromFileMtimeUsecs is specified, then the toFileMtimeUsecs will be set to current time. (optional)
 
 # example passing only required values which don't have defaults set
 try:
@@ -709,7 +1075,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Get snapshots of indexed object.
-	api_response = client.object.get_indexed_object_snapshots(protection_group_id, object_id, indexed_object_name, include_indexed_snapshots_only=include_indexed_snapshots_only, from_time_usecs=from_time_usecs, to_time_usecs=to_time_usecs, run_types=run_types, use_cached_data=use_cached_data, object_action_key=object_action_key)
+	api_response = client.object.get_indexed_object_snapshots(protection_group_id, object_id, indexed_object_name, include_indexed_snapshots_only=include_indexed_snapshots_only, from_time_usecs=from_time_usecs, to_time_usecs=to_time_usecs, run_types=run_types, use_cached_data=use_cached_data, object_action_key=object_action_key, from_file_mtime_usecs=from_file_mtime_usecs, to_file_mtime_usecs=to_file_mtime_usecs)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ObjectApi->get_indexed_object_snapshots: %s\n" % e)
@@ -729,6 +1095,8 @@ Name | Type | Description  | Notes
  **run_types** | **[str]**| Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field. | [optional]
  **use_cached_data** | **bool**| Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. | [optional]
  **object_action_key** | **str**| Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id. | [optional]
+ **from_file_mtime_usecs** | **int**| Specifies the timestamp in Unix time epoch in microseconds to filter indexed object&#39;s snapshots based on file mtime after and equal to this value. If not specified and toFileMtimeUsecs is specified, then the fromFileMtimeUsecs will be set to 7 days before toFileMtimeUsecs. | [optional]
+ **to_file_mtime_usecs** | **int**| Specifies the timestamp in Unix time epoch in microseconds to filter indexed object&#39;s snapshots based on file mtime before and equal to this value. If not specified and fromFileMtimeUsecs is specified, then the toFileMtimeUsecs will be set to current time. | [optional]
 
 ### Return type
 
@@ -736,7 +1104,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -757,11 +1125,13 @@ Name | Type | Description  | Notes
 
 Get a run for an object.
 
-Get a run for an object.
+**Privileges:** ```PROTECTION_VIEW``` <br><br>Get a run for an object.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.object_protection_run_summary import ObjectProtectionRunSummary
@@ -804,7 +1174,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -820,16 +1190,178 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_object_run_messages_report**
+> file_type get_object_run_messages_report(id, run_id)
+
+Get the CSV of various Messages for a given run.
+
+**Privileges:** ```PROTECTION_VIEW``` <br><br>Get an CSV report for given run id and object id. Each row in CSV report contains all errors and warnings during run. File format: error_<objectId>_<runStartTime>.csv
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+id = 1 # int | Specifies the id of the object.
+run_id = "runId_example" # str | Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>.
+object_action_key = "kVMware" # str | Specifies the backup type for the run. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Get the CSV of various Messages for a given run.
+	api_response = client.object.get_object_run_messages_report(id, run_id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ObjectApi->get_object_run_messages_report: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get the CSV of various Messages for a given run.
+	api_response = client.object.get_object_run_messages_report(id, run_id, object_action_key=object_action_key)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ObjectApi->get_object_run_messages_report: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Specifies the id of the object. |
+ **run_id** | **str**| Specifies the id of the run in the format OBJECT-&lt;objectId&gt;:&lt;runStartTime&gt;. |
+ **object_action_key** | **str**| Specifies the backup type for the run. | [optional]
+
+### Return type
+
+**file_type**
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/octet-stream
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_object_run_success_files**
+> get_object_run_success_files(id, run_id)
+
+Get the CSV of errors/warnings for a given run and an object.
+
+**Privileges:** ```PROTECTION_VIEW``` <br><br>Get an CSV report for given objectId and run id. Report will depend on the query parameter fileType, default will be: success_files_list where each row contains the name of file backedup successfully.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+id = 1 # int | Specifies the id of the object.
+run_id = "runId_example" # str | Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>.
+name = "name_example" # str | Specifies the name of the source being backed up (optional)
+file_type = "fileType_example" # str | Specifies the downloaded type, i.e: success_files_list, default: success_files_list (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Get the CSV of errors/warnings for a given run and an object.
+	client.object.get_object_run_success_files(id, run_id)
+except ApiException as e:
+	print("Exception when calling ObjectApi->get_object_run_success_files: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get the CSV of errors/warnings for a given run and an object.
+	client.object.get_object_run_success_files(id, run_id, name=name, file_type=file_type)
+except ApiException as e:
+	print("Exception when calling ObjectApi->get_object_run_success_files: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Specifies the id of the object. |
+ **run_id** | **str**| Specifies the id of the run in the format OBJECT-&lt;objectId&gt;:&lt;runStartTime&gt;. |
+ **name** | **str**| Specifies the name of the source being backed up | [optional]
+ **file_type** | **str**| Specifies the downloaded type, i.e: success_files_list, default: success_files_list | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/octet-stream
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_object_runs**
 > GetObjectRunsResponseBody get_object_runs(id)
 
 Get the list of runs for an object.
 
-Get the runs for a particular object.
+**Privileges:** ```PROTECTION_VIEW``` <br><br>Get the runs for a particular object.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.get_object_runs_response_body import GetObjectRunsResponseBody
@@ -917,7 +1449,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -938,11 +1470,13 @@ Name | Type | Description  | Notes
 
 Get details of object snapshot.
 
-Get details of object snapshot.
+**Privileges:** ```RESTORE_VIEW``` <br><br>Get details of object snapshot.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -983,7 +1517,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1000,19 +1534,21 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_object_snapshot_volume_info**
-> ObjectSnapshotVolumeInfo get_object_snapshot_volume_info(snapshot_id)
+> CommonObjectSnapshotVolumeParams get_object_snapshot_volume_info(snapshot_id)
 
 Get volume info of object snapshot.
 
-Get volume info of object snapshot.
+**Privileges:** ```RESTORE_VIEW``` <br><br>Get volume info of object snapshot.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.common_object_snapshot_volume_params import CommonObjectSnapshotVolumeParams
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.object_snapshot_volume_info import ObjectSnapshotVolumeInfo
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -1060,11 +1596,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectSnapshotVolumeInfo**](ObjectSnapshotVolumeInfo.md)
+[**CommonObjectSnapshotVolumeParams**](CommonObjectSnapshotVolumeParams.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1085,11 +1621,13 @@ Name | Type | Description  | Notes
 
 List the snapshots for a given object.
 
-List the snapshots for a given object.
+**Privileges:** ```RESTORE_VIEW``` <br><br>List the snapshots for a given object.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1129,6 +1667,7 @@ region_ids = [
 object_action_keys = [
         "kVMware",
     ] # [str] | Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, only snapshots matching given action keys are returned for corresponding object. (optional)
+fetch_fast_restore_points_only = True # bool | Specifies whether to fetch only fast restore points. This is applicable only for M365 CSM Restore. (optional)
 
 # example passing only required values which don't have defaults set
 try:
@@ -1142,7 +1681,7 @@ except ApiException as e:
 # and optional values
 try:
 	# List the snapshots for a given object.
-	api_response = client.object.get_object_snapshots(id, from_time_usecs=from_time_usecs, to_time_usecs=to_time_usecs, run_start_from_time_usecs=run_start_from_time_usecs, run_start_to_time_usecs=run_start_to_time_usecs, snapshot_actions=snapshot_actions, run_types=run_types, protection_group_ids=protection_group_ids, run_instance_ids=run_instance_ids, region_ids=region_ids, object_action_keys=object_action_keys)
+	api_response = client.object.get_object_snapshots(id, from_time_usecs=from_time_usecs, to_time_usecs=to_time_usecs, run_start_from_time_usecs=run_start_from_time_usecs, run_start_to_time_usecs=run_start_to_time_usecs, snapshot_actions=snapshot_actions, run_types=run_types, protection_group_ids=protection_group_ids, run_instance_ids=run_instance_ids, region_ids=region_ids, object_action_keys=object_action_keys, fetch_fast_restore_points_only=fetch_fast_restore_points_only)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ObjectApi->get_object_snapshots: %s\n" % e)
@@ -1164,6 +1703,7 @@ Name | Type | Description  | Notes
  **run_instance_ids** | **[int]**| Filter by a list run instance ids. If specified, only snapshots created by these protection runs will be returned. | [optional]
  **region_ids** | **[str]**| Filter by a list of region ids. | [optional]
  **object_action_keys** | **[str]**| Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, only snapshots matching given action keys are returned for corresponding object. | [optional]
+ **fetch_fast_restore_points_only** | **bool**| Specifies whether to fetch only fast restore points. This is applicable only for M365 CSM Restore. | [optional]
 
 ### Return type
 
@@ -1171,7 +1711,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1192,11 +1732,13 @@ Name | Type | Description  | Notes
 
 Get stats for a given object.
 
-Get stats for a given object.
+**Privileges:** ```RESTORE_VIEW``` <br><br>Get stats for a given object.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.object_stats import ObjectStats
@@ -1250,7 +1792,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1271,11 +1813,13 @@ Name | Type | Description  | Notes
 
 Get the objects tree hierarchy for for an Object.
 
-Get the objects tree hierarchy for for an Object. If the object does not have a hierarchy then a single object will be returned.
+```Unknown Privileges``` <br><br>Get the objects tree hierarchy for for an Object. If the object does not have a hierarchy then a single object will be returned.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1316,7 +1860,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1337,11 +1881,13 @@ Name | Type | Description  | Notes
 
 Get last protection run of objects.
 
-Get last protection run of objects.
+```Unknown Privileges``` <br><br>Get last protection run of objects.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1395,7 +1941,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1416,11 +1962,13 @@ Name | Type | Description  | Notes
 
 Get PIT ranges for an object
 
-Returns the ranges in various types like time, SCN etc. within which the specified protected object can be restored to any Point in time.
+**Privileges:** ```RESTORE_VIEW``` <br><br>Returns the ranges in various types like time, SCN etc. within which the specified protected object can be restored to any Point in time.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1478,7 +2026,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1499,11 +2047,13 @@ Name | Type | Description  | Notes
 
 Get an Object.
 
-Get Object configurations for given object id.
+**Privileges:** ```PROTECTION_VIEW``` <br><br>Get Object configurations for given object id.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1579,7 +2129,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1600,11 +2150,13 @@ Name | Type | Description  | Notes
 
 Get Objects.
 
-Get Objects Configurations.
+**Privileges:** ```PROTECTION_VIEW``` <br><br>Get Objects Configurations.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1624,7 +2176,7 @@ client = ClusterClient(
 request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
 ids = [
         1,
-    ] # [int] | Filter by a list of Object ids. (optional)
+    ] # [int] | Filter by a list of Object ids. Only one of ids or globalHashes should be used. (optional)
 object_action_keys = [
         "kVMware",
     ] # [str] | Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id. The vec's size needs to be of either length one or same as the length of 'ids'. If the length of objectActionKey is one, it will be repeated as many number of times equal to the length of objectIds, as mandated by backend validation. If the length of objectActionKey and object ids are same then it will be passed as it is. (optional)
@@ -1640,6 +2192,12 @@ environments = [
 tenant_ids = [
         "tenantIds_example",
     ] # [str] | TenantIds contains ids of the tenants for which objects are to be returned. (optional)
+global_ids = [
+        "globalIds_example",
+    ] # [str] | Unique id to uniquely identify an object across clusters, if the same object is present on multiple clusters. For example, in case of a replication workflow, the object could be present on both local and remote cluster. In such scenarios, using the globalId, information about the object can be collected across the clusters. This is also applicable when object gets mapped to another cluster during tenant migration. Only one of ids or globalIds should be used. (optional)
+global_hashes = [
+        "globalHashes_example",
+    ] # [str] | Unique id to identify an object across clusters, using hash of the object (optional)
 include_tenants = True # bool | If true, the response will include Objects which were protected by all tenants which the current user has permission to see. If false, then only objects protected by the current user will be returned. (optional)
 include_last_run_info = True # bool | If true, the response will include information about the last protection run on this object. (optional)
 only_auto_protected_objects = True # bool | If true, the response will include only the auto protected objects. (optional)
@@ -1654,7 +2212,7 @@ cookie = "cookie_example" # str | Specifies the pagination cookie. (optional)
 # and optional values
 try:
 	# Get Objects.
-	api_response = client.object.get_protected_objects_of_any_type(request_initiator_type=request_initiator_type, ids=ids, object_action_keys=object_action_keys, policy_ids=policy_ids, parent_id=parent_id, only_protected_objects=only_protected_objects, storage_domain_id=storage_domain_id, environments=environments, tenant_ids=tenant_ids, include_tenants=include_tenants, include_last_run_info=include_last_run_info, only_auto_protected_objects=only_auto_protected_objects, only_leaf_objects=only_leaf_objects, region_ids=region_ids, max_count=max_count, cookie=cookie)
+	api_response = client.object.get_protected_objects_of_any_type(request_initiator_type=request_initiator_type, ids=ids, object_action_keys=object_action_keys, policy_ids=policy_ids, parent_id=parent_id, only_protected_objects=only_protected_objects, storage_domain_id=storage_domain_id, environments=environments, tenant_ids=tenant_ids, global_ids=global_ids, global_hashes=global_hashes, include_tenants=include_tenants, include_last_run_info=include_last_run_info, only_auto_protected_objects=only_auto_protected_objects, only_leaf_objects=only_leaf_objects, region_ids=region_ids, max_count=max_count, cookie=cookie)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ObjectApi->get_protected_objects_of_any_type: %s\n" % e)
@@ -1666,7 +2224,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **request_initiator_type** | **str**| Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. | [optional]
- **ids** | **[int]**| Filter by a list of Object ids. | [optional]
+ **ids** | **[int]**| Filter by a list of Object ids. Only one of ids or globalHashes should be used. | [optional]
  **object_action_keys** | **[str]**| Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id. The vec&#39;s size needs to be of either length one or same as the length of &#39;ids&#39;. If the length of objectActionKey is one, it will be repeated as many number of times equal to the length of objectIds, as mandated by backend validation. If the length of objectActionKey and object ids are same then it will be passed as it is. | [optional]
  **policy_ids** | **[str]**| Filter by Policy ids that are associated with Protected Objects. | [optional]
  **parent_id** | **int**| Filter by Parent Id. Parent id is a unique object Id which may contain protected objects underneath in the source tree. | [optional]
@@ -1674,6 +2232,8 @@ Name | Type | Description  | Notes
  **storage_domain_id** | **int**| Filter by Storage Domain id. Only Objects protected to this Storage Domain will be returned. | [optional]
  **environments** | **[str]**| Filter by environment types such as &#39;kVMware&#39;, &#39;kView&#39;, etc. Only Protected objects protecting the specified environment types are returned. | [optional]
  **tenant_ids** | **[str]**| TenantIds contains ids of the tenants for which objects are to be returned. | [optional]
+ **global_ids** | **[str]**| Unique id to uniquely identify an object across clusters, if the same object is present on multiple clusters. For example, in case of a replication workflow, the object could be present on both local and remote cluster. In such scenarios, using the globalId, information about the object can be collected across the clusters. This is also applicable when object gets mapped to another cluster during tenant migration. Only one of ids or globalIds should be used. | [optional]
+ **global_hashes** | **[str]**| Unique id to identify an object across clusters, using hash of the object | [optional]
  **include_tenants** | **bool**| If true, the response will include Objects which were protected by all tenants which the current user has permission to see. If false, then only objects protected by the current user will be returned. | [optional]
  **include_last_run_info** | **bool**| If true, the response will include information about the last protection run on this object. | [optional]
  **only_auto_protected_objects** | **bool**| If true, the response will include only the auto protected objects. | [optional]
@@ -1688,7 +2248,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1709,11 +2269,13 @@ Name | Type | Description  | Notes
 
 Get diff between two snapshots of a given object.
 
-Get diff (files added/deleted) between two snapshots of a given object.
+**Privileges:** ```ALERT_VIEW``` <br><br>Get diff (files added/deleted) between two snapshots of a given object.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1769,7 +2331,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1790,11 +2352,13 @@ Name | Type | Description  | Notes
 
 List objects on a source which can be used for data protection.
 
-List objects which can be used for data protection.
+**Privileges:** ```PROTECTION_VIEW``` <br><br>List objects which can be used for data protection.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1868,6 +2432,9 @@ generic_nas_object_types = [
 isilon_object_types = [
         "kCluster",
     ] # [str] | Specifies the Isilon object types to filter objects. (optional)
+nutanix_fs_object_types = [
+        "kPrismCentral",
+    ] # [str] | Specifies the Nutanix FS object types to filter objects. (optional)
 flashblade_object_types = [
         "kStorageArray",
     ] # [str] | Specifies the Flashblade object types to filter objects. (optional)
@@ -1915,7 +2482,7 @@ except ApiException as e:
 # and optional values
 try:
 	# List objects on a source which can be used for data protection.
-	api_response = client.object.get_source_hierarchy_objects(source_id, parent_id=parent_id, tenant_ids=tenant_ids, include_tenants=include_tenants, vmware_object_types=vmware_object_types, netapp_object_types=netapp_object_types, o365_object_types=o365_object_types, cassandra_object_types=cassandra_object_types, mongodb_object_types=mongodb_object_types, couchbase_object_types=couchbase_object_types, hdfs_object_types=hdfs_object_types, hbase_object_types=hbase_object_types, hive_object_types=hive_object_types, hyperv_object_types=hyperv_object_types, azure_object_types=azure_object_types, kvm_object_types=kvm_object_types, aws_object_types=aws_object_types, gcp_object_types=gcp_object_types, acropolis_object_types=acropolis_object_types, generic_nas_object_types=generic_nas_object_types, isilon_object_types=isilon_object_types, flashblade_object_types=flashblade_object_types, elastifile_object_types=elastifile_object_types, gpfs_object_types=gpfs_object_types, pure_object_types=pure_object_types, nimble_object_types=nimble_object_types, physical_object_types=physical_object_types, kubernetes_object_types=kubernetes_object_types, exchange_object_types=exchange_object_types, ad_object_types=ad_object_types, mssql_object_types=mssql_object_types, oracle_object_types=oracle_object_types, use_cached_data=use_cached_data)
+	api_response = client.object.get_source_hierarchy_objects(source_id, parent_id=parent_id, tenant_ids=tenant_ids, include_tenants=include_tenants, vmware_object_types=vmware_object_types, netapp_object_types=netapp_object_types, o365_object_types=o365_object_types, cassandra_object_types=cassandra_object_types, mongodb_object_types=mongodb_object_types, couchbase_object_types=couchbase_object_types, hdfs_object_types=hdfs_object_types, hbase_object_types=hbase_object_types, hive_object_types=hive_object_types, hyperv_object_types=hyperv_object_types, azure_object_types=azure_object_types, kvm_object_types=kvm_object_types, aws_object_types=aws_object_types, gcp_object_types=gcp_object_types, acropolis_object_types=acropolis_object_types, generic_nas_object_types=generic_nas_object_types, isilon_object_types=isilon_object_types, nutanix_fs_object_types=nutanix_fs_object_types, flashblade_object_types=flashblade_object_types, elastifile_object_types=elastifile_object_types, gpfs_object_types=gpfs_object_types, pure_object_types=pure_object_types, nimble_object_types=nimble_object_types, physical_object_types=physical_object_types, kubernetes_object_types=kubernetes_object_types, exchange_object_types=exchange_object_types, ad_object_types=ad_object_types, mssql_object_types=mssql_object_types, oracle_object_types=oracle_object_types, use_cached_data=use_cached_data)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ObjectApi->get_source_hierarchy_objects: %s\n" % e)
@@ -1947,6 +2514,7 @@ Name | Type | Description  | Notes
  **acropolis_object_types** | **[str]**| Specifies the Acropolis object types to filter objects. | [optional]
  **generic_nas_object_types** | **[str]**| Specifies the generic NAS object types to filter objects. | [optional]
  **isilon_object_types** | **[str]**| Specifies the Isilon object types to filter objects. | [optional]
+ **nutanix_fs_object_types** | **[str]**| Specifies the Nutanix FS object types to filter objects. | [optional]
  **flashblade_object_types** | **[str]**| Specifies the Flashblade object types to filter objects. | [optional]
  **elastifile_object_types** | **[str]**| Specifies the Elastifile object types to filter objects. | [optional]
  **gpfs_object_types** | **[str]**| Specifies the GPFS object types to filter objects. | [optional]
@@ -1966,7 +2534,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -1982,16 +2550,109 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **modify_source_hierarchy_objects**
+> ModifySourceHierarchyObjectsResult modify_source_hierarchy_objects(source_id, body)
+
+Modify objects in source hierarchy.
+
+**Privileges:** ```PROTECTION_MODIFY``` <br><br>Add/Update objects to/from an entity hierarchy for a given source.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.modify_source_hierarchy_objects_result import ModifySourceHierarchyObjectsResult
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.modify_source_hierarchy_objects_request import ModifySourceHierarchyObjectsRequest
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+source_id = 1 # int | Specifies the source ID where objects are to be modified.
+body = ModifySourceHierarchyObjectsRequest(
+        modification_requests=[
+            SourceHierarchyModificationRequest(
+                action_type="Add",
+                vcd_modify_params=VCDModifyHierarchyParams(
+                    urn="urn_example",
+                ),
+            ),
+        ],
+    ) # ModifySourceHierarchyObjectsRequest | Specifies the parameters to add/update objects in entity hierarchy.
+request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Modify objects in source hierarchy.
+	api_response = client.object.modify_source_hierarchy_objects(source_id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ObjectApi->modify_source_hierarchy_objects: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Modify objects in source hierarchy.
+	api_response = client.object.modify_source_hierarchy_objects(source_id, body, request_initiator_type=request_initiator_type)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ObjectApi->modify_source_hierarchy_objects: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **source_id** | **int**| Specifies the source ID where objects are to be modified. |
+ **body** | [**ModifySourceHierarchyObjectsRequest**](ModifySourceHierarchyObjectsRequest.md)| Specifies the parameters to add/update objects in entity hierarchy. |
+ **request_initiator_type** | **str**| Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. | [optional]
+
+### Return type
+
+[**ModifySourceHierarchyObjectsResult**](ModifySourceHierarchyObjectsResult.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**207** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **objects_actions**
 > objects_actions(body)
 
 Actions on Objects
 
-Specifies the request to perform various actions on multiple objects.
+**Privileges:** ```PROTECTION_MODIFY``` <br><br>Specifies the request to perform various actions on multiple objects.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -2010,9 +2671,23 @@ client = ClusterClient(
 
 body = ObjectsActionRequest(
         action="Link",
-        link_params=ObjectLinkingParams(),
+        link_params=CommonObjectsActionParams(
+            object_map=[
+                ActionObjectMapping(
+                    destination_object_id=1,
+                    source_object_id=1,
+                ),
+            ],
+        ),
         link_type="Replication",
-        un_link_params=ObjectUnLinkingParams(),
+        un_link_params=CommonObjectsActionParams(
+            object_map=[
+                ActionObjectMapping(
+                    destination_object_id=1,
+                    source_object_id=1,
+                ),
+            ],
+        ),
     ) # ObjectsActionRequest | Specifies the parameters to execute actions on given list of objects.
 
 # example passing only required values which don't have defaults set
@@ -2036,7 +2711,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -2057,11 +2732,13 @@ void (empty response body)
 
 Perform an action on an object.
 
-Perform an action on an object. Depending on the object environment type, different actions are available.
+**Privileges:** ```RESTORE_MODIFY``` <br><br>Perform an action on an object. Depending on the object environment type, different actions are available.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.object_action_request import ObjectActionRequest
@@ -2103,7 +2780,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -2124,11 +2801,13 @@ void (empty response body)
 
 Update an object snapshot.
 
-Update an object snapshot.
+**Privileges:** ```RESTORE_MODIFY``` <br><br>Update an object snapshot.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -2178,7 +2857,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 

@@ -33,6 +33,7 @@ def lazy_import():
     from cohesity_sdk.cluster.model.pre_post_script_params import PrePostScriptParams
     from cohesity_sdk.cluster.model.vmware_cdp_object import VmwareCdpObject
     from cohesity_sdk.cluster.model.vmware_object_protection_response import VmwareObjectProtectionResponse
+    from cohesity_sdk.cluster.model.vmware_object_protection_response_params_all_of import VmwareObjectProtectionResponseParamsAllOf
     from cohesity_sdk.cluster.model.vmware_standby_object import VmwareStandbyObject
     globals()['CommonVmwareProtectionParams'] = CommonVmwareProtectionParams
     globals()['DiskInfo'] = DiskInfo
@@ -40,6 +41,7 @@ def lazy_import():
     globals()['PrePostScriptParams'] = PrePostScriptParams
     globals()['VmwareCdpObject'] = VmwareCdpObject
     globals()['VmwareObjectProtectionResponse'] = VmwareObjectProtectionResponse
+    globals()['VmwareObjectProtectionResponseParamsAllOf'] = VmwareObjectProtectionResponseParamsAllOf
     globals()['VmwareStandbyObject'] = VmwareStandbyObject
 
 
@@ -92,10 +94,12 @@ class VmwareObjectProtectionResponseParams(ModelComposed):
         lazy_import()
         return {
             'exclude_disks': ([DiskInfo],),  # noqa: E501
+            'include_disks': ([DiskInfo],),  # noqa: E501
             'truncate_exchange_logs': (bool, none_type,),  # noqa: E501
             'cdp_info': (VmwareCdpObject,),  # noqa: E501
             'exclude_object_ids': ([int, none_type],),  # noqa: E501
             'standby_info': (VmwareStandbyObject,),  # noqa: E501
+            'global_include_disks': ([DiskInfo], none_type,),  # noqa: E501
             'app_consistent_snapshot': (bool, none_type,),  # noqa: E501
             'enable_nbdssl_fallback': (bool, none_type,),  # noqa: E501
             'fallback_to_crash_consistent_snapshot': (bool, none_type,),  # noqa: E501
@@ -113,10 +117,12 @@ class VmwareObjectProtectionResponseParams(ModelComposed):
 
     attribute_map = {
         'exclude_disks': 'excludeDisks',  # noqa: E501
+        'include_disks': 'includeDisks',  # noqa: E501
         'truncate_exchange_logs': 'truncateExchangeLogs',  # noqa: E501
         'cdp_info': 'cdpInfo',  # noqa: E501
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'standby_info': 'standbyInfo',  # noqa: E501
+        'global_include_disks': 'globalIncludeDisks',  # noqa: E501
         'app_consistent_snapshot': 'appConsistentSnapshot',  # noqa: E501
         'enable_nbdssl_fallback': 'enableNBDSSLFallback',  # noqa: E501
         'fallback_to_crash_consistent_snapshot': 'fallbackToCrashConsistentSnapshot',  # noqa: E501
@@ -175,10 +181,12 @@ class VmwareObjectProtectionResponseParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             exclude_disks ([DiskInfo]): Specifies a list of disks to exclude from being protected. This is only applicable to VM objects.. [optional]  # noqa: E501
+            include_disks ([DiskInfo]): Specifies a list of disks to be protected. This is only applicable to VM objects.. [optional]  # noqa: E501
             truncate_exchange_logs (bool, none_type): Specifies whether or not to truncate MS Exchange logs while taking an app consistent snapshot of this object. This is only applicable to objects which have a registered MS Exchange app.. [optional]  # noqa: E501
             cdp_info (VmwareCdpObject): [optional]  # noqa: E501
             exclude_object_ids ([int, none_type]): Specifies the list of IDs of the objects to not be protected in this backup. This field only applies if provided object id is non leaf entity such as Tag or a folder. This can be used to ignore specific objects under a parent object which has been included for protection.. [optional]  # noqa: E501
             standby_info (VmwareStandbyObject): [optional]  # noqa: E501
+            global_include_disks ([DiskInfo], none_type): Specifies a list of disks to include in the backup.. [optional]  # noqa: E501
             app_consistent_snapshot (bool, none_type): Specifies whether or not to quiesce apps and the file system in order to take app consistent snapshots.. [optional]  # noqa: E501
             enable_nbdssl_fallback (bool, none_type): If this field is set to true and SAN transport backup fails, then backup will fallback to use NBDSSL transport. This field only applies if 'leverageSanTransport' is set to true.. [optional]  # noqa: E501
             fallback_to_crash_consistent_snapshot (bool, none_type): Specifies whether or not to fallback to a crash consistent snapshot in the event that an app consistent snapshot fails. This parameter defaults to true and only changes the behavior of the operation if 'appConsistentSnapshot' is set to 'true'.. [optional]  # noqa: E501
@@ -259,6 +267,7 @@ class VmwareObjectProtectionResponseParams(ModelComposed):
           'allOf': [
               CommonVmwareProtectionParams,
               VmwareObjectProtectionResponse,
+              VmwareObjectProtectionResponseParamsAllOf,
           ],
           'oneOf': [
           ],

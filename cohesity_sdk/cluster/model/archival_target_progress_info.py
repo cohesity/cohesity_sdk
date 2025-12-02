@@ -74,6 +74,7 @@ class ArchivalTargetProgressInfo(ModelComposed):
             'None': None,
             'LOCAL': "Local",
             'FORTKNOX': "FortKnox",
+            'FORTKNOXONPREM': "FortKnoxOnprem",
         },
         ('target_type',): {
             'None': None,
@@ -86,6 +87,7 @@ class ArchivalTargetProgressInfo(ModelComposed):
             'ARCHIVAL': "Archival",
             'TIERING': "Tiering",
             'RPAAS': "Rpaas",
+            'LOGBACKUP': "Logbackup",
         },
         ('status',): {
             'None': None,

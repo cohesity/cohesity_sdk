@@ -27,12 +27,18 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.quota_policy import QuotaPolicy
     from cohesity_sdk.cluster.model.user_quota import UserQuota
     from cohesity_sdk.cluster.model.user_quota_overrides import UserQuotaOverrides
+    from cohesity_sdk.cluster.model.user_quota_summary_for_view import UserQuotaSummaryForView
     from cohesity_sdk.cluster.model.view_user_quota_settings import ViewUserQuotaSettings
+    from cohesity_sdk.cluster.model.view_user_quotas_all_of import ViewUserQuotasAllOf
+    globals()['QuotaPolicy'] = QuotaPolicy
     globals()['UserQuota'] = UserQuota
     globals()['UserQuotaOverrides'] = UserQuotaOverrides
+    globals()['UserQuotaSummaryForView'] = UserQuotaSummaryForView
     globals()['ViewUserQuotaSettings'] = ViewUserQuotaSettings
+    globals()['ViewUserQuotasAllOf'] = ViewUserQuotasAllOf
 
 
 class ViewUserQuotas(ModelComposed):
@@ -83,11 +89,12 @@ class ViewUserQuotas(ModelComposed):
         """
         lazy_import()
         return {
-            'enabled': (bool,),  # noqa: E501
             'user_quotas': ([UserQuota], none_type,),  # noqa: E501
-            'default_quota_policy': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'default_quota_policy': (QuotaPolicy,),  # noqa: E501
+            'enabled': (bool, none_type,),  # noqa: E501
             'cookie': (str, none_type,),  # noqa: E501
             'override_existing_per_user_quotas': (bool, none_type,),  # noqa: E501
+            'summary_for_view': (UserQuotaSummaryForView,),  # noqa: E501
         }
 
     @cached_property
@@ -97,11 +104,12 @@ class ViewUserQuotas(ModelComposed):
 
 
     attribute_map = {
-        'enabled': 'enabled',  # noqa: E501
         'user_quotas': 'userQuotas',  # noqa: E501
         'default_quota_policy': 'defaultQuotaPolicy',  # noqa: E501
+        'enabled': 'enabled',  # noqa: E501
         'cookie': 'cookie',  # noqa: E501
         'override_existing_per_user_quotas': 'overrideExistingPerUserQuotas',  # noqa: E501
+        'summary_for_view': 'summaryForView',  # noqa: E501
     }
 
     required_properties = set([
@@ -117,11 +125,10 @@ class ViewUserQuotas(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, enabled, user_quotas, *args, **kwargs):  # noqa: E501
+    def __init__(self, user_quotas, *args, **kwargs):  # noqa: E501
         """ViewUserQuotas - a model defined in OpenAPI
 
         Args:
-            enabled (bool): Specifies whether user quota is enabled for the View.
             user_quotas ([UserQuota], none_type): Array of UserQuota. Specifies the list of UserQuota for each user.
 
         Keyword Args:
@@ -156,9 +163,11 @@ class ViewUserQuotas(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            default_quota_policy ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the default user quota policy of the View.. [optional]  # noqa: E501
+            default_quota_policy (QuotaPolicy): [optional]  # noqa: E501
+            enabled (bool, none_type): Specifies whether user quota is enabled for the View.. [optional]  # noqa: E501
             cookie (str, none_type): Specifies the pagination cookie.. [optional]  # noqa: E501
             override_existing_per_user_quotas (bool, none_type): By default, the overrides specified in userQuotas is treated as delta and the existing overrides will be left untouched. Set this to true, if the existing overrides should be cleared before applying overrides specified in userQuotas.. [optional]  # noqa: E501
+            summary_for_view (UserQuotaSummaryForView): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -193,7 +202,6 @@ class ViewUserQuotas(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'enabled': enabled,
             'user_quotas': user_quotas,
         }
         model_args = {}
@@ -234,6 +242,7 @@ class ViewUserQuotas(ModelComposed):
           'allOf': [
               UserQuotaOverrides,
               ViewUserQuotaSettings,
+              ViewUserQuotasAllOf,
           ],
           'oneOf': [
           ],

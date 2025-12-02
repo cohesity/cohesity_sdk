@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **aurora_snapshot_manager_protection_type_params** | [**AwsAuroraSnapshotManagerObjectProtectionParams**](AwsAuroraSnapshotManagerObjectProtectionParams.md) |  | [optional] 
+**dynamo_db_protection_type_params** | [**AwsDynamoDBProtectionParams**](AwsDynamoDBProtectionParams.md) |  | [optional] 
 **native_protection_type_params** | [**AwsNativeObjectProtectionParams**](AwsNativeObjectProtectionParams.md) |  | [optional] 
 **rds_postgres_protection_type_params** | [**AwsRdsPostgresProtectionParams**](AwsRdsPostgresProtectionParams.md) |  | [optional] 
 **rds_snapshot_manager_protection_type_params** | [**AwsRdsSnapshotManagerObjectProtectionParams**](AwsRdsSnapshotManagerObjectProtectionParams.md) |  | [optional] 

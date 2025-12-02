@@ -64,6 +64,7 @@ class IdentityConfig(ModelNormal):
             'None': None,
             'OPENIDCONNECT': "OpenIdConnect",
             'OAUTH2': "OAuth2",
+            'IBMID': "IbmId",
         },
     }
 

@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
     from cohesity_sdk.cluster.model.one_drive_param import OneDriveParam
+    globals()['CommonRecoverObjectSnapshotParams'] = CommonRecoverObjectSnapshotParams
     globals()['OneDriveParam'] = OneDriveParam
 
 
@@ -80,7 +82,7 @@ class ObjectOneDriveParam(ModelNormal):
         lazy_import()
         return {
             'one_drive_params': ([OneDriveParam], none_type,),  # noqa: E501
-            'owner_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'owner_info': (CommonRecoverObjectSnapshotParams,),  # noqa: E501
         }
 
     @cached_property
@@ -142,7 +144,7 @@ class ObjectOneDriveParam(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             one_drive_params ([OneDriveParam], none_type): Specifies parameters to recover a OneDrive.. [optional]  # noqa: E501
-            owner_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the OneDrive owner info.. [optional]  # noqa: E501
+            owner_info (CommonRecoverObjectSnapshotParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

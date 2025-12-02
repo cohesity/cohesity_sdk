@@ -83,6 +83,7 @@ class OneDriveParam(ModelNormal):
             'name': (str, none_type,),  # noqa: E501
             'recover_entire_drive': (bool, none_type,),  # noqa: E501
             'recover_items': ([OneDriveItem], none_type,),  # noqa: E501
+            'site_uuid': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -96,6 +97,7 @@ class OneDriveParam(ModelNormal):
         'name': 'name',  # noqa: E501
         'recover_entire_drive': 'recoverEntireDrive',  # noqa: E501
         'recover_items': 'recoverItems',  # noqa: E501
+        'site_uuid': 'siteUuid',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,6 +151,7 @@ class OneDriveParam(ModelNormal):
             name (str, none_type): Specifies the OneDrive name.. [optional]  # noqa: E501
             recover_entire_drive (bool, none_type): Specifies whether to recover the whole OneDrive. This is set to false when excluding recovering specific drive items.. [optional]  # noqa: E501
             recover_items ([OneDriveItem], none_type): Specifies a list of OneDrive items to recover.. [optional]  # noqa: E501
+            site_uuid (str, none_type): Sharepoint site uuid to which this Drive belongs. This is needed for Teams and Groups having subsites, as multiple items across different subsites can be selected for granular recovery.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

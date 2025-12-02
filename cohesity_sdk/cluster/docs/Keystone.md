@@ -5,8 +5,8 @@ Specifies a Keystone.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**admin_creds** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies parameters related to Keystone administrator. | 
-**scope** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies parameters related to Keystone scope. | 
+**admin_creds** | [**KeystoneAdminParams**](KeystoneAdminParams.md) |  | 
+**scope** | [**KeystoneScopeParams**](KeystoneScopeParams.md) |  | 
 **auth_url** | **str, none_type** | Specifies the url points to the Keystone service. | 
 **name** | **str, none_type** | Specifies the Keystone configuration name. | 
 **id** | **int, none_type** | Specifies the Keystone configuration id. | [optional] [readonly] 

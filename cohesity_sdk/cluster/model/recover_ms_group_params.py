@@ -28,7 +28,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.ms_group_param import MsGroupParam
+    from cohesity_sdk.cluster.model.recovery_object_identifier import RecoveryObjectIdentifier
+    from cohesity_sdk.cluster.model.target_ms_group_param import TargetMsGroupParam
     globals()['MsGroupParam'] = MsGroupParam
+    globals()['RecoveryObjectIdentifier'] = RecoveryObjectIdentifier
+    globals()['TargetMsGroupParam'] = TargetMsGroupParam
 
 
 class RecoverMsGroupParams(ModelNormal):
@@ -81,9 +85,12 @@ class RecoverMsGroupParams(ModelNormal):
         return {
             'ms_groups': ([MsGroupParam], none_type,),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
+            'restore_original_owners': (bool, none_type,),  # noqa: E501
             'restore_to_original': (bool, none_type,),  # noqa: E501
             'target_group': (str, none_type,),  # noqa: E501
             'target_group_name': (str, none_type,),  # noqa: E501
+            'target_group_owner': (RecoveryObjectIdentifier,),  # noqa: E501
+            'target_ms_group_param': (TargetMsGroupParam,),  # noqa: E501
         }
 
     @cached_property
@@ -95,9 +102,12 @@ class RecoverMsGroupParams(ModelNormal):
     attribute_map = {
         'ms_groups': 'msGroups',  # noqa: E501
         'continue_on_error': 'continueOnError',  # noqa: E501
+        'restore_original_owners': 'restoreOriginalOwners',  # noqa: E501
         'restore_to_original': 'restoreToOriginal',  # noqa: E501
         'target_group': 'targetGroup',  # noqa: E501
         'target_group_name': 'targetGroupName',  # noqa: E501
+        'target_group_owner': 'targetGroupOwner',  # noqa: E501
+        'target_ms_group_param': 'targetMsGroupParam',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -151,9 +161,12 @@ class RecoverMsGroupParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             continue_on_error (bool, none_type): Specifies whether to continue recovering other MS groups if one of MS groups failed to recover. Default value is false.. [optional]  # noqa: E501
+            restore_original_owners (bool, none_type): Specifies whether the original members/owners should be part of the newly created target group. If restoreOriginalOwners is null or false, original group owners are not used.. [optional]  # noqa: E501
             restore_to_original (bool, none_type): Specifies whether or not all groups are restored to original location.. [optional]  # noqa: E501
-            target_group (str, none_type): Specifies target group nickname in case restoreToOriginal is false. This needs to be specifid when restoreToOriginal is false.. [optional]  # noqa: E501
-            target_group_name (str, none_type): Specifies target group name in case restore_to_original is false. This needs to be specifid when restoreToOriginal is false. However, this will be ignored if restoring to alternate existing group (i.e. to a group the nickname of which is same as the one supplied by the end user).. [optional]  # noqa: E501
+            target_group (str, none_type): This field is deprecated. Specifies target group nickname in case restoreToOriginal is false. This needs to be specified when restoreToOriginal is false. Use targetMsGroupParam instead of this field.. [optional]  # noqa: E501
+            target_group_name (str, none_type): This field is deprecated. Specifies target group name in case restoreToOriginal is false. This needs to be specified when restoreToOriginal is false. However, this will be ignored if restoring to alternate existing group (i.e. to a group the nickname of which is same as the one supplied by the end user). Use targetMsGroupParam instead of this field.. [optional]  # noqa: E501
+            target_group_owner (RecoveryObjectIdentifier): [optional]  # noqa: E501
+            target_ms_group_param (TargetMsGroupParam): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

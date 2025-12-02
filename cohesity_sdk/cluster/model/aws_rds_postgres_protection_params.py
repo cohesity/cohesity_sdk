@@ -27,8 +27,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.aws_rds_postgres_object_level_params import AwsRdsPostgresObjectLevelParams
-    globals()['AwsRdsPostgresObjectLevelParams'] = AwsRdsPostgresObjectLevelParams
+    from cohesity_sdk.cluster.model.aws_object_level_params import AwsObjectLevelParams
+    globals()['AwsObjectLevelParams'] = AwsObjectLevelParams
 
 
 class AwsRdsPostgresProtectionParams(ModelNormal):
@@ -82,7 +82,7 @@ class AwsRdsPostgresProtectionParams(ModelNormal):
         """
         lazy_import()
         return {
-            'objects': ([AwsRdsPostgresObjectLevelParams],),  # noqa: E501
+            'objects': ([AwsObjectLevelParams],),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
         }
 
@@ -144,7 +144,7 @@ class AwsRdsPostgresProtectionParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            objects ([AwsRdsPostgresObjectLevelParams]): Specifies the objects to be protected.. [optional]  # noqa: E501
+            objects ([AwsObjectLevelParams]): Specifies the objects to be protected.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the source of the objects.. [optional]  # noqa: E501
         """
 

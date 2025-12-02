@@ -15,11 +15,13 @@ Method | HTTP request | Description
 
 Get the Registered Kerberos Provider by id.
 
-Get the Registered Kerberos Provider by id.
+**Privileges:** ```KERBEROS_VIEW``` <br><br>Get the Registered Kerberos Provider by id.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.kerberos_provider import KerberosProvider
@@ -60,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -81,11 +83,13 @@ Name | Type | Description  | Notes
 
 Get the list of Kerberos Providers.
 
-Get the list of Kerberos Authentication Providers.
+**Privileges:** ```KERBEROS_VIEW``` <br><br>Get the list of Kerberos Authentication Providers.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.kerberos_providers import KerberosProviders
@@ -139,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -160,11 +164,13 @@ Name | Type | Description  | Notes
 
 Register a Kerberos Authentication Provider.
 
-Register a Kerberos Authentication Provider.
+**Privileges:** ```KERBEROS_MODIFY``` <br><br>Register a Kerberos Authentication Provider.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.kerberos_provider import KerberosProvider
@@ -206,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -227,11 +233,13 @@ Name | Type | Description  | Notes
 
 Unregister a Kerberos Provider.
 
-Unregister a Kerberos Provider.
+**Privileges:** ```KERBEROS_MODIFY``` <br><br>Unregister a Kerberos Provider.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.unregister_kerberos_request import UnregisterKerberosRequest
@@ -278,7 +286,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -299,11 +307,13 @@ Name | Type | Description  | Notes
 
 Update the Kerberos Provider Registration.
 
-Update the Kerberos Provider Registration.
+**Privileges:** ```KERBEROS_MODIFY``` <br><br>Update the Kerberos Provider Registration.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.kerberos_provider import KerberosProvider
@@ -347,7 +357,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 

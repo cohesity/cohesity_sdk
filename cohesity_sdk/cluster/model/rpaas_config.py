@@ -29,15 +29,15 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.cancellation_timeout_params import CancellationTimeoutParams
     from cohesity_sdk.cluster.model.common_target_configuration import CommonTargetConfiguration
-    from cohesity_sdk.cluster.model.helios_rpaas_config_all_of import HeliosRpaasConfigAllOf
     from cohesity_sdk.cluster.model.log_retention import LogRetention
     from cohesity_sdk.cluster.model.retention import Retention
+    from cohesity_sdk.cluster.model.rpaas_config_all_of import RpaasConfigAllOf
     from cohesity_sdk.cluster.model.target_schedule import TargetSchedule
     globals()['CancellationTimeoutParams'] = CancellationTimeoutParams
     globals()['CommonTargetConfiguration'] = CommonTargetConfiguration
-    globals()['HeliosRpaasConfigAllOf'] = HeliosRpaasConfigAllOf
     globals()['LogRetention'] = LogRetention
     globals()['Retention'] = Retention
+    globals()['RpaasConfigAllOf'] = RpaasConfigAllOf
     globals()['TargetSchedule'] = TargetSchedule
 
 
@@ -269,7 +269,7 @@ class RpaasConfig(ModelComposed):
           ],
           'allOf': [
               CommonTargetConfiguration,
-              HeliosRpaasConfigAllOf,
+              RpaasConfigAllOf,
           ],
           'oneOf': [
           ],

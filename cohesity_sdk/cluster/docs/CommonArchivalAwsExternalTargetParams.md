@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **bucket_owner_account_id** | **str, none_type** | Specifies the account Id of the S3 bucket owner. | [optional] 
 **is_forever_incremental_archival_enabled** | **bool, none_type** | Specifies if Forever Incremental Archival setting is enabled or not. | [optional] 
 **is_incremental_archival_enabled** | **bool, none_type** | Specifies if Incremental Archival setting is enabled or not. | [optional] 
+**lambda_private_endpoint** | **str, none_type** | Lambda private endpoint if the traffic needs to be routed through a private link. | [optional] 
+**private_endpoint** | **str, none_type** | Private endpoint if specified. | [optional] 
 **source_side_deduplication** | **bool, none_type** | Specifies the Source Side Deduplication setting for the AWS external target | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.m_oref import MOref
     from cohesity_sdk.cluster.model.vmware_cdp_object import VmwareCdpObject
+    globals()['MOref'] = MOref
     globals()['VmwareCdpObject'] = VmwareCdpObject
 
 
@@ -84,6 +86,10 @@ class VmwareObjectEntityParams(ModelNormal):
             'KORGMETADATA': "kOrgMetadata",
             'KSTORAGEPOLICY': "kStoragePolicy",
             'KVIRTUALAPPTEMPLATE': "kVirtualAppTemplate",
+            'KPROVIDERVDC': "kProviderVDC",
+            'KPLACEMENTPOLICY': "kPlacementPolicy",
+            'KSIZINGPOLICY': "kSizingPolicy",
+            'KCOMPUTEPOLICY': "kComputePolicy",
         },
     }
 
@@ -108,7 +114,10 @@ class VmwareObjectEntityParams(ModelNormal):
         return {
             'cdp_info': (VmwareCdpObject,),  # noqa: E501
             'is_template': (bool, none_type,),  # noqa: E501
+            'mo_ref': (MOref,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
+            'uuid': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -120,7 +129,10 @@ class VmwareObjectEntityParams(ModelNormal):
     attribute_map = {
         'cdp_info': 'cdpInfo',  # noqa: E501
         'is_template': 'isTemplate',  # noqa: E501
+        'mo_ref': 'moRef',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'type': 'type',  # noqa: E501
+        'uuid': 'uuid',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -172,7 +184,10 @@ class VmwareObjectEntityParams(ModelNormal):
 
             cdp_info (VmwareCdpObject): [optional]  # noqa: E501
             is_template (bool, none_type): Specifies if the object is a VM template.. [optional]  # noqa: E501
+            mo_ref (MOref): [optional]  # noqa: E501
+            name (str, none_type): Specifies the name associated with the object.. [optional]  # noqa: E501
             type (str, none_type): VMware Object type.. [optional]  # noqa: E501
+            uuid (str, none_type): Specifies the uuid associated with the object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

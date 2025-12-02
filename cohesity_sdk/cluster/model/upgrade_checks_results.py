@@ -85,12 +85,13 @@ class UpgradeChecksResults(ModelNormal):
         """
         lazy_import()
         return {
-            'finish_time_secs': (int, none_type,),  # noqa: E501
-            'node_results': ([UpgradeCheckNodeResult],),  # noqa: E501
+            'error': (str,),  # noqa: E501
             'request_type': (str,),  # noqa: E501
             'result_status': (str,),  # noqa: E501
-            'start_time_secs': (int, none_type,),  # noqa: E501
             'test_run_instance_id': (str,),  # noqa: E501
+            'finish_time_secs': (int, none_type,),  # noqa: E501
+            'node_results': ([UpgradeCheckNodeResult],),  # noqa: E501
+            'start_time_secs': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -100,12 +101,13 @@ class UpgradeChecksResults(ModelNormal):
 
 
     attribute_map = {
-        'finish_time_secs': 'finishTimeSecs',  # noqa: E501
-        'node_results': 'nodeResults',  # noqa: E501
+        'error': 'error',  # noqa: E501
         'request_type': 'requestType',  # noqa: E501
         'result_status': 'resultStatus',  # noqa: E501
-        'start_time_secs': 'startTimeSecs',  # noqa: E501
         'test_run_instance_id': 'testRunInstanceId',  # noqa: E501
+        'finish_time_secs': 'finishTimeSecs',  # noqa: E501
+        'node_results': 'nodeResults',  # noqa: E501
+        'start_time_secs': 'startTimeSecs',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -120,8 +122,14 @@ class UpgradeChecksResults(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, error, request_type, result_status, test_run_instance_id, *args, **kwargs):  # noqa: E501
         """UpgradeChecksResults - a model defined in OpenAPI
+
+        Args:
+            error (str): Error message if test results could not be fetched.
+            request_type (str): Type of the check(preupgrade/postupgrade).
+            result_status (str): Final result (running/pass/fail) of run.
+            test_run_instance_id (str): Specifies test run instance of upgrade checks.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -156,11 +164,8 @@ class UpgradeChecksResults(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             finish_time_secs (int, none_type): Specifies unix epoch finish time of checks(in seconds).. [optional]  # noqa: E501
-            node_results ([UpgradeCheckNodeResult]): The healthcheck result for node. [optional]  # noqa: E501
-            request_type (str): type of checks(preupgrade/postupgrade). [optional]  # noqa: E501
-            result_status (str): final result (running/pass/fail) of run. [optional]  # noqa: E501
+            node_results ([UpgradeCheckNodeResult]): The healthcheck result for node.. [optional]  # noqa: E501
             start_time_secs (int, none_type): Specifies unix epoch start time of checks(in seconds).. [optional]  # noqa: E501
-            test_run_instance_id (str): Specifies test run instance of upgrade checks. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -187,6 +192,10 @@ class UpgradeChecksResults(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.error = error
+        self.request_type = request_type
+        self.result_status = result_status
+        self.test_run_instance_id = test_run_instance_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -25,6 +25,7 @@ from cohesity_sdk.cluster.model.associate_entity_metadata_request import Associa
 from cohesity_sdk.cluster.model.associate_entity_metadata_result import AssociateEntityMetadataResult
 from cohesity_sdk.cluster.model.cancel_object_runs_request import CancelObjectRunsRequest
 from cohesity_sdk.cluster.model.cancel_object_runs_results import CancelObjectRunsResults
+from cohesity_sdk.cluster.model.common_object_snapshot_volume_params import CommonObjectSnapshotVolumeParams
 from cohesity_sdk.cluster.model.construct_meta_info_request import ConstructMetaInfoRequest
 from cohesity_sdk.cluster.model.construct_meta_info_result import ConstructMetaInfoResult
 from cohesity_sdk.cluster.model.error import Error
@@ -37,11 +38,12 @@ from cohesity_sdk.cluster.model.get_object_runs_response_body import GetObjectRu
 from cohesity_sdk.cluster.model.get_object_snapshots_response_body import GetObjectSnapshotsResponseBody
 from cohesity_sdk.cluster.model.get_pit_ranges_protected_object_response_body import GetPITRangesProtectedObjectResponseBody
 from cohesity_sdk.cluster.model.get_protected_objects_response import GetProtectedObjectsResponse
+from cohesity_sdk.cluster.model.modify_source_hierarchy_objects_request import ModifySourceHierarchyObjectsRequest
+from cohesity_sdk.cluster.model.modify_source_hierarchy_objects_result import ModifySourceHierarchyObjectsResult
 from cohesity_sdk.cluster.model.object_action_request import ObjectActionRequest
 from cohesity_sdk.cluster.model.object_browse_request import ObjectBrowseRequest
 from cohesity_sdk.cluster.model.object_protection_run_summary import ObjectProtectionRunSummary
 from cohesity_sdk.cluster.model.object_snapshot import ObjectSnapshot
-from cohesity_sdk.cluster.model.object_snapshot_volume_info import ObjectSnapshotVolumeInfo
 from cohesity_sdk.cluster.model.object_stats import ObjectStats
 from cohesity_sdk.cluster.model.object_with_children import ObjectWithChildren
 from cohesity_sdk.cluster.model.objects_action_request import ObjectsActionRequest
@@ -72,7 +74,7 @@ class ObjectApi(object):
         ):
             """Associate Metadata with Entity  # noqa: E501
 
-            Associates metadata with entities in the entity hierarchy. This metadata can be of various types (eg. Credentials). Returns a list of entity id and corresponding errors encountered (if any) while associating metadata with that entity. Note that a partial success response is possible where we succeed in associating metadata with some of the entities but fail for others. The API also expects the entities being updated belong to same source.  # noqa: E501
+            **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Associates metadata with entities in the entity hierarchy. This metadata can be of various types (eg. Credentials). Returns a list of entity id and corresponding errors encountered (if any) while associating metadata with that entity. Note that a partial success response is possible where we succeed in associating metadata with some of the entities but fail for others. The API also expects the entities being updated belong to same source.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -137,7 +139,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/metadata',
                 'operation_id': 'associate_entity_metadata',
@@ -195,7 +199,7 @@ class ObjectApi(object):
         ):
             """Fetch the contents (files & folders) for the specified object.  # noqa: E501
 
-            Fetch the contents (files & folders) of the specified path inside the specified object.  # noqa: E501
+            **Privileges:** ```RESTORE_VIEW``` <br><br>Fetch the contents (files & folders) of the specified path inside the specified object.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -263,7 +267,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/browse',
                 'operation_id': 'browse_object_contents',
@@ -326,7 +332,7 @@ class ObjectApi(object):
         ):
             """Cancel object runs.  # noqa: E501
 
-            Cancel object runs for object based protection. This does not apply to Group based protection.  # noqa: E501
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Cancel object runs for object based protection. This does not apply to Group based protection.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -391,7 +397,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/runs/cancel',
                 'operation_id': 'cancel_object_runs',
@@ -449,7 +457,7 @@ class ObjectApi(object):
         ):
             """Construct meta info for any workflow from object snapshot and some other information.  # noqa: E501
 
-            Construct meta info from object snapshot and some additional params.  # noqa: E501
+            **Privileges:** ```RESTORE_VIEW``` <br><br>Construct meta info from object snapshot and some additional params.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -517,7 +525,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/snapshots/{snapshotId}/meta-info',
                 'operation_id': 'construct_meta_info',
@@ -573,6 +583,154 @@ class ObjectApi(object):
             callable=__construct_meta_info
         )
 
+        def __delete_entity_metadata(
+            self,
+            id,
+            **kwargs
+        ):
+            """Delete Metadata with Entity  # noqa: E501
+
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Deletes entity metadata for the given entity Id. Currently only supported for RDS and Aurora Postgres Credential metadata.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_entity_metadata(id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int): Specifies a unique id of the Entity.
+
+            Keyword Args:
+                metadata_type (str): Specifies the metadata type to be deleted. This is a required field currently and the API will error out if this field is not provided.. [optional]
+                environment_type (str): Specifies the environment type for the Credentials metadata to be deleted. This will be only set when the metadata type is Credentials.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_entity_metadata = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-protect/objects/metadata/{id}',
+                'operation_id': 'delete_entity_metadata',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'metadata_type',
+                    'environment_type',
+                ],
+                'required': [
+                    'id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                    'metadata_type',
+                    'environment_type',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('metadata_type',): {
+
+                        "CREDENTIALS": "Credentials",
+                        "GENERICMETADATA": "GenericMetadata"
+                    },
+                    ('environment_type',): {
+
+                        "KAWSAURORAPOSTGRES": "kAwsAuroraPostgres",
+                        "KAWSRDSPOSTGRES": "kAwsRDSPostgres",
+                        "KEXPERIMENTALADAPTER": "kExperimentalAdapter"
+                    },
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                    'metadata_type':
+                        (str,),
+                    'environment_type':
+                        (str,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'metadata_type': 'metadataType',
+                    'environment_type': 'environmentType',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'metadata_type': 'query',
+                    'environment_type': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__delete_entity_metadata
+        )
+
         def __filter_objects(
             self,
             body,
@@ -580,7 +738,7 @@ class ObjectApi(object):
         ):
             """List all the filtered objects.  # noqa: E501
 
-            List all the filtered objects using given regular expressions and wildcard supported search strings. We are currenly supporting this for only SQL adapter.  # noqa: E501
+            **Privileges:** ```RESTORE_VIEW``` <br><br>List all the filtered objects using given regular expressions and wildcard supported search strings. We are currenly supporting this for only SQL adapter.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -645,7 +803,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/filter/objects',
                 'operation_id': 'filter_objects',
@@ -703,7 +863,7 @@ class ObjectApi(object):
         ):
             """Get snapshots of indexed object.  # noqa: E501
 
-            Get snapshots of indexed object.  # noqa: E501
+            **Privileges:** ```RESTORE_VIEW``` <br><br>Get snapshots of indexed object.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -722,6 +882,7 @@ class ObjectApi(object):
                 run_types ([str]): Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.. [optional]
                 use_cached_data (bool): Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.. [optional]
                 object_action_key (str): Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.. [optional]
+                filename (str): Specifies the name of the file or folder to find in the snapshots.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -778,7 +939,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{objectId}/indexed-objects/snapshots',
                 'operation_id': 'get_all_indexed_object_snapshots',
@@ -796,6 +959,7 @@ class ObjectApi(object):
                     'run_types',
                     'use_cached_data',
                     'object_action_key',
+                    'filename',
                 ],
                 'required': [
                     'object_id',
@@ -834,6 +998,13 @@ class ObjectApi(object):
                         "KVCD": "kVCD",
                         "KAZURE": "kAzure",
                         "KGCP": "kGCP",
+                        "KGCPBIGQUERY": "kGCPBigQuery",
+                        "KGCPMYSQL": "kGCPMySQL",
+                        "KGOOGLESPANNER": "kGoogleSpanner",
+                        "KGCPPOSTGRESQL": "kGCPPostgreSQL",
+                        "KGCPALLOYDBPOSTGRESQL": "kGCPAlloyDBPostgreSQL",
+                        "KGCPSQLSERVER": "kGCPSQLServer",
+                        "KGCPFIRESTORE": "kGCPFirestore",
                         "KKVM": "kKVM",
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
@@ -841,16 +1012,48 @@ class ObjectApi(object):
                         "KAWSS3": "kAwsS3",
                         "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
                         "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KRDSPOSTGRESSNAPSHOTMANAGER": "kRDSPostgresSnapshotManager",
+                        "KRDSMYSQLSNAPSHOTMANAGER": "kRDSMySQLSnapshotManager",
+                        "KRDSMSSQLSNAPSHOTMANAGER": "kRDSMSSQLSnapshotManager",
+                        "KRDSORACLESNAPSHOTMANAGER": "kRDSOracleSnapshotManager",
+                        "KRDSMARIADBSNAPSHOTMANAGER": "kRDSMariaDBSnapshotManager",
+                        "KRDSCUSTOMMSSQLSNAPSHOTMANAGER": "kRDSCustomMSSQLSnapshotManager",
+                        "KRDSCUSTOMORACLESNAPSHOTMANAGER": "kRDSCustomOracleSnapshotManager",
                         "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAURORAPOSTGRESSNAPSHOTMANAGER": "kAuroraPostgresSnapshotManager",
+                        "KAURORAMYSQLSNAPSHOTMANAGER": "kAuroraMySQLSnapshotManager",
                         "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAWSRDSPOSTGRES": "kAwsRDSPostgres",
+                        "KAWSAURORAPOSTGRES": "kAwsAuroraPostgres",
+                        "KAWSMYSQL": "kAWSMySQL",
+                        "KAWSAURORAMYSQL": "kAWSAuroraMySQL",
+                        "KAWSDYNAMODB": "kAwsDynamoDB",
+                        "KAWSRDSORACLE": "kAWSRdsOracle",
+                        "KAWSDOCUMENTDB": "kAWSDocumentDB",
+                        "KAWSRDSPOSTGRESDB": "kAWSRDSPostgresDB",
+                        "KAWSAURORAPOSTGRESDB": "kAWSAuroraPostgresDB",
+                        "KAWSRDSMSSQL": "kAWSRDSMSSQL",
+                        "KAWSREDSHIFT": "kAWSRedshift",
                         "KAZURENATIVE": "kAzureNative",
                         "KAZURESQL": "kAzureSQL",
+                        "KAZUREENTRAID": "kAzureEntraID",
+                        "KAZUREMYSQL": "kAzureMySQL",
+                        "KAZURECOSMOSDBNOSQL": "kAzureCosmosDBNoSQL",
+                        "KAZURECOSMOSDBMONGODB": "kAzureCosmosDBMongoDB",
+                        "KAZURECOSMOSDBCASSANDRA": "kAzureCosmosDBCassandra",
+                        "KAZUREPOSTGRESQLSERVER": "kAzurePostgreSQLServer",
+                        "KAZURESQLDB": "kAzureSQLDB",
+                        "KAZURESQLMI": "kAzureSQLMI",
+                        "KAZURETABLESTORAGE": "kAzureTableStorage",
+                        "KAZUREBLOBSTORAGE": "kAzureBlobStorage",
+                        "KAZURETABLEAPI": "kAzureTableAPI",
                         "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KPHYSICALFILES": "kPhysicalFiles",
                         "KGPFS": "kGPFS",
                         "KELASTIFILE": "kElastifile",
                         "KNETAPP": "kNetapp",
+                        "KNUTANIXFS": "kNutanixFS",
                         "KGENERICNAS": "kGenericNas",
                         "KISILON": "kIsilon",
                         "KFLASHBLADE": "kFlashBlade",
@@ -876,11 +1079,21 @@ class ObjectApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
+                        "KSAPHANA": "kSAPHANA",
                         "KUDA": "kUDA",
+                        "KS3COMPATIBLE": "kS3Compatible",
                         "KSFDC": "kSfdc",
                         "KO365EXCHANGECSM": "kO365ExchangeCSM",
                         "KO365ONEDRIVECSM": "kO365OneDriveCSM",
-                        "KO365SHAREPOINTCSM": "kO365SharePointCSM"
+                        "KO365SHAREPOINTCSM": "kO365SharepointCSM",
+                        "KEXPERIMENTALADAPTER": "kExperimentalAdapter",
+                        "KMONGODBPHYSICAL": "kMongoDBPhysical",
+                        "KGOOGLEWORKSPACE": "kGoogleWorkspace",
+                        "KGMAIL": "kGmail",
+                        "KGOOGLEDRIVE": "kGoogleDrive",
+                        "KDB2": "kDB2",
+                        "KSERVICENOW": "kServiceNow",
+                        "KPOSTGRES": "kPostgres"
                     },
                 },
                 'openapi_types': {
@@ -902,6 +1115,8 @@ class ObjectApi(object):
                         (bool,),
                     'object_action_key':
                         (str,),
+                    'filename':
+                        (str,),
                 },
                 'attribute_map': {
                     'object_id': 'objectId',
@@ -913,6 +1128,7 @@ class ObjectApi(object):
                     'run_types': 'runTypes',
                     'use_cached_data': 'useCachedData',
                     'object_action_key': 'objectActionKey',
+                    'filename': 'filename',
                 },
                 'location_map': {
                     'object_id': 'path',
@@ -924,6 +1140,7 @@ class ObjectApi(object):
                     'run_types': 'query',
                     'use_cached_data': 'query',
                     'object_action_key': 'query',
+                    'filename': 'query',
                 },
                 'collection_format_map': {
                     'run_types': 'csv',
@@ -946,7 +1163,7 @@ class ObjectApi(object):
         ):
             """Get Metadata of Entities  # noqa: E501
 
-            Gets entity metadata for entities. This can be used as a input for the PUT API.   # noqa: E501
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Gets entity metadata for entities. This can be used as a input for the PUT API.   # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1012,7 +1229,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{sourceId}/metadata',
                 'operation_id': 'get_entity_metadata',
@@ -1076,7 +1295,7 @@ class ObjectApi(object):
         ):
             """Get snapshots of indexed object.  # noqa: E501
 
-            Get snapshots of indexed object.  # noqa: E501
+            **Privileges:** ```RESTORE_VIEW``` <br><br>Get snapshots of indexed object.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1095,6 +1314,8 @@ class ObjectApi(object):
                 run_types ([str]): Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.. [optional]
                 use_cached_data (bool): Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.. [optional]
                 object_action_key (str): Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.. [optional]
+                from_file_mtime_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime after and equal to this value. If not specified and toFileMtimeUsecs is specified, then the fromFileMtimeUsecs will be set to 7 days before toFileMtimeUsecs.. [optional]
+                to_file_mtime_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime before and equal to this value. If not specified and fromFileMtimeUsecs is specified, then the toFileMtimeUsecs will be set to current time.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1153,7 +1374,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{objectId}/protection-groups/{protectionGroupId}/indexed-objects/snapshots',
                 'operation_id': 'get_indexed_object_snapshots',
@@ -1171,6 +1394,8 @@ class ObjectApi(object):
                     'run_types',
                     'use_cached_data',
                     'object_action_key',
+                    'from_file_mtime_usecs',
+                    'to_file_mtime_usecs',
                 ],
                 'required': [
                     'protection_group_id',
@@ -1210,6 +1435,13 @@ class ObjectApi(object):
                         "KVCD": "kVCD",
                         "KAZURE": "kAzure",
                         "KGCP": "kGCP",
+                        "KGCPBIGQUERY": "kGCPBigQuery",
+                        "KGCPMYSQL": "kGCPMySQL",
+                        "KGOOGLESPANNER": "kGoogleSpanner",
+                        "KGCPPOSTGRESQL": "kGCPPostgreSQL",
+                        "KGCPALLOYDBPOSTGRESQL": "kGCPAlloyDBPostgreSQL",
+                        "KGCPSQLSERVER": "kGCPSQLServer",
+                        "KGCPFIRESTORE": "kGCPFirestore",
                         "KKVM": "kKVM",
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
@@ -1217,16 +1449,48 @@ class ObjectApi(object):
                         "KAWSS3": "kAwsS3",
                         "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
                         "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KRDSPOSTGRESSNAPSHOTMANAGER": "kRDSPostgresSnapshotManager",
+                        "KRDSMYSQLSNAPSHOTMANAGER": "kRDSMySQLSnapshotManager",
+                        "KRDSMSSQLSNAPSHOTMANAGER": "kRDSMSSQLSnapshotManager",
+                        "KRDSORACLESNAPSHOTMANAGER": "kRDSOracleSnapshotManager",
+                        "KRDSMARIADBSNAPSHOTMANAGER": "kRDSMariaDBSnapshotManager",
+                        "KRDSCUSTOMMSSQLSNAPSHOTMANAGER": "kRDSCustomMSSQLSnapshotManager",
+                        "KRDSCUSTOMORACLESNAPSHOTMANAGER": "kRDSCustomOracleSnapshotManager",
                         "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAURORAPOSTGRESSNAPSHOTMANAGER": "kAuroraPostgresSnapshotManager",
+                        "KAURORAMYSQLSNAPSHOTMANAGER": "kAuroraMySQLSnapshotManager",
                         "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAWSRDSPOSTGRES": "kAwsRDSPostgres",
+                        "KAWSAURORAPOSTGRES": "kAwsAuroraPostgres",
+                        "KAWSMYSQL": "kAWSMySQL",
+                        "KAWSAURORAMYSQL": "kAWSAuroraMySQL",
+                        "KAWSDYNAMODB": "kAwsDynamoDB",
+                        "KAWSRDSORACLE": "kAWSRdsOracle",
+                        "KAWSDOCUMENTDB": "kAWSDocumentDB",
+                        "KAWSRDSPOSTGRESDB": "kAWSRDSPostgresDB",
+                        "KAWSAURORAPOSTGRESDB": "kAWSAuroraPostgresDB",
+                        "KAWSRDSMSSQL": "kAWSRDSMSSQL",
+                        "KAWSREDSHIFT": "kAWSRedshift",
                         "KAZURENATIVE": "kAzureNative",
                         "KAZURESQL": "kAzureSQL",
+                        "KAZUREENTRAID": "kAzureEntraID",
+                        "KAZUREMYSQL": "kAzureMySQL",
+                        "KAZURECOSMOSDBNOSQL": "kAzureCosmosDBNoSQL",
+                        "KAZURECOSMOSDBMONGODB": "kAzureCosmosDBMongoDB",
+                        "KAZURECOSMOSDBCASSANDRA": "kAzureCosmosDBCassandra",
+                        "KAZUREPOSTGRESQLSERVER": "kAzurePostgreSQLServer",
+                        "KAZURESQLDB": "kAzureSQLDB",
+                        "KAZURESQLMI": "kAzureSQLMI",
+                        "KAZURETABLESTORAGE": "kAzureTableStorage",
+                        "KAZUREBLOBSTORAGE": "kAzureBlobStorage",
+                        "KAZURETABLEAPI": "kAzureTableAPI",
                         "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KPHYSICALFILES": "kPhysicalFiles",
                         "KGPFS": "kGPFS",
                         "KELASTIFILE": "kElastifile",
                         "KNETAPP": "kNetapp",
+                        "KNUTANIXFS": "kNutanixFS",
                         "KGENERICNAS": "kGenericNas",
                         "KISILON": "kIsilon",
                         "KFLASHBLADE": "kFlashBlade",
@@ -1252,11 +1516,21 @@ class ObjectApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
+                        "KSAPHANA": "kSAPHANA",
                         "KUDA": "kUDA",
+                        "KS3COMPATIBLE": "kS3Compatible",
                         "KSFDC": "kSfdc",
                         "KO365EXCHANGECSM": "kO365ExchangeCSM",
                         "KO365ONEDRIVECSM": "kO365OneDriveCSM",
-                        "KO365SHAREPOINTCSM": "kO365SharePointCSM"
+                        "KO365SHAREPOINTCSM": "kO365SharepointCSM",
+                        "KEXPERIMENTALADAPTER": "kExperimentalAdapter",
+                        "KMONGODBPHYSICAL": "kMongoDBPhysical",
+                        "KGOOGLEWORKSPACE": "kGoogleWorkspace",
+                        "KGMAIL": "kGmail",
+                        "KGOOGLEDRIVE": "kGoogleDrive",
+                        "KDB2": "kDB2",
+                        "KSERVICENOW": "kServiceNow",
+                        "KPOSTGRES": "kPostgres"
                     },
                 },
                 'openapi_types': {
@@ -1278,6 +1552,10 @@ class ObjectApi(object):
                         (bool,),
                     'object_action_key':
                         (str,),
+                    'from_file_mtime_usecs':
+                        (int,),
+                    'to_file_mtime_usecs':
+                        (int,),
                 },
                 'attribute_map': {
                     'protection_group_id': 'protectionGroupId',
@@ -1289,6 +1567,8 @@ class ObjectApi(object):
                     'run_types': 'runTypes',
                     'use_cached_data': 'useCachedData',
                     'object_action_key': 'objectActionKey',
+                    'from_file_mtime_usecs': 'fromFileMtimeUsecs',
+                    'to_file_mtime_usecs': 'toFileMtimeUsecs',
                 },
                 'location_map': {
                     'protection_group_id': 'path',
@@ -1300,6 +1580,8 @@ class ObjectApi(object):
                     'run_types': 'query',
                     'use_cached_data': 'query',
                     'object_action_key': 'query',
+                    'from_file_mtime_usecs': 'query',
+                    'to_file_mtime_usecs': 'query',
                 },
                 'collection_format_map': {
                     'run_types': 'csv',
@@ -1323,7 +1605,7 @@ class ObjectApi(object):
         ):
             """Get a run for an object.  # noqa: E501
 
-            Get a run for an object.  # noqa: E501
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Get a run for an object.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1391,7 +1673,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/runs/{runId}',
                 'operation_id': 'get_object_run_by_run_id',
@@ -1446,6 +1730,395 @@ class ObjectApi(object):
             callable=__get_object_run_by_run_id
         )
 
+        def __get_object_run_messages_report(
+            self,
+            id,
+            run_id,
+            **kwargs
+        ):
+            """Get the CSV of various Messages for a given run.  # noqa: E501
+
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Get an CSV report for given run id and object id. Each row in CSV report contains all errors and warnings during run. File format: error_<objectId>_<runStartTime>.csv  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_object_run_messages_report(id, run_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int): Specifies the id of the object.
+                run_id (str): Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>.
+
+            Keyword Args:
+                object_action_key (str): Specifies the backup type for the run.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                file_type
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            kwargs['run_id'] = \
+                run_id
+            return self.call_with_http_info(**kwargs)
+
+        self.get_object_run_messages_report = _Endpoint(
+            settings={
+                'response_type': (file_type,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-protect/objects/{id}/runs/{runId}/messages',
+                'operation_id': 'get_object_run_messages_report',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'run_id',
+                    'object_action_key',
+                ],
+                'required': [
+                    'id',
+                    'run_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                    'object_action_key',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('object_action_key',): {
+
+                        "KVMWARE": "kVMware",
+                        "KHYPERV": "kHyperV",
+                        "KVCD": "kVCD",
+                        "KAZURE": "kAzure",
+                        "KGCP": "kGCP",
+                        "KGCPBIGQUERY": "kGCPBigQuery",
+                        "KGCPMYSQL": "kGCPMySQL",
+                        "KGOOGLESPANNER": "kGoogleSpanner",
+                        "KGCPPOSTGRESQL": "kGCPPostgreSQL",
+                        "KGCPALLOYDBPOSTGRESQL": "kGCPAlloyDBPostgreSQL",
+                        "KGCPSQLSERVER": "kGCPSQLServer",
+                        "KGCPFIRESTORE": "kGCPFirestore",
+                        "KKVM": "kKVM",
+                        "KACROPOLIS": "kAcropolis",
+                        "KAWS": "kAWS",
+                        "KAWSNATIVE": "kAWSNative",
+                        "KAWSS3": "kAwsS3",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KRDSPOSTGRESSNAPSHOTMANAGER": "kRDSPostgresSnapshotManager",
+                        "KRDSMYSQLSNAPSHOTMANAGER": "kRDSMySQLSnapshotManager",
+                        "KRDSMSSQLSNAPSHOTMANAGER": "kRDSMSSQLSnapshotManager",
+                        "KRDSORACLESNAPSHOTMANAGER": "kRDSOracleSnapshotManager",
+                        "KRDSMARIADBSNAPSHOTMANAGER": "kRDSMariaDBSnapshotManager",
+                        "KRDSCUSTOMMSSQLSNAPSHOTMANAGER": "kRDSCustomMSSQLSnapshotManager",
+                        "KRDSCUSTOMORACLESNAPSHOTMANAGER": "kRDSCustomOracleSnapshotManager",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAURORAPOSTGRESSNAPSHOTMANAGER": "kAuroraPostgresSnapshotManager",
+                        "KAURORAMYSQLSNAPSHOTMANAGER": "kAuroraMySQLSnapshotManager",
+                        "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAWSRDSPOSTGRES": "kAwsRDSPostgres",
+                        "KAWSAURORAPOSTGRES": "kAwsAuroraPostgres",
+                        "KAWSMYSQL": "kAWSMySQL",
+                        "KAWSAURORAMYSQL": "kAWSAuroraMySQL",
+                        "KAWSDYNAMODB": "kAwsDynamoDB",
+                        "KAWSRDSORACLE": "kAWSRdsOracle",
+                        "KAWSDOCUMENTDB": "kAWSDocumentDB",
+                        "KAWSRDSPOSTGRESDB": "kAWSRDSPostgresDB",
+                        "KAWSAURORAPOSTGRESDB": "kAWSAuroraPostgresDB",
+                        "KAWSRDSMSSQL": "kAWSRDSMSSQL",
+                        "KAWSREDSHIFT": "kAWSRedshift",
+                        "KAZURENATIVE": "kAzureNative",
+                        "KAZURESQL": "kAzureSQL",
+                        "KAZUREENTRAID": "kAzureEntraID",
+                        "KAZUREMYSQL": "kAzureMySQL",
+                        "KAZURECOSMOSDBNOSQL": "kAzureCosmosDBNoSQL",
+                        "KAZURECOSMOSDBMONGODB": "kAzureCosmosDBMongoDB",
+                        "KAZURECOSMOSDBCASSANDRA": "kAzureCosmosDBCassandra",
+                        "KAZUREPOSTGRESQLSERVER": "kAzurePostgreSQLServer",
+                        "KAZURESQLDB": "kAzureSQLDB",
+                        "KAZURESQLMI": "kAzureSQLMI",
+                        "KAZURETABLESTORAGE": "kAzureTableStorage",
+                        "KAZUREBLOBSTORAGE": "kAzureBlobStorage",
+                        "KAZURETABLEAPI": "kAzureTableAPI",
+                        "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
+                        "KPHYSICAL": "kPhysical",
+                        "KPHYSICALFILES": "kPhysicalFiles",
+                        "KGPFS": "kGPFS",
+                        "KELASTIFILE": "kElastifile",
+                        "KNETAPP": "kNetapp",
+                        "KNUTANIXFS": "kNutanixFS",
+                        "KGENERICNAS": "kGenericNas",
+                        "KISILON": "kIsilon",
+                        "KFLASHBLADE": "kFlashBlade",
+                        "KPURE": "kPure",
+                        "KIBMFLASHSYSTEM": "kIbmFlashSystem",
+                        "KSQL": "kSQL",
+                        "KEXCHANGE": "kExchange",
+                        "KAD": "kAD",
+                        "KORACLE": "kOracle",
+                        "KVIEW": "kView",
+                        "KREMOTEADAPTER": "kRemoteAdapter",
+                        "KO365": "kO365",
+                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
+                        "KO365TEAMS": "kO365Teams",
+                        "KO365GROUP": "kO365Group",
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KO365SHAREPOINT": "kO365Sharepoint",
+                        "KKUBERNETES": "kKubernetes",
+                        "KCASSANDRA": "kCassandra",
+                        "KMONGODB": "kMongoDB",
+                        "KCOUCHBASE": "kCouchbase",
+                        "KHDFS": "kHdfs",
+                        "KHIVE": "kHive",
+                        "KHBASE": "kHBase",
+                        "KSAPHANA": "kSAPHANA",
+                        "KUDA": "kUDA",
+                        "KS3COMPATIBLE": "kS3Compatible",
+                        "KSFDC": "kSfdc",
+                        "KO365EXCHANGECSM": "kO365ExchangeCSM",
+                        "KO365ONEDRIVECSM": "kO365OneDriveCSM",
+                        "KO365SHAREPOINTCSM": "kO365SharepointCSM",
+                        "KEXPERIMENTALADAPTER": "kExperimentalAdapter",
+                        "KMONGODBPHYSICAL": "kMongoDBPhysical",
+                        "KGOOGLEWORKSPACE": "kGoogleWorkspace",
+                        "KGMAIL": "kGmail",
+                        "KGOOGLEDRIVE": "kGoogleDrive",
+                        "KDB2": "kDB2",
+                        "KSERVICENOW": "kServiceNow",
+                        "KPOSTGRES": "kPostgres"
+                    },
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                    'run_id':
+                        (str,),
+                    'object_action_key':
+                        (str,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'run_id': 'runId',
+                    'object_action_key': 'objectActionKey',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'run_id': 'path',
+                    'object_action_key': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/octet-stream'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_object_run_messages_report
+        )
+
+        def __get_object_run_success_files(
+            self,
+            id,
+            run_id,
+            **kwargs
+        ):
+            """Get the CSV of errors/warnings for a given run and an object.  # noqa: E501
+
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Get an CSV report for given objectId and run id. Report will depend on the query parameter fileType, default will be: success_files_list where each row contains the name of file backedup successfully.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_object_run_success_files(id, run_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int): Specifies the id of the object.
+                run_id (str): Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>.
+
+            Keyword Args:
+                name (str): Specifies the name of the source being backed up. [optional]
+                file_type (str): Specifies the downloaded type, i.e: success_files_list, default: success_files_list. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            kwargs['run_id'] = \
+                run_id
+            return self.call_with_http_info(**kwargs)
+
+        self.get_object_run_success_files = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-protect/objects/{id}/runs/{runId}/downloadFiles',
+                'operation_id': 'get_object_run_success_files',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'run_id',
+                    'name',
+                    'file_type',
+                ],
+                'required': [
+                    'id',
+                    'run_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                    'run_id':
+                        (str,),
+                    'name':
+                        (str,),
+                    'file_type':
+                        (str,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'run_id': 'runId',
+                    'name': 'name',
+                    'file_type': 'fileType',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'run_id': 'path',
+                    'name': 'query',
+                    'file_type': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/octet-stream'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_object_run_success_files
+        )
+
         def __get_object_runs(
             self,
             id,
@@ -1453,7 +2126,7 @@ class ObjectApi(object):
         ):
             """Get the list of runs for an object.  # noqa: E501
 
-            Get the runs for a particular object.  # noqa: E501
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Get the runs for a particular object.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1531,7 +2204,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/runs',
                 'operation_id': 'get_object_runs',
@@ -1729,7 +2404,7 @@ class ObjectApi(object):
         ):
             """Get details of object snapshot.  # noqa: E501
 
-            Get details of object snapshot.  # noqa: E501
+            **Privileges:** ```RESTORE_VIEW``` <br><br>Get details of object snapshot.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1794,7 +2469,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/snapshots/{snapshotId}',
                 'operation_id': 'get_object_snapshot_info',
@@ -1850,7 +2527,7 @@ class ObjectApi(object):
         ):
             """Get volume info of object snapshot.  # noqa: E501
 
-            Get volume info of object snapshot.  # noqa: E501
+            **Privileges:** ```RESTORE_VIEW``` <br><br>Get volume info of object snapshot.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1885,7 +2562,7 @@ class ObjectApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                ObjectSnapshotVolumeInfo
+                CommonObjectSnapshotVolumeParams
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -1914,11 +2591,13 @@ class ObjectApi(object):
 
         self.get_object_snapshot_volume_info = _Endpoint(
             settings={
-                'response_type': (ObjectSnapshotVolumeInfo,),
+                'response_type': (CommonObjectSnapshotVolumeParams,),
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/snapshots/{snapshotId}/volume',
                 'operation_id': 'get_object_snapshot_volume_info',
@@ -1989,7 +2668,7 @@ class ObjectApi(object):
         ):
             """List the snapshots for a given object.  # noqa: E501
 
-            List the snapshots for a given object.  # noqa: E501
+            **Privileges:** ```RESTORE_VIEW``` <br><br>List the snapshots for a given object.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2010,6 +2689,7 @@ class ObjectApi(object):
                 run_instance_ids ([int]): Filter by a list run instance ids. If specified, only snapshots created by these protection runs will be returned.. [optional]
                 region_ids ([str]): Filter by a list of region ids.. [optional]
                 object_action_keys ([str]): Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, only snapshots matching given action keys are returned for corresponding object.. [optional]
+                fetch_fast_restore_points_only (bool): Specifies whether to fetch only fast restore points. This is applicable only for M365 CSM Restore.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2064,7 +2744,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/snapshots',
                 'operation_id': 'get_object_snapshots',
@@ -2084,6 +2766,7 @@ class ObjectApi(object):
                     'run_instance_ids',
                     'region_ids',
                     'object_action_keys',
+                    'fetch_fast_restore_points_only',
                 ],
                 'required': [
                     'id',
@@ -2122,6 +2805,7 @@ class ObjectApi(object):
                         "RECOVERAURORA": "RecoverAurora",
                         "RECOVERS3BUCKETS": "RecoverS3Buckets",
                         "RECOVERAPPS": "RecoverApps",
+                        "RECOVERAPPFILES": "RecoverAppFiles",
                         "RECOVERNASVOLUME": "RecoverNasVolume",
                         "RECOVERPHYSICALVOLUMES": "RecoverPhysicalVolumes",
                         "RECOVERSYSTEM": "RecoverSystem",
@@ -2143,7 +2827,37 @@ class ObjectApi(object):
                         "RECOVERRDSPOSTGRES": "RecoverRDSPostgres",
                         "RECOVERMAILBOXCSM": "RecoverMailboxCSM",
                         "RECOVERONEDRIVECSM": "RecoverOneDriveCSM",
-                        "RECOVERSHAREPOINTCSM": "RecoverSharePointCSM"
+                        "RECOVERSHAREPOINTCSM": "RecoverSharePointCSM",
+                        "RECOVERAZUREENTRAID": "RecoverAzureEntraID",
+                        "RECOVERAWSDYNAMODB": "RecoverAwsDynamoDB",
+                        "RECOVERMONGODBCLUSTERS": "RecoverMongodbClusters",
+                        "RECOVERO365TOEXCHANGESERVER": "RecoverO365ToExchangeServer",
+                        "RECOVERAZUREMYSQL": "RecoverAzureMySQL",
+                        "RECOVERAZURECOSMOSDBCASSANDRA": "RecoverAzureCosmosDBCassandra",
+                        "RECOVERAZUREPOSTGRESQL": "RecoverAzurePostgreSQL",
+                        "RECOVERAZURECOSMOSDBNOSQL": "RecoverAzureCosmosDBNoSQL",
+                        "RECOVERAZURECOSMOSDBMONGODB": "RecoverAzureCosmosDBMongoDB",
+                        "RECOVERAZUREBLOBSTORAGE": "RecoverAzureBlobStorage",
+                        "RECOVERAZURESQLDB": "RecoverAzureSQLDB",
+                        "RECOVERAZURESQLMI": "RecoverAzureSQLMI",
+                        "RECOVERRDSMYSQL": "RecoverRDSMySQL",
+                        "RECOVERRDSAURORAMYSQL": "RecoverRDSAuroraMySQL",
+                        "RECOVERGCPBIGQUERY": "RecoverGCPBigQuery",
+                        "RECOVERGCPSQLSERVER": "RecoverGCPSQLServer",
+                        "RECOVERGCPFIRESTORE": "RecoverGCPFirestore",
+                        "RECOVERAZURETABLESTORAGE": "RecoverAzureTableStorage",
+                        "RECOVERAZURETABLEAPI": "RecoverAzureTableAPI",
+                        "RECOVERNUTANIXFS": "RecoverNutanixFS",
+                        "RECOVERGOOGLESPANNER": "RecoverGoogleSpanner",
+                        "RECOVERGCPMYSQL": "RecoverGCPMySQL",
+                        "RECOVERRDSORACLE": "RecoverRDSOracle",
+                        "RECOVERGCPPOSTGRESQL": "RecoverGCPPostgreSQL",
+                        "RECOVERGCPALLOYDBPOSTGRESQL": "RecoverGCPAlloyDBPostgreSQL",
+                        "RECOVERAWSDOCUMENTDB": "RecoverAWSDocumentDB",
+                        "RECOVERAWSRDSPOSTGRESDB": "RecoverAWSRDSPostgresDB",
+                        "RECOVERAWSAURORAPOSTGRESDB": "RecoverAWSAuroraPostgresDB",
+                        "RECOVERAWSRDSMSSQL": "RecoverAWSRDSMSSQL",
+                        "RECOVERAWSREDSHIFT": "RecoverAWSRedshift"
                     },
                     ('run_types',): {
 
@@ -2161,6 +2875,13 @@ class ObjectApi(object):
                         "KVCD": "kVCD",
                         "KAZURE": "kAzure",
                         "KGCP": "kGCP",
+                        "KGCPBIGQUERY": "kGCPBigQuery",
+                        "KGCPMYSQL": "kGCPMySQL",
+                        "KGOOGLESPANNER": "kGoogleSpanner",
+                        "KGCPPOSTGRESQL": "kGCPPostgreSQL",
+                        "KGCPALLOYDBPOSTGRESQL": "kGCPAlloyDBPostgreSQL",
+                        "KGCPSQLSERVER": "kGCPSQLServer",
+                        "KGCPFIRESTORE": "kGCPFirestore",
                         "KKVM": "kKVM",
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
@@ -2168,16 +2889,48 @@ class ObjectApi(object):
                         "KAWSS3": "kAwsS3",
                         "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
                         "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KRDSPOSTGRESSNAPSHOTMANAGER": "kRDSPostgresSnapshotManager",
+                        "KRDSMYSQLSNAPSHOTMANAGER": "kRDSMySQLSnapshotManager",
+                        "KRDSMSSQLSNAPSHOTMANAGER": "kRDSMSSQLSnapshotManager",
+                        "KRDSORACLESNAPSHOTMANAGER": "kRDSOracleSnapshotManager",
+                        "KRDSMARIADBSNAPSHOTMANAGER": "kRDSMariaDBSnapshotManager",
+                        "KRDSCUSTOMMSSQLSNAPSHOTMANAGER": "kRDSCustomMSSQLSnapshotManager",
+                        "KRDSCUSTOMORACLESNAPSHOTMANAGER": "kRDSCustomOracleSnapshotManager",
                         "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAURORAPOSTGRESSNAPSHOTMANAGER": "kAuroraPostgresSnapshotManager",
+                        "KAURORAMYSQLSNAPSHOTMANAGER": "kAuroraMySQLSnapshotManager",
                         "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAWSRDSPOSTGRES": "kAwsRDSPostgres",
+                        "KAWSAURORAPOSTGRES": "kAwsAuroraPostgres",
+                        "KAWSMYSQL": "kAWSMySQL",
+                        "KAWSAURORAMYSQL": "kAWSAuroraMySQL",
+                        "KAWSDYNAMODB": "kAwsDynamoDB",
+                        "KAWSRDSORACLE": "kAWSRdsOracle",
+                        "KAWSDOCUMENTDB": "kAWSDocumentDB",
+                        "KAWSRDSPOSTGRESDB": "kAWSRDSPostgresDB",
+                        "KAWSAURORAPOSTGRESDB": "kAWSAuroraPostgresDB",
+                        "KAWSRDSMSSQL": "kAWSRDSMSSQL",
+                        "KAWSREDSHIFT": "kAWSRedshift",
                         "KAZURENATIVE": "kAzureNative",
                         "KAZURESQL": "kAzureSQL",
+                        "KAZUREENTRAID": "kAzureEntraID",
+                        "KAZUREMYSQL": "kAzureMySQL",
+                        "KAZURECOSMOSDBNOSQL": "kAzureCosmosDBNoSQL",
+                        "KAZURECOSMOSDBMONGODB": "kAzureCosmosDBMongoDB",
+                        "KAZURECOSMOSDBCASSANDRA": "kAzureCosmosDBCassandra",
+                        "KAZUREPOSTGRESQLSERVER": "kAzurePostgreSQLServer",
+                        "KAZURESQLDB": "kAzureSQLDB",
+                        "KAZURESQLMI": "kAzureSQLMI",
+                        "KAZURETABLESTORAGE": "kAzureTableStorage",
+                        "KAZUREBLOBSTORAGE": "kAzureBlobStorage",
+                        "KAZURETABLEAPI": "kAzureTableAPI",
                         "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KPHYSICALFILES": "kPhysicalFiles",
                         "KGPFS": "kGPFS",
                         "KELASTIFILE": "kElastifile",
                         "KNETAPP": "kNetapp",
+                        "KNUTANIXFS": "kNutanixFS",
                         "KGENERICNAS": "kGenericNas",
                         "KISILON": "kIsilon",
                         "KFLASHBLADE": "kFlashBlade",
@@ -2203,11 +2956,21 @@ class ObjectApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
+                        "KSAPHANA": "kSAPHANA",
                         "KUDA": "kUDA",
+                        "KS3COMPATIBLE": "kS3Compatible",
                         "KSFDC": "kSfdc",
                         "KO365EXCHANGECSM": "kO365ExchangeCSM",
                         "KO365ONEDRIVECSM": "kO365OneDriveCSM",
-                        "KO365SHAREPOINTCSM": "kO365SharePointCSM"
+                        "KO365SHAREPOINTCSM": "kO365SharepointCSM",
+                        "KEXPERIMENTALADAPTER": "kExperimentalAdapter",
+                        "KMONGODBPHYSICAL": "kMongoDBPhysical",
+                        "KGOOGLEWORKSPACE": "kGoogleWorkspace",
+                        "KGMAIL": "kGmail",
+                        "KGOOGLEDRIVE": "kGoogleDrive",
+                        "KDB2": "kDB2",
+                        "KSERVICENOW": "kServiceNow",
+                        "KPOSTGRES": "kPostgres"
                     },
                 },
                 'openapi_types': {
@@ -2233,6 +2996,8 @@ class ObjectApi(object):
                         ([str],),
                     'object_action_keys':
                         ([str],),
+                    'fetch_fast_restore_points_only':
+                        (bool,),
                 },
                 'attribute_map': {
                     'id': 'id',
@@ -2246,6 +3011,7 @@ class ObjectApi(object):
                     'run_instance_ids': 'runInstanceIds',
                     'region_ids': 'regionIds',
                     'object_action_keys': 'objectActionKeys',
+                    'fetch_fast_restore_points_only': 'fetchFastRestorePointsOnly',
                 },
                 'location_map': {
                     'id': 'path',
@@ -2259,6 +3025,7 @@ class ObjectApi(object):
                     'run_instance_ids': 'query',
                     'region_ids': 'query',
                     'object_action_keys': 'query',
+                    'fetch_fast_restore_points_only': 'query',
                 },
                 'collection_format_map': {
                     'snapshot_actions': 'csv',
@@ -2286,7 +3053,7 @@ class ObjectApi(object):
         ):
             """Get stats for a given object.  # noqa: E501
 
-            Get stats for a given object.  # noqa: E501
+            **Privileges:** ```RESTORE_VIEW``` <br><br>Get stats for a given object.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2352,7 +3119,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/stats',
                 'operation_id': 'get_object_stats',
@@ -2414,7 +3183,7 @@ class ObjectApi(object):
         ):
             """Get the objects tree hierarchy for for an Object.  # noqa: E501
 
-            Get the objects tree hierarchy for for an Object. If the object does not have a hierarchy then a single object will be returned.  # noqa: E501
+            ```Unknown Privileges``` <br><br>Get the objects tree hierarchy for for an Object. If the object does not have a hierarchy then a single object will be returned.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2479,7 +3248,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/tree',
                 'operation_id': 'get_object_tree',
@@ -2534,7 +3305,7 @@ class ObjectApi(object):
         ):
             """Get last protection run of objects.  # noqa: E501
 
-            Get last protection run of objects.  # noqa: E501
+            ```Unknown Privileges``` <br><br>Get last protection run of objects.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2600,7 +3371,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/last-run',
                 'operation_id': 'get_objects_last_run',
@@ -2676,7 +3449,7 @@ class ObjectApi(object):
         ):
             """Get PIT ranges for an object  # noqa: E501
 
-            Returns the ranges in various types like time, SCN etc. within which the specified protected object can be restored to any Point in time.  # noqa: E501
+            **Privileges:** ```RESTORE_VIEW``` <br><br>Returns the ranges in various types like time, SCN etc. within which the specified protected object can be restored to any Point in time.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2744,7 +3517,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/pit-ranges',
                 'operation_id': 'get_pit_ranges_for_protected_object',
@@ -2816,7 +3591,7 @@ class ObjectApi(object):
         ):
             """Get an Object.  # noqa: E501
 
-            Get Object configurations for given object id.  # noqa: E501
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Get Object configurations for given object id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2891,7 +3666,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}',
                 'operation_id': 'get_protected_object_of_any_type_by_id',
@@ -2942,6 +3719,13 @@ class ObjectApi(object):
                         "KVCD": "kVCD",
                         "KAZURE": "kAzure",
                         "KGCP": "kGCP",
+                        "KGCPBIGQUERY": "kGCPBigQuery",
+                        "KGCPMYSQL": "kGCPMySQL",
+                        "KGOOGLESPANNER": "kGoogleSpanner",
+                        "KGCPPOSTGRESQL": "kGCPPostgreSQL",
+                        "KGCPALLOYDBPOSTGRESQL": "kGCPAlloyDBPostgreSQL",
+                        "KGCPSQLSERVER": "kGCPSQLServer",
+                        "KGCPFIRESTORE": "kGCPFirestore",
                         "KKVM": "kKVM",
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
@@ -2949,16 +3733,48 @@ class ObjectApi(object):
                         "KAWSS3": "kAwsS3",
                         "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
                         "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KRDSPOSTGRESSNAPSHOTMANAGER": "kRDSPostgresSnapshotManager",
+                        "KRDSMYSQLSNAPSHOTMANAGER": "kRDSMySQLSnapshotManager",
+                        "KRDSMSSQLSNAPSHOTMANAGER": "kRDSMSSQLSnapshotManager",
+                        "KRDSORACLESNAPSHOTMANAGER": "kRDSOracleSnapshotManager",
+                        "KRDSMARIADBSNAPSHOTMANAGER": "kRDSMariaDBSnapshotManager",
+                        "KRDSCUSTOMMSSQLSNAPSHOTMANAGER": "kRDSCustomMSSQLSnapshotManager",
+                        "KRDSCUSTOMORACLESNAPSHOTMANAGER": "kRDSCustomOracleSnapshotManager",
                         "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAURORAPOSTGRESSNAPSHOTMANAGER": "kAuroraPostgresSnapshotManager",
+                        "KAURORAMYSQLSNAPSHOTMANAGER": "kAuroraMySQLSnapshotManager",
                         "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAWSRDSPOSTGRES": "kAwsRDSPostgres",
+                        "KAWSAURORAPOSTGRES": "kAwsAuroraPostgres",
+                        "KAWSMYSQL": "kAWSMySQL",
+                        "KAWSAURORAMYSQL": "kAWSAuroraMySQL",
+                        "KAWSDYNAMODB": "kAwsDynamoDB",
+                        "KAWSRDSORACLE": "kAWSRdsOracle",
+                        "KAWSDOCUMENTDB": "kAWSDocumentDB",
+                        "KAWSRDSPOSTGRESDB": "kAWSRDSPostgresDB",
+                        "KAWSAURORAPOSTGRESDB": "kAWSAuroraPostgresDB",
+                        "KAWSRDSMSSQL": "kAWSRDSMSSQL",
+                        "KAWSREDSHIFT": "kAWSRedshift",
                         "KAZURENATIVE": "kAzureNative",
                         "KAZURESQL": "kAzureSQL",
+                        "KAZUREENTRAID": "kAzureEntraID",
+                        "KAZUREMYSQL": "kAzureMySQL",
+                        "KAZURECOSMOSDBNOSQL": "kAzureCosmosDBNoSQL",
+                        "KAZURECOSMOSDBMONGODB": "kAzureCosmosDBMongoDB",
+                        "KAZURECOSMOSDBCASSANDRA": "kAzureCosmosDBCassandra",
+                        "KAZUREPOSTGRESQLSERVER": "kAzurePostgreSQLServer",
+                        "KAZURESQLDB": "kAzureSQLDB",
+                        "KAZURESQLMI": "kAzureSQLMI",
+                        "KAZURETABLESTORAGE": "kAzureTableStorage",
+                        "KAZUREBLOBSTORAGE": "kAzureBlobStorage",
+                        "KAZURETABLEAPI": "kAzureTableAPI",
                         "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KPHYSICALFILES": "kPhysicalFiles",
                         "KGPFS": "kGPFS",
                         "KELASTIFILE": "kElastifile",
                         "KNETAPP": "kNetapp",
+                        "KNUTANIXFS": "kNutanixFS",
                         "KGENERICNAS": "kGenericNas",
                         "KISILON": "kIsilon",
                         "KFLASHBLADE": "kFlashBlade",
@@ -2984,11 +3800,21 @@ class ObjectApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
+                        "KSAPHANA": "kSAPHANA",
                         "KUDA": "kUDA",
+                        "KS3COMPATIBLE": "kS3Compatible",
                         "KSFDC": "kSfdc",
                         "KO365EXCHANGECSM": "kO365ExchangeCSM",
                         "KO365ONEDRIVECSM": "kO365OneDriveCSM",
-                        "KO365SHAREPOINTCSM": "kO365SharePointCSM"
+                        "KO365SHAREPOINTCSM": "kO365SharepointCSM",
+                        "KEXPERIMENTALADAPTER": "kExperimentalAdapter",
+                        "KMONGODBPHYSICAL": "kMongoDBPhysical",
+                        "KGOOGLEWORKSPACE": "kGoogleWorkspace",
+                        "KGMAIL": "kGmail",
+                        "KGOOGLEDRIVE": "kGoogleDrive",
+                        "KDB2": "kDB2",
+                        "KSERVICENOW": "kServiceNow",
+                        "KPOSTGRES": "kPostgres"
                     },
                     ('environments',): {
 
@@ -2997,6 +3823,13 @@ class ObjectApi(object):
                         "KVCD": "kVCD",
                         "KAZURE": "kAzure",
                         "KGCP": "kGCP",
+                        "KGCPBIGQUERY": "kGCPBigQuery",
+                        "KGCPMYSQL": "kGCPMySQL",
+                        "KGOOGLESPANNER": "kGoogleSpanner",
+                        "KGCPPOSTGRESQL": "kGCPPostgreSQL",
+                        "KGCPALLOYDBPOSTGRESQL": "kGCPAlloyDBPostgreSQL",
+                        "KGCPSQLSERVER": "kGCPSQLServer",
+                        "KGCPFIRESTORE": "kGCPFirestore",
                         "KKVM": "kKVM",
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
@@ -3004,16 +3837,48 @@ class ObjectApi(object):
                         "KAWSS3": "kAwsS3",
                         "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
                         "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KRDSPOSTGRESSNAPSHOTMANAGER": "kRDSPostgresSnapshotManager",
+                        "KRDSMYSQLSNAPSHOTMANAGER": "kRDSMySQLSnapshotManager",
+                        "KRDSMSSQLSNAPSHOTMANAGER": "kRDSMSSQLSnapshotManager",
+                        "KRDSORACLESNAPSHOTMANAGER": "kRDSOracleSnapshotManager",
+                        "KRDSMARIADBSNAPSHOTMANAGER": "kRDSMariaDBSnapshotManager",
+                        "KRDSCUSTOMMSSQLSNAPSHOTMANAGER": "kRDSCustomMSSQLSnapshotManager",
+                        "KRDSCUSTOMORACLESNAPSHOTMANAGER": "kRDSCustomOracleSnapshotManager",
                         "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAURORAPOSTGRESSNAPSHOTMANAGER": "kAuroraPostgresSnapshotManager",
+                        "KAURORAMYSQLSNAPSHOTMANAGER": "kAuroraMySQLSnapshotManager",
                         "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAWSRDSPOSTGRES": "kAwsRDSPostgres",
+                        "KAWSAURORAPOSTGRES": "kAwsAuroraPostgres",
+                        "KAWSMYSQL": "kAWSMySQL",
+                        "KAWSAURORAMYSQL": "kAWSAuroraMySQL",
+                        "KAWSDYNAMODB": "kAwsDynamoDB",
+                        "KAWSRDSORACLE": "kAWSRdsOracle",
+                        "KAWSDOCUMENTDB": "kAWSDocumentDB",
+                        "KAWSRDSPOSTGRESDB": "kAWSRDSPostgresDB",
+                        "KAWSAURORAPOSTGRESDB": "kAWSAuroraPostgresDB",
+                        "KAWSRDSMSSQL": "kAWSRDSMSSQL",
+                        "KAWSREDSHIFT": "kAWSRedshift",
                         "KAZURENATIVE": "kAzureNative",
                         "KAZURESQL": "kAzureSQL",
+                        "KAZUREENTRAID": "kAzureEntraID",
+                        "KAZUREMYSQL": "kAzureMySQL",
+                        "KAZURECOSMOSDBNOSQL": "kAzureCosmosDBNoSQL",
+                        "KAZURECOSMOSDBMONGODB": "kAzureCosmosDBMongoDB",
+                        "KAZURECOSMOSDBCASSANDRA": "kAzureCosmosDBCassandra",
+                        "KAZUREPOSTGRESQLSERVER": "kAzurePostgreSQLServer",
+                        "KAZURESQLDB": "kAzureSQLDB",
+                        "KAZURESQLMI": "kAzureSQLMI",
+                        "KAZURETABLESTORAGE": "kAzureTableStorage",
+                        "KAZUREBLOBSTORAGE": "kAzureBlobStorage",
+                        "KAZURETABLEAPI": "kAzureTableAPI",
                         "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KPHYSICALFILES": "kPhysicalFiles",
                         "KGPFS": "kGPFS",
                         "KELASTIFILE": "kElastifile",
                         "KNETAPP": "kNetapp",
+                        "KNUTANIXFS": "kNutanixFS",
                         "KGENERICNAS": "kGenericNas",
                         "KISILON": "kIsilon",
                         "KFLASHBLADE": "kFlashBlade",
@@ -3039,11 +3904,21 @@ class ObjectApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
+                        "KSAPHANA": "kSAPHANA",
                         "KUDA": "kUDA",
+                        "KS3COMPATIBLE": "kS3Compatible",
                         "KSFDC": "kSfdc",
                         "KO365EXCHANGECSM": "kO365ExchangeCSM",
                         "KO365ONEDRIVECSM": "kO365OneDriveCSM",
-                        "KO365SHAREPOINTCSM": "kO365SharePointCSM"
+                        "KO365SHAREPOINTCSM": "kO365SharepointCSM",
+                        "KEXPERIMENTALADAPTER": "kExperimentalAdapter",
+                        "KMONGODBPHYSICAL": "kMongoDBPhysical",
+                        "KGOOGLEWORKSPACE": "kGoogleWorkspace",
+                        "KGMAIL": "kGmail",
+                        "KGOOGLEDRIVE": "kGoogleDrive",
+                        "KDB2": "kDB2",
+                        "KSERVICENOW": "kServiceNow",
+                        "KPOSTGRES": "kPostgres"
                     },
                 },
                 'openapi_types': {
@@ -3118,7 +3993,7 @@ class ObjectApi(object):
         ):
             """Get Objects.  # noqa: E501
 
-            Get Objects Configurations.  # noqa: E501
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Get Objects Configurations.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -3128,7 +4003,7 @@ class ObjectApi(object):
 
             Keyword Args:
                 request_initiator_type (str): Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.. [optional]
-                ids ([int]): Filter by a list of Object ids.. [optional]
+                ids ([int]): Filter by a list of Object ids. Only one of ids or globalHashes should be used.. [optional]
                 object_action_keys ([str]): Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id. The vec's size needs to be of either length one or same as the length of 'ids'. If the length of objectActionKey is one, it will be repeated as many number of times equal to the length of objectIds, as mandated by backend validation. If the length of objectActionKey and object ids are same then it will be passed as it is.. [optional]
                 policy_ids ([str]): Filter by Policy ids that are associated with Protected Objects.. [optional]
                 parent_id (int): Filter by Parent Id. Parent id is a unique object Id which may contain protected objects underneath in the source tree.. [optional]
@@ -3136,6 +4011,8 @@ class ObjectApi(object):
                 storage_domain_id (int): Filter by Storage Domain id. Only Objects protected to this Storage Domain will be returned.. [optional]
                 environments ([str]): Filter by environment types such as 'kVMware', 'kView', etc. Only Protected objects protecting the specified environment types are returned.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the tenants for which objects are to be returned.. [optional]
+                global_ids ([str]): Unique id to uniquely identify an object across clusters, if the same object is present on multiple clusters. For example, in case of a replication workflow, the object could be present on both local and remote cluster. In such scenarios, using the globalId, information about the object can be collected across the clusters. This is also applicable when object gets mapped to another cluster during tenant migration. Only one of ids or globalIds should be used.. [optional]
+                global_hashes ([str]): Unique id to identify an object across clusters, using hash of the object. [optional]
                 include_tenants (bool): If true, the response will include Objects which were protected by all tenants which the current user has permission to see. If false, then only objects protected by the current user will be returned.. [optional]
                 include_last_run_info (bool): If true, the response will include information about the last protection run on this object.. [optional]
                 only_auto_protected_objects (bool): If true, the response will include only the auto protected objects.. [optional]
@@ -3195,7 +4072,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/objects',
                 'operation_id': 'get_protected_objects_of_any_type',
@@ -3213,6 +4092,8 @@ class ObjectApi(object):
                     'storage_domain_id',
                     'environments',
                     'tenant_ids',
+                    'global_ids',
+                    'global_hashes',
                     'include_tenants',
                     'include_last_run_info',
                     'only_auto_protected_objects',
@@ -3249,6 +4130,13 @@ class ObjectApi(object):
                         "KVCD": "kVCD",
                         "KAZURE": "kAzure",
                         "KGCP": "kGCP",
+                        "KGCPBIGQUERY": "kGCPBigQuery",
+                        "KGCPMYSQL": "kGCPMySQL",
+                        "KGOOGLESPANNER": "kGoogleSpanner",
+                        "KGCPPOSTGRESQL": "kGCPPostgreSQL",
+                        "KGCPALLOYDBPOSTGRESQL": "kGCPAlloyDBPostgreSQL",
+                        "KGCPSQLSERVER": "kGCPSQLServer",
+                        "KGCPFIRESTORE": "kGCPFirestore",
                         "KKVM": "kKVM",
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
@@ -3256,16 +4144,48 @@ class ObjectApi(object):
                         "KAWSS3": "kAwsS3",
                         "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
                         "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KRDSPOSTGRESSNAPSHOTMANAGER": "kRDSPostgresSnapshotManager",
+                        "KRDSMYSQLSNAPSHOTMANAGER": "kRDSMySQLSnapshotManager",
+                        "KRDSMSSQLSNAPSHOTMANAGER": "kRDSMSSQLSnapshotManager",
+                        "KRDSORACLESNAPSHOTMANAGER": "kRDSOracleSnapshotManager",
+                        "KRDSMARIADBSNAPSHOTMANAGER": "kRDSMariaDBSnapshotManager",
+                        "KRDSCUSTOMMSSQLSNAPSHOTMANAGER": "kRDSCustomMSSQLSnapshotManager",
+                        "KRDSCUSTOMORACLESNAPSHOTMANAGER": "kRDSCustomOracleSnapshotManager",
                         "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAURORAPOSTGRESSNAPSHOTMANAGER": "kAuroraPostgresSnapshotManager",
+                        "KAURORAMYSQLSNAPSHOTMANAGER": "kAuroraMySQLSnapshotManager",
                         "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAWSRDSPOSTGRES": "kAwsRDSPostgres",
+                        "KAWSAURORAPOSTGRES": "kAwsAuroraPostgres",
+                        "KAWSMYSQL": "kAWSMySQL",
+                        "KAWSAURORAMYSQL": "kAWSAuroraMySQL",
+                        "KAWSDYNAMODB": "kAwsDynamoDB",
+                        "KAWSRDSORACLE": "kAWSRdsOracle",
+                        "KAWSDOCUMENTDB": "kAWSDocumentDB",
+                        "KAWSRDSPOSTGRESDB": "kAWSRDSPostgresDB",
+                        "KAWSAURORAPOSTGRESDB": "kAWSAuroraPostgresDB",
+                        "KAWSRDSMSSQL": "kAWSRDSMSSQL",
+                        "KAWSREDSHIFT": "kAWSRedshift",
                         "KAZURENATIVE": "kAzureNative",
                         "KAZURESQL": "kAzureSQL",
+                        "KAZUREENTRAID": "kAzureEntraID",
+                        "KAZUREMYSQL": "kAzureMySQL",
+                        "KAZURECOSMOSDBNOSQL": "kAzureCosmosDBNoSQL",
+                        "KAZURECOSMOSDBMONGODB": "kAzureCosmosDBMongoDB",
+                        "KAZURECOSMOSDBCASSANDRA": "kAzureCosmosDBCassandra",
+                        "KAZUREPOSTGRESQLSERVER": "kAzurePostgreSQLServer",
+                        "KAZURESQLDB": "kAzureSQLDB",
+                        "KAZURESQLMI": "kAzureSQLMI",
+                        "KAZURETABLESTORAGE": "kAzureTableStorage",
+                        "KAZUREBLOBSTORAGE": "kAzureBlobStorage",
+                        "KAZURETABLEAPI": "kAzureTableAPI",
                         "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KPHYSICALFILES": "kPhysicalFiles",
                         "KGPFS": "kGPFS",
                         "KELASTIFILE": "kElastifile",
                         "KNETAPP": "kNetapp",
+                        "KNUTANIXFS": "kNutanixFS",
                         "KGENERICNAS": "kGenericNas",
                         "KISILON": "kIsilon",
                         "KFLASHBLADE": "kFlashBlade",
@@ -3291,11 +4211,21 @@ class ObjectApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
+                        "KSAPHANA": "kSAPHANA",
                         "KUDA": "kUDA",
+                        "KS3COMPATIBLE": "kS3Compatible",
                         "KSFDC": "kSfdc",
                         "KO365EXCHANGECSM": "kO365ExchangeCSM",
                         "KO365ONEDRIVECSM": "kO365OneDriveCSM",
-                        "KO365SHAREPOINTCSM": "kO365SharePointCSM"
+                        "KO365SHAREPOINTCSM": "kO365SharepointCSM",
+                        "KEXPERIMENTALADAPTER": "kExperimentalAdapter",
+                        "KMONGODBPHYSICAL": "kMongoDBPhysical",
+                        "KGOOGLEWORKSPACE": "kGoogleWorkspace",
+                        "KGMAIL": "kGmail",
+                        "KGOOGLEDRIVE": "kGoogleDrive",
+                        "KDB2": "kDB2",
+                        "KSERVICENOW": "kServiceNow",
+                        "KPOSTGRES": "kPostgres"
                     },
                     ('environments',): {
 
@@ -3304,6 +4234,13 @@ class ObjectApi(object):
                         "KVCD": "kVCD",
                         "KAZURE": "kAzure",
                         "KGCP": "kGCP",
+                        "KGCPBIGQUERY": "kGCPBigQuery",
+                        "KGCPMYSQL": "kGCPMySQL",
+                        "KGOOGLESPANNER": "kGoogleSpanner",
+                        "KGCPPOSTGRESQL": "kGCPPostgreSQL",
+                        "KGCPALLOYDBPOSTGRESQL": "kGCPAlloyDBPostgreSQL",
+                        "KGCPSQLSERVER": "kGCPSQLServer",
+                        "KGCPFIRESTORE": "kGCPFirestore",
                         "KKVM": "kKVM",
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
@@ -3311,16 +4248,48 @@ class ObjectApi(object):
                         "KAWSS3": "kAwsS3",
                         "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
                         "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KRDSPOSTGRESSNAPSHOTMANAGER": "kRDSPostgresSnapshotManager",
+                        "KRDSMYSQLSNAPSHOTMANAGER": "kRDSMySQLSnapshotManager",
+                        "KRDSMSSQLSNAPSHOTMANAGER": "kRDSMSSQLSnapshotManager",
+                        "KRDSORACLESNAPSHOTMANAGER": "kRDSOracleSnapshotManager",
+                        "KRDSMARIADBSNAPSHOTMANAGER": "kRDSMariaDBSnapshotManager",
+                        "KRDSCUSTOMMSSQLSNAPSHOTMANAGER": "kRDSCustomMSSQLSnapshotManager",
+                        "KRDSCUSTOMORACLESNAPSHOTMANAGER": "kRDSCustomOracleSnapshotManager",
                         "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAURORAPOSTGRESSNAPSHOTMANAGER": "kAuroraPostgresSnapshotManager",
+                        "KAURORAMYSQLSNAPSHOTMANAGER": "kAuroraMySQLSnapshotManager",
                         "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAWSRDSPOSTGRES": "kAwsRDSPostgres",
+                        "KAWSAURORAPOSTGRES": "kAwsAuroraPostgres",
+                        "KAWSMYSQL": "kAWSMySQL",
+                        "KAWSAURORAMYSQL": "kAWSAuroraMySQL",
+                        "KAWSDYNAMODB": "kAwsDynamoDB",
+                        "KAWSRDSORACLE": "kAWSRdsOracle",
+                        "KAWSDOCUMENTDB": "kAWSDocumentDB",
+                        "KAWSRDSPOSTGRESDB": "kAWSRDSPostgresDB",
+                        "KAWSAURORAPOSTGRESDB": "kAWSAuroraPostgresDB",
+                        "KAWSRDSMSSQL": "kAWSRDSMSSQL",
+                        "KAWSREDSHIFT": "kAWSRedshift",
                         "KAZURENATIVE": "kAzureNative",
                         "KAZURESQL": "kAzureSQL",
+                        "KAZUREENTRAID": "kAzureEntraID",
+                        "KAZUREMYSQL": "kAzureMySQL",
+                        "KAZURECOSMOSDBNOSQL": "kAzureCosmosDBNoSQL",
+                        "KAZURECOSMOSDBMONGODB": "kAzureCosmosDBMongoDB",
+                        "KAZURECOSMOSDBCASSANDRA": "kAzureCosmosDBCassandra",
+                        "KAZUREPOSTGRESQLSERVER": "kAzurePostgreSQLServer",
+                        "KAZURESQLDB": "kAzureSQLDB",
+                        "KAZURESQLMI": "kAzureSQLMI",
+                        "KAZURETABLESTORAGE": "kAzureTableStorage",
+                        "KAZUREBLOBSTORAGE": "kAzureBlobStorage",
+                        "KAZURETABLEAPI": "kAzureTableAPI",
                         "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KPHYSICALFILES": "kPhysicalFiles",
                         "KGPFS": "kGPFS",
                         "KELASTIFILE": "kElastifile",
                         "KNETAPP": "kNetapp",
+                        "KNUTANIXFS": "kNutanixFS",
                         "KGENERICNAS": "kGenericNas",
                         "KISILON": "kIsilon",
                         "KFLASHBLADE": "kFlashBlade",
@@ -3346,11 +4315,21 @@ class ObjectApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
+                        "KSAPHANA": "kSAPHANA",
                         "KUDA": "kUDA",
+                        "KS3COMPATIBLE": "kS3Compatible",
                         "KSFDC": "kSfdc",
                         "KO365EXCHANGECSM": "kO365ExchangeCSM",
                         "KO365ONEDRIVECSM": "kO365OneDriveCSM",
-                        "KO365SHAREPOINTCSM": "kO365SharePointCSM"
+                        "KO365SHAREPOINTCSM": "kO365SharepointCSM",
+                        "KEXPERIMENTALADAPTER": "kExperimentalAdapter",
+                        "KMONGODBPHYSICAL": "kMongoDBPhysical",
+                        "KGOOGLEWORKSPACE": "kGoogleWorkspace",
+                        "KGMAIL": "kGmail",
+                        "KGOOGLEDRIVE": "kGoogleDrive",
+                        "KDB2": "kDB2",
+                        "KSERVICENOW": "kServiceNow",
+                        "KPOSTGRES": "kPostgres"
                     },
                 },
                 'openapi_types': {
@@ -3371,6 +4350,10 @@ class ObjectApi(object):
                     'environments':
                         ([str],),
                     'tenant_ids':
+                        ([str],),
+                    'global_ids':
+                        ([str],),
+                    'global_hashes':
                         ([str],),
                     'include_tenants':
                         (bool,),
@@ -3397,6 +4380,8 @@ class ObjectApi(object):
                     'storage_domain_id': 'storageDomainId',
                     'environments': 'environments',
                     'tenant_ids': 'tenantIds',
+                    'global_ids': 'globalIds',
+                    'global_hashes': 'globalHashes',
                     'include_tenants': 'includeTenants',
                     'include_last_run_info': 'includeLastRunInfo',
                     'only_auto_protected_objects': 'onlyAutoProtectedObjects',
@@ -3415,6 +4400,8 @@ class ObjectApi(object):
                     'storage_domain_id': 'query',
                     'environments': 'query',
                     'tenant_ids': 'query',
+                    'global_ids': 'query',
+                    'global_hashes': 'query',
                     'include_tenants': 'query',
                     'include_last_run_info': 'query',
                     'only_auto_protected_objects': 'query',
@@ -3429,6 +4416,8 @@ class ObjectApi(object):
                     'policy_ids': 'csv',
                     'environments': 'csv',
                     'tenant_ids': 'csv',
+                    'global_ids': 'csv',
+                    'global_hashes': 'csv',
                     'region_ids': 'csv',
                 }
             },
@@ -3450,7 +4439,7 @@ class ObjectApi(object):
         ):
             """Get diff between two snapshots of a given object.  # noqa: E501
 
-            Get diff (files added/deleted) between two snapshots of a given object.  # noqa: E501
+            **Privileges:** ```ALERT_VIEW``` <br><br>Get diff (files added/deleted) between two snapshots of a given object.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -3518,7 +4507,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/snapshot-diff',
                 'operation_id': 'get_snapshot_diff',
@@ -3581,7 +4572,7 @@ class ObjectApi(object):
         ):
             """List objects on a source which can be used for data protection.  # noqa: E501
 
-            List objects which can be used for data protection.  # noqa: E501
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>List objects which can be used for data protection.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -3612,6 +4603,7 @@ class ObjectApi(object):
                 acropolis_object_types ([str]): Specifies the Acropolis object types to filter objects.. [optional]
                 generic_nas_object_types ([str]): Specifies the generic NAS object types to filter objects.. [optional]
                 isilon_object_types ([str]): Specifies the Isilon object types to filter objects.. [optional]
+                nutanix_fs_object_types ([str]): Specifies the Nutanix FS object types to filter objects.. [optional]
                 flashblade_object_types ([str]): Specifies the Flashblade object types to filter objects.. [optional]
                 elastifile_object_types ([str]): Specifies the Elastifile object types to filter objects.. [optional]
                 gpfs_object_types ([str]): Specifies the GPFS object types to filter objects.. [optional]
@@ -3678,7 +4670,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/{sourceId}/objects',
                 'operation_id': 'get_source_hierarchy_objects',
@@ -3708,6 +4702,7 @@ class ObjectApi(object):
                     'acropolis_object_types',
                     'generic_nas_object_types',
                     'isilon_object_types',
+                    'nutanix_fs_object_types',
                     'flashblade_object_types',
                     'elastifile_object_types',
                     'gpfs_object_types',
@@ -3745,6 +4740,7 @@ class ObjectApi(object):
                     'acropolis_object_types',
                     'generic_nas_object_types',
                     'isilon_object_types',
+                    'nutanix_fs_object_types',
                     'flashblade_object_types',
                     'elastifile_object_types',
                     'gpfs_object_types',
@@ -3789,7 +4785,11 @@ class ObjectApi(object):
                         "KCATALOG": "kCatalog",
                         "KORGMETADATA": "kOrgMetadata",
                         "KSTORAGEPOLICY": "kStoragePolicy",
-                        "KVIRTUALAPPTEMPLATE": "kVirtualAppTemplate"
+                        "KVIRTUALAPPTEMPLATE": "kVirtualAppTemplate",
+                        "KPROVIDERVDC": "kProviderVDC",
+                        "KPLACEMENTPOLICY": "kPlacementPolicy",
+                        "KSIZINGPOLICY": "kSizingPolicy",
+                        "KCOMPUTEPOLICY": "kComputePolicy"
                     },
                     ('netapp_object_types',): {
 
@@ -3883,9 +4883,28 @@ class ObjectApi(object):
                         "KCOMPUTEOPTIONS": "kComputeOptions",
                         "KSNAPSHOTMANAGERPERMIT": "kSnapshotManagerPermit",
                         "KTAG": "kTag",
+                        "KREGION": "kRegion",
                         "KAVAILABILITYSET": "kAvailabilitySet",
                         "KSQLSERVER": "kSQLServer",
-                        "KSQLDATABASE": "kSQLDatabase"
+                        "KSQLDATABASE": "kSQLDatabase",
+                        "KSQLMANAGEDINSTANCE": "kSQLManagedInstance",
+                        "KMYSQLDATABASE": "kMySQLDatabase",
+                        "KMYSQLFLEXIBLESERVER": "kMySQLFlexibleServer",
+                        "KAZUREKUBERNETESCLUSTER": "kAzureKubernetesCluster",
+                        "KAZUREKUBERNETESNAMESPACE": "kAzureKubernetesNamespace",
+                        "KCOSMOSDBCASSANDRAACCOUNT": "kCosmosDBCassandraAccount",
+                        "KCOSMOSDBCASSANDRAKEYSPACE": "kCosmosDBCassandraKeyspace",
+                        "KAZURECOSMOSDBNOSQLACCOUNT": "kAzureCosmosDBNoSQLAccount",
+                        "KAZURECOSMOSDBNOSQLDATABASE": "kAzureCosmosDBNoSQLDatabase",
+                        "KAZURECOSMOSDBMONGODBACCOUNT": "kAzureCosmosDBMongoDBAccount",
+                        "KAZURECOSMOSDBMONGODBDATABASE": "kAzureCosmosDBMongoDBDatabase",
+                        "KCOSMOSDBTABLEACCOUNT": "kCosmosDBTableAccount",
+                        "KCOSMOSDBTABLEAPI": "kCosmosDBTableAPI",
+                        "KSQLMIDATABASE": "kSQLMIDatabase",
+                        "KPOSTGRESQLFLEXIBLESERVER": "kPostgreSQLFlexibleServer",
+                        "KPOSTGRESQLDATABASE": "kPostgreSQLDatabase",
+                        "KCOSMOSDBTABLEAPITABLE": "kCosmosDBTableAPITable",
+                        "KENTRAID": "kEntraID"
                     },
                     ('kvm_object_types',): {
 
@@ -3914,17 +4933,38 @@ class ObjectApi(object):
                         "KRDSOPTIONGROUP": "kRDSOptionGroup",
                         "KRDSPARAMETERGROUP": "kRDSParameterGroup",
                         "KRDSINSTANCE": "kRDSInstance",
+                        "KRDSPOSTGRESINSTANCE": "kRDSPostgresInstance",
+                        "KRDSMYSQLINSTANCE": "kRDSMySQLInstance",
+                        "KRDSMSSQLINSTANCE": "kRDSMSSQLInstance",
+                        "KRDSORACLEINSTANCE": "kRDSOracleInstance",
+                        "KRDSMARIADBINSTANCE": "kRDSMariaDBInstance",
+                        "KRDSCUSTOMMSSQLINSTANCE": "kRDSCustomMSSQLInstance",
+                        "KRDSCUSTOMORACLEINSTANCE": "kRDSCustomOracleInstance",
                         "KRDSSUBNET": "kRDSSubnet",
                         "KRDSTAG": "kRDSTag",
+                        "KREDSHIFTTAG": "kRedshiftTag",
                         "KAURORATAG": "kAuroraTag",
                         "KAURORACLUSTER": "kAuroraCluster",
+                        "KAURORAPOSTGRESCLUSTER": "kAuroraPostgresCluster",
+                        "KAURORAMYSQLCLUSTER": "kAuroraMySQLCluster",
                         "KACCOUNT": "kAccount",
                         "KSUBTASKPERMIT": "kSubTaskPermit",
                         "KS3BUCKET": "kS3Bucket",
                         "KS3TAG": "kS3Tag",
                         "KKMSKEY": "kKmsKey",
                         "KRDSPOSTGRESDB": "kRDSPostgresDb",
-                        "KAURORACLUSTERPOSTGRESDB": "kAuroraClusterPostgresDb"
+                        "KAURORACLUSTERPOSTGRESDB": "kAuroraClusterPostgresDb",
+                        "KRDSMYSQLDB": "kRDSMySQLDb",
+                        "KAURORAMYSQLDB": "kAuroraMySQLDb",
+                        "KRDSMSSQLDB": "kRDSMSSQLDb",
+                        "KRDSORACLEDB": "kRDSOracleDb",
+                        "KRDSMARIADBDB": "kRDSMariaDBDb",
+                        "KRDSCUSTOMMSSQLDB": "kRDSCustomMSSQLDb",
+                        "KRDSCUSTOMORACLEDB": "kRDSCustomOracleDb",
+                        "KAWSREDSHIFTCLUSTER": "kAWSRedshiftCluster",
+                        "KAWSREDSHIFTDATABASE": "kAWSRedshiftDatabase",
+                        "KAWSDOCUMENTDBCLUSTER": "kAWSDocumentDBCluster",
+                        "KAWSDOCUMENTDBDB": "kAWSDocumentDBdb"
                     },
                     ('gcp_object_types',): {
 
@@ -3940,7 +4980,11 @@ class ObjectApi(object):
                         "KLABEL": "kLabel",
                         "KMETADATA": "kMetadata",
                         "KTAG": "kTag",
-                        "KVPCCONNECTOR": "kVPCConnector"
+                        "KVPCCONNECTOR": "kVPCConnector",
+                        "KBIGQUERYDATASET": "kBigQueryDataset",
+                        "KSPANNERDATABASE": "kSpannerDatabase",
+                        "KFIRESTOREDATABASE": "kFirestoreDatabase",
+                        "KSQLSERVERDATABASE": "kSQLServerDatabase"
                     },
                     ('acropolis_object_types',): {
 
@@ -3951,7 +4995,9 @@ class ObjectApi(object):
                         "KHOST": "kHost",
                         "KVIRTUALMACHINE": "kVirtualMachine",
                         "KNETWORK": "kNetwork",
-                        "KSTORAGECONTAINER": "kStorageContainer"
+                        "KSTORAGECONTAINER": "kStorageContainer",
+                        "KTAG": "kTag",
+                        "KTAGCATEGORY": "kTagCategory"
                     },
                     ('generic_nas_object_types',): {
 
@@ -3963,6 +5009,13 @@ class ObjectApi(object):
                         "KCLUSTER": "kCluster",
                         "KZONE": "kZone",
                         "KMOUNTPOINT": "kMountPoint"
+                    },
+                    ('nutanix_fs_object_types',): {
+
+                        "KPRISMCENTRAL": "kPrismCentral",
+                        "KPRISMELEMENT": "kPrismElement",
+                        "KFILESERVER": "kFileServer",
+                        "KMOUNTTARGET": "kMountTarget"
                     },
                     ('flashblade_object_types',): {
 
@@ -3998,7 +5051,8 @@ class ObjectApi(object):
                         "KWINDOWSCLUSTER": "kWindowsCluster",
                         "KORACLERACCLUSTER": "kOracleRACCluster",
                         "KORACLEAPCLUSTER": "kOracleAPCluster",
-                        "KUNIXCLUSTER": "kUnixCluster"
+                        "KUNIXCLUSTER": "kUnixCluster",
+                        "KORACLECLUSTER": "kOracleCluster"
                     },
                     ('kubernetes_object_types',): {
 
@@ -4008,7 +5062,8 @@ class ObjectApi(object):
                         "KPVC": "kPVC",
                         "KPERSISTENTVOLUMECLAIM": "kPersistentVolumeClaim",
                         "KPERSISTENTVOLUME": "kPersistentVolume",
-                        "KLABEL": "kLabel"
+                        "KLABEL": "kLabel",
+                        "KVIRTUALMACHINE": "kVirtualMachine"
                     },
                     ('exchange_object_types',): {
 
@@ -4088,6 +5143,8 @@ class ObjectApi(object):
                         ([str],),
                     'isilon_object_types':
                         ([str],),
+                    'nutanix_fs_object_types':
+                        ([str],),
                     'flashblade_object_types':
                         ([str],),
                     'elastifile_object_types':
@@ -4135,6 +5192,7 @@ class ObjectApi(object):
                     'acropolis_object_types': 'acropolisObjectTypes',
                     'generic_nas_object_types': 'genericNasObjectTypes',
                     'isilon_object_types': 'isilonObjectTypes',
+                    'nutanix_fs_object_types': 'nutanixFSObjectTypes',
                     'flashblade_object_types': 'flashbladeObjectTypes',
                     'elastifile_object_types': 'elastifileObjectTypes',
                     'gpfs_object_types': 'gpfsObjectTypes',
@@ -4170,6 +5228,7 @@ class ObjectApi(object):
                     'acropolis_object_types': 'query',
                     'generic_nas_object_types': 'query',
                     'isilon_object_types': 'query',
+                    'nutanix_fs_object_types': 'query',
                     'flashblade_object_types': 'query',
                     'elastifile_object_types': 'query',
                     'gpfs_object_types': 'query',
@@ -4202,6 +5261,7 @@ class ObjectApi(object):
                     'acropolis_object_types': 'csv',
                     'generic_nas_object_types': 'csv',
                     'isilon_object_types': 'csv',
+                    'nutanix_fs_object_types': 'csv',
                     'flashblade_object_types': 'csv',
                     'elastifile_object_types': 'csv',
                     'gpfs_object_types': 'csv',
@@ -4225,6 +5285,153 @@ class ObjectApi(object):
             callable=__get_source_hierarchy_objects
         )
 
+        def __modify_source_hierarchy_objects(
+            self,
+            source_id,
+            body,
+            **kwargs
+        ):
+            """Modify objects in source hierarchy.  # noqa: E501
+
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Add/Update objects to/from an entity hierarchy for a given source.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.modify_source_hierarchy_objects(source_id, body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                source_id (int): Specifies the source ID where objects are to be modified.
+                body (ModifySourceHierarchyObjectsRequest): Specifies the parameters to add/update objects in entity hierarchy.
+
+            Keyword Args:
+                request_initiator_type (str): Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ModifySourceHierarchyObjectsResult
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['source_id'] = \
+                source_id
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.modify_source_hierarchy_objects = _Endpoint(
+            settings={
+                'response_type': (ModifySourceHierarchyObjectsResult,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-protect/sources/{sourceId}/objects',
+                'operation_id': 'modify_source_hierarchy_objects',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'source_id',
+                    'body',
+                    'request_initiator_type',
+                ],
+                'required': [
+                    'source_id',
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                    'request_initiator_type',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('request_initiator_type',): {
+
+                        "UIUSER": "UIUser",
+                        "UIAUTO": "UIAuto",
+                        "HELIOS": "Helios"
+                    },
+                },
+                'openapi_types': {
+                    'source_id':
+                        (int,),
+                    'body':
+                        (ModifySourceHierarchyObjectsRequest,),
+                    'request_initiator_type':
+                        (str,),
+                },
+                'attribute_map': {
+                    'source_id': 'sourceId',
+                    'request_initiator_type': 'requestInitiatorType',
+                },
+                'location_map': {
+                    'source_id': 'path',
+                    'body': 'body',
+                    'request_initiator_type': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__modify_source_hierarchy_objects
+        )
+
         def __objects_actions(
             self,
             body,
@@ -4232,7 +5439,7 @@ class ObjectApi(object):
         ):
             """Actions on Objects  # noqa: E501
 
-            Specifies the request to perform various actions on multiple objects.  # noqa: E501
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Specifies the request to perform various actions on multiple objects.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -4297,7 +5504,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/actions',
                 'operation_id': 'objects_actions',
@@ -4355,7 +5564,7 @@ class ObjectApi(object):
         ):
             """Perform an action on an object.  # noqa: E501
 
-            Perform an action on an object. Depending on the object environment type, different actions are available.  # noqa: E501
+            **Privileges:** ```RESTORE_MODIFY``` <br><br>Perform an action on an object. Depending on the object environment type, different actions are available.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -4423,7 +5632,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/actions',
                 'operation_id': 'perform_action_on_object',
@@ -4488,7 +5699,7 @@ class ObjectApi(object):
         ):
             """Update an object snapshot.  # noqa: E501
 
-            Update an object snapshot.  # noqa: E501
+            **Privileges:** ```RESTORE_MODIFY``` <br><br>Update an object snapshot.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -4559,7 +5770,9 @@ class ObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/snapshots/{snapshotId}',
                 'operation_id': 'update_object_snapshot',

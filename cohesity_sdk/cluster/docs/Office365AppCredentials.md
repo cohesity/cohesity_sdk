@@ -1,10 +1,11 @@
 # Office365AppCredentials
 
-Specifies credentials for office365 azure registered applications, used for office 365 source registration.
+Specifies credentials of azure registered applications, used for office 365/Azure source registration.
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**client_certificate** | [**CertificateObjectWithMetadata**](CertificateObjectWithMetadata.md) |  | [optional] 
 **client_id** | **str, none_type** | Specifies the application ID that the registration portal (apps.dev.microsoft.com) assigned. | [optional] 
 **client_secret** | **str, none_type** | Specifies the application secret that was created in app registration portal. | [optional] 
 

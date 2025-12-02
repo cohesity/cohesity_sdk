@@ -6,6 +6,7 @@ Specifies a list of View Clients.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **clients** | [**[ViewClient], none_type**](ViewClient.md) | Specifies the list of Clients. | [optional] 
+**clients_summary** | [**ViewClientsClientsSummary**](ViewClientsClientsSummary.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

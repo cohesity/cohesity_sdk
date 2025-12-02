@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**azure_entra_id_protection_type_params** | [**AzureEntraIDObjectProtectionParams**](AzureEntraIDObjectProtectionParams.md) |  | [optional] 
 **azure_sql_protection_type_params** | [**AzureSqlObjectProtectionParams**](AzureSqlObjectProtectionParams.md) |  | [optional] 
 **native_protection_type_params** | [**AzureNativeObjectProtectionParams**](AzureNativeObjectProtectionParams.md) |  | [optional] 
 

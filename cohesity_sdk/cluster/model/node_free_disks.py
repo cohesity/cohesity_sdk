@@ -79,8 +79,8 @@ class NodeFreeDisks(ModelNormal):
         """
         lazy_import()
         return {
-            'free_disks': ([FreeDisk], none_type,),  # noqa: E501
-            'node_id': (int, none_type,),  # noqa: E501
+            'free_disks': ([FreeDisk],),  # noqa: E501
+            'node_id': (int,),  # noqa: E501
             'chassis_serial': (str, none_type,),  # noqa: E501
             'error_message': (str, none_type,),  # noqa: E501
             'slot': (int, none_type,),  # noqa: E501
@@ -116,8 +116,8 @@ class NodeFreeDisks(ModelNormal):
         """NodeFreeDisks - a model defined in OpenAPI
 
         Args:
-            free_disks ([FreeDisk], none_type): Specifies list of free disks of node.
-            node_id (int, none_type): Specifies the id of a node.
+            free_disks ([FreeDisk]): Specifies list of free disks of node.
+            node_id (int): Specifies the id of a node.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

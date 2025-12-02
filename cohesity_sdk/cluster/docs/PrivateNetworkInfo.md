@@ -6,9 +6,9 @@ Specifies the object parameters to create Azure Snapshot Manager Protection Grou
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **location** | **str, none_type** | Specifies the subnet for creating a private endpoint. | [optional] 
-**region** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the region of the virtual network. | [optional] 
-**subnet** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the subnet for creating a private endpoint. | [optional] 
-**vpn** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the virtual network for creating a private end point. | [optional] 
+**region** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | [optional] 
+**subnet** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | [optional] 
+**vpn** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

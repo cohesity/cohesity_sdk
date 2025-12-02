@@ -80,6 +80,9 @@ class RunReplicationConfig(ModelNormal):
         lazy_import()
         return {
             'id': (int, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'object_ids': ([str, none_type], none_type,),  # noqa: E501
+            'on_legal_hold': (bool, none_type,),  # noqa: E501
             'retention': (Retention,),  # noqa: E501
         }
 
@@ -91,6 +94,9 @@ class RunReplicationConfig(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'object_ids': 'objectIds',  # noqa: E501
+        'on_legal_hold': 'onLegalHold',  # noqa: E501
         'retention': 'retention',  # noqa: E501
     }
 
@@ -144,6 +150,9 @@ class RunReplicationConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            name (str, none_type): Specifies the cluster name of the replication cluster.. [optional]  # noqa: E501
+            object_ids ([str, none_type], none_type): Specifies the list of object as string ids to be replicated by this Protection Group run. These can be leaf objects or non-leaf objects in the protection hierarchy. This must be specified only if a subset of objects from the Protection Group needs to be replicated.. [optional]  # noqa: E501
+            on_legal_hold (bool, none_type): Specifies if the Run is on legal hold.. [optional]  # noqa: E501
             retention (Retention): [optional]  # noqa: E501
         """
 

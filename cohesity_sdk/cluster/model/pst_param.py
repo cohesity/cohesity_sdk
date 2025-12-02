@@ -76,6 +76,7 @@ class PstParam(ModelNormal):
         return {
             'password': (str, none_type,),  # noqa: E501
             'create_pst': (bool, none_type,),  # noqa: E501
+            'separate_download_files': (bool, none_type,),  # noqa: E501
             'size_threshold_bytes': (int, none_type,),  # noqa: E501
         }
 
@@ -88,6 +89,7 @@ class PstParam(ModelNormal):
     attribute_map = {
         'password': 'password',  # noqa: E501
         'create_pst': 'createPst',  # noqa: E501
+        'separate_download_files': 'separateDownloadFiles',  # noqa: E501
         'size_threshold_bytes': 'sizeThresholdBytes',  # noqa: E501
     }
 
@@ -142,6 +144,7 @@ class PstParam(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             create_pst (bool, none_type): Specifies if create a PST or MSG for input items.. [optional]  # noqa: E501
+            separate_download_files (bool, none_type): If true, a separate download file will be made for each snapshot. If false, a single common download file will be used for all snapshots. Default is false.. [optional]  # noqa: E501
             size_threshold_bytes (int, none_type): Specifies PST size threshold in bytes.. [optional]  # noqa: E501
         """
 

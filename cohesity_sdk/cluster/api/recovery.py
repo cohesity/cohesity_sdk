@@ -22,11 +22,16 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from cohesity_sdk.cluster.model.create_recovery_request import CreateRecoveryRequest
+from cohesity_sdk.cluster.model.directory_list_result import DirectoryListResult
 from cohesity_sdk.cluster.model.download_files_and_folders_request_params import DownloadFilesAndFoldersRequestParams
 from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.fetch_directories_params import FetchDirectoriesParams
 from cohesity_sdk.cluster.model.fetch_uptier_data_response import FetchUptierDataResponse
+from cohesity_sdk.cluster.model.get_restore_points_in_time_range_params import GetRestorePointsInTimeRangeParams
+from cohesity_sdk.cluster.model.get_restore_points_in_time_range_response import GetRestorePointsInTimeRangeResponse
 from cohesity_sdk.cluster.model.recoveries import Recoveries
 from cohesity_sdk.cluster.model.recovery import Recovery
+from cohesity_sdk.cluster.model.virtual_disk_information_response_params import VirtualDiskInformationResponseParams
 
 
 class RecoveryApi(object):
@@ -48,7 +53,7 @@ class RecoveryApi(object):
         ):
             """Cancel Recovery for a given id.  # noqa: E501
 
-            Cancel Recovery for a given id.  # noqa: E501
+            **Privileges:** ```RESTORE_MODIFY``` <br><br>Cancel Recovery for a given id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -113,7 +118,9 @@ class RecoveryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries/{id}/cancel',
                 'operation_id': 'cancel_recovery_by_id',
@@ -176,7 +183,7 @@ class RecoveryApi(object):
         ):
             """Create a download files and folders recovery.  # noqa: E501
 
-            Creates a download files and folders recovery.  # noqa: E501
+            **Privileges:** ```RESTORE_MODIFY``` <br><br>Creates a download files and folders recovery.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -241,7 +248,9 @@ class RecoveryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries/download-files-folders',
                 'operation_id': 'create_download_files_and_folders_recovery',
@@ -298,7 +307,7 @@ class RecoveryApi(object):
         ):
             """Performs a Recovery.  # noqa: E501
 
-            Performs a Recovery.  # noqa: E501
+            **Privileges:** ```RESTORE_MODIFY, REMOTE_RESTORE``` <br><br>Performs a Recovery.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -364,7 +373,9 @@ class RecoveryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries',
                 'operation_id': 'create_recovery',
@@ -426,6 +437,129 @@ class RecoveryApi(object):
             callable=__create_recovery
         )
 
+        def __delete_recovery_clone_task_by_id(
+            self,
+            id,
+            **kwargs
+        ):
+            """Delete a restore clone task  # noqa: E501
+
+            **Privileges:** ```RESTORE_MODIFY``` <br><br>Delete a restore clone task with specified id  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_recovery_clone_task_by_id(id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int): Specifies a unique id of the Clone Task to delete.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_recovery_clone_task_by_id = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-protect/recoveries/clone/{id}',
+                'operation_id': 'delete_recovery_clone_task_by_id',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                ],
+                'required': [
+                    'id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                },
+                'location_map': {
+                    'id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__delete_recovery_clone_task_by_id
+        )
+
         def __download_files_from_recovery(
             self,
             id,
@@ -433,7 +567,7 @@ class RecoveryApi(object):
         ):
             """Download files from the given download file recovery.  # noqa: E501
 
-            Download files from the given download file recovery.  # noqa: E501
+            **Privileges:** ```RESTORE_DOWNLOAD``` <br><br>Download files from the given download file recovery.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -450,6 +584,7 @@ class RecoveryApi(object):
                 source_name (str): Specifies the name of the source on which restore is done. [optional]
                 start_time (str): Specifies the start time of restore task. [optional]
                 include_tenants (bool): Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.. [optional]
+                file_path (str): Specifies the path of the file on the cluster to be downloaded.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -504,7 +639,9 @@ class RecoveryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries/{id}/download-files',
                 'operation_id': 'download_files_from_recovery',
@@ -520,6 +657,7 @@ class RecoveryApi(object):
                     'source_name',
                     'start_time',
                     'include_tenants',
+                    'file_path',
                 ],
                 'required': [
                     'id',
@@ -558,6 +696,8 @@ class RecoveryApi(object):
                         (str,),
                     'include_tenants':
                         (bool,),
+                    'file_path':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
@@ -567,6 +707,7 @@ class RecoveryApi(object):
                     'source_name': 'sourceName',
                     'start_time': 'startTime',
                     'include_tenants': 'includeTenants',
+                    'file_path': 'filePath',
                 },
                 'location_map': {
                     'id': 'path',
@@ -576,6 +717,7 @@ class RecoveryApi(object):
                     'source_name': 'query',
                     'start_time': 'query',
                     'include_tenants': 'query',
+                    'file_path': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -597,7 +739,7 @@ class RecoveryApi(object):
         ):
             """Download an indexed file.  # noqa: E501
 
-            Download an indexed file from a snapshot.  # noqa: E501
+            **Privileges:** ```RESTORE_DOWNLOAD``` <br><br>Download an indexed file from a snapshot.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -667,7 +809,9 @@ class RecoveryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/snapshots/{snapshotsId}/download-file',
                 'operation_id': 'download_indexed_file',
@@ -748,7 +892,7 @@ class RecoveryApi(object):
         ):
             """Fetches the uptier data.  # noqa: E501
 
-            Fetches the uptier data for a restore job.  # noqa: E501
+            **Privileges:** ```RESTORE_VIEW``` <br><br>Fetches the uptier data for a restore job.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -813,7 +957,9 @@ class RecoveryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries/fetch-uptier-data',
                 'operation_id': 'fetch_uptier_data',
@@ -869,13 +1015,137 @@ class RecoveryApi(object):
             callable=__fetch_uptier_data
         )
 
+        def __get_directories(
+            self,
+            body,
+            **kwargs
+        ):
+            """Fetches the children of a directory  # noqa: E501
+
+            **Privileges:** ```RESTORE_VIEW``` <br><br>Retrieves the immediate files and subdirectories of a specified directory within a VM, View, NAS Volume, Physical machine etc. i.e. any adapter that supports browse functionality  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_directories(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (FetchDirectoriesParams): Specifies the parameters to create a download files and folder recovery.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                DirectoryListResult
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.get_directories = _Endpoint(
+            settings={
+                'response_type': (DirectoryListResult,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-protect/recoveries/directories',
+                'operation_id': 'get_directories',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (FetchDirectoriesParams,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__get_directories
+        )
+
         def __get_recoveries(
             self,
             **kwargs
         ):
             """Lists the Recoveries.  # noqa: E501
 
-            Lists the Recoveries.  # noqa: E501
+            **Privileges:** ```RESTORE_VIEW``` <br><br>Lists the Recoveries.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -896,6 +1166,9 @@ class RecoveryApi(object):
                 snapshot_environments ([str]): Specifies the list of snapshot environment types to filter Recoveries. If empty, Recoveries related to all environments will be returned.. [optional]
                 status ([str]): Specifies the list of run status to filter Recoveries. If empty, Recoveries with all run status will be returned.. [optional]
                 recovery_actions ([str]): Specifies the list of recovery actions to filter Recoveries. If empty, Recoveries related to all actions will be returned.. [optional]
+                return_child_tasks (bool): If set to true, also allows child tasks created by restore jobs or multi-state restores to be returned.. [optional] if omitted the server will use the default value of False
+                fortknox_onprem_recoveries_only (bool): Return only recoveries initiated from the snapshots in FortKnox Onprem vaults if it set to true. Otherwise, return all recoveries as default.. [optional] if omitted the server will use the default value of False
+                prune_objects (bool): Specifies if objects should be excluded from the response.. [optional] if omitted the server will use the default value of False
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -948,7 +1221,9 @@ class RecoveryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries',
                 'operation_id': 'get_recoveries',
@@ -969,6 +1244,9 @@ class RecoveryApi(object):
                     'snapshot_environments',
                     'status',
                     'recovery_actions',
+                    'return_child_tasks',
+                    'fortknox_onprem_recoveries_only',
+                    'prune_objects',
                 ],
                 'required': [],
                 'nullable': [
@@ -1030,6 +1308,7 @@ class RecoveryApi(object):
                         "KGPFS": "kGPFS",
                         "KELASTIFILE": "kElastifile",
                         "KNETAPP": "kNetapp",
+                        "KNUTANIXFS": "kNutanixFS",
                         "KGENERICNAS": "kGenericNas",
                         "KISILON": "kIsilon",
                         "KFLASHBLADE": "kFlashBlade",
@@ -1048,9 +1327,17 @@ class RecoveryApi(object):
                         "KCOUCHBASE": "kCouchbase",
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
+                        "KS3COMPATIBLE": "kS3Compatible",
+                        "KSAPHANA": "kSAPHANA",
                         "KHBASE": "kHBase",
                         "KUDA": "kUDA",
-                        "KSFDC": "kSfdc"
+                        "KSFDC": "kSfdc",
+                        "KEXPERIMENTALADAPTER": "kExperimentalAdapter",
+                        "KMONGODBPHYSICAL": "kMongoDBPhysical",
+                        "KGOOGLEWORKSPACE": "kGoogleWorkspace",
+                        "KDB2": "kDB2",
+                        "KSERVICENOW": "kServiceNow",
+                        "KPOSTGRES": "kPostgres"
                     },
                     ('status',): {
 
@@ -1080,12 +1367,42 @@ class RecoveryApi(object):
                         "RECOVERAURORA": "RecoverAurora",
                         "RECOVERS3BUCKETS": "RecoverS3Buckets",
                         "RECOVERRDSPOSTGRES": "RecoverRDSPostgres",
+                        "RECOVERAWSDYNAMODB": "RecoverAwsDynamoDB",
+                        "RECOVERRDSMYSQL": "RecoverRDSMySQL",
+                        "RECOVERRDSAURORAMYSQL": "RecoverRDSAuroraMySQL",
+                        "RECOVERRDSORACLE": "RecoverRDSOracle",
+                        "RECOVERAWSDOCUMENTDB": "RecoverAWSDocumentDB",
+                        "RECOVERAWSRDSPOSTGRESDB": "RecoverAWSRDSPostgresDB",
+                        "RECOVERAWSAURORAPOSTGRESDB": "RecoverAWSAuroraPostgresDB",
+                        "RECOVERAWSRDSMSSQL": "RecoverAWSRDSMSSQL",
+                        "RECOVERAWSREDSHIFT": "RecoverAWSRedshift",
+                        "RECOVERGCPBIGQUERY": "RecoverGCPBigQuery",
+                        "RECOVERGOOGLESPANNER": "RecoverGoogleSpanner",
+                        "RECOVERGCPFIRESTORE": "RecoverGCPFirestore",
+                        "RECOVERGCPMYSQL": "RecoverGCPMySQL",
+                        "RECOVERGCPPOSTGRESQL": "RecoverGCPPostgreSQL",
+                        "RECOVERGCPALLOYDBPOSTGRESQL": "RecoverGCPAlloyDBPostgreSQL",
+                        "RECOVERGCPSQLSERVER": "RecoverGCPSQLServer",
                         "RECOVERAZURESQL": "RecoverAzureSQL",
+                        "RECOVERAZUREENTRAID": "RecoverAzureEntraID",
+                        "RECOVERAZUREMYSQL": "RecoverAzureMySQL",
+                        "RECOVERNAMESPACES": "RecoverNamespaces",
+                        "RECOVERAZURECOSMOSDBCASSANDRA": "RecoverAzureCosmosDBCassandra",
+                        "RECOVERAZUREPOSTGRESQL": "RecoverAzurePostgreSQL",
+                        "RECOVERAZURECOSMOSDBNOSQL": "RecoverAzureCosmosDBNoSQL",
+                        "RECOVERAZURECOSMOSDBMONGODB": "RecoverAzureCosmosDBMongoDB",
+                        "RECOVERAZUREBLOBSTORAGE": "RecoverAzureBlobStorage",
+                        "RECOVERAZURESQLDB": "RecoverAzureSQLDB",
+                        "RECOVERAZURESQLMI": "RecoverAzureSQLMI",
+                        "RECOVERAZURETABLESTORAGE": "RecoverAzureTableStorage",
+                        "RECOVERAZURETABLEAPI": "RecoverAzureTableAPI",
                         "RECOVERAPPS": "RecoverApps",
                         "CLONEAPPS": "CloneApps",
+                        "RECOVERAPPFILES": "RecoverAppFiles",
                         "RECOVERNASVOLUME": "RecoverNasVolume",
                         "RECOVERPHYSICALVOLUMES": "RecoverPhysicalVolumes",
                         "RECOVERSYSTEM": "RecoverSystem",
+                        "RECOVERSNAPSHOTTOVIEW": "RecoverSnapshotToView",
                         "RECOVEREXCHANGEDBS": "RecoverExchangeDbs",
                         "CLONEAPPVIEW": "CloneAppView",
                         "RECOVERSANVOLUMES": "RecoverSanVolumes",
@@ -1101,18 +1418,24 @@ class RecoveryApi(object):
                         "RECOVERMAILBOXCSM": "RecoverMailboxCSM",
                         "RECOVERONEDRIVECSM": "RecoverOneDriveCSM",
                         "RECOVERSHAREPOINTCSM": "RecoverSharePointCSM",
-                        "RECOVERNAMESPACES": "RecoverNamespaces",
+                        "RECOVERO365TOEXCHANGESERVER": "RecoverO365ToExchangeServer",
+                        "DOWNLOADFILESANDFOLDERS": "DownloadFilesAndFolders",
                         "RECOVEROBJECTS": "RecoverObjects",
                         "RECOVERSFDCOBJECTS": "RecoverSfdcObjects",
                         "RECOVERSFDCORG": "RecoverSfdcOrg",
                         "RECOVERSFDCRECORDS": "RecoverSfdcRecords",
-                        "DOWNLOADFILESANDFOLDERS": "DownloadFilesAndFolders",
+                        "RECOVERGMAIL": "RecoverGmail",
+                        "RECOVERGOOGLEDRIVE": "RecoverGoogleDrive",
                         "CLONEVMS": "CloneVMs",
                         "CLONEVIEW": "CloneView",
                         "CLONEREFRESHAPP": "CloneRefreshApp",
                         "CLONEVMSTOVIEW": "CloneVMsToView",
                         "CONVERTANDDEPLOYVMS": "ConvertAndDeployVMs",
-                        "DEPLOYVMS": "DeployVMs"
+                        "DEPLOYVMS": "DeployVMs",
+                        "RECOVERMONGODBCLUSTERS": "RecoverMongodbClusters",
+                        "RECOVERSERVICENOWTABLES": "RecoverServiceNowTables",
+                        "RECOVERSERVICENOWINSTANCE": "RecoverServiceNowInstance",
+                        "DOWNLOADTABLES": "DownloadTables"
                     },
                 },
                 'openapi_types': {
@@ -1140,6 +1463,12 @@ class RecoveryApi(object):
                         ([str],),
                     'recovery_actions':
                         ([str],),
+                    'return_child_tasks':
+                        (bool,),
+                    'fortknox_onprem_recoveries_only':
+                        (bool,),
+                    'prune_objects':
+                        (bool,),
                 },
                 'attribute_map': {
                     'ids': 'ids',
@@ -1154,6 +1483,9 @@ class RecoveryApi(object):
                     'snapshot_environments': 'snapshotEnvironments',
                     'status': 'status',
                     'recovery_actions': 'recoveryActions',
+                    'return_child_tasks': 'returnChildTasks',
+                    'fortknox_onprem_recoveries_only': 'fortknoxOnpremRecoveriesOnly',
+                    'prune_objects': 'pruneObjects',
                 },
                 'location_map': {
                     'ids': 'query',
@@ -1168,6 +1500,9 @@ class RecoveryApi(object):
                     'snapshot_environments': 'query',
                     'status': 'query',
                     'recovery_actions': 'query',
+                    'return_child_tasks': 'query',
+                    'fortknox_onprem_recoveries_only': 'query',
+                    'prune_objects': 'query',
                 },
                 'collection_format_map': {
                     'ids': 'csv',
@@ -1196,7 +1531,7 @@ class RecoveryApi(object):
         ):
             """Get Recovery for a given id.  # noqa: E501
 
-            Get Recovery for a given id.  # noqa: E501
+            **Privileges:** ```RESTORE_VIEW``` <br><br>Get Recovery for a given id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1208,6 +1543,7 @@ class RecoveryApi(object):
 
             Keyword Args:
                 include_tenants (bool): Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.. [optional]
+                return_child_tasks (bool): If set to true, also allows child tasks created by restore jobs or multi-state restores to be returned.. [optional] if omitted the server will use the default value of False
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1262,7 +1598,9 @@ class RecoveryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries/{id}',
                 'operation_id': 'get_recovery_by_id',
@@ -1273,6 +1611,7 @@ class RecoveryApi(object):
                 'all': [
                     'id',
                     'include_tenants',
+                    'return_child_tasks',
                 ],
                 'required': [
                     'id',
@@ -1301,14 +1640,18 @@ class RecoveryApi(object):
                         (str,),
                     'include_tenants':
                         (bool,),
+                    'return_child_tasks':
+                        (bool,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'include_tenants': 'includeTenants',
+                    'return_child_tasks': 'returnChildTasks',
                 },
                 'location_map': {
                     'id': 'path',
                     'include_tenants': 'query',
+                    'return_child_tasks': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -1330,7 +1673,7 @@ class RecoveryApi(object):
         ):
             """Get the debug logs for a particular recovery operation.  # noqa: E501
 
-            Get the debug logs for a particular recovery operation.  # noqa: E501
+            **Privileges:** ```RESTORE_VIEW``` <br><br>Get the debug logs for a particular recovery operation.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1395,7 +1738,9 @@ class RecoveryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries/{id}/debug-logs',
                 'operation_id': 'get_recovery_debug_logs',
@@ -1458,7 +1803,7 @@ class RecoveryApi(object):
         ):
             """Get the CSV of errors/warnings for a given recovery operation.  # noqa: E501
 
-            Get a CSV error report for given recovery operation. Each row in CSV report contains the File Path, error/warning code and error/warning message.  # noqa: E501
+            **Privileges:** ```RESTORE_VIEW``` <br><br>Get a CSV error report for given recovery operation. Each row in CSV report contains the File Path, error/warning code and error/warning message.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1523,7 +1868,9 @@ class RecoveryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries/{id}/download-messages',
                 'operation_id': 'get_recovery_errors_report',
@@ -1579,6 +1926,130 @@ class RecoveryApi(object):
             callable=__get_recovery_errors_report
         )
 
+        def __get_restore_points_in_time_range(
+            self,
+            body,
+            **kwargs
+        ):
+            """List Restore Points in a given time range  # noqa: E501
+
+            **Privileges:** ```RESTORE_VIEW``` <br><br>List Restore Points i.e. returns the snapshots in in a given time range  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_restore_points_in_time_range(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (GetRestorePointsInTimeRangeParams): Specifies the request parameters to restore points for time range API
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GetRestorePointsInTimeRangeResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.get_restore_points_in_time_range = _Endpoint(
+            settings={
+                'response_type': (GetRestorePointsInTimeRangeResponse,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-protect/snapshots/restore-points',
+                'operation_id': 'get_restore_points_in_time_range',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (GetRestorePointsInTimeRangeParams,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__get_restore_points_in_time_range
+        )
+
         def __tear_down_recovery_by_id(
             self,
             id,
@@ -1586,7 +2057,7 @@ class RecoveryApi(object):
         ):
             """Tear down Recovery for a given id.  # noqa: E501
 
-            Tear down Recovery for a given id.  # noqa: E501
+            **Privileges:** ```RESTORE_MODIFY``` <br><br>Tear down Recovery for a given id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1651,7 +2122,9 @@ class RecoveryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries/{id}/tear-down',
                 'operation_id': 'tear_down_recovery_by_id',
@@ -1705,4 +2178,194 @@ class RecoveryApi(object):
             },
             api_client=api_client,
             callable=__tear_down_recovery_by_id
+        )
+
+        def __virtual_disk_information(
+            self,
+            cluster_id,
+            cluster_incarnation_id,
+            job_id,
+            object_id,
+            **kwargs
+        ):
+            """Fetches information of virtual disks  # noqa: E501
+
+            **Privileges:** ```RESTORE_VIEW``` <br><br>Fetches information of virtual disks of an object such as a VM or a physical server for a given snapshot.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.virtual_disk_information(cluster_id, cluster_incarnation_id, job_id, object_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                cluster_id (int): Specifies the Cohesity Cluster id where the Job was created.
+                cluster_incarnation_id (int): Specifies the incarnation id of the Cohesity Cluster where the Job was created.
+                job_id (int): Specifies the id of the Job that captured the snapshot.
+                object_id (int): Specifies the Id of the Protection Source object.
+
+            Keyword Args:
+                snapshot_id (str): Specifies the snapshot id.. [optional]
+                point_in_time_usecs (int): Specifies the Id of the vault where snapshot was taken. [optional]
+                vault_id (int): Specifies the Id of the vault where snapshot was taken. [optional]
+                vault_name (str): Specifies the name of the vault where snapshot was taken. [optional]
+                vault_type (str): Specifies the External Target type.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                VirtualDiskInformationResponseParams
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['cluster_id'] = \
+                cluster_id
+            kwargs['cluster_incarnation_id'] = \
+                cluster_incarnation_id
+            kwargs['job_id'] = \
+                job_id
+            kwargs['object_id'] = \
+                object_id
+            return self.call_with_http_info(**kwargs)
+
+        self.virtual_disk_information = _Endpoint(
+            settings={
+                'response_type': (VirtualDiskInformationResponseParams,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-protect/recoveries/virtual-disks',
+                'operation_id': 'virtual_disk_information',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'cluster_id',
+                    'cluster_incarnation_id',
+                    'job_id',
+                    'object_id',
+                    'snapshot_id',
+                    'point_in_time_usecs',
+                    'vault_id',
+                    'vault_name',
+                    'vault_type',
+                ],
+                'required': [
+                    'cluster_id',
+                    'cluster_incarnation_id',
+                    'job_id',
+                    'object_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                    'vault_type',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('vault_type',): {
+
+                        "TAPE": "Tape",
+                        "CLOUD": "Cloud",
+                        "NAS": "Nas"
+                    },
+                },
+                'openapi_types': {
+                    'cluster_id':
+                        (int,),
+                    'cluster_incarnation_id':
+                        (int,),
+                    'job_id':
+                        (int,),
+                    'object_id':
+                        (int,),
+                    'snapshot_id':
+                        (str,),
+                    'point_in_time_usecs':
+                        (int,),
+                    'vault_id':
+                        (int,),
+                    'vault_name':
+                        (str,),
+                    'vault_type':
+                        (str,),
+                },
+                'attribute_map': {
+                    'cluster_id': 'clusterId',
+                    'cluster_incarnation_id': 'clusterIncarnationId',
+                    'job_id': 'jobId',
+                    'object_id': 'objectId',
+                    'snapshot_id': 'snapshotId',
+                    'point_in_time_usecs': 'pointInTimeUsecs',
+                    'vault_id': 'vaultId',
+                    'vault_name': 'vaultName',
+                    'vault_type': 'vaultType',
+                },
+                'location_map': {
+                    'cluster_id': 'query',
+                    'cluster_incarnation_id': 'query',
+                    'job_id': 'query',
+                    'object_id': 'query',
+                    'snapshot_id': 'query',
+                    'point_in_time_usecs': 'query',
+                    'vault_id': 'query',
+                    'vault_name': 'query',
+                    'vault_type': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__virtual_disk_information
         )

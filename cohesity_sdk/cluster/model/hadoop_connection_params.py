@@ -60,6 +60,13 @@ class HadoopConnectionParams(ModelNormal):
     """
 
     allowed_values = {
+        ('hdfs_connection_type',): {
+            'None': None,
+            'DFS': "DFS",
+            'WEBHDFS': "WEBHDFS",
+            'HTTPFSLB': "HTTPFSLB",
+            'HTTPFS': "HTTPFS",
+        },
     }
 
     validations = {
@@ -83,6 +90,7 @@ class HadoopConnectionParams(ModelNormal):
         return {
             'configuration_directory': (str,),  # noqa: E501
             'host': (str,),  # noqa: E501
+            'hdfs_connection_type': (str, none_type,),  # noqa: E501
             'ssh_password_credentials': (HadoopConnectionParamsSshPasswordCredentials,),  # noqa: E501
             'ssh_private_key_credentials': (HadoopConnectionParamsSshPrivateKeyCredentials,),  # noqa: E501
         }
@@ -96,6 +104,7 @@ class HadoopConnectionParams(ModelNormal):
     attribute_map = {
         'configuration_directory': 'configurationDirectory',  # noqa: E501
         'host': 'host',  # noqa: E501
+        'hdfs_connection_type': 'hdfsConnectionType',  # noqa: E501
         'ssh_password_credentials': 'sshPasswordCredentials',  # noqa: E501
         'ssh_private_key_credentials': 'sshPrivateKeyCredentials',  # noqa: E501
     }
@@ -151,6 +160,7 @@ class HadoopConnectionParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            hdfs_connection_type (str, none_type): HDFS Connection Type.. [optional]  # noqa: E501
             ssh_password_credentials (HadoopConnectionParamsSshPasswordCredentials): [optional]  # noqa: E501
             ssh_private_key_credentials (HadoopConnectionParamsSshPrivateKeyCredentials): [optional]  # noqa: E501
         """

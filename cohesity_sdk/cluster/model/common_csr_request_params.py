@@ -62,6 +62,7 @@ class CommonCsrRequestParams(ModelNormal):
         ('service_name',): {
             'None': None,
             'IRIS': "iris",
+            'HELIOS_UI_HELIOS_SELF_MANAGED': "helios_ui_helios_self_managed",
         },
     }
 
@@ -178,7 +179,7 @@ class CommonCsrRequestParams(ModelNormal):
             host_ips ([str], none_type): Specifies an alternative subject name component to be included in the certificate. It is used to identify the ways the Cluster will be accessed. It is given as a comma separated list of IP addresses. The default value is the Cluster's VIP addresses.. [optional]  # noqa: E501
             key_size_bits (int, none_type): Specifies the size of the keys in bits. The default is 2048 bits for the RSA keys and 256 bits for ECDSA.. [optional]  # noqa: E501
             key_type (str, none_type): Specifies the algorithm to be used to generate the key pair. RSA is the default value.. [optional] if omitted the server will use the default value of "rsa"  # noqa: E501
-            service_name (str, none_type): Specifies the Cohesity service name for which the CSR is generated. Default service name is iris.. [optional] if omitted the server will use the default value of "iris"  # noqa: E501
+            service_name (str, none_type): Specifies the Cohesity service name for which the CSR is generated. Default service name is iris. . [optional] if omitted the server will use the default value of "iris"  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -62,6 +62,9 @@ class SnapshotDiffParams(ModelNormal):
             'KNETAPP': "kNetapp",
             'KPURE': "kPure",
             'KISILON': "kIsilon",
+            'KAZURE': "kAzure",
+            'KAWS': "kAWS",
+            'KAZURENATIVE': "kAzureNative",
         },
     }
 

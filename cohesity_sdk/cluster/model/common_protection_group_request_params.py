@@ -71,6 +71,13 @@ class CommonProtectionGroupRequestParams(ModelNormal):
             'KVCD': "kVCD",
             'KAZURE': "kAzure",
             'KGCP': "kGCP",
+            'KGCPBIGQUERY': "kGCPBigQuery",
+            'KGCPMYSQL': "kGCPMySQL",
+            'KGOOGLESPANNER': "kGoogleSpanner",
+            'KGCPPOSTGRESQL': "kGCPPostgreSQL",
+            'KGCPALLOYDBPOSTGRESQL': "kGCPAlloyDBPostgreSQL",
+            'KGCPSQLSERVER': "kGCPSQLServer",
+            'KGCPFIRESTORE': "kGCPFirestore",
             'KKVM': "kKVM",
             'KACROPOLIS': "kAcropolis",
             'KAWS': "kAWS",
@@ -78,16 +85,48 @@ class CommonProtectionGroupRequestParams(ModelNormal):
             'KAWSS3': "kAwsS3",
             'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KRDSPOSTGRESSNAPSHOTMANAGER': "kRDSPostgresSnapshotManager",
+            'KRDSMYSQLSNAPSHOTMANAGER': "kRDSMySQLSnapshotManager",
+            'KRDSMSSQLSNAPSHOTMANAGER': "kRDSMSSQLSnapshotManager",
+            'KRDSORACLESNAPSHOTMANAGER': "kRDSOracleSnapshotManager",
+            'KRDSMARIADBSNAPSHOTMANAGER': "kRDSMariaDBSnapshotManager",
+            'KRDSCUSTOMMSSQLSNAPSHOTMANAGER': "kRDSCustomMSSQLSnapshotManager",
+            'KRDSCUSTOMORACLESNAPSHOTMANAGER': "kRDSCustomOracleSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAURORAPOSTGRESSNAPSHOTMANAGER': "kAuroraPostgresSnapshotManager",
+            'KAURORAMYSQLSNAPSHOTMANAGER': "kAuroraMySQLSnapshotManager",
             'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAWSRDSPOSTGRES': "kAwsRDSPostgres",
+            'KAWSAURORAPOSTGRES': "kAwsAuroraPostgres",
+            'KAWSMYSQL': "kAWSMySQL",
+            'KAWSAURORAMYSQL': "kAWSAuroraMySQL",
+            'KAWSDYNAMODB': "kAwsDynamoDB",
+            'KAWSRDSORACLE': "kAWSRdsOracle",
+            'KAWSDOCUMENTDB': "kAWSDocumentDB",
+            'KAWSRDSPOSTGRESDB': "kAWSRDSPostgresDB",
+            'KAWSAURORAPOSTGRESDB': "kAWSAuroraPostgresDB",
+            'KAWSRDSMSSQL': "kAWSRDSMSSQL",
+            'KAWSREDSHIFT': "kAWSRedshift",
             'KAZURENATIVE': "kAzureNative",
             'KAZURESQL': "kAzureSQL",
+            'KAZUREENTRAID': "kAzureEntraID",
+            'KAZUREMYSQL': "kAzureMySQL",
+            'KAZURECOSMOSDBNOSQL': "kAzureCosmosDBNoSQL",
+            'KAZURECOSMOSDBMONGODB': "kAzureCosmosDBMongoDB",
+            'KAZURECOSMOSDBCASSANDRA': "kAzureCosmosDBCassandra",
+            'KAZUREPOSTGRESQLSERVER': "kAzurePostgreSQLServer",
+            'KAZURESQLDB': "kAzureSQLDB",
+            'KAZURESQLMI': "kAzureSQLMI",
+            'KAZURETABLESTORAGE': "kAzureTableStorage",
+            'KAZUREBLOBSTORAGE': "kAzureBlobStorage",
+            'KAZURETABLEAPI': "kAzureTableAPI",
             'KAZURESNAPSHOTMANAGER': "kAzureSnapshotManager",
             'KPHYSICAL': "kPhysical",
             'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
             'KNETAPP': "kNetapp",
+            'KNUTANIXFS': "kNutanixFS",
             'KGENERICNAS': "kGenericNas",
             'KISILON': "kIsilon",
             'KFLASHBLADE': "kFlashBlade",
@@ -113,11 +152,21 @@ class CommonProtectionGroupRequestParams(ModelNormal):
             'KHDFS': "kHdfs",
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
+            'KSAPHANA': "kSAPHANA",
             'KUDA': "kUDA",
+            'KS3COMPATIBLE': "kS3Compatible",
             'KSFDC': "kSfdc",
             'KO365EXCHANGECSM': "kO365ExchangeCSM",
             'KO365ONEDRIVECSM': "kO365OneDriveCSM",
-            'KO365SHAREPOINTCSM': "kO365SharePointCSM",
+            'KO365SHAREPOINTCSM': "kO365SharepointCSM",
+            'KEXPERIMENTALADAPTER': "kExperimentalAdapter",
+            'KMONGODBPHYSICAL': "kMongoDBPhysical",
+            'KGOOGLEWORKSPACE': "kGoogleWorkspace",
+            'KGMAIL': "kGmail",
+            'KGOOGLEDRIVE': "kGoogleDrive",
+            'KDB2': "kDB2",
+            'KSERVICENOW': "kServiceNow",
+            'KPOSTGRES': "kPostgres",
         },
         ('priority',): {
             'None': None,
@@ -164,6 +213,7 @@ class CommonProtectionGroupRequestParams(ModelNormal):
             'is_paused': (bool, none_type,),  # noqa: E501
             'last_modified_timestamp_usecs': (int, none_type,),  # noqa: E501
             'pause_in_blackouts': (bool, none_type,),  # noqa: E501
+            'paused_note': (str, none_type,),  # noqa: E501
             'priority': (str, none_type,),  # noqa: E501
             'qos_policy': (str, none_type,),  # noqa: E501
             'sla': ([SlaRule], none_type,),  # noqa: E501
@@ -189,6 +239,7 @@ class CommonProtectionGroupRequestParams(ModelNormal):
         'is_paused': 'isPaused',  # noqa: E501
         'last_modified_timestamp_usecs': 'lastModifiedTimestampUsecs',  # noqa: E501
         'pause_in_blackouts': 'pauseInBlackouts',  # noqa: E501
+        'paused_note': 'pausedNote',  # noqa: E501
         'priority': 'priority',  # noqa: E501
         'qos_policy': 'qosPolicy',  # noqa: E501
         'sla': 'sla',  # noqa: E501
@@ -256,6 +307,7 @@ class CommonProtectionGroupRequestParams(ModelNormal):
             is_paused (bool, none_type): Specifies if the the Protection Group is paused. New runs are not scheduled for the paused Protection Groups. Active run if any is not impacted.. [optional]  # noqa: E501
             last_modified_timestamp_usecs (int, none_type): Specifies the last time this protection group was updated. If this is passed into a PUT request, then the backend will validate that the timestamp passed in matches the time that the protection group was actually last modified. If the two timestamps do not match, then the request will be rejected with a stale error.. [optional]  # noqa: E501
             pause_in_blackouts (bool, none_type): Specifies whether currently executing jobs should be paused if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if 'abortInBlackouts' is sent as true.. [optional]  # noqa: E501
+            paused_note (str, none_type): A note from the current user explaining the reason for pausing future runs, if applicable.. [optional]  # noqa: E501
             priority (str, none_type): Specifies the priority of the Protection Group.. [optional]  # noqa: E501
             qos_policy (str, none_type): Specifies whether the Protection Group will be written to HDD or SSD.. [optional]  # noqa: E501
             sla ([SlaRule], none_type): Specifies the SLA parameters for this Protection Group.. [optional]  # noqa: E501

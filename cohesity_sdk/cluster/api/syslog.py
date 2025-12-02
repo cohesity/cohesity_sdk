@@ -47,7 +47,7 @@ class SyslogApi(object):
         ):
             """Add Syslog Server  # noqa: E501
 
-            Add a new syslog server  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Add a new syslog server  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -112,7 +112,9 @@ class SyslogApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/syslog',
                 'operation_id': 'add_syslog_server',
@@ -162,13 +164,124 @@ class SyslogApi(object):
             callable=__add_syslog_server
         )
 
+        def __get_supported_syslog_auth_modes(
+            self,
+            **kwargs
+        ):
+            """Get supported program names.  # noqa: E501
+
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Get supported authentation modes.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_supported_syslog_auth_modes(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                [str]
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_supported_syslog_auth_modes = _Endpoint(
+            settings={
+                'response_type': ([str],),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/syslog/auth-modes',
+                'operation_id': 'get_supported_syslog_auth_modes',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_supported_syslog_auth_modes
+        )
+
         def __get_supported_syslog_program_names(
             self,
             **kwargs
         ):
             """Get supported program names.  # noqa: E501
 
-            Get supported program names to configure for a syslog server.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Get supported program names to configure for a syslog server.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -229,7 +342,9 @@ class SyslogApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/syslog/program-names',
                 'operation_id': 'get_supported_syslog_program_names',
@@ -277,7 +392,7 @@ class SyslogApi(object):
         ):
             """Get cluster audit tags.  # noqa: E501
 
-            Get cluster audit tags.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Get cluster audit tags.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -338,7 +453,9 @@ class SyslogApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/syslog/audit-tags',
                 'operation_id': 'get_syslog_audit_tags',
@@ -387,7 +504,7 @@ class SyslogApi(object):
         ):
             """Get a syslog server by id.  # noqa: E501
 
-            Get a syslog server by id.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Get a syslog server by id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -452,7 +569,9 @@ class SyslogApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/syslog/{id}',
                 'operation_id': 'get_syslog_server_by_id',
@@ -508,7 +627,7 @@ class SyslogApi(object):
         ):
             """Get a syslog server reachability status.  # noqa: E501
 
-            Check syslog server reachability by given Id.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Check syslog server reachability by given Id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -573,7 +692,9 @@ class SyslogApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/syslog/{id}/status',
                 'operation_id': 'get_syslog_server_status_by_id',
@@ -628,7 +749,7 @@ class SyslogApi(object):
         ):
             """Get list of syslog servers.  # noqa: E501
 
-            Get list of syslog servers.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Get list of syslog servers.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -689,7 +810,9 @@ class SyslogApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/syslog',
                 'operation_id': 'get_syslog_servers',
@@ -738,7 +861,7 @@ class SyslogApi(object):
         ):
             """Patch a syslog server by id.  # noqa: E501
 
-            Patch syslog server by id.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Patch syslog server by id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -804,7 +927,9 @@ class SyslogApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/syslog/{id}',
                 'operation_id': 'patch_syslog_server_by_id',
@@ -866,7 +991,7 @@ class SyslogApi(object):
         ):
             """Remove syslog server by id  # noqa: E501
 
-            Delete syslog server by id.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete syslog server by id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -931,7 +1056,9 @@ class SyslogApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/syslog/{id}',
                 'operation_id': 'remove_syslog_server',
@@ -986,7 +1113,7 @@ class SyslogApi(object):
         ):
             """Remove syslog servers  # noqa: E501
 
-            Delete all syslog servers.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete all syslog servers.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1047,7 +1174,9 @@ class SyslogApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/syslog',
                 'operation_id': 'remove_syslog_servers',
@@ -1095,7 +1224,7 @@ class SyslogApi(object):
         ):
             """Update cluster audit tags.  # noqa: E501
 
-            Update cluster audit tags.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update cluster audit tags.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1157,7 +1286,9 @@ class SyslogApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/syslog/audit-tags',
                 'operation_id': 'update_syslog_audit_tags',
@@ -1212,7 +1343,7 @@ class SyslogApi(object):
         ):
             """Update a syslog server by id.  # noqa: E501
 
-            Update syslog server by id.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update syslog server by id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1278,7 +1409,9 @@ class SyslogApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/syslog/{id}',
                 'operation_id': 'update_syslog_server_by_id',

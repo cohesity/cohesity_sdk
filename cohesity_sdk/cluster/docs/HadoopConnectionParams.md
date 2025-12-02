@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **configuration_directory** | **str** | The directory containing the application specific config file. . | 
 **host** | **str** | IP or hostname of any host from which the  configuration file can be read. | 
+**hdfs_connection_type** | **str, none_type** | HDFS Connection Type. | [optional] 
 **ssh_password_credentials** | [**HadoopConnectionParamsSshPasswordCredentials**](HadoopConnectionParamsSshPasswordCredentials.md) |  | [optional] 
 **ssh_private_key_credentials** | [**HadoopConnectionParamsSshPrivateKeyCredentials**](HadoopConnectionParamsSshPrivateKeyCredentials.md) |  | [optional] 
 

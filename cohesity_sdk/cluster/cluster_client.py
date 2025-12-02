@@ -9,23 +9,34 @@ from cohesity_sdk.cluster.api.active_directory import ActiveDirectoryApi
 from cohesity_sdk.cluster.api.agent import AgentApi
 from cohesity_sdk.cluster.api.alert import AlertApi
 from cohesity_sdk.cluster.api.antivirus_service import AntivirusServiceApi
+from cohesity_sdk.cluster.api.app import AppApi
+from cohesity_sdk.cluster.api.athena_app_ops import AthenaAppOpsApi
 from cohesity_sdk.cluster.api.audit_log import AuditLogApi
-from cohesity_sdk.cluster.api.baseos_patch_management import BaseosPatchManagementApi
+from cohesity_sdk.cluster.api.certificate_store import CertificateStoreApi
+from cohesity_sdk.cluster.api.certificates import CertificatesApi
+from cohesity_sdk.cluster.api.cloud_domain import CloudDomainApi
 from cohesity_sdk.cluster.api.cloud_retrieve_task import CloudRetrieveTaskApi
+from cohesity_sdk.cluster.api.cohesity_ca import CohesityCAApi
+from cohesity_sdk.cluster.api.data_accessor import DataAccessorApi
+from cohesity_sdk.cluster.api.data_source_connection import DataSourceConnectionApi
+from cohesity_sdk.cluster.api.data_source_connector import DataSourceConnectorApi
+from cohesity_sdk.cluster.api.data_source_connector_local import DataSourceConnectorLocalApi
 from cohesity_sdk.cluster.api.data_tiering import DataTieringApi
 from cohesity_sdk.cluster.api.external_target import ExternalTargetApi
 from cohesity_sdk.cluster.api.failover import FailoverApi
 from cohesity_sdk.cluster.api.firewall import FirewallApi
+from cohesity_sdk.cluster.api.fortknox_onprem import FortknoxOnpremApi
 from cohesity_sdk.cluster.api.helios_on_prem import HeliosOnPremApi
 from cohesity_sdk.cluster.api.identity_provider import IdentityProviderApi
 from cohesity_sdk.cluster.api.kerberos_provider import KerberosProviderApi
 from cohesity_sdk.cluster.api.key_management_system import KeyManagementSystemApi
 from cohesity_sdk.cluster.api.keystone import KeystoneApi
 from cohesity_sdk.cluster.api.ldap import LDAPApi
+from cohesity_sdk.cluster.api.lsu import LSUApi
 from cohesity_sdk.cluster.api.mfa import MFAApi
 from cohesity_sdk.cluster.api.node_group import NodeGroupApi
 from cohesity_sdk.cluster.api.object import ObjectApi
-from cohesity_sdk.cluster.api.patch_management import PatchManagementApi
+from cohesity_sdk.cluster.api.one_helios import OneHeliosApi
 from cohesity_sdk.cluster.api.platform import PlatformApi
 from cohesity_sdk.cluster.api.policy import PolicyApi
 from cohesity_sdk.cluster.api.privilege import PrivilegeApi
@@ -39,6 +50,7 @@ from cohesity_sdk.cluster.api.role import RoleApi
 from cohesity_sdk.cluster.api.routes import RoutesApi
 from cohesity_sdk.cluster.api.search import SearchApi
 from cohesity_sdk.cluster.api.security import SecurityApi
+from cohesity_sdk.cluster.api.snmp_config import SnmpConfigApi
 from cohesity_sdk.cluster.api.source import SourceApi
 from cohesity_sdk.cluster.api.stats import StatsApi
 from cohesity_sdk.cluster.api.storage_domain import StorageDomainApi
@@ -47,6 +59,7 @@ from cohesity_sdk.cluster.api.syslog import SyslogApi
 from cohesity_sdk.cluster.api.tag import TagApi
 from cohesity_sdk.cluster.api.templates import TemplatesApi
 from cohesity_sdk.cluster.api.tenant import TenantApi
+from cohesity_sdk.cluster.api.tenant_deactivation import TenantDeactivationApi
 from cohesity_sdk.cluster.api.user import UserApi
 from cohesity_sdk.cluster.api.view import ViewApi
 
@@ -164,22 +177,76 @@ class ClusterClient:
             return AntivirusServiceApi(api_client)
 
     @lazy_property
+    def app(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return AppApi(api_client)
+
+    @lazy_property
+    def athena_app_ops(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return AthenaAppOpsApi(api_client)
+
+    @lazy_property
     def audit_log(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return AuditLogApi(api_client)
 
     @lazy_property
-    def baseos_patch_management(self):
+    def certificate_store(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
-            return BaseosPatchManagementApi(api_client)
+            return CertificateStoreApi(api_client)
+
+    @lazy_property
+    def certificates(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return CertificatesApi(api_client)
+
+    @lazy_property
+    def cloud_domain(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return CloudDomainApi(api_client)
 
     @lazy_property
     def cloud_retrieve_task(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return CloudRetrieveTaskApi(api_client)
+
+    @lazy_property
+    def cohesity_ca(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return CohesityCAApi(api_client)
+
+    @lazy_property
+    def data_accessor(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return DataAccessorApi(api_client)
+
+    @lazy_property
+    def data_source_connection(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return DataSourceConnectionApi(api_client)
+
+    @lazy_property
+    def data_source_connector(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return DataSourceConnectorApi(api_client)
+
+    @lazy_property
+    def data_source_connector_local(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return DataSourceConnectorLocalApi(api_client)
 
     @lazy_property
     def data_tiering(self):
@@ -204,6 +271,12 @@ class ClusterClient:
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return FirewallApi(api_client)
+
+    @lazy_property
+    def fortknox_onprem(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return FortknoxOnpremApi(api_client)
 
     @lazy_property
     def helios_on_prem(self):
@@ -242,6 +315,12 @@ class ClusterClient:
             return LDAPApi(api_client)
 
     @lazy_property
+    def lsu(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return LSUApi(api_client)
+
+    @lazy_property
     def mfa(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
@@ -260,10 +339,10 @@ class ClusterClient:
             return ObjectApi(api_client)
 
     @lazy_property
-    def patch_management(self):
+    def one_helios(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
-            return PatchManagementApi(api_client)
+            return OneHeliosApi(api_client)
 
     @lazy_property
     def platform(self):
@@ -344,6 +423,12 @@ class ClusterClient:
             return SecurityApi(api_client)
 
     @lazy_property
+    def snmp_config(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return SnmpConfigApi(api_client)
+
+    @lazy_property
     def source(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
@@ -390,6 +475,12 @@ class ClusterClient:
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return TenantApi(api_client)
+
+    @lazy_property
+    def tenant_deactivation(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return TenantDeactivationApi(api_client)
 
     @lazy_property
     def user(self):

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **destination_network** | **str, none_type** | Specifies the destination network of the Static Route. | 
 **interface_group** | **str, none_type** | Specifies the network interfaces name to use for communicating with the destination network. | 
 **next_hop** | **str, none_type** | Specifies the next hop to the destination network. | 
+**adv_mss** | **int, none_type** | Specifies AdvMss setting per route. | [optional] 
 **description** | **str, none_type** | Specifies a description of the Static Route. | [optional] 
 **id** | **str, none_type** | Specifies the unique identifier for the route. | [optional] [readonly] 
 **interface** | **str, none_type** | Specifies the network interface name to use for communicating with the destination network. | [optional] 

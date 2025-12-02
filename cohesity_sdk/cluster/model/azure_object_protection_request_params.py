@@ -28,10 +28,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.azure_common_object_protection_params import AzureCommonObjectProtectionParams
+    from cohesity_sdk.cluster.model.azure_entra_id_object_protection_params import AzureEntraIDObjectProtectionParams
     from cohesity_sdk.cluster.model.azure_native_object_protection_params import AzureNativeObjectProtectionParams
     from cohesity_sdk.cluster.model.azure_object_protection_request_params_all_of import AzureObjectProtectionRequestParamsAllOf
     from cohesity_sdk.cluster.model.azure_sql_object_protection_params import AzureSqlObjectProtectionParams
     globals()['AzureCommonObjectProtectionParams'] = AzureCommonObjectProtectionParams
+    globals()['AzureEntraIDObjectProtectionParams'] = AzureEntraIDObjectProtectionParams
     globals()['AzureNativeObjectProtectionParams'] = AzureNativeObjectProtectionParams
     globals()['AzureObjectProtectionRequestParamsAllOf'] = AzureObjectProtectionRequestParamsAllOf
     globals()['AzureSqlObjectProtectionParams'] = AzureSqlObjectProtectionParams
@@ -69,6 +71,18 @@ class AzureObjectProtectionRequestParams(ModelComposed):
             'KNATIVE': "kNative",
             'KSNAPSHOTMANAGER': "kSnapshotManager",
             'KAZURESQL': "kAzureSQL",
+            'KAZUREENTRAID': "kAzureEntraID",
+            'KAZUREMYSQL': "kAzureMySQL",
+            'KAZURECOSMOSDBNOSQL': "kAzureCosmosDBNoSQL",
+            'KAZURECOSMOSDBMONGODB': "kAzureCosmosDBMongoDB",
+            'KAZURECOSMOSDBCASSANDRA': "kAzureCosmosDBCassandra",
+            'KAZUREBLOBSTORAGE': "kAzureBlobStorage",
+            'KAZUREPOSTGRESQLSERVER': "kAzurePostgreSQLServer",
+            'KAZURESQLDB': "kAzureSQLDB",
+            'KAZURESQLMI': "kAzureSQLMI",
+            'KAZURETABLESTORAGE': "kAzureTableStorage",
+            'KAZURETABLEAPI': "kAzureTableAPI",
+            'KKUBERNETES': "kKubernetes",
         },
     }
 
@@ -92,6 +106,7 @@ class AzureObjectProtectionRequestParams(ModelComposed):
         lazy_import()
         return {
             'protection_type': (str,),  # noqa: E501
+            'azure_entra_id_protection_type_params': (AzureEntraIDObjectProtectionParams,),  # noqa: E501
             'azure_sql_protection_type_params': (AzureSqlObjectProtectionParams,),  # noqa: E501
             'native_protection_type_params': (AzureNativeObjectProtectionParams,),  # noqa: E501
         }
@@ -104,6 +119,7 @@ class AzureObjectProtectionRequestParams(ModelComposed):
 
     attribute_map = {
         'protection_type': 'protectionType',  # noqa: E501
+        'azure_entra_id_protection_type_params': 'azureEntraIdProtectionTypeParams',  # noqa: E501
         'azure_sql_protection_type_params': 'azureSqlProtectionTypeParams',  # noqa: E501
         'native_protection_type_params': 'nativeProtectionTypeParams',  # noqa: E501
     }
@@ -157,6 +173,7 @@ class AzureObjectProtectionRequestParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             protection_type (str): Specifies the Azure Protection Job type.. [optional]  # noqa: E501
+            azure_entra_id_protection_type_params (AzureEntraIDObjectProtectionParams): [optional]  # noqa: E501
             azure_sql_protection_type_params (AzureSqlObjectProtectionParams): [optional]  # noqa: E501
             native_protection_type_params (AzureNativeObjectProtectionParams): [optional]  # noqa: E501
         """

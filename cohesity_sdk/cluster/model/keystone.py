@@ -27,10 +27,14 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.keystone_admin_params import KeystoneAdminParams
     from cohesity_sdk.cluster.model.keystone_all_of import KeystoneAllOf
     from cohesity_sdk.cluster.model.keystone_credentials import KeystoneCredentials
+    from cohesity_sdk.cluster.model.keystone_scope_params import KeystoneScopeParams
+    globals()['KeystoneAdminParams'] = KeystoneAdminParams
     globals()['KeystoneAllOf'] = KeystoneAllOf
     globals()['KeystoneCredentials'] = KeystoneCredentials
+    globals()['KeystoneScopeParams'] = KeystoneScopeParams
 
 
 class Keystone(ModelComposed):
@@ -81,8 +85,8 @@ class Keystone(ModelComposed):
         """
         lazy_import()
         return {
-            'admin_creds': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'scope': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'admin_creds': (KeystoneAdminParams,),  # noqa: E501
+            'scope': (KeystoneScopeParams,),  # noqa: E501
             'auth_url': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
@@ -119,8 +123,8 @@ class Keystone(ModelComposed):
         """Keystone - a model defined in OpenAPI
 
         Args:
-            admin_creds ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies parameters related to Keystone administrator.
-            scope ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies parameters related to Keystone scope.
+            admin_creds (KeystoneAdminParams):
+            scope (KeystoneScopeParams):
             auth_url (str, none_type): Specifies the url points to the Keystone service.
             name (str, none_type): Specifies the Keystone configuration name.
 

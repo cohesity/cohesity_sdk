@@ -6,6 +6,7 @@ Specifies the parameters which are specific to VMware related Protection Groups.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **global_exclude_disks** | [**[DiskInfo], none_type**](DiskInfo.md) | Specifies a list of disks to exclude from the backup. | [optional] 
+**global_include_disks** | [**[DiskInfo], none_type**](DiskInfo.md) | Specifies a list of disks to include in the backup. | [optional] 
 **objects** | [**[VmwareProtectionGroupObjectParams]**](VmwareProtectionGroupObjectParams.md) | Specifies the objects to include in the backup. | [optional] 
 **standby_resource_objects** | [**[VmwareProtectionGroupStandbyResourceParams], none_type**](VmwareProtectionGroupStandbyResourceParams.md) | Specifies the standby resource objects for this backup. | [optional] 
 **app_consistent_snapshot** | **bool, none_type** | Specifies whether or not to quiesce apps and the file system in order to take app consistent snapshots. | [optional] 

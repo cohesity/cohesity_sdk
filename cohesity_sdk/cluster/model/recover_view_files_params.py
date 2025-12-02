@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.recover_view_to_view_files_target_params import RecoverViewToViewFilesTargetParams
     from cohesity_sdk.cluster.model.view_recover_file_and_folder_info import ViewRecoverFileAndFolderInfo
+    globals()['RecoverViewToViewFilesTargetParams'] = RecoverViewToViewFilesTargetParams
     globals()['ViewRecoverFileAndFolderInfo'] = ViewRecoverFileAndFolderInfo
 
 
@@ -80,7 +82,7 @@ class RecoverViewFilesParams(ModelNormal):
         lazy_import()
         return {
             'files_and_folders': ([ViewRecoverFileAndFolderInfo], none_type,),  # noqa: E501
-            'view_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'view_target_params': (RecoverViewToViewFilesTargetParams,),  # noqa: E501
         }
 
     @cached_property
@@ -144,7 +146,7 @@ class RecoverViewFilesParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            view_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies configuration of the target view to which the files and folders are to be recovered.. [optional]  # noqa: E501
+            view_target_params (RecoverViewToViewFilesTargetParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -48,7 +48,7 @@ class KerberosProviderApi(object):
         ):
             """Get the Registered Kerberos Provider by id.  # noqa: E501
 
-            Get the Registered Kerberos Provider by id.  # noqa: E501
+            **Privileges:** ```KERBEROS_VIEW``` <br><br>Get the Registered Kerberos Provider by id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -113,7 +113,9 @@ class KerberosProviderApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/kerberos-providers/{id}',
                 'operation_id': 'get_kerberos_provider_by_id',
@@ -175,7 +177,7 @@ class KerberosProviderApi(object):
         ):
             """Get the list of Kerberos Providers.  # noqa: E501
 
-            Get the list of Kerberos Authentication Providers.  # noqa: E501
+            **Privileges:** ```KERBEROS_VIEW``` <br><br>Get the list of Kerberos Authentication Providers.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -240,7 +242,9 @@ class KerberosProviderApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/kerberos-providers',
                 'operation_id': 'get_kerberos_providers',
@@ -313,7 +317,7 @@ class KerberosProviderApi(object):
         ):
             """Register a Kerberos Authentication Provider.  # noqa: E501
 
-            Register a Kerberos Authentication Provider.  # noqa: E501
+            **Privileges:** ```KERBEROS_MODIFY``` <br><br>Register a Kerberos Authentication Provider.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -378,7 +382,9 @@ class KerberosProviderApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/kerberos-providers/register',
                 'operation_id': 'register_kerberos_provider',
@@ -436,7 +442,7 @@ class KerberosProviderApi(object):
         ):
             """Unregister a Kerberos Provider.  # noqa: E501
 
-            Unregister a Kerberos Provider.  # noqa: E501
+            **Privileges:** ```KERBEROS_MODIFY``` <br><br>Unregister a Kerberos Provider.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -504,7 +510,9 @@ class KerberosProviderApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/kerberos-providers/{id}/unregister',
                 'operation_id': 'unregister_kerberos_provider',
@@ -575,7 +583,7 @@ class KerberosProviderApi(object):
         ):
             """Update the Kerberos Provider Registration.  # noqa: E501
 
-            Update the Kerberos Provider Registration.  # noqa: E501
+            **Privileges:** ```KERBEROS_MODIFY``` <br><br>Update the Kerberos Provider Registration.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -643,7 +651,9 @@ class KerberosProviderApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/kerberos-providers/{id}',
                 'operation_id': 'update_kerberos_provider',

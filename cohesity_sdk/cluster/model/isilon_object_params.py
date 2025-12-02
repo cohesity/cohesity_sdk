@@ -58,6 +58,7 @@ class IsilonObjectParams(ModelNormal):
             'None': None,
             'KNFS': "kNfs",
             'KSMB': "kSmb",
+            'KNFS4_1': "kNfs4_1",
         },
     }
 

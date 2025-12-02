@@ -77,6 +77,7 @@ class StaticRouteParams(ModelNormal):
             'destination_network': (str, none_type,),  # noqa: E501
             'interface_group': (str, none_type,),  # noqa: E501
             'next_hop': (str, none_type,),  # noqa: E501
+            'adv_mss': (int, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'interface': (str, none_type,),  # noqa: E501
@@ -94,6 +95,7 @@ class StaticRouteParams(ModelNormal):
         'destination_network': 'destinationNetwork',  # noqa: E501
         'interface_group': 'interfaceGroup',  # noqa: E501
         'next_hop': 'nextHop',  # noqa: E501
+        'adv_mss': 'advMss',  # noqa: E501
         'description': 'description',  # noqa: E501
         'id': 'id',  # noqa: E501
         'interface': 'interface',  # noqa: E501
@@ -153,6 +155,7 @@ class StaticRouteParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            adv_mss (int, none_type): Specifies AdvMss setting per route.. [optional]  # noqa: E501
             description (str, none_type): Specifies a description of the Static Route.. [optional]  # noqa: E501
             id (str, none_type): Specifies the unique identifier for the route.. [optional]  # noqa: E501
             interface (str, none_type): Specifies the network interface name to use for communicating with the destination network.. [optional]  # noqa: E501

@@ -27,8 +27,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.resume_action_object_level_params import ResumeActionObjectLevelParams
-    globals()['ResumeActionObjectLevelParams'] = ResumeActionObjectLevelParams
+    from cohesity_sdk.cluster.model.protection_object_input import ProtectionObjectInput
+    globals()['ProtectionObjectInput'] = ProtectionObjectInput
 
 
 class ProtectedObjectResumeActionParams(ModelNormal):

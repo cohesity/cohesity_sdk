@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **restart_immediately** | **bool, none_type** | Specifies whether to restart Cassandra services immediately after the point in time recovery. | [optional] 
 **restart_services** | **bool, none_type** | Specifies whether to restart Cassandra services after the point in time recovery. | [optional] 
 **restart_services_task_id** | **int, none_type** | Specifies the Id of the task required to restart Cassandra services. | [optional] [readonly] 
+**run_pre_checks** | **bool, none_type** | Specifies Whether to run checks before the recovery. E.x if there is sufficient space in the destination cluster for the recovery to succeed. | [optional] 
 **selected_data_centers** | **[str]** | Selected Data centers for this cluster. | [optional] 
 **staging_directory_list** | **[str]** | Specifies the directory on the primary to copy the files which are to be uploaded using destination sstableloader. | [optional] 
 **suffix** | **str, none_type** | A suffix that is to be applied to all recovered objects. | [optional] 

@@ -27,10 +27,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.credentials import Credentials
+    from cohesity_sdk.cluster.model.filter_ip_config import FilterIpConfig
     from cohesity_sdk.cluster.model.nas_throttling_config import NasThrottlingConfig
-    from cohesity_sdk.cluster.model.smb_mount_credentials import SmbMountCredentials
+    globals()['Credentials'] = Credentials
+    globals()['FilterIpConfig'] = FilterIpConfig
     globals()['NasThrottlingConfig'] = NasThrottlingConfig
-    globals()['SmbMountCredentials'] = SmbMountCredentials
 
 
 class FlashbladeRegistrationParams(ModelNormal):
@@ -84,7 +86,8 @@ class FlashbladeRegistrationParams(ModelNormal):
             'api_token': (str, none_type,),  # noqa: E501
             'endpoint': (str, none_type,),  # noqa: E501
             'back_up_smb_volumes': (bool, none_type,),  # noqa: E501
-            'smb_credentials': (SmbMountCredentials,),  # noqa: E501
+            'filter_ip_config': (FilterIpConfig,),  # noqa: E501
+            'smb_credentials': (Credentials,),  # noqa: E501
             'throttling_config': (NasThrottlingConfig,),  # noqa: E501
         }
 
@@ -98,6 +101,7 @@ class FlashbladeRegistrationParams(ModelNormal):
         'api_token': 'apiToken',  # noqa: E501
         'endpoint': 'endpoint',  # noqa: E501
         'back_up_smb_volumes': 'backUpSMBVolumes',  # noqa: E501
+        'filter_ip_config': 'filterIpConfig',  # noqa: E501
         'smb_credentials': 'smbCredentials',  # noqa: E501
         'throttling_config': 'throttlingConfig',  # noqa: E501
     }
@@ -154,7 +158,8 @@ class FlashbladeRegistrationParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             back_up_smb_volumes (bool, none_type): Specifies whether or not to back up SMB Volumes.. [optional]  # noqa: E501
-            smb_credentials (SmbMountCredentials): [optional]  # noqa: E501
+            filter_ip_config (FilterIpConfig): [optional]  # noqa: E501
+            smb_credentials (Credentials): [optional]  # noqa: E501
             throttling_config (NasThrottlingConfig): [optional]  # noqa: E501
         """
 

@@ -27,8 +27,14 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.ews_exchange_target_param import EwsExchangeTargetParam
     from cohesity_sdk.cluster.model.object_mailbox_param import ObjectMailboxParam
+    from cohesity_sdk.cluster.model.pst_param import PstParam
+    from cohesity_sdk.cluster.model.target_mailbox_param import TargetMailboxParam
+    globals()['EwsExchangeTargetParam'] = EwsExchangeTargetParam
     globals()['ObjectMailboxParam'] = ObjectMailboxParam
+    globals()['PstParam'] = PstParam
+    globals()['TargetMailboxParam'] = TargetMailboxParam
 
 
 class RecoverMailboxParams(ModelNormal):
@@ -81,11 +87,13 @@ class RecoverMailboxParams(ModelNormal):
         return {
             'objects': ([ObjectMailboxParam], none_type,),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
-            'pst_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'ews_exchange_target': (EwsExchangeTargetParam,),  # noqa: E501
+            'pst_params': (PstParam,),  # noqa: E501
             'skip_recover_archive_mailbox': (bool, none_type,),  # noqa: E501
             'skip_recover_archive_recoverable_items': (bool, none_type,),  # noqa: E501
+            'skip_recover_primary_mailbox': (bool, none_type,),  # noqa: E501
             'skip_recover_recoverable_items': (bool, none_type,),  # noqa: E501
-            'target_mailbox': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'target_mailbox': (TargetMailboxParam,),  # noqa: E501
         }
 
     @cached_property
@@ -97,9 +105,11 @@ class RecoverMailboxParams(ModelNormal):
     attribute_map = {
         'objects': 'objects',  # noqa: E501
         'continue_on_error': 'continueOnError',  # noqa: E501
+        'ews_exchange_target': 'ewsExchangeTarget',  # noqa: E501
         'pst_params': 'pstParams',  # noqa: E501
         'skip_recover_archive_mailbox': 'skipRecoverArchiveMailbox',  # noqa: E501
         'skip_recover_archive_recoverable_items': 'skipRecoverArchiveRecoverableItems',  # noqa: E501
+        'skip_recover_primary_mailbox': 'skipRecoverPrimaryMailbox',  # noqa: E501
         'skip_recover_recoverable_items': 'skipRecoverRecoverableItems',  # noqa: E501
         'target_mailbox': 'targetMailbox',  # noqa: E501
     }
@@ -155,11 +165,13 @@ class RecoverMailboxParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             continue_on_error (bool, none_type): Specifies whether to continue recovering other Mailboxes if one of Mailbox failed to recover. Default value is false.. [optional]  # noqa: E501
-            pst_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the PST conversion specific parameters. This should always be specified when need to convert selected items to PST.. [optional]  # noqa: E501
+            ews_exchange_target (EwsExchangeTargetParam): [optional]  # noqa: E501
+            pst_params (PstParam): [optional]  # noqa: E501
             skip_recover_archive_mailbox (bool, none_type): Specifies whether to skip the recovery of the archive mailbox and/or items present in the archive mailbox. Default value is true. [optional]  # noqa: E501
             skip_recover_archive_recoverable_items (bool, none_type): Specifies whether to skip the recovery of the Archive Recoverable Items present in the selected snapshot. Default value is true. [optional]  # noqa: E501
+            skip_recover_primary_mailbox (bool, none_type): Specifies whether to skip the recovery of items under Top of Information Store, aka the message folder root. Default value is false.. [optional]  # noqa: E501
             skip_recover_recoverable_items (bool, none_type): Specifies whether to skip the recovery of the Recoverable Items present in the selected snapshot. Default value is true. [optional]  # noqa: E501
-            target_mailbox ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the target Mailbox to recover to. If not specified, the objects will be recovered to original location.. [optional]  # noqa: E501
+            target_mailbox (TargetMailboxParam): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

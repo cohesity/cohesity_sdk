@@ -72,6 +72,11 @@ class IsilonProtectionGroupParams(ModelNormal):
     """
 
     allowed_values = {
+        ('nfs_version_preference',): {
+            'None': None,
+            'KNFS3': "kNfs3",
+            'KNFS4_1': "kNfs4_1",
+        },
         ('protocol',): {
             'None': None,
             'KNOPROTOCOL': "kNoProtocol",
@@ -117,6 +122,7 @@ class IsilonProtectionGroupParams(ModelNormal):
             'indexing_policy': (IndexingPolicy,),  # noqa: E501
             'modify_source_permissions': (bool, none_type,),  # noqa: E501
             'native_format': (bool, none_type,),  # noqa: E501
+            'nfs_version_preference': (str, none_type,),  # noqa: E501
             'pre_post_script': (HostBasedBackupScriptParams,),  # noqa: E501
             'protocol': (str, none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
@@ -143,6 +149,7 @@ class IsilonProtectionGroupParams(ModelNormal):
         'indexing_policy': 'indexingPolicy',  # noqa: E501
         'modify_source_permissions': 'modifySourcePermissions',  # noqa: E501
         'native_format': 'nativeFormat',  # noqa: E501
+        'nfs_version_preference': 'nfsVersionPreference',  # noqa: E501
         'pre_post_script': 'prePostScript',  # noqa: E501
         'protocol': 'protocol',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
@@ -211,6 +218,7 @@ class IsilonProtectionGroupParams(ModelNormal):
             indexing_policy (IndexingPolicy): [optional]  # noqa: E501
             modify_source_permissions (bool, none_type): Specifies if the Isilon source permissions should be modified internally to allow backups.. [optional]  # noqa: E501
             native_format (bool, none_type): Specifies whether or not to enable native format for direct archive job. This field is set to true if native format should be used for archiving.. [optional]  # noqa: E501
+            nfs_version_preference (str, none_type): Specifies the preference of NFS version to be used for backing up Isilon.. [optional]  # noqa: E501
             pre_post_script (HostBasedBackupScriptParams): [optional]  # noqa: E501
             protocol (str, none_type): Specifies the preferred protocol to use if this device supports multiple protocols.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501

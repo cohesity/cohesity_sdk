@@ -29,8 +29,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.backup_data_stats import BackupDataStats
     from cohesity_sdk.cluster.model.data_lock_constraints import DataLockConstraints
+    from cohesity_sdk.cluster.model.pause_metadata import PauseMetadata
     globals()['BackupDataStats'] = BackupDataStats
     globals()['DataLockConstraints'] = DataLockConstraints
+    globals()['PauseMetadata'] = PauseMetadata
 
 
 class BackupRunSummary(ModelNormal):
@@ -123,8 +125,11 @@ class BackupRunSummary(ModelNormal):
             'local_snapshot_stats': (BackupDataStats,),  # noqa: E501
             'local_task_id': (str, none_type,),  # noqa: E501
             'messages': ([str], none_type,),  # noqa: E501
+            'on_legal_hold': (bool, none_type,),  # noqa: E501
+            'pause_metadata': (PauseMetadata,),  # noqa: E501
             'progress_task_id': (str, none_type,),  # noqa: E501
             'run_type': (str, none_type,),  # noqa: E501
+            'skipped_app_objects_count': (int, none_type,),  # noqa: E501
             'skipped_objects_count': (int, none_type,),  # noqa: E501
             'start_time_usecs': (int, none_type,),  # noqa: E501
             'stats_task_id': (str, none_type,),  # noqa: E501
@@ -152,8 +157,11 @@ class BackupRunSummary(ModelNormal):
         'local_snapshot_stats': 'localSnapshotStats',  # noqa: E501
         'local_task_id': 'localTaskId',  # noqa: E501
         'messages': 'messages',  # noqa: E501
+        'on_legal_hold': 'onLegalHold',  # noqa: E501
+        'pause_metadata': 'pauseMetadata',  # noqa: E501
         'progress_task_id': 'progressTaskId',  # noqa: E501
         'run_type': 'runType',  # noqa: E501
+        'skipped_app_objects_count': 'skippedAppObjectsCount',  # noqa: E501
         'skipped_objects_count': 'skippedObjectsCount',  # noqa: E501
         'start_time_usecs': 'startTimeUsecs',  # noqa: E501
         'stats_task_id': 'statsTaskId',  # noqa: E501
@@ -221,8 +229,11 @@ class BackupRunSummary(ModelNormal):
             local_snapshot_stats (BackupDataStats): [optional]  # noqa: E501
             local_task_id (str, none_type): Task ID for a local protection run.. [optional]  # noqa: E501
             messages ([str], none_type): Message about the backup run.. [optional]  # noqa: E501
+            on_legal_hold (bool, none_type): Specifies if the Run is on legal hold.. [optional]  # noqa: E501
+            pause_metadata (PauseMetadata): [optional]  # noqa: E501
             progress_task_id (str, none_type): Progress monitor task id for local backup run.. [optional]  # noqa: E501
             run_type (str, none_type): Type of Protection Group run. 'kRegular' indicates an incremental (CBT) backup. Incremental backups utilizing CBT (if supported) are captured of the target protection objects. The first run of a kRegular schedule captures all the blocks. 'kFull' indicates a full (no CBT) backup. A complete backup (all blocks) of the target protection objects are always captured and Change Block Tracking (CBT) is not utilized. 'kLog' indicates a Database Log backup. Capture the database transaction logs to allow rolling back to a specific point in time. 'kSystem' indicates system volume backup. It produces an image for bare metal recovery. 'kStorageArraySnapshot' indicates storage array snapshot backup.. [optional]  # noqa: E501
+            skipped_app_objects_count (int, none_type): Specifies the count of app objects for which backup was skipped.. [optional]  # noqa: E501
             skipped_objects_count (int, none_type): Specifies the count of objects for which backup was skipped.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of backup run in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
             stats_task_id (str, none_type): Stats task id for local backup run.. [optional]  # noqa: E501

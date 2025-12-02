@@ -21,15 +21,21 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from cohesity_sdk.cluster.model.application_servers_registration_request_params import ApplicationServersRegistrationRequestParams
+from cohesity_sdk.cluster.model.common_application_servers_registration_params import CommonApplicationServersRegistrationParams
 from cohesity_sdk.cluster.model.create_azure_application_request_params import CreateAzureApplicationRequestParams
 from cohesity_sdk.cluster.model.create_azure_application_response_params import CreateAzureApplicationResponseParams
 from cohesity_sdk.cluster.model.create_m365_self_service_config_request_params import CreateM365SelfServiceConfigRequestParams
+from cohesity_sdk.cluster.model.delete_azure_application_request_params import DeleteAzureApplicationRequestParams
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.generate_m365_device_access_token_request_params import GenerateM365DeviceAccessTokenRequestParams
 from cohesity_sdk.cluster.model.generate_m365_device_access_token_response_params import GenerateM365DeviceAccessTokenResponseParams
 from cohesity_sdk.cluster.model.generate_m365_device_code_request_params import GenerateM365DeviceCodeRequestParams
 from cohesity_sdk.cluster.model.generate_m365_device_code_response_params import GenerateM365DeviceCodeResponseParams
+from cohesity_sdk.cluster.model.get_m365_backup_controller_response_params import GetM365BackupControllerResponseParams
 from cohesity_sdk.cluster.model.get_m365_self_service_config_response import GetM365SelfServiceConfigResponse
+from cohesity_sdk.cluster.model.list_app_servers_response import ListAppServersResponse
+from cohesity_sdk.cluster.model.m365_backup_controller_billing_response_params import M365BackupControllerBillingResponseParams
 from cohesity_sdk.cluster.model.source import Source
 from cohesity_sdk.cluster.model.source_attribute_filters_response_params import SourceAttributeFiltersResponseParams
 from cohesity_sdk.cluster.model.source_connection_request_params import SourceConnectionRequestParams
@@ -39,7 +45,9 @@ from cohesity_sdk.cluster.model.source_registration_patch_request_params import 
 from cohesity_sdk.cluster.model.source_registration_request_params import SourceRegistrationRequestParams
 from cohesity_sdk.cluster.model.source_registration_update_request_params import SourceRegistrationUpdateRequestParams
 from cohesity_sdk.cluster.model.source_registrations import SourceRegistrations
+from cohesity_sdk.cluster.model.source_un_register_request_params import SourceUnRegisterRequestParams
 from cohesity_sdk.cluster.model.sources import Sources
+from cohesity_sdk.cluster.model.un_register_application_servers_params import UnRegisterApplicationServersParams
 from cohesity_sdk.cluster.model.vdc_object import VdcObject
 
 
@@ -62,7 +70,7 @@ class SourceApi(object):
         ):
             """Create Microsoft 365 Azure Applications for a given domain.  # noqa: E501
 
-            Creates Microsoft 365 Azure Applications  # noqa: E501
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Creates Microsoft 365 Azure Applications  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -127,7 +135,9 @@ class SourceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/microsoft365/azure-applications',
                 'operation_id': 'create_azure_applications',
@@ -184,7 +194,7 @@ class SourceApi(object):
         ):
             """Create/Update Microsoft 365 Azure Applications for a given domain.  # noqa: E501
 
-            Creates/Updates Microsoft 365 Azure Applications  # noqa: E501
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Creates/Updates Microsoft 365 Azure Applications  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -249,7 +259,9 @@ class SourceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/microsoft365/azure-applications',
                 'operation_id': 'create_or_update_azure_applications',
@@ -299,6 +311,264 @@ class SourceApi(object):
             callable=__create_or_update_azure_applications
         )
 
+        def __delete_application_servers_registration(
+            self,
+            id,
+            body,
+            **kwargs
+        ):
+            """Delete an application server registration.  # noqa: E501
+
+            **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Delete an application server registration.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_application_servers_registration(id, body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int): Specifies the id of the Application Server.
+                body (UnRegisterApplicationServersParams): Specifies the request to unregister a an application server.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_application_servers_registration = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-protect/sources/application-servers/{id}',
+                'operation_id': 'delete_application_servers_registration',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'body',
+                ],
+                'required': [
+                    'id',
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                    'body':
+                        (UnRegisterApplicationServersParams,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__delete_application_servers_registration
+        )
+
+        def __delete_azure_applications(
+            self,
+            body,
+            **kwargs
+        ):
+            """Deletes Azure Applications  # noqa: E501
+
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Deletes Azure Applications  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_azure_applications(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (DeleteAzureApplicationRequestParams): Specifies the parameters to delete Azure applications
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_azure_applications = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-protect/sources/microsoft365/azure-applications',
+                'operation_id': 'delete_azure_applications',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (DeleteAzureApplicationRequestParams,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__delete_azure_applications
+        )
+
         def __delete_m365_self_service_config(
             self,
             uuid,
@@ -306,7 +576,7 @@ class SourceApi(object):
         ):
             """Deletes the Self-Service configuration for a Microsoft365 source.  # noqa: E501
 
-            Delete the configuration for Self-Service for a Microsoft365 source. This includes deletion of both Mailbox & OneDrive workload configuration.  # noqa: E501
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Delete the configuration for Self-Service for a Microsoft365 source. This includes deletion of both Mailbox & OneDrive workload configuration.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -371,7 +641,9 @@ class SourceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/microsoft365/self-service-config/{uuid}',
                 'operation_id': 'delete_m365_self_service_config',
@@ -427,7 +699,7 @@ class SourceApi(object):
         ):
             """Delete Protection Source Registration.  # noqa: E501
 
-            Delete Protection Source Registration.  # noqa: E501
+            **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Delete Protection Source Registration.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -438,6 +710,7 @@ class SourceApi(object):
                 id (int): Specifies the ID of the Protection Source Registration.
 
             Keyword Args:
+                body (SourceUnRegisterRequestParams): Specifies the request to unregister a source.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -492,7 +765,9 @@ class SourceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/registrations/{id}',
                 'operation_id': 'delete_protection_source_registration',
@@ -502,6 +777,7 @@ class SourceApi(object):
             params_map={
                 'all': [
                     'id',
+                    'body',
                 ],
                 'required': [
                     'id',
@@ -521,12 +797,140 @@ class SourceApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'body':
+                        (SourceUnRegisterRequestParams,),
                 },
                 'attribute_map': {
                     'id': 'id',
                 },
                 'location_map': {
                     'id': 'path',
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__delete_protection_source_registration
+        )
+
+        def __enable_mbs_billing_profile(
+            self,
+            azure_token,
+            **kwargs
+        ):
+            """Enables billing profile for the MBS service for the tenant.  # noqa: E501
+
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Enables the M365 Backup Storage(MBS) service for the tenant.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.enable_mbs_billing_profile(azure_token, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                azure_token (str):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                M365BackupControllerBillingResponseParams
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['azure_token'] = \
+                azure_token
+            return self.call_with_http_info(**kwargs)
+
+        self.enable_mbs_billing_profile = _Endpoint(
+            settings={
+                'response_type': (M365BackupControllerBillingResponseParams,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-protect/sources/microsoft365/backup-controllers/billing',
+                'operation_id': 'enable_mbs_billing_profile',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'azure_token',
+                ],
+                'required': [
+                    'azure_token',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'azure_token':
+                        (str,),
+                },
+                'attribute_map': {
+                    'azure_token': 'azureToken',
+                },
+                'location_map': {
+                    'azure_token': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -538,7 +942,7 @@ class SourceApi(object):
                 'content_type': [],
             },
             api_client=api_client,
-            callable=__delete_protection_source_registration
+            callable=__enable_mbs_billing_profile
         )
 
         def __generate_m365_device_access_token(
@@ -548,7 +952,7 @@ class SourceApi(object):
         ):
             """Generate access token for Microsoft365 Device Authorization Grant flow.  # noqa: E501
 
-            Generates the access token if the device code has been granted authorization as part of device login flow.  # noqa: E501
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Generates the access token if the device code has been granted authorization as part of device login flow.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -613,7 +1017,9 @@ class SourceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/microsoft365/auth/token',
                 'operation_id': 'generate_m365_device_access_token',
@@ -670,7 +1076,7 @@ class SourceApi(object):
         ):
             """Generate device code for Microsoft365 Device Authorization Grant flow.  # noqa: E501
 
-            Generates User and Device code for Microsoft365 Device Authorization Grant for a given domain.  # noqa: E501
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Generates User and Device code for Microsoft365 Device Authorization Grant for a given domain.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -735,7 +1141,9 @@ class SourceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/microsoft365/auth/device-code',
                 'operation_id': 'generate_m365_device_code',
@@ -785,24 +1193,140 @@ class SourceApi(object):
             callable=__generate_m365_device_code
         )
 
+        def __get_m365_backup_controller(
+            self,
+            **kwargs
+        ):
+            """Fetches the Microsoft 365 registered Backup Controller by the Cohesity App for the owner tenant  # noqa: E501
+
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Fetches the registered Backup Controller by the Cohesity App for the tenant id within the JWT specified within the header.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_m365_backup_controller(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                azure_token (str): Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_m365_backup_controller = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-protect/sources/microsoft365/backup-controllers',
+                'operation_id': 'get_m365_backup_controller',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'azure_token',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'azure_token':
+                        (str,),
+                },
+                'attribute_map': {
+                    'azure_token': 'azureToken',
+                },
+                'location_map': {
+                    'azure_token': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_m365_backup_controller
+        )
+
         def __get_microsoft365_self_service_config(
             self,
-            tenant_id,
             **kwargs
         ):
             """Get the list of Microsoft365 Self-Service configurations  # noqa: E501
 
-            Get the list of Self-Service configurations for all Microsoft365 sources for the given tenant ID.  # noqa: E501
+            ```No Privileges Required``` <br><br>Get the list of Self-Service configurations for all Microsoft365 sources for the given tenant ID.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.get_microsoft365_self_service_config(tenant_id, async_req=True)
+            >>> thread = api.get_microsoft365_self_service_config(async_req=True)
             >>> result = thread.get()
 
-            Args:
-                tenant_id (str, none_type): Specifies the Cohesity Tenant ID for the source owner.
 
             Keyword Args:
+                domain (str, none_type): Specifies the domain name for the Microsoft365 source.. [optional]
+                tenant_id (str, none_type): Specifies the Cohesity Tenant ID for the source owner.. [optional]
                 workload_type (str, none_type): Specifies the workload type as filter for fetching Self-Service configuration types.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -848,8 +1372,6 @@ class SourceApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['tenant_id'] = \
-                tenant_id
             return self.call_with_http_info(**kwargs)
 
         self.get_microsoft365_self_service_config = _Endpoint(
@@ -858,7 +1380,9 @@ class SourceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/microsoft365/self-service-config',
                 'operation_id': 'get_microsoft365_self_service_config',
@@ -867,13 +1391,13 @@ class SourceApi(object):
             },
             params_map={
                 'all': [
+                    'domain',
                     'tenant_id',
                     'workload_type',
                 ],
-                'required': [
-                    'tenant_id',
-                ],
+                'required': [],
                 'nullable': [
+                    'domain',
                     'tenant_id',
                     'workload_type',
                 ],
@@ -894,16 +1418,20 @@ class SourceApi(object):
                     },
                 },
                 'openapi_types': {
+                    'domain':
+                        (str, none_type,),
                     'tenant_id':
                         (str, none_type,),
                     'workload_type':
                         (str, none_type,),
                 },
                 'attribute_map': {
+                    'domain': 'domain',
                     'tenant_id': 'tenantId',
                     'workload_type': 'workloadType',
                 },
                 'location_map': {
+                    'domain': 'query',
                     'tenant_id': 'query',
                     'workload_type': 'query',
                 },
@@ -920,6 +1448,155 @@ class SourceApi(object):
             callable=__get_microsoft365_self_service_config
         )
 
+        def __get_network_entities(
+            self,
+            id,
+            v_center_id,
+            ancestor_entity_type,
+            **kwargs
+        ):
+            """Get Network Entities within a Resource pool  # noqa: E501
+
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>List network entities for a resource pool.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_network_entities(id, v_center_id, ancestor_entity_type, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int): Specifies the entity Id of the resource pool
+                v_center_id (int): Specifies the entity Id of the vCenter
+                ancestor_entity_type (str): Specifies the ancestor entity type i.e. the node in the entity hierarchy which lies at a higher level than the resource pool entity id.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                Sources
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            kwargs['v_center_id'] = \
+                v_center_id
+            kwargs['ancestor_entity_type'] = \
+                ancestor_entity_type
+            return self.call_with_http_info(**kwargs)
+
+        self.get_network_entities = _Endpoint(
+            settings={
+                'response_type': (Sources,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-protect/sources/{vCenterId}/resource-pools/{id}/entities',
+                'operation_id': 'get_network_entities',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'v_center_id',
+                    'ancestor_entity_type',
+                ],
+                'required': [
+                    'id',
+                    'v_center_id',
+                    'ancestor_entity_type',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                    'ancestor_entity_type',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('ancestor_entity_type',): {
+
+                        "KDATACENTER": "kDatacenter",
+                        "KCLUSTERCOMPUTERESOURCE": "kClusterComputeResource"
+                    },
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                    'v_center_id':
+                        (int,),
+                    'ancestor_entity_type':
+                        (str,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'v_center_id': 'vCenterId',
+                    'ancestor_entity_type': 'ancestorEntityType',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'v_center_id': 'path',
+                    'ancestor_entity_type': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_network_entities
+        )
+
         def __get_protection_source_registration(
             self,
             id,
@@ -927,7 +1604,7 @@ class SourceApi(object):
         ):
             """Get a Protection Source registration.  # noqa: E501
 
-            Get a Protection Source registration.  # noqa: E501
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Get a Protection Source registration.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -993,7 +1670,9 @@ class SourceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/registrations/{id}',
                 'operation_id': 'get_protection_source_registration',
@@ -1060,7 +1739,7 @@ class SourceApi(object):
         ):
             """Get a List of Protection Sources.  # noqa: E501
 
-            Get a List of Protection Sources.  # noqa: E501
+            ```Unknown Privileges``` <br><br>Get a List of Protection Sources.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1126,7 +1805,9 @@ class SourceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources',
                 'operation_id': 'get_protection_sources',
@@ -1208,7 +1889,7 @@ class SourceApi(object):
         ):
             """List attribute filters for a source.  # noqa: E501
 
-            Get a List of attribute filters for leaf entities within a a source  # noqa: E501
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Get a List of attribute filters for leaf entities within a a source  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1274,7 +1955,9 @@ class SourceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/filters',
                 'operation_id': 'get_source_attribute_filters',
@@ -1316,6 +1999,7 @@ class SourceApi(object):
                         "KIBMFLASHSYSTEM": "kIbmFlashSystem",
                         "KNIMBLE": "kNimble",
                         "KNETAPP": "kNetapp",
+                        "KNUTANIXFS": "kNutanixFS",
                         "KGENERICNAS": "kGenericNas",
                         "KISILON": "kIsilon",
                         "KFLASHBLADE": "kFlashBlade",
@@ -1330,10 +2014,19 @@ class SourceApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
+                        "KSAPHANA": "kSAPHANA",
                         "KUDA": "kUDA",
                         "KSQL": "kSQL",
                         "KORACLE": "kOracle",
-                        "KSFDC": "kSfdc"
+                        "KS3COMPATIBLE": "kS3Compatible",
+                        "KSFDC": "kSfdc",
+                        "KEXPERIMENTALADAPTER": "kExperimentalAdapter",
+                        "KMONGODBPHYSICAL": "kMongoDBPhysical",
+                        "KGOOGLEWORKSPACE": "kGoogleWorkspace",
+                        "KDB2": "kDB2",
+                        "KEWSEXCHANGE": "kEwsExchange",
+                        "KSERVICENOW": "kServiceNow",
+                        "KPOSTGRES": "kPostgres"
                     },
                 },
                 'openapi_types': {
@@ -1369,7 +2062,7 @@ class SourceApi(object):
         ):
             """Get the list of Protection Source registrations.  # noqa: E501
 
-            Get the list of Protection Source registrations.  # noqa: E501
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Get the list of Protection Source registrations.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1438,7 +2131,9 @@ class SourceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/registrations',
                 'operation_id': 'get_source_registrations',
@@ -1529,7 +2224,7 @@ class SourceApi(object):
         ):
             """Get VDC Details.  # noqa: E501
 
-            Get the details such as catelogs, Org networks associated with a VMware virtual datacenter (VDC).  # noqa: E501
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Get the details such as catelogs, Org networks associated with a VMware virtual datacenter (VDC).  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1594,7 +2289,9 @@ class SourceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/virtual-datacenter/{id}',
                 'operation_id': 'get_vdc_details',
@@ -1643,6 +2340,294 @@ class SourceApi(object):
             callable=__get_vdc_details
         )
 
+        def __list_application_servers(
+            self,
+            root_node_id,
+            application_environment,
+            **kwargs
+        ):
+            """The Application Servers in a Protection Source tree.  # noqa: E501
+
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Returns the registered Application Servers and their Object subtrees. Given the root node id of a Protection Source tree, returns the list of Application Servers registered under that tree based on the filters.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.list_application_servers(root_node_id, application_environment, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                root_node_id (int): Specifies the Protection Source Id of the root node of a Protection Sources tree. A root node represents a registered Source on the Cohesity Cluster, such as a vCenter Server.
+                application_environment (str): Specifies the types of applications such as 'kSQL', 'kExchange', 'kAD' etc. running on the Protection Source.
+
+            Keyword Args:
+                environment (str): Specifies the environment of the Protection Source tree.. [optional]
+                node_id (int): Specifies the Protection Source Id of the entity in the Protection Source tree hosting the applications.. [optional]
+                next_entity_id (int, none_type): Specifies the entity id for the Node at any level within the Source entity hierarchy whose children are to be paginated.. [optional]
+                page_size (int, none_type): Specifies the maximum number of entities to be returned within the page.. [optional]
+                after_cursor_entity_id (int, none_type): Specifies the entity id starting from which the items are to be returned. [optional]
+                before_cursor_entity_id (int, none_type): Specifies the entity id upto which the items are to be returned. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ListAppServersResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['root_node_id'] = \
+                root_node_id
+            kwargs['application_environment'] = \
+                application_environment
+            return self.call_with_http_info(**kwargs)
+
+        self.list_application_servers = _Endpoint(
+            settings={
+                'response_type': (ListAppServersResponse,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-protect/sources/application-servers',
+                'operation_id': 'list_application_servers',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'root_node_id',
+                    'application_environment',
+                    'environment',
+                    'node_id',
+                    'next_entity_id',
+                    'page_size',
+                    'after_cursor_entity_id',
+                    'before_cursor_entity_id',
+                ],
+                'required': [
+                    'root_node_id',
+                    'application_environment',
+                ],
+                'nullable': [
+                    'next_entity_id',
+                    'page_size',
+                    'after_cursor_entity_id',
+                    'before_cursor_entity_id',
+                ],
+                'enum': [
+                    'application_environment',
+                    'environment',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('application_environment',): {
+
+                        "KSQL": "kSQL",
+                        "KORACLE": "kOracle",
+                        "KAD": "kAD",
+                        "KEXCHANGE": "kExchange"
+                    },
+                    ('environment',): {
+
+                        "KVMWARE": "kVMware",
+                        "KHYPERV": "kHyperV",
+                        "KVCD": "kVCD",
+                        "KSQL": "kSQL",
+                        "KVIEW": "kView",
+                        "KREMOTEADAPTER": "kRemoteAdapter",
+                        "KPHYSICAL": "kPhysical",
+                        "KPURE": "kPure",
+                        "KIBMFLASHSYSTEM": "kIbmFlashSystem",
+                        "KAZURE": "kAzure",
+                        "KNETAPP": "kNetapp",
+                        "KGENERICNAS": "kGenericNas",
+                        "KACROPOLIS": "kAcropolis",
+                        "KISILON": "kIsilon",
+                        "KKVM": "kKVM",
+                        "KAWS": "kAWS",
+                        "KAWSNATIVE": "kAWSNative",
+                        "KAWSS3": "kAwsS3",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KRDSPOSTGRESSNAPSHOTMANAGER": "kRDSPostgresSnapshotManager",
+                        "KRDSMYSQLSNAPSHOTMANAGER": "kRDSMySQLSnapshotManager",
+                        "KRDSMSSQLSNAPSHOTMANAGER": "kRDSMSSQLSnapshotManager",
+                        "KRDSORACLESNAPSHOTMANAGER": "kRDSOracleSnapshotManager",
+                        "KRDSMARIADBSNAPSHOTMANAGER": "kRDSMariaDBSnapshotManager",
+                        "KRDSCUSTOMMSSQLSNAPSHOTMANAGER": "kRDSCustomMSSQLSnapshotManager",
+                        "KRDSCUSTOMORACLESNAPSHOTMANAGER": "kRDSCustomOracleSnapshotManager",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAURORAPOSTGRESSNAPSHOTMANAGER": "kAuroraPostgresSnapshotManager",
+                        "KAURORAMYSQLSNAPSHOTMANAGER": "kAuroraMySQLSnapshotManager",
+                        "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAWSRDSPOSTGRES": "kAwsRDSPostgres",
+                        "KAWSAURORAPOSTGRES": "kAwsAuroraPostgres",
+                        "KAWSMYSQL": "kAWSMySQL",
+                        "KAWSAURORAMYSQL": "kAWSAuroraMySQL",
+                        "KAWSDYNAMODB": "kAwsDynamoDB",
+                        "KAWSRDSORACLE": "kAWSRdsOracle",
+                        "KAWSDOCUMENTDB": "kAWSDocumentDB",
+                        "KAWSRDSPOSTGRESDB": "kAWSRDSPostgresDB",
+                        "KAWSAURORAPOSTGRESDB": "kAWSAuroraPostgresDB",
+                        "KAWSRDSMSSQL": "kAWSRDSMSSQL",
+                        "KAWSREDSHIFT": "kAWSRedshift",
+                        "KAZURENATIVE": "kAzureNative",
+                        "KAZURESQL": "kAzureSQL",
+                        "KAZUREENTRAID": "kAzureEntraID",
+                        "KAZUREMYSQL": "kAzureMySQL",
+                        "KAZURECOSMOSDBNOSQL": "kAzureCosmosDBNoSQL",
+                        "KAZURECOSMOSDBMONGODB": "kAzureCosmosDBMongoDB",
+                        "KAZURECOSMOSDBCASSANDRA": "kAzureCosmosDBCassandra",
+                        "KAZUREPOSTGRESQLSERVER": "kAzurePostgreSQLServer",
+                        "KAZURESQLDB": "kAzureSQLDB",
+                        "KAZURESQLMI": "kAzureSQLMI",
+                        "KAZURETABLESTORAGE": "kAzureTableStorage",
+                        "KAZUREBLOBSTORAGE": "kAzureBlobStorage",
+                        "KAZURETABLEAPI": "kAzureTableAPI",
+                        "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
+                        "KEXCHANGE": "kExchange",
+                        "KORACLE": "kOracle",
+                        "KGCP": "kGCP",
+                        "KGCPBIGQUERY": "kGCPBigQuery",
+                        "KGCPMYSQL": "kGCPMySQL",
+                        "KGOOGLESPANNER": "kGoogleSpanner",
+                        "KGCPPOSTGRESQL": "kGCPPostgreSQL",
+                        "KGCPALLOYDBPOSTGRESQL": "kGCPAlloyDBPostgreSQL",
+                        "KGCPSQLSERVER": "kGCPSQLServer",
+                        "KGCPFIRESTORE": "kGCPFirestore",
+                        "KFLASHBLADE": "kFlashBlade",
+                        "KO365": "kO365",
+                        "KHYPERFLEX": "kHyperFlex",
+                        "KAD": "kAD",
+                        "KGPFS": "kGPFS",
+                        "KKUBERNETES": "kKubernetes",
+                        "KNIMBLE": "kNimble",
+                        "KELASTIFILE": "kElastifile",
+                        "KCASSANDRA": "kCassandra",
+                        "KMONGODB": "kMongoDB",
+                        "KCOUCHBASE": "kCouchbase",
+                        "KHDFS": "kHdfs",
+                        "KHIVE": "kHive",
+                        "KHBASE": "kHBase",
+                        "KUDA": "kUDA",
+                        "KS3COMPATIBLE": "kS3Compatible",
+                        "KSAPHANA": "kSAPHANA",
+                        "KO365SHAREPOINT": "kO365Sharepoint",
+                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
+                        "KO365TEAMS": "kO365Teams",
+                        "KO365GROUP": "kO365Group",
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KSFDC": "kSfdc",
+                        "KO365EXCHANGECSM": "kO365ExchangeCSM",
+                        "KO365ONEDRIVECSM": "kO365OneDriveCSM",
+                        "KO365SHAREPOINTCSM": "kO365SharepointCSM",
+                        "KEXPERIMENTALADAPTER": "kExperimentalAdapter",
+                        "KMONGODBPHYSICAL": "kMongoDBPhysical",
+                        "KGOOGLEWORKSPACE": "kGoogleWorkspace",
+                        "KGMAIL": "kGmail",
+                        "KGOOGLEDRIVE": "kGoogleDrive",
+                        "KDB2": "kDB2",
+                        "KEWSEXCHANGE": "kEwsExchange",
+                        "KSERVICENOW": "kServiceNow",
+                        "KPOSTGRES": "kPostgres",
+                        "KNUTANIXFS": "kNutanixFS"
+                    },
+                },
+                'openapi_types': {
+                    'root_node_id':
+                        (int,),
+                    'application_environment':
+                        (str,),
+                    'environment':
+                        (str,),
+                    'node_id':
+                        (int,),
+                    'next_entity_id':
+                        (int, none_type,),
+                    'page_size':
+                        (int, none_type,),
+                    'after_cursor_entity_id':
+                        (int, none_type,),
+                    'before_cursor_entity_id':
+                        (int, none_type,),
+                },
+                'attribute_map': {
+                    'root_node_id': 'rootNodeId',
+                    'application_environment': 'applicationEnvironment',
+                    'environment': 'environment',
+                    'node_id': 'nodeId',
+                    'next_entity_id': 'nextEntityId',
+                    'page_size': 'pageSize',
+                    'after_cursor_entity_id': 'afterCursorEntityId',
+                    'before_cursor_entity_id': 'beforeCursorEntityId',
+                },
+                'location_map': {
+                    'root_node_id': 'query',
+                    'application_environment': 'query',
+                    'environment': 'query',
+                    'node_id': 'query',
+                    'next_entity_id': 'query',
+                    'page_size': 'query',
+                    'after_cursor_entity_id': 'query',
+                    'before_cursor_entity_id': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__list_application_servers
+        )
+
         def __patch_protection_source_registration(
             self,
             id,
@@ -1651,7 +2636,7 @@ class SourceApi(object):
         ):
             """Perform Partial Update on Protection Source registration. Currently this API is supported only for Cassandra  # noqa: E501
 
-            Patches a Protection Source.  # noqa: E501
+            **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Patches a Protection Source.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1719,7 +2704,9 @@ class SourceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/registrations/{id}',
                 'operation_id': 'patch_protection_source_registration',
@@ -1782,7 +2769,7 @@ class SourceApi(object):
         ):
             """Get a Protection Sources.  # noqa: E501
 
-            Get a Protection Source.  # noqa: E501
+            ```Unknown Privileges``` <br><br>Get a Protection Source.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1847,7 +2834,9 @@ class SourceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/{id}',
                 'operation_id': 'protection_source_by_id',
@@ -1903,7 +2892,7 @@ class SourceApi(object):
         ):
             """Refresh a Protection Source.  # noqa: E501
 
-            Refresh a Protection Source.  # noqa: E501
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Refresh a Protection Source.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1968,7 +2957,9 @@ class SourceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/{id}/refresh',
                 'operation_id': 'refresh_protection_source_by_id',
@@ -2017,6 +3008,129 @@ class SourceApi(object):
             callable=__refresh_protection_source_by_id
         )
 
+        def __register_m365_backup_controller(
+            self,
+            azure_token,
+            **kwargs
+        ):
+            """Registers the Cohesity App to be the Microsoft 365 Backup Controller  # noqa: E501
+
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Registers the Cohesity App to be the Microsoft365 Backup Controller  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.register_m365_backup_controller(azure_token, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                azure_token (str): Specifies the JWT obtained through user with the scope for BackupRestore-Control.ReadWrite.All
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GetM365BackupControllerResponseParams
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['azure_token'] = \
+                azure_token
+            return self.call_with_http_info(**kwargs)
+
+        self.register_m365_backup_controller = _Endpoint(
+            settings={
+                'response_type': (GetM365BackupControllerResponseParams,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-protect/sources/microsoft365/backup-controllers',
+                'operation_id': 'register_m365_backup_controller',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'azure_token',
+                ],
+                'required': [
+                    'azure_token',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'azure_token':
+                        (str,),
+                },
+                'attribute_map': {
+                    'azure_token': 'azureToken',
+                },
+                'location_map': {
+                    'azure_token': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__register_m365_backup_controller
+        )
+
         def __register_protection_source(
             self,
             body,
@@ -2024,7 +3138,7 @@ class SourceApi(object):
         ):
             """Register a Protection Source.  # noqa: E501
 
-            Register a Protection Source.  # noqa: E501
+            **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Register a Protection Source.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2089,7 +3203,9 @@ class SourceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/registrations',
                 'operation_id': 'register_protection_source',
@@ -2146,7 +3262,7 @@ class SourceApi(object):
         ):
             """Test connection to a source.  # noqa: E501
 
-            Test connection to a source.  # noqa: E501
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Test connection to a source.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2211,7 +3327,9 @@ class SourceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/test-connection',
                 'operation_id': 'test_connection_protection_source',
@@ -2261,6 +3379,419 @@ class SourceApi(object):
             callable=__test_connection_protection_source
         )
 
+        def __unregister_m365_backup_controller(
+            self,
+            id,
+            **kwargs
+        ):
+            """Unregisters the Cohesity App as the Microsoft 365 Backup Controller  # noqa: E501
+
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Unregisters the Cohesity App as the Microsoft 365 Backup Controller  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.unregister_m365_backup_controller(id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (str, none_type): Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller.
+
+            Keyword Args:
+                azure_token (str): Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            return self.call_with_http_info(**kwargs)
+
+        self.unregister_m365_backup_controller = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-protect/sources/microsoft365/backup-controllers/{id}',
+                'operation_id': 'unregister_m365_backup_controller',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'azure_token',
+                ],
+                'required': [
+                    'id',
+                ],
+                'nullable': [
+                    'id',
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (str, none_type,),
+                    'azure_token':
+                        (str,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'azure_token': 'azureToken',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'azure_token': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__unregister_m365_backup_controller
+        )
+
+        def __update_application_servers_registration(
+            self,
+            id,
+            body,
+            **kwargs
+        ):
+            """Registers or update owner entity with applications.  # noqa: E501
+
+            **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Register or update applications on an owner entity  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_application_servers_registration(id, body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int): Specifies the id of the source entity for application registration.
+                body (ApplicationServersRegistrationRequestParams): Specifies the parameters to register an application entity.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                CommonApplicationServersRegistrationParams
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.update_application_servers_registration = _Endpoint(
+            settings={
+                'response_type': (CommonApplicationServersRegistrationParams,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-protect/sources/application-servers/{id}',
+                'operation_id': 'update_application_servers_registration',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'body',
+                ],
+                'required': [
+                    'id',
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                    'body':
+                        (ApplicationServersRegistrationRequestParams,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__update_application_servers_registration
+        )
+
+        def __update_m365_backup_controller(
+            self,
+            azure_token,
+            id,
+            **kwargs
+        ):
+            """Updates the status of the registered M365 Backup Controller  # noqa: E501
+
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Updates the Backup Controller status of the registered M365 Backup Controller  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_m365_backup_controller(azure_token, id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                azure_token (str): Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All
+                id (str, none_type): Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller.
+
+            Keyword Args:
+                state (str, none_type): Specifies the state of the Backup Controller. The state parameter can only be either set to Active/Inactive within the request. The other states like PendingInactive & PendingActive are not applicable.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GetM365BackupControllerResponseParams
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['azure_token'] = \
+                azure_token
+            kwargs['id'] = \
+                id
+            return self.call_with_http_info(**kwargs)
+
+        self.update_m365_backup_controller = _Endpoint(
+            settings={
+                'response_type': (GetM365BackupControllerResponseParams,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-protect/sources/microsoft365/backup-controllers/{id}',
+                'operation_id': 'update_m365_backup_controller',
+                'http_method': 'PATCH',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'azure_token',
+                    'id',
+                    'state',
+                ],
+                'required': [
+                    'azure_token',
+                    'id',
+                ],
+                'nullable': [
+                    'id',
+                    'state',
+                ],
+                'enum': [
+                    'state',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('state',): {
+                        'None': None,
+                        "INACTIVE": "Inactive",
+                        "PENDINGINACTIVE": "PendingInactive",
+                        "PENDINGACTIVE": "PendingActive",
+                        "ACTIVE": "Active"
+                    },
+                },
+                'openapi_types': {
+                    'azure_token':
+                        (str,),
+                    'id':
+                        (str, none_type,),
+                    'state':
+                        (str, none_type,),
+                },
+                'attribute_map': {
+                    'azure_token': 'azureToken',
+                    'id': 'id',
+                    'state': 'state',
+                },
+                'location_map': {
+                    'azure_token': 'header',
+                    'id': 'path',
+                    'state': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__update_m365_backup_controller
+        )
+
         def __update_m365_self_service_config(
             self,
             uuid,
@@ -2269,7 +3800,7 @@ class SourceApi(object):
         ):
             """Create or Update the Self-Service configuration for a Microsoft365 source.  # noqa: E501
 
-            Create or Update the configuration for enabling Self-Service for a Microsoft365 source through Security Groups. The configuration can be done for Mailbox & OneDrive workload only.  # noqa: E501
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Create or Update the configuration for enabling Self-Service for a Microsoft365 source through Security Groups. The configuration can be done for Mailbox & OneDrive workload only.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2337,7 +3868,9 @@ class SourceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/microsoft365/self-service-config/{uuid}',
                 'operation_id': 'update_m365_self_service_config',
@@ -2401,7 +3934,7 @@ class SourceApi(object):
         ):
             """Update Protection Source registration.  # noqa: E501
 
-            Update Protection Source registration.  # noqa: E501
+            **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Update Protection Source registration.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2469,7 +4002,9 @@ class SourceApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/registrations/{id}',
                 'operation_id': 'update_protection_source_registration',

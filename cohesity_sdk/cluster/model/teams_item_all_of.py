@@ -28,8 +28,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.channel_item import ChannelItem
+    from cohesity_sdk.cluster.model.subsite_item import SubsiteItem
     from cohesity_sdk.cluster.model.teams_file_item import TeamsFileItem
     globals()['ChannelItem'] = ChannelItem
+    globals()['SubsiteItem'] = SubsiteItem
     globals()['TeamsFileItem'] = TeamsFileItem
 
 
@@ -91,6 +93,7 @@ class TeamsItemAllOf(ModelNormal):
         return {
             'channel_item': (ChannelItem,),  # noqa: E501
             'file_item': (TeamsFileItem,),  # noqa: E501
+            'subsite_item': (SubsiteItem,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
         }
 
@@ -103,6 +106,7 @@ class TeamsItemAllOf(ModelNormal):
     attribute_map = {
         'channel_item': 'channelItem',  # noqa: E501
         'file_item': 'fileItem',  # noqa: E501
+        'subsite_item': 'subsiteItem',  # noqa: E501
         'type': 'type',  # noqa: E501
     }
 
@@ -155,6 +159,7 @@ class TeamsItemAllOf(ModelNormal):
 
             channel_item (ChannelItem): [optional]  # noqa: E501
             file_item (TeamsFileItem): [optional]  # noqa: E501
+            subsite_item (SubsiteItem): [optional]  # noqa: E501
             type (str, none_type): Specifies the M365 Teams item type.. [optional]  # noqa: E501
         """
 

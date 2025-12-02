@@ -28,7 +28,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.recover_protection_group_run_params import RecoverProtectionGroupRunParams
+    from cohesity_sdk.cluster.model.restore_object_customization import RestoreObjectCustomization
+    from cohesity_sdk.cluster.model.vmware_target_params_for_recover_vm import VmwareTargetParamsForRecoverVM
     globals()['RecoverProtectionGroupRunParams'] = RecoverProtectionGroupRunParams
+    globals()['RestoreObjectCustomization'] = RestoreObjectCustomization
+    globals()['VmwareTargetParamsForRecoverVM'] = VmwareTargetParamsForRecoverVM
 
 
 class RecoverVmwareVmParams(ModelNormal):
@@ -84,7 +88,8 @@ class RecoverVmwareVmParams(ModelNormal):
         return {
             'target_environment': (str,),  # noqa: E501
             'recover_protection_group_runs_params': ([RecoverProtectionGroupRunParams], none_type,),  # noqa: E501
-            'vmware_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'restore_object_customizations': ([RestoreObjectCustomization], none_type,),  # noqa: E501
+            'vmware_target_params': (VmwareTargetParamsForRecoverVM,),  # noqa: E501
         }
 
     @cached_property
@@ -96,6 +101,7 @@ class RecoverVmwareVmParams(ModelNormal):
     attribute_map = {
         'target_environment': 'targetEnvironment',  # noqa: E501
         'recover_protection_group_runs_params': 'recoverProtectionGroupRunsParams',  # noqa: E501
+        'restore_object_customizations': 'restoreObjectCustomizations',  # noqa: E501
         'vmware_target_params': 'vmwareTargetParams',  # noqa: E501
     }
 
@@ -150,7 +156,8 @@ class RecoverVmwareVmParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             recover_protection_group_runs_params ([RecoverProtectionGroupRunParams], none_type): Specifies the Protection Group Runs params to recover. All the VM's that are successfully backed up by specified Runs will be recovered. This can be specified along with individual snapshots of VMs. User has to make sure that specified Object snapshots and Protection Group Runs should not have any intersection. For example, user cannot specify multiple Runs which has same Object or an Object snapshot and a Run which has same Object's snapshot.. [optional]  # noqa: E501
-            vmware_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for recovering to a VMware target.. [optional]  # noqa: E501
+            restore_object_customizations ([RestoreObjectCustomization], none_type): Specifies the customization for the VMs being restored.. [optional]  # noqa: E501
+            vmware_target_params (VmwareTargetParamsForRecoverVM): [optional]  # noqa: E501
         """
 
         target_environment = kwargs.get('target_environment', "kVMware")

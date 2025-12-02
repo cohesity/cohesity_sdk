@@ -143,7 +143,7 @@ class CreateAzureApplicationResponseParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            microsoft365_app_credentials_list ([Office365AppCredentials]): Specifies a list of Microsoft365 azure application credentials needed to authenticate & authorize users for Office 365.. [optional]  # noqa: E501
+            microsoft365_app_credentials_list ([Office365AppCredentials]): Specifies a list of Microsoft365 azure application credentials needed to authenticate & authorize users for Office 365/Azure Workflows.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

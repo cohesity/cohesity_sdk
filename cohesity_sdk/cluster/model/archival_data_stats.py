@@ -80,6 +80,9 @@ class ArchivalDataStats(ModelNormal):
             'file_walk_done': (bool, none_type,),  # noqa: E501
             'logical_bytes_transferred': (int, none_type,),  # noqa: E501
             'logical_size_bytes': (int, none_type,),  # noqa: E501
+            'num_changed_granular_objects': (int, none_type,),  # noqa: E501
+            'num_protected_granular_objects': (int, none_type,),  # noqa: E501
+            'num_successful_backed_granular_objects': (int, none_type,),  # noqa: E501
             'physical_bytes_transferred': (int, none_type,),  # noqa: E501
             'total_file_count': (int, none_type,),  # noqa: E501
         }
@@ -97,6 +100,9 @@ class ArchivalDataStats(ModelNormal):
         'file_walk_done': 'fileWalkDone',  # noqa: E501
         'logical_bytes_transferred': 'logicalBytesTransferred',  # noqa: E501
         'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
+        'num_changed_granular_objects': 'numChangedGranularObjects',  # noqa: E501
+        'num_protected_granular_objects': 'numProtectedGranularObjects',  # noqa: E501
+        'num_successful_backed_granular_objects': 'numSuccessfulBackedGranularObjects',  # noqa: E501
         'physical_bytes_transferred': 'physicalBytesTransferred',  # noqa: E501
         'total_file_count': 'totalFileCount',  # noqa: E501
     }
@@ -154,6 +160,9 @@ class ArchivalDataStats(ModelNormal):
             file_walk_done (bool, none_type): Specifies whether the file system walk is done. Only applicable to file based backups.. [optional]  # noqa: E501
             logical_bytes_transferred (int, none_type): Specifies the logical bytes transferred.. [optional]  # noqa: E501
             logical_size_bytes (int, none_type): Specifies the logicalSizeBytes.. [optional]  # noqa: E501
+            num_changed_granular_objects (int, none_type): Number of granular objects added/deleted/modified since the last backup.. [optional]  # noqa: E501
+            num_protected_granular_objects (int, none_type): Specifies total number of granular objects protected in this backup.. [optional]  # noqa: E501
+            num_successful_backed_granular_objects (int, none_type): Specifies number of changed granular objects which were backed up succesfully.. [optional]  # noqa: E501
             physical_bytes_transferred (int, none_type): Specifies the physical bytes transferred.. [optional]  # noqa: E501
             total_file_count (int, none_type): Specifies the total number of file and directory entities visited in this backup. Only applicable to file based backups.. [optional]  # noqa: E501
         """

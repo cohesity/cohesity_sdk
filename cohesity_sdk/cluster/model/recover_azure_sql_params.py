@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.azure_target_params_for_recover_azure_sql import AzureTargetParamsForRecoverAzureSql
     from cohesity_sdk.cluster.model.recover_azure_sql_snapshot_params import RecoverAzureSqlSnapshotParams
+    globals()['AzureTargetParamsForRecoverAzureSql'] = AzureTargetParamsForRecoverAzureSql
     globals()['RecoverAzureSqlSnapshotParams'] = RecoverAzureSqlSnapshotParams
 
 
@@ -84,7 +86,7 @@ class RecoverAzureSqlParams(ModelNormal):
         return {
             'snapshots': ([RecoverAzureSqlSnapshotParams], none_type,),  # noqa: E501
             'target_environment': (str,),  # noqa: E501
-            'azure_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'azure_target_params': (AzureTargetParamsForRecoverAzureSql,),  # noqa: E501
         }
 
     @cached_property
@@ -150,7 +152,7 @@ class RecoverAzureSqlParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            azure_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for recovering to an Azure target.. [optional]  # noqa: E501
+            azure_target_params (AzureTargetParamsForRecoverAzureSql): [optional]  # noqa: E501
         """
 
         target_environment = kwargs.get('target_environment', "kAzure")

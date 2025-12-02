@@ -30,6 +30,7 @@ def lazy_import():
     from cohesity_sdk.cluster.model.archival_aws_external_target_params import ArchivalAwsExternalTargetParams
     from cohesity_sdk.cluster.model.archival_azure_external_target_params import ArchivalAzureExternalTargetParams
     from cohesity_sdk.cluster.model.archival_gcp_external_target_params import ArchivalGcpExternalTargetParams
+    from cohesity_sdk.cluster.model.archival_ibm_external_target_params import ArchivalIBMExternalTargetParams
     from cohesity_sdk.cluster.model.archival_nas_external_target_params import ArchivalNasExternalTargetParams
     from cohesity_sdk.cluster.model.archival_oracle_external_target_params import ArchivalOracleExternalTargetParams
     from cohesity_sdk.cluster.model.archival_qstar_tape_external_target_params import ArchivalQstarTapeExternalTargetParams
@@ -37,6 +38,7 @@ def lazy_import():
     globals()['ArchivalAwsExternalTargetParams'] = ArchivalAwsExternalTargetParams
     globals()['ArchivalAzureExternalTargetParams'] = ArchivalAzureExternalTargetParams
     globals()['ArchivalGcpExternalTargetParams'] = ArchivalGcpExternalTargetParams
+    globals()['ArchivalIBMExternalTargetParams'] = ArchivalIBMExternalTargetParams
     globals()['ArchivalNasExternalTargetParams'] = ArchivalNasExternalTargetParams
     globals()['ArchivalOracleExternalTargetParams'] = ArchivalOracleExternalTargetParams
     globals()['ArchivalQstarTapeExternalTargetParams'] = ArchivalQstarTapeExternalTargetParams
@@ -94,6 +96,7 @@ class ArchivalExternalTargetParamsAllOf(ModelNormal):
             'aws_params': (ArchivalAwsExternalTargetParams,),  # noqa: E501
             'azure_params': (ArchivalAzureExternalTargetParams,),  # noqa: E501
             'gcp_params': (ArchivalGcpExternalTargetParams,),  # noqa: E501
+            'ibm_params': (ArchivalIBMExternalTargetParams,),  # noqa: E501
             'nas_params': (ArchivalNasExternalTargetParams,),  # noqa: E501
             'oracle_params': (ArchivalOracleExternalTargetParams,),  # noqa: E501
             'qstar_tape_params': (ArchivalQstarTapeExternalTargetParams,),  # noqa: E501
@@ -110,6 +113,7 @@ class ArchivalExternalTargetParamsAllOf(ModelNormal):
         'aws_params': 'awsParams',  # noqa: E501
         'azure_params': 'azureParams',  # noqa: E501
         'gcp_params': 'gcpParams',  # noqa: E501
+        'ibm_params': 'ibmParams',  # noqa: E501
         'nas_params': 'nasParams',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
         'qstar_tape_params': 'qstarTapeParams',  # noqa: E501
@@ -166,6 +170,7 @@ class ArchivalExternalTargetParamsAllOf(ModelNormal):
             aws_params (ArchivalAwsExternalTargetParams): [optional]  # noqa: E501
             azure_params (ArchivalAzureExternalTargetParams): [optional]  # noqa: E501
             gcp_params (ArchivalGcpExternalTargetParams): [optional]  # noqa: E501
+            ibm_params (ArchivalIBMExternalTargetParams): [optional]  # noqa: E501
             nas_params (ArchivalNasExternalTargetParams): [optional]  # noqa: E501
             oracle_params (ArchivalOracleExternalTargetParams): [optional]  # noqa: E501
             qstar_tape_params (ArchivalQstarTapeExternalTargetParams): [optional]  # noqa: E501

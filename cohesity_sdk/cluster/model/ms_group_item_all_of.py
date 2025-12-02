@@ -66,6 +66,14 @@ class MsGroupItemAllOf(ModelNormal):
             'EMAILFOLDER': "EmailFolder",
             'SITEFILE': "SiteFile",
             'SITEFOLDER': "SiteFolder",
+            'CALENDAR': "Calendar",
+            'CONTACT': "Contact",
+            'NOTE': "Note",
+            'TASK': "Task",
+            'CALENDARFOLDER': "CalendarFolder",
+            'CONTACTFOLDER': "ContactFolder",
+            'TASKFOLDER': "TaskFolder",
+            'SEARCHFOLDER': "SearchFolder",
         },
     }
 

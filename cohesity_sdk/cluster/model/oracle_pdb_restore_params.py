@@ -86,6 +86,8 @@ class OraclePdbRestoreParams(ModelNormal):
             'pdb_objects': ([OraclePdbObjectInfo], none_type,),  # noqa: E501
             'rename_pdb_map': ([KeyValuePair], none_type,),  # noqa: E501
             'restore_to_existing_cdb': (bool, none_type,),  # noqa: E501
+            'source_cdb_keystore_password': (str, none_type,),  # noqa: E501
+            'target_cdb_keystore_password': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -100,6 +102,8 @@ class OraclePdbRestoreParams(ModelNormal):
         'pdb_objects': 'pdbObjects',  # noqa: E501
         'rename_pdb_map': 'renamePdbMap',  # noqa: E501
         'restore_to_existing_cdb': 'restoreToExistingCdb',  # noqa: E501
+        'source_cdb_keystore_password': 'sourceCdbKeystorePassword',  # noqa: E501
+        'target_cdb_keystore_password': 'targetCdbKeystorePassword',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -154,6 +158,8 @@ class OraclePdbRestoreParams(ModelNormal):
             pdb_objects ([OraclePdbObjectInfo], none_type): Specifies list of PDB objects to restore.. [optional]  # noqa: E501
             rename_pdb_map ([KeyValuePair], none_type): Specifies the new PDB name mapping to existing PDBs.. [optional]  # noqa: E501
             restore_to_existing_cdb (bool, none_type): Specifies if pdbs should be restored to an existing CDB.. [optional]  # noqa: E501
+            source_cdb_keystore_password (str, none_type): Specifies the keystore password of the source CDB.. [optional]  # noqa: E501
+            target_cdb_keystore_password (str, none_type): Specifies the keystore password of the target CDB.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

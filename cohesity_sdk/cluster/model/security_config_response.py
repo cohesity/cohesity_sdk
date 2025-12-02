@@ -31,6 +31,7 @@ def lazy_import():
     from cohesity_sdk.cluster.model.security_config_account_lockout import SecurityConfigAccountLockout
     from cohesity_sdk.cluster.model.security_config_certificate_based_auth import SecurityConfigCertificateBasedAuth
     from cohesity_sdk.cluster.model.security_config_data_classification import SecurityConfigDataClassification
+    from cohesity_sdk.cluster.model.security_config_meta_data import SecurityConfigMetaData
     from cohesity_sdk.cluster.model.security_config_password_lifetime import SecurityConfigPasswordLifetime
     from cohesity_sdk.cluster.model.security_config_password_reuse import SecurityConfigPasswordReuse
     from cohesity_sdk.cluster.model.security_config_password_strength import SecurityConfigPasswordStrength
@@ -40,6 +41,7 @@ def lazy_import():
     globals()['SecurityConfigAccountLockout'] = SecurityConfigAccountLockout
     globals()['SecurityConfigCertificateBasedAuth'] = SecurityConfigCertificateBasedAuth
     globals()['SecurityConfigDataClassification'] = SecurityConfigDataClassification
+    globals()['SecurityConfigMetaData'] = SecurityConfigMetaData
     globals()['SecurityConfigPasswordLifetime'] = SecurityConfigPasswordLifetime
     globals()['SecurityConfigPasswordReuse'] = SecurityConfigPasswordReuse
     globals()['SecurityConfigPasswordStrength'] = SecurityConfigPasswordStrength
@@ -105,6 +107,7 @@ class SecurityConfigResponse(ModelComposed):
             'password_strength': (SecurityConfigPasswordStrength,),  # noqa: E501
             'session_configuration': (SecurityConfigSessionConfiguration,),  # noqa: E501
             'ssh_configuration': (SecurityConfigSshConfiguration,),  # noqa: E501
+            'session_management_enabled': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -124,6 +127,7 @@ class SecurityConfigResponse(ModelComposed):
         'password_strength': 'passwordStrength',  # noqa: E501
         'session_configuration': 'sessionConfiguration',  # noqa: E501
         'ssh_configuration': 'sshConfiguration',  # noqa: E501
+        'session_management_enabled': 'sessionManagementEnabled',  # noqa: E501
     }
 
     required_properties = set([
@@ -184,6 +188,7 @@ class SecurityConfigResponse(ModelComposed):
             password_strength (SecurityConfigPasswordStrength): [optional]  # noqa: E501
             session_configuration (SecurityConfigSessionConfiguration): [optional]  # noqa: E501
             ssh_configuration (SecurityConfigSshConfiguration): [optional]  # noqa: E501
+            session_management_enabled (bool, none_type): Specifies whether session management is enabled.  When true, sessionConfiguration from SecurityConfig will be used for for managing user sessions.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -256,6 +261,7 @@ class SecurityConfigResponse(ModelComposed):
           ],
           'allOf': [
               SecurityConfig,
+              SecurityConfigMetaData,
           ],
           'oneOf': [
           ],

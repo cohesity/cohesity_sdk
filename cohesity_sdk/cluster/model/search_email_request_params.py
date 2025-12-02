@@ -82,6 +82,10 @@ class SearchEmailRequestParams(ModelComposed):
             'CONTACT': "Contact",
             'TASK': "Task",
             'NOTE': "Note",
+            'CALENDARFOLDER': "CalendarFolder",
+            'CONTACTFOLDER': "ContactFolder",
+            'TASKFOLDER': "TaskFolder",
+            'SEARCHFOLDER': "SearchFolder",
         },
     }
 

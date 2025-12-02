@@ -28,7 +28,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.credentials import Credentials
+    from cohesity_sdk.cluster.model.recovery_object_identifier import RecoveryObjectIdentifier
     globals()['Credentials'] = Credentials
+    globals()['RecoveryObjectIdentifier'] = RecoveryObjectIdentifier
 
 
 class RecoverRDSPostgresCustomServerConfig(ModelNormal):
@@ -81,8 +83,9 @@ class RecoverRDSPostgresCustomServerConfig(ModelNormal):
         return {
             'ip': (str,),  # noqa: E501
             'port': (int, none_type,),  # noqa: E501
-            'region': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'region': (RecoveryObjectIdentifier,),  # noqa: E501
             'standard_credentials': (Credentials,),  # noqa: E501
+            'source': (RecoveryObjectIdentifier,),  # noqa: E501
         }
 
     @cached_property
@@ -96,6 +99,7 @@ class RecoverRDSPostgresCustomServerConfig(ModelNormal):
         'port': 'port',  # noqa: E501
         'region': 'region',  # noqa: E501
         'standard_credentials': 'standardCredentials',  # noqa: E501
+        'source': 'source',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -114,9 +118,9 @@ class RecoverRDSPostgresCustomServerConfig(ModelNormal):
         """RecoverRDSPostgresCustomServerConfig - a model defined in OpenAPI
 
         Args:
-            ip (str): Specifies the Ip in which to deploy the Rds instance.
+            ip (str): Specifies the Ip in which to deploy the Rds objects.
             port (int, none_type): Specifies the port to use to connect to the server.
-            region ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the region in which to deploy the Rds instance.
+            region (RecoveryObjectIdentifier):
             standard_credentials (Credentials):
 
         Keyword Args:
@@ -151,6 +155,7 @@ class RecoverRDSPostgresCustomServerConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            source (RecoveryObjectIdentifier): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

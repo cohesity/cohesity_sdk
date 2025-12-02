@@ -28,7 +28,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.recover_volume_mapping import RecoverVolumeMapping
+    from cohesity_sdk.cluster.model.recovery_object_identifier import RecoveryObjectIdentifier
+    from cohesity_sdk.cluster.model.recovery_vlan_config import RecoveryVlanConfig
     globals()['RecoverVolumeMapping'] = RecoverVolumeMapping
+    globals()['RecoveryObjectIdentifier'] = RecoveryObjectIdentifier
+    globals()['RecoveryVlanConfig'] = RecoveryVlanConfig
 
 
 class PhysicalTargetParamsForRecoverVolume(ModelNormal):
@@ -79,10 +83,10 @@ class PhysicalTargetParamsForRecoverVolume(ModelNormal):
         """
         lazy_import()
         return {
-            'mount_target': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'mount_target': (RecoveryObjectIdentifier,),  # noqa: E501
             'volume_mapping': ([RecoverVolumeMapping], none_type,),  # noqa: E501
             'force_unmount_volume': (bool, none_type,),  # noqa: E501
-            'vlan_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'vlan_config': (RecoveryVlanConfig,),  # noqa: E501
         }
 
     @cached_property
@@ -114,7 +118,7 @@ class PhysicalTargetParamsForRecoverVolume(ModelNormal):
         """PhysicalTargetParamsForRecoverVolume - a model defined in OpenAPI
 
         Args:
-            mount_target ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the target entity where the volumes are being mounted.
+            mount_target (RecoveryObjectIdentifier):
             volume_mapping ([RecoverVolumeMapping], none_type): Specifies the mapping from source volumes to destination volumes.
 
         Keyword Args:
@@ -150,7 +154,7 @@ class PhysicalTargetParamsForRecoverVolume(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             force_unmount_volume (bool, none_type): Specifies whether volume would be dismounted first during LockVolume failure. If not specified, default is false.. [optional]  # noqa: E501
-            vlan_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery.. [optional]  # noqa: E501
+            vlan_config (RecoveryVlanConfig): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

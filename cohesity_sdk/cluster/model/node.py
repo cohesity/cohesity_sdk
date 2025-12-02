@@ -114,13 +114,16 @@ class Node(ModelNormal):
             'cluster_partition_id': (int, none_type,),  # noqa: E501
             'cluster_partition_name': (str, none_type,),  # noqa: E501
             'cohesity_node_serial': (str, none_type,),  # noqa: E501
+            'disk_count': (int,),  # noqa: E501
             'disk_count_by_tier': ([CountByTier], none_type,),  # noqa: E501
             'hardware_model': (str, none_type,),  # noqa: E501
             'host_name': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
+            'in_maintenance_mode': (bool, none_type,),  # noqa: E501
             'ip': (str, none_type,),  # noqa: E501
             'is_app_node': (bool, none_type,),  # noqa: E501
             'is_marked_for_removal': (bool, none_type,),  # noqa: E501
+            'is_upgrade_in_progress': (bool, none_type,),  # noqa: E501
             'max_physical_capacity_bytes': (int, none_type,),  # noqa: E501
             'node_hardware_info': (NodeHardwareInfo,),  # noqa: E501
             'node_incarnation_id': (int, none_type,),  # noqa: E501
@@ -128,6 +131,7 @@ class Node(ModelNormal):
             'node_type': (str, none_type,),  # noqa: E501
             'offline_disk_count': (int, none_type,),  # noqa: E501
             'offline_mount_paths_of_disks': ([str], none_type,),  # noqa: E501
+            'patch_software_version': (str, none_type,),  # noqa: E501
             'precheck_timestamp_secs': (int, none_type,),  # noqa: E501
             'product_model': (str, none_type,),  # noqa: E501
             'progress_percentage': (int, none_type,),  # noqa: E501
@@ -142,6 +146,8 @@ class Node(ModelNormal):
             'stats': (NodeStats,),  # noqa: E501
             'system_disks': ([NodeSystemDiskInfo], none_type,),  # noqa: E501
             'time_remaining': (int, none_type,),  # noqa: E501
+            'total_disk_bytes': (int, none_type,),  # noqa: E501
+            'used_disk_bytes': (int, none_type,),  # noqa: E501
             'validation_checks': ([PreCheckValidation], none_type,),  # noqa: E501
             'vendor': (str, none_type,),  # noqa: E501
         }
@@ -158,13 +164,16 @@ class Node(ModelNormal):
         'cluster_partition_id': 'clusterPartitionId',  # noqa: E501
         'cluster_partition_name': 'clusterPartitionName',  # noqa: E501
         'cohesity_node_serial': 'cohesityNodeSerial',  # noqa: E501
+        'disk_count': 'diskCount',  # noqa: E501
         'disk_count_by_tier': 'diskCountByTier',  # noqa: E501
         'hardware_model': 'hardwareModel',  # noqa: E501
         'host_name': 'hostName',  # noqa: E501
         'id': 'id',  # noqa: E501
+        'in_maintenance_mode': 'inMaintenanceMode',  # noqa: E501
         'ip': 'ip',  # noqa: E501
         'is_app_node': 'isAppNode',  # noqa: E501
         'is_marked_for_removal': 'isMarkedForRemoval',  # noqa: E501
+        'is_upgrade_in_progress': 'isUpgradeInProgress',  # noqa: E501
         'max_physical_capacity_bytes': 'maxPhysicalCapacityBytes',  # noqa: E501
         'node_hardware_info': 'nodeHardwareInfo',  # noqa: E501
         'node_incarnation_id': 'nodeIncarnationId',  # noqa: E501
@@ -172,6 +181,7 @@ class Node(ModelNormal):
         'node_type': 'nodeType',  # noqa: E501
         'offline_disk_count': 'offlineDiskCount',  # noqa: E501
         'offline_mount_paths_of_disks': 'offlineMountPathsOfDisks',  # noqa: E501
+        'patch_software_version': 'patchSoftwareVersion',  # noqa: E501
         'precheck_timestamp_secs': 'precheckTimestampSecs',  # noqa: E501
         'product_model': 'productModel',  # noqa: E501
         'progress_percentage': 'progressPercentage',  # noqa: E501
@@ -186,6 +196,8 @@ class Node(ModelNormal):
         'stats': 'stats',  # noqa: E501
         'system_disks': 'systemDisks',  # noqa: E501
         'time_remaining': 'timeRemaining',  # noqa: E501
+        'total_disk_bytes': 'totalDiskBytes',  # noqa: E501
+        'used_disk_bytes': 'usedDiskBytes',  # noqa: E501
         'validation_checks': 'validationChecks',  # noqa: E501
         'vendor': 'vendor',  # noqa: E501
     }
@@ -242,13 +254,16 @@ class Node(ModelNormal):
             cluster_partition_id (int, none_type): ClusterPartitionId is the Id of the cluster partition to which the Node belongs.. [optional]  # noqa: E501
             cluster_partition_name (str, none_type): ClusterPartitionName is the name of the cluster to which the Node belongs.. [optional]  # noqa: E501
             cohesity_node_serial (str, none_type): Cohesity Node Serial Number of the Node.. [optional]  # noqa: E501
+            disk_count (int): DiskCount is the number of disks in a node.. [optional]  # noqa: E501
             disk_count_by_tier ([CountByTier], none_type): DiskCountByTier describes the disk number of each storage tier.. [optional]  # noqa: E501
             hardware_model (str, none_type): Specifies the hardware model of the node.. [optional]  # noqa: E501
             host_name (str, none_type): Specifies the hostname of the node.. [optional]  # noqa: E501
             id (int, none_type): Id is the Id of the Node.. [optional]  # noqa: E501
+            in_maintenance_mode (bool, none_type): InMaintnenanceMode is used to mark a node in maintenance mode.. [optional]  # noqa: E501
             ip (str, none_type): Ip is the IP address of the Node.. [optional]  # noqa: E501
             is_app_node (bool, none_type): Whether node is app node.. [optional]  # noqa: E501
             is_marked_for_removal (bool, none_type): IsMarkedForRemoval specifies whether the node has been marked for removal.. [optional]  # noqa: E501
+            is_upgrade_in_progress (bool, none_type): isUpgradeInProgress is used to mark a node being upgraded.. [optional]  # noqa: E501
             max_physical_capacity_bytes (int, none_type): MaxPhysicalCapacityBytes specifies the maximum physical capacity of the node in bytes.. [optional]  # noqa: E501
             node_hardware_info (NodeHardwareInfo): [optional]  # noqa: E501
             node_incarnation_id (int, none_type): NodeIncarnationId is the incarnation id  of this node. The incarnation id is changed every time the data is wiped from the node. Various services on a node is only run if incarnation id of the node matches the incarnation id of the cluster. Whenever a mismatch is detected, Nexus will stop all services and clean the data from the node. After clean operation is completed, Nexus will set the node incarnation id to cluster incarnation id and start the services.. [optional]  # noqa: E501
@@ -256,12 +271,13 @@ class Node(ModelNormal):
             node_type (str, none_type): Node type: StorageNode, AllFlashNode, RoboNode, AppNode, etc.. [optional]  # noqa: E501
             offline_disk_count (int, none_type): OfflineDiskCount is the number of offline disks in a node.. [optional]  # noqa: E501
             offline_mount_paths_of_disks ([str], none_type): OfflineMountPathsOfDisks provides the corresponding mount paths for direct attached disks that are currently offline - access to these were detected to hang sometime in the past. After these disks have been fixed, their mount paths needs to be removed from the following list before these will be accessed again.. [optional]  # noqa: E501
+            patch_software_version (str, none_type): PatchSoftwareVersion is the current version of patch applied on a node.. [optional]  # noqa: E501
             precheck_timestamp_secs (int, none_type): Specifies the last run time of the pre-checks execution in Unix epoch timestamp (in seconds).. [optional]  # noqa: E501
             product_model (str, none_type): Specifies the product model of the node.. [optional]  # noqa: E501
             progress_percentage (int, none_type): Specifies the overall progress percentage in removing the Node.. [optional]  # noqa: E501
             removal_progress_list ([ComponentRemovalProgress], none_type): Specifies the removal progress details for services that are not acked yet.. [optional]  # noqa: E501
-            removal_reason ([str], none_type): RemovalReason specifies the removal reason of the node. 'kAutoHealthCheck' means the entity health is bad. 'kUserGracefulRemoval' means user initiated a graceful removal. 'kUserAvoidAccess' means user initiated a mark offline. 'kUserGracefulNodeRemoval' mean users initiated graceful node removal. 'kUserRemoveDownNode' mean user initiated graceful removal of down node. 'kBridgeDataUnavailable' Bridge requested a graceful removal of a disk when it is not available.. [optional]  # noqa: E501
-            removal_state (str, none_type): RemovalState specifies the removal state of the node. 'kDontRemove' means the state of object is functional and it is not being removed. 'kMarkedForRemoval' means the object is being removed. 'kOkToRemove' means the object has been removed on the Cohesity Cluster and if the object is physical, it can be removed from the Cohesity Cluster.. [optional]  # noqa: E501
+            removal_reason ([str], none_type): RemovalReason specifies the removal reason of the node. 'AutoHealthCheck' means the entity health is bad. 'UserGracefulRemoval' means user initiated a graceful removal. 'UserAvoidAccess' means user initiated a mark offline. 'UserGracefulNodeRemoval' mean users initiated graceful node removal. 'UserRemoveDownNode' mean user initiated graceful removal of down node. 'BridgeDataUnavailable' Bridge requested a graceful removal of a disk when it is not available.. [optional]  # noqa: E501
+            removal_state (str, none_type): RemovalState specifies the removal state of the node. 'DontRemove' means the state of object is functional and it is not being removed. 'MarkedForRemoval' means the object is being removed. 'OkToRemove' means the object has been removed on the Cohesity Cluster and if the object is physical, it can be removed from the Cohesity Cluster.. [optional]  # noqa: E501
             removal_timestamp_secs (int, none_type): Specifies the Unix epoch timestamp (in seconds) when the Node was marked for removal.. [optional]  # noqa: E501
             services_acked_list ([str], none_type): Specifies the services already ACKed for removal of this entity.. [optional]  # noqa: E501
             services_not_acked (str, none_type): Specifies the services that are not ACKed after node is marked for removal.. [optional]  # noqa: E501
@@ -270,6 +286,8 @@ class Node(ModelNormal):
             stats (NodeStats): [optional]  # noqa: E501
             system_disks ([NodeSystemDiskInfo], none_type): SystemDisk describes the node system disks.. [optional]  # noqa: E501
             time_remaining (int, none_type): Specifies the total duration in seconds left to remove the Node.. [optional]  # noqa: E501
+            total_disk_bytes (int, none_type): TotalDiskBytes specifies the total disk capacity of the node in bytes.. [optional]  # noqa: E501
+            used_disk_bytes (int, none_type): UsedDiskBytes specifies the used disk capacity of the node in bytes.. [optional]  # noqa: E501
             validation_checks ([PreCheckValidation], none_type): Specifies the pre-check validations results.. [optional]  # noqa: E501
             vendor (str, none_type): Specifies the vendor model of the node. [optional]  # noqa: E501
         """

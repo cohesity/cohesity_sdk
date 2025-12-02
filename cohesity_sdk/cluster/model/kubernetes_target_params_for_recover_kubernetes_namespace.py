@@ -29,14 +29,22 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
     from cohesity_sdk.cluster.model.kubernetes_filter_params import KubernetesFilterParams
+    from cohesity_sdk.cluster.model.kubernetes_namespace_recovery_target_config import KubernetesNamespaceRecoveryTargetConfig
     from cohesity_sdk.cluster.model.kubernetes_pvc_info import KubernetesPvcInfo
+    from cohesity_sdk.cluster.model.kubernetes_recovery_migration_params import KubernetesRecoveryMigrationParams
     from cohesity_sdk.cluster.model.kubernetes_storage_class_params import KubernetesStorageClassParams
+    from cohesity_sdk.cluster.model.recover_cluster_scoped_resources_params import RecoverClusterScopedResourcesParams
     from cohesity_sdk.cluster.model.recover_protection_group_run_params import RecoverProtectionGroupRunParams
+    from cohesity_sdk.cluster.model.recovered_or_cloned_vms_rename_config import RecoveredOrClonedVmsRenameConfig
     globals()['CommonRecoverObjectSnapshotParams'] = CommonRecoverObjectSnapshotParams
     globals()['KubernetesFilterParams'] = KubernetesFilterParams
+    globals()['KubernetesNamespaceRecoveryTargetConfig'] = KubernetesNamespaceRecoveryTargetConfig
     globals()['KubernetesPvcInfo'] = KubernetesPvcInfo
+    globals()['KubernetesRecoveryMigrationParams'] = KubernetesRecoveryMigrationParams
     globals()['KubernetesStorageClassParams'] = KubernetesStorageClassParams
+    globals()['RecoverClusterScopedResourcesParams'] = RecoverClusterScopedResourcesParams
     globals()['RecoverProtectionGroupRunParams'] = RecoverProtectionGroupRunParams
+    globals()['RecoveredOrClonedVmsRenameConfig'] = RecoveredOrClonedVmsRenameConfig
 
 
 class KubernetesTargetParamsForRecoverKubernetesNamespace(ModelNormal):
@@ -87,14 +95,19 @@ class KubernetesTargetParamsForRecoverKubernetesNamespace(ModelNormal):
         """
         lazy_import()
         return {
-            'recovery_target_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'recovery_target_config': (KubernetesNamespaceRecoveryTargetConfig,),  # noqa: E501
             'exclude_params': (KubernetesFilterParams,),  # noqa: E501
             'excluded_pvcs': ([KubernetesPvcInfo], none_type,),  # noqa: E501
             'include_params': (KubernetesFilterParams,),  # noqa: E501
-            'objects': ([CommonRecoverObjectSnapshotParams], none_type,),  # noqa: E501
+            'objects': ([KubernetesRecoveryObjectParams], none_type,),  # noqa: E501
+            'preserve_mac_address': (bool, none_type,),  # noqa: E501
+            'recover_cluster_scoped_resources': (RecoverClusterScopedResourcesParams,),  # noqa: E501
             'recover_protection_group_runs_params': ([RecoverProtectionGroupRunParams], none_type,),  # noqa: E501
             'recover_pvcs_only': (bool, none_type,),  # noqa: E501
-            'rename_recovered_namespaces_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'recovery_region_migration_params': (KubernetesRecoveryMigrationParams,),  # noqa: E501
+            'recovery_zone_migration_params': ([KubernetesRecoveryMigrationParams], none_type,),  # noqa: E501
+            'rename_recovered_namespaces_params': (RecoveredOrClonedVmsRenameConfig,),  # noqa: E501
+            'skip_cluster_compatibility_check': (bool, none_type,),  # noqa: E501
             'storage_class': (KubernetesStorageClassParams,),  # noqa: E501
         }
 
@@ -110,9 +123,14 @@ class KubernetesTargetParamsForRecoverKubernetesNamespace(ModelNormal):
         'excluded_pvcs': 'excludedPvcs',  # noqa: E501
         'include_params': 'includeParams',  # noqa: E501
         'objects': 'objects',  # noqa: E501
+        'preserve_mac_address': 'preserveMacAddress',  # noqa: E501
+        'recover_cluster_scoped_resources': 'recoverClusterScopedResources',  # noqa: E501
         'recover_protection_group_runs_params': 'recoverProtectionGroupRunsParams',  # noqa: E501
         'recover_pvcs_only': 'recoverPvcsOnly',  # noqa: E501
+        'recovery_region_migration_params': 'recoveryRegionMigrationParams',  # noqa: E501
+        'recovery_zone_migration_params': 'recoveryZoneMigrationParams',  # noqa: E501
         'rename_recovered_namespaces_params': 'renameRecoveredNamespacesParams',  # noqa: E501
+        'skip_cluster_compatibility_check': 'skipClusterCompatibilityCheck',  # noqa: E501
         'storage_class': 'storageClass',  # noqa: E501
     }
 
@@ -132,7 +150,7 @@ class KubernetesTargetParamsForRecoverKubernetesNamespace(ModelNormal):
         """KubernetesTargetParamsForRecoverKubernetesNamespace - a model defined in OpenAPI
 
         Args:
-            recovery_target_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the recovery target configuration of the Namespace recovery.
+            recovery_target_config (KubernetesNamespaceRecoveryTargetConfig):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -167,12 +185,17 @@ class KubernetesTargetParamsForRecoverKubernetesNamespace(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             exclude_params (KubernetesFilterParams): [optional]  # noqa: E501
-            excluded_pvcs ([KubernetesPvcInfo], none_type): Specifies the list of pvc to be excluded from recovery.. [optional]  # noqa: E501
+            excluded_pvcs ([KubernetesPvcInfo], none_type): Specifies the list of pvc to be excluded from recovery. This will be deprecated in the future. This is overridden by the object level param.. [optional]  # noqa: E501
             include_params (KubernetesFilterParams): [optional]  # noqa: E501
-            objects ([CommonRecoverObjectSnapshotParams], none_type): Specifies the objects to be recovered.. [optional]  # noqa: E501
+            objects ([KubernetesRecoveryObjectParams], none_type): Specifies the objects to be recovered.. [optional]  # noqa: E501
+            preserve_mac_address (bool, none_type): Specifies whether to preserve mac address for restored vm. Default is false.. [optional]  # noqa: E501
+            recover_cluster_scoped_resources (RecoverClusterScopedResourcesParams): [optional]  # noqa: E501
             recover_protection_group_runs_params ([RecoverProtectionGroupRunParams], none_type): Specifies the Protection Group Runs params to recover. All the VM's that are successfully backed up by specified Runs will be recovered. This can be specified along with individual snapshots of VMs. User has to make sure that specified Object snapshots and Protection Group Runs should not have any intersection. For example, user cannot specify multiple Runs which has same Object or an Object snapshot and a Run which has same Object's snapshot.. [optional]  # noqa: E501
-            recover_pvcs_only (bool, none_type): Specifies whether to recover PVCs only during recovery.. [optional]  # noqa: E501
-            rename_recovered_namespaces_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies params to rename the Namespaces that are recovered. If not specified, the original names of the Namespaces are preserved. If a name collision occurs then the Namespace being recovered will overwrite the Namespace already present on the source.. [optional]  # noqa: E501
+            recover_pvcs_only (bool, none_type): Specifies whether to recover PVCs only during recovery. This is overridden with the object level settings and will be deprecated in the future.. [optional]  # noqa: E501
+            recovery_region_migration_params (KubernetesRecoveryMigrationParams): [optional]  # noqa: E501
+            recovery_zone_migration_params ([KubernetesRecoveryMigrationParams], none_type): Specifies rules for performing zone migrations during recovery. Used in case of recovery to new location and the namespace being recovered is in a different zone.. [optional]  # noqa: E501
+            rename_recovered_namespaces_params (RecoveredOrClonedVmsRenameConfig): [optional]  # noqa: E501
+            skip_cluster_compatibility_check (bool, none_type): Specifies whether to skip checking if the target cluster, to restore to, is compatible or not. By default restore allowed to compatible cluster only. [optional]  # noqa: E501
             storage_class (KubernetesStorageClassParams): [optional]  # noqa: E501
         """
 

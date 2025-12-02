@@ -29,8 +29,16 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.file_count import FileCount
     from cohesity_sdk.cluster.model.view_alias_info import ViewAliasInfo
+    from cohesity_sdk.cluster.model.view_failover import ViewFailover
+    from cohesity_sdk.cluster.model.view_intent import ViewIntent
+    from cohesity_sdk.cluster.model.view_protection import ViewProtection
+    from cohesity_sdk.cluster.model.view_stats import ViewStats
     globals()['FileCount'] = FileCount
     globals()['ViewAliasInfo'] = ViewAliasInfo
+    globals()['ViewFailover'] = ViewFailover
+    globals()['ViewIntent'] = ViewIntent
+    globals()['ViewProtection'] = ViewProtection
+    globals()['ViewStats'] = ViewStats
 
 
 class ViewAllOf(ModelNormal):
@@ -60,6 +68,11 @@ class ViewAllOf(ModelNormal):
     """
 
     allowed_values = {
+        ('data_lock_mode',): {
+            'None': None,
+            'COMPLIANCE': "Compliance",
+            'ENTERPRISE': "Enterprise",
+        },
         ('object_services_mapping_config',): {
             'None': None,
             'RANDOM': "Random",
@@ -94,22 +107,23 @@ class ViewAllOf(ModelNormal):
             'case_insensitive_names_enabled': (bool, none_type,),  # noqa: E501
             'create_time_msecs': (int, none_type,),  # noqa: E501
             'data_lock_expiry_usecs': (int, none_type,),  # noqa: E501
+            'data_lock_mode': (str, none_type,),  # noqa: E501
             'file_count_by_size': ([FileCount], none_type,),  # noqa: E501
-            'intent': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'intent': (ViewIntent,),  # noqa: E501
             'is_category_inferred': (bool, none_type,),  # noqa: E501
             'is_target_for_migrated_data': (bool, none_type,),  # noqa: E501
-            'nfs_mount_path': (str, none_type,),  # noqa: E501
+            'lsu_id': (int, none_type,),  # noqa: E501
             'nfs_mount_paths': ([str], none_type,),  # noqa: E501
             'object_services_mapping_config': (str, none_type,),  # noqa: E501
             'owner_sid': (str, none_type,),  # noqa: E501
             's3_folder_support_enabled': (bool, none_type,),  # noqa: E501
             'smb_mount_paths': ([str], none_type,),  # noqa: E501
-            'stats': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'stats': (ViewStats,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
             'storage_domain_name': (str, none_type,),  # noqa: E501
-            'view_failover': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'view_failover': (ViewFailover,),  # noqa: E501
             'view_id': (int, none_type,),  # noqa: E501
-            'view_protection': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'view_protection': (ViewProtection,),  # noqa: E501
         }
 
     @cached_property
@@ -124,11 +138,12 @@ class ViewAllOf(ModelNormal):
         'case_insensitive_names_enabled': 'caseInsensitiveNamesEnabled',  # noqa: E501
         'create_time_msecs': 'createTimeMsecs',  # noqa: E501
         'data_lock_expiry_usecs': 'dataLockExpiryUsecs',  # noqa: E501
+        'data_lock_mode': 'dataLockMode',  # noqa: E501
         'file_count_by_size': 'fileCountBySize',  # noqa: E501
         'intent': 'intent',  # noqa: E501
         'is_category_inferred': 'isCategoryInferred',  # noqa: E501
         'is_target_for_migrated_data': 'isTargetForMigratedData',  # noqa: E501
-        'nfs_mount_path': 'nfsMountPath',  # noqa: E501
+        'lsu_id': 'lsuId',  # noqa: E501
         'nfs_mount_paths': 'nfsMountPaths',  # noqa: E501
         'object_services_mapping_config': 'objectServicesMappingConfig',  # noqa: E501
         'owner_sid': 'ownerSid',  # noqa: E501
@@ -194,22 +209,23 @@ class ViewAllOf(ModelNormal):
             case_insensitive_names_enabled (bool, none_type): Specifies whether to support case insensitive file/folder names. This parameter can only be set during create and cannot be changed.. [optional]  # noqa: E501
             create_time_msecs (int, none_type): Specifies the time that the View was created in milliseconds.. [optional]  # noqa: E501
             data_lock_expiry_usecs (int, none_type): DataLock (Write Once Read Many) lock expiry epoch time in microseconds. If a view is marked as a DataLock view, only a Data Security Officer (a user having Data Security Privilege) can delete the view until the lock expiry time.. [optional]  # noqa: E501
+            data_lock_mode (str, none_type): Specifies the WORM datalock mode for this view. This may be unset for WORM views created through legacy flows (Snapshots, Cloning, etc..). WORM status must therefore be determined by worm_lock_expiry_usecs.. [optional]  # noqa: E501
             file_count_by_size ([FileCount], none_type): Specifies the file count by size for the View.. [optional]  # noqa: E501
-            intent ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the intent of the View.. [optional]  # noqa: E501
+            intent (ViewIntent): [optional]  # noqa: E501
             is_category_inferred (bool, none_type): If True, category in response is not set by user but inferred by Iris because none is set. Category can only be none when view was created by v1 API or cloned from a view created by v1 API.  Inference Logic is as follows: 1. Object Services if only S3 or Swift protocol is selected. 2. Backup Target only if one read-write protocol is selected and    QoS is \"Backup Target Commvault\" or \"Backup Target SSD\". 3. File Services if there are more than 1 read-write protocol or    it doesn't fit any other category.. [optional]  # noqa: E501
             is_target_for_migrated_data (bool, none_type): Specifies if a view contains migrated data.. [optional]  # noqa: E501
-            nfs_mount_path (str, none_type): This field is currently deprecated. Please use NFS MountPaths which would be an array of strings.. [optional]  # noqa: E501
+            lsu_id (int, none_type): Id of the LSU (Logical Storage Unit) this View belongs to.. [optional]  # noqa: E501
             nfs_mount_paths ([str], none_type): Array of NFS Paths. Specifies the path for mounting this View as an NFS share. If Kerberos Provider has multiple hostaliases, each host alias has  its own path.. [optional]  # noqa: E501
             object_services_mapping_config (str, none_type): Specifies the Object Services key mapping config of the view. This parameter can only be set during create and cannot be changed. Configuration of Object Services key mapping. Specifies the type of Object Services key mapping config.. [optional]  # noqa: E501
             owner_sid (str, none_type): Specifies the sid of the view owner.. [optional]  # noqa: E501
             s3_folder_support_enabled (bool, none_type): Specifies whether to support s3 folder support feature. This parameter can only be set during create and cannot be changed.. [optional]  # noqa: E501
             smb_mount_paths ([str], none_type): Array of SMB Paths. Specifies the possible paths that can be used to mount this View as a SMB share. If Active Directory has multiple account names; each machine account has its own path.. [optional]  # noqa: E501
-            stats ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies statistics about the View.. [optional]  # noqa: E501
+            stats (ViewStats): [optional]  # noqa: E501
             storage_domain_id (int, none_type): Specifies the id of the Storage Domain (View Box) where the View is stored.. [optional]  # noqa: E501
             storage_domain_name (str, none_type): Specifies the name of the Storage Domain (View Box) where the View is stored.. [optional]  # noqa: E501
-            view_failover ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the information about the failover of the view.. [optional]  # noqa: E501
+            view_failover (ViewFailover): [optional]  # noqa: E501
             view_id (int, none_type): Specifies an id of the View assigned by the Cohesity Cluster.. [optional]  # noqa: E501
-            view_protection ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            view_protection (ViewProtection): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -75,6 +75,7 @@ class SearchFileRequestParams(ModelComposed):
             'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KAZURE': "kAzure",
             'KNETAPP': "kNetapp",
+            'KNUTANIXFS': "kNutanixFS",
             'KGENERICNAS': "kGenericNas",
             'KACROPOLIS': "kAcropolis",
             'KISILON': "kIsilon",
@@ -89,14 +90,23 @@ class SearchFileRequestParams(ModelComposed):
             'KHYPERFLEX': "kHyperFlex",
             'KKUBERNETES': "kKubernetes",
             'KELASTIFILE': "kElastifile",
+            'KS3COMPATIBLE': "kS3Compatible",
+            'KSAPHANA': "kSAPHANA",
             'KUDA': "kUDA",
             'KSFDC': "kSfdc",
+            'KEXPERIMENTALADAPTER': "kExperimentalAdapter",
+            'KMONGODBPHYSICAL': "kMongoDBPhysical",
+            'KGOOGLEWORKSPACE': "kGoogleWorkspace",
+            'KDB2': "kDB2",
+            'KSERVICENOW': "kServiceNow",
+            'KPOSTGRES': "kPostgres",
         },
         ('types',): {
             'None': None,
             'FILE': "File",
             'DIRECTORY': "Directory",
             'SYMLINK': "Symlink",
+            'ONENOTENOTEBOOK': "OneNoteNotebook",
         },
     }
 
@@ -128,6 +138,7 @@ class SearchFileRequestParams(ModelComposed):
         """
         lazy_import()
         return {
+            'hashes': ([str], none_type,),  # noqa: E501
             'search_string': (str, none_type,),  # noqa: E501
             'source_environments': ([str], none_type,),  # noqa: E501
             'types': ([str], none_type,),  # noqa: E501
@@ -142,6 +153,7 @@ class SearchFileRequestParams(ModelComposed):
 
 
     attribute_map = {
+        'hashes': 'hashes',  # noqa: E501
         'search_string': 'searchString',  # noqa: E501
         'source_environments': 'sourceEnvironments',  # noqa: E501
         'types': 'types',  # noqa: E501
@@ -197,6 +209,7 @@ class SearchFileRequestParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            hashes ([str], none_type): Specifies a list of the source hashes. Only files matches with these hashes will be returned. Only supported for adapters supported by ThreatHunting.. [optional]  # noqa: E501
             search_string (str, none_type): Specifies the search string to filter the files. User can specify a wildcard character '*' as a suffix to a string where all files name are matched with the prefix string.. [optional]  # noqa: E501
             source_environments ([str], none_type): Specifies a list of the source environments. Only files from these types of source will be returned.. [optional]  # noqa: E501
             types ([str], none_type): Specifies a list of file types. Only files within the given types will be returned.. [optional]  # noqa: E501

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **objects** | [**[VmwareObjectProtectionRequest]**](VmwareObjectProtectionRequest.md) | Specifies the objects to include in the backup. | 
 **global_exclude_disks** | [**[DiskInfo], none_type**](DiskInfo.md) | Specifies a list of disks to exclude from the backup. | [optional] 
+**global_include_disks** | [**[DiskInfo], none_type**](DiskInfo.md) | Specifies a list of disks to include in the backup. | [optional] 
 **app_consistent_snapshot** | **bool, none_type** | Specifies whether or not to quiesce apps and the file system in order to take app consistent snapshots. | [optional] 
 **enable_nbdssl_fallback** | **bool, none_type** | If this field is set to true and SAN transport backup fails, then backup will fallback to use NBDSSL transport. This field only applies if &#39;leverageSanTransport&#39; is set to true. | [optional] 
 **fallback_to_crash_consistent_snapshot** | **bool, none_type** | Specifies whether or not to fallback to a crash consistent snapshot in the event that an app consistent snapshot fails. This parameter defaults to true and only changes the behavior of the operation if &#39;appConsistentSnapshot&#39; is set to &#39;true&#39;. | [optional] 

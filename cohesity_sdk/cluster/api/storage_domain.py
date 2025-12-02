@@ -21,11 +21,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.cluster.model.create_storage_domain_param import CreateStorageDomainParam
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.storage_domain import StorageDomain
 from cohesity_sdk.cluster.model.storage_domains import StorageDomains
-from cohesity_sdk.cluster.model.update_storage_domain_param import UpdateStorageDomainParam
 
 
 class StorageDomainApi(object):
@@ -47,7 +45,7 @@ class StorageDomainApi(object):
         ):
             """Create a Storage Domain.  # noqa: E501
 
-            Create a Storage Domain.  # noqa: E501
+            **Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Create a Storage Domain.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -55,7 +53,7 @@ class StorageDomainApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CreateStorageDomainParam): Specified the request to create a Storage Domain.
+                body (StorageDomain): Specified the request to create a Storage Domain.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -112,7 +110,9 @@ class StorageDomainApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/storage-domains',
                 'operation_id': 'create_storage_domain',
@@ -140,7 +140,7 @@ class StorageDomainApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CreateStorageDomainParam,),
+                        (StorageDomain,),
                 },
                 'attribute_map': {
                 },
@@ -169,7 +169,7 @@ class StorageDomainApi(object):
         ):
             """Delete a Storage Domain.  # noqa: E501
 
-            Delete a Storage Domain.  # noqa: E501
+            **Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Delete a Storage Domain.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -180,6 +180,7 @@ class StorageDomainApi(object):
                 id (int): Specified the Storage Domain id to delete.
 
             Keyword Args:
+                force (bool): If `true`, the Storage Domain can be deleted even if it contains LSUs that are paired with remote LSUs.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -234,7 +235,9 @@ class StorageDomainApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/storage-domains/{id}',
                 'operation_id': 'delete_storage_domain',
@@ -244,6 +247,7 @@ class StorageDomainApi(object):
             params_map={
                 'all': [
                     'id',
+                    'force',
                 ],
                 'required': [
                     'id',
@@ -263,12 +267,16 @@ class StorageDomainApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'force':
+                        (bool,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'force': 'force',
                 },
                 'location_map': {
                     'id': 'path',
+                    'force': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -290,7 +298,7 @@ class StorageDomainApi(object):
         ):
             """Get a Storage Domain by id.  # noqa: E501
 
-            Get a Storage Domain by id.  # noqa: E501
+            **Privileges:** ```STORAGE_DOMAIN_VIEW``` <br><br>Get a Storage Domain by id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -359,7 +367,9 @@ class StorageDomainApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/storage-domains/{id}',
                 'operation_id': 'get_storage_domain_by_id',
@@ -434,7 +444,7 @@ class StorageDomainApi(object):
         ):
             """Get Storage Domains.  # noqa: E501
 
-            Get Storage Domains.  # noqa: E501
+            **Privileges:** ```STORAGE_DOMAIN_VIEW``` <br><br>Get Storage Domains.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -451,7 +461,7 @@ class StorageDomainApi(object):
                 include_stats (bool): Whether to include Storage Domain stats in response.. [optional]
                 include_time_series_schema (bool): Whether to include Storage Domain time series schema in response.. [optional]
                 include_file_count_by_size (bool): Whether to include Storage Domain file count by size.. [optional]
-                match_partial_names (bool): If true, the names in viewNames are matched by any partial rather than exactly matched.. [optional]
+                match_partial_names (bool): If set to true, names in the 'names' parameter will be matched partially instead of exactly.. [optional]
                 view_template_id (int): Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -505,7 +515,9 @@ class StorageDomainApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/storage-domains',
                 'operation_id': 'get_storage_domains',
@@ -609,7 +621,7 @@ class StorageDomainApi(object):
         ):
             """Update a Storage Domain.  # noqa: E501
 
-            Update a Storage Domain.  # noqa: E501
+            **Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Update a Storage Domain.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -618,7 +630,7 @@ class StorageDomainApi(object):
 
             Args:
                 id (int): Specified the Storage Domain id to update.
-                body (UpdateStorageDomainParam): Specified the request to update a Storage Domain.
+                body (StorageDomain): Specified the request to update a Storage Domain.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -677,7 +689,9 @@ class StorageDomainApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/storage-domains/{id}',
                 'operation_id': 'update_storage_domain',
@@ -709,7 +723,7 @@ class StorageDomainApi(object):
                     'id':
                         (int,),
                     'body':
-                        (UpdateStorageDomainParam,),
+                        (StorageDomain,),
                 },
                 'attribute_map': {
                     'id': 'id',

@@ -65,6 +65,7 @@ class AzureTier(ModelComposed):
             'KAZURETIERHOT': "kAzureTierHot",
             'KAZURETIERCOOL': "kAzureTierCool",
             'KAZURETIERARCHIVE': "kAzureTierArchive",
+            'KAZURETIERCOLD': "kAzureTierCold",
         },
         ('move_after_unit',): {
             'None': None,

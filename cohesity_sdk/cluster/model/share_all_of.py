@@ -77,10 +77,12 @@ class ShareAllOf(ModelNormal):
             'name': (str, none_type,),  # noqa: E501
             'view_name': (str, none_type,),  # noqa: E501
             'view_path': (str, none_type,),  # noqa: E501
+            'is_read_only_view': (bool, none_type,),  # noqa: E501
             'nfs_mount_paths': ([str], none_type,),  # noqa: E501
             's3_access_path': (str, none_type,),  # noqa: E501
             'smb_mount_paths': ([str], none_type,),  # noqa: E501
             'tenant_id': (str, none_type,),  # noqa: E501
+            'view_id': (int,),  # noqa: E501
         }
 
     @cached_property
@@ -93,10 +95,12 @@ class ShareAllOf(ModelNormal):
         'name': 'name',  # noqa: E501
         'view_name': 'viewName',  # noqa: E501
         'view_path': 'viewPath',  # noqa: E501
+        'is_read_only_view': 'isReadOnlyView',  # noqa: E501
         'nfs_mount_paths': 'nfsMountPaths',  # noqa: E501
         's3_access_path': 's3AccessPath',  # noqa: E501
         'smb_mount_paths': 'smbMountPaths',  # noqa: E501
         'tenant_id': 'tenantId',  # noqa: E501
+        'view_id': 'viewId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -151,10 +155,12 @@ class ShareAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            is_read_only_view (bool, none_type): Specifies the view this share belongs to is a read only view.. [optional]  # noqa: E501
             nfs_mount_paths ([str], none_type): Specifies the path for mounting this Share as an NFS share. If Kerberos Provider has multiple hostaliases, each host alias has its own path.. [optional]  # noqa: E501
             s3_access_path (str, none_type): Specifies the path to access this Share as an S3 share.. [optional]  # noqa: E501
             smb_mount_paths ([str], none_type): Specifies the possible paths that can be used to mount this Share as a SMB share. If Active Directory has multiple account names, each machine account has its own path.. [optional]  # noqa: E501
             tenant_id (str, none_type): Specifies the tenant id who has access to this Share.. [optional]  # noqa: E501
+            view_id (int): Specifies the id of the View.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

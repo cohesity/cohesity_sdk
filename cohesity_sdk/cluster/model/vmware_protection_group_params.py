@@ -98,6 +98,7 @@ class VmwareProtectionGroupParams(ModelComposed):
         lazy_import()
         return {
             'global_exclude_disks': ([DiskInfo], none_type,),  # noqa: E501
+            'global_include_disks': ([DiskInfo], none_type,),  # noqa: E501
             'objects': ([VmwareProtectionGroupObjectParams],),  # noqa: E501
             'standby_resource_objects': ([VmwareProtectionGroupStandbyResourceParams], none_type,),  # noqa: E501
             'app_consistent_snapshot': (bool, none_type,),  # noqa: E501
@@ -129,6 +130,7 @@ class VmwareProtectionGroupParams(ModelComposed):
 
     attribute_map = {
         'global_exclude_disks': 'globalExcludeDisks',  # noqa: E501
+        'global_include_disks': 'globalIncludeDisks',  # noqa: E501
         'objects': 'objects',  # noqa: E501
         'standby_resource_objects': 'standbyResourceObjects',  # noqa: E501
         'app_consistent_snapshot': 'appConsistentSnapshot',  # noqa: E501
@@ -201,6 +203,7 @@ class VmwareProtectionGroupParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             global_exclude_disks ([DiskInfo], none_type): Specifies a list of disks to exclude from the backup.. [optional]  # noqa: E501
+            global_include_disks ([DiskInfo], none_type): Specifies a list of disks to include in the backup.. [optional]  # noqa: E501
             objects ([VmwareProtectionGroupObjectParams]): Specifies the objects to include in the backup.. [optional]  # noqa: E501
             standby_resource_objects ([VmwareProtectionGroupStandbyResourceParams], none_type): Specifies the standby resource objects for this backup.. [optional]  # noqa: E501
             app_consistent_snapshot (bool, none_type): Specifies whether or not to quiesce apps and the file system in order to take app consistent snapshots.. [optional]  # noqa: E501

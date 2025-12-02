@@ -84,6 +84,7 @@ class VcdRegistrationParamsAllOf(ModelNormal):
         lazy_import()
         return {
             'vcenter_credential_info_list': ([VcenterCredentialInfo], none_type,),  # noqa: E501
+            'link_vms_across_vcenter': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,6 +95,7 @@ class VcdRegistrationParamsAllOf(ModelNormal):
 
     attribute_map = {
         'vcenter_credential_info_list': 'vcenterCredentialInfoList',  # noqa: E501
+        'link_vms_across_vcenter': 'linkVmsAcrossVcenter',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -146,6 +148,7 @@ class VcdRegistrationParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            link_vms_across_vcenter (bool, none_type): Specifies if the VM linking feature is enabled for the VCD. If enabled, migrated VMs present in the VCD which earlier belonged to some other VCD/Vcenter will be linked during EH refresh.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

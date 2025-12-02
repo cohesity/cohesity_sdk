@@ -77,6 +77,7 @@ class UpdateSupportUserParams(ModelNormal):
             'current_password': (str, none_type,),  # noqa: E501
             'enable_sudo_access': (bool, none_type,),  # noqa: E501
             'new_password': (str, none_type,),  # noqa: E501
+            'sudo_access_end_timestamp_msecs': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -89,6 +90,7 @@ class UpdateSupportUserParams(ModelNormal):
         'current_password': 'currentPassword',  # noqa: E501
         'enable_sudo_access': 'enableSudoAccess',  # noqa: E501
         'new_password': 'newPassword',  # noqa: E501
+        'sudo_access_end_timestamp_msecs': 'sudoAccessEndTimestampMsecs',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,6 +143,7 @@ class UpdateSupportUserParams(ModelNormal):
             current_password (str, none_type): Specifies the current password of the user. This is required when trying to update the current user's password.. [optional]  # noqa: E501
             enable_sudo_access (bool, none_type): If set to true, sudo access will be enabled for the user. If null, the endpoint will not attempt to alter sudo access privilege for the support user.. [optional]  # noqa: E501
             new_password (str, none_type): Specifies the new password for the support user.. [optional]  # noqa: E501
+            sudo_access_end_timestamp_msecs (int, none_type): Sudo Access End Time in Milli seconds If null, the endpoint will try to use default behavior of 5 days.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

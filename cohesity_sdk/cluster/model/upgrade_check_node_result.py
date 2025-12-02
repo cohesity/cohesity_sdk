@@ -87,8 +87,8 @@ class UpgradeCheckNodeResult(ModelNormal):
         lazy_import()
         return {
             'node_ip': (str,),  # noqa: E501
-            'node_test_results': ([UpgradeCheckTestResult],),  # noqa: E501
             'node_test_status': (str,),  # noqa: E501
+            'node_test_results': ([UpgradeCheckTestResult],),  # noqa: E501
         }
 
     @cached_property
@@ -99,8 +99,8 @@ class UpgradeCheckNodeResult(ModelNormal):
 
     attribute_map = {
         'node_ip': 'nodeIp',  # noqa: E501
-        'node_test_results': 'nodeTestResults',  # noqa: E501
         'node_test_status': 'nodeTestStatus',  # noqa: E501
+        'node_test_results': 'nodeTestResults',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -115,8 +115,12 @@ class UpgradeCheckNodeResult(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, node_ip, node_test_status, *args, **kwargs):  # noqa: E501
         """UpgradeCheckNodeResult - a model defined in OpenAPI
+
+        Args:
+            node_ip (str): The node ip
+            node_test_status (str): The healthcheck run status for node
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -150,9 +154,7 @@ class UpgradeCheckNodeResult(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            node_ip (str): The node ip. [optional]  # noqa: E501
             node_test_results ([UpgradeCheckTestResult]): The healthcheck test results for node. [optional]  # noqa: E501
-            node_test_status (str): The healthcheck run status for node. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -179,6 +181,8 @@ class UpgradeCheckNodeResult(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.node_ip = node_ip
+        self.node_test_status = node_test_status
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

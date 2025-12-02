@@ -62,6 +62,9 @@ class SnapshotDiffResult(ModelNormal):
             'KRUNNING': "kRunning",
             'KCOMPLETED': "kCompleted",
             'KERROR': "kError",
+            'KSNAPSHOTEXPIRED': "kSnapshotExpired",
+            'KSNAPSHOTNOTFOUND': "kSnapshotNotFound",
+            'KOBJECTNOTFOUND': "kObjectNotFound",
         },
     }
 

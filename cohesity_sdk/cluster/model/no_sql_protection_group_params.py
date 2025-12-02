@@ -92,6 +92,7 @@ class NoSqlProtectionGroupParams(ModelNormal):
         """
         lazy_import()
         return {
+            'auto_scale_concurrency': (bool, none_type,),  # noqa: E501
             'bandwidth_mbps': (int, none_type,),  # noqa: E501
             'concurrency': (int, none_type,),  # noqa: E501
             'custom_source_name': (str, none_type,),  # noqa: E501
@@ -99,6 +100,8 @@ class NoSqlProtectionGroupParams(ModelNormal):
             'exclude_objectlist': ([str], none_type,),  # noqa: E501
             'include_objectlist': ([str], none_type,),  # noqa: E501
             'objects': ([NoSqlProtectionGroupObjectParams],),  # noqa: E501
+            'overwrite_exclude_objectlist': (bool, none_type,),  # noqa: E501
+            'overwrite_include_objectlist': (bool, none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
         }
@@ -110,6 +113,7 @@ class NoSqlProtectionGroupParams(ModelNormal):
 
 
     attribute_map = {
+        'auto_scale_concurrency': 'autoScaleConcurrency',  # noqa: E501
         'bandwidth_mbps': 'bandwidthMBPS',  # noqa: E501
         'concurrency': 'concurrency',  # noqa: E501
         'custom_source_name': 'customSourceName',  # noqa: E501
@@ -117,6 +121,8 @@ class NoSqlProtectionGroupParams(ModelNormal):
         'exclude_objectlist': 'excludeObjectlist',  # noqa: E501
         'include_objectlist': 'includeObjectlist',  # noqa: E501
         'objects': 'objects',  # noqa: E501
+        'overwrite_exclude_objectlist': 'overwriteExcludeObjectlist',  # noqa: E501
+        'overwrite_include_objectlist': 'overwriteIncludeObjectlist',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
     }
@@ -168,6 +174,7 @@ class NoSqlProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            auto_scale_concurrency (bool, none_type): Specifies the flag to automatically scale number of concurrent IO Streams that will be created to exchange data with the cluster.. [optional]  # noqa: E501
             bandwidth_mbps (int, none_type): Specifies the maximum network bandwidth that each concurrent IO Stream can use for exchanging data with the cluster.. [optional]  # noqa: E501
             concurrency (int, none_type): Specifies the maximum number of concurrent IO Streams that will be created to exchange data with the cluster.. [optional]  # noqa: E501
             custom_source_name (str, none_type): The user specified name for the Source on which this protection was run.. [optional]  # noqa: E501
@@ -175,6 +182,8 @@ class NoSqlProtectionGroupParams(ModelNormal):
             exclude_objectlist ([str], none_type): Specifies the list of fully qualified name of the entities to exclude for protection.. [optional]  # noqa: E501
             include_objectlist ([str], none_type): Specifies the list of fully qualified name of the entities to include for protection.. [optional]  # noqa: E501
             objects ([NoSqlProtectionGroupObjectParams]): Specifies the objects to be included in the Protection Group.. [optional]  # noqa: E501
+            overwrite_exclude_objectlist (bool, none_type): If disabled - The excludeObjectlist is merged with the existing exclude_sources_vec, preserving any existing elements while incorporating new ones.. [optional] if omitted the server will use the default value of True  # noqa: E501
+            overwrite_include_objectlist (bool, none_type): If disabled - The includeObjectlist is merged with the existing sources_vec, preserving any existing elements while incorporating new ones.. [optional] if omitted the server will use the default value of True  # noqa: E501
             source_id (int, none_type): Object ID of the Source on which this protection was run .. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the Source on which this protection was run.. [optional]  # noqa: E501
         """

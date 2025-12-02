@@ -33,10 +33,15 @@ def lazy_import():
     from cohesity_sdk.cluster.model.common_source_registration_reponse_params import CommonSourceRegistrationReponseParams
     from cohesity_sdk.cluster.model.connection_config import ConnectionConfig
     from cohesity_sdk.cluster.model.couchbase_source_registration_params import CouchbaseSourceRegistrationParams
+    from cohesity_sdk.cluster.model.db2_source_registration_params import DB2SourceRegistrationParams
     from cohesity_sdk.cluster.model.elastifile_registration_params import ElastifileRegistrationParams
     from cohesity_sdk.cluster.model.entity_external_metadata import EntityExternalMetadata
+    from cohesity_sdk.cluster.model.ews_exchange_source_registration_params import EwsExchangeSourceRegistrationParams
+    from cohesity_sdk.cluster.model.experimental_adapter_source_registration_params import ExperimentalAdapterSourceRegistrationParams
     from cohesity_sdk.cluster.model.flashblade_registration_params import FlashbladeRegistrationParams
+    from cohesity_sdk.cluster.model.gcp_source_registration_params import GcpSourceRegistrationParams
     from cohesity_sdk.cluster.model.generic_nas_registration_params import GenericNasRegistrationParams
+    from cohesity_sdk.cluster.model.google_workspace_source_registration_params import GoogleWorkspaceSourceRegistrationParams
     from cohesity_sdk.cluster.model.gpfs_registration_params import GpfsRegistrationParams
     from cohesity_sdk.cluster.model.hbase_source_registration_params import HbaseSourceRegistrationParams
     from cohesity_sdk.cluster.model.hdfs_source_registration_params import HdfsSourceRegistrationParams
@@ -44,11 +49,18 @@ def lazy_import():
     from cohesity_sdk.cluster.model.hyper_v_source_registration_params import HyperVSourceRegistrationParams
     from cohesity_sdk.cluster.model.isilon_registration_params import IsilonRegistrationParams
     from cohesity_sdk.cluster.model.key_value_pair import KeyValuePair
+    from cohesity_sdk.cluster.model.kubernetes_source_registration_params import KubernetesSourceRegistrationParams
+    from cohesity_sdk.cluster.model.mongo_db_ops_manager_registration_params import MongoDBOpsManagerRegistrationParams
     from cohesity_sdk.cluster.model.mongo_db_source_registration_params import MongoDBSourceRegistrationParams
     from cohesity_sdk.cluster.model.netapp_registration_params import NetappRegistrationParams
+    from cohesity_sdk.cluster.model.nutanix_fs_registration_params import NutanixFSRegistrationParams
     from cohesity_sdk.cluster.model.object import Object
     from cohesity_sdk.cluster.model.office365_source_registration_params import Office365SourceRegistrationParams
     from cohesity_sdk.cluster.model.physical_source_registration_params import PhysicalSourceRegistrationParams
+    from cohesity_sdk.cluster.model.postgres_source_registration_params import PostgresSourceRegistrationParams
+    from cohesity_sdk.cluster.model.s3_compatible_source_registration_params import S3CompatibleSourceRegistrationParams
+    from cohesity_sdk.cluster.model.sap_hana_source_registration_params import SapHanaSourceRegistrationParams
+    from cohesity_sdk.cluster.model.service_now_source_registration_params import ServiceNowSourceRegistrationParams
     from cohesity_sdk.cluster.model.sfdc_source_registration_params import SfdcSourceRegistrationParams
     from cohesity_sdk.cluster.model.source_registration_all_of import SourceRegistrationAllOf
     from cohesity_sdk.cluster.model.uda_source_registration_params import UdaSourceRegistrationParams
@@ -59,10 +71,15 @@ def lazy_import():
     globals()['CommonSourceRegistrationReponseParams'] = CommonSourceRegistrationReponseParams
     globals()['ConnectionConfig'] = ConnectionConfig
     globals()['CouchbaseSourceRegistrationParams'] = CouchbaseSourceRegistrationParams
+    globals()['DB2SourceRegistrationParams'] = DB2SourceRegistrationParams
     globals()['ElastifileRegistrationParams'] = ElastifileRegistrationParams
     globals()['EntityExternalMetadata'] = EntityExternalMetadata
+    globals()['EwsExchangeSourceRegistrationParams'] = EwsExchangeSourceRegistrationParams
+    globals()['ExperimentalAdapterSourceRegistrationParams'] = ExperimentalAdapterSourceRegistrationParams
     globals()['FlashbladeRegistrationParams'] = FlashbladeRegistrationParams
+    globals()['GcpSourceRegistrationParams'] = GcpSourceRegistrationParams
     globals()['GenericNasRegistrationParams'] = GenericNasRegistrationParams
+    globals()['GoogleWorkspaceSourceRegistrationParams'] = GoogleWorkspaceSourceRegistrationParams
     globals()['GpfsRegistrationParams'] = GpfsRegistrationParams
     globals()['HbaseSourceRegistrationParams'] = HbaseSourceRegistrationParams
     globals()['HdfsSourceRegistrationParams'] = HdfsSourceRegistrationParams
@@ -70,11 +87,18 @@ def lazy_import():
     globals()['HyperVSourceRegistrationParams'] = HyperVSourceRegistrationParams
     globals()['IsilonRegistrationParams'] = IsilonRegistrationParams
     globals()['KeyValuePair'] = KeyValuePair
+    globals()['KubernetesSourceRegistrationParams'] = KubernetesSourceRegistrationParams
+    globals()['MongoDBOpsManagerRegistrationParams'] = MongoDBOpsManagerRegistrationParams
     globals()['MongoDBSourceRegistrationParams'] = MongoDBSourceRegistrationParams
     globals()['NetappRegistrationParams'] = NetappRegistrationParams
+    globals()['NutanixFSRegistrationParams'] = NutanixFSRegistrationParams
     globals()['Object'] = Object
     globals()['Office365SourceRegistrationParams'] = Office365SourceRegistrationParams
     globals()['PhysicalSourceRegistrationParams'] = PhysicalSourceRegistrationParams
+    globals()['PostgresSourceRegistrationParams'] = PostgresSourceRegistrationParams
+    globals()['S3CompatibleSourceRegistrationParams'] = S3CompatibleSourceRegistrationParams
+    globals()['SapHanaSourceRegistrationParams'] = SapHanaSourceRegistrationParams
+    globals()['ServiceNowSourceRegistrationParams'] = ServiceNowSourceRegistrationParams
     globals()['SfdcSourceRegistrationParams'] = SfdcSourceRegistrationParams
     globals()['SourceRegistrationAllOf'] = SourceRegistrationAllOf
     globals()['UdaSourceRegistrationParams'] = UdaSourceRegistrationParams
@@ -122,6 +146,7 @@ class SourceRegistration(ModelComposed):
             'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KNIMBLE': "kNimble",
             'KNETAPP': "kNetapp",
+            'KNUTANIXFS': "kNutanixFS",
             'KGENERICNAS': "kGenericNas",
             'KISILON': "kIsilon",
             'KFLASHBLADE': "kFlashBlade",
@@ -136,10 +161,19 @@ class SourceRegistration(ModelComposed):
             'KHDFS': "kHdfs",
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
+            'KSAPHANA': "kSAPHANA",
             'KUDA': "kUDA",
             'KSQL': "kSQL",
             'KORACLE': "kOracle",
+            'KS3COMPATIBLE': "kS3Compatible",
             'KSFDC': "kSfdc",
+            'KEXPERIMENTALADAPTER': "kExperimentalAdapter",
+            'KMONGODBPHYSICAL': "kMongoDBPhysical",
+            'KGOOGLEWORKSPACE': "kGoogleWorkspace",
+            'KDB2': "kDB2",
+            'KEWSEXCHANGE': "kEwsExchange",
+            'KSERVICENOW': "kServiceNow",
+            'KPOSTGRES': "kPostgres",
         },
         ('authentication_status',): {
             'None': None,
@@ -173,6 +207,7 @@ class SourceRegistration(ModelComposed):
             'connection_id': (int, none_type,),  # noqa: E501
             'connections': ([ConnectionConfig], none_type,),  # noqa: E501
             'connector_group_id': (int, none_type,),  # noqa: E501
+            'data_source_connection_id': (str, none_type,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
@@ -185,20 +220,32 @@ class SourceRegistration(ModelComposed):
             'azure_params': (AzureSourceRegistrationParams,),  # noqa: E501
             'cassandra_params': (CassandraSourceRegistrationParams,),  # noqa: E501
             'couchbase_params': (CouchbaseSourceRegistrationParams,),  # noqa: E501
+            'db2_params': (DB2SourceRegistrationParams,),  # noqa: E501
             'elastifile_params': (ElastifileRegistrationParams,),  # noqa: E501
+            'ews_exchange_params': (EwsExchangeSourceRegistrationParams,),  # noqa: E501
+            'experimental_adapter_params': (ExperimentalAdapterSourceRegistrationParams,),  # noqa: E501
             'external_metadata': (EntityExternalMetadata,),  # noqa: E501
             'flashblade_params': (FlashbladeRegistrationParams,),  # noqa: E501
+            'gcp_params': (GcpSourceRegistrationParams,),  # noqa: E501
             'generic_nas_params': (GenericNasRegistrationParams,),  # noqa: E501
+            'google_workspace_params': (GoogleWorkspaceSourceRegistrationParams,),  # noqa: E501
             'gpfs_params': (GpfsRegistrationParams,),  # noqa: E501
             'hbase_params': (HbaseSourceRegistrationParams,),  # noqa: E501
             'hdfs_params': (HdfsSourceRegistrationParams,),  # noqa: E501
             'hive_params': (HiveSourceRegistrationParams,),  # noqa: E501
             'hyperv_params': (HyperVSourceRegistrationParams,),  # noqa: E501
             'isilon_params': (IsilonRegistrationParams,),  # noqa: E501
+            'kubernetes_params': (KubernetesSourceRegistrationParams,),  # noqa: E501
+            'mongodb_ops_params': (MongoDBOpsManagerRegistrationParams,),  # noqa: E501
             'mongodb_params': (MongoDBSourceRegistrationParams,),  # noqa: E501
             'netapp_params': (NetappRegistrationParams,),  # noqa: E501
+            'nutanix_fs_params': (NutanixFSRegistrationParams,),  # noqa: E501
             'office365_params': (Office365SourceRegistrationParams,),  # noqa: E501
             'physical_params': (PhysicalSourceRegistrationParams,),  # noqa: E501
+            'postgres_params': (PostgresSourceRegistrationParams,),  # noqa: E501
+            's3_compatible_params': (S3CompatibleSourceRegistrationParams,),  # noqa: E501
+            'sap_hana_params': (SapHanaSourceRegistrationParams,),  # noqa: E501
+            'service_now_params': (ServiceNowSourceRegistrationParams,),  # noqa: E501
             'sfdc_params': (SfdcSourceRegistrationParams,),  # noqa: E501
             'uda_params': (UdaSourceRegistrationParams,),  # noqa: E501
             'vmware_params': (VmwareSourceRegistrationParams,),  # noqa: E501
@@ -215,6 +262,7 @@ class SourceRegistration(ModelComposed):
         'connection_id': 'connectionId',  # noqa: E501
         'connections': 'connections',  # noqa: E501
         'connector_group_id': 'connectorGroupId',  # noqa: E501
+        'data_source_connection_id': 'dataSourceConnectionId',  # noqa: E501
         'environment': 'environment',  # noqa: E501
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
@@ -227,20 +275,32 @@ class SourceRegistration(ModelComposed):
         'azure_params': 'azureParams',  # noqa: E501
         'cassandra_params': 'cassandraParams',  # noqa: E501
         'couchbase_params': 'couchbaseParams',  # noqa: E501
+        'db2_params': 'db2Params',  # noqa: E501
         'elastifile_params': 'elastifileParams',  # noqa: E501
+        'ews_exchange_params': 'ewsExchangeParams',  # noqa: E501
+        'experimental_adapter_params': 'experimentalAdapterParams',  # noqa: E501
         'external_metadata': 'externalMetadata',  # noqa: E501
         'flashblade_params': 'flashbladeParams',  # noqa: E501
+        'gcp_params': 'gcpParams',  # noqa: E501
         'generic_nas_params': 'genericNasParams',  # noqa: E501
+        'google_workspace_params': 'googleWorkspaceParams',  # noqa: E501
         'gpfs_params': 'gpfsParams',  # noqa: E501
         'hbase_params': 'hbaseParams',  # noqa: E501
         'hdfs_params': 'hdfsParams',  # noqa: E501
         'hive_params': 'hiveParams',  # noqa: E501
         'hyperv_params': 'hypervParams',  # noqa: E501
         'isilon_params': 'isilonParams',  # noqa: E501
+        'kubernetes_params': 'kubernetesParams',  # noqa: E501
+        'mongodb_ops_params': 'mongodbOpsParams',  # noqa: E501
         'mongodb_params': 'mongodbParams',  # noqa: E501
         'netapp_params': 'netappParams',  # noqa: E501
+        'nutanix_fs_params': 'nutanixFSParams',  # noqa: E501
         'office365_params': 'office365Params',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
+        'postgres_params': 'postgresParams',  # noqa: E501
+        's3_compatible_params': 's3CompatibleParams',  # noqa: E501
+        'sap_hana_params': 'sapHanaParams',  # noqa: E501
+        'service_now_params': 'serviceNowParams',  # noqa: E501
         'sfdc_params': 'sfdcParams',  # noqa: E501
         'uda_params': 'udaParams',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
@@ -295,9 +355,10 @@ class SourceRegistration(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             advanced_configs ([KeyValuePair], none_type): Specifies the advanced configuration for a protection source.. [optional]  # noqa: E501
-            connection_id (int, none_type): Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user. This field will be depricated in future. Use connections field.. [optional]  # noqa: E501
-            connections ([ConnectionConfig], none_type): Specfies the list of connections for the source.. [optional]  # noqa: E501
+            connection_id (int, none_type): Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user. This field will be deprecated in future. Use connections field.. [optional]  # noqa: E501
+            connections ([ConnectionConfig], none_type): Specifies the list of connections for the source.. [optional]  # noqa: E501
             connector_group_id (int, none_type): Specifies the connector group id of connector groups.. [optional]  # noqa: E501
+            data_source_connection_id (str, none_type): Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user. Also, this is the 'string' of connectionId. This property was added to accommodate for ID values that exceed 2^53 - 1, which is the max value for which JS maintains precision.. [optional]  # noqa: E501
             environment (str, none_type): Specifies the environment type of the Protection Source.. [optional]  # noqa: E501
             id (int, none_type): Source Registration ID. This can be used to retrieve, edit or delete the source registration.. [optional]  # noqa: E501
             name (str, none_type): The user specified name for this source.. [optional]  # noqa: E501
@@ -310,20 +371,32 @@ class SourceRegistration(ModelComposed):
             azure_params (AzureSourceRegistrationParams): [optional]  # noqa: E501
             cassandra_params (CassandraSourceRegistrationParams): [optional]  # noqa: E501
             couchbase_params (CouchbaseSourceRegistrationParams): [optional]  # noqa: E501
+            db2_params (DB2SourceRegistrationParams): [optional]  # noqa: E501
             elastifile_params (ElastifileRegistrationParams): [optional]  # noqa: E501
+            ews_exchange_params (EwsExchangeSourceRegistrationParams): [optional]  # noqa: E501
+            experimental_adapter_params (ExperimentalAdapterSourceRegistrationParams): [optional]  # noqa: E501
             external_metadata (EntityExternalMetadata): [optional]  # noqa: E501
             flashblade_params (FlashbladeRegistrationParams): [optional]  # noqa: E501
+            gcp_params (GcpSourceRegistrationParams): [optional]  # noqa: E501
             generic_nas_params (GenericNasRegistrationParams): [optional]  # noqa: E501
+            google_workspace_params (GoogleWorkspaceSourceRegistrationParams): [optional]  # noqa: E501
             gpfs_params (GpfsRegistrationParams): [optional]  # noqa: E501
             hbase_params (HbaseSourceRegistrationParams): [optional]  # noqa: E501
             hdfs_params (HdfsSourceRegistrationParams): [optional]  # noqa: E501
             hive_params (HiveSourceRegistrationParams): [optional]  # noqa: E501
             hyperv_params (HyperVSourceRegistrationParams): [optional]  # noqa: E501
             isilon_params (IsilonRegistrationParams): [optional]  # noqa: E501
+            kubernetes_params (KubernetesSourceRegistrationParams): [optional]  # noqa: E501
+            mongodb_ops_params (MongoDBOpsManagerRegistrationParams): [optional]  # noqa: E501
             mongodb_params (MongoDBSourceRegistrationParams): [optional]  # noqa: E501
             netapp_params (NetappRegistrationParams): [optional]  # noqa: E501
+            nutanix_fs_params (NutanixFSRegistrationParams): [optional]  # noqa: E501
             office365_params (Office365SourceRegistrationParams): [optional]  # noqa: E501
             physical_params (PhysicalSourceRegistrationParams): [optional]  # noqa: E501
+            postgres_params (PostgresSourceRegistrationParams): [optional]  # noqa: E501
+            s3_compatible_params (S3CompatibleSourceRegistrationParams): [optional]  # noqa: E501
+            sap_hana_params (SapHanaSourceRegistrationParams): [optional]  # noqa: E501
+            service_now_params (ServiceNowSourceRegistrationParams): [optional]  # noqa: E501
             sfdc_params (SfdcSourceRegistrationParams): [optional]  # noqa: E501
             uda_params (UdaSourceRegistrationParams): [optional]  # noqa: E501
             vmware_params (VmwareSourceRegistrationParams): [optional]  # noqa: E501

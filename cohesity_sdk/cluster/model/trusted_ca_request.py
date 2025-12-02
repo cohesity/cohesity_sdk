@@ -74,8 +74,8 @@ class TrustedCaRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'certificate': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
+            'certificate': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class TrustedCaRequest(ModelNormal):
 
 
     attribute_map = {
-        'certificate': 'certificate',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'certificate': 'certificate',  # noqa: E501
         'description': 'description',  # noqa: E501
     }
 
@@ -103,11 +103,10 @@ class TrustedCaRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, certificate, name, *args, **kwargs):  # noqa: E501
+    def __init__(self, name, *args, **kwargs):  # noqa: E501
         """TrustedCaRequest - a model defined in OpenAPI
 
         Args:
-            certificate (str, none_type): Specifies the certificate to be imported. Certificate should be in PEM format.
             name (str, none_type): Descriptive name of the certificate.
 
         Keyword Args:
@@ -142,6 +141,7 @@ class TrustedCaRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            certificate (str, none_type): Specifies the certificate to be imported. Certificate should be in PEM format.. [optional]  # noqa: E501
             description (str, none_type): Description of the certificate.. [optional]  # noqa: E501
         """
 
@@ -169,7 +169,6 @@ class TrustedCaRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.certificate = certificate
         self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

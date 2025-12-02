@@ -59,6 +59,7 @@ class AzureTierAllOf(ModelNormal):
             'KAZURETIERHOT': "kAzureTierHot",
             'KAZURETIERCOOL': "kAzureTierCool",
             'KAZURETIERARCHIVE': "kAzureTierArchive",
+            'KAZURETIERCOLD': "kAzureTierCold",
         },
     }
 

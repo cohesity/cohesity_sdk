@@ -13,11 +13,13 @@ Method | HTTP request | Description
 
 Perform Actions on Protect Objects.
 
-Perform actions on Protected Objects.
+**Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Perform actions on Protected Objects.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.protectd_objects_action_request import ProtectdObjectsActionRequest
@@ -40,12 +42,16 @@ body = ProtectdObjectsActionRequest(
         object_action_key="kVMware",
         pause_params=ProtectedObjectPauseActionParams(
             objects=[
-                PauseActionObjectLevelParams(),
+                ProtectionObjectInput(
+                    id=1,
+                ),
             ],
         ),
         resume_params=ProtectedObjectResumeActionParams(
             objects=[
-                ResumeActionObjectLevelParams(),
+                ProtectionObjectInput(
+                    id=1,
+                ),
             ],
         ),
         run_now_params=ProtectedObjectRunNowActionParams(
@@ -86,7 +92,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -107,11 +113,13 @@ Name | Type | Description  | Notes
 
 Create Object Backup.
 
-Create Protect Objects Backup.
+**Privileges:** ```PROTECTION_MODIFY``` <br><br>Create Protect Objects Backup.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.create_protected_objects_response import CreateProtectedObjectsResponse
@@ -164,7 +172,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -185,11 +193,13 @@ Name | Type | Description  | Notes
 
 Update Object Backup.
 
-Update Protected object backup configuration given a object id.
+**Privileges:** ```PROTECTION_MODIFY``` <br><br>Update Protected object backup configuration given a object id.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -244,7 +254,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 

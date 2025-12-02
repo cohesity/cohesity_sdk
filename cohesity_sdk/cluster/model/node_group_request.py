@@ -90,6 +90,7 @@ class NodeGroupRequest(ModelComposed):
             'dns_servers_info': (DnsServersInfo,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'node_ids': ([int], none_type,),  # noqa: E501
+            'node_ips': ([str], none_type,),  # noqa: E501
             'subnet_info': (SubnetInfo,),  # noqa: E501
             'type': (int, none_type,),  # noqa: E501
         }
@@ -105,7 +106,8 @@ class NodeGroupRequest(ModelComposed):
         'bgp_instance': 'bgpInstance',  # noqa: E501
         'dns_servers_info': 'dnsServersInfo',  # noqa: E501
         'id': 'id',  # noqa: E501
-        'node_ids': 'node-ids',  # noqa: E501
+        'node_ids': 'nodeIds',  # noqa: E501
+        'node_ips': 'nodeIps',  # noqa: E501
         'subnet_info': 'subnetInfo',  # noqa: E501
         'type': 'type',  # noqa: E501
     }
@@ -165,6 +167,7 @@ class NodeGroupRequest(ModelComposed):
             dns_servers_info (DnsServersInfo): [optional]  # noqa: E501
             id (int, none_type): Id of the node group.. [optional]  # noqa: E501
             node_ids ([int], none_type): List of Node Ids that are part of this node group.. [optional]  # noqa: E501
+            node_ips ([str], none_type): Node ips for node group. [optional]  # noqa: E501
             subnet_info (SubnetInfo): [optional]  # noqa: E501
             type (int, none_type): Type of the node group.. [optional]  # noqa: E501
         """

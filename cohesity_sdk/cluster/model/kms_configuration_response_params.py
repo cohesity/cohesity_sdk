@@ -28,8 +28,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.aws_kms_configuration_response import AwsKmsConfigurationResponse
+    from cohesity_sdk.cluster.model.gcp_kms_configuration_response import GcpKmsConfigurationResponse
+    from cohesity_sdk.cluster.model.ibm_kms_configuration_response import IbmKmsConfigurationResponse
     from cohesity_sdk.cluster.model.kmip_kms_configuration_response import KmipKmsConfigurationResponse
     globals()['AwsKmsConfigurationResponse'] = AwsKmsConfigurationResponse
+    globals()['GcpKmsConfigurationResponse'] = GcpKmsConfigurationResponse
+    globals()['IbmKmsConfigurationResponse'] = IbmKmsConfigurationResponse
     globals()['KmipKmsConfigurationResponse'] = KmipKmsConfigurationResponse
 
 
@@ -64,12 +68,15 @@ class KmsConfigurationResponseParams(ModelNormal):
             'None': None,
             'LOCAL': "Local",
             'FORTKNOX': "FortKnox",
+            'FORTKNOXONPREM': "FortKnoxOnprem",
         },
         ('type',): {
             'None': None,
             'INTERNALKMS': "InternalKms",
             'AWSKMS': "AwsKms",
             'KMIPKMS': "KmipKms",
+            'IBMKMS': "IbmKms",
+            'GCPKMS': "GcpKms",
         },
         ('usage_type',): {
             'None': None,
@@ -99,6 +106,8 @@ class KmsConfigurationResponseParams(ModelNormal):
         return {
             'aws_kms_params': (AwsKmsConfigurationResponse,),  # noqa: E501
             'external_target_ids': ([int], none_type,),  # noqa: E501
+            'gcp_kms_params': (GcpKmsConfigurationResponse,),  # noqa: E501
+            'ibm_kms_params': (IbmKmsConfigurationResponse,),  # noqa: E501
             'kmip_kms_params': (KmipKmsConfigurationResponse,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'ownership_context': (str, none_type,),  # noqa: E501
@@ -116,6 +125,8 @@ class KmsConfigurationResponseParams(ModelNormal):
     attribute_map = {
         'aws_kms_params': 'awsKmsParams',  # noqa: E501
         'external_target_ids': 'externalTargetIds',  # noqa: E501
+        'gcp_kms_params': 'gcpKmsParams',  # noqa: E501
+        'ibm_kms_params': 'ibmKmsParams',  # noqa: E501
         'kmip_kms_params': 'kmipKmsParams',  # noqa: E501
         'name': 'name',  # noqa: E501
         'ownership_context': 'ownershipContext',  # noqa: E501
@@ -173,6 +184,8 @@ class KmsConfigurationResponseParams(ModelNormal):
 
             aws_kms_params (AwsKmsConfigurationResponse): [optional]  # noqa: E501
             external_target_ids ([int], none_type): Ids of external targets used to assign the KMS for encryption. Once an external KMS (AWS KMS or KIMP KMS) is assigned to an external target, it cannot be changed.. [optional]  # noqa: E501
+            gcp_kms_params (GcpKmsConfigurationResponse): [optional]  # noqa: E501
+            ibm_kms_params (IbmKmsConfigurationResponse): [optional]  # noqa: E501
             kmip_kms_params (KmipKmsConfigurationResponse): [optional]  # noqa: E501
             name (str, none_type): Name of the KMS.. [optional]  # noqa: E501
             ownership_context (str, none_type): Describes the consumption of the KMS key whether it is used for local or FortKnox.. [optional]  # noqa: E501

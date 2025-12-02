@@ -28,7 +28,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.object_snapshots_info import ObjectSnapshotsInfo
+    from cohesity_sdk.cluster.model.object_summary import ObjectSummary
     globals()['ObjectSnapshotsInfo'] = ObjectSnapshotsInfo
+    globals()['ObjectSummary'] = ObjectSummary
 
 
 class ProtectedObjectAllOf(ModelNormal):
@@ -80,7 +82,7 @@ class ProtectedObjectAllOf(ModelNormal):
         lazy_import()
         return {
             'latest_snapshots_info': ([ObjectSnapshotsInfo], none_type,),  # noqa: E501
-            'source_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'source_info': (ObjectSummary,),  # noqa: E501
         }
 
     @cached_property
@@ -142,7 +144,7 @@ class ProtectedObjectAllOf(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             latest_snapshots_info ([ObjectSnapshotsInfo], none_type): Specifies the latest snapshot information for every Protection Group for a given object.. [optional]  # noqa: E501
-            source_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the Source Object information.. [optional]  # noqa: E501
+            source_info (ObjectSummary): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

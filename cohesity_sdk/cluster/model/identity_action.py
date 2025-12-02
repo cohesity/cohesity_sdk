@@ -63,6 +63,7 @@ class IdentityAction(ModelNormal):
         ('identity_provider_type',): {
             'OPENIDCONNECT': "OpenIdConnect",
             'OAUTH2': "OAuth2",
+            'IBMID': "IbmId",
         },
     }
 

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **leverage_csi_snapshot** | **bool, none_type** | Specifies if CSI snapshots should be used for backup of namespaces. | [optional] 
 **non_snapshot_backup** | **bool, none_type** | Specifies if snapshot backup fails, non-snapshot backup will be proceeded. | [optional] 
 **objects** | [**[KubernetesProtectionGroupObjectParams]**](KubernetesProtectionGroupObjectParams.md) | Specifies the objects included in the Protection Group. | [optional] 
+**perform_source_side_deduplication** | **bool, none_type** | Specifies whether or not to perform source side deduplication on this Protection Group. | [optional] 
 **source_id** | **int, none_type** | Specifies the id of the parent of the objects. | [optional] [readonly] 
 **source_name** | **str, none_type** | Specifies the name of the parent of the objects. | [optional] [readonly] 
 **vlan_params** | [**VlanParams**](VlanParams.md) |  | [optional] 

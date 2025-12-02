@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **mount_point** | **str, none_type** | Specifies the MountPoint for Generic NAS Source. | 
 **description** | **str, none_type** | Specifies the Description for Generic NAS Source. | [optional] 
 **skip_validation** | **bool, none_type** | Specifies if validation has to be skipped while registering the mount point. | [optional] 
-**smb_mount_credentials** | [**SmbMountCredentials**](SmbMountCredentials.md) |  | [optional] 
+**smb_mount_credentials** | [**Credentials**](Credentials.md) |  | [optional] 
 **throttling_config** | [**NasThrottlingConfig**](NasThrottlingConfig.md) |  | [optional] 
 **uid** | [**UniversalId**](UniversalId.md) |  | [optional] 
 

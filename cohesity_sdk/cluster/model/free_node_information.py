@@ -75,13 +75,19 @@ class FreeNodeInformation(ModelNormal):
         """
         return {
             'can_connect': (bool, none_type,),  # noqa: E501
+            'chassis_model': (str, none_type,),  # noqa: E501
             'chassis_serial': (str, none_type,),  # noqa: E501
+            'connected_to': (bool, none_type,),  # noqa: E501
+            'hostname': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'ipmi_ip': (str, none_type,),  # noqa: E501
             'ips': ([str], none_type,),  # noqa: E501
+            'node_model': (str, none_type,),  # noqa: E501
             'node_serial': (str, none_type,),  # noqa: E501
             'node_ui_slot': (str, none_type,),  # noqa: E501
             'num_slots_in_chassis': (int, none_type,),  # noqa: E501
+            'primary_ipv4_address': (str, none_type,),  # noqa: E501
+            'primary_ipv6_address': (str, none_type,),  # noqa: E501
             'product_model': (str, none_type,),  # noqa: E501
             'slot_number': (str, none_type,),  # noqa: E501
             'software_version': (str, none_type,),  # noqa: E501
@@ -95,13 +101,19 @@ class FreeNodeInformation(ModelNormal):
 
     attribute_map = {
         'can_connect': 'canConnect',  # noqa: E501
+        'chassis_model': 'chassisModel',  # noqa: E501
         'chassis_serial': 'chassisSerial',  # noqa: E501
+        'connected_to': 'connectedTo',  # noqa: E501
+        'hostname': 'hostname',  # noqa: E501
         'id': 'id',  # noqa: E501
         'ipmi_ip': 'ipmiIp',  # noqa: E501
         'ips': 'ips',  # noqa: E501
+        'node_model': 'nodeModel',  # noqa: E501
         'node_serial': 'nodeSerial',  # noqa: E501
         'node_ui_slot': 'nodeUiSlot',  # noqa: E501
         'num_slots_in_chassis': 'numSlotsInChassis',  # noqa: E501
+        'primary_ipv4_address': 'primaryIPv4Address',  # noqa: E501
+        'primary_ipv6_address': 'primaryIPv6Address',  # noqa: E501
         'product_model': 'productModel',  # noqa: E501
         'slot_number': 'slotNumber',  # noqa: E501
         'software_version': 'softwareVersion',  # noqa: E501
@@ -154,14 +166,20 @@ class FreeNodeInformation(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            can_connect (bool, none_type): Specifies if Node can be connected.. [optional]  # noqa: E501
+            can_connect (bool, none_type): Deprecated - This field is deprecated, use connectedTo field.. [optional]  # noqa: E501
+            chassis_model (str, none_type): Specifies the model number of the Chassis the Node is installed in.. [optional]  # noqa: E501
             chassis_serial (str, none_type): Specifies the serial number of the Chassis the Node is installed in.. [optional]  # noqa: E501
+            connected_to (bool, none_type): Specifies if this is the node from where this API response was received.. [optional]  # noqa: E501
+            hostname (str, none_type): Specifies the host name of the node.. [optional]  # noqa: E501
             id (int, none_type): Specifies the ID of the node.. [optional]  # noqa: E501
             ipmi_ip (str, none_type): Specifies the IPMI IP of the Node.. [optional]  # noqa: E501
             ips ([str], none_type): List of discovered ipv4/ipv6 addresses of the node. Ip field returns ips as comma separated single string which is incorrect.. [optional]  # noqa: E501
+            node_model (str, none_type): Specifies the node model.. [optional]  # noqa: E501
             node_serial (str, none_type): Specifies the serial number of the Node.. [optional]  # noqa: E501
             node_ui_slot (str, none_type): Specifies the position for the UI to display the Node in the Cluster creation page.. [optional]  # noqa: E501
             num_slots_in_chassis (int, none_type): Specifies the number of Node slots present in the Chassis where this Node is installed.. [optional]  # noqa: E501
+            primary_ipv4_address (str, none_type): IPv4 addresses in primary interface's LAN.. [optional]  # noqa: E501
+            primary_ipv6_address (str, none_type): IPv6 addresses in primary interface's LAN.. [optional]  # noqa: E501
             product_model (str, none_type): Specifies the product model of the node.. [optional]  # noqa: E501
             slot_number (str, none_type): Specifies the number of the slot the Node is installed in.. [optional]  # noqa: E501
             software_version (str, none_type): Specifies the version of the software installed on the Node.. [optional]  # noqa: E501

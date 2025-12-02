@@ -74,7 +74,7 @@ class FreeDisk(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'serial_number': (str, none_type,),  # noqa: E501
+            'serial_number': (str,),  # noqa: E501
             'location': (str, none_type,),  # noqa: E501
             'path': (str, none_type,),  # noqa: E501
             'size_in_bytes': (int, none_type,),  # noqa: E501
@@ -109,7 +109,7 @@ class FreeDisk(ModelNormal):
         """FreeDisk - a model defined in OpenAPI
 
         Args:
-            serial_number (str, none_type): Specifies serial number of disk.
+            serial_number (str): Specifies serial number of disk.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

@@ -30,11 +30,11 @@ def lazy_import():
     from cohesity_sdk.cluster.model.object_protection_run_summary import ObjectProtectionRunSummary
     from cohesity_sdk.cluster.model.protected_object_backup_config import ProtectedObjectBackupConfig
     from cohesity_sdk.cluster.model.protected_object_group_backup_config import ProtectedObjectGroupBackupConfig
-    from cohesity_sdk.cluster.model.tenant import Tenant
+    from cohesity_sdk.cluster.model.tenant_info import TenantInfo
     globals()['ObjectProtectionRunSummary'] = ObjectProtectionRunSummary
     globals()['ProtectedObjectBackupConfig'] = ProtectedObjectBackupConfig
     globals()['ProtectedObjectGroupBackupConfig'] = ProtectedObjectGroupBackupConfig
-    globals()['Tenant'] = Tenant
+    globals()['TenantInfo'] = TenantInfo
 
 
 class ProtectedObjectInfoAllOf(ModelNormal):

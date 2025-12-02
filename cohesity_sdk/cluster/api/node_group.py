@@ -45,7 +45,7 @@ class NodeGroupApi(object):
         ):
             """Create a Node Group.  # noqa: E501
 
-            Create the Node Group and returns the newly created node group object.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Create the Node Group and returns the newly created node group object.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -110,7 +110,9 @@ class NodeGroupApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/node-groups',
                 'operation_id': 'create_node_group',
@@ -167,7 +169,7 @@ class NodeGroupApi(object):
         ):
             """Delete a Node Group.  # noqa: E501
 
-            Deletes a Node Group based on given node group name.  # noqa: E501
+            ```Unknown Privileges``` <br><br>Deletes a Node Group based on given node group name.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -232,7 +234,9 @@ class NodeGroupApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/node-groups/{groupName}',
                 'operation_id': 'delete_node_group',
@@ -287,7 +291,7 @@ class NodeGroupApi(object):
         ):
             """List Node Groups based on provided filtering parameters.  # noqa: E501
 
-            List node groups.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>List node groups.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -350,7 +354,9 @@ class NodeGroupApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/node-groups',
                 'operation_id': 'get_node_groups',
@@ -411,7 +417,7 @@ class NodeGroupApi(object):
         ):
             """Update a Node Group.  # noqa: E501
 
-            Specifies the request to update the existing Node Group. On successful update, returns the updated node group object.  # noqa: E501
+            ```Unknown Privileges``` <br><br>Specifies the request to update the existing Node Group. On successful update, returns the updated node group object.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -479,7 +485,9 @@ class NodeGroupApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/node-groups/{groupName}',
                 'operation_id': 'update_node_group',

@@ -27,8 +27,24 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.azure_cosmos_db_cassandra_entity_metadata import AzureCosmosDBCassandraEntityMetadata
+    from cohesity_sdk.cluster.model.azure_cosmos_db_mongo_db_entity_metadata import AzureCosmosDBMongoDBEntityMetadata
+    from cohesity_sdk.cluster.model.azure_cosmos_dbno_sql_entity_metadata import AzureCosmosDBNoSQLEntityMetadata
+    from cohesity_sdk.cluster.model.azure_kubernetes_entity_metadata import AzureKubernetesEntityMetadata
+    from cohesity_sdk.cluster.model.azure_my_sql_entity_metadata import AzureMySqlEntityMetadata
+    from cohesity_sdk.cluster.model.azure_postgre_sql_entity_metadata import AzurePostgreSQLEntityMetadata
+    from cohesity_sdk.cluster.model.azure_sql_db_entity_metadata import AzureSqlDBEntityMetadata
     from cohesity_sdk.cluster.model.azure_sql_entity_metadata import AzureSqlEntityMetadata
+    from cohesity_sdk.cluster.model.azure_sql_mi_entity_metadata import AzureSqlMIEntityMetadata
+    globals()['AzureCosmosDBCassandraEntityMetadata'] = AzureCosmosDBCassandraEntityMetadata
+    globals()['AzureCosmosDBMongoDBEntityMetadata'] = AzureCosmosDBMongoDBEntityMetadata
+    globals()['AzureCosmosDBNoSQLEntityMetadata'] = AzureCosmosDBNoSQLEntityMetadata
+    globals()['AzureKubernetesEntityMetadata'] = AzureKubernetesEntityMetadata
+    globals()['AzureMySqlEntityMetadata'] = AzureMySqlEntityMetadata
+    globals()['AzurePostgreSQLEntityMetadata'] = AzurePostgreSQLEntityMetadata
+    globals()['AzureSqlDBEntityMetadata'] = AzureSqlDBEntityMetadata
     globals()['AzureSqlEntityMetadata'] = AzureSqlEntityMetadata
+    globals()['AzureSqlMIEntityMetadata'] = AzureSqlMIEntityMetadata
 
 
 class AzureEntityMetadata(ModelNormal):
@@ -79,6 +95,14 @@ class AzureEntityMetadata(ModelNormal):
         """
         lazy_import()
         return {
+            'azure_cosmos_db_cassandra_params': (AzureCosmosDBCassandraEntityMetadata,),  # noqa: E501
+            'azure_cosmos_db_mongo_db_params': (AzureCosmosDBMongoDBEntityMetadata,),  # noqa: E501
+            'azure_cosmos_dbno_sql_params': (AzureCosmosDBNoSQLEntityMetadata,),  # noqa: E501
+            'azure_kubernetes_params': (AzureKubernetesEntityMetadata,),  # noqa: E501
+            'azure_my_sql_params': (AzureMySqlEntityMetadata,),  # noqa: E501
+            'azure_postgre_sql_params': (AzurePostgreSQLEntityMetadata,),  # noqa: E501
+            'azure_sql_db_params': (AzureSqlDBEntityMetadata,),  # noqa: E501
+            'azure_sql_mi_params': (AzureSqlMIEntityMetadata,),  # noqa: E501
             'azure_sql_params': (AzureSqlEntityMetadata,),  # noqa: E501
         }
 
@@ -89,6 +113,14 @@ class AzureEntityMetadata(ModelNormal):
 
 
     attribute_map = {
+        'azure_cosmos_db_cassandra_params': 'azureCosmosDBCassandraParams',  # noqa: E501
+        'azure_cosmos_db_mongo_db_params': 'azureCosmosDBMongoDBParams',  # noqa: E501
+        'azure_cosmos_dbno_sql_params': 'azureCosmosDBNoSQLParams',  # noqa: E501
+        'azure_kubernetes_params': 'azureKubernetesParams',  # noqa: E501
+        'azure_my_sql_params': 'azureMySqlParams',  # noqa: E501
+        'azure_postgre_sql_params': 'azurePostgreSQLParams',  # noqa: E501
+        'azure_sql_db_params': 'azureSqlDBParams',  # noqa: E501
+        'azure_sql_mi_params': 'azureSqlMIParams',  # noqa: E501
         'azure_sql_params': 'azureSqlParams',  # noqa: E501
     }
 
@@ -139,6 +171,14 @@ class AzureEntityMetadata(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            azure_cosmos_db_cassandra_params (AzureCosmosDBCassandraEntityMetadata): [optional]  # noqa: E501
+            azure_cosmos_db_mongo_db_params (AzureCosmosDBMongoDBEntityMetadata): [optional]  # noqa: E501
+            azure_cosmos_dbno_sql_params (AzureCosmosDBNoSQLEntityMetadata): [optional]  # noqa: E501
+            azure_kubernetes_params (AzureKubernetesEntityMetadata): [optional]  # noqa: E501
+            azure_my_sql_params (AzureMySqlEntityMetadata): [optional]  # noqa: E501
+            azure_postgre_sql_params (AzurePostgreSQLEntityMetadata): [optional]  # noqa: E501
+            azure_sql_db_params (AzureSqlDBEntityMetadata): [optional]  # noqa: E501
+            azure_sql_mi_params (AzureSqlMIEntityMetadata): [optional]  # noqa: E501
             azure_sql_params (AzureSqlEntityMetadata): [optional]  # noqa: E501
         """
 

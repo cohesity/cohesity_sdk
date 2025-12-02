@@ -60,6 +60,7 @@ class SecurityPrincipal(ModelNormal):
             'GROUP': "Group",
             'COMPUTER': "Computer",
             'WELLKNOWNPRINCIPAL': "WellKnownPrincipal",
+            'SERVICEACCOUNT': "ServiceAccount",
         },
     }
 

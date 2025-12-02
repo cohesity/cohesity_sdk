@@ -27,8 +27,38 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.common_download_file_and_folder_params import CommonDownloadFileAndFolderParams
     from cohesity_sdk.cluster.model.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
+    from cohesity_sdk.cluster.model.recover_azure_blob_storage_params import RecoverAzureBlobStorageParams
+    from cohesity_sdk.cluster.model.recover_azure_cosmos_db_cassandra_params import RecoverAzureCosmosDBCassandraParams
+    from cohesity_sdk.cluster.model.recover_azure_cosmos_db_mongo_db_params import RecoverAzureCosmosDBMongoDBParams
+    from cohesity_sdk.cluster.model.recover_azure_cosmos_dbno_sql_params import RecoverAzureCosmosDBNoSQLParams
+    from cohesity_sdk.cluster.model.recover_azure_entra_id_params import RecoverAzureEntraIdParams
+    from cohesity_sdk.cluster.model.recover_azure_file_and_folder_params import RecoverAzureFileAndFolderParams
+    from cohesity_sdk.cluster.model.recover_azure_my_sql_params import RecoverAzureMySQLParams
+    from cohesity_sdk.cluster.model.recover_azure_postgre_sql_params import RecoverAzurePostgreSQLParams
+    from cohesity_sdk.cluster.model.recover_azure_sql_params import RecoverAzureSqlParams
+    from cohesity_sdk.cluster.model.recover_azure_sqldb_params import RecoverAzureSQLDBParams
+    from cohesity_sdk.cluster.model.recover_azure_sqlmi_params import RecoverAzureSQLMIParams
+    from cohesity_sdk.cluster.model.recover_azure_table_api_params import RecoverAzureTableAPIParams
+    from cohesity_sdk.cluster.model.recover_azure_table_storage_params import RecoverAzureTableStorageParams
+    from cohesity_sdk.cluster.model.recover_azure_vm_params import RecoverAzureVmParams
+    globals()['CommonDownloadFileAndFolderParams'] = CommonDownloadFileAndFolderParams
     globals()['CommonRecoverObjectSnapshotParams'] = CommonRecoverObjectSnapshotParams
+    globals()['RecoverAzureBlobStorageParams'] = RecoverAzureBlobStorageParams
+    globals()['RecoverAzureCosmosDBCassandraParams'] = RecoverAzureCosmosDBCassandraParams
+    globals()['RecoverAzureCosmosDBMongoDBParams'] = RecoverAzureCosmosDBMongoDBParams
+    globals()['RecoverAzureCosmosDBNoSQLParams'] = RecoverAzureCosmosDBNoSQLParams
+    globals()['RecoverAzureEntraIdParams'] = RecoverAzureEntraIdParams
+    globals()['RecoverAzureFileAndFolderParams'] = RecoverAzureFileAndFolderParams
+    globals()['RecoverAzureMySQLParams'] = RecoverAzureMySQLParams
+    globals()['RecoverAzurePostgreSQLParams'] = RecoverAzurePostgreSQLParams
+    globals()['RecoverAzureSQLDBParams'] = RecoverAzureSQLDBParams
+    globals()['RecoverAzureSQLMIParams'] = RecoverAzureSQLMIParams
+    globals()['RecoverAzureSqlParams'] = RecoverAzureSqlParams
+    globals()['RecoverAzureTableAPIParams'] = RecoverAzureTableAPIParams
+    globals()['RecoverAzureTableStorageParams'] = RecoverAzureTableStorageParams
+    globals()['RecoverAzureVmParams'] = RecoverAzureVmParams
 
 
 class RecoverAzureParams(ModelNormal):
@@ -62,6 +92,18 @@ class RecoverAzureParams(ModelNormal):
             'RECOVERVMS': "RecoverVMs",
             'RECOVERFILES': "RecoverFiles",
             'RECOVERAZURESQL': "RecoverAzureSQL",
+            'RECOVERAZUREENTRAID': "RecoverAzureEntraID",
+            'RECOVERAZUREMYSQL': "RecoverAzureMySQL",
+            'RECOVERNAMESPACES': "RecoverNamespaces",
+            'RECOVERAZURECOSMOSDBCASSANDRA': "RecoverAzureCosmosDBCassandra",
+            'RECOVERAZUREPOSTGRESQL': "RecoverAzurePostgreSQL",
+            'RECOVERAZURECOSMOSDBNOSQL': "RecoverAzureCosmosDBNoSQL",
+            'RECOVERAZURECOSMOSDBMONGODB': "RecoverAzureCosmosDBMongoDB",
+            'RECOVERAZUREBLOBSTORAGE': "RecoverAzureBlobStorage",
+            'RECOVERAZURESQLDB': "RecoverAzureSQLDB",
+            'RECOVERAZURESQLMI': "RecoverAzureSQLMI",
+            'RECOVERAZURETABLESTORAGE': "RecoverAzureTableStorage",
+            'RECOVERAZURETABLEAPI': "RecoverAzureTableAPI",
         },
     }
 
@@ -85,11 +127,22 @@ class RecoverAzureParams(ModelNormal):
         lazy_import()
         return {
             'recovery_action': (str,),  # noqa: E501
-            'azure_sql_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'download_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'azure_blob_storage_params': (RecoverAzureBlobStorageParams,),  # noqa: E501
+            'azure_cosmos_db_cassandra_params': (RecoverAzureCosmosDBCassandraParams,),  # noqa: E501
+            'azure_cosmos_db_mongo_db_params': (RecoverAzureCosmosDBMongoDBParams,),  # noqa: E501
+            'azure_cosmos_dbno_sql_params': (RecoverAzureCosmosDBNoSQLParams,),  # noqa: E501
+            'azure_entra_id_params': (RecoverAzureEntraIdParams,),  # noqa: E501
+            'azure_mysql_params': (RecoverAzureMySQLParams,),  # noqa: E501
+            'azure_postgre_sql_params': (RecoverAzurePostgreSQLParams,),  # noqa: E501
+            'azure_sqldb_params': (RecoverAzureSQLDBParams,),  # noqa: E501
+            'azure_sqlmi_params': (RecoverAzureSQLMIParams,),  # noqa: E501
+            'azure_sql_params': (RecoverAzureSqlParams,),  # noqa: E501
+            'azure_table_api_params': (RecoverAzureTableAPIParams,),  # noqa: E501
+            'azure_table_storage_params': (RecoverAzureTableStorageParams,),  # noqa: E501
+            'download_file_and_folder_params': (CommonDownloadFileAndFolderParams,),  # noqa: E501
             'objects': ([CommonRecoverObjectSnapshotParams], none_type,),  # noqa: E501
-            'recover_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'recover_vm_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'recover_file_and_folder_params': (RecoverAzureFileAndFolderParams,),  # noqa: E501
+            'recover_vm_params': (RecoverAzureVmParams,),  # noqa: E501
         }
 
     @cached_property
@@ -100,7 +153,18 @@ class RecoverAzureParams(ModelNormal):
 
     attribute_map = {
         'recovery_action': 'recoveryAction',  # noqa: E501
+        'azure_blob_storage_params': 'azureBlobStorageParams',  # noqa: E501
+        'azure_cosmos_db_cassandra_params': 'azureCosmosDBCassandraParams',  # noqa: E501
+        'azure_cosmos_db_mongo_db_params': 'azureCosmosDBMongoDBParams',  # noqa: E501
+        'azure_cosmos_dbno_sql_params': 'azureCosmosDBNoSQLParams',  # noqa: E501
+        'azure_entra_id_params': 'azureEntraIdParams',  # noqa: E501
+        'azure_mysql_params': 'azureMysqlParams',  # noqa: E501
+        'azure_postgre_sql_params': 'azurePostgreSQLParams',  # noqa: E501
+        'azure_sqldb_params': 'azureSQLDBParams',  # noqa: E501
+        'azure_sqlmi_params': 'azureSQLMIParams',  # noqa: E501
         'azure_sql_params': 'azureSqlParams',  # noqa: E501
+        'azure_table_api_params': 'azureTableAPIParams',  # noqa: E501
+        'azure_table_storage_params': 'azureTableStorageParams',  # noqa: E501
         'download_file_and_folder_params': 'downloadFileAndFolderParams',  # noqa: E501
         'objects': 'objects',  # noqa: E501
         'recover_file_and_folder_params': 'recoverFileAndFolderParams',  # noqa: E501
@@ -157,11 +221,22 @@ class RecoverAzureParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            azure_sql_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover Azure SQL workloads.. [optional]  # noqa: E501
-            download_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to download files and folders.. [optional]  # noqa: E501
+            azure_blob_storage_params (RecoverAzureBlobStorageParams): [optional]  # noqa: E501
+            azure_cosmos_db_cassandra_params (RecoverAzureCosmosDBCassandraParams): [optional]  # noqa: E501
+            azure_cosmos_db_mongo_db_params (RecoverAzureCosmosDBMongoDBParams): [optional]  # noqa: E501
+            azure_cosmos_dbno_sql_params (RecoverAzureCosmosDBNoSQLParams): [optional]  # noqa: E501
+            azure_entra_id_params (RecoverAzureEntraIdParams): [optional]  # noqa: E501
+            azure_mysql_params (RecoverAzureMySQLParams): [optional]  # noqa: E501
+            azure_postgre_sql_params (RecoverAzurePostgreSQLParams): [optional]  # noqa: E501
+            azure_sqldb_params (RecoverAzureSQLDBParams): [optional]  # noqa: E501
+            azure_sqlmi_params (RecoverAzureSQLMIParams): [optional]  # noqa: E501
+            azure_sql_params (RecoverAzureSqlParams): [optional]  # noqa: E501
+            azure_table_api_params (RecoverAzureTableAPIParams): [optional]  # noqa: E501
+            azure_table_storage_params (RecoverAzureTableStorageParams): [optional]  # noqa: E501
+            download_file_and_folder_params (CommonDownloadFileAndFolderParams): [optional]  # noqa: E501
             objects ([CommonRecoverObjectSnapshotParams], none_type): Specifies the list of recover Object parameters. This property is mandatory for all recovery action types except recover vms. While recovering VMs, a user can specify snapshots of VM's or a Protection Group Run details to recover all the VM's that are backed up by that Run. For recovering files, specifies the object contains the file to recover.. [optional]  # noqa: E501
-            recover_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover Azure files and folders.. [optional]  # noqa: E501
-            recover_vm_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover Azure VM.. [optional]  # noqa: E501
+            recover_file_and_folder_params (RecoverAzureFileAndFolderParams): [optional]  # noqa: E501
+            recover_vm_params (RecoverAzureVmParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

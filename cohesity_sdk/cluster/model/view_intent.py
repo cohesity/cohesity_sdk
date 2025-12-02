@@ -73,6 +73,7 @@ class ViewIntent(ModelNormal):
             'OBJECTSERVICEGENERAL': "ObjectServiceGeneral",
             'SPLUNKSMARTSTORE': "SplunkSmartStore",
             'HADOOP': "Hadoop",
+            'GENERALARCHIVE': "GeneralArchive",
         },
     }
 

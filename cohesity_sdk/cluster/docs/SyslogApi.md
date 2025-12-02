@@ -4,6 +4,7 @@
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_syslog_server**](SyslogApi.md#add_syslog_server) | **POST** /syslog | Add Syslog Server
+[**get_supported_syslog_auth_modes**](SyslogApi.md#get_supported_syslog_auth_modes) | **GET** /syslog/auth-modes | Get supported program names.
 [**get_supported_syslog_program_names**](SyslogApi.md#get_supported_syslog_program_names) | **GET** /syslog/program-names | Get supported program names.
 [**get_syslog_audit_tags**](SyslogApi.md#get_syslog_audit_tags) | **GET** /syslog/audit-tags | Get cluster audit tags.
 [**get_syslog_server_by_id**](SyslogApi.md#get_syslog_server_by_id) | **GET** /syslog/{id} | Get a syslog server by id.
@@ -21,11 +22,13 @@ Method | HTTP request | Description
 
 Add Syslog Server
 
-Add a new syslog server
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Add a new syslog server
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -55,6 +58,7 @@ body = SyslogServer(
             "msg_pattern_list_example",
         ],
         name="name_example",
+        permitted_peer="permitted_peer_example",
         port=1,
         program_name_list=[
             "program_name_list_example",
@@ -88,7 +92,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -104,16 +108,81 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_supported_syslog_auth_modes**
+> [str] get_supported_syslog_auth_modes()
+
+Get supported program names.
+
+**Privileges:** ```CLUSTER_VIEW``` <br><br>Get supported authentation modes.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+
+# example, this endpoint has no required or optional parameters
+try:
+	# Get supported program names.
+	api_response = client.syslog.get_supported_syslog_auth_modes()
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling SyslogApi->get_supported_syslog_auth_modes: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**[str]**
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Supported authentication modes for syslog server configuration. |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_supported_syslog_program_names**
 > [str] get_supported_syslog_program_names()
 
 Get supported program names.
 
-Get supported program names to configure for a syslog server.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>Get supported program names to configure for a syslog server.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -149,7 +218,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -170,11 +239,13 @@ This endpoint does not need any parameter.
 
 Get cluster audit tags.
 
-Get cluster audit tags.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>Get cluster audit tags.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -211,7 +282,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -232,11 +303,13 @@ This endpoint does not need any parameter.
 
 Get a syslog server by id.
 
-Get a syslog server by id.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>Get a syslog server by id.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -277,7 +350,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -298,11 +371,13 @@ Name | Type | Description  | Notes
 
 Get a syslog server reachability status.
 
-Check syslog server reachability by given Id.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>Check syslog server reachability by given Id.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.syslog_server_status import SyslogServerStatus
@@ -343,7 +418,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -364,11 +439,13 @@ Name | Type | Description  | Notes
 
 Get list of syslog servers.
 
-Get list of syslog servers.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>Get list of syslog servers.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -405,7 +482,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -426,11 +503,13 @@ This endpoint does not need any parameter.
 
 Patch a syslog server by id.
 
-Patch syslog server by id.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Patch syslog server by id.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -461,6 +540,7 @@ body = SyslogServer(
             "msg_pattern_list_example",
         ],
         name="name_example",
+        permitted_peer="permitted_peer_example",
         port=1,
         program_name_list=[
             "program_name_list_example",
@@ -504,7 +584,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -525,11 +605,13 @@ Name | Type | Description  | Notes
 
 Remove syslog server by id
 
-Delete syslog server by id.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete syslog server by id.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -568,7 +650,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -589,11 +671,13 @@ void (empty response body)
 
 Remove syslog servers
 
-Delete all syslog servers.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete all syslog servers.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -628,7 +712,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -649,11 +733,13 @@ void (empty response body)
 
 Update cluster audit tags.
 
-Update cluster audit tags.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Update cluster audit tags.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -700,7 +786,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -721,11 +807,13 @@ Name | Type | Description  | Notes
 
 Update a syslog server by id.
 
-Update syslog server by id.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Update syslog server by id.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -756,6 +844,7 @@ body = SyslogServer(
             "msg_pattern_list_example",
         ],
         name="name_example",
+        permitted_peer="permitted_peer_example",
         port=1,
         program_name_list=[
             "program_name_list_example",
@@ -799,7 +888,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 

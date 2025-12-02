@@ -28,17 +28,23 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.aag_info import AAGInfo
+    from cohesity_sdk.cluster.model.archival_target_summary_info import ArchivalTargetSummaryInfo
     from cohesity_sdk.cluster.model.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
+    from cohesity_sdk.cluster.model.common_recover_sql_app_target_params import CommonRecoverSqlAppTargetParams
     from cohesity_sdk.cluster.model.host_information import HostInformation
     from cohesity_sdk.cluster.model.mssql_object_entity_params import MssqlObjectEntityParams
+    from cohesity_sdk.cluster.model.object_summary import ObjectSummary
     from cohesity_sdk.cluster.model.recover_sql_app_params_all_of import RecoverSqlAppParamsAllOf
-    from cohesity_sdk.cluster.model.sql_target_params_for_recover_sql_app import SqlTargetParamsForRecoverSqlApp
+    from cohesity_sdk.cluster.model.replication_target_summary_info import ReplicationTargetSummaryInfo
     globals()['AAGInfo'] = AAGInfo
+    globals()['ArchivalTargetSummaryInfo'] = ArchivalTargetSummaryInfo
     globals()['CommonRecoverObjectSnapshotParams'] = CommonRecoverObjectSnapshotParams
+    globals()['CommonRecoverSqlAppTargetParams'] = CommonRecoverSqlAppTargetParams
     globals()['HostInformation'] = HostInformation
     globals()['MssqlObjectEntityParams'] = MssqlObjectEntityParams
+    globals()['ObjectSummary'] = ObjectSummary
     globals()['RecoverSqlAppParamsAllOf'] = RecoverSqlAppParamsAllOf
-    globals()['SqlTargetParamsForRecoverSqlApp'] = SqlTargetParamsForRecoverSqlApp
+    globals()['ReplicationTargetSummaryInfo'] = ReplicationTargetSummaryInfo
 
 
 class RecoverSqlAppParams(ModelComposed):
@@ -117,16 +123,17 @@ class RecoverSqlAppParams(ModelComposed):
         return {
             'snapshot_id': (str,),  # noqa: E501
             'target_environment': (str,),  # noqa: E501
-            'archival_target_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'archival_target_info': (ArchivalTargetSummaryInfo,),  # noqa: E501
             'bytes_restored': (int, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
             'messages': ([str], none_type,),  # noqa: E501
-            'object_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'object_info': (ObjectSummary,),  # noqa: E501
             'point_in_time_usecs': (int, none_type,),  # noqa: E501
             'progress_task_id': (str, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'protection_group_name': (str, none_type,),  # noqa: E501
             'recover_from_standby': (bool, none_type,),  # noqa: E501
+            'replication_target_info': (ReplicationTargetSummaryInfo,),  # noqa: E501
             'snapshot_creation_time_usecs': (int, none_type,),  # noqa: E501
             'snapshot_target_type': (str, none_type,),  # noqa: E501
             'start_time_usecs': (int, none_type,),  # noqa: E501
@@ -135,7 +142,7 @@ class RecoverSqlAppParams(ModelComposed):
             'aag_info': (AAGInfo,),  # noqa: E501
             'host_info': (HostInformation,),  # noqa: E501
             'is_encrypted': (bool, none_type,),  # noqa: E501
-            'sql_target_params': (SqlTargetParamsForRecoverSqlApp,),  # noqa: E501
+            'sql_target_params': (CommonRecoverSqlAppTargetParams,),  # noqa: E501
         }
 
     @cached_property
@@ -157,6 +164,7 @@ class RecoverSqlAppParams(ModelComposed):
         'protection_group_id': 'protectionGroupId',  # noqa: E501
         'protection_group_name': 'protectionGroupName',  # noqa: E501
         'recover_from_standby': 'recoverFromStandby',  # noqa: E501
+        'replication_target_info': 'replicationTargetInfo',  # noqa: E501
         'snapshot_creation_time_usecs': 'snapshotCreationTimeUsecs',  # noqa: E501
         'snapshot_target_type': 'snapshotTargetType',  # noqa: E501
         'start_time_usecs': 'startTimeUsecs',  # noqa: E501
@@ -220,16 +228,17 @@ class RecoverSqlAppParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            archival_target_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the archival target information if the snapshot is an archival snapshot.. [optional]  # noqa: E501
+            archival_target_info (ArchivalTargetSummaryInfo): [optional]  # noqa: E501
             bytes_restored (int, none_type): Specify the total bytes restored.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time of the Recovery in Unix timestamp epoch in microseconds. This field will be populated only after Recovery is finished.. [optional]  # noqa: E501
             messages ([str], none_type): Specify error messages about the object.. [optional]  # noqa: E501
-            object_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the information about the object for which the snapshot is taken.. [optional]  # noqa: E501
+            object_info (ObjectSummary): [optional]  # noqa: E501
             point_in_time_usecs (int, none_type): Specifies the timestamp (in microseconds. from epoch) for recovering to a point-in-time in the past.. [optional]  # noqa: E501
             progress_task_id (str, none_type): Progress monitor task id for Recovery of VM.. [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies the protection group id of the object snapshot.. [optional]  # noqa: E501
             protection_group_name (str, none_type): Specifies the protection group name of the object snapshot.. [optional]  # noqa: E501
             recover_from_standby (bool, none_type): Specifies that user wants to perform standby restore if it is enabled for this object.. [optional]  # noqa: E501
+            replication_target_info (ReplicationTargetSummaryInfo): [optional]  # noqa: E501
             snapshot_creation_time_usecs (int, none_type): Specifies the time when the snapshot is created in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
             snapshot_target_type (str, none_type): Specifies the snapshot target type.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of the Recovery in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
@@ -238,7 +247,7 @@ class RecoverSqlAppParams(ModelComposed):
             aag_info (AAGInfo): [optional]  # noqa: E501
             host_info (HostInformation): [optional]  # noqa: E501
             is_encrypted (bool, none_type): Specifies whether the database is TDE enabled.. [optional]  # noqa: E501
-            sql_target_params (SqlTargetParamsForRecoverSqlApp): [optional]  # noqa: E501
+            sql_target_params (CommonRecoverSqlAppTargetParams): [optional]  # noqa: E501
         """
 
         target_environment = kwargs.get('target_environment', "kSQL")

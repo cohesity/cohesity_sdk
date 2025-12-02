@@ -21,6 +21,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from cohesity_sdk.cluster.model.common_identity_provider_configuration import CommonIdentityProviderConfiguration
 from cohesity_sdk.cluster.model.create_idp_request_params import CreateIdpRequestParams
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.identity_action import IdentityAction
@@ -28,7 +29,6 @@ from cohesity_sdk.cluster.model.identity_config import IdentityConfig
 from cohesity_sdk.cluster.model.identity_configs import IdentityConfigs
 from cohesity_sdk.cluster.model.identity_provider_configuration import IdentityProviderConfiguration
 from cohesity_sdk.cluster.model.identity_provider_configurations import IdentityProviderConfigurations
-from cohesity_sdk.cluster.model.update_idp_request_params import UpdateIdpRequestParams
 
 
 class IdentityProviderApi(object):
@@ -50,7 +50,7 @@ class IdentityProviderApi(object):
         ):
             """Configure Identity Provider  # noqa: E501
 
-            Configure Identity Provider on the cluster. Currently this API is only for Open ID providers, but will be expanded to include SAML providers in the future.  # noqa: E501
+            **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Configure Identity Provider on the cluster. Currently this API is only for Open ID providers, but will be expanded to include SAML providers in the future.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -115,7 +115,9 @@ class IdentityProviderApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/identity-providers',
                 'operation_id': 'create_identity',
@@ -172,7 +174,7 @@ class IdentityProviderApi(object):
         ):
             """Configure identity provider  # noqa: E501
 
-            Configure SAML based identity provider on the cluster  # noqa: E501
+            **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Configure SAML based identity provider on the cluster  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -237,7 +239,9 @@ class IdentityProviderApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/idps',
                 'operation_id': 'create_identity_provider',
@@ -294,7 +298,7 @@ class IdentityProviderApi(object):
         ):
             """Delete Identity Provider  # noqa: E501
 
-            Delete identity provider configuration on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.  # noqa: E501
+            **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete identity provider configuration on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -359,7 +363,9 @@ class IdentityProviderApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/identity-providers/{id}',
                 'operation_id': 'delete_identity',
@@ -415,7 +421,7 @@ class IdentityProviderApi(object):
         ):
             """Delete identity provider  # noqa: E501
 
-            Delete SAML based identity provider configuration on the cluster  # noqa: E501
+            **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete SAML based identity provider configuration on the cluster  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -480,7 +486,9 @@ class IdentityProviderApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/idps/{id}',
                 'operation_id': 'delete_identity_provider',
@@ -535,7 +543,7 @@ class IdentityProviderApi(object):
         ):
             """Get Identities  # noqa: E501
 
-            Get Identity Providers configured on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.  # noqa: E501
+            **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Identity Providers configured on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -600,7 +608,9 @@ class IdentityProviderApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/identity-providers',
                 'operation_id': 'get_identities',
@@ -671,7 +681,7 @@ class IdentityProviderApi(object):
         ):
             """Get identity providers  # noqa: E501
 
-            Get SAML based identity providers configured on the cluster  # noqa: E501
+            **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get SAML based identity providers configured on the cluster  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -737,7 +747,9 @@ class IdentityProviderApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/idps',
                 'operation_id': 'get_identity_providers',
@@ -814,7 +826,7 @@ class IdentityProviderApi(object):
         ):
             """Login to cluster using idp  # noqa: E501
 
-            Redirects the client to the idp site with the URI to login  # noqa: E501
+            ```No Privileges Required``` <br><br>Redirects the client to the idp site with the URI to login  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -876,7 +888,9 @@ class IdentityProviderApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/idps/login',
                 'operation_id': 'idps_login',
@@ -930,7 +944,7 @@ class IdentityProviderApi(object):
         ):
             """Perform Identity Action  # noqa: E501
 
-            Perform an action on an Identity Provider. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.  # noqa: E501
+            **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Perform an action on an Identity Provider. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -995,7 +1009,9 @@ class IdentityProviderApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/identity-providers/actions',
                 'operation_id': 'perform_identity_action',
@@ -1053,7 +1069,7 @@ class IdentityProviderApi(object):
         ):
             """Update Identity Provider  # noqa: E501
 
-            Update Identity Provider on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.  # noqa: E501
+            **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Update Identity Provider on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1121,7 +1137,9 @@ class IdentityProviderApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/identity-providers/{id}',
                 'operation_id': 'update_identity',
@@ -1185,7 +1203,7 @@ class IdentityProviderApi(object):
         ):
             """Update identity provider  # noqa: E501
 
-            Update SAML based identity provider configurartion on the cluster  # noqa: E501
+            **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Update SAML based identity provider configurartion on the cluster  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1194,7 +1212,7 @@ class IdentityProviderApi(object):
 
             Args:
                 id (int): Specifies id of idp configuration
-                body (UpdateIdpRequestParams): Specifies parameters to update identity provider configuration
+                body (CommonIdentityProviderConfiguration): Specifies parameters to update identity provider configuration
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -1253,7 +1271,9 @@ class IdentityProviderApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/idps/{id}',
                 'operation_id': 'update_identity_provider',
@@ -1285,7 +1305,7 @@ class IdentityProviderApi(object):
                     'id':
                         (int,),
                     'body':
-                        (UpdateIdpRequestParams,),
+                        (CommonIdentityProviderConfiguration,),
                 },
                 'attribute_map': {
                     'id': 'id',

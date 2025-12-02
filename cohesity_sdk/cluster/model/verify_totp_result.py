@@ -75,6 +75,7 @@ class VerifyTotpResult(ModelNormal):
         """
         return {
             'message': (str, none_type,),  # noqa: E501
+            'reference_id': (str, none_type,),  # noqa: E501
             'success': (bool,),  # noqa: E501
         }
 
@@ -86,6 +87,7 @@ class VerifyTotpResult(ModelNormal):
 
     attribute_map = {
         'message': 'message',  # noqa: E501
+        'reference_id': 'referenceId',  # noqa: E501
         'success': 'success',  # noqa: E501
     }
 
@@ -137,6 +139,7 @@ class VerifyTotpResult(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             message (str, none_type): Specifies message of otp verification result.. [optional]  # noqa: E501
+            reference_id (str, none_type): Specifies the reference id of the otp verification request. Generated when TOTP is verified for disabling MFA.. [optional]  # noqa: E501
             success (bool): Specifies whether or not verification of totp code is success.. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 

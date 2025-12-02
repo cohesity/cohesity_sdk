@@ -72,6 +72,7 @@ class ArchivalTargetResult(ModelComposed):
             'None': None,
             'LOCAL': "Local",
             'FORTKNOX': "FortKnox",
+            'FORTKNOXONPREM': "FortKnoxOnprem",
         },
         ('target_type',): {
             'None': None,
@@ -84,6 +85,7 @@ class ArchivalTargetResult(ModelComposed):
             'ARCHIVAL': "Archival",
             'TIERING': "Tiering",
             'RPAAS': "Rpaas",
+            'LOGBACKUP': "Logbackup",
         },
         ('run_type',): {
             'None': None,
@@ -156,6 +158,7 @@ class ArchivalTargetResult(ModelComposed):
             'progress_task_id': (str, none_type,),  # noqa: E501
             'queued_time_usecs': (int, none_type,),  # noqa: E501
             'run_type': (str, none_type,),  # noqa: E501
+            'skipped_app_objects_count': (int, none_type,),  # noqa: E501
             'snapshot_id': (str, none_type,),  # noqa: E501
             'start_time_usecs': (int, none_type,),  # noqa: E501
             'stats': (ArchivalDataStats,),  # noqa: E501
@@ -198,6 +201,7 @@ class ArchivalTargetResult(ModelComposed):
         'progress_task_id': 'progressTaskId',  # noqa: E501
         'queued_time_usecs': 'queuedTimeUsecs',  # noqa: E501
         'run_type': 'runType',  # noqa: E501
+        'skipped_app_objects_count': 'skippedAppObjectsCount',  # noqa: E501
         'snapshot_id': 'snapshotId',  # noqa: E501
         'start_time_usecs': 'startTimeUsecs',  # noqa: E501
         'stats': 'stats',  # noqa: E501
@@ -281,6 +285,7 @@ class ArchivalTargetResult(ModelComposed):
             progress_task_id (str, none_type): Progress monitor task id for archival.. [optional]  # noqa: E501
             queued_time_usecs (int, none_type): Specifies the time when the archival is queued for schedule in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
             run_type (str, none_type): Type of Protection Group run. 'kRegular' indicates an incremental (CBT) backup. Incremental backups utilizing CBT (if supported) are captured of the target protection objects. The first run of a kRegular schedule captures all the blocks. 'kFull' indicates a full (no CBT) backup. A complete backup (all blocks) of the target protection objects are always captured and Change Block Tracking (CBT) is not utilized. 'kLog' indicates a Database Log backup. Capture the database transaction logs to allow rolling back to a specific point in time. 'kSystem' indicates system volume backup. It produces an image for bare metal recovery.. [optional]  # noqa: E501
+            skipped_app_objects_count (int, none_type): Specifies the count of app objects for which backup was skipped.. [optional]  # noqa: E501
             snapshot_id (str, none_type): Snapshot id for a successful snapshot. This field will not be set if the archival Run fails to take the snapshot.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of replication run in Unix epoch Timestamp(in microseconds) for an archival target.. [optional]  # noqa: E501
             stats (ArchivalDataStats): [optional]  # noqa: E501

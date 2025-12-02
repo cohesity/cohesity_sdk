@@ -82,6 +82,7 @@ class CreatedUserAPIKey(ModelComposed):
         lazy_import()
         return {
             'created_by_user_sid': (str, none_type,),  # noqa: E501
+            'created_by_username': (str, none_type,),  # noqa: E501
             'created_time_msecs': (int, none_type,),  # noqa: E501
             'expiry_time_msecs': (int, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
@@ -89,6 +90,7 @@ class CreatedUserAPIKey(ModelComposed):
             'is_expired': (bool, none_type,),  # noqa: E501
             'last_rotated_time_msecs': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
+            'owner_username': (str, none_type,),  # noqa: E501
             'user_sid': (str, none_type,),  # noqa: E501
             'api_key': (str, none_type,),  # noqa: E501
         }
@@ -101,6 +103,7 @@ class CreatedUserAPIKey(ModelComposed):
 
     attribute_map = {
         'created_by_user_sid': 'createdByUserSid',  # noqa: E501
+        'created_by_username': 'createdByUsername',  # noqa: E501
         'created_time_msecs': 'createdTimeMsecs',  # noqa: E501
         'expiry_time_msecs': 'expiryTimeMsecs',  # noqa: E501
         'id': 'id',  # noqa: E501
@@ -108,6 +111,7 @@ class CreatedUserAPIKey(ModelComposed):
         'is_expired': 'isExpired',  # noqa: E501
         'last_rotated_time_msecs': 'lastRotatedTimeMsecs',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'owner_username': 'ownerUsername',  # noqa: E501
         'user_sid': 'userSid',  # noqa: E501
         'api_key': 'apiKey',  # noqa: E501
     }
@@ -161,6 +165,7 @@ class CreatedUserAPIKey(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             created_by_user_sid (str, none_type): Specifies the user SID who created the API key.. [optional]  # noqa: E501
+            created_by_username (str, none_type): Specifies the username of the user who created the API key.. [optional]  # noqa: E501
             created_time_msecs (int, none_type): Specifies the time in milliseconds when the API key was created.. [optional]  # noqa: E501
             expiry_time_msecs (int, none_type): Specifies the time in milliseconds when the API key will expire. null signifies no-expiry.. [optional]  # noqa: E501
             id (str, none_type): Specifies the unique id of the API key.. [optional]  # noqa: E501
@@ -168,6 +173,7 @@ class CreatedUserAPIKey(ModelComposed):
             is_expired (bool, none_type): Specifies if the API key has expired.. [optional]  # noqa: E501
             last_rotated_time_msecs (int, none_type): Specifies the time in milliseconds when the API key was last rotated.. [optional]  # noqa: E501
             name (str, none_type): Specifies the API key name.. [optional]  # noqa: E501
+            owner_username (str, none_type): Specifies the username of the user who owns the API key.. [optional]  # noqa: E501
             user_sid (str, none_type): Specifies the user who owns the API key.. [optional]  # noqa: E501
             api_key (str, none_type): Specifies the API key.. [optional]  # noqa: E501
         """

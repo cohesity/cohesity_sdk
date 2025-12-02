@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **backup_object_level_acls** | **bool, none_type** | Specifies whether to backup object level acls. Default value is false. | [optional] 
 **baseline_incremental_frequency** | **str, none_type** | Specifies the baseline incremental frequency. | [optional] 
+**exclude_object_ids** | **[int], none_type** | Specifies the objects to be excluded in the Protection Group. | [optional] 
 **inventory_report_destination** | **str, none_type** | ARN of the inventory report destination bucket for S3 backups. | [optional] 
 **inventory_report_destination_prefix** | **str, none_type** | The prefix in the S3 destination bucket where inventory reports will be stored. | [optional] 
 **inventory_report_frequency** | **str, none_type** | Specifies the frequency to generate inventory reports. | [optional] 

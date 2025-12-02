@@ -27,10 +27,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.common_post_backup_script_params import CommonPostBackupScriptParams
     from cohesity_sdk.cluster.model.common_pre_backup_script_params import CommonPreBackupScriptParams
-    globals()['CommonPostBackupScriptParams'] = CommonPostBackupScriptParams
+    from cohesity_sdk.cluster.model.common_pre_post_script_params import CommonPrePostScriptParams
     globals()['CommonPreBackupScriptParams'] = CommonPreBackupScriptParams
+    globals()['CommonPrePostScriptParams'] = CommonPrePostScriptParams
 
 
 class PrePostScriptParams(ModelNormal):
@@ -81,7 +81,7 @@ class PrePostScriptParams(ModelNormal):
         """
         lazy_import()
         return {
-            'post_script': (CommonPostBackupScriptParams,),  # noqa: E501
+            'post_script': (CommonPrePostScriptParams,),  # noqa: E501
             'pre_script': (CommonPreBackupScriptParams,),  # noqa: E501
         }
 
@@ -143,7 +143,7 @@ class PrePostScriptParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            post_script (CommonPostBackupScriptParams): [optional]  # noqa: E501
+            post_script (CommonPrePostScriptParams): [optional]  # noqa: E501
             pre_script (CommonPreBackupScriptParams): [optional]  # noqa: E501
         """
 

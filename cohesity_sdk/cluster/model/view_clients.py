@@ -28,7 +28,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.view_client import ViewClient
+    from cohesity_sdk.cluster.model.view_clients_clients_summary import ViewClientsClientsSummary
     globals()['ViewClient'] = ViewClient
+    globals()['ViewClientsClientsSummary'] = ViewClientsClientsSummary
 
 
 class ViewClients(ModelNormal):
@@ -80,6 +82,7 @@ class ViewClients(ModelNormal):
         lazy_import()
         return {
             'clients': ([ViewClient], none_type,),  # noqa: E501
+            'clients_summary': (ViewClientsClientsSummary,),  # noqa: E501
         }
 
     @cached_property
@@ -90,6 +93,7 @@ class ViewClients(ModelNormal):
 
     attribute_map = {
         'clients': 'clients',  # noqa: E501
+        'clients_summary': 'clientsSummary',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -140,6 +144,7 @@ class ViewClients(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             clients ([ViewClient], none_type): Specifies the list of Clients.. [optional]  # noqa: E501
+            clients_summary (ViewClientsClientsSummary): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

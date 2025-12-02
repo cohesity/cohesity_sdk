@@ -6,7 +6,8 @@ Specifies a snapshot containing the indexed object.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **attempts** | **int, none_type** | Specifies the number of runs have been executed before the run completed successfully. | [optional] 
-**external_target_info** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the external target information if this is an archival snapshot. | [optional] 
+**external_target_info** | [**ArchivalTargetSummaryInfo**](ArchivalTargetSummaryInfo.md) |  | [optional] 
+**indexed_object_hash** | **str, none_type** | Specifies the hash of the indexed object. This is currently only applicable for snapshots of the file. | [optional] 
 **indexed_object_name** | **str, none_type** | Specifies the indexed object name. | [optional] 
 **indexed_object_source_uuid** | **str, none_type** | Specifies the unique identifier from the source of the item associated with this particular snapshot. It can get changed between the snapshots and therefore will be required for recovery. | [optional] 
 **inode_id** | **int, none_type** | Specifies the source inode number of the file being recovered. | [optional] [readonly] 
@@ -18,6 +19,7 @@ Name | Type | Description | Notes
 **size_bytes** | **int, none_type** | Specifies the indexed object size in bytes. | [optional] 
 **snapshot_timestamp_usecs** | **int, none_type** | Specifies a unix timestamp when the object snapshot was taken in micro seconds. | [optional] 
 **storage_domain_id** | **int, none_type** | Specifies the storage domain id containing this snapshot. | [optional] 
+**uda_params** | [**UdaSnapshotMetadata**](UdaSnapshotMetadata.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

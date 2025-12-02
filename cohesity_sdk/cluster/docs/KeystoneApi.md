@@ -15,16 +15,17 @@ Method | HTTP request | Description
 
 Create a Keystone configuration.
 
-Create a Keystone configuration.
+**Privileges:** ```KEYSTONE_MODIFY``` <br><br>Create a Keystone configuration.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.keystone import Keystone
-from cohesity_sdk.cluster.model.create_keystone_request import CreateKeystoneRequest
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -37,7 +38,7 @@ client = ClusterClient(
 )
 
 
-body = CreateKeystoneRequest() # CreateKeystoneRequest | Specifies the paremters to create a Keystone configuration.
+body = Keystone() # Keystone | Specifies the paremters to create a Keystone configuration.
 
 # example passing only required values which don't have defaults set
 try:
@@ -53,7 +54,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateKeystoneRequest**](CreateKeystoneRequest.md)| Specifies the paremters to create a Keystone configuration. |
+ **body** | [**Keystone**](Keystone.md)| Specifies the paremters to create a Keystone configuration. |
 
 ### Return type
 
@@ -61,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -82,11 +83,13 @@ Name | Type | Description  | Notes
 
 Delete a Keystone configuration.
 
-Delete a Keystone configuration.
+**Privileges:** ```KEYSTONE_MODIFY``` <br><br>Delete a Keystone configuration.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -127,7 +130,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -148,11 +151,13 @@ void (empty response body)
 
 Get Keystones.
 
-Get Keystones.
+**Privileges:** ```KEYSTONE_VIEW``` <br><br>Get Keystones.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -202,7 +207,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -223,11 +228,13 @@ Name | Type | Description  | Notes
 
 Get a Keystone by its id.
 
-Get a Keystone by its id.
+**Privileges:** ```KEYSTONE_VIEW``` <br><br>Get a Keystone by its id.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -268,7 +275,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -289,16 +296,17 @@ Name | Type | Description  | Notes
 
 Update a Keystone configuration.
 
-Update a Keystone configuration.
+**Privileges:** ```KEYSTONE_MODIFY``` <br><br>Update a Keystone configuration.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.keystone import Keystone
-from cohesity_sdk.cluster.model.update_keystone_request import UpdateKeystoneRequest
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -312,7 +320,7 @@ client = ClusterClient(
 
 
 id = 1 # int | Specifies the Keystone id.
-body = UpdateKeystoneRequest() # UpdateKeystoneRequest | Specifies the paremters to update a Keystone configuration.
+body = Keystone() # Keystone | Specifies the paremters to update a Keystone configuration.
 
 # example passing only required values which don't have defaults set
 try:
@@ -329,7 +337,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the Keystone id. |
- **body** | [**UpdateKeystoneRequest**](UpdateKeystoneRequest.md)| Specifies the paremters to update a Keystone configuration. |
+ **body** | [**Keystone**](Keystone.md)| Specifies the paremters to update a Keystone configuration. |
 
 ### Return type
 
@@ -337,7 +345,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 

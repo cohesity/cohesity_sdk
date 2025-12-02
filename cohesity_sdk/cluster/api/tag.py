@@ -45,7 +45,7 @@ class TagApi(object):
         ):
             """Create a Tag  # noqa: E501
 
-            Creates a Tag.  # noqa: E501
+            **Privileges:** ```TAGS_MODIFY``` <br><br>Creates a Tag.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -110,7 +110,9 @@ class TagApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/tags',
                 'operation_id': 'create_tag',
@@ -167,7 +169,7 @@ class TagApi(object):
         ):
             """Delete a Tag  # noqa: E501
 
-            Deletes a Tag by id.  # noqa: E501
+            **Privileges:** ```TAGS_MODIFY``` <br><br>Deletes a Tag by id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -232,7 +234,9 @@ class TagApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/tags/{id}',
                 'operation_id': 'delete_tag',
@@ -295,7 +299,7 @@ class TagApi(object):
         ):
             """Get Tag by id.  # noqa: E501
 
-            Get Tag by id.  # noqa: E501
+            **Privileges:** ```TAGS_VIEW``` <br><br>Get Tag by id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -360,7 +364,9 @@ class TagApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/tags/{id}',
                 'operation_id': 'get_tag_by_id',
@@ -422,7 +428,7 @@ class TagApi(object):
         ):
             """Get tags based on filters.  # noqa: E501
 
-            If no parameters are specified, all tags are returned. Specifying parameters filters the results that are returned.  # noqa: E501
+            **Privileges:** ```TAGS_VIEW``` <br><br>If no parameters are specified, all tags are returned. Specifying parameters filters the results that are returned.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -489,7 +495,9 @@ class TagApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/tags',
                 'operation_id': 'get_tags',
@@ -573,7 +581,7 @@ class TagApi(object):
         ):
             """Update a Tag  # noqa: E501
 
-            Updates a Tag by id.  # noqa: E501
+            **Privileges:** ```TAGS_MODIFY``` <br><br>Updates a Tag by id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -641,7 +649,9 @@ class TagApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/tags/{id}',
                 'operation_id': 'update_tag',

@@ -59,6 +59,18 @@ class AzureCommonObjectProtectionParams(ModelNormal):
             'KNATIVE': "kNative",
             'KSNAPSHOTMANAGER': "kSnapshotManager",
             'KAZURESQL': "kAzureSQL",
+            'KAZUREENTRAID': "kAzureEntraID",
+            'KAZUREMYSQL': "kAzureMySQL",
+            'KAZURECOSMOSDBNOSQL': "kAzureCosmosDBNoSQL",
+            'KAZURECOSMOSDBMONGODB': "kAzureCosmosDBMongoDB",
+            'KAZURECOSMOSDBCASSANDRA': "kAzureCosmosDBCassandra",
+            'KAZUREBLOBSTORAGE': "kAzureBlobStorage",
+            'KAZUREPOSTGRESQLSERVER': "kAzurePostgreSQLServer",
+            'KAZURESQLDB': "kAzureSQLDB",
+            'KAZURESQLMI': "kAzureSQLMI",
+            'KAZURETABLESTORAGE': "kAzureTableStorage",
+            'KAZURETABLEAPI': "kAzureTableAPI",
+            'KKUBERNETES': "kKubernetes",
         },
     }
 

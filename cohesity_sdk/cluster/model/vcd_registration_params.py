@@ -92,6 +92,7 @@ class VcdRegistrationParams(ModelComposed):
             'endpoint': (str,),  # noqa: E501
             'vcenter_credential_info_list': ([VcenterCredentialInfo], none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
+            'link_vms_across_vcenter': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -106,6 +107,7 @@ class VcdRegistrationParams(ModelComposed):
         'endpoint': 'endpoint',  # noqa: E501
         'vcenter_credential_info_list': 'vcenterCredentialInfoList',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'link_vms_across_vcenter': 'linkVmsAcrossVcenter',  # noqa: E501
     }
 
     required_properties = set([
@@ -163,6 +165,7 @@ class VcdRegistrationParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             description (str, none_type): Specifies the description of the source being registered.. [optional]  # noqa: E501
+            link_vms_across_vcenter (bool, none_type): Specifies if the VM linking feature is enabled for the VCD. If enabled, migrated VMs present in the VCD which earlier belonged to some other VCD/Vcenter will be linked during EH refresh.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

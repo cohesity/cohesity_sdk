@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **dns_servers_info** | [**DnsServersInfo**](DnsServersInfo.md) |  | [optional] 
 **id** | **int, none_type** | Id of the node group. | [optional] 
 **node_ids** | **[int], none_type** | List of Node Ids that are part of this node group. | [optional] 
+**node_ips** | **[str], none_type** | Node ips for node group | [optional] 
 **subnet_info** | [**SubnetInfo**](SubnetInfo.md) |  | [optional] 
 **type** | **int, none_type** | Type of the node group. | [optional] 
 

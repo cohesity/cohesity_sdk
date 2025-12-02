@@ -23,11 +23,13 @@ Method | HTTP request | Description
 
 Update assginment of properties for a tenant.
 
-Assign/Unassign properties like storage domain, entities, policies etc. to the tenant. The API expects a list of all the assignments (policies etc.) that are supposed to be associated to the Tenant. The list of assignments passed get assigned to the Tenant and anything else that was already assigned gets unassigned. In case a few objects fail the assignment and some objects get assigned, error is returned for all assignments except for policies.
+```Unknown Privileges``` <br><br>Assign/Unassign properties like storage domain, entities, policies etc. to the tenant. The API expects a list of all the assignments (policies etc.) that are supposed to be associated to the Tenant. The list of assignments passed get assigned to the Tenant and anything else that was already assigned gets unassigned. In case a few objects fail the assignment and some objects get assigned, error is returned for all assignments except for policies.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.tenant_assignments import TenantAssignments
@@ -87,7 +89,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -108,9 +110,13 @@ Name | Type | Description  | Notes
 
 Create a new Tenant.
 
+**Privileges:** ```ORGANIZATION_MODIFY``` <br><br>
+
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.tenant_info import TenantInfo
@@ -152,7 +158,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -173,9 +179,13 @@ Name | Type | Description  | Notes
 
 Delete Tenant with given ID.
 
+```Unknown Privileges``` <br><br>
+
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -214,7 +224,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -235,11 +245,13 @@ void (empty response body)
 
 Get tenant assignments.
 
-Get all assigned properties like storage domain, entities, policies, objects, views etc for a given tenant.
+```Unknown Privileges``` <br><br>Get all assigned properties like storage domain, entities, policies, objects, views etc for a given tenant.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.tenant_assignment_properties import TenantAssignmentProperties
@@ -280,7 +292,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -301,11 +313,13 @@ Name | Type | Description  | Notes
 
 Get Tenants Config.
 
-Get Tenant related configurations for the cluster.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>Get Tenant related configurations for the cluster.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.on_prem_tenant_config import OnPremTenantConfig
@@ -342,7 +356,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -363,11 +377,13 @@ This endpoint does not need any parameter.
 
 Get a Swift configuration.
 
-Get a Swift configuration.
+**Privileges:** ```KEYSTONE_VIEW``` <br><br>Get a Swift configuration.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.swift_params import SwiftParams
@@ -409,7 +425,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -430,9 +446,13 @@ Name | Type | Description  | Notes
 
 Get a list of Tenants.
 
+**Privileges:** ```ORGANIZATION_VIEW``` <br><br>
+
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -455,12 +475,18 @@ ids = [
 statuses = [
         "Active",
     ] # [str, none_type] | Filter by current status of tenant. If left blank, only active and inactive tenants are returned. (optional)
+liveness_modes = [
+        "Active",
+    ] # [str, none_type] | Filter by liveness modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored. (optional)
+ownership_modes = [
+        "Primary",
+    ] # [str, none_type] | Filter by ownership modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get a list of Tenants.
-	api_response = client.tenant.list_tenants(ids=ids, statuses=statuses)
+	api_response = client.tenant.list_tenants(ids=ids, statuses=statuses, liveness_modes=liveness_modes, ownership_modes=ownership_modes)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TenantApi->list_tenants: %s\n" % e)
@@ -473,6 +499,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ids** | [**[str, none_type]**](str, none_type.md)| List of tenantIds to filter. | [optional]
  **statuses** | [**[str, none_type]**](str, none_type.md)| Filter by current status of tenant. If left blank, only active and inactive tenants are returned. | [optional]
+ **liveness_modes** | [**[str, none_type]**](str, none_type.md)| Filter by liveness modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as &#39;IBM&#39;. In all other cases, the values provided for this filter will be ignored. | [optional]
+ **ownership_modes** | [**[str, none_type]**](str, none_type.md)| Filter by ownership modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as &#39;IBM&#39;. In all other cases, the values provided for this filter will be ignored. | [optional]
 
 ### Return type
 
@@ -480,7 +508,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -501,11 +529,13 @@ Name | Type | Description  | Notes
 
 Perform actions on a Tenant.
 
-Perform actions like activate and deactivate on a given Tenant.
+```Unknown Privileges``` <br><br>Perform actions like activate and deactivate on a given Tenant.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.tenant_info import TenantInfo
@@ -551,7 +581,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -572,11 +602,13 @@ Name | Type | Description  | Notes
 
 Register Swift service on a Keystone server.
 
-Register Swift service on Keystone server.
+**Privileges:** ```KEYSTONE_MODIFY``` <br><br>Register Swift service on Keystone server.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.register_swift_params import RegisterSwiftParams
@@ -595,8 +627,21 @@ client = ClusterClient(
 
 body = RegisterSwiftParams(
         keystone_credentials=KeystoneCredentials(
-            admin_creds={},
-            scope={},
+            admin_creds=KeystoneAdminParams(
+                domain="domain_example",
+                password="password_example",
+                username="username_example",
+            ),
+            scope=KeystoneScopeParams(
+                domain_scope_params=DomainScopeParams(
+                    domain_name="domain_name_example",
+                ),
+                project_scope_params=ProjectScopeParams(
+                    domain_name="domain_name_example",
+                    project_name="project_name_example",
+                ),
+                type="Project",
+            ),
         ),
         tenant_id="tenant_id_example",
     ) # RegisterSwiftParams | Specifies the parameters to register a Swift service on Keystone server.
@@ -622,7 +667,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -643,11 +688,13 @@ void (empty response body)
 
 Unregister Swift service from a Keystone server.
 
-Unregister Swift service from Keystone server.
+**Privileges:** ```KEYSTONE_MODIFY``` <br><br>Unregister Swift service from Keystone server.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.unregister_swift_params import UnregisterSwiftParams
@@ -666,8 +713,21 @@ client = ClusterClient(
 
 body = UnregisterSwiftParams(
         keystone_credentials=KeystoneCredentials(
-            admin_creds={},
-            scope={},
+            admin_creds=KeystoneAdminParams(
+                domain="domain_example",
+                password="password_example",
+                username="username_example",
+            ),
+            scope=KeystoneScopeParams(
+                domain_scope_params=DomainScopeParams(
+                    domain_name="domain_name_example",
+                ),
+                project_scope_params=ProjectScopeParams(
+                    domain_name="domain_name_example",
+                    project_name="project_name_example",
+                ),
+                type="Project",
+            ),
         ),
         tenant_id="tenant_id_example",
     ) # UnregisterSwiftParams | Specifies the parameters to unregister a Swift service from Keystone server.
@@ -693,7 +753,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -714,11 +774,13 @@ void (empty response body)
 
 Update Tenants Config.
 
-Update Tenant related configurations for the cluster.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Update Tenant related configurations for the cluster.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.on_prem_tenant_config import OnPremTenantConfig
@@ -762,7 +824,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -783,11 +845,13 @@ Name | Type | Description  | Notes
 
 Update Tenant.
 
-Update Tenant's properties.
+```Unknown Privileges``` <br><br>Update Tenant's properties.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.tenant_info import TenantInfo
@@ -831,7 +895,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -852,11 +916,13 @@ Name | Type | Description  | Notes
 
 Update a Swift configuration.
 
-Update a Swift configuration.
+**Privileges:** ```KEYSTONE_MODIFY``` <br><br>Update a Swift configuration.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.swift_params import SwiftParams
@@ -903,7 +969,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 

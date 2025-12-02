@@ -28,7 +28,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.kubernetes_label import KubernetesLabel
+    from cohesity_sdk.cluster.model.resource_info import ResourceInfo
     globals()['KubernetesLabel'] = KubernetesLabel
+    globals()['ResourceInfo'] = ResourceInfo
 
 
 class KubernetesFilterParams(ModelNormal):
@@ -63,6 +65,11 @@ class KubernetesFilterParams(ModelNormal):
             'AND': "AND",
             'OR': "OR",
         },
+        ('label_filter_entity_type',): {
+            'None': None,
+            'KPERSISTENTVOLUMECLAIM': "kPersistentVolumeClaim",
+            'KVIRTUALMACHINE': "kVirtualMachine",
+        },
     }
 
     validations = {
@@ -70,6 +77,9 @@ class KubernetesFilterParams(ModelNormal):
         },
 
         ('objects',): {
+        },
+
+        ('selected_resources',): {
         },
 
     }
@@ -91,8 +101,10 @@ class KubernetesFilterParams(ModelNormal):
         lazy_import()
         return {
             'label_combination_method': (str, none_type,),  # noqa: E501
+            'label_filter_entity_type': (str, none_type,),  # noqa: E501
             'label_vector': ([KubernetesLabel], none_type,),  # noqa: E501
             'objects': ([int], none_type,),  # noqa: E501
+            'selected_resources': ([ResourceInfo], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -103,8 +115,10 @@ class KubernetesFilterParams(ModelNormal):
 
     attribute_map = {
         'label_combination_method': 'labelCombinationMethod',  # noqa: E501
+        'label_filter_entity_type': 'labelFilterEntityType',  # noqa: E501
         'label_vector': 'labelVector',  # noqa: E501
         'objects': 'objects',  # noqa: E501
+        'selected_resources': 'selectedResources',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -155,8 +169,10 @@ class KubernetesFilterParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             label_combination_method (str, none_type): Whether to include all the labels or any of them while performing inclusion/exclusion of objects.. [optional]  # noqa: E501
+            label_filter_entity_type (str, none_type): The type of the entity for which the label filters are specified. Example: kPersistentVolumeClaim or kVirtualMachine.. [optional]  # noqa: E501
             label_vector ([KubernetesLabel], none_type): Array of Object to represent Label that Specify Objects (e.g.: Persistent Volumes and Persistent Volume Claims) to Include or Exclude.It will be a two-dimensional array, where each inner array will consist of a key and value representing labels. Using this two dimensional array of Labels, the Cluster generates a list of items to include in the filter, which are derived from intersections or the union of these labels, as decided by operation parameter.. [optional]  # noqa: E501
             objects ([int], none_type): Array of objects that are to be included.. [optional]  # noqa: E501
+            selected_resources ([ResourceInfo], none_type): Array of Object which has group, version, kind, etc. as its fields to identify a resource type and a resource list which is essentially the list of instances of that resource type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

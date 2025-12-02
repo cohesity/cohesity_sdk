@@ -27,19 +27,21 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.common_protection_group_run_response_parameters import CommonProtectionGroupRunResponseParameters
     from cohesity_sdk.cluster.model.key_value_pair import KeyValuePair
     from cohesity_sdk.cluster.model.missing_entity_params import MissingEntityParams
+    from cohesity_sdk.cluster.model.pause_metadata import PauseMetadata
     from cohesity_sdk.cluster.model.protection_group_alerting_policy import ProtectionGroupAlertingPolicy
-    from cohesity_sdk.cluster.model.protection_group_run import ProtectionGroupRun
     from cohesity_sdk.cluster.model.sla_rule import SlaRule
-    from cohesity_sdk.cluster.model.tenant import Tenant
+    from cohesity_sdk.cluster.model.tenant_info import TenantInfo
     from cohesity_sdk.cluster.model.time_of_day import TimeOfDay
+    globals()['CommonProtectionGroupRunResponseParameters'] = CommonProtectionGroupRunResponseParameters
     globals()['KeyValuePair'] = KeyValuePair
     globals()['MissingEntityParams'] = MissingEntityParams
+    globals()['PauseMetadata'] = PauseMetadata
     globals()['ProtectionGroupAlertingPolicy'] = ProtectionGroupAlertingPolicy
-    globals()['ProtectionGroupRun'] = ProtectionGroupRun
     globals()['SlaRule'] = SlaRule
-    globals()['Tenant'] = Tenant
+    globals()['TenantInfo'] = TenantInfo
     globals()['TimeOfDay'] = TimeOfDay
 
 
@@ -77,6 +79,13 @@ class CommonProtectionGroupResponseParams(ModelNormal):
             'KVCD': "kVCD",
             'KAZURE': "kAzure",
             'KGCP': "kGCP",
+            'KGCPBIGQUERY': "kGCPBigQuery",
+            'KGCPMYSQL': "kGCPMySQL",
+            'KGOOGLESPANNER': "kGoogleSpanner",
+            'KGCPPOSTGRESQL': "kGCPPostgreSQL",
+            'KGCPALLOYDBPOSTGRESQL': "kGCPAlloyDBPostgreSQL",
+            'KGCPSQLSERVER': "kGCPSQLServer",
+            'KGCPFIRESTORE': "kGCPFirestore",
             'KKVM': "kKVM",
             'KACROPOLIS': "kAcropolis",
             'KAWS': "kAWS",
@@ -84,16 +93,48 @@ class CommonProtectionGroupResponseParams(ModelNormal):
             'KAWSS3': "kAwsS3",
             'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KRDSPOSTGRESSNAPSHOTMANAGER': "kRDSPostgresSnapshotManager",
+            'KRDSMYSQLSNAPSHOTMANAGER': "kRDSMySQLSnapshotManager",
+            'KRDSMSSQLSNAPSHOTMANAGER': "kRDSMSSQLSnapshotManager",
+            'KRDSORACLESNAPSHOTMANAGER': "kRDSOracleSnapshotManager",
+            'KRDSMARIADBSNAPSHOTMANAGER': "kRDSMariaDBSnapshotManager",
+            'KRDSCUSTOMMSSQLSNAPSHOTMANAGER': "kRDSCustomMSSQLSnapshotManager",
+            'KRDSCUSTOMORACLESNAPSHOTMANAGER': "kRDSCustomOracleSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAURORAPOSTGRESSNAPSHOTMANAGER': "kAuroraPostgresSnapshotManager",
+            'KAURORAMYSQLSNAPSHOTMANAGER': "kAuroraMySQLSnapshotManager",
             'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAWSRDSPOSTGRES': "kAwsRDSPostgres",
+            'KAWSAURORAPOSTGRES': "kAwsAuroraPostgres",
+            'KAWSMYSQL': "kAWSMySQL",
+            'KAWSAURORAMYSQL': "kAWSAuroraMySQL",
+            'KAWSDYNAMODB': "kAwsDynamoDB",
+            'KAWSRDSORACLE': "kAWSRdsOracle",
+            'KAWSDOCUMENTDB': "kAWSDocumentDB",
+            'KAWSRDSPOSTGRESDB': "kAWSRDSPostgresDB",
+            'KAWSAURORAPOSTGRESDB': "kAWSAuroraPostgresDB",
+            'KAWSRDSMSSQL': "kAWSRDSMSSQL",
+            'KAWSREDSHIFT': "kAWSRedshift",
             'KAZURENATIVE': "kAzureNative",
             'KAZURESQL': "kAzureSQL",
+            'KAZUREENTRAID': "kAzureEntraID",
+            'KAZUREMYSQL': "kAzureMySQL",
+            'KAZURECOSMOSDBNOSQL': "kAzureCosmosDBNoSQL",
+            'KAZURECOSMOSDBMONGODB': "kAzureCosmosDBMongoDB",
+            'KAZURECOSMOSDBCASSANDRA': "kAzureCosmosDBCassandra",
+            'KAZUREPOSTGRESQLSERVER': "kAzurePostgreSQLServer",
+            'KAZURESQLDB': "kAzureSQLDB",
+            'KAZURESQLMI': "kAzureSQLMI",
+            'KAZURETABLESTORAGE': "kAzureTableStorage",
+            'KAZUREBLOBSTORAGE': "kAzureBlobStorage",
+            'KAZURETABLEAPI': "kAzureTableAPI",
             'KAZURESNAPSHOTMANAGER': "kAzureSnapshotManager",
             'KPHYSICAL': "kPhysical",
             'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
             'KNETAPP': "kNetapp",
+            'KNUTANIXFS': "kNutanixFS",
             'KGENERICNAS': "kGenericNas",
             'KISILON': "kIsilon",
             'KFLASHBLADE': "kFlashBlade",
@@ -119,11 +160,21 @@ class CommonProtectionGroupResponseParams(ModelNormal):
             'KHDFS': "kHdfs",
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
+            'KSAPHANA': "kSAPHANA",
             'KUDA': "kUDA",
+            'KS3COMPATIBLE': "kS3Compatible",
             'KSFDC': "kSfdc",
             'KO365EXCHANGECSM': "kO365ExchangeCSM",
             'KO365ONEDRIVECSM': "kO365OneDriveCSM",
-            'KO365SHAREPOINTCSM': "kO365SharePointCSM",
+            'KO365SHAREPOINTCSM': "kO365SharepointCSM",
+            'KEXPERIMENTALADAPTER': "kExperimentalAdapter",
+            'KMONGODBPHYSICAL': "kMongoDBPhysical",
+            'KGOOGLEWORKSPACE': "kGoogleWorkspace",
+            'KGMAIL': "kGmail",
+            'KGOOGLEDRIVE': "kGoogleDrive",
+            'KDB2': "kDB2",
+            'KSERVICENOW': "kServiceNow",
+            'KPOSTGRES': "kPostgres",
         },
         ('priority',): {
             'None': None,
@@ -163,6 +214,7 @@ class CommonProtectionGroupResponseParams(ModelNormal):
             'advanced_configs': ([KeyValuePair], none_type,),  # noqa: E501
             'alert_policy': (ProtectionGroupAlertingPolicy,),  # noqa: E501
             'cluster_id': (str, none_type,),  # noqa: E501
+            'creation_time_usecs': (int, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
@@ -173,11 +225,12 @@ class CommonProtectionGroupResponseParams(ModelNormal):
             'is_paused': (bool, none_type,),  # noqa: E501
             'is_protect_once': (bool, none_type,),  # noqa: E501
             'last_modified_timestamp_usecs': (int, none_type,),  # noqa: E501
-            'last_run': (ProtectionGroupRun,),  # noqa: E501
+            'last_run': (CommonProtectionGroupRunResponseParameters,),  # noqa: E501
             'missing_entities': ([MissingEntityParams], none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'num_protected_objects': (int, none_type,),  # noqa: E501
             'pause_in_blackouts': (bool, none_type,),  # noqa: E501
+            'pause_metadata': (PauseMetadata,),  # noqa: E501
             'permissions': ([Tenant], none_type,),  # noqa: E501
             'policy_id': (str, none_type,),  # noqa: E501
             'priority': (str, none_type,),  # noqa: E501
@@ -199,6 +252,7 @@ class CommonProtectionGroupResponseParams(ModelNormal):
         'advanced_configs': 'advancedConfigs',  # noqa: E501
         'alert_policy': 'alertPolicy',  # noqa: E501
         'cluster_id': 'clusterId',  # noqa: E501
+        'creation_time_usecs': 'creationTimeUsecs',  # noqa: E501
         'description': 'description',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'environment': 'environment',  # noqa: E501
@@ -214,6 +268,7 @@ class CommonProtectionGroupResponseParams(ModelNormal):
         'name': 'name',  # noqa: E501
         'num_protected_objects': 'numProtectedObjects',  # noqa: E501
         'pause_in_blackouts': 'pauseInBlackouts',  # noqa: E501
+        'pause_metadata': 'pauseMetadata',  # noqa: E501
         'permissions': 'permissions',  # noqa: E501
         'policy_id': 'policyId',  # noqa: E501
         'priority': 'priority',  # noqa: E501
@@ -275,6 +330,7 @@ class CommonProtectionGroupResponseParams(ModelNormal):
             advanced_configs ([KeyValuePair], none_type): Specifies the advanced configuration for a protection job.. [optional]  # noqa: E501
             alert_policy (ProtectionGroupAlertingPolicy): [optional]  # noqa: E501
             cluster_id (str, none_type): Specifies the cluster ID.. [optional]  # noqa: E501
+            creation_time_usecs (int, none_type): Specifies the time in micro seconds when this protection group was created.. [optional]  # noqa: E501
             description (str, none_type): Specifies a description of the Protection Group.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.. [optional]  # noqa: E501
             environment (str, none_type): Specifies the environment of the Protection Group.. [optional]  # noqa: E501
@@ -285,11 +341,12 @@ class CommonProtectionGroupResponseParams(ModelNormal):
             is_paused (bool, none_type): Specifies if the the Protection Group is paused. New runs are not scheduled for the paused Protection Groups. Active run if any is not impacted.. [optional]  # noqa: E501
             is_protect_once (bool, none_type): Specifies if the the Protection Group is using a protect once type of policy. This field is helpful to identify run happen for this group.. [optional]  # noqa: E501
             last_modified_timestamp_usecs (int, none_type): Specifies the last time this protection group was updated. If this is passed into a PUT request, then the backend will validate that the timestamp passed in matches the time that the protection group was actually last modified. If the two timestamps do not match, then the request will be rejected with a stale error.. [optional]  # noqa: E501
-            last_run (ProtectionGroupRun): [optional]  # noqa: E501
+            last_run (CommonProtectionGroupRunResponseParameters): [optional]  # noqa: E501
             missing_entities ([MissingEntityParams], none_type): Specifies the Information about missing entities.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the Protection Group.. [optional]  # noqa: E501
             num_protected_objects (int, none_type): Specifies the number of protected objects of the Protection Group.. [optional]  # noqa: E501
             pause_in_blackouts (bool, none_type): Specifies whether currently executing jobs should be paused if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if 'abortInBlackouts' is sent as true.. [optional]  # noqa: E501
+            pause_metadata (PauseMetadata): [optional]  # noqa: E501
             permissions ([Tenant], none_type): Specifies the list of tenants that have permissions for this protection group.. [optional]  # noqa: E501
             policy_id (str, none_type): Specifies the unique id of the Protection Policy associated with the Protection Group. The Policy provides retry settings Protection Schedules, Priority, SLA, etc.. [optional]  # noqa: E501
             priority (str, none_type): Specifies the priority of the Protection Group.. [optional]  # noqa: E501

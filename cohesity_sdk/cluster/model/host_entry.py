@@ -74,8 +74,8 @@ class HostEntry(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'domain_names': ([str], none_type,),  # noqa: E501
-            'ip': (str, none_type,),  # noqa: E501
+            'domain_names': ([str],),  # noqa: E501
+            'ip': (str,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
         }
 
@@ -107,8 +107,8 @@ class HostEntry(ModelNormal):
         """HostEntry - a model defined in OpenAPI
 
         Args:
-            domain_names ([str], none_type): Specifies the domain names of the host.
-            ip (str, none_type): Specifies the IP address of the host.
+            domain_names ([str]): Specifies the domain names of the host.
+            ip (str): Specifies the IP address of the host.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

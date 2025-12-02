@@ -29,6 +29,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.aws_aurora_snapshot_manager_object_protection_params import AwsAuroraSnapshotManagerObjectProtectionParams
     from cohesity_sdk.cluster.model.aws_common_object_protection_params import AwsCommonObjectProtectionParams
+    from cohesity_sdk.cluster.model.aws_dynamo_db_protection_params import AwsDynamoDBProtectionParams
     from cohesity_sdk.cluster.model.aws_native_object_protection_params import AwsNativeObjectProtectionParams
     from cohesity_sdk.cluster.model.aws_object_protection_request_params_all_of import AwsObjectProtectionRequestParamsAllOf
     from cohesity_sdk.cluster.model.aws_rds_postgres_protection_params import AwsRdsPostgresProtectionParams
@@ -37,6 +38,7 @@ def lazy_import():
     from cohesity_sdk.cluster.model.aws_snapshot_manager_object_protection_params import AwsSnapshotManagerObjectProtectionParams
     globals()['AwsAuroraSnapshotManagerObjectProtectionParams'] = AwsAuroraSnapshotManagerObjectProtectionParams
     globals()['AwsCommonObjectProtectionParams'] = AwsCommonObjectProtectionParams
+    globals()['AwsDynamoDBProtectionParams'] = AwsDynamoDBProtectionParams
     globals()['AwsNativeObjectProtectionParams'] = AwsNativeObjectProtectionParams
     globals()['AwsObjectProtectionRequestParamsAllOf'] = AwsObjectProtectionRequestParamsAllOf
     globals()['AwsRdsPostgresProtectionParams'] = AwsRdsPostgresProtectionParams
@@ -77,9 +79,30 @@ class AwsObjectProtectionUpdateRequestParams(ModelComposed):
             'KNATIVE': "kNative",
             'KSNAPSHOTMANAGER': "kSnapshotManager",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KRDSPOSTGRESSNAPSHOTMANAGER': "kRDSPostgresSnapshotManager",
+            'KRDSMYSQLSNAPSHOTMANAGER': "kRDSMySQLSnapshotManager",
+            'KRDSMSSQLSNAPSHOTMANAGER': "kRDSMSSQLSnapshotManager",
+            'KRDSORACLESNAPSHOTMANAGER': "kRDSOracleSnapshotManager",
+            'KRDSMARIADBSNAPSHOTMANAGER': "kRDSMariaDBSnapshotManager",
+            'KRDSCUSTOMMSSQLSNAPSHOTMANAGER': "kRDSCustomMSSQLSnapshotManager",
+            'KRDSCUSTOMORACLESNAPSHOTMANAGER': "kRDSCustomOracleSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAURORAPOSTGRESSNAPSHOTMANAGER': "kAuroraPostgresSnapshotManager",
+            'KAURORAMYSQLSNAPSHOTMANAGER': "kAuroraMySQLSnapshotManager",
             'KAWSS3': "kAwsS3",
             'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAWSAURORAPOSTGRES': "kAwsAuroraPostgres",
+            'KAWSRDSPOSTGRES': "kAwsRDSPostgres",
+            'KAWSMYSQL': "kAWSMySQL",
+            'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
+            'KAWSDYNAMODB': "kAwsDynamoDB",
+            'KAWSAURORAMYSQL': "kAWSAuroraMySQL",
+            'KAWSRDSORACLE': "kAWSRdsOracle",
+            'KAWSDOCUMENTDB': "kAWSDocumentDB",
+            'KAWSRDSPOSTGRESDB': "kAWSRDSPostgresDB",
+            'KAWSAURORAPOSTGRESDB': "kAWSAuroraPostgresDB",
+            'KAWSRDSMSSQL': "kAWSRDSMSSQL",
+            'KAWSREDSHIFT': "kAWSRedshift",
         },
     }
 
@@ -104,6 +127,7 @@ class AwsObjectProtectionUpdateRequestParams(ModelComposed):
         return {
             'protection_type': (str,),  # noqa: E501
             'aurora_snapshot_manager_protection_type_params': (AwsAuroraSnapshotManagerObjectProtectionParams,),  # noqa: E501
+            'dynamo_db_protection_type_params': (AwsDynamoDBProtectionParams,),  # noqa: E501
             'native_protection_type_params': (AwsNativeObjectProtectionParams,),  # noqa: E501
             'rds_postgres_protection_type_params': (AwsRdsPostgresProtectionParams,),  # noqa: E501
             'rds_snapshot_manager_protection_type_params': (AwsRdsSnapshotManagerObjectProtectionParams,),  # noqa: E501
@@ -120,6 +144,7 @@ class AwsObjectProtectionUpdateRequestParams(ModelComposed):
     attribute_map = {
         'protection_type': 'protectionType',  # noqa: E501
         'aurora_snapshot_manager_protection_type_params': 'auroraSnapshotManagerProtectionTypeParams',  # noqa: E501
+        'dynamo_db_protection_type_params': 'dynamoDBProtectionTypeParams',  # noqa: E501
         'native_protection_type_params': 'nativeProtectionTypeParams',  # noqa: E501
         'rds_postgres_protection_type_params': 'rdsPostgresProtectionTypeParams',  # noqa: E501
         'rds_snapshot_manager_protection_type_params': 'rdsSnapshotManagerProtectionTypeParams',  # noqa: E501
@@ -177,6 +202,7 @@ class AwsObjectProtectionUpdateRequestParams(ModelComposed):
 
             protection_type (str): Specifies the AWS Protection Job type.. [optional]  # noqa: E501
             aurora_snapshot_manager_protection_type_params (AwsAuroraSnapshotManagerObjectProtectionParams): [optional]  # noqa: E501
+            dynamo_db_protection_type_params (AwsDynamoDBProtectionParams): [optional]  # noqa: E501
             native_protection_type_params (AwsNativeObjectProtectionParams): [optional]  # noqa: E501
             rds_postgres_protection_type_params (AwsRdsPostgresProtectionParams): [optional]  # noqa: E501
             rds_snapshot_manager_protection_type_params (AwsRdsSnapshotManagerObjectProtectionParams): [optional]  # noqa: E501

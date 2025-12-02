@@ -5,7 +5,7 @@ Specifies parameters to update cassandra source.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cassandra_credentials** | [**CassandraSourceRegistrationPatchParamsCassandraCredentials**](CassandraSourceRegistrationPatchParamsCassandraCredentials.md) |  | [optional] 
+**cassandra_credentials** | [**CassandraSourceRegistrationParamsAllOfCassandraCredentials**](CassandraSourceRegistrationParamsAllOfCassandraCredentials.md) |  | [optional] 
 **commit_log_backup_location** | **str, none_type** | Commit Logs backup location on cassandra nodes | [optional] 
 **config_directory** | **str, none_type** | Directory path containing Cassandra configuration YAML file. | [optional] 
 **data_center_names** | **[str]** | Data centers for this cluster. | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **dse_solr_info** | [**DSESolrInfo**](DSESolrInfo.md) |  | [optional] 
 **is_dse_authenticator** | **bool, none_type** | Set to true if this cluster has DSE Authenticator. | [optional] 
 **is_dse_tiered_storage** | **bool, none_type** | Set to true if this cluster has DSE tiered storage. | [optional] 
-**jmx_credentials** | [**CassandraSourceRegistrationPatchParamsJmxCredentials**](CassandraSourceRegistrationPatchParamsJmxCredentials.md) |  | [optional] 
+**jmx_credentials** | [**CassandraSourceRegistrationParamsAllOfJmxCredentials**](CassandraSourceRegistrationParamsAllOfJmxCredentials.md) |  | [optional] 
 **kerberos_principal** | **str, none_type** | Principal for the kerberos connection. (This is required only if your Cassandra has Kerberos authentication. Please refer to the user guide.) | [optional] 
 **seed_node** | **str, none_type** | Any one seed node of the Cassandra cluster. | [optional] 
 **ssh_password_credentials** | [**SshPasswordCredentials**](SshPasswordCredentials.md) |  | [optional] 

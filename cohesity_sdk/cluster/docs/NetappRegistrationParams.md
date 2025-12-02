@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **source_type** | **str, none_type** | Specifies the Netapp source type. Can be either kCluster or kVServer (SVM). | 
 **back_up_smb_volumes** | **bool, none_type** | Specifies whether or not to back up SMB Volumes. | [optional] 
 **filter_ip_config** | [**FilterIpConfig**](FilterIpConfig.md) |  | [optional] 
-**smb_credentials** | [**SmbMountCredentials**](SmbMountCredentials.md) |  | [optional] 
+**smb_credentials** | [**Credentials**](Credentials.md) |  | [optional] 
 **storage_array_snapshot_config** | [**StorageArraySnapshotConfig**](StorageArraySnapshotConfig.md) |  | [optional] 
 **storage_array_snapshot_enabled** | **bool, none_type** | Specifies if storage array snapshot is enabled or not in the Source. | [optional] 
 **throttling_config** | [**NasThrottlingConfig**](NasThrottlingConfig.md) |  | [optional] 

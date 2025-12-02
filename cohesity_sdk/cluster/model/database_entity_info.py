@@ -89,6 +89,8 @@ class DatabaseEntityInfo(ModelNormal):
             'container_database_info': (ContainerDatabaseInfo,),  # noqa: E501
             'data_guard_info': (OracleDataGuardInfo,),  # noqa: E501
             'db_type': (str, none_type,),  # noqa: E501
+            'tde_encrypted_ts_count': (int, none_type,),  # noqa: E501
+            'version': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -101,6 +103,8 @@ class DatabaseEntityInfo(ModelNormal):
         'container_database_info': 'containerDatabaseInfo',  # noqa: E501
         'data_guard_info': 'dataGuardInfo',  # noqa: E501
         'db_type': 'dbType',  # noqa: E501
+        'tde_encrypted_ts_count': 'tdeEncryptedTsCount',  # noqa: E501
+        'version': 'version',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -153,6 +157,8 @@ class DatabaseEntityInfo(ModelNormal):
             container_database_info (ContainerDatabaseInfo): [optional]  # noqa: E501
             data_guard_info (OracleDataGuardInfo): [optional]  # noqa: E501
             db_type (str, none_type): Specifies database type of oracle database.. [optional]  # noqa: E501
+            tde_encrypted_ts_count (int, none_type): Specifies the number of TDE encrypted tablespaces found in the database.. [optional]  # noqa: E501
+            version (str, none_type): Specifies version of oracle database.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -71,6 +71,7 @@ class ExternalTarget(ModelComposed):
             'ARCHIVAL': "Archival",
             'TIERING': "Tiering",
             'RPAAS': "Rpaas",
+            'LOGBACKUP': "Logbackup",
         },
         ('compression',): {
             'None': None,
@@ -82,6 +83,7 @@ class ExternalTarget(ModelComposed):
             'None': None,
             'LOCAL': "Local",
             'FORTKNOX': "FortKnox",
+            'FORTKNOXONPREM': "FortKnoxOnprem",
         },
         ('status',): {
             'None': None,
@@ -124,6 +126,8 @@ class ExternalTarget(ModelComposed):
             'storage_domain_name': (str, none_type,),  # noqa: E501
             'tenant_ids': ([str],),  # noqa: E501
             'use_for_apollo_mr_store': (bool, none_type,),  # noqa: E501
+            'use_rolling_object_lock': (bool, none_type,),  # noqa: E501
+            'worm_lock_in_compliance_mode': (bool, none_type,),  # noqa: E501
             'archival_params': (ArchivalExternalTargetParams,),  # noqa: E501
             'tiering_params': (TieringExternalTargetParams,),  # noqa: E501
         }
@@ -149,6 +153,8 @@ class ExternalTarget(ModelComposed):
         'storage_domain_name': 'storageDomainName',  # noqa: E501
         'tenant_ids': 'tenantIds',  # noqa: E501
         'use_for_apollo_mr_store': 'useForApolloMrStore',  # noqa: E501
+        'use_rolling_object_lock': 'useRollingObjectLock',  # noqa: E501
+        'worm_lock_in_compliance_mode': 'wormLockInComplianceMode',  # noqa: E501
         'archival_params': 'archivalParams',  # noqa: E501
         'tiering_params': 'tieringParams',  # noqa: E501
     }
@@ -217,6 +223,8 @@ class ExternalTarget(ModelComposed):
             storage_domain_name (str, none_type): Specifies the storage domain associated with the target.. [optional]  # noqa: E501
             tenant_ids ([str]): Specifies the list of tenantIds for the External Target. [optional]  # noqa: E501
             use_for_apollo_mr_store (bool, none_type): Specifies whether this external target is used to store apollo mr records.. [optional]  # noqa: E501
+            use_rolling_object_lock (bool, none_type): Whether the vault should use rolling object lock.. [optional]  # noqa: E501
+            worm_lock_in_compliance_mode (bool, none_type): Whether archives to this vault should use compliance mode when adding data locks to objects.. [optional]  # noqa: E501
             archival_params (ArchivalExternalTargetParams): [optional]  # noqa: E501
             tiering_params (TieringExternalTargetParams): [optional]  # noqa: E501
         """

@@ -126,7 +126,7 @@ class ProtectionGroupAlertingPolicy(ModelNormal):
         """ProtectionGroupAlertingPolicy - a model defined in OpenAPI
 
         Args:
-            backup_run_status ([str]): Specifies the run status for which the user would like to receive alerts.
+            backup_run_status ([str]): Specifies when to send out alerts. The possible values are kSuccess , kFailure, kSlaViolation and kWarning
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

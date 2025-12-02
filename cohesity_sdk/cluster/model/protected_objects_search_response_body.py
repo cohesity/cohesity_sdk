@@ -28,7 +28,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.protected_object import ProtectedObject
+    from cohesity_sdk.cluster.model.protected_objects_search_metadata import ProtectedObjectsSearchMetadata
     globals()['ProtectedObject'] = ProtectedObject
+    globals()['ProtectedObjectsSearchMetadata'] = ProtectedObjectsSearchMetadata
 
 
 class ProtectedObjectsSearchResponseBody(ModelNormal):
@@ -79,7 +81,7 @@ class ProtectedObjectsSearchResponseBody(ModelNormal):
         """
         lazy_import()
         return {
-            'metadata': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'metadata': (ProtectedObjectsSearchMetadata,),  # noqa: E501
             'num_results': (int, none_type,),  # noqa: E501
             'objects': ([ProtectedObject], none_type,),  # noqa: E501
         }
@@ -143,7 +145,7 @@ class ProtectedObjectsSearchResponseBody(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            metadata ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the metadata information about the Protection Groups, Protection Policy etc., for search result.. [optional]  # noqa: E501
+            metadata (ProtectedObjectsSearchMetadata): [optional]  # noqa: E501
             num_results (int, none_type): Specifies the total number of search results which matches the search criteria.. [optional]  # noqa: E501
             objects ([ProtectedObject], none_type): Specifies the list of Protected Objects.. [optional]  # noqa: E501
         """

@@ -12,11 +12,13 @@ Method | HTTP request | Description
 
 Retreive Helios OnPrem Configuration
 
-View the configuration for Helios OnPrem VM Node.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>View the configuration for Helios OnPrem VM Node.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.helios_on_prem_config import HeliosOnPremConfig
@@ -53,7 +55,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -74,11 +76,13 @@ This endpoint does not need any parameter.
 
 Update Helios OnPrem Configuration
 
-Update the configuration for Helios OnPrem VM Node.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the configuration for Helios OnPrem VM Node.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.helios_on_prem_config import HeliosOnPremConfig
@@ -134,6 +138,9 @@ body = HeliosOnPremConfig(
             ),
             use_dhcp=True,
             vip_host_name="vip_host_name_example",
+            vips=[
+                "vips_example",
+            ],
         ),
         nodes=[
             HeliosOnPremVMNode(
@@ -143,6 +150,7 @@ body = HeliosOnPremConfig(
         ],
         proxy_server_config=ClusterProxyServerConfig(
             ip="ip_example",
+            is_disabled=True,
             password="password_example",
             port=1,
             username="username_example",
@@ -173,7 +181,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 

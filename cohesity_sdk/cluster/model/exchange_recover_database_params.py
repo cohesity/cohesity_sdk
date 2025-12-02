@@ -27,7 +27,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.exchange_database_recovery_target_config import ExchangeDatabaseRecoveryTargetConfig
+    from cohesity_sdk.cluster.model.recovery_object_identifier import RecoveryObjectIdentifier
     from cohesity_sdk.cluster.model.view_options import ViewOptions
+    globals()['ExchangeDatabaseRecoveryTargetConfig'] = ExchangeDatabaseRecoveryTargetConfig
+    globals()['RecoveryObjectIdentifier'] = RecoveryObjectIdentifier
     globals()['ViewOptions'] = ViewOptions
 
 
@@ -83,10 +87,10 @@ class ExchangeRecoverDatabaseParams(ModelNormal):
         """
         lazy_import()
         return {
-            'database_source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'database_source': (RecoveryObjectIdentifier,),  # noqa: E501
             'recover_to_new_source': (bool,),  # noqa: E501
             'restore_type': (str, none_type,),  # noqa: E501
-            'recovery_target_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'recovery_target_config': (ExchangeDatabaseRecoveryTargetConfig,),  # noqa: E501
             'view_options': (ViewOptions,),  # noqa: E501
         }
 
@@ -120,7 +124,7 @@ class ExchangeRecoverDatabaseParams(ModelNormal):
         """ExchangeRecoverDatabaseParams - a model defined in OpenAPI
 
         Args:
-            database_source ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the source id of Exchange database which has to be recovered.
+            database_source (RecoveryObjectIdentifier):
             recover_to_new_source (bool): Specifies the parameter whether the recovery should be performed to a new or an existing Source Target.
 
         Keyword Args:
@@ -156,7 +160,7 @@ class ExchangeRecoverDatabaseParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            recovery_target_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the recovery target configuration if recovery has to be done to a different location which is different from original source.. [optional]  # noqa: E501
+            recovery_target_config (ExchangeDatabaseRecoveryTargetConfig): [optional]  # noqa: E501
             view_options (ViewOptions): [optional]  # noqa: E501
         """
 

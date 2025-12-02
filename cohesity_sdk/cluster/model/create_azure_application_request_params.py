@@ -66,9 +66,32 @@ class CreateAzureApplicationRequestParams(ModelNormal):
             'USDOD': "UsDoD",
             'USGCCHIGH': "UsGccHigh",
         },
+        ('use_cases',): {
+            'None': None,
+            'KVIRTUALMACHINE': "kVirtualMachine",
+            'KSQL': "kSQL",
+            'KENTRAID': "kEntraID",
+            'KFILESHARE': "kFileShare",
+            'KKUBERNETES': "kKubernetes",
+            'KMYSQL': "kMySQL",
+            'KMYSQLFLEXIBLESERVER': "kMySQLFlexibleServer",
+            'KCOSMOSDBCASSANDRAACCOUNT': "kCosmosDBCassandraAccount",
+            'KAZURECOSMOSDBNOSQLACCOUNT': "kAzureCosmosDBNoSQLAccount",
+            'KAZURECOSMOSDBMONGODBACCOUNT': "kAzureCosmosDBMongoDBAccount",
+            'KCOSMOSDBTABLEAPIACCOUNT': "kCosmosDBTableAPIAccount",
+            'KBLOBSTORAGE': "kBlobStorage",
+            'KSTORAGETABLE': "kStorageTable",
+            'KAZURESQLMI': "kAzureSQLMI",
+            'KAZURESQLDB': "kAzureSQLDB",
+            'KPOSTGRESQLFLEXIBLESERVER': "kPostgreSQLFlexibleServer",
+        },
     }
 
     validations = {
+        ('use_cases',): {
+            'min_items': 1,
+        },
+
     }
 
     additional_properties_type = None
@@ -89,9 +112,14 @@ class CreateAzureApplicationRequestParams(ModelNormal):
         return {
             'access_token': (str, none_type,),  # noqa: E501
             'app_count': (int,),  # noqa: E501
-            'username': (str, none_type,),  # noqa: E501
+            'azure_tenant_id': (str, none_type,),  # noqa: E501
+            'certificate_thumbprints': ([str],),  # noqa: E501
             'existing_microsoft365_app_credentials_list': ([Office365AppCredentials],),  # noqa: E501
             'microsoft365_region': (str, none_type,),  # noqa: E501
+            'o365_app_credentials_list_for_cert_update': ([Office365AppCredentials],),  # noqa: E501
+            'update_app_key_only': (bool, none_type,),  # noqa: E501
+            'use_cases': ([str], none_type,),  # noqa: E501
+            'username': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -103,9 +131,14 @@ class CreateAzureApplicationRequestParams(ModelNormal):
     attribute_map = {
         'access_token': 'accessToken',  # noqa: E501
         'app_count': 'appCount',  # noqa: E501
-        'username': 'username',  # noqa: E501
+        'azure_tenant_id': 'azureTenantId',  # noqa: E501
+        'certificate_thumbprints': 'certificateThumbprints',  # noqa: E501
         'existing_microsoft365_app_credentials_list': 'existingMicrosoft365AppCredentialsList',  # noqa: E501
         'microsoft365_region': 'microsoft365Region',  # noqa: E501
+        'o365_app_credentials_list_for_cert_update': 'o365AppCredentialsListForCertUpdate',  # noqa: E501
+        'update_app_key_only': 'updateAppKeyOnly',  # noqa: E501
+        'use_cases': 'useCases',  # noqa: E501
+        'username': 'username',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -120,13 +153,12 @@ class CreateAzureApplicationRequestParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, access_token, app_count, username, *args, **kwargs):  # noqa: E501
+    def __init__(self, access_token, app_count, *args, **kwargs):  # noqa: E501
         """CreateAzureApplicationRequestParams - a model defined in OpenAPI
 
         Args:
-            access_token (str, none_type): Specifies the access token for Azure PowerShell Application access.
+            access_token (str, none_type): Specifies the access token for Azure Application access.
             app_count (int): Specifies the count of Azure application to be created.
-            username (str, none_type): Specifies the username to access Microsoft365 source.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -160,8 +192,14 @@ class CreateAzureApplicationRequestParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            azure_tenant_id (str, none_type): Specifies the Azure Active Directory tenant ID or domain name.. [optional]  # noqa: E501
+            certificate_thumbprints ([str]): Specifies a list of certificate thumbprints. The count of items in this list should be either one or equal to the appCount. If only a single thumbprint is provided, all newly created apps will share the certificate.. [optional]  # noqa: E501
             existing_microsoft365_app_credentials_list ([Office365AppCredentials]): Specifies a list of Microsoft365 azure application credentials already added within the Microsoft365 source.. [optional]  # noqa: E501
             microsoft365_region (str, none_type): Specifies the region where Office 365 Exchange environment is.. [optional]  # noqa: E501
+            o365_app_credentials_list_for_cert_update ([Office365AppCredentials]): Specifies the list of exisiting Microsoft365 azure application credentials for which certificates are to be added/ updated. Each app credential in this list should contain a certificate id.. [optional]  # noqa: E501
+            update_app_key_only (bool, none_type): Specifies whether only secret key for app should be updated during edit call.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            use_cases ([str], none_type): The usecases for which the application is to be created.. [optional]  # noqa: E501
+            username (str, none_type): Specifies the username to access Microsoft365 source.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -190,7 +228,6 @@ class CreateAzureApplicationRequestParams(ModelNormal):
 
         self.access_token = access_token
         self.app_count = app_count
-        self.username = username
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

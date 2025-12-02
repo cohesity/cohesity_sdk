@@ -27,23 +27,53 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.common_nas_object_params import CommonNasObjectParams
+    from cohesity_sdk.cluster.model.flashblade_object_params import FlashbladeObjectParams
+    from cohesity_sdk.cluster.model.group_object_entity_params import GroupObjectEntityParams
+    from cohesity_sdk.cluster.model.isilon_object_params import IsilonObjectParams
+    from cohesity_sdk.cluster.model.mongo_db_object_params import MongoDBObjectParams
+    from cohesity_sdk.cluster.model.mssql_object_entity_params import MssqlObjectEntityParams
+    from cohesity_sdk.cluster.model.netapp_object_params import NetappObjectParams
+    from cohesity_sdk.cluster.model.nutanix_fs_object_params import NutanixFSObjectParams
+    from cohesity_sdk.cluster.model.o365_object_entity_params import O365ObjectEntityParams
     from cohesity_sdk.cluster.model.object import Object
     from cohesity_sdk.cluster.model.object_protection_stats_summary import ObjectProtectionStatsSummary
+    from cohesity_sdk.cluster.model.object_string_identifier import ObjectStringIdentifier
     from cohesity_sdk.cluster.model.object_summary import ObjectSummary
     from cohesity_sdk.cluster.model.object_type_v_center_params import ObjectTypeVCenterParams
     from cohesity_sdk.cluster.model.object_type_windows_cluster_params import ObjectTypeWindowsClusterParams
     from cohesity_sdk.cluster.model.object_with_children_all_of import ObjectWithChildrenAllOf
+    from cohesity_sdk.cluster.model.oracle_object_entity_params import OracleObjectEntityParams
     from cohesity_sdk.cluster.model.permission_info import PermissionInfo
+    from cohesity_sdk.cluster.model.physical_object_entity_params import PhysicalObjectEntityParams
+    from cohesity_sdk.cluster.model.sharepoint_object_entity_params import SharepointObjectEntityParams
     from cohesity_sdk.cluster.model.sharepoint_object_params import SharepointObjectParams
+    from cohesity_sdk.cluster.model.uda_object_params import UdaObjectParams
+    from cohesity_sdk.cluster.model.view_object_params import ViewObjectParams
     from cohesity_sdk.cluster.model.vmware_object_entity_params import VmwareObjectEntityParams
+    globals()['CommonNasObjectParams'] = CommonNasObjectParams
+    globals()['FlashbladeObjectParams'] = FlashbladeObjectParams
+    globals()['GroupObjectEntityParams'] = GroupObjectEntityParams
+    globals()['IsilonObjectParams'] = IsilonObjectParams
+    globals()['MongoDBObjectParams'] = MongoDBObjectParams
+    globals()['MssqlObjectEntityParams'] = MssqlObjectEntityParams
+    globals()['NetappObjectParams'] = NetappObjectParams
+    globals()['NutanixFSObjectParams'] = NutanixFSObjectParams
+    globals()['O365ObjectEntityParams'] = O365ObjectEntityParams
     globals()['Object'] = Object
     globals()['ObjectProtectionStatsSummary'] = ObjectProtectionStatsSummary
+    globals()['ObjectStringIdentifier'] = ObjectStringIdentifier
     globals()['ObjectSummary'] = ObjectSummary
     globals()['ObjectTypeVCenterParams'] = ObjectTypeVCenterParams
     globals()['ObjectTypeWindowsClusterParams'] = ObjectTypeWindowsClusterParams
     globals()['ObjectWithChildrenAllOf'] = ObjectWithChildrenAllOf
+    globals()['OracleObjectEntityParams'] = OracleObjectEntityParams
     globals()['PermissionInfo'] = PermissionInfo
+    globals()['PhysicalObjectEntityParams'] = PhysicalObjectEntityParams
+    globals()['SharepointObjectEntityParams'] = SharepointObjectEntityParams
     globals()['SharepointObjectParams'] = SharepointObjectParams
+    globals()['UdaObjectParams'] = UdaObjectParams
+    globals()['ViewObjectParams'] = ViewObjectParams
     globals()['VmwareObjectEntityParams'] = VmwareObjectEntityParams
 
 
@@ -83,6 +113,13 @@ class ObjectWithChildren(ModelComposed):
             'KAWS': "kAWS",
             'KACROPOLIS': "kAcropolis",
             'KGCP': "kGCP",
+            'KGCPBIGQUERY': "kGCPBigQuery",
+            'KGCPMYSQL': "kGCPMySQL",
+            'KGOOGLESPANNER': "kGoogleSpanner",
+            'KGCPPOSTGRESQL': "kGCPPostgreSQL",
+            'KGCPALLOYDBPOSTGRESQL': "kGCPAlloyDBPostgreSQL",
+            'KGCPSQLSERVER': "kGCPSQLServer",
+            'KGCPFIRESTORE': "kGCPFirestore",
             'KPHYSICAL': "kPhysical",
             'KPHYSICALFILES': "kPhysicalFiles",
             'KISILON': "kIsilon",
@@ -108,8 +145,39 @@ class ObjectWithChildren(ModelComposed):
             'KHDFS': "kHdfs",
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
+            'KS3COMPATIBLE': "kS3Compatible",
+            'KSAPHANA': "kSAPHANA",
             'KUDA': "kUDA",
             'KSFDC': "kSfdc",
+            'KEXPERIMENTALADAPTER': "kExperimentalAdapter",
+            'KAZUREENTRAID': "kAzureEntraID",
+            'KAZUREMYSQL': "kAzureMySQL",
+            'KAZURECOSMOSDBNOSQL': "kAzureCosmosDBNoSQL",
+            'KAZURECOSMOSDBMONGODB': "kAzureCosmosDBMongoDB",
+            'KAZURECOSMOSDBCASSANDRA': "kAzureCosmosDBCassandra",
+            'KAZUREPOSTGRESQLSERVER': "kAzurePostgreSQLServer",
+            'KAZURESQL': "kAzureSQL",
+            'KAZURESQLDB': "kAzureSQLDB",
+            'KAZURESQLMI': "kAzureSQLMI",
+            'KAZURETABLESTORAGE': "kAzureTableStorage",
+            'KAZUREBLOBSTORAGE': "kAzureBlobStorage",
+            'KAZURETABLEAPI': "kAzureTableAPI",
+            'KMONGODBPHYSICAL': "kMongoDBPhysical",
+            'KGOOGLEWORKSPACE': "kGoogleWorkspace",
+            'KDB2': "kDB2",
+            'KSERVICENOW': "kServiceNow",
+            'KPOSTGRES': "kPostgres",
+            'KNUTANIXFS': "kNutanixFS",
+            'KAWSAURORAMYSQL': "kAWSAuroraMySQL",
+            'KAWSMYSQL': "kAWSMySQL",
+            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAWSRDSMSSQL': "kAWSRDSMSSQL",
+            'KAWSRDSORACLE': "kAWSRdsOracle",
+            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KAWSDOCUMENTDB': "kAWSDocumentDB",
+            'KAWSRDSPOSTGRESDB': "kAWSRDSPostgresDB",
+            'KAWSAURORAPOSTGRESDB': "kAWSAuroraPostgresDB",
+            'KAWSREDSHIFT': "kAWSRedshift",
         },
         ('object_type',): {
             'None': None,
@@ -140,6 +208,10 @@ class ObjectWithChildren(ModelComposed):
             'KORGMETADATA': "kOrgMetadata",
             'KSTORAGEPOLICY': "kStoragePolicy",
             'KVIRTUALAPPTEMPLATE': "kVirtualAppTemplate",
+            'KPROVIDERVDC': "kProviderVDC",
+            'KPLACEMENTPOLICY': "kPlacementPolicy",
+            'KSIZINGPOLICY': "kSizingPolicy",
+            'KCOMPUTEPOLICY': "kComputePolicy",
             'KDOMAIN': "kDomain",
             'KOUTLOOK': "kOutlook",
             'KMAILBOX': "kMailbox",
@@ -184,15 +256,40 @@ class ObjectWithChildren(ModelComposed):
             'KSUBNET': "kSubnet",
             'KCOMPUTEOPTIONS': "kComputeOptions",
             'KSNAPSHOTMANAGERPERMIT': "kSnapshotManagerPermit",
+            'KREGION': "kRegion",
             'KAVAILABILITYSET': "kAvailabilitySet",
             'KSQLSERVER': "kSQLServer",
             'KSQLDATABASE': "kSQLDatabase",
+            'KSQLMANAGEDINSTANCE': "kSQLManagedInstance",
+            'KMYSQLDATABASE': "kMySQLDatabase",
+            'KMYSQLFLEXIBLESERVER': "kMySQLFlexibleServer",
+            'KAZUREKUBERNETESCLUSTER': "kAzureKubernetesCluster",
+            'KAZUREKUBERNETESNAMESPACE': "kAzureKubernetesNamespace",
+            'KCOSMOSDBCASSANDRAACCOUNT': "kCosmosDBCassandraAccount",
+            'KCOSMOSDBCASSANDRAKEYSPACE': "kCosmosDBCassandraKeyspace",
+            'KAZURECOSMOSDBNOSQLACCOUNT': "kAzureCosmosDBNoSQLAccount",
+            'KAZURECOSMOSDBNOSQLDATABASE': "kAzureCosmosDBNoSQLDatabase",
+            'KAZURECOSMOSDBMONGODBACCOUNT': "kAzureCosmosDBMongoDBAccount",
+            'KAZURECOSMOSDBMONGODBDATABASE': "kAzureCosmosDBMongoDBDatabase",
+            'KCOSMOSDBTABLEACCOUNT': "kCosmosDBTableAccount",
+            'KCOSMOSDBTABLEAPI': "kCosmosDBTableAPI",
+            'KSQLMIDATABASE': "kSQLMIDatabase",
+            'KPOSTGRESQLFLEXIBLESERVER': "kPostgreSQLFlexibleServer",
+            'KPOSTGRESQLDATABASE': "kPostgreSQLDatabase",
+            'KCOSMOSDBTABLEAPITABLE': "kCosmosDBTableAPITable",
+            'KENTRAID': "kEntraID",
+            'KADMINUNIT': "kAdminUnit",
+            'KCONTACT': "kContact",
+            'KDEVICE': "kDevice",
+            'KDIRROLE': "kDirRole",
+            'KSERVICEPRINCIPAL': "kServicePrincipal",
+            'KAPPROLEASSIGNMENT': "kAppRoleAssignment",
+            'KCONDACCESSPOLICY': "kCondAccessPolicy",
             'KOVIRTMANAGER': "kOVirtManager",
             'KHOST': "kHost",
             'KSTORAGEDOMAIN': "kStorageDomain",
             'KVNICPROFILE': "kVNicProfile",
             'KIAMUSER': "kIAMUser",
-            'KREGION': "kRegion",
             'KAVAILABILITYZONE': "kAvailabilityZone",
             'KEC2INSTANCE': "kEC2Instance",
             'KVPC': "kVPC",
@@ -201,10 +298,20 @@ class ObjectWithChildren(ModelComposed):
             'KRDSOPTIONGROUP': "kRDSOptionGroup",
             'KRDSPARAMETERGROUP': "kRDSParameterGroup",
             'KRDSINSTANCE': "kRDSInstance",
+            'KRDSPOSTGRESINSTANCE': "kRDSPostgresInstance",
+            'KRDSMYSQLINSTANCE': "kRDSMySQLInstance",
+            'KRDSMSSQLINSTANCE': "kRDSMSSQLInstance",
+            'KRDSORACLEINSTANCE': "kRDSOracleInstance",
+            'KRDSMARIADBINSTANCE': "kRDSMariaDBInstance",
+            'KRDSCUSTOMMSSQLINSTANCE': "kRDSCustomMSSQLInstance",
+            'KRDSCUSTOMORACLEINSTANCE': "kRDSCustomOracleInstance",
             'KRDSSUBNET': "kRDSSubnet",
             'KRDSTAG': "kRDSTag",
+            'KREDSHIFTTAG': "kRedshiftTag",
             'KAURORATAG': "kAuroraTag",
             'KAURORACLUSTER': "kAuroraCluster",
+            'KAURORAPOSTGRESCLUSTER': "kAuroraPostgresCluster",
+            'KAURORAMYSQLCLUSTER': "kAuroraMySQLCluster",
             'KACCOUNT': "kAccount",
             'KSUBTASKPERMIT': "kSubTaskPermit",
             'KS3BUCKET': "kS3Bucket",
@@ -212,10 +319,25 @@ class ObjectWithChildren(ModelComposed):
             'KKMSKEY': "kKmsKey",
             'KRDSPOSTGRESDB': "kRDSPostgresDb",
             'KAURORACLUSTERPOSTGRESDB': "kAuroraClusterPostgresDb",
+            'KRDSMYSQLDB': "kRDSMySQLDb",
+            'KAURORAMYSQLDB': "kAuroraMySQLDb",
+            'KRDSMSSQLDB': "kRDSMSSQLDb",
+            'KRDSORACLEDB': "kRDSOracleDb",
+            'KRDSMARIADBDB': "kRDSMariaDBDb",
+            'KRDSCUSTOMMSSQLDB': "kRDSCustomMSSQLDb",
+            'KRDSCUSTOMORACLEDB': "kRDSCustomOracleDb",
+            'KAWSREDSHIFTCLUSTER': "kAWSRedshiftCluster",
+            'KAWSREDSHIFTDATABASE': "kAWSRedshiftDatabase",
+            'KAWSDOCUMENTDBCLUSTER': "kAWSDocumentDBCluster",
+            'KAWSDOCUMENTDBDB': "kAWSDocumentDBdb",
             'KPROJECT': "kProject",
             'KLABEL': "kLabel",
             'KMETADATA': "kMetadata",
             'KVPCCONNECTOR': "kVPCConnector",
+            'KBIGQUERYDATASET': "kBigQueryDataset",
+            'KSPANNERDATABASE': "kSpannerDatabase",
+            'KFIRESTOREDATABASE': "kFirestoreDatabase",
+            'KSQLSERVERDATABASE': "kSQLServerDatabase",
             'KPRISMCENTRAL': "kPrismCentral",
             'KOTHERHYPERVISORCLUSTER': "kOtherHypervisorCluster",
             'KZONE': "kZone",
@@ -234,6 +356,7 @@ class ObjectWithChildren(ModelComposed):
             'KORACLERACCLUSTER': "kOracleRACCluster",
             'KORACLEAPCLUSTER': "kOracleAPCluster",
             'KUNIXCLUSTER': "kUnixCluster",
+            'KORACLECLUSTER': "kOracleCluster",
             'KSERVICE': "kService",
             'KPVC': "kPVC",
             'KPERSISTENTVOLUMECLAIM': "kPersistentVolumeClaim",
@@ -254,8 +377,23 @@ class ObjectWithChildren(ModelComposed):
             'KTABLESPACE': "kTableSpace",
             'KPDB': "kPDB",
             'KOBJECT': "kObject",
+            'KSAPHANACLUSTER': "kSapHanaCluster",
+            'KSAPHANASID': "kSapHanaSID",
+            'KSAPHANADATABASE': "kSapHanaDatabase",
+            'KDB2CLUSTER': "kDB2Cluster",
+            'KDB2INSTANCE': "kDB2Instance",
+            'KDB2DATABASE': "kDB2Database",
+            'KPOSTGRESCLUSTER': "kPostgresCluster",
+            'KPOSTGRESINSTANCE': "kPostgresInstance",
+            'KPOSTGRESDATABASE': "kPostgresDatabase",
             'KORG': "kOrg",
             'KAPPINSTANCE': "kAppInstance",
+            'KOPSMANAGER': "kOpsManager",
+            'KSHAREDDRIVES': "kSharedDrives",
+            'KSHAREDDRIVE': "kSharedDrive",
+            'KPRISMELEMENT': "kPrismElement",
+            'KFILESERVER': "kFileServer",
+            'KMOUNTTARGET': "kMountTarget",
         },
         ('os_type',): {
             'None': None,
@@ -274,12 +412,54 @@ class ObjectWithChildren(ModelComposed):
             'KNATIVE': "kNative",
             'KSNAPSHOTMANAGER': "kSnapshotManager",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KRDSPOSTGRESSNAPSHOTMANAGER': "kRDSPostgresSnapshotManager",
+            'KRDSMYSQLSNAPSHOTMANAGER': "kRDSMySQLSnapshotManager",
+            'KRDSMSSQLSNAPSHOTMANAGER': "kRDSMSSQLSnapshotManager",
+            'KRDSORACLESNAPSHOTMANAGER': "kRDSOracleSnapshotManager",
+            'KRDSMARIADBSNAPSHOTMANAGER': "kRDSMariaDBSnapshotManager",
+            'KRDSCUSTOMMSSQLSNAPSHOTMANAGER': "kRDSCustomMSSQLSnapshotManager",
+            'KRDSCUSTOMORACLESNAPSHOTMANAGER': "kRDSCustomOracleSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAURORAPOSTGRESSNAPSHOTMANAGER': "kAuroraPostgresSnapshotManager",
+            'KAURORAMYSQLSNAPSHOTMANAGER': "kAuroraMySQLSnapshotManager",
             'KAWSS3': "kAwsS3",
             'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAWSAURORAPOSTGRES': "kAwsAuroraPostgres",
+            'KAWSRDSPOSTGRES': "kAwsRDSPostgres",
+            'KAWSMYSQL': "kAWSMySQL",
+            'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
+            'KAWSDYNAMODB': "kAwsDynamoDB",
+            'KAWSAURORAMYSQL': "kAWSAuroraMySQL",
+            'KAWSRDSORACLE': "kAWSRdsOracle",
+            'KAWSDOCUMENTDB': "kAWSDocumentDB",
+            'KAWSRDSPOSTGRESDB': "kAWSRDSPostgresDB",
+            'KAWSAURORAPOSTGRESDB': "kAWSAuroraPostgresDB",
+            'KAWSRDSMSSQL': "kAWSRDSMSSQL",
+            'KAWSREDSHIFT': "kAWSRedshift",
             'KAZURESQL': "kAzureSQL",
+            'KAZUREENTRAID': "kAzureEntraID",
+            'KAZUREMYSQL': "kAzureMySQL",
+            'KAZURECOSMOSDBNOSQL': "kAzureCosmosDBNoSQL",
+            'KAZURECOSMOSDBMONGODB': "kAzureCosmosDBMongoDB",
+            'KAZURECOSMOSDBCASSANDRA': "kAzureCosmosDBCassandra",
+            'KAZUREBLOBSTORAGE': "kAzureBlobStorage",
+            'KAZUREPOSTGRESQLSERVER': "kAzurePostgreSQLServer",
+            'KAZURESQLDB': "kAzureSQLDB",
+            'KAZURESQLMI': "kAzureSQLMI",
+            'KAZURETABLESTORAGE': "kAzureTableStorage",
+            'KAZURETABLEAPI': "kAzureTableAPI",
+            'KKUBERNETES': "kKubernetes",
+            'KGCPBIGQUERY': "kGCPBigQuery",
+            'KGOOGLESPANNER': "kGoogleSpanner",
+            'KGCPFIRESTORE': "kGCPFirestore",
+            'KGCPMYSQL': "kGCPMySQL",
+            'KGCPPOSTGRESQL': "kGCPPostgreSQL",
+            'KGCPALLOYDBPOSTGRESQL': "kGCPAlloyDBPostgreSQL",
+            'KGCPSQLSERVER': "kGCPSQLServer",
             'KFILE': "kFile",
             'KVOLUME': "kVolume",
+            'KGMAIL': "kGmail",
+            'KGOOGLEDRIVE': "kGoogleDrive",
         },
     }
 
@@ -302,6 +482,7 @@ class ObjectWithChildren(ModelComposed):
         """
         lazy_import()
         return {
+            'entity_id': (ObjectStringIdentifier,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
@@ -320,19 +501,22 @@ class ObjectWithChildren(ModelComposed):
             'windows_cluster_summary': (ObjectTypeWindowsClusterParams,),  # noqa: E501
             'permissions': (PermissionInfo,),  # noqa: E501
             'protection_stats': ([ObjectProtectionStatsSummary], none_type,),  # noqa: E501
-            'elastifile_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'flashblade_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'generic_nas_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'gpfs_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'group_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'isilon_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'mssql_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'netapp_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'oracle_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'physical_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'sharepoint_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'uda_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'view_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'elastifile_params': (CommonNasObjectParams,),  # noqa: E501
+            'flashblade_params': (FlashbladeObjectParams,),  # noqa: E501
+            'generic_nas_params': (CommonNasObjectParams,),  # noqa: E501
+            'gpfs_params': (CommonNasObjectParams,),  # noqa: E501
+            'group_params': (GroupObjectEntityParams,),  # noqa: E501
+            'isilon_params': (IsilonObjectParams,),  # noqa: E501
+            'mongo_db_params': (MongoDBObjectParams,),  # noqa: E501
+            'mssql_params': (MssqlObjectEntityParams,),  # noqa: E501
+            'netapp_params': (NetappObjectParams,),  # noqa: E501
+            'nutanix_fs_params': (NutanixFSObjectParams,),  # noqa: E501
+            'o365_params': (O365ObjectEntityParams,),  # noqa: E501
+            'oracle_params': (OracleObjectEntityParams,),  # noqa: E501
+            'physical_params': (PhysicalObjectEntityParams,),  # noqa: E501
+            'sharepoint_params': (SharepointObjectEntityParams,),  # noqa: E501
+            'uda_params': (UdaObjectParams,),  # noqa: E501
+            'view_params': (ViewObjectParams,),  # noqa: E501
             'vmware_params': (VmwareObjectEntityParams,),  # noqa: E501
             'objects': ([ObjectWithChildren],),  # noqa: E501
         }
@@ -344,6 +528,7 @@ class ObjectWithChildren(ModelComposed):
 
 
     attribute_map = {
+        'entity_id': 'entityId',  # noqa: E501
         'environment': 'environment',  # noqa: E501
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
@@ -368,8 +553,11 @@ class ObjectWithChildren(ModelComposed):
         'gpfs_params': 'gpfsParams',  # noqa: E501
         'group_params': 'groupParams',  # noqa: E501
         'isilon_params': 'isilonParams',  # noqa: E501
+        'mongo_db_params': 'mongoDBParams',  # noqa: E501
         'mssql_params': 'mssqlParams',  # noqa: E501
         'netapp_params': 'netappParams',  # noqa: E501
+        'nutanix_fs_params': 'nutanixFSParams',  # noqa: E501
+        'o365_params': 'o365Params',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
         'sharepoint_params': 'sharepointParams',  # noqa: E501
@@ -427,6 +615,7 @@ class ObjectWithChildren(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            entity_id (ObjectStringIdentifier): [optional]  # noqa: E501
             environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
             id (int, none_type): Specifies object id.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
@@ -445,19 +634,22 @@ class ObjectWithChildren(ModelComposed):
             windows_cluster_summary (ObjectTypeWindowsClusterParams): [optional]  # noqa: E501
             permissions (PermissionInfo): [optional]  # noqa: E501
             protection_stats ([ObjectProtectionStatsSummary], none_type): Specifies the count and size of protected and unprotected objects for the size.. [optional]  # noqa: E501
-            elastifile_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Elastifile object.. [optional]  # noqa: E501
-            flashblade_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Flashblade object.. [optional]  # noqa: E501
-            generic_nas_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for GenericNas object.. [optional]  # noqa: E501
-            gpfs_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for GPFS object.. [optional]  # noqa: E501
-            group_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for M365 Group object.. [optional]  # noqa: E501
-            isilon_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Isilon object.. [optional]  # noqa: E501
-            mssql_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Msssql object.. [optional]  # noqa: E501
-            netapp_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for NetApp object.. [optional]  # noqa: E501
-            oracle_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Oracle object.. [optional]  # noqa: E501
-            physical_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Physical object.. [optional]  # noqa: E501
-            sharepoint_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Sharepoint object.. [optional]  # noqa: E501
-            uda_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for UDA object.. [optional]  # noqa: E501
-            view_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for a View.. [optional]  # noqa: E501
+            elastifile_params (CommonNasObjectParams): [optional]  # noqa: E501
+            flashblade_params (FlashbladeObjectParams): [optional]  # noqa: E501
+            generic_nas_params (CommonNasObjectParams): [optional]  # noqa: E501
+            gpfs_params (CommonNasObjectParams): [optional]  # noqa: E501
+            group_params (GroupObjectEntityParams): [optional]  # noqa: E501
+            isilon_params (IsilonObjectParams): [optional]  # noqa: E501
+            mongo_db_params (MongoDBObjectParams): [optional]  # noqa: E501
+            mssql_params (MssqlObjectEntityParams): [optional]  # noqa: E501
+            netapp_params (NetappObjectParams): [optional]  # noqa: E501
+            nutanix_fs_params (NutanixFSObjectParams): [optional]  # noqa: E501
+            o365_params (O365ObjectEntityParams): [optional]  # noqa: E501
+            oracle_params (OracleObjectEntityParams): [optional]  # noqa: E501
+            physical_params (PhysicalObjectEntityParams): [optional]  # noqa: E501
+            sharepoint_params (SharepointObjectEntityParams): [optional]  # noqa: E501
+            uda_params (UdaObjectParams): [optional]  # noqa: E501
+            view_params (ViewObjectParams): [optional]  # noqa: E501
             vmware_params (VmwareObjectEntityParams): [optional]  # noqa: E501
             objects ([ObjectWithChildren]): Specifies a list of child nodes for this specific node.. [optional]  # noqa: E501
         """

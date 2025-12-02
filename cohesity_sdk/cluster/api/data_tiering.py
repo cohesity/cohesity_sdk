@@ -57,7 +57,7 @@ class DataTieringApi(object):
         ):
             """Cancel data tiering analysis run.  # noqa: E501
 
-            Cancel data tiering analysis run for given analysis group ID and run ID  # noqa: E501
+            **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Cancel data tiering analysis run for given analysis group ID and run ID  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -125,7 +125,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups/{id}/runs/{runId}/cancel',
                 'operation_id': 'cancel_data_tiering_analysis_group_run',
@@ -202,7 +204,7 @@ class DataTieringApi(object):
         ):
             """Cancel data tiering task.  # noqa: E501
 
-            Cancel data tiering task run for given data tiering task id and run id.  # noqa: E501
+            **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Cancel data tiering task run for given data tiering task id and run id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -270,7 +272,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/tasks/{id}/runs/{runId}/cancel',
                 'operation_id': 'cancel_data_tiering_task_run',
@@ -346,7 +350,7 @@ class DataTieringApi(object):
         ):
             """Create a data tiering analysis group.  # noqa: E501
 
-            Create a data tiering analysis group.  # noqa: E501
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Create a data tiering analysis group.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -411,7 +415,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups',
                 'operation_id': 'create_data_tiering_analysis_group',
@@ -468,7 +474,7 @@ class DataTieringApi(object):
         ):
             """Create a data tiering analysis group run.  # noqa: E501
 
-            Create a data tiering analysis group run.  # noqa: E501
+            **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Create a data tiering analysis group run.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -534,7 +540,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups/{id}/runs',
                 'operation_id': 'create_data_tiering_analysis_group_run',
@@ -603,7 +611,7 @@ class DataTieringApi(object):
         ):
             """Create a data tiering task.  # noqa: E501
 
-            Create a data tiering task.  # noqa: E501
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Create a data tiering task.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -668,7 +676,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/tasks',
                 'operation_id': 'create_data_tiering_task',
@@ -725,7 +735,7 @@ class DataTieringApi(object):
         ):
             """Create a data tiering tasks run.  # noqa: E501
 
-            Create a data tiering tasks run.  # noqa: E501
+            **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Create a data tiering tasks run.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -791,7 +801,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/tasks/{id}/runs',
                 'operation_id': 'create_data_tiering_task_run',
@@ -860,7 +872,7 @@ class DataTieringApi(object):
         ):
             """Delete data tiering analysis group.  # noqa: E501
 
-            Returns NoContentResponse if the data tiering analysis group is deleted.  # noqa: E501
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Returns NoContentResponse if the data tiering analysis group is deleted.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -925,7 +937,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups/{id}',
                 'operation_id': 'delete_data_tiering_analysis_group',
@@ -988,7 +1002,7 @@ class DataTieringApi(object):
         ):
             """delete the data tiering task.  # noqa: E501
 
-            Returns Success if the data tiering task is deleted.  # noqa: E501
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Returns Success if the data tiering task is deleted.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1053,7 +1067,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/tasks/{id}',
                 'operation_id': 'delete_data_tiering_task',
@@ -1102,13 +1118,180 @@ class DataTieringApi(object):
             callable=__delete_data_tiering_task
         )
 
+        def __download_tiering_reports(
+            self,
+            id,
+            run_id,
+            target_view_name,
+            file_path,
+            **kwargs
+        ):
+            """Download Tiering reports.  # noqa: E501
+
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Specifies the API to download the tiering run report.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.download_tiering_reports(id, run_id, target_view_name, file_path, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (str): Specifies a unique id of data tiering task.
+                run_id (str): Specifies a unique run id of data tiering task.
+                target_view_name (str): Specifies the View name from which the tiering job report file should be read from.
+                file_path (str): Specifies the file path in the targetView.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            kwargs['run_id'] = \
+                run_id
+            kwargs['target_view_name'] = \
+                target_view_name
+            kwargs['file_path'] = \
+                file_path
+            return self.call_with_http_info(**kwargs)
+
+        self.download_tiering_reports = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-tiering/tasks/{id}/runs/{runId}/download-report',
+                'operation_id': 'download_tiering_reports',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'run_id',
+                    'target_view_name',
+                    'file_path',
+                ],
+                'required': [
+                    'id',
+                    'run_id',
+                    'target_view_name',
+                    'file_path',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'id',
+                    'run_id',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^\d+:\d+:\d+$',  # noqa: E501
+                        },
+                    },
+                    ('run_id',): {
+
+                        'regex': {
+                            'pattern': r'^\d+:\d+$',  # noqa: E501
+                        },
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (str,),
+                    'run_id':
+                        (str,),
+                    'target_view_name':
+                        (str,),
+                    'file_path':
+                        (str,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'run_id': 'runId',
+                    'target_view_name': 'targetViewName',
+                    'file_path': 'filePath',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'run_id': 'path',
+                    'target_view_name': 'query',
+                    'file_path': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__download_tiering_reports
+        )
+
         def __get_capacity_trend_analysis(
             self,
             **kwargs
         ):
             """Get capacity trend analysis for all sources or a specific source.  # noqa: E501
 
-            Get capacity trend analysis for the given time range, and for the given source or set of sources.  # noqa: E501
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Get capacity trend analysis for the given time range, and for the given source or set of sources.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1120,6 +1303,7 @@ class DataTieringApi(object):
                 start_time_usecs (int): Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds).. [optional]
                 end_time_usecs (int): Filter by a end time. Specify the end time as a Unix epoch Timestamp (in microseconds).. [optional]
                 source_id (int): Filter by source id. If specified, this will only return the capacity trend analysis of the specific source.. [optional]
+                truncate_response (bool, none_type): If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1172,7 +1356,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/capacity-trend',
                 'operation_id': 'get_capacity_trend_analysis',
@@ -1184,9 +1370,11 @@ class DataTieringApi(object):
                     'start_time_usecs',
                     'end_time_usecs',
                     'source_id',
+                    'truncate_response',
                 ],
                 'required': [],
                 'nullable': [
+                    'truncate_response',
                 ],
                 'enum': [
                 ],
@@ -1205,16 +1393,20 @@ class DataTieringApi(object):
                         (int,),
                     'source_id':
                         (int,),
+                    'truncate_response':
+                        (bool, none_type,),
                 },
                 'attribute_map': {
                     'start_time_usecs': 'startTimeUsecs',
                     'end_time_usecs': 'endTimeUsecs',
                     'source_id': 'sourceId',
+                    'truncate_response': 'truncateResponse',
                 },
                 'location_map': {
                     'start_time_usecs': 'query',
                     'end_time_usecs': 'query',
                     'source_id': 'query',
+                    'truncate_response': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -1236,7 +1428,7 @@ class DataTieringApi(object):
         ):
             """Get data tiering analysis group by id.  # noqa: E501
 
-            Get data tiering analysis group by id.  # noqa: E501
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Get data tiering analysis group by id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1301,7 +1493,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups/{id}',
                 'operation_id': 'get_data_tiering_analysis_group_by_id',
@@ -1364,7 +1558,7 @@ class DataTieringApi(object):
         ):
             """Get data tiering analysis group runs.  # noqa: E501
 
-            Get data tiering analysis group runs for an analysis group.  # noqa: E501
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Get data tiering analysis group runs for an analysis group.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1376,6 +1570,7 @@ class DataTieringApi(object):
 
             Keyword Args:
                 run_ids ([str]): Filter by a list of analysis group run ids.. [optional]
+                truncate_response (bool, none_type): If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1430,7 +1625,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups/{id}/runs',
                 'operation_id': 'get_data_tiering_analysis_group_runs',
@@ -1441,11 +1638,13 @@ class DataTieringApi(object):
                 'all': [
                     'id',
                     'run_ids',
+                    'truncate_response',
                 ],
                 'required': [
                     'id',
                 ],
                 'nullable': [
+                    'truncate_response',
                 ],
                 'enum': [
                 ],
@@ -1469,14 +1668,18 @@ class DataTieringApi(object):
                         (str,),
                     'run_ids':
                         ([str],),
+                    'truncate_response':
+                        (bool, none_type,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'run_ids': 'runIds',
+                    'truncate_response': 'truncateResponse',
                 },
                 'location_map': {
                     'id': 'path',
                     'run_ids': 'query',
+                    'truncate_response': 'query',
                 },
                 'collection_format_map': {
                     'run_ids': 'csv',
@@ -1498,7 +1701,7 @@ class DataTieringApi(object):
         ):
             """Get the list of data tiering analysis groups.  # noqa: E501
 
-            Get list of all data tiering analysis groups.  # noqa: E501
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Get list of all data tiering analysis groups.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1561,7 +1764,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups',
                 'operation_id': 'get_data_tiering_analysis_groups',
@@ -1620,7 +1825,7 @@ class DataTieringApi(object):
         ):
             """Get the default config of data tiering analysis groups.  # noqa: E501
 
-            Get default grouping configuration for data tiering analysis groups.  # noqa: E501
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Get default grouping configuration for data tiering analysis groups.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1681,7 +1886,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups/config',
                 'operation_id': 'get_data_tiering_analysis_groups_default_config',
@@ -1730,7 +1937,7 @@ class DataTieringApi(object):
         ):
             """Get data tiering task by id.  # noqa: E501
 
-            Get data tiering task by id.  # noqa: E501
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Get data tiering task by id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1795,7 +2002,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/tasks/{id}',
                 'operation_id': 'get_data_tiering_task_by_id',
@@ -1850,7 +2059,7 @@ class DataTieringApi(object):
         ):
             """Get the list of data tiering tasks.  # noqa: E501
 
-            Get the list of data tiering tasks.  # noqa: E501
+            **Privileges:** ```PROTECTION_VIEW``` <br><br>Get the list of data tiering tasks.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1913,7 +2122,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/tasks',
                 'operation_id': 'get_data_tiering_tasks',
@@ -1974,7 +2185,7 @@ class DataTieringApi(object):
         ):
             """Update a data tiering analysis group. Currently, it supports updating sources and schedule only.  # noqa: E501
 
-            Update a data tiering analysis group.  # noqa: E501
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Update a data tiering analysis group.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2042,7 +2253,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups/{id}',
                 'operation_id': 'update_data_tiering_analysis_group',
@@ -2113,7 +2326,7 @@ class DataTieringApi(object):
         ):
             """Update data tiering analysis group config.  # noqa: E501
 
-            Update data tiering analysis group config.  # noqa: E501
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Update data tiering analysis group config.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2181,7 +2394,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups/{id}/config',
                 'operation_id': 'update_data_tiering_analysis_group_tags_config',
@@ -2251,7 +2466,7 @@ class DataTieringApi(object):
         ):
             """Update data tiering analysis groups state.  # noqa: E501
 
-            Perform actions like pause or resume on the data tiering analysis groups for the specified sources.  # noqa: E501
+            **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Perform actions like pause or resume on the data tiering analysis groups for the specified sources.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2316,7 +2531,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups/states',
                 'operation_id': 'update_data_tiering_analysis_groups_state',
@@ -2374,7 +2591,7 @@ class DataTieringApi(object):
         ):
             """Update a data tiering task.  # noqa: E501
 
-            Update a data tiering task.  # noqa: E501
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Update a data tiering task.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2442,7 +2659,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/tasks/{id}',
                 'operation_id': 'update_data_tiering_task',
@@ -2505,7 +2724,7 @@ class DataTieringApi(object):
         ):
             """Update data tiering source analysis tasks state.  # noqa: E501
 
-            Perform actions like pause or resume on the data tiering tasks.  # noqa: E501
+            **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Perform actions like pause or resume on the data tiering tasks.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2570,7 +2789,9 @@ class DataTieringApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-tiering/tasks/states',
                 'operation_id': 'update_data_tiering_tasks_state',

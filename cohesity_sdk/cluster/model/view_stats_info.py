@@ -58,6 +58,13 @@ class ViewStatsInfo(ModelNormal):
     """
 
     allowed_values = {
+        ('protocols',): {
+            'None': None,
+            'KNFS': "kNfs",
+            'KSMB': "kSmb",
+            'KS3': "kS3",
+            'KISCSI': "kIscsi",
+        },
     }
 
     validations = {

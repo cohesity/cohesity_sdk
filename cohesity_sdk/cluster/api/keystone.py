@@ -21,11 +21,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.cluster.model.create_keystone_request import CreateKeystoneRequest
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.keystone import Keystone
 from cohesity_sdk.cluster.model.keystones import Keystones
-from cohesity_sdk.cluster.model.update_keystone_request import UpdateKeystoneRequest
 
 
 class KeystoneApi(object):
@@ -47,7 +45,7 @@ class KeystoneApi(object):
         ):
             """Create a Keystone configuration.  # noqa: E501
 
-            Create a Keystone configuration.  # noqa: E501
+            **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Create a Keystone configuration.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -55,7 +53,7 @@ class KeystoneApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CreateKeystoneRequest): Specifies the paremters to create a Keystone configuration.
+                body (Keystone): Specifies the paremters to create a Keystone configuration.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -112,7 +110,9 @@ class KeystoneApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/keystones',
                 'operation_id': 'create_keystone',
@@ -140,7 +140,7 @@ class KeystoneApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CreateKeystoneRequest,),
+                        (Keystone,),
                 },
                 'attribute_map': {
                 },
@@ -170,7 +170,7 @@ class KeystoneApi(object):
         ):
             """Delete a Keystone configuration.  # noqa: E501
 
-            Delete a Keystone configuration.  # noqa: E501
+            **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Delete a Keystone configuration.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -238,7 +238,9 @@ class KeystoneApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/keystones/{id}',
                 'operation_id': 'delete_keystone',
@@ -299,7 +301,7 @@ class KeystoneApi(object):
         ):
             """Get Keystones.  # noqa: E501
 
-            Get Keystones.  # noqa: E501
+            **Privileges:** ```KEYSTONE_VIEW``` <br><br>Get Keystones.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -363,7 +365,9 @@ class KeystoneApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/keystones',
                 'operation_id': 'get_keystones',
@@ -437,7 +441,7 @@ class KeystoneApi(object):
         ):
             """Get a Keystone by its id.  # noqa: E501
 
-            Get a Keystone by its id.  # noqa: E501
+            **Privileges:** ```KEYSTONE_VIEW``` <br><br>Get a Keystone by its id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -502,7 +506,9 @@ class KeystoneApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/keystones/{id}',
                 'operation_id': 'get_keystones_by_id',
@@ -559,7 +565,7 @@ class KeystoneApi(object):
         ):
             """Update a Keystone configuration.  # noqa: E501
 
-            Update a Keystone configuration.  # noqa: E501
+            **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Update a Keystone configuration.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -568,7 +574,7 @@ class KeystoneApi(object):
 
             Args:
                 id (int): Specifies the Keystone id.
-                body (UpdateKeystoneRequest): Specifies the paremters to update a Keystone configuration.
+                body (Keystone): Specifies the paremters to update a Keystone configuration.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -627,7 +633,9 @@ class KeystoneApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/keystones/{id}',
                 'operation_id': 'update_keystone',
@@ -659,7 +667,7 @@ class KeystoneApi(object):
                     'id':
                         (int,),
                     'body':
-                        (UpdateKeystoneRequest,),
+                        (Keystone,),
                 },
                 'attribute_map': {
                     'id': 'id',

@@ -75,10 +75,6 @@ class DownloadFilesAndFoldersRequestParams(ModelNormal):
             'min_items': 1,
         },
 
-        ('files_and_folders',): {
-            'min_items': 1,
-        },
-
         ('parent_recovery_id',): {
             'regex': {
                 'pattern': r'^\d+:\d+:\d+$',  # noqa: E501

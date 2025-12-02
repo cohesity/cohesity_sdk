@@ -5,6 +5,7 @@ Specifies the parameters for Cassandra Protection Group.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**auto_scale_concurrency** | **bool, none_type** | Specifies the flag to automatically scale number of concurrent IO Streams that will be created to exchange data with the cluster. | [optional] 
 **bandwidth_mbps** | **int, none_type** | Specifies the maximum network bandwidth that each concurrent IO Stream can use for exchanging data with the cluster. | [optional] 
 **concurrency** | **int, none_type** | Specifies the maximum number of concurrent IO Streams that will be created to exchange data with the cluster. | [optional] 
 **custom_source_name** | **str, none_type** | The user specified name for the Source on which this protection was run. | [optional] [readonly] 
@@ -12,6 +13,8 @@ Name | Type | Description | Notes
 **exclude_objectlist** | **[str], none_type** | Specifies the list of fully qualified name of the entities to exclude for protection. | [optional] 
 **include_objectlist** | **[str], none_type** | Specifies the list of fully qualified name of the entities to include for protection. | [optional] 
 **objects** | [**[NoSqlProtectionGroupObjectParams]**](NoSqlProtectionGroupObjectParams.md) | Specifies the objects to be included in the Protection Group. | [optional] 
+**overwrite_exclude_objectlist** | **bool, none_type** | If disabled - The excludeObjectlist is merged with the existing exclude_sources_vec, preserving any existing elements while incorporating new ones. | [optional]  if omitted the server will use the default value of True
+**overwrite_include_objectlist** | **bool, none_type** | If disabled - The includeObjectlist is merged with the existing sources_vec, preserving any existing elements while incorporating new ones. | [optional]  if omitted the server will use the default value of True
 **source_id** | **int, none_type** | Object ID of the Source on which this protection was run . | [optional] [readonly] 
 **source_name** | **str, none_type** | Specifies the name of the Source on which this protection was run. | [optional] [readonly] 
 **data_centers** | **[str]** | Only the specified data centers will be considered while taking backup. The keyspaces having replication strategy &#39;Simple&#39; can be backed up only if all the datacenters for the cassandra cluster are specified. For any keyspace having replication strategy as &#39;Network&#39;, all the associated data centers should be specified. | [optional] 

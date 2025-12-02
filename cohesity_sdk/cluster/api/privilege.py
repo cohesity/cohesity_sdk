@@ -43,7 +43,7 @@ class PrivilegeApi(object):
         ):
             """Get Privileges.  # noqa: E501
 
-            Get Privileges.  # noqa: E501
+            **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Privileges.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -105,7 +105,9 @@ class PrivilegeApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/privileges',
                 'operation_id': 'get_privileges',

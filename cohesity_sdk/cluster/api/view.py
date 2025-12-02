@@ -32,6 +32,8 @@ from cohesity_sdk.cluster.model.get_nlm_locks_result import GetNlmLocksResult
 from cohesity_sdk.cluster.model.get_view_templates_result import GetViewTemplatesResult
 from cohesity_sdk.cluster.model.get_views_result import GetViewsResult
 from cohesity_sdk.cluster.model.lock_file_params import LockFileParams
+from cohesity_sdk.cluster.model.migrate_s3_views import MigrateS3Views
+from cohesity_sdk.cluster.model.multiple_views_update_success_failure_ids import MultipleViewsUpdateSuccessFailureIds
 from cohesity_sdk.cluster.model.overwrite_view_params import OverwriteViewParams
 from cohesity_sdk.cluster.model.qos_policies_result import QosPoliciesResult
 from cohesity_sdk.cluster.model.quota_policy import QuotaPolicy
@@ -73,7 +75,7 @@ class ViewApi(object):
         ):
             """Add User Quota overrides.  # noqa: E501
 
-            Specifies the parameters to override the user quota on the view. User quota on the view should be enabled before setting a user override.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Specifies the parameters to override the user quota on the view. User quota on the view should be enabled before setting a user override.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -141,7 +143,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/views/{viewId}/user-quotas',
                 'operation_id': 'add_view_user_quota_overrides',
@@ -204,7 +208,7 @@ class ViewApi(object):
         ):
             """Clear NLM locks.  # noqa: E501
 
-            Clear NLM locks that match the filter criteria specified using parameters  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Clear NLM locks that match the filter criteria specified using parameters  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -269,7 +273,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/nlm-locks',
                 'operation_id': 'clear_nlm_locks',
@@ -327,7 +333,7 @@ class ViewApi(object):
         ):
             """Clone View.  # noqa: E501
 
-            Clone View.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY, CLONE_MODIFY``` <br><br>Clone View.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -395,7 +401,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}/clone',
                 'operation_id': 'clone_view',
@@ -458,7 +466,7 @@ class ViewApi(object):
         ):
             """Clone View Directory.  # noqa: E501
 
-            Clone View Directory.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Clone View Directory.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -523,7 +531,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/views/clone-directory',
                 'operation_id': 'clone_view_directory',
@@ -579,7 +589,7 @@ class ViewApi(object):
         ):
             """Close SMB File open.  # noqa: E501
 
-            Close an active SMB file open.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Close an active SMB file open.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -641,7 +651,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/smb-file-opens',
                 'operation_id': 'close_smb_file_open',
@@ -696,7 +708,7 @@ class ViewApi(object):
         ):
             """Create a Share.  # noqa: E501
 
-            Create a Share.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Create a Share.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -761,7 +773,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/shares',
                 'operation_id': 'create_share',
@@ -818,7 +832,7 @@ class ViewApi(object):
         ):
             """Create a View  # noqa: E501
 
-            Creates a View.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Creates a View.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -883,7 +897,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/views',
                 'operation_id': 'create_view',
@@ -940,7 +956,7 @@ class ViewApi(object):
         ):
             """Create a View Template  # noqa: E501
 
-            Creates a View Template.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Creates a View Template.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1005,7 +1021,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/view-template',
                 'operation_id': 'create_view_template',
@@ -1062,7 +1080,7 @@ class ViewApi(object):
         ):
             """Delete a Share.  # noqa: E501
 
-            Delete a Share.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Delete a Share.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1127,7 +1145,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/shares/{name}',
                 'operation_id': 'delete_share',
@@ -1183,7 +1203,7 @@ class ViewApi(object):
         ):
             """Delete a View  # noqa: E501
 
-            Deletes a View based on given id.  # noqa: E501
+            ```No Privileges Required``` <br><br>Deletes a View based on given id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1248,7 +1268,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}',
                 'operation_id': 'delete_view',
@@ -1304,7 +1326,7 @@ class ViewApi(object):
         ):
             """Delete directory quota for the View.  # noqa: E501
 
-            Delete directory quota for the View.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Delete directory quota for the View.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1371,7 +1393,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}/directory-quotas',
                 'operation_id': 'delete_view_directory_quota',
@@ -1437,7 +1461,7 @@ class ViewApi(object):
         ):
             """Delete a View Template  # noqa: E501
 
-            Deletes a view template based on given template id.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Deletes a view template based on given template id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1502,7 +1526,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/view-template/{id}',
                 'operation_id': 'delete_view_template',
@@ -1559,7 +1585,7 @@ class ViewApi(object):
         ):
             """Delete user quota overrides.  # noqa: E501
 
-            Specifies the parameters to delete user quotas on the view.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Specifies the parameters to delete user quotas on the view.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1627,7 +1653,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/views/{viewId}/user-quotas',
                 'operation_id': 'delete_view_user_quota_overrides',
@@ -1691,7 +1719,7 @@ class ViewApi(object):
         ):
             """Get file lock status  # noqa: E501
 
-            Get the lock status of a file in a view.  # noqa: E501
+            **Privileges:** ```STORAGE_VIEW``` <br><br>Get the lock status of a file in a view.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1700,7 +1728,7 @@ class ViewApi(object):
 
             Args:
                 id (int): Specifies the id of a view.
-                path (str): Specifies the request file path in a view.
+                path (str): Specifies the file path relative to root of the view.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -1759,7 +1787,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}/file-lock',
                 'operation_id': 'get_file_lock_status',
@@ -1820,7 +1850,7 @@ class ViewApi(object):
         ):
             """Get NLM locks.  # noqa: E501
 
-            Get the list of NLM locks in the views.  # noqa: E501
+            **Privileges:** ```STORAGE_VIEW``` <br><br>Get the list of NLM locks in the views.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1885,7 +1915,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/nlm-locks',
                 'operation_id': 'get_nlm_locks',
@@ -1953,7 +1985,7 @@ class ViewApi(object):
         ):
             """Get QoS Policies.  # noqa: E501
 
-            Get the list of QoS policies on the Cohesity cluster.  # noqa: E501
+            **Privileges:** ```STORAGE_VIEW``` <br><br>Get the list of QoS policies on the Cohesity cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2014,7 +2046,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/qos-policies',
                 'operation_id': 'get_qos_policies',
@@ -2062,7 +2096,7 @@ class ViewApi(object):
         ):
             """Get Shares.  # noqa: E501
 
-            If no parameters are specified, all shares on the Cohesity Cluster are returned. Specifying share name/prefix filters the results that are returned. NOTE: If maxCount is set and the number of Shares returned exceeds the maxCount, there are more Share to return. To get the next set of Views, send another request and specify the pagination cookie from the previous response. If maxCount is not specified, the first 2000 Shares.  # noqa: E501
+            **Privileges:** ```STORAGE_VIEW``` <br><br>If no parameters are specified, all shares on the Cohesity Cluster are returned. Specifying share name/prefix filters the results that are returned. NOTE: If maxCount is set and the number of Shares returned exceeds the maxCount, there are more Share to return. To get the next set of Views, send another request and specify the pagination cookie from the previous response. If maxCount is not specified, the first 2000 Shares.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2072,6 +2106,7 @@ class ViewApi(object):
 
             Keyword Args:
                 name (str): Specifies the Share name.. [optional]
+                is_read_only_view (bool): If true, only shares of Views that are Read-Only will be returned.. [optional]
                 match_partial_name (bool): If true, the share name is matched by any partial rather than exactly matched.. [optional]
                 max_count (int): Specifies a limit on the number of Shares returned. If maxCount is not specified, the first 2000 Shares.. [optional]
                 cookie (str): Specifies the pagination cookie. Expected to be empty in the first call to the API. To get the next set of results, set this value to the pagination cookie value returned in the response of the previous call.. [optional]
@@ -2129,7 +2164,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/shares',
                 'operation_id': 'get_shares',
@@ -2139,6 +2176,7 @@ class ViewApi(object):
             params_map={
                 'all': [
                     'name',
+                    'is_read_only_view',
                     'match_partial_name',
                     'max_count',
                     'cookie',
@@ -2161,6 +2199,8 @@ class ViewApi(object):
                 'openapi_types': {
                     'name':
                         (str,),
+                    'is_read_only_view':
+                        (bool,),
                     'match_partial_name':
                         (bool,),
                     'max_count':
@@ -2174,6 +2214,7 @@ class ViewApi(object):
                 },
                 'attribute_map': {
                     'name': 'name',
+                    'is_read_only_view': 'isReadOnlyView',
                     'match_partial_name': 'matchPartialName',
                     'max_count': 'maxCount',
                     'cookie': 'cookie',
@@ -2182,6 +2223,7 @@ class ViewApi(object):
                 },
                 'location_map': {
                     'name': 'query',
+                    'is_read_only_view': 'query',
                     'match_partial_name': 'query',
                     'max_count': 'query',
                     'cookie': 'query',
@@ -2209,7 +2251,7 @@ class ViewApi(object):
         ):
             """Get a View by Id  # noqa: E501
 
-            Get a View based on given Id.  # noqa: E501
+            **Privileges:** ```STORAGE_VIEW``` <br><br>Get a View based on given Id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2274,7 +2316,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}',
                 'operation_id': 'get_view_by_id',
@@ -2329,7 +2373,7 @@ class ViewApi(object):
         ):
             """Get View Clients.  # noqa: E501
 
-            Get View Clients.  # noqa: E501
+            **Privileges:** ```STORAGE_VIEW``` <br><br>Get View Clients.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2341,7 +2385,8 @@ class ViewApi(object):
                 protocols ([str]): Specifies a list of protocols to filter the clients.. [optional]
                 view_ids ([int]): Specifies a list of View ids. Only clients connected to these Views will be returned.. [optional]
                 node_ip (str): Specifies a node ip. Only clients connected to this node will be returned.. [optional]
-                max_count (int): Specifies the maximum number of connections to return for SMB and NFS protocols respectively.. [optional]
+                max_count (int): Specifies the maximum number of connections to return for SMB and NFS protocols respectively. It will be ignored if parameter 'includeSummary' is set to true.. [optional]
+                include_summary (bool): Set this to include response summary. Parameter 'maxCount' will be ignored if this is set to true.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2394,7 +2439,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/view-clients',
                 'operation_id': 'get_view_clients',
@@ -2407,6 +2454,7 @@ class ViewApi(object):
                     'view_ids',
                     'node_ip',
                     'max_count',
+                    'include_summary',
                 ],
                 'required': [],
                 'nullable': [
@@ -2424,7 +2472,8 @@ class ViewApi(object):
                     ('protocols',): {
 
                         "NFS": "NFS",
-                        "SMB": "SMB"
+                        "SMB": "SMB",
+                        "NFS4": "NFS4"
                     },
                 },
                 'openapi_types': {
@@ -2436,18 +2485,22 @@ class ViewApi(object):
                         (str,),
                     'max_count':
                         (int,),
+                    'include_summary':
+                        (bool,),
                 },
                 'attribute_map': {
                     'protocols': 'protocols',
                     'view_ids': 'viewIds',
                     'node_ip': 'nodeIp',
                     'max_count': 'maxCount',
+                    'include_summary': 'includeSummary',
                 },
                 'location_map': {
                     'protocols': 'query',
                     'view_ids': 'query',
                     'node_ip': 'query',
                     'max_count': 'query',
+                    'include_summary': 'query',
                 },
                 'collection_format_map': {
                     'protocols': 'csv',
@@ -2470,7 +2523,7 @@ class ViewApi(object):
         ):
             """Get View Clients Summary.  # noqa: E501
 
-            Get View Clients Summary.  # noqa: E501
+            **Privileges:** ```STORAGE_VIEW``` <br><br>Get View Clients Summary.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2532,7 +2585,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/view-clients/summary',
                 'operation_id': 'get_view_clients_summary',
@@ -2587,7 +2642,7 @@ class ViewApi(object):
         ):
             """Get directory quotas for the View.  # noqa: E501
 
-            Get directory quotas for the View.  # noqa: E501
+            **Privileges:** ```STORAGE_VIEW``` <br><br>Get directory quotas for the View.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2654,7 +2709,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}/directory-quotas',
                 'operation_id': 'get_view_directory_quotas',
@@ -2720,7 +2777,7 @@ class ViewApi(object):
         ):
             """Get View user quotas.  # noqa: E501
 
-            Get user quotas for the View.  # noqa: E501
+            **Privileges:** ```STORAGE_VIEW``` <br><br>Get user quotas for the View.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2731,7 +2788,13 @@ class ViewApi(object):
                 view_id (int): Specifies the View id.
 
             Keyword Args:
-                max_count (int): Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results.. [optional]
+                include_usage (bool): If set to true, the logical usage info is included only for users with quota overrides. By default, it is set to false. [optional]
+                include_user_with_quota_overrides_only (bool): If set to true, the result will only contain user with user quota override enabled. By default, this field is set to false, and it's only in effect when 'SummaryOnly' is set to false.. [optional]
+                exclude_users_within_alert_threshold (bool): This field can be set only when includeUsage is set to true. By default, all the users with logical usage > 0 will be returned in the result. If this field is set to true, only the list of users who has exceeded the alert threshold will be returned.. [optional]
+                summary_only (bool): Specifies a flag to just return a summary. If set to true, it returns the summary of users for a view. By default, it is set to false.. [optional]
+                output_format (str): OutputFormat is the Output format for the output. If it is not specified, default is json.. [optional] if omitted the server will use the default value of "json"
+                top_quotas (int): TopQuotas is the quotas sorted by quota usage in descending order. This parameter defines number of results to be returned. No pagination cookie is returned if this parameter is set.. [optional]
+                max_count (int): Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results. This parameter will be ignored if 'topQuotas' is set.. [optional]
                 cookie (str): Specifies the cookie. If there are more results than maxCount, response will include a cookie with has to be set as part of the next GET request.. [optional]
                 unix_uid (int): Specifies the user identifier of an Unix user. If a valid unix-id to SID mappings are available (i.e., when mixed mode is enabled) the server will perform the necessary id mapping and return the correct usage irrespective of whether the unix id / SID is provided.. [optional]
                 sid (str): Specifies the user identifier of a SMB user. If a valid unix-id to SID mappings are available (i.e., when mixed mode is enabled) the server will perform the necessary id mapping and return the correct usage irrespective of whether the unix id / SID is provided.. [optional]
@@ -2789,7 +2852,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/views/{viewId}/user-quotas',
                 'operation_id': 'get_view_user_quotas',
@@ -2799,6 +2864,12 @@ class ViewApi(object):
             params_map={
                 'all': [
                     'view_id',
+                    'include_usage',
+                    'include_user_with_quota_overrides_only',
+                    'exclude_users_within_alert_threshold',
+                    'summary_only',
+                    'output_format',
+                    'top_quotas',
                     'max_count',
                     'cookie',
                     'unix_uid',
@@ -2810,6 +2881,7 @@ class ViewApi(object):
                 'nullable': [
                 ],
                 'enum': [
+                    'output_format',
                 ],
                 'validation': [
                 ]
@@ -2818,9 +2890,26 @@ class ViewApi(object):
                 'validations': {
                 },
                 'allowed_values': {
+                    ('output_format',): {
+
+                        "JSON": "json",
+                        "CSV": "csv"
+                    },
                 },
                 'openapi_types': {
                     'view_id':
+                        (int,),
+                    'include_usage':
+                        (bool,),
+                    'include_user_with_quota_overrides_only':
+                        (bool,),
+                    'exclude_users_within_alert_threshold':
+                        (bool,),
+                    'summary_only':
+                        (bool,),
+                    'output_format':
+                        (str,),
+                    'top_quotas':
                         (int,),
                     'max_count':
                         (int,),
@@ -2833,6 +2922,12 @@ class ViewApi(object):
                 },
                 'attribute_map': {
                     'view_id': 'viewId',
+                    'include_usage': 'includeUsage',
+                    'include_user_with_quota_overrides_only': 'includeUserWithQuotaOverridesOnly',
+                    'exclude_users_within_alert_threshold': 'excludeUsersWithinAlertThreshold',
+                    'summary_only': 'summaryOnly',
+                    'output_format': 'outputFormat',
+                    'top_quotas': 'topQuotas',
                     'max_count': 'maxCount',
                     'cookie': 'cookie',
                     'unix_uid': 'unixUid',
@@ -2840,6 +2935,12 @@ class ViewApi(object):
                 },
                 'location_map': {
                     'view_id': 'path',
+                    'include_usage': 'query',
+                    'include_user_with_quota_overrides_only': 'query',
+                    'exclude_users_within_alert_threshold': 'query',
+                    'summary_only': 'query',
+                    'output_format': 'query',
+                    'top_quotas': 'query',
                     'max_count': 'query',
                     'cookie': 'query',
                     'unix_uid': 'query',
@@ -2864,7 +2965,7 @@ class ViewApi(object):
         ):
             """List Views  # noqa: E501
 
-            If no parameters are specified, all Views on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned. NOTE: If maxCount is set and the number of Views returned exceeds the maxCount, there are more Views to return. To get the next set of Views, send another request and specify the id of the last View returned in viewList from the previous response.  # noqa: E501
+            **Privileges:** ```STORAGE_VIEW``` <br><br>If no parameters are specified, all Views on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned. NOTE: If maxCount is set and the number of Views returned exceeds the maxCount, there are more Views to return. To get the next set of Views, send another request and specify the id of the last View returned in viewList from the previous response.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2881,6 +2982,7 @@ class ViewApi(object):
                 match_partial_names (bool): If true, the names in viewNames are matched by any partial rather than exactly matched.. [optional]
                 max_count (int): Specifies a limit on the number of Views returned.. [optional]
                 include_internal_views (bool): Specifies if internal Views created by the Cohesity Cluster are also returned. In addition, regular Views are returned.. [optional]
+                skip_high_id_views (bool): Specifies if Views with ID greater than BridgeConstants::kViewIdMangleMask should be returned. These Views are created by MagnetoV2 or NetBackup.. [optional]
                 include_protection_groups (bool): Specifies if Protection Groups information needs to be returned along with view metadata. By default, if not set or set to true, Group information is returned.. [optional]
                 max_view_id (int): If the number of Views to return exceeds the maxCount specified in the original request, specify the id of the last View from the viewList in the previous response to get the next set of Views.. [optional]
                 include_inactive (bool): Specifies if inactive Views on this Remote Cluster (which have Snapshots copied by replication) should also be returned. Inactive Views are not counted towards the maxCount. By default, this field is set to false.. [optional]
@@ -2905,10 +3007,13 @@ class ViewApi(object):
                 last_run_replication_statuses ([str]): Filter by last remote replication run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.. [optional]
                 last_run_archival_statuses ([str]): Filter by last cloud archival run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.. [optional]
                 is_protected (bool): Specifies the protection status of Views. If set to true, only protected Views will be returned. If set to false, only unprotected Views will be returned.. [optional]
-                qos_principal_ids ([int]): qosPrincipalIds contains ids of the QoS principal for which views are to be returned.. [optional]
+                qos_principal_ids ([int]): qosPrincipalIds contains ids of the QoS principal for which views are to be returned. This field is deprecated.. [optional]
+                qos_policies ([str]): Specifies a filter for Views based on the qosPolicies. This param will be prioritized if qosPrincipalIds is also specified.. [optional]
                 use_cached_data (bool): Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.. [optional]
                 include_deleted_protection_groups (bool): Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.. [optional]
-                include_s3_migration_only (bool): Specifies whether to return only views which have a s3 migration state or are eligible for migration.. [optional]
+                return_all_views (bool): Specifies if all the Views should be returned as part of the response.. [optional]
+                include_s3_migration_only (bool): Specifies whether to return only views which have a s3 migration state.. [optional]
+                s3_migration_state (str): Filter the list of Views by S3 Migration Statuses. Supported filter values are [Enabled, UnderMigration, Paused, Completed, Eligible].\" If `s3MigrationState` is specified then `includeS3MigrationOnly` param should also be set to true.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2961,7 +3066,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/views',
                 'operation_id': 'get_views',
@@ -2978,6 +3085,7 @@ class ViewApi(object):
                     'match_partial_names',
                     'max_count',
                     'include_internal_views',
+                    'skip_high_id_views',
                     'include_protection_groups',
                     'max_view_id',
                     'include_inactive',
@@ -3003,9 +3111,12 @@ class ViewApi(object):
                     'last_run_archival_statuses',
                     'is_protected',
                     'qos_principal_ids',
+                    'qos_policies',
                     'use_cached_data',
                     'include_deleted_protection_groups',
+                    'return_all_views',
                     'include_s3_migration_only',
+                    's3_migration_state',
                 ],
                 'required': [],
                 'nullable': [
@@ -3018,6 +3129,8 @@ class ViewApi(object):
                     'last_run_local_backup_statuses',
                     'last_run_replication_statuses',
                     'last_run_archival_statuses',
+                    'qos_policies',
+                    's3_migration_state',
                 ],
                 'validation': [
                 ]
@@ -3038,7 +3151,8 @@ class ViewApi(object):
 
                         "BACKUPTARGET": "BackupTarget",
                         "FILESERVICES": "FileServices",
-                        "OBJECTSERVICES": "ObjectServices"
+                        "OBJECTSERVICES": "ObjectServices",
+                        "ARCHIVESERVICES": "ArchiveServices"
                     },
                     ('view_protection_types',): {
 
@@ -3108,6 +3222,25 @@ class ViewApi(object):
                         "SKIPPED": "Skipped",
                         "LEGALHOLD": "LegalHold"
                     },
+                    ('qos_policies',): {
+
+                        "BACKUPTARGETHIGH": "BackupTargetHigh",
+                        "BACKUPTARGETLOW": "BackupTargetLow",
+                        "TESTANDDEVHIGH": "TestAndDevHigh",
+                        "TESTANDDEVLOW": "TestAndDevLow",
+                        "BACKUPTARGETSSD": "BackupTargetSSD",
+                        "BACKUPTARGETCOMMVAULT": "BackupTargetCommvault",
+                        "JOURNALEDSEQUENTIALDUMP": "JournaledSequentialDump",
+                        "BACKUPTARGETAUTO": "BackupTargetAuto"
+                    },
+                    ('s3_migration_state',): {
+
+                        "ENABLED": "Enabled",
+                        "UNDERMIGRATION": "UnderMigration",
+                        "PAUSED": "Paused",
+                        "COMPLETED": "Completed",
+                        "ELIGIBLE": "Eligible"
+                    },
                 },
                 'openapi_types': {
                     'view_names':
@@ -3125,6 +3258,8 @@ class ViewApi(object):
                     'max_count':
                         (int,),
                     'include_internal_views':
+                        (bool,),
+                    'skip_high_id_views':
                         (bool,),
                     'include_protection_groups':
                         (bool,),
@@ -3176,12 +3311,18 @@ class ViewApi(object):
                         (bool,),
                     'qos_principal_ids':
                         ([int],),
+                    'qos_policies':
+                        ([str],),
                     'use_cached_data':
                         (bool,),
                     'include_deleted_protection_groups':
                         (bool,),
+                    'return_all_views':
+                        (bool,),
                     'include_s3_migration_only':
                         (bool,),
+                    's3_migration_state':
+                        (str,),
                 },
                 'attribute_map': {
                     'view_names': 'viewNames',
@@ -3192,6 +3333,7 @@ class ViewApi(object):
                     'match_partial_names': 'matchPartialNames',
                     'max_count': 'maxCount',
                     'include_internal_views': 'includeInternalViews',
+                    'skip_high_id_views': 'skipHighIdViews',
                     'include_protection_groups': 'includeProtectionGroups',
                     'max_view_id': 'maxViewId',
                     'include_inactive': 'includeInactive',
@@ -3217,9 +3359,12 @@ class ViewApi(object):
                     'last_run_archival_statuses': 'lastRunArchivalStatuses',
                     'is_protected': 'isProtected',
                     'qos_principal_ids': 'qosPrincipalIds',
+                    'qos_policies': 'qosPolicies',
                     'use_cached_data': 'useCachedData',
                     'include_deleted_protection_groups': 'includeDeletedProtectionGroups',
+                    'return_all_views': 'returnAllViews',
                     'include_s3_migration_only': 'includeS3MigrationOnly',
+                    's3_migration_state': 's3MigrationState',
                 },
                 'location_map': {
                     'view_names': 'query',
@@ -3230,6 +3375,7 @@ class ViewApi(object):
                     'match_partial_names': 'query',
                     'max_count': 'query',
                     'include_internal_views': 'query',
+                    'skip_high_id_views': 'query',
                     'include_protection_groups': 'query',
                     'max_view_id': 'query',
                     'include_inactive': 'query',
@@ -3255,9 +3401,12 @@ class ViewApi(object):
                     'last_run_archival_statuses': 'query',
                     'is_protected': 'query',
                     'qos_principal_ids': 'query',
+                    'qos_policies': 'query',
                     'use_cached_data': 'query',
                     'include_deleted_protection_groups': 'query',
+                    'return_all_views': 'query',
                     'include_s3_migration_only': 'query',
+                    's3_migration_state': 'query',
                 },
                 'collection_format_map': {
                     'view_names': 'csv',
@@ -3276,6 +3425,7 @@ class ViewApi(object):
                     'last_run_replication_statuses': 'csv',
                     'last_run_archival_statuses': 'csv',
                     'qos_principal_ids': 'csv',
+                    'qos_policies': 'csv',
                 }
             },
             headers_map={
@@ -3294,7 +3444,7 @@ class ViewApi(object):
         ):
             """Get Views summary.  # noqa: E501
 
-            Get Views summary.  # noqa: E501
+            **Privileges:** ```STORAGE_VIEW``` <br><br>Get Views summary.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -3305,6 +3455,10 @@ class ViewApi(object):
             Keyword Args:
                 msecs_before_current_time_to_compare (int): Specifies the time in msecs before current time to compare with.. [optional]
                 use_cached_data (bool): Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.. [optional]
+                include_internal_views (bool): Specifies if internal Views created by the Cohesity Cluster are also returned. In addition, regular Views are returned.. [optional]
+                tenant_ids ([str]): TenantIds contains ids of the tenants for which objects are to be returned.. [optional]
+                include_tenants (bool): IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned.. [optional]
+                include_deleted_protection_groups (bool): Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -3357,7 +3511,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/views-summary',
                 'operation_id': 'get_views_summary',
@@ -3368,6 +3524,10 @@ class ViewApi(object):
                 'all': [
                     'msecs_before_current_time_to_compare',
                     'use_cached_data',
+                    'include_internal_views',
+                    'tenant_ids',
+                    'include_tenants',
+                    'include_deleted_protection_groups',
                 ],
                 'required': [],
                 'nullable': [
@@ -3387,16 +3547,33 @@ class ViewApi(object):
                         (int,),
                     'use_cached_data':
                         (bool,),
+                    'include_internal_views':
+                        (bool,),
+                    'tenant_ids':
+                        ([str],),
+                    'include_tenants':
+                        (bool,),
+                    'include_deleted_protection_groups':
+                        (bool,),
                 },
                 'attribute_map': {
                     'msecs_before_current_time_to_compare': 'msecsBeforeCurrentTimeToCompare',
                     'use_cached_data': 'useCachedData',
+                    'include_internal_views': 'includeInternalViews',
+                    'tenant_ids': 'tenantIds',
+                    'include_tenants': 'includeTenants',
+                    'include_deleted_protection_groups': 'includeDeletedProtectionGroups',
                 },
                 'location_map': {
                     'msecs_before_current_time_to_compare': 'query',
                     'use_cached_data': 'query',
+                    'include_internal_views': 'query',
+                    'tenant_ids': 'query',
+                    'include_tenants': 'query',
+                    'include_deleted_protection_groups': 'query',
                 },
                 'collection_format_map': {
+                    'tenant_ids': 'csv',
                 }
             },
             headers_map={
@@ -3415,7 +3592,7 @@ class ViewApi(object):
         ):
             """Get SMB File opens.  # noqa: E501
 
-            Get SMB active file opens on a Cohesity View.  # noqa: E501
+            **Privileges:** ```STORAGE_VIEW``` <br><br>Get SMB active file opens on a Cohesity View.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -3480,7 +3657,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/smb-file-opens',
                 'operation_id': 'list_smb_file_opens',
@@ -3554,7 +3733,7 @@ class ViewApi(object):
         ):
             """Create a file-lock  # noqa: E501
 
-            Locks a file in a view and returns the lock status of the file.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Locks a file in a view and returns the lock status of the file.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -3622,7 +3801,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}/file-lock',
                 'operation_id': 'lock_file',
@@ -3678,6 +3859,130 @@ class ViewApi(object):
             callable=__lock_file
         )
 
+        def __migrate_s3_views(
+            self,
+            body,
+            **kwargs
+        ):
+            """Migrate S3 Views.  # noqa: E501
+
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Migrate S3 Views from S3 1.0 to 2.0.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.migrate_s3_views(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (MigrateS3Views): Specifies the request body to Migrate S3 Views.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                MultipleViewsUpdateSuccessFailureIds
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.migrate_s3_views = _Endpoint(
+            settings={
+                'response_type': (MultipleViewsUpdateSuccessFailureIds,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/file-services/migrate-s3-views',
+                'operation_id': 'migrate_s3_views',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (MigrateS3Views,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__migrate_s3_views
+        )
+
         def __overwrite_view(
             self,
             id,
@@ -3686,7 +3991,7 @@ class ViewApi(object):
         ):
             """Overwrite View.  # noqa: E501
 
-            Overwrite View.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Overwrite View.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -3754,7 +4059,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}/overwrite',
                 'operation_id': 'overwrite_view',
@@ -3817,7 +4124,7 @@ class ViewApi(object):
         ):
             """Read a View Template by Id  # noqa: E501
 
-            Reads a view template based on given template id.  # noqa: E501
+            **Privileges:** ```STORAGE_VIEW``` <br><br>Reads a view template based on given template id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -3882,7 +4189,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/view-template/{id}',
                 'operation_id': 'read_view_template_by_id',
@@ -3937,7 +4246,7 @@ class ViewApi(object):
         ):
             """List View Templates  # noqa: E501
 
-            All view templates on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned.  # noqa: E501
+            **Privileges:** ```STORAGE_VIEW``` <br><br>All view templates on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -3998,7 +4307,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/view-template',
                 'operation_id': 'read_view_templates',
@@ -4048,7 +4359,7 @@ class ViewApi(object):
         ):
             """Update a Share.  # noqa: E501
 
-            Update a Share.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Update a Share.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -4116,7 +4427,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/shares/{name}',
                 'operation_id': 'update_share',
@@ -4180,7 +4493,7 @@ class ViewApi(object):
         ):
             """Update a View  # noqa: E501
 
-            Updates a View based on given id.  # noqa: E501
+            ```No Privileges Required``` <br><br>Updates a View based on given id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -4248,7 +4561,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}',
                 'operation_id': 'update_view',
@@ -4312,7 +4627,7 @@ class ViewApi(object):
         ):
             """Update directory quota for the View.  # noqa: E501
 
-            Update directory quota for the View.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Update directory quota for the View.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -4380,7 +4695,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}/directory-quotas',
                 'operation_id': 'update_view_directory_quota',
@@ -4444,7 +4761,7 @@ class ViewApi(object):
         ):
             """Update a View Template  # noqa: E501
 
-            Updates a View Template.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Updates a View Template.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -4512,7 +4829,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/view-template/{id}',
                 'operation_id': 'update_view_template',
@@ -4577,7 +4896,7 @@ class ViewApi(object):
         ):
             """Update user quota override.  # noqa: E501
 
-            Update user quota. To use this API, User quota settings should be enabled on the View and there should be a user quota override added for this user.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Update user quota. To use this API, User quota settings should be enabled on the View and there should be a user quota override added for this user.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -4648,7 +4967,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/views/{viewId}/user-quotas/{userId}',
                 'operation_id': 'update_view_user_quota_override',
@@ -4718,7 +5039,7 @@ class ViewApi(object):
         ):
             """Update View user quota settings.  # noqa: E501
 
-            Specifies parameters to update View user quota settings.  # noqa: E501
+            **Privileges:** ```STORAGE_MODIFY``` <br><br>Specifies parameters to update View user quota settings.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -4786,7 +5107,9 @@ class ViewApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/file-services/views/{viewId}/user-quotas',
                 'operation_id': 'update_view_user_quota_settings',

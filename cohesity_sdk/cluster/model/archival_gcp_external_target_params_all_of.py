@@ -59,6 +59,7 @@ class ArchivalGcpExternalTargetParamsAllOf(ModelNormal):
             'GCPSTANDARD': "GCPStandard",
             'GCPCOLDLINE': "GCPColdline",
             'GCPNEARLINE': "GCPNearline",
+            'GCPARCHIVE': "GCPArchive",
         },
     }
 

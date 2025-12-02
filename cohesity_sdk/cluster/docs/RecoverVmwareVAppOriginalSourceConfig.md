@@ -5,7 +5,7 @@ Specifies the Source configuration if vApps are being recovered to Original Sour
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**network_config** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the networking configuration to be applied to the recovered vApps. | [optional] 
+**network_config** | [**RecoverVmwareVmOriginalSourceNetworkConfig**](RecoverVmwareVmOriginalSourceNetworkConfig.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

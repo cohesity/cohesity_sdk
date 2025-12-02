@@ -78,6 +78,9 @@ class AwsS3ProtectionGroupParams(ModelNormal):
     }
 
     validations = {
+        ('exclude_object_ids',): {
+        },
+
     }
 
     additional_properties_type = None
@@ -98,6 +101,7 @@ class AwsS3ProtectionGroupParams(ModelNormal):
         return {
             'backup_object_level_acls': (bool, none_type,),  # noqa: E501
             'baseline_incremental_frequency': (str, none_type,),  # noqa: E501
+            'exclude_object_ids': ([int], none_type,),  # noqa: E501
             'inventory_report_destination': (str, none_type,),  # noqa: E501
             'inventory_report_destination_prefix': (str, none_type,),  # noqa: E501
             'inventory_report_frequency': (str, none_type,),  # noqa: E501
@@ -117,6 +121,7 @@ class AwsS3ProtectionGroupParams(ModelNormal):
     attribute_map = {
         'backup_object_level_acls': 'backupObjectLevelACLs',  # noqa: E501
         'baseline_incremental_frequency': 'baselineIncrementalFrequency',  # noqa: E501
+        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'inventory_report_destination': 'inventoryReportDestination',  # noqa: E501
         'inventory_report_destination_prefix': 'inventoryReportDestinationPrefix',  # noqa: E501
         'inventory_report_frequency': 'inventoryReportFrequency',  # noqa: E501
@@ -176,6 +181,7 @@ class AwsS3ProtectionGroupParams(ModelNormal):
 
             backup_object_level_acls (bool, none_type): Specifies whether to backup object level acls. Default value is false.. [optional]  # noqa: E501
             baseline_incremental_frequency (str, none_type): Specifies the baseline incremental frequency.. [optional]  # noqa: E501
+            exclude_object_ids ([int], none_type): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
             inventory_report_destination (str, none_type): ARN of the inventory report destination bucket for S3 backups.. [optional]  # noqa: E501
             inventory_report_destination_prefix (str, none_type): The prefix in the S3 destination bucket where inventory reports will be stored.. [optional]  # noqa: E501
             inventory_report_frequency (str, none_type): Specifies the frequency to generate inventory reports.. [optional]  # noqa: E501

@@ -74,8 +74,8 @@ class NodeIpmiUser(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'node_id': (int,),  # noqa: E501
-            'username': (str,),  # noqa: E501
+            'ipmi_username': (str, none_type,),  # noqa: E501
+            'node_ip': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class NodeIpmiUser(ModelNormal):
 
 
     attribute_map = {
-        'node_id': 'nodeId',  # noqa: E501
-        'username': 'username',  # noqa: E501
+        'ipmi_username': 'ipmiUsername',  # noqa: E501
+        'node_ip': 'nodeIp',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -101,12 +101,8 @@ class NodeIpmiUser(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, node_id, username, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """NodeIpmiUser - a model defined in OpenAPI
-
-        Args:
-            node_id (int): Node id.
-            username (str): IPMI username.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -140,6 +136,8 @@ class NodeIpmiUser(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            ipmi_username (str, none_type): Specifies the ipmi user name of the node.. [optional]  # noqa: E501
+            node_ip (str, none_type): Specifies the ip address of the node.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -166,8 +164,6 @@ class NodeIpmiUser(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.node_id = node_id
-        self.username = username
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

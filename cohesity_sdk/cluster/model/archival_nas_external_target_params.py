@@ -100,6 +100,7 @@ class ArchivalNasExternalTargetParams(ModelNormal):
             'mount_path': (str, none_type,),  # noqa: E501
             'is_forever_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
+            'is_network_optimized_gc': (bool, none_type,),  # noqa: E501
             'kerberos_realm_name': (str, none_type,),  # noqa: E501
             'nfs_security_type': (str, none_type,),  # noqa: E501
             'nfs_version_number': (str, none_type,),  # noqa: E501
@@ -118,6 +119,7 @@ class ArchivalNasExternalTargetParams(ModelNormal):
         'mount_path': 'mountPath',  # noqa: E501
         'is_forever_incremental_archival_enabled': 'isForeverIncrementalArchivalEnabled',  # noqa: E501
         'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
+        'is_network_optimized_gc': 'isNetworkOptimizedGC',  # noqa: E501
         'kerberos_realm_name': 'kerberosRealmName',  # noqa: E501
         'nfs_security_type': 'nfsSecurityType',  # noqa: E501
         'nfs_version_number': 'nfsVersionNumber',  # noqa: E501
@@ -178,6 +180,7 @@ class ArchivalNasExternalTargetParams(ModelNormal):
 
             is_forever_incremental_archival_enabled (bool, none_type): Specifies if Forever Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
+            is_network_optimized_gc (bool, none_type): Specifies whether the garbage collection mode is network optimized or storage optimized. If this field is set to true, it refers to network optimized GC and if set to false, it refers to storage optimized GC.. [optional]  # noqa: E501
             kerberos_realm_name (str, none_type): Specifies the Kerberos realm name for a Kerberos-secured target.. [optional]  # noqa: E501
             nfs_security_type (str, none_type): Specifies the NFS security type of the target.. [optional]  # noqa: E501
             nfs_version_number (str, none_type): Specifies the NFS version number of the target.. [optional]  # noqa: E501

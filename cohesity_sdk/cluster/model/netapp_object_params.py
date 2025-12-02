@@ -65,6 +65,7 @@ class NetappObjectParams(ModelNormal):
             'KNDMP': "kNdmp",
             'KMANAGEMENT': "kManagement",
             'KNVME': "kNvme",
+            'KNFS4_1': "kNfs4_1",
         },
         ('volume_extended_style',): {
             'None': None,

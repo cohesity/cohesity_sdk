@@ -33,14 +33,14 @@ def lazy_import():
     from cohesity_sdk.cluster.model.cluster_identifier import ClusterIdentifier
     from cohesity_sdk.cluster.model.object_run_result import ObjectRunResult
     from cohesity_sdk.cluster.model.replication_run_summary import ReplicationRunSummary
-    from cohesity_sdk.cluster.model.tenant import Tenant
+    from cohesity_sdk.cluster.model.tenant_info import TenantInfo
     globals()['ArchivalRunSummary'] = ArchivalRunSummary
     globals()['BackupRunSummary'] = BackupRunSummary
     globals()['CloudSpinRunSummary'] = CloudSpinRunSummary
     globals()['ClusterIdentifier'] = ClusterIdentifier
     globals()['ObjectRunResult'] = ObjectRunResult
     globals()['ReplicationRunSummary'] = ReplicationRunSummary
-    globals()['Tenant'] = Tenant
+    globals()['TenantInfo'] = TenantInfo
 
 
 class CommonProtectionGroupRunResponseParameters(ModelNormal):
@@ -70,6 +70,112 @@ class CommonProtectionGroupRunResponseParameters(ModelNormal):
     """
 
     allowed_values = {
+        ('environment',): {
+            'None': None,
+            'KVMWARE': "kVMware",
+            'KHYPERV': "kHyperV",
+            'KVCD': "kVCD",
+            'KSQL': "kSQL",
+            'KVIEW': "kView",
+            'KREMOTEADAPTER': "kRemoteAdapter",
+            'KPHYSICAL': "kPhysical",
+            'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
+            'KAZURE': "kAzure",
+            'KNETAPP': "kNetapp",
+            'KGENERICNAS': "kGenericNas",
+            'KACROPOLIS': "kAcropolis",
+            'KISILON': "kIsilon",
+            'KKVM': "kKVM",
+            'KAWS': "kAWS",
+            'KAWSNATIVE': "kAWSNative",
+            'KAWSS3': "kAwsS3",
+            'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
+            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KRDSPOSTGRESSNAPSHOTMANAGER': "kRDSPostgresSnapshotManager",
+            'KRDSMYSQLSNAPSHOTMANAGER': "kRDSMySQLSnapshotManager",
+            'KRDSMSSQLSNAPSHOTMANAGER': "kRDSMSSQLSnapshotManager",
+            'KRDSORACLESNAPSHOTMANAGER': "kRDSOracleSnapshotManager",
+            'KRDSMARIADBSNAPSHOTMANAGER': "kRDSMariaDBSnapshotManager",
+            'KRDSCUSTOMMSSQLSNAPSHOTMANAGER': "kRDSCustomMSSQLSnapshotManager",
+            'KRDSCUSTOMORACLESNAPSHOTMANAGER': "kRDSCustomOracleSnapshotManager",
+            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAURORAPOSTGRESSNAPSHOTMANAGER': "kAuroraPostgresSnapshotManager",
+            'KAURORAMYSQLSNAPSHOTMANAGER': "kAuroraMySQLSnapshotManager",
+            'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAWSRDSPOSTGRES': "kAwsRDSPostgres",
+            'KAWSAURORAPOSTGRES': "kAwsAuroraPostgres",
+            'KAWSMYSQL': "kAWSMySQL",
+            'KAWSAURORAMYSQL': "kAWSAuroraMySQL",
+            'KAWSDYNAMODB': "kAwsDynamoDB",
+            'KAWSRDSORACLE': "kAWSRdsOracle",
+            'KAWSDOCUMENTDB': "kAWSDocumentDB",
+            'KAWSRDSPOSTGRESDB': "kAWSRDSPostgresDB",
+            'KAWSAURORAPOSTGRESDB': "kAWSAuroraPostgresDB",
+            'KAWSRDSMSSQL': "kAWSRDSMSSQL",
+            'KAWSREDSHIFT': "kAWSRedshift",
+            'KAZURENATIVE': "kAzureNative",
+            'KAZURESQL': "kAzureSQL",
+            'KAZUREENTRAID': "kAzureEntraID",
+            'KAZUREMYSQL': "kAzureMySQL",
+            'KAZURECOSMOSDBNOSQL': "kAzureCosmosDBNoSQL",
+            'KAZURECOSMOSDBMONGODB': "kAzureCosmosDBMongoDB",
+            'KAZURECOSMOSDBCASSANDRA': "kAzureCosmosDBCassandra",
+            'KAZUREPOSTGRESQLSERVER': "kAzurePostgreSQLServer",
+            'KAZURESQLDB': "kAzureSQLDB",
+            'KAZURESQLMI': "kAzureSQLMI",
+            'KAZURETABLESTORAGE': "kAzureTableStorage",
+            'KAZUREBLOBSTORAGE': "kAzureBlobStorage",
+            'KAZURETABLEAPI': "kAzureTableAPI",
+            'KAZURESNAPSHOTMANAGER': "kAzureSnapshotManager",
+            'KEXCHANGE': "kExchange",
+            'KORACLE': "kOracle",
+            'KGCP': "kGCP",
+            'KGCPBIGQUERY': "kGCPBigQuery",
+            'KGCPMYSQL': "kGCPMySQL",
+            'KGOOGLESPANNER': "kGoogleSpanner",
+            'KGCPPOSTGRESQL': "kGCPPostgreSQL",
+            'KGCPALLOYDBPOSTGRESQL': "kGCPAlloyDBPostgreSQL",
+            'KGCPSQLSERVER': "kGCPSQLServer",
+            'KGCPFIRESTORE': "kGCPFirestore",
+            'KFLASHBLADE': "kFlashBlade",
+            'KO365': "kO365",
+            'KHYPERFLEX': "kHyperFlex",
+            'KAD': "kAD",
+            'KGPFS': "kGPFS",
+            'KKUBERNETES': "kKubernetes",
+            'KNIMBLE': "kNimble",
+            'KELASTIFILE': "kElastifile",
+            'KCASSANDRA': "kCassandra",
+            'KMONGODB': "kMongoDB",
+            'KCOUCHBASE': "kCouchbase",
+            'KHDFS': "kHdfs",
+            'KHIVE': "kHive",
+            'KHBASE': "kHBase",
+            'KUDA': "kUDA",
+            'KS3COMPATIBLE': "kS3Compatible",
+            'KSAPHANA': "kSAPHANA",
+            'KO365SHAREPOINT': "kO365Sharepoint",
+            'KO365PUBLICFOLDERS': "kO365PublicFolders",
+            'KO365TEAMS': "kO365Teams",
+            'KO365GROUP': "kO365Group",
+            'KO365EXCHANGE': "kO365Exchange",
+            'KO365ONEDRIVE': "kO365OneDrive",
+            'KSFDC': "kSfdc",
+            'KO365EXCHANGECSM': "kO365ExchangeCSM",
+            'KO365ONEDRIVECSM': "kO365OneDriveCSM",
+            'KO365SHAREPOINTCSM': "kO365SharepointCSM",
+            'KEXPERIMENTALADAPTER': "kExperimentalAdapter",
+            'KMONGODBPHYSICAL': "kMongoDBPhysical",
+            'KGOOGLEWORKSPACE': "kGoogleWorkspace",
+            'KGMAIL': "kGmail",
+            'KGOOGLEDRIVE': "kGoogleDrive",
+            'KDB2': "kDB2",
+            'KEWSEXCHANGE': "kEwsExchange",
+            'KSERVICENOW': "kServiceNow",
+            'KPOSTGRES': "kPostgres",
+            'KNUTANIXFS': "kNutanixFS",
+        },
     }
 
     validations = {
@@ -99,6 +205,7 @@ class CommonProtectionGroupRunResponseParameters(ModelNormal):
             'id': (str, none_type,),  # noqa: E501
             'is_cloud_archival_direct': (bool, none_type,),  # noqa: E501
             'is_local_snapshots_deleted': (bool, none_type,),  # noqa: E501
+            'is_metadata_deleted': (bool, none_type,),  # noqa: E501
             'is_replication_run': (bool, none_type,),  # noqa: E501
             'local_backup_info': (BackupRunSummary,),  # noqa: E501
             'objects': ([ObjectRunResult],),  # noqa: E501
@@ -111,6 +218,7 @@ class CommonProtectionGroupRunResponseParameters(ModelNormal):
             'protection_group_instance_id': (int, none_type,),  # noqa: E501
             'protection_group_name': (str, none_type,),  # noqa: E501
             'replication_info': (ReplicationRunSummary,),  # noqa: E501
+            'replication_runs': ([ReplicationRunSummary], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -128,6 +236,7 @@ class CommonProtectionGroupRunResponseParameters(ModelNormal):
         'id': 'id',  # noqa: E501
         'is_cloud_archival_direct': 'isCloudArchivalDirect',  # noqa: E501
         'is_local_snapshots_deleted': 'isLocalSnapshotsDeleted',  # noqa: E501
+        'is_metadata_deleted': 'isMetadataDeleted',  # noqa: E501
         'is_replication_run': 'isReplicationRun',  # noqa: E501
         'local_backup_info': 'localBackupInfo',  # noqa: E501
         'objects': 'objects',  # noqa: E501
@@ -140,6 +249,7 @@ class CommonProtectionGroupRunResponseParameters(ModelNormal):
         'protection_group_instance_id': 'protectionGroupInstanceId',  # noqa: E501
         'protection_group_name': 'protectionGroupName',  # noqa: E501
         'replication_info': 'replicationInfo',  # noqa: E501
+        'replication_runs': 'replicationRuns',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -197,6 +307,7 @@ class CommonProtectionGroupRunResponseParameters(ModelNormal):
             id (str, none_type): Specifies the ID of the Protection Group run.. [optional]  # noqa: E501
             is_cloud_archival_direct (bool, none_type): Specifies whether the run is a CAD run if cloud archive direct feature is enabled. If this field is true, the primary backup copy will only be available at the given archived location.. [optional]  # noqa: E501
             is_local_snapshots_deleted (bool, none_type): Specifies if snapshots for this run has been deleted.. [optional]  # noqa: E501
+            is_metadata_deleted (bool, none_type): Specifies if snapshots metadata for this run has been deleted.. [optional]  # noqa: E501
             is_replication_run (bool, none_type): Specifies if this protection run is a replication run.. [optional]  # noqa: E501
             local_backup_info (BackupRunSummary): [optional]  # noqa: E501
             objects ([ObjectRunResult]): Snapahot, replication, archival results for each object.. [optional]  # noqa: E501
@@ -209,6 +320,7 @@ class CommonProtectionGroupRunResponseParameters(ModelNormal):
             protection_group_instance_id (int, none_type): Protection Group instance Id. This field will be removed later.. [optional]  # noqa: E501
             protection_group_name (str, none_type): Name of the Protection Group to which this run belongs.. [optional]  # noqa: E501
             replication_info (ReplicationRunSummary): [optional]  # noqa: E501
+            replication_runs ([ReplicationRunSummary], none_type): Summary information about all replication runs for this backup run. replicationInfo provides information about the latest replication run for this backup run. whereas this field provides information about all historical replication runs for this backup run.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -49,7 +49,7 @@ class ProtectedObjectApi(object):
         ):
             """Perform Actions on Protect Objects.  # noqa: E501
 
-            Perform actions on Protected Objects.  # noqa: E501
+            **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Perform actions on Protected Objects.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -114,7 +114,9 @@ class ProtectedObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/protected-objects/actions',
                 'operation_id': 'perform_action_on_protect_objects',
@@ -171,7 +173,7 @@ class ProtectedObjectApi(object):
         ):
             """Create Object Backup.  # noqa: E501
 
-            Create Protect Objects Backup.  # noqa: E501
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Create Protect Objects Backup.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -237,7 +239,9 @@ class ProtectedObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/protected-objects',
                 'operation_id': 'protect_objects_of_any_type',
@@ -307,7 +311,7 @@ class ProtectedObjectApi(object):
         ):
             """Update Object Backup.  # noqa: E501
 
-            Update Protected object backup configuration given a object id.  # noqa: E501
+            **Privileges:** ```PROTECTION_MODIFY``` <br><br>Update Protected object backup configuration given a object id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -376,7 +380,9 @@ class ProtectedObjectApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/protected-objects/{id}',
                 'operation_id': 'update_protected_objects_of_any_type',

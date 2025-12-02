@@ -27,16 +27,16 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.common_s3_comp_external_target_params import CommonS3CompExternalTargetParams
     from cohesity_sdk.cluster.model.tiering_aws_external_target_params import TieringAwsExternalTargetParams
     from cohesity_sdk.cluster.model.tiering_azure_external_target_params import TieringAzureExternalTargetParams
     from cohesity_sdk.cluster.model.tiering_gcp_external_target_params import TieringGcpExternalTargetParams
     from cohesity_sdk.cluster.model.tiering_oracle_external_target_params import TieringOracleExternalTargetParams
-    from cohesity_sdk.cluster.model.tiering_s3_comp_external_target_params import TieringS3CompExternalTargetParams
+    globals()['CommonS3CompExternalTargetParams'] = CommonS3CompExternalTargetParams
     globals()['TieringAwsExternalTargetParams'] = TieringAwsExternalTargetParams
     globals()['TieringAzureExternalTargetParams'] = TieringAzureExternalTargetParams
     globals()['TieringGcpExternalTargetParams'] = TieringGcpExternalTargetParams
     globals()['TieringOracleExternalTargetParams'] = TieringOracleExternalTargetParams
-    globals()['TieringS3CompExternalTargetParams'] = TieringS3CompExternalTargetParams
 
 
 class TieringExternalTargetParamsAllOf(ModelNormal):
@@ -91,7 +91,7 @@ class TieringExternalTargetParamsAllOf(ModelNormal):
             'azure_params': (TieringAzureExternalTargetParams,),  # noqa: E501
             'gcp_params': (TieringGcpExternalTargetParams,),  # noqa: E501
             'oracle_params': (TieringOracleExternalTargetParams,),  # noqa: E501
-            's3_comp_params': (TieringS3CompExternalTargetParams,),  # noqa: E501
+            's3_comp_params': (CommonS3CompExternalTargetParams,),  # noqa: E501
         }
 
     @cached_property
@@ -159,7 +159,7 @@ class TieringExternalTargetParamsAllOf(ModelNormal):
             azure_params (TieringAzureExternalTargetParams): [optional]  # noqa: E501
             gcp_params (TieringGcpExternalTargetParams): [optional]  # noqa: E501
             oracle_params (TieringOracleExternalTargetParams): [optional]  # noqa: E501
-            s3_comp_params (TieringS3CompExternalTargetParams): [optional]  # noqa: E501
+            s3_comp_params (CommonS3CompExternalTargetParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -47,7 +47,7 @@ class KeyManagementSystemApi(object):
         ):
             """Add KMS  # noqa: E501
 
-            Add a key management system(KMS) to the cluster.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Add a key management system(KMS) to the cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -112,7 +112,9 @@ class KeyManagementSystemApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/kms',
                 'operation_id': 'add_kms_configuration',
@@ -169,7 +171,7 @@ class KeyManagementSystemApi(object):
         ):
             """Delete KMS  # noqa: E501
 
-            Delete KMS configued on the cluster.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete KMS configued on the cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -234,7 +236,9 @@ class KeyManagementSystemApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/kms/{id}',
                 'operation_id': 'delete_kms_config',
@@ -289,7 +293,7 @@ class KeyManagementSystemApi(object):
         ):
             """Get KMS  # noqa: E501
 
-            Get key management systems(KMS) configured on the cluster.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Get key management systems(KMS) configured on the cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -352,7 +356,9 @@ class KeyManagementSystemApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/kms',
                 'operation_id': 'get_kms_configurations',
@@ -414,7 +420,7 @@ class KeyManagementSystemApi(object):
         ):
             """Update KMS  # noqa: E501
 
-            Update KMS on the cluster.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update KMS on the cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -482,7 +488,9 @@ class KeyManagementSystemApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/kms/{id}',
                 'operation_id': 'update_kms_configuration',

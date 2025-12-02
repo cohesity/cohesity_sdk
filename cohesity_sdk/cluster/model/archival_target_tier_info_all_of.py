@@ -65,6 +65,7 @@ class ArchivalTargetTierInfoAllOf(ModelNormal):
             'KAZURETIERHOT': "kAzureTierHot",
             'KAZURETIERCOOL': "kAzureTierCool",
             'KAZURETIERARCHIVE': "kAzureTierArchive",
+            'KAZURETIERCOLD': "kAzureTierCold",
             'KGOOGLESTANDARD': "kGoogleStandard",
             'KGOOGLEREGIONAL': "kGoogleRegional",
             'KGOOGLEMULTIREGIONAL': "kGoogleMultiRegional",

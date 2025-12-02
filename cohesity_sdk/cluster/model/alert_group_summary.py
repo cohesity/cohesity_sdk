@@ -69,6 +69,7 @@ class AlertGroupSummary(ModelNormal):
             'KNODEHEALTH': "kNodeHealth",
             'KOPERATINGSYSTEM': "kOperatingSystem",
             'KDATAPATH': "kDataPath",
+            'KDATASOURCECONNECTOR': "kDataSourceConnector",
             'KMETADATA': "kMetadata",
             'KINDEXING': "kIndexing",
             'KHELIOS': "kHelios",
@@ -94,6 +95,7 @@ class AlertGroupSummary(ModelNormal):
             'KSTORAGEPOOL': "kStoragePool",
             'KGENERALSOFTWAREFAILURE': "kGeneralSoftwareFailure",
             'KAGENT': "kAgent",
+            'KNETBACKUP': "kNetBackup",
         },
     }
 

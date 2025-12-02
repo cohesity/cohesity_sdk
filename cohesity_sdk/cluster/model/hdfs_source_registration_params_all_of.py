@@ -64,6 +64,13 @@ class HdfsSourceRegistrationParamsAllOf(ModelNormal):
             'CDH': "CDH",
             'HDP': "HDP",
         },
+        ('connection_type',): {
+            'None': None,
+            'DFS': "DFS",
+            'WEBHDFS': "WEBHDFS",
+            'HTTPFSLB': "HTTPFSLB",
+            'HTTPFS': "HTTPFS",
+        },
     }
 
     validations = {
@@ -89,6 +96,7 @@ class HdfsSourceRegistrationParamsAllOf(ModelNormal):
             'hadoop_distribution': (str,),  # noqa: E501
             'hadoop_version': (str,),  # noqa: E501
             'host': (str,),  # noqa: E501
+            'connection_type': (str, none_type,),  # noqa: E501
             'kerberos_principal': (str, none_type,),  # noqa: E501
             'ssh_password_credentials': (HbaseSourceRegistrationParamsAllOfSshPasswordCredentials,),  # noqa: E501
             'ssh_private_key_credentials': (HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials,),  # noqa: E501
@@ -105,6 +113,7 @@ class HdfsSourceRegistrationParamsAllOf(ModelNormal):
         'hadoop_distribution': 'hadoopDistribution',  # noqa: E501
         'hadoop_version': 'hadoopVersion',  # noqa: E501
         'host': 'host',  # noqa: E501
+        'connection_type': 'connectionType',  # noqa: E501
         'kerberos_principal': 'kerberosPrincipal',  # noqa: E501
         'ssh_password_credentials': 'sshPasswordCredentials',  # noqa: E501
         'ssh_private_key_credentials': 'sshPrivateKeyCredentials',  # noqa: E501
@@ -163,6 +172,7 @@ class HdfsSourceRegistrationParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            connection_type (str, none_type): HDFS Connection Type.. [optional]  # noqa: E501
             kerberos_principal (str, none_type): The kerberos principal to be used to connect to this HDFS source.. [optional]  # noqa: E501
             ssh_password_credentials (HbaseSourceRegistrationParamsAllOfSshPasswordCredentials): [optional]  # noqa: E501
             ssh_private_key_credentials (HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials): [optional]  # noqa: E501

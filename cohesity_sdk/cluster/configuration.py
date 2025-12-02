@@ -395,6 +395,24 @@ conf = cohesity_sdk.cluster.Configuration(
                     'APIKeyHeader',
                 ),
             }
+        if 'Bearer' in self.api_key:
+            auth['Bearer'] = {
+                'type': 'api_key',
+                'in': 'header',
+                'key': 'Authorization',
+                'value': self.get_api_key_with_prefix(
+                    'Bearer',
+                ),
+            }
+        if 'SessionIdHeader' in self.api_key:
+            auth['SessionIdHeader'] = {
+                'type': 'api_key',
+                'in': 'header',
+                'key': 'session-id',
+                'value': self.get_api_key_with_prefix(
+                    'SessionIdHeader',
+                ),
+            }
 
         if 'TokenHeader' in self.api_key:
             auth['TokenHeader'] = {
@@ -426,7 +444,7 @@ conf = cohesity_sdk.cluster.Configuration(
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: 2.0\n"\
-               "SDK Package Version: 2.0.0".\
+               "SDK Package Version: 1.4.0".\
                format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self):

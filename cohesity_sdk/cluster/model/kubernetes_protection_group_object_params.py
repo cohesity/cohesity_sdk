@@ -27,8 +27,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.kubernetes_filter_params import KubernetesFilterParams
     from cohesity_sdk.cluster.model.kubernetes_pvc_info import KubernetesPvcInfo
+    from cohesity_sdk.cluster.model.quiesce_group import QuiesceGroup
+    globals()['KubernetesFilterParams'] = KubernetesFilterParams
     globals()['KubernetesPvcInfo'] = KubernetesPvcInfo
+    globals()['QuiesceGroup'] = QuiesceGroup
 
 
 class KubernetesProtectionGroupObjectParams(ModelNormal):
@@ -61,6 +65,9 @@ class KubernetesProtectionGroupObjectParams(ModelNormal):
     }
 
     validations = {
+        ('exclude_object_ids',): {
+        },
+
     }
 
     additional_properties_type = None
@@ -80,9 +87,17 @@ class KubernetesProtectionGroupObjectParams(ModelNormal):
         lazy_import()
         return {
             'id': (int,),  # noqa: E501
+            'backup_only_pvc': (bool, none_type,),  # noqa: E501
+            'exclude_object_ids': ([int], none_type,),  # noqa: E501
+            'exclude_params': (KubernetesFilterParams,),  # noqa: E501
             'exclude_pvcs': ([KubernetesPvcInfo], none_type,),  # noqa: E501
+            'excluded_resources': ([str], none_type,),  # noqa: E501
+            'fail_backup_on_hook_failure': (bool, none_type,),  # noqa: E501
+            'include_params': (KubernetesFilterParams,),  # noqa: E501
             'include_pvcs': ([KubernetesPvcInfo], none_type,),  # noqa: E501
+            'included_resources': ([str], none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
+            'quiesce_groups': ([QuiesceGroup], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -93,9 +108,17 @@ class KubernetesProtectionGroupObjectParams(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
+        'backup_only_pvc': 'backupOnlyPvc',  # noqa: E501
+        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
+        'exclude_params': 'excludeParams',  # noqa: E501
         'exclude_pvcs': 'excludePvcs',  # noqa: E501
+        'excluded_resources': 'excludedResources',  # noqa: E501
+        'fail_backup_on_hook_failure': 'failBackupOnHookFailure',  # noqa: E501
+        'include_params': 'includeParams',  # noqa: E501
         'include_pvcs': 'includePvcs',  # noqa: E501
+        'included_resources': 'includedResources',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'quiesce_groups': 'quiesceGroups',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,9 +171,17 @@ class KubernetesProtectionGroupObjectParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            backup_only_pvc (bool, none_type): Specifies whether to backup pvc and related resources only. [optional]  # noqa: E501
+            exclude_object_ids ([int], none_type): Specifies the object ids to be excluded for protection. This is supported for object protection on helios only. [optional]  # noqa: E501
+            exclude_params (KubernetesFilterParams): [optional]  # noqa: E501
             exclude_pvcs ([KubernetesPvcInfo], none_type): Specifies a list of pvcs to exclude from being protected. This is only applicable to kubernetes.. [optional]  # noqa: E501
+            excluded_resources ([str], none_type): Specifies the resources to exclude during backup. [optional]  # noqa: E501
+            fail_backup_on_hook_failure (bool, none_type): If true, fail backups when quiesce hook executions fail.. [optional]  # noqa: E501
+            include_params (KubernetesFilterParams): [optional]  # noqa: E501
             include_pvcs ([KubernetesPvcInfo], none_type): Specifies a list of Pvcs to include in the protection. This is only applicable to kubernetes.. [optional]  # noqa: E501
+            included_resources ([str], none_type): Specifies the resources to include during backup. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
+            quiesce_groups ([QuiesceGroup], none_type): Specifies the quiescing rules are which specified by the user for doing backup.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

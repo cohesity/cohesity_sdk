@@ -27,8 +27,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.credentials import Credentials
-    globals()['Credentials'] = Credentials
+    from cohesity_sdk.cluster.model.aws_credentials import AwsCredentials
+    globals()['AwsCredentials'] = AwsCredentials
 
 
 class AwsPostgresMetadata(ModelNormal):
@@ -84,7 +84,7 @@ class AwsPostgresMetadata(ModelNormal):
         lazy_import()
         return {
             'metadata_type': (str, none_type,),  # noqa: E501
-            'standard_credentials': (Credentials,),  # noqa: E501
+            'standard_credentials': (AwsCredentials,),  # noqa: E501
         }
 
     @cached_property
@@ -148,7 +148,7 @@ class AwsPostgresMetadata(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            standard_credentials (Credentials): [optional]  # noqa: E501
+            standard_credentials (AwsCredentials): [optional]  # noqa: E501
         """
 
         metadata_type = kwargs.get('metadata_type', "Credentials")

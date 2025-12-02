@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **email_subject** | **str, none_type** | Specifies the subject of this email. | [optional] 
 **first_name** | **str, none_type** | Specifies the contact&#39;s first name. | [optional] 
 **folder_name** | **str, none_type** | Specify the name of the email folder. | [optional] 
+**folder_root_type** | **str, none_type** | Specifies which folder root the email belongs to. | [optional] 
 **has_attachment** | **bool, none_type** | Specifies whether email has an attachment. | [optional] 
 **id** | **str, none_type** | Specifies the id of the email object. | [optional] 
 **last_modification_name** | **str, none_type** | \&quot;Specifies the name of the person who modified this item.\&quot; | [optional] 

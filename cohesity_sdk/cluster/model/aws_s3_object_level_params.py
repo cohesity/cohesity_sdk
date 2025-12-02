@@ -75,6 +75,7 @@ class AwsS3ObjectLevelParams(ModelNormal):
         """
         return {
             'id': (int, none_type,),  # noqa: E501
+            'exclude_object_ids': ([int, none_type],),  # noqa: E501
             'object_prefix_exclusions': ([str],),  # noqa: E501
             'object_prefix_inclusions': ([str],),  # noqa: E501
         }
@@ -87,6 +88,7 @@ class AwsS3ObjectLevelParams(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
+        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'object_prefix_exclusions': 'objectPrefixExclusions',  # noqa: E501
         'object_prefix_inclusions': 'objectPrefixInclusions',  # noqa: E501
     }
@@ -141,6 +143,7 @@ class AwsS3ObjectLevelParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            exclude_object_ids ([int, none_type]): Specifies the list of IDs of the objects to not be protected in this backup. This field only applies if provided object id is non leaf entity such as Tag or a folder. This can be used to ignore specific objects (can include tags) under a parent object which has been included for protection.. [optional]  # noqa: E501
             object_prefix_exclusions ([str]): Specifies the list of prefix paths excluded. Objects containing any of these prefixes in their path will be excluded.. [optional]  # noqa: E501
             object_prefix_inclusions ([str]): Specifies the list of prefix paths included. Objects containing any of these prefixes in their path will be included. Among inclusion and exclusion, inclusion will take precedence.. [optional]  # noqa: E501
         """

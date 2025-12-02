@@ -5,6 +5,7 @@ Specifies details of node removal response.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**cleared_pre_check_result** | **bool, none_type** | If true, pre check results have been cleared. | [optional]  if omitted the server will use the default value of False
 **id** | **int, none_type** | Specifies id of the node. | [optional] 
 **marked_for_removal** | **bool, none_type** | If true, Node is marked for removal. | [optional] 
 **timestamp_secs** | **int, none_type** | Specifies the last run time of the pre-checks execution in Unix epoch timestamp (in seconds). | [optional] 

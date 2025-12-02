@@ -76,6 +76,8 @@ class SupportUserConfig(ModelNormal):
         return {
             'enable_sudo_access': (bool, none_type,),  # noqa: E501
             'password_set': (bool, none_type,),  # noqa: E501
+            'sudo_access_end_timestamp_msecs': (int, none_type,),  # noqa: E501
+            'sudo_access_mode': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,6 +89,8 @@ class SupportUserConfig(ModelNormal):
     attribute_map = {
         'enable_sudo_access': 'enableSudoAccess',  # noqa: E501
         'password_set': 'passwordSet',  # noqa: E501
+        'sudo_access_end_timestamp_msecs': 'sudoAccessEndTimestampMsecs',  # noqa: E501
+        'sudo_access_mode': 'sudoAccessMode',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,6 +142,8 @@ class SupportUserConfig(ModelNormal):
 
             enable_sudo_access (bool, none_type): Specifies if the support user has sudo access.. [optional]  # noqa: E501
             password_set (bool, none_type): Specifies if the password for the support user has been set.. [optional]  # noqa: E501
+            sudo_access_end_timestamp_msecs (int, none_type): Specifies the sudo access end time stamp in milliseconds since unix epoch.. [optional]  # noqa: E501
+            sudo_access_mode (int, none_type): Specifies whether the sudo access mode is enabled or not. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

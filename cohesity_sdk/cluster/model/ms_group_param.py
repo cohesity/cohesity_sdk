@@ -27,8 +27,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.one_drive_param import OneDriveParam
-    globals()['OneDriveParam'] = OneDriveParam
+    from cohesity_sdk.cluster.model.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
+    from cohesity_sdk.cluster.model.mailbox_param import MailboxParam
+    from cohesity_sdk.cluster.model.site_restore_param import SiteRestoreParam
+    globals()['CommonRecoverObjectSnapshotParams'] = CommonRecoverObjectSnapshotParams
+    globals()['MailboxParam'] = MailboxParam
+    globals()['SiteRestoreParam'] = SiteRestoreParam
 
 
 class MsGroupParam(ModelNormal):
@@ -89,11 +93,11 @@ class MsGroupParam(ModelNormal):
         """
         lazy_import()
         return {
-            'recover_object': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'mailbox_restore_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'recover_object': (CommonRecoverObjectSnapshotParams,),  # noqa: E501
+            'mailbox_restore_params': (MailboxParam,),  # noqa: E501
             'mailbox_restore_type': (str, none_type,),  # noqa: E501
             'recover_entire_group': (bool, none_type,),  # noqa: E501
-            'site_restore_params': ([OneDriveParam], none_type,),  # noqa: E501
+            'site_restore_params': (SiteRestoreParam,),  # noqa: E501
             'site_restore_type': (str, none_type,),  # noqa: E501
         }
 
@@ -128,7 +132,7 @@ class MsGroupParam(ModelNormal):
         """MsGroupParam - a model defined in OpenAPI
 
         Args:
-            recover_object ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the MS group recover Object info.
+            recover_object (CommonRecoverObjectSnapshotParams):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -162,10 +166,10 @@ class MsGroupParam(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            mailbox_restore_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies parameters to recover a MSGroup Mailbox.. [optional]  # noqa: E501
+            mailbox_restore_params (MailboxParam): [optional]  # noqa: E501
             mailbox_restore_type (str, none_type): Specifies whether mailbox restore is full or granular.. [optional]  # noqa: E501
             recover_entire_group (bool, none_type): Specifies if the entire Group (mailbox + site) is to be restored.. [optional]  # noqa: E501
-            site_restore_params ([OneDriveParam], none_type): Specifies the parameters to recover a MSGroup site document.. [optional]  # noqa: E501
+            site_restore_params (SiteRestoreParam): [optional]  # noqa: E501
             site_restore_type (str, none_type): Specifies whether site restore is full or granular.. [optional]  # noqa: E501
         """
 

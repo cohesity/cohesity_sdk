@@ -28,11 +28,31 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.azure_agent_protection_group_params import AzureAgentProtectionGroupParams
+    from cohesity_sdk.cluster.model.azure_blob_storage_protection_group_params import AzureBlobStorageProtectionGroupParams
+    from cohesity_sdk.cluster.model.azure_cosmos_db_cassandra_protection_group_params import AzureCosmosDBCassandraProtectionGroupParams
+    from cohesity_sdk.cluster.model.azure_cosmos_db_mongo_db_protection_group_params import AzureCosmosDBMongoDBProtectionGroupParams
+    from cohesity_sdk.cluster.model.azure_cosmos_dbno_sql_protection_group_params import AzureCosmosDBNoSQLProtectionGroupParams
+    from cohesity_sdk.cluster.model.azure_my_sql_protection_group_params import AzureMySQLProtectionGroupParams
     from cohesity_sdk.cluster.model.azure_native_protection_group_params import AzureNativeProtectionGroupParams
+    from cohesity_sdk.cluster.model.azure_postgre_sql_protection_group_params import AzurePostgreSQLProtectionGroupParams
     from cohesity_sdk.cluster.model.azure_snapshot_manager_protection_group_params import AzureSnapshotManagerProtectionGroupParams
+    from cohesity_sdk.cluster.model.azure_sqldb_protection_group_params import AzureSQLDBProtectionGroupParams
+    from cohesity_sdk.cluster.model.azure_sqlmi_protection_group_params import AzureSQLMIProtectionGroupParams
+    from cohesity_sdk.cluster.model.azure_table_api_protection_group_params import AzureTableApiProtectionGroupParams
+    from cohesity_sdk.cluster.model.azure_table_storage_protection_group_params import AzureTableStorageProtectionGroupParams
     globals()['AzureAgentProtectionGroupParams'] = AzureAgentProtectionGroupParams
+    globals()['AzureBlobStorageProtectionGroupParams'] = AzureBlobStorageProtectionGroupParams
+    globals()['AzureCosmosDBCassandraProtectionGroupParams'] = AzureCosmosDBCassandraProtectionGroupParams
+    globals()['AzureCosmosDBMongoDBProtectionGroupParams'] = AzureCosmosDBMongoDBProtectionGroupParams
+    globals()['AzureCosmosDBNoSQLProtectionGroupParams'] = AzureCosmosDBNoSQLProtectionGroupParams
+    globals()['AzureMySQLProtectionGroupParams'] = AzureMySQLProtectionGroupParams
     globals()['AzureNativeProtectionGroupParams'] = AzureNativeProtectionGroupParams
+    globals()['AzurePostgreSQLProtectionGroupParams'] = AzurePostgreSQLProtectionGroupParams
+    globals()['AzureSQLDBProtectionGroupParams'] = AzureSQLDBProtectionGroupParams
+    globals()['AzureSQLMIProtectionGroupParams'] = AzureSQLMIProtectionGroupParams
     globals()['AzureSnapshotManagerProtectionGroupParams'] = AzureSnapshotManagerProtectionGroupParams
+    globals()['AzureTableApiProtectionGroupParams'] = AzureTableApiProtectionGroupParams
+    globals()['AzureTableStorageProtectionGroupParams'] = AzureTableStorageProtectionGroupParams
 
 
 class AzureProtectionGroupParams(ModelNormal):
@@ -67,6 +87,18 @@ class AzureProtectionGroupParams(ModelNormal):
             'KNATIVE': "kNative",
             'KSNAPSHOTMANAGER': "kSnapshotManager",
             'KAZURESQL': "kAzureSQL",
+            'KAZUREENTRAID': "kAzureEntraID",
+            'KAZUREMYSQL': "kAzureMySQL",
+            'KAZURECOSMOSDBNOSQL': "kAzureCosmosDBNoSQL",
+            'KAZURECOSMOSDBMONGODB': "kAzureCosmosDBMongoDB",
+            'KAZURECOSMOSDBCASSANDRA': "kAzureCosmosDBCassandra",
+            'KAZUREBLOBSTORAGE': "kAzureBlobStorage",
+            'KAZUREPOSTGRESQLSERVER': "kAzurePostgreSQLServer",
+            'KAZURESQLDB': "kAzureSQLDB",
+            'KAZURESQLMI': "kAzureSQLMI",
+            'KAZURETABLESTORAGE': "kAzureTableStorage",
+            'KAZURETABLEAPI': "kAzureTableAPI",
+            'KKUBERNETES': "kKubernetes",
         },
     }
 
@@ -91,8 +123,18 @@ class AzureProtectionGroupParams(ModelNormal):
         return {
             'protection_type': (str,),  # noqa: E501
             'agent_protection_type_params': (AzureAgentProtectionGroupParams,),  # noqa: E501
+            'blob_storage_protection_type_params': (AzureBlobStorageProtectionGroupParams,),  # noqa: E501
+            'cassandra_protection_type_params': (AzureCosmosDBCassandraProtectionGroupParams,),  # noqa: E501
+            'cosmos_dbno_sql_protection_type_params': (AzureCosmosDBNoSQLProtectionGroupParams,),  # noqa: E501
+            'cosmosdbmongodb_protection_type_params': (AzureCosmosDBMongoDBProtectionGroupParams,),  # noqa: E501
+            'mysql_protection_type_params': (AzureMySQLProtectionGroupParams,),  # noqa: E501
             'native_protection_type_params': (AzureNativeProtectionGroupParams,),  # noqa: E501
+            'postgresql_protection_type_params': (AzurePostgreSQLProtectionGroupParams,),  # noqa: E501
             'snapshot_manager_protection_type_params': (AzureSnapshotManagerProtectionGroupParams,),  # noqa: E501
+            'sql_db_protection_type_params': (AzureSQLDBProtectionGroupParams,),  # noqa: E501
+            'sql_mi_protection_type_params': (AzureSQLMIProtectionGroupParams,),  # noqa: E501
+            'table_api_protection_type_params': (AzureTableApiProtectionGroupParams,),  # noqa: E501
+            'table_storage_protection_type_params': (AzureTableStorageProtectionGroupParams,),  # noqa: E501
         }
 
     @cached_property
@@ -104,8 +146,18 @@ class AzureProtectionGroupParams(ModelNormal):
     attribute_map = {
         'protection_type': 'protectionType',  # noqa: E501
         'agent_protection_type_params': 'agentProtectionTypeParams',  # noqa: E501
+        'blob_storage_protection_type_params': 'blobStorageProtectionTypeParams',  # noqa: E501
+        'cassandra_protection_type_params': 'cassandraProtectionTypeParams',  # noqa: E501
+        'cosmos_dbno_sql_protection_type_params': 'cosmosDBNoSQLProtectionTypeParams',  # noqa: E501
+        'cosmosdbmongodb_protection_type_params': 'cosmosdbmongodbProtectionTypeParams',  # noqa: E501
+        'mysql_protection_type_params': 'mysqlProtectionTypeParams',  # noqa: E501
         'native_protection_type_params': 'nativeProtectionTypeParams',  # noqa: E501
+        'postgresql_protection_type_params': 'postgresqlProtectionTypeParams',  # noqa: E501
         'snapshot_manager_protection_type_params': 'snapshotManagerProtectionTypeParams',  # noqa: E501
+        'sql_db_protection_type_params': 'sqlDbProtectionTypeParams',  # noqa: E501
+        'sql_mi_protection_type_params': 'sqlMiProtectionTypeParams',  # noqa: E501
+        'table_api_protection_type_params': 'tableApiProtectionTypeParams',  # noqa: E501
+        'table_storage_protection_type_params': 'tableStorageProtectionTypeParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -159,8 +211,18 @@ class AzureProtectionGroupParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             agent_protection_type_params (AzureAgentProtectionGroupParams): [optional]  # noqa: E501
+            blob_storage_protection_type_params (AzureBlobStorageProtectionGroupParams): [optional]  # noqa: E501
+            cassandra_protection_type_params (AzureCosmosDBCassandraProtectionGroupParams): [optional]  # noqa: E501
+            cosmos_dbno_sql_protection_type_params (AzureCosmosDBNoSQLProtectionGroupParams): [optional]  # noqa: E501
+            cosmosdbmongodb_protection_type_params (AzureCosmosDBMongoDBProtectionGroupParams): [optional]  # noqa: E501
+            mysql_protection_type_params (AzureMySQLProtectionGroupParams): [optional]  # noqa: E501
             native_protection_type_params (AzureNativeProtectionGroupParams): [optional]  # noqa: E501
+            postgresql_protection_type_params (AzurePostgreSQLProtectionGroupParams): [optional]  # noqa: E501
             snapshot_manager_protection_type_params (AzureSnapshotManagerProtectionGroupParams): [optional]  # noqa: E501
+            sql_db_protection_type_params (AzureSQLDBProtectionGroupParams): [optional]  # noqa: E501
+            sql_mi_protection_type_params (AzureSQLMIProtectionGroupParams): [optional]  # noqa: E501
+            table_api_protection_type_params (AzureTableApiProtectionGroupParams): [optional]  # noqa: E501
+            table_storage_protection_type_params (AzureTableStorageProtectionGroupParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

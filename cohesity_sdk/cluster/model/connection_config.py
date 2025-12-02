@@ -74,9 +74,9 @@ class ConnectionConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'entity_id': (int, none_type,),  # noqa: E501
             'connection_id': (int, none_type,),  # noqa: E501
             'connector_group_id': (int, none_type,),  # noqa: E501
-            'entity_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class ConnectionConfig(ModelNormal):
 
 
     attribute_map = {
+        'entity_id': 'entityId',  # noqa: E501
         'connection_id': 'connectionId',  # noqa: E501
         'connector_group_id': 'connectorGroupId',  # noqa: E501
-        'entity_id': 'entityId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -103,8 +103,11 @@ class ConnectionConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, entity_id, *args, **kwargs):  # noqa: E501
         """ConnectionConfig - a model defined in OpenAPI
+
+        Args:
+            entity_id (int, none_type): Specifies the entity id of the source. The source can a non-root entity.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -140,7 +143,6 @@ class ConnectionConfig(ModelNormal):
 
             connection_id (int, none_type): Specifies the id of the connection.. [optional]  # noqa: E501
             connector_group_id (int, none_type): Specifies the connector group id of connector groups.. [optional]  # noqa: E501
-            entity_id (int, none_type): Specifies the entity id of the source. The source can a non-root entity.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -167,6 +169,7 @@ class ConnectionConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.entity_id = entity_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -27,13 +27,19 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.active_directory_admin_params import ActiveDirectoryAdminParams
     from cohesity_sdk.cluster.model.common_active_directory_params import CommonActiveDirectoryParams
     from cohesity_sdk.cluster.model.domain_controller import DomainController
+    from cohesity_sdk.cluster.model.id_mapping_params import IdMappingParams
     from cohesity_sdk.cluster.model.machine_account import MachineAccount
+    from cohesity_sdk.cluster.model.trusted_domain_params import TrustedDomainParams
     from cohesity_sdk.cluster.model.update_active_directory_request_all_of import UpdateActiveDirectoryRequestAllOf
+    globals()['ActiveDirectoryAdminParams'] = ActiveDirectoryAdminParams
     globals()['CommonActiveDirectoryParams'] = CommonActiveDirectoryParams
     globals()['DomainController'] = DomainController
+    globals()['IdMappingParams'] = IdMappingParams
     globals()['MachineAccount'] = MachineAccount
+    globals()['TrustedDomainParams'] = TrustedDomainParams
     globals()['UpdateActiveDirectoryRequestAllOf'] = UpdateActiveDirectoryRequestAllOf
 
 
@@ -97,10 +103,10 @@ class UpdateActiveDirectoryRequest(ModelComposed):
             'nis_provider_domain_name': (str, none_type,),  # noqa: E501
             'organizational_unit_name': (str, none_type,),  # noqa: E501
             'preferred_domain_controllers': ([DomainController], none_type,),  # noqa: E501
-            'trusted_domain_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'trusted_domain_params': (TrustedDomainParams,),  # noqa: E501
             'work_group_name': (str, none_type,),  # noqa: E501
-            'active_directory_admin_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'id_mapping_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'active_directory_admin_params': (ActiveDirectoryAdminParams,),  # noqa: E501
+            'id_mapping_params': (IdMappingParams,),  # noqa: E501
             'overwrite_machine_accounts': (bool, none_type,),  # noqa: E501
             'transitive_ad_trust_level_limit': (int, none_type,),  # noqa: E501
         }
@@ -186,10 +192,10 @@ class UpdateActiveDirectoryRequest(ModelComposed):
             nis_provider_domain_name (str, none_type): Specifies the name of the NIS Provider which is mapped to this Active Directory.. [optional]  # noqa: E501
             organizational_unit_name (str, none_type): Specifies an optional organizational unit name.. [optional]  # noqa: E501
             preferred_domain_controllers ([DomainController], none_type): Specifies a list of preferred domain controllers of this Active Directory.. [optional]  # noqa: E501
-            trusted_domain_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params of trusted domain info of an Active Directory.. [optional]  # noqa: E501
+            trusted_domain_params (TrustedDomainParams): [optional]  # noqa: E501
             work_group_name (str, none_type): Specifies a work group name.. [optional]  # noqa: E501
-            active_directory_admin_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params of a user with administrative privilege of this Active Directory. This field is mandatory if machine accounts are updated.. [optional]  # noqa: E501
-            id_mapping_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params of the user id mapping info of an Active Directory.. [optional]  # noqa: E501
+            active_directory_admin_params (ActiveDirectoryAdminParams): [optional]  # noqa: E501
+            id_mapping_params (IdMappingParams): [optional]  # noqa: E501
             overwrite_machine_accounts (bool, none_type): Specifies if specified machine accounts should overwrite existing machine accounts.. [optional]  # noqa: E501
             transitive_ad_trust_level_limit (int, none_type): Specifies level of transitive Active Directory trust domains to be used.. [optional]  # noqa: E501
         """

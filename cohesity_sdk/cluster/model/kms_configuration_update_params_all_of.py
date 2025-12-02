@@ -28,7 +28,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.aws_kms_configuration_update_params import AwsKmsConfigurationUpdateParams
+    from cohesity_sdk.cluster.model.gcp_kms_configuration_update_params import GcpKmsConfigurationUpdateParams
+    from cohesity_sdk.cluster.model.ibm_kms_configuration_update_params import IbmKmsConfigurationUpdateParams
     globals()['AwsKmsConfigurationUpdateParams'] = AwsKmsConfigurationUpdateParams
+    globals()['GcpKmsConfigurationUpdateParams'] = GcpKmsConfigurationUpdateParams
+    globals()['IbmKmsConfigurationUpdateParams'] = IbmKmsConfigurationUpdateParams
 
 
 class KmsConfigurationUpdateParamsAllOf(ModelNormal):
@@ -80,6 +84,8 @@ class KmsConfigurationUpdateParamsAllOf(ModelNormal):
         lazy_import()
         return {
             'aws_kms_params': (AwsKmsConfigurationUpdateParams,),  # noqa: E501
+            'gcp_kms_params': (GcpKmsConfigurationUpdateParams,),  # noqa: E501
+            'ibm_kms_params': (IbmKmsConfigurationUpdateParams,),  # noqa: E501
         }
 
     @cached_property
@@ -90,6 +96,8 @@ class KmsConfigurationUpdateParamsAllOf(ModelNormal):
 
     attribute_map = {
         'aws_kms_params': 'awsKmsParams',  # noqa: E501
+        'gcp_kms_params': 'gcpKmsParams',  # noqa: E501
+        'ibm_kms_params': 'ibmKmsParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -140,6 +148,8 @@ class KmsConfigurationUpdateParamsAllOf(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             aws_kms_params (AwsKmsConfigurationUpdateParams): [optional]  # noqa: E501
+            gcp_kms_params (GcpKmsConfigurationUpdateParams): [optional]  # noqa: E501
+            ibm_kms_params (IbmKmsConfigurationUpdateParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

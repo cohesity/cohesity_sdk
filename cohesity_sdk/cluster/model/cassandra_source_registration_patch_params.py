@@ -27,13 +27,13 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.cassandra_source_registration_patch_params_cassandra_credentials import CassandraSourceRegistrationPatchParamsCassandraCredentials
-    from cohesity_sdk.cluster.model.cassandra_source_registration_patch_params_jmx_credentials import CassandraSourceRegistrationPatchParamsJmxCredentials
+    from cohesity_sdk.cluster.model.cassandra_source_registration_params_all_of_cassandra_credentials import CassandraSourceRegistrationParamsAllOfCassandraCredentials
+    from cohesity_sdk.cluster.model.cassandra_source_registration_params_all_of_jmx_credentials import CassandraSourceRegistrationParamsAllOfJmxCredentials
     from cohesity_sdk.cluster.model.dse_solr_info import DSESolrInfo
     from cohesity_sdk.cluster.model.ssh_password_credentials import SshPasswordCredentials
     from cohesity_sdk.cluster.model.ssh_private_key_credentials import SshPrivateKeyCredentials
-    globals()['CassandraSourceRegistrationPatchParamsCassandraCredentials'] = CassandraSourceRegistrationPatchParamsCassandraCredentials
-    globals()['CassandraSourceRegistrationPatchParamsJmxCredentials'] = CassandraSourceRegistrationPatchParamsJmxCredentials
+    globals()['CassandraSourceRegistrationParamsAllOfCassandraCredentials'] = CassandraSourceRegistrationParamsAllOfCassandraCredentials
+    globals()['CassandraSourceRegistrationParamsAllOfJmxCredentials'] = CassandraSourceRegistrationParamsAllOfJmxCredentials
     globals()['DSESolrInfo'] = DSESolrInfo
     globals()['SshPasswordCredentials'] = SshPasswordCredentials
     globals()['SshPrivateKeyCredentials'] = SshPrivateKeyCredentials
@@ -87,7 +87,7 @@ class CassandraSourceRegistrationPatchParams(ModelNormal):
         """
         lazy_import()
         return {
-            'cassandra_credentials': (CassandraSourceRegistrationPatchParamsCassandraCredentials,),  # noqa: E501
+            'cassandra_credentials': (CassandraSourceRegistrationParamsAllOfCassandraCredentials,),  # noqa: E501
             'commit_log_backup_location': (str, none_type,),  # noqa: E501
             'config_directory': (str, none_type,),  # noqa: E501
             'data_center_names': ([str],),  # noqa: E501
@@ -95,7 +95,7 @@ class CassandraSourceRegistrationPatchParams(ModelNormal):
             'dse_solr_info': (DSESolrInfo,),  # noqa: E501
             'is_dse_authenticator': (bool, none_type,),  # noqa: E501
             'is_dse_tiered_storage': (bool, none_type,),  # noqa: E501
-            'jmx_credentials': (CassandraSourceRegistrationPatchParamsJmxCredentials,),  # noqa: E501
+            'jmx_credentials': (CassandraSourceRegistrationParamsAllOfJmxCredentials,),  # noqa: E501
             'kerberos_principal': (str, none_type,),  # noqa: E501
             'seed_node': (str, none_type,),  # noqa: E501
             'ssh_password_credentials': (SshPasswordCredentials,),  # noqa: E501
@@ -171,7 +171,7 @@ class CassandraSourceRegistrationPatchParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            cassandra_credentials (CassandraSourceRegistrationPatchParamsCassandraCredentials): [optional]  # noqa: E501
+            cassandra_credentials (CassandraSourceRegistrationParamsAllOfCassandraCredentials): [optional]  # noqa: E501
             commit_log_backup_location (str, none_type): Commit Logs backup location on cassandra nodes. [optional]  # noqa: E501
             config_directory (str, none_type): Directory path containing Cassandra configuration YAML file.. [optional]  # noqa: E501
             data_center_names ([str]): Data centers for this cluster.. [optional]  # noqa: E501
@@ -179,7 +179,7 @@ class CassandraSourceRegistrationPatchParams(ModelNormal):
             dse_solr_info (DSESolrInfo): [optional]  # noqa: E501
             is_dse_authenticator (bool, none_type): Set to true if this cluster has DSE Authenticator.. [optional]  # noqa: E501
             is_dse_tiered_storage (bool, none_type): Set to true if this cluster has DSE tiered storage.. [optional]  # noqa: E501
-            jmx_credentials (CassandraSourceRegistrationPatchParamsJmxCredentials): [optional]  # noqa: E501
+            jmx_credentials (CassandraSourceRegistrationParamsAllOfJmxCredentials): [optional]  # noqa: E501
             kerberos_principal (str, none_type): Principal for the kerberos connection. (This is required only if your Cassandra has Kerberos authentication. Please refer to the user guide.). [optional]  # noqa: E501
             seed_node (str, none_type): Any one seed node of the Cassandra cluster.. [optional]  # noqa: E501
             ssh_password_credentials (SshPasswordCredentials): [optional]  # noqa: E501

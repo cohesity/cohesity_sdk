@@ -68,6 +68,12 @@ class ReplicationTargetResult(ModelComposed):
     """
 
     allowed_values = {
+        ('ownership_context',): {
+            'None': None,
+            'LOCAL': "Local",
+            'FORTKNOX': "FortKnox",
+            'FORTKNOXONPREM': "FortKnoxOnprem",
+        },
         ('status',): {
             'None': None,
             'ACCEPTED': "Accepted",
@@ -110,6 +116,10 @@ class ReplicationTargetResult(ModelComposed):
             'cluster_name': (str, none_type,),  # noqa: E501
             'aws_target_config': (AWSTargetConfig,),  # noqa: E501
             'azure_target_config': (AzureTargetConfig,),  # noqa: E501
+            'logical_size_bytes': (int, none_type,),  # noqa: E501
+            'object_ids': ([str], none_type,),  # noqa: E501
+            'ownership_context': (str, none_type,),  # noqa: E501
+            'snapshot_id': (str, none_type,),  # noqa: E501
             'data_lock_constraints': (DataLockConstraints,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
             'entries_changed': (int, none_type,),  # noqa: E501
@@ -120,6 +130,7 @@ class ReplicationTargetResult(ModelComposed):
             'multi_object_replication': (bool, none_type,),  # noqa: E501
             'on_legal_hold': (bool, none_type,),  # noqa: E501
             'percentage_completed': (int, none_type,),  # noqa: E501
+            'progress_task_id': (str, none_type,),  # noqa: E501
             'queued_time_usecs': (int, none_type,),  # noqa: E501
             'replication_task_id': (str, none_type,),  # noqa: E501
             'start_time_usecs': (int, none_type,),  # noqa: E501
@@ -139,6 +150,10 @@ class ReplicationTargetResult(ModelComposed):
         'cluster_name': 'clusterName',  # noqa: E501
         'aws_target_config': 'awsTargetConfig',  # noqa: E501
         'azure_target_config': 'azureTargetConfig',  # noqa: E501
+        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
+        'object_ids': 'objectIds',  # noqa: E501
+        'ownership_context': 'ownershipContext',  # noqa: E501
+        'snapshot_id': 'snapshotId',  # noqa: E501
         'data_lock_constraints': 'dataLockConstraints',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'entries_changed': 'entriesChanged',  # noqa: E501
@@ -149,6 +164,7 @@ class ReplicationTargetResult(ModelComposed):
         'multi_object_replication': 'multiObjectReplication',  # noqa: E501
         'on_legal_hold': 'onLegalHold',  # noqa: E501
         'percentage_completed': 'percentageCompleted',  # noqa: E501
+        'progress_task_id': 'progressTaskId',  # noqa: E501
         'queued_time_usecs': 'queuedTimeUsecs',  # noqa: E501
         'replication_task_id': 'replicationTaskId',  # noqa: E501
         'start_time_usecs': 'startTimeUsecs',  # noqa: E501
@@ -209,6 +225,10 @@ class ReplicationTargetResult(ModelComposed):
             cluster_name (str, none_type): Specifies the name of the cluster.. [optional]  # noqa: E501
             aws_target_config (AWSTargetConfig): [optional]  # noqa: E501
             azure_target_config (AzureTargetConfig): [optional]  # noqa: E501
+            logical_size_bytes (int, none_type): Specifies the logical size of this snapshot in bytes.. [optional]  # noqa: E501
+            object_ids ([str], none_type): Specifies the list of object ids for which this replication run was performed.. [optional]  # noqa: E501
+            ownership_context (str, none_type): Specifies the ownership context for the replication. This will only be populated when the replication target is a remote cluster.. [optional]  # noqa: E501
+            snapshot_id (str, none_type): Specifies the id of the replication snapshot for the object.. [optional]  # noqa: E501
             data_lock_constraints (DataLockConstraints): [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time of replication in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
             entries_changed (int, none_type): Specifies the number of metadata actions completed during the protection run.. [optional]  # noqa: E501
@@ -219,6 +239,7 @@ class ReplicationTargetResult(ModelComposed):
             multi_object_replication (bool, none_type): Specifies whether view based replication was used. In this case, the view containing all objects is replicated as a whole instead of replicating on a per object basis.. [optional]  # noqa: E501
             on_legal_hold (bool, none_type): Specifies the legal hold status for a replication target.. [optional]  # noqa: E501
             percentage_completed (int, none_type): Specifies the progress in percentage.. [optional]  # noqa: E501
+            progress_task_id (str, none_type): Progress monitor task id.. [optional]  # noqa: E501
             queued_time_usecs (int, none_type): Specifies the time when the replication is queued for schedule in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
             replication_task_id (str, none_type): Task UID for a replication protection run. This is for tasks that are replicated from another cluster.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of replication in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501

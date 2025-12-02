@@ -28,7 +28,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.common_recover_file_and_folder_info import CommonRecoverFileAndFolderInfo
+    from cohesity_sdk.cluster.model.download_file_details import DownloadFileDetails
     globals()['CommonRecoverFileAndFolderInfo'] = CommonRecoverFileAndFolderInfo
+    globals()['DownloadFileDetails'] = DownloadFileDetails
 
 
 class CommonDownloadFileAndFolderParams(ModelNormal):
@@ -80,6 +82,7 @@ class CommonDownloadFileAndFolderParams(ModelNormal):
         lazy_import()
         return {
             'download_file_path': (str, none_type,),  # noqa: E501
+            'download_file_path_list': ([DownloadFileDetails], none_type,),  # noqa: E501
             'expiry_time_usecs': (int, none_type,),  # noqa: E501
             'files_and_folders': ([CommonRecoverFileAndFolderInfo], none_type,),  # noqa: E501
         }
@@ -92,6 +95,7 @@ class CommonDownloadFileAndFolderParams(ModelNormal):
 
     attribute_map = {
         'download_file_path': 'downloadFilePath',  # noqa: E501
+        'download_file_path_list': 'downloadFilePathList',  # noqa: E501
         'expiry_time_usecs': 'expiryTimeUsecs',  # noqa: E501
         'files_and_folders': 'filesAndFolders',  # noqa: E501
     }
@@ -144,6 +148,7 @@ class CommonDownloadFileAndFolderParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             download_file_path (str, none_type): Specifies the path location to download the files and folders.. [optional]  # noqa: E501
+            download_file_path_list ([DownloadFileDetails], none_type): Specifies list of file locations deatils to download.. [optional]  # noqa: E501
             expiry_time_usecs (int, none_type): Specifies the time upto which the download link is available.. [optional]  # noqa: E501
             files_and_folders ([CommonRecoverFileAndFolderInfo], none_type): Specifies the info about the files and folders to be recovered.. [optional]  # noqa: E501
         """

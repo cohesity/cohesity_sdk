@@ -5,7 +5,7 @@ Specifies the details of a free disk.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**serial_number** | **str, none_type** | Specifies serial number of disk. | 
+**serial_number** | **str** | Specifies serial number of disk. | 
 **location** | **str, none_type** | Specifies the location of disk. | [optional] 
 **path** | **str, none_type** | Specifies path of disk. | [optional] 
 **size_in_bytes** | **int, none_type** | Size of disk. | [optional] 

@@ -28,7 +28,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.m365_self_service_workload_params import M365SelfServiceWorkloadParams
+    from cohesity_sdk.cluster.model.oidc_standard_configuration import OIDCStandardConfiguration
     globals()['M365SelfServiceWorkloadParams'] = M365SelfServiceWorkloadParams
+    globals()['OIDCStandardConfiguration'] = OIDCStandardConfiguration
 
 
 class CreateM365SelfServiceConfigRequestParams(ModelNormal):
@@ -58,6 +60,11 @@ class CreateM365SelfServiceConfigRequestParams(ModelNormal):
     """
 
     allowed_values = {
+        ('preferred_authentication_mode',): {
+            'None': None,
+            'AZUREAD': "AzureAD",
+            'CUSTOMIDP': "CustomIdP",
+        },
     }
 
     validations = {
@@ -79,10 +86,13 @@ class CreateM365SelfServiceConfigRequestParams(ModelNormal):
         """
         lazy_import()
         return {
+            'domain': (str, none_type,),  # noqa: E501
             'tenant_id': (str, none_type,),  # noqa: E501
             'uuid': (str, none_type,),  # noqa: E501
             'mailbox_params': (M365SelfServiceWorkloadParams,),  # noqa: E501
+            'oidc_config': (OIDCStandardConfiguration,),  # noqa: E501
             'one_drive_params': (M365SelfServiceWorkloadParams,),  # noqa: E501
+            'preferred_authentication_mode': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,10 +102,13 @@ class CreateM365SelfServiceConfigRequestParams(ModelNormal):
 
 
     attribute_map = {
+        'domain': 'domain',  # noqa: E501
         'tenant_id': 'tenantId',  # noqa: E501
         'uuid': 'uuid',  # noqa: E501
         'mailbox_params': 'mailboxParams',  # noqa: E501
+        'oidc_config': 'oidcConfig',  # noqa: E501
         'one_drive_params': 'oneDriveParams',  # noqa: E501
+        'preferred_authentication_mode': 'preferredAuthenticationMode',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -110,10 +123,11 @@ class CreateM365SelfServiceConfigRequestParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, tenant_id, uuid, *args, **kwargs):  # noqa: E501
+    def __init__(self, domain, tenant_id, uuid, *args, **kwargs):  # noqa: E501
         """CreateM365SelfServiceConfigRequestParams - a model defined in OpenAPI
 
         Args:
+            domain (str, none_type): Specifies the domain name of the Microsoft365 Source.
             tenant_id (str, none_type): Specifies the Cohesity Tenant ID for the Microsoft365 source owner.
             uuid (str, none_type): Specifies the UUID of the Microsoft365 Source.
 
@@ -150,7 +164,9 @@ class CreateM365SelfServiceConfigRequestParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             mailbox_params (M365SelfServiceWorkloadParams): [optional]  # noqa: E501
+            oidc_config (OIDCStandardConfiguration): [optional]  # noqa: E501
             one_drive_params (M365SelfServiceWorkloadParams): [optional]  # noqa: E501
+            preferred_authentication_mode (str, none_type): Specifies the authentication mode for Self Service workflow. If unspecified this will default to Azure AD. Otherwise Self-Service will use associated IdP OIDC Configuration.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -177,6 +193,7 @@ class CreateM365SelfServiceConfigRequestParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.domain = domain
         self.tenant_id = tenant_id
         self.uuid = uuid
         for var_name, var_value in kwargs.items():

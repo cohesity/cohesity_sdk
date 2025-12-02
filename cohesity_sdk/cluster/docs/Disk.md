@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **services_acked_list** | **[str], none_type** | Specifies the services already ACKed for removal of this entity. | [optional] 
 **services_not_acked** | **str, none_type** | Specifies the services that are not ACKed after disk is marked for removal. | [optional] 
 **services_not_acked_list** | **[str], none_type** | Specifies the services not ACKed yet for removal of this entity. | [optional] 
+**ssd_usage_level** | **str, none_type** | Specifies SSD usage level as Normal, Warning or Critical. | [optional] 
 **ssd_used_percentage** | **int, none_type** | Specifies SSD used percentage. | [optional] 
 **status** | **str** | Specifies status of the disk. | [optional] 
 **time_remaining** | **int, none_type** | Specifies the total duration in seconds left to remove the Disk. | [optional] 

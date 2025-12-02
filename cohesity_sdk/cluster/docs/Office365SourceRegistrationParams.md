@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **endpoint** | **str** | Specifies the endpoint IPaddress, URL or hostname of the host. | 
 **description** | **str, none_type** | Specifies the description of the source being registered. | [optional] 
 **enable_m365_csm_backup** | **bool, none_type** | Specifies whether to enable M365 Storage Service API based(CSM) Backup for this M365 source. | [optional] 
+**m365_csm_params** | [**M365CsmParams**](M365CsmParams.md) |  | [optional] 
 **o365_objects_discovery_params** | [**ObjectsDiscoveryParams**](ObjectsDiscoveryParams.md) |  | [optional] 
 **office365_app_credentials_list** | [**[Office365AppCredentials]**](Office365AppCredentials.md) | Specifies a list of office365 azure application credentials needed to authenticate &amp; authorize users for Office 365. | [optional] 
 **office365_region** | **str, none_type** | Specifies the region where Office 365 Exchange environment is. | [optional] 

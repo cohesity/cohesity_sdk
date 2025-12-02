@@ -16,11 +16,13 @@ Method | HTTP request | Description
 
 Unregister a Remote Cluster.
 
-Unregister an external Remote Cluster.
+**Privileges:** ```CLUSTER_REMOTE_MODIFY``` <br><br>Unregister an external Remote Cluster.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -59,7 +61,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -76,19 +78,21 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_remote_cluster_by_id**
-> RemoteCluster get_remote_cluster_by_id(cluster_id)
+> UpdateRemoteClusterParams get_remote_cluster_by_id(cluster_id)
 
 Get Remote Cluster config by id.
 
-Get Remote Cluster config by cluster id.
+**Privileges:** ```CLUSTER_REMOTE_VIEW``` <br><br>Get Remote Cluster config by cluster id.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.remote_cluster import RemoteCluster
 from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.update_remote_cluster_params import UpdateRemoteClusterParams
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -121,11 +125,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RemoteCluster**](RemoteCluster.md)
+[**UpdateRemoteClusterParams**](UpdateRemoteClusterParams.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -146,11 +150,13 @@ Name | Type | Description  | Notes
 
 Get all registered Remote Clusters.
 
-List the Remote Clusters that are registered on this local Cluster and that matches the filter criteria specified using parameters.
+**Privileges:** ```CLUSTER_REMOTE_VIEW``` <br><br>List the Remote Clusters that are registered on this local Cluster and that matches the filter criteria specified using parameters.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -180,12 +186,13 @@ purpose = [
         "Replication",
     ] # [str] | Specifies the purpose for which the remote cluster is being registered. (optional)
 include_encrypted_credentials = True # bool | If true, the response will include encrypted password. (optional)
+include_onprem_vault = True # bool | If true, the response will include onprem vault. Onprem vault will not be included by default. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get all registered Remote Clusters.
-	api_response = client.remote_clusters.get_remote_clusters(cluster_ids=cluster_ids, cluster_names=cluster_names, node_addresses=node_addresses, purpose=purpose, include_encrypted_credentials=include_encrypted_credentials)
+	api_response = client.remote_clusters.get_remote_clusters(cluster_ids=cluster_ids, cluster_names=cluster_names, node_addresses=node_addresses, purpose=purpose, include_encrypted_credentials=include_encrypted_credentials, include_onprem_vault=include_onprem_vault)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling RemoteClustersApi->get_remote_clusters: %s\n" % e)
@@ -201,6 +208,7 @@ Name | Type | Description  | Notes
  **node_addresses** | **[str]**| Specifies a list of Remote Cluster IPs to filter. | [optional]
  **purpose** | **[str]**| Specifies the purpose for which the remote cluster is being registered. | [optional]
  **include_encrypted_credentials** | **bool**| If true, the response will include encrypted password. | [optional]
+ **include_onprem_vault** | **bool**| If true, the response will include onprem vault. Onprem vault will not be included by default. | [optional]
 
 ### Return type
 
@@ -208,7 +216,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -225,20 +233,22 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **register_remote_cluster**
-> RemoteCluster register_remote_cluster(body)
+> UpdateRemoteClusterParams register_remote_cluster(body)
 
 Register a Remote Cluster.
 
-Register a Remote Cluster on this local cluster for remote access and/or replication.
+**Privileges:** ```CLUSTER_REMOTE_MODIFY``` <br><br>Register a Remote Cluster on this local cluster for remote access and/or replication.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.remote_cluster import RemoteCluster
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.register_remote_cluster_params import RegisterRemoteClusterParams
+from cohesity_sdk.cluster.model.register_remote_cluster_parameters import RegisterRemoteClusterParameters
+from cohesity_sdk.cluster.model.update_remote_cluster_params import UpdateRemoteClusterParams
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -251,7 +261,7 @@ client = ClusterClient(
 )
 
 
-body = RegisterRemoteClusterParams() # RegisterRemoteClusterParams | Specifies the request to register Remote Cluster.
+body = RegisterRemoteClusterParameters() # RegisterRemoteClusterParameters | Specifies the request to register Remote Cluster.
 
 # example passing only required values which don't have defaults set
 try:
@@ -267,15 +277,15 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**RegisterRemoteClusterParams**](RegisterRemoteClusterParams.md)| Specifies the request to register Remote Cluster. |
+ **body** | [**RegisterRemoteClusterParameters**](RegisterRemoteClusterParameters.md)| Specifies the request to register Remote Cluster. |
 
 ### Return type
 
-[**RemoteCluster**](RemoteCluster.md)
+[**UpdateRemoteClusterParams**](UpdateRemoteClusterParams.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -292,18 +302,19 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_remote_cluster**
-> RemoteCluster update_remote_cluster(cluster_id, body)
+> UpdateRemoteClusterParams update_remote_cluster(cluster_id, body)
 
 Update a Remote Cluster config.
 
-Update the connection settings of the specified Remote Cluster that is registered on this Cluster.
+**Privileges:** ```CLUSTER_REMOTE_MODIFY``` <br><br>Update the connection settings of the specified Remote Cluster that is registered on this Cluster.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.remote_cluster import RemoteCluster
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.update_remote_cluster_params import UpdateRemoteClusterParams
 from cohesity_sdk.cluster.exceptions import ApiException
@@ -340,11 +351,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RemoteCluster**](RemoteCluster.md)
+[**UpdateRemoteClusterParams**](UpdateRemoteClusterParams.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -361,19 +372,22 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **validate_remote_cluster**
-> validate_remote_cluster(body)
+> RemoteClusterParams validate_remote_cluster(body)
 
 Validate Remote Cluster config.
 
-Validate a Remote Cluster credentials.
+**Privileges:** ```CLUSTER_REMOTE_MODIFY``` <br><br>Validate a Remote Cluster credentials. If includeRemoteClusterMetadata is true, response will include the remote cluster metadata.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.validate_remote_cluster_connection_params import ValidateRemoteClusterConnectionParams
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.validate_remote_cluster_connection_param import ValidateRemoteClusterConnectionParam
+from cohesity_sdk.cluster.model.remote_cluster_params import RemoteClusterParams
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -386,18 +400,29 @@ client = ClusterClient(
 )
 
 
-body = ValidateRemoteClusterConnectionParam(
+body = ValidateRemoteClusterConnectionParams(
         node_addresses=[
             "node_addresses_example",
         ],
         password="password_example",
         username="username_example",
-    ) # ValidateRemoteClusterConnectionParam | Specifies the request to validate Remote Cluster.
+    ) # ValidateRemoteClusterConnectionParams | Specifies the request to validate Remote Cluster.
+include_metadata = True # bool | Specifies if Remote Cluster metadata should be included in the response. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Validate Remote Cluster config.
-	client.remote_clusters.validate_remote_cluster(body)
+	api_response = client.remote_clusters.validate_remote_cluster(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling RemoteClustersApi->validate_remote_cluster: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Validate Remote Cluster config.
+	api_response = client.remote_clusters.validate_remote_cluster(body, include_metadata=include_metadata)
+	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling RemoteClustersApi->validate_remote_cluster: %s\n" % e)
 ```
@@ -407,15 +432,16 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ValidateRemoteClusterConnectionParam**](ValidateRemoteClusterConnectionParam.md)| Specifies the request to validate Remote Cluster. |
+ **body** | [**ValidateRemoteClusterConnectionParams**](ValidateRemoteClusterConnectionParams.md)| Specifies the request to validate Remote Cluster. |
+ **include_metadata** | **bool**| Specifies if Remote Cluster metadata should be included in the response. | [optional]
 
 ### Return type
 
-void (empty response body)
+[**RemoteClusterParams**](RemoteClusterParams.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -426,6 +452,7 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+**200** | Success |  -  |
 **204** | No Content |  -  |
 **0** | Error |  -  |
 

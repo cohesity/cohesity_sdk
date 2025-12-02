@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **enable_sudo_access** | **bool, none_type** | Specifies if the support user has sudo access. | [optional] 
 **password_set** | **bool, none_type** | Specifies if the password for the support user has been set. | [optional] 
+**sudo_access_end_timestamp_msecs** | **int, none_type** | Specifies the sudo access end time stamp in milliseconds since unix epoch. | [optional] 
+**sudo_access_mode** | **int, none_type** | Specifies whether the sudo access mode is enabled or not | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

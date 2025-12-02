@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **archive_blob_params** | [**AzureArchiveBlobParams**](AzureArchiveBlobParams.md) |  | [optional] 
+**cold_blob_params** | [**AzureColdBlobParams**](AzureColdBlobParams.md) |  | [optional] 
 **cool_blob_params** | [**AzureCoolBlobParams**](AzureCoolBlobParams.md) |  | [optional] 
 **hot_blob_params** | [**AzureHotBlobParams**](AzureHotBlobParams.md) |  | [optional] 
 

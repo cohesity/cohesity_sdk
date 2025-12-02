@@ -28,7 +28,13 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.mounted_volume_mapping import MountedVolumeMapping
+    from cohesity_sdk.cluster.model.recovery_vlan_config import RecoveryVlanConfig
+    from cohesity_sdk.cluster.model.v_mware_mount_volumes_new_target_config import VMwareMountVolumesNewTargetConfig
+    from cohesity_sdk.cluster.model.v_mware_mount_volumes_original_target_config import VMwareMountVolumesOriginalTargetConfig
     globals()['MountedVolumeMapping'] = MountedVolumeMapping
+    globals()['RecoveryVlanConfig'] = RecoveryVlanConfig
+    globals()['VMwareMountVolumesNewTargetConfig'] = VMwareMountVolumesNewTargetConfig
+    globals()['VMwareMountVolumesOriginalTargetConfig'] = VMwareMountVolumesOriginalTargetConfig
 
 
 class VmwareTargetParamsForMountVolume(ModelNormal):
@@ -81,10 +87,10 @@ class VmwareTargetParamsForMountVolume(ModelNormal):
         return {
             'mount_to_original_target': (bool, none_type,),  # noqa: E501
             'mounted_volume_mapping': ([MountedVolumeMapping], none_type,),  # noqa: E501
-            'new_target_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'original_target_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'new_target_config': (VMwareMountVolumesNewTargetConfig,),  # noqa: E501
+            'original_target_config': (VMwareMountVolumesOriginalTargetConfig,),  # noqa: E501
             'read_only_mount': (bool, none_type,),  # noqa: E501
-            'vlan_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'vlan_config': (RecoveryVlanConfig,),  # noqa: E501
             'volume_names': ([str], none_type,),  # noqa: E501
         }
 
@@ -155,10 +161,10 @@ class VmwareTargetParamsForMountVolume(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             mounted_volume_mapping ([MountedVolumeMapping], none_type): Specifies the mapping of original volumes and mounted volumes. [optional]  # noqa: E501
-            new_target_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the configuration for mounting to a new target.. [optional]  # noqa: E501
-            original_target_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the configuration for mounting to the original target.. [optional]  # noqa: E501
+            new_target_config (VMwareMountVolumesNewTargetConfig): [optional]  # noqa: E501
+            original_target_config (VMwareMountVolumesOriginalTargetConfig): [optional]  # noqa: E501
             read_only_mount (bool, none_type): Specifies whether to perform a read-only mount. Default is false.. [optional]  # noqa: E501
-            vlan_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery.. [optional]  # noqa: E501
+            vlan_config (RecoveryVlanConfig): [optional]  # noqa: E501
             volume_names ([str], none_type): Specifies the names of volumes that need to be mounted. If this is not specified then all volumes that are part of the source VM will be mounted on the target VM.. [optional]  # noqa: E501
         """
 

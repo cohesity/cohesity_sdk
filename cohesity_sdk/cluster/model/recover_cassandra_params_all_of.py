@@ -89,6 +89,7 @@ class RecoverCassandraParamsAllOf(ModelNormal):
             'restart_immediately': (bool, none_type,),  # noqa: E501
             'restart_services': (bool, none_type,),  # noqa: E501
             'restart_services_task_id': (int, none_type,),  # noqa: E501
+            'run_pre_checks': (bool, none_type,),  # noqa: E501
             'selected_data_centers': ([str],),  # noqa: E501
             'staging_directory_list': ([str],),  # noqa: E501
             'suffix': (str, none_type,),  # noqa: E501
@@ -111,6 +112,7 @@ class RecoverCassandraParamsAllOf(ModelNormal):
         'restart_immediately': 'restartImmediately',  # noqa: E501
         'restart_services': 'restartServices',  # noqa: E501
         'restart_services_task_id': 'restartServicesTaskId',  # noqa: E501
+        'run_pre_checks': 'runPreChecks',  # noqa: E501
         'selected_data_centers': 'selectedDataCenters',  # noqa: E501
         'staging_directory_list': 'stagingDirectoryList',  # noqa: E501
         'suffix': 'suffix',  # noqa: E501
@@ -175,6 +177,7 @@ class RecoverCassandraParamsAllOf(ModelNormal):
             restart_immediately (bool, none_type): Specifies whether to restart Cassandra services immediately after the point in time recovery.. [optional]  # noqa: E501
             restart_services (bool, none_type): Specifies whether to restart Cassandra services after the point in time recovery.. [optional]  # noqa: E501
             restart_services_task_id (int, none_type): Specifies the Id of the task required to restart Cassandra services.. [optional]  # noqa: E501
+            run_pre_checks (bool, none_type): Specifies Whether to run checks before the recovery. E.x if there is sufficient space in the destination cluster for the recovery to succeed.. [optional]  # noqa: E501
             selected_data_centers ([str]): Selected Data centers for this cluster.. [optional]  # noqa: E501
             staging_directory_list ([str]): Specifies the directory on the primary to copy the files which are to be uploaded using destination sstableloader.. [optional]  # noqa: E501
             suffix (str, none_type): A suffix that is to be applied to all recovered objects.. [optional]  # noqa: E501

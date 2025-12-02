@@ -49,7 +49,7 @@ class AgentApi(object):
         ):
             """Create an upgrade task  # noqa: E501
 
-            Create a schedule based agent upgrade task.  # noqa: E501
+            **Privileges:** ```AGENT_UPGRADE_MODIFY``` <br><br>Create a schedule based agent upgrade task.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -114,7 +114,9 @@ class AgentApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/agents/upgrade-tasks',
                 'operation_id': 'create_upgrade_task',
@@ -171,7 +173,7 @@ class AgentApi(object):
         ):
             """Download agent  # noqa: E501
 
-            Download agent for different hosts.  # noqa: E501
+            **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Download agent for different hosts.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -236,7 +238,9 @@ class AgentApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/agents/download',
                 'operation_id': 'download_agent',
@@ -292,7 +296,7 @@ class AgentApi(object):
         ):
             """Get upgrade tasks  # noqa: E501
 
-            Get the list of agent upgrade tasks.  # noqa: E501
+            **Privileges:** ```AGENT_UPGRADE_VIEW``` <br><br>Get the list of agent upgrade tasks.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -356,7 +360,9 @@ class AgentApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/agents/upgrade-tasks',
                 'operation_id': 'get_upgrade_tasks',
@@ -422,7 +428,7 @@ class AgentApi(object):
         ):
             """Perform action on an upgrade task.  # noqa: E501
 
-            Perform actions on an agent upgrade task.  # noqa: E501
+            **Privileges:** ```AGENT_UPGRADE_MODIFY``` <br><br>Perform actions on an agent upgrade task.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -487,7 +493,9 @@ class AgentApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/agents/upgrade-tasks/actions',
                 'operation_id': 'perform_action_on_agent_upgrade_task',

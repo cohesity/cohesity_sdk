@@ -59,6 +59,7 @@ class TeamsFileItem(ModelNormal):
             'FILE': "File",
             'DIRECTORY': "Directory",
             'SYMLINK': "Symlink",
+            'ONENOTENOTEBOOK': "OneNoteNotebook",
         },
     }
 

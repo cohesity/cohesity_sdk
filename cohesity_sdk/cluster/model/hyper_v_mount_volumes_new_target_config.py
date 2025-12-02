@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.credentials import Credentials
     from cohesity_sdk.cluster.model.recover_target import RecoverTarget
+    globals()['Credentials'] = Credentials
     globals()['RecoverTarget'] = RecoverTarget
 
 
@@ -81,7 +83,7 @@ class HyperVMountVolumesNewTargetConfig(ModelNormal):
         return {
             'bring_disks_online': (bool, none_type,),  # noqa: E501
             'mount_target': (RecoverTarget,),  # noqa: E501
-            'target_vm_credentials': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'target_vm_credentials': (Credentials,),  # noqa: E501
         }
 
     @cached_property
@@ -147,7 +149,7 @@ class HyperVMountVolumesNewTargetConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            target_vm_credentials ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies credentials to access the target VM.. [optional]  # noqa: E501
+            target_vm_credentials (Credentials): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

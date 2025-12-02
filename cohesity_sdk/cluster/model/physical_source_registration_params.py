@@ -78,6 +78,7 @@ class PhysicalSourceRegistrationParams(ModelNormal):
             'KORACLERACCLUSTER': "kOracleRACCluster",
             'KORACLEAPCLUSTER': "kOracleAPCluster",
             'KUNIXCLUSTER': "kUnixCluster",
+            'KORACLECLUSTER': "kOracleCluster",
         },
     }
 
@@ -103,6 +104,7 @@ class PhysicalSourceRegistrationParams(ModelNormal):
             'applications': ([str], none_type,),  # noqa: E501
             'force_register': (bool, none_type,),  # noqa: E501
             'host_type': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'physical_type': (str, none_type,),  # noqa: E501
         }
 
@@ -117,6 +119,7 @@ class PhysicalSourceRegistrationParams(ModelNormal):
         'applications': 'applications',  # noqa: E501
         'force_register': 'forceRegister',  # noqa: E501
         'host_type': 'hostType',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'physical_type': 'physicalType',  # noqa: E501
     }
 
@@ -173,6 +176,7 @@ class PhysicalSourceRegistrationParams(ModelNormal):
             applications ([str], none_type): Specifies the list of applications to be registered with Physical Source.. [optional]  # noqa: E501
             force_register (bool, none_type): The agent running on a physical host will fail the registration if it is already registered as part of another cluster. By setting this option to true, agent can be forced to register with the current cluster.. [optional]  # noqa: E501
             host_type (str, none_type): Specifies the type of host.. [optional]  # noqa: E501
+            name (str, none_type): A user specified human-readable name provided for the source. It contains the hostname/ip address of the physical host or the Windows Cluster VIP.. [optional]  # noqa: E501
             physical_type (str, none_type): Specifies the type of physical server.. [optional]  # noqa: E501
         """
 

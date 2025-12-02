@@ -28,7 +28,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
+    from cohesity_sdk.cluster.model.recover_pure_san_group_params import RecoverPureSanGroupParams
+    from cohesity_sdk.cluster.model.recover_pure_san_volume_params import RecoverPureSanVolumeParams
     globals()['CommonRecoverObjectSnapshotParams'] = CommonRecoverObjectSnapshotParams
+    globals()['RecoverPureSanGroupParams'] = RecoverPureSanGroupParams
+    globals()['RecoverPureSanVolumeParams'] = RecoverPureSanVolumeParams
 
 
 class RecoverPureParams(ModelNormal):
@@ -85,8 +89,8 @@ class RecoverPureParams(ModelNormal):
         return {
             'objects': ([CommonRecoverObjectSnapshotParams], none_type,),  # noqa: E501
             'recovery_action': (str,),  # noqa: E501
-            'recover_san_group_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'recover_san_volume_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'recover_san_group_params': (RecoverPureSanGroupParams,),  # noqa: E501
+            'recover_san_volume_params': (RecoverPureSanVolumeParams,),  # noqa: E501
         }
 
     @cached_property
@@ -153,8 +157,8 @@ class RecoverPureParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            recover_san_group_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover SAN Pure Protection Group.. [optional]  # noqa: E501
-            recover_san_volume_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover SAN Volume.. [optional]  # noqa: E501
+            recover_san_group_params (RecoverPureSanGroupParams): [optional]  # noqa: E501
+            recover_san_volume_params (RecoverPureSanVolumeParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

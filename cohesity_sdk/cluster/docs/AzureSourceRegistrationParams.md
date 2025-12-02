@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **registration_workflow** | **str, none_type** | Specifies whether the type of registration is express or manual. | 
 **application_credentials** | [**[AzureApplicationCredentials]**](AzureApplicationCredentials.md) | Specifies the credentials for a list of applications from azure active directory. | [optional] 
 **azure_tenant_id** | **str, none_type** | Specifies Tenant Id of the active directory of Azure account. Accpets both Azure tanant Id and tenant domain name. | [optional] 
+**graph_access_token** | **str, none_type** | Specifies the graph access token for using Azure graph API&#39;s. | [optional] 
+**management_access_token** | **str, none_type** | Specifies the management access token for using Azure management API&#39;s. | [optional] 
 **subscription_details** | [**[AzureSubscription]**](AzureSubscription.md) | Specifies the list subscription ids to be registered. | [optional] 
 **use_cases** | **[str], none_type** | The use cases for which the source is to be registered. | [optional] 
 

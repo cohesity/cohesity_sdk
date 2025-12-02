@@ -28,17 +28,33 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.aws_agent_protection_group_params import AwsAgentProtectionGroupParams
+    from cohesity_sdk.cluster.model.aws_aurora_postgres_db_protection_group_params import AwsAuroraPostgresDbProtectionGroupParams
     from cohesity_sdk.cluster.model.aws_aurora_protection_group_params import AwsAuroraProtectionGroupParams
+    from cohesity_sdk.cluster.model.aws_document_db_protection_group_params import AwsDocumentDBProtectionGroupParams
+    from cohesity_sdk.cluster.model.aws_dynamo_db_protection_group_params import AwsDynamoDBProtectionGroupParams
+    from cohesity_sdk.cluster.model.aws_mysql_protection_group_params import AwsMysqlProtectionGroupParams
     from cohesity_sdk.cluster.model.aws_native_protection_group_params import AwsNativeProtectionGroupParams
+    from cohesity_sdk.cluster.model.aws_rds_ms_sql_protection_group_params import AwsRdsMsSqlProtectionGroupParams
+    from cohesity_sdk.cluster.model.aws_rds_oracle_protection_group_params import AwsRDSOracleProtectionGroupParams
+    from cohesity_sdk.cluster.model.aws_rds_postgres_db_protection_group_params import AwsRdsPostgresDbProtectionGroupParams
     from cohesity_sdk.cluster.model.aws_rds_postgres_protection_group_params import AwsRdsPostgresProtectionGroupParams
     from cohesity_sdk.cluster.model.aws_rds_protection_group_params import AwsRdsProtectionGroupParams
+    from cohesity_sdk.cluster.model.aws_redshift_protection_group_params import AwsRedshiftProtectionGroupParams
     from cohesity_sdk.cluster.model.aws_s3_protection_group_params import AwsS3ProtectionGroupParams
     from cohesity_sdk.cluster.model.aws_snapshot_manager_protection_group_params import AwsSnapshotManagerProtectionGroupParams
     globals()['AwsAgentProtectionGroupParams'] = AwsAgentProtectionGroupParams
+    globals()['AwsAuroraPostgresDbProtectionGroupParams'] = AwsAuroraPostgresDbProtectionGroupParams
     globals()['AwsAuroraProtectionGroupParams'] = AwsAuroraProtectionGroupParams
+    globals()['AwsDocumentDBProtectionGroupParams'] = AwsDocumentDBProtectionGroupParams
+    globals()['AwsDynamoDBProtectionGroupParams'] = AwsDynamoDBProtectionGroupParams
+    globals()['AwsMysqlProtectionGroupParams'] = AwsMysqlProtectionGroupParams
     globals()['AwsNativeProtectionGroupParams'] = AwsNativeProtectionGroupParams
+    globals()['AwsRDSOracleProtectionGroupParams'] = AwsRDSOracleProtectionGroupParams
+    globals()['AwsRdsMsSqlProtectionGroupParams'] = AwsRdsMsSqlProtectionGroupParams
+    globals()['AwsRdsPostgresDbProtectionGroupParams'] = AwsRdsPostgresDbProtectionGroupParams
     globals()['AwsRdsPostgresProtectionGroupParams'] = AwsRdsPostgresProtectionGroupParams
     globals()['AwsRdsProtectionGroupParams'] = AwsRdsProtectionGroupParams
+    globals()['AwsRedshiftProtectionGroupParams'] = AwsRedshiftProtectionGroupParams
     globals()['AwsS3ProtectionGroupParams'] = AwsS3ProtectionGroupParams
     globals()['AwsSnapshotManagerProtectionGroupParams'] = AwsSnapshotManagerProtectionGroupParams
 
@@ -75,9 +91,30 @@ class AwsProtectionGroupParams(ModelNormal):
             'KNATIVE': "kNative",
             'KSNAPSHOTMANAGER': "kSnapshotManager",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KRDSPOSTGRESSNAPSHOTMANAGER': "kRDSPostgresSnapshotManager",
+            'KRDSMYSQLSNAPSHOTMANAGER': "kRDSMySQLSnapshotManager",
+            'KRDSMSSQLSNAPSHOTMANAGER': "kRDSMSSQLSnapshotManager",
+            'KRDSORACLESNAPSHOTMANAGER': "kRDSOracleSnapshotManager",
+            'KRDSMARIADBSNAPSHOTMANAGER': "kRDSMariaDBSnapshotManager",
+            'KRDSCUSTOMMSSQLSNAPSHOTMANAGER': "kRDSCustomMSSQLSnapshotManager",
+            'KRDSCUSTOMORACLESNAPSHOTMANAGER': "kRDSCustomOracleSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAURORAPOSTGRESSNAPSHOTMANAGER': "kAuroraPostgresSnapshotManager",
+            'KAURORAMYSQLSNAPSHOTMANAGER': "kAuroraMySQLSnapshotManager",
             'KAWSS3': "kAwsS3",
             'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAWSAURORAPOSTGRES': "kAwsAuroraPostgres",
+            'KAWSRDSPOSTGRES': "kAwsRDSPostgres",
+            'KAWSMYSQL': "kAWSMySQL",
+            'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
+            'KAWSDYNAMODB': "kAwsDynamoDB",
+            'KAWSAURORAMYSQL': "kAWSAuroraMySQL",
+            'KAWSRDSORACLE': "kAWSRdsOracle",
+            'KAWSDOCUMENTDB': "kAWSDocumentDB",
+            'KAWSRDSPOSTGRESDB': "kAWSRDSPostgresDB",
+            'KAWSAURORAPOSTGRESDB': "kAWSAuroraPostgresDB",
+            'KAWSRDSMSSQL': "kAWSRDSMSSQL",
+            'KAWSREDSHIFT': "kAWSRedshift",
         },
     }
 
@@ -102,10 +139,18 @@ class AwsProtectionGroupParams(ModelNormal):
         return {
             'protection_type': (str,),  # noqa: E501
             'agent_protection_type_params': (AwsAgentProtectionGroupParams,),  # noqa: E501
+            'aurora_postgres_db_protection_type_params': (AwsAuroraPostgresDbProtectionGroupParams,),  # noqa: E501
             'aurora_protection_type_params': (AwsAuroraProtectionGroupParams,),  # noqa: E501
+            'document_db_protection_type_params': (AwsDocumentDBProtectionGroupParams,),  # noqa: E501
+            'dynamo_db_protection_type_params': (AwsDynamoDBProtectionGroupParams,),  # noqa: E501
+            'mysql_protection_type_params': (AwsMysqlProtectionGroupParams,),  # noqa: E501
             'native_protection_type_params': (AwsNativeProtectionGroupParams,),  # noqa: E501
+            'oracle_protection_type_params': (AwsRDSOracleProtectionGroupParams,),  # noqa: E501
+            'rds_ms_sql_protection_type_params': (AwsRdsMsSqlProtectionGroupParams,),  # noqa: E501
+            'rds_postgres_db_protection_type_params': (AwsRdsPostgresDbProtectionGroupParams,),  # noqa: E501
             'rds_postgres_protection_type_params': (AwsRdsPostgresProtectionGroupParams,),  # noqa: E501
             'rds_protection_type_params': (AwsRdsProtectionGroupParams,),  # noqa: E501
+            'redshift_protection_type_params': (AwsRedshiftProtectionGroupParams,),  # noqa: E501
             's3_protection_type_params': (AwsS3ProtectionGroupParams,),  # noqa: E501
             'snapshot_manager_protection_type_params': (AwsSnapshotManagerProtectionGroupParams,),  # noqa: E501
         }
@@ -119,10 +164,18 @@ class AwsProtectionGroupParams(ModelNormal):
     attribute_map = {
         'protection_type': 'protectionType',  # noqa: E501
         'agent_protection_type_params': 'agentProtectionTypeParams',  # noqa: E501
+        'aurora_postgres_db_protection_type_params': 'auroraPostgresDbProtectionTypeParams',  # noqa: E501
         'aurora_protection_type_params': 'auroraProtectionTypeParams',  # noqa: E501
+        'document_db_protection_type_params': 'documentDBProtectionTypeParams',  # noqa: E501
+        'dynamo_db_protection_type_params': 'dynamoDBProtectionTypeParams',  # noqa: E501
+        'mysql_protection_type_params': 'mysqlProtectionTypeParams',  # noqa: E501
         'native_protection_type_params': 'nativeProtectionTypeParams',  # noqa: E501
+        'oracle_protection_type_params': 'oracleProtectionTypeParams',  # noqa: E501
+        'rds_ms_sql_protection_type_params': 'rdsMsSqlProtectionTypeParams',  # noqa: E501
+        'rds_postgres_db_protection_type_params': 'rdsPostgresDbProtectionTypeParams',  # noqa: E501
         'rds_postgres_protection_type_params': 'rdsPostgresProtectionTypeParams',  # noqa: E501
         'rds_protection_type_params': 'rdsProtectionTypeParams',  # noqa: E501
+        'redshift_protection_type_params': 'redshiftProtectionTypeParams',  # noqa: E501
         's3_protection_type_params': 's3ProtectionTypeParams',  # noqa: E501
         'snapshot_manager_protection_type_params': 'snapshotManagerProtectionTypeParams',  # noqa: E501
     }
@@ -178,10 +231,18 @@ class AwsProtectionGroupParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             agent_protection_type_params (AwsAgentProtectionGroupParams): [optional]  # noqa: E501
+            aurora_postgres_db_protection_type_params (AwsAuroraPostgresDbProtectionGroupParams): [optional]  # noqa: E501
             aurora_protection_type_params (AwsAuroraProtectionGroupParams): [optional]  # noqa: E501
+            document_db_protection_type_params (AwsDocumentDBProtectionGroupParams): [optional]  # noqa: E501
+            dynamo_db_protection_type_params (AwsDynamoDBProtectionGroupParams): [optional]  # noqa: E501
+            mysql_protection_type_params (AwsMysqlProtectionGroupParams): [optional]  # noqa: E501
             native_protection_type_params (AwsNativeProtectionGroupParams): [optional]  # noqa: E501
+            oracle_protection_type_params (AwsRDSOracleProtectionGroupParams): [optional]  # noqa: E501
+            rds_ms_sql_protection_type_params (AwsRdsMsSqlProtectionGroupParams): [optional]  # noqa: E501
+            rds_postgres_db_protection_type_params (AwsRdsPostgresDbProtectionGroupParams): [optional]  # noqa: E501
             rds_postgres_protection_type_params (AwsRdsPostgresProtectionGroupParams): [optional]  # noqa: E501
             rds_protection_type_params (AwsRdsProtectionGroupParams): [optional]  # noqa: E501
+            redshift_protection_type_params (AwsRedshiftProtectionGroupParams): [optional]  # noqa: E501
             s3_protection_type_params (AwsS3ProtectionGroupParams): [optional]  # noqa: E501
             snapshot_manager_protection_type_params (AwsSnapshotManagerProtectionGroupParams): [optional]  # noqa: E501
         """

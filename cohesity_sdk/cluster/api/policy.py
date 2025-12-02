@@ -22,6 +22,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.policy_summary_response import PolicySummaryResponse
 from cohesity_sdk.cluster.model.policy_template_response import PolicyTemplateResponse
 from cohesity_sdk.cluster.model.policy_templates_response_with_pagination import PolicyTemplatesResponseWithPagination
 from cohesity_sdk.cluster.model.protection_policy_request import ProtectionPolicyRequest
@@ -48,7 +49,7 @@ class PolicyApi(object):
         ):
             """Create a Protection Policy.  # noqa: E501
 
-            Create the Protection Policy and returns the newly created policy object.  # noqa: E501
+            **Privileges:** ```PROTECTION_POLICY_MODIFY``` <br><br>Create the Protection Policy and returns the newly created policy object.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -113,7 +114,9 @@ class PolicyApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/policies',
                 'operation_id': 'create_protection_policy',
@@ -170,7 +173,7 @@ class PolicyApi(object):
         ):
             """Delete a Protection Policy.  # noqa: E501
 
-            Deletes a Protection Policy based on given policy id.  # noqa: E501
+            **Privileges:** ```PROTECTION_POLICY_MODIFY``` <br><br>Deletes a Protection Policy based on given policy id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -235,7 +238,9 @@ class PolicyApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/policies/{id}',
                 'operation_id': 'delete_protection_policy',
@@ -284,6 +289,178 @@ class PolicyApi(object):
             callable=__delete_protection_policy
         )
 
+        def __get_policy_summary(
+            self,
+            id,
+            **kwargs
+        ):
+            """Get the protection policy summary  # noqa: E501
+
+            **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Fetch the summary for a given protection policy.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_policy_summary(id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (str): Specifies the id of the policy whose summary should be retrieved. If this is not set, the API will return error.
+
+            Keyword Args:
+                request_initiator_type (str): Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.. [optional]
+                include_aggregated_last_run_summary (bool): Specifies whether to include summary of the last Protection Run of each Protection Source. [optional]
+                include_aggregated_runs_summary (bool): Specifies whether to include summary of all Protection Runs of the Protection Source or Protection Jobs. If this is set to true, then only the Protection Runs from the provided 'startTimeUsecs' and 'endTimeUsecs' are processed.. [optional]
+                start_time_usecs (int): Filter by a start time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that started after the specified time are included in the aggregated runs summary result.. [optional]
+                end_time_usecs (int): Filter by a end time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that completed before the specified time are included in the aggregated runs summary result.. [optional]
+                page_count (int): Specifies the limit of the number of Protection Sources or Protection Jobs to be returned as a part of the Protection Policy Summary.. [optional]
+                pagination_cookie (str): If set, i.e. there are more results to display, use this value to get the next set of results, by using this value in paginationCookie param for the next request to GetProtectionPolicySummary.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PolicySummaryResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            return self.call_with_http_info(**kwargs)
+
+        self.get_policy_summary = _Endpoint(
+            settings={
+                'response_type': (PolicySummaryResponse,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/data-protect/policies/{id}/summary',
+                'operation_id': 'get_policy_summary',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'request_initiator_type',
+                    'include_aggregated_last_run_summary',
+                    'include_aggregated_runs_summary',
+                    'start_time_usecs',
+                    'end_time_usecs',
+                    'page_count',
+                    'pagination_cookie',
+                ],
+                'required': [
+                    'id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                    'request_initiator_type',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('request_initiator_type',): {
+
+                        "UIUSER": "UIUser",
+                        "UIAUTO": "UIAuto",
+                        "HELIOS": "Helios"
+                    },
+                },
+                'openapi_types': {
+                    'id':
+                        (str,),
+                    'request_initiator_type':
+                        (str,),
+                    'include_aggregated_last_run_summary':
+                        (bool,),
+                    'include_aggregated_runs_summary':
+                        (bool,),
+                    'start_time_usecs':
+                        (int,),
+                    'end_time_usecs':
+                        (int,),
+                    'page_count':
+                        (int,),
+                    'pagination_cookie':
+                        (str,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'request_initiator_type': 'requestInitiatorType',
+                    'include_aggregated_last_run_summary': 'includeAggregatedLastRunSummary',
+                    'include_aggregated_runs_summary': 'includeAggregatedRunsSummary',
+                    'start_time_usecs': 'startTimeUsecs',
+                    'end_time_usecs': 'endTimeUsecs',
+                    'page_count': 'pageCount',
+                    'pagination_cookie': 'paginationCookie',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'request_initiator_type': 'header',
+                    'include_aggregated_last_run_summary': 'query',
+                    'include_aggregated_runs_summary': 'query',
+                    'start_time_usecs': 'query',
+                    'end_time_usecs': 'query',
+                    'page_count': 'query',
+                    'pagination_cookie': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_policy_summary
+        )
+
         def __get_policy_template_by_id(
             self,
             id,
@@ -291,7 +468,7 @@ class PolicyApi(object):
         ):
             """List details about a single Policy Template.  # noqa: E501
 
-            Returns the Policy Template corresponding to the specified Policy Id.  # noqa: E501
+            **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Returns the Policy Template corresponding to the specified Policy Id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -356,7 +533,9 @@ class PolicyApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/policy-templates/{id}',
                 'operation_id': 'get_policy_template_by_id',
@@ -411,7 +590,7 @@ class PolicyApi(object):
         ):
             """List Policy Templates filtered by query parameters.  # noqa: E501
 
-            Returns the policy templates based on the filtering parameters. If no parameters are specified, then all the policy templates are returned.  # noqa: E501
+            **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Returns the policy templates based on the filtering parameters. If no parameters are specified, then all the policy templates are returned.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -477,7 +656,9 @@ class PolicyApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/policy-templates',
                 'operation_id': 'get_policy_templates',
@@ -560,7 +741,7 @@ class PolicyApi(object):
         ):
             """List Protection Policies based on provided filtering parameters.  # noqa: E501
 
-            Lists protection policies based on filtering query parameters.  # noqa: E501
+            **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Lists protection policies based on filtering query parameters.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -578,6 +759,7 @@ class PolicyApi(object):
                 exclude_linked_policies (bool): If excludeLinkedPolicies is set to true then only local policies created on cluster will be returned. The result will exclude all linked policies created from policy templates.. [optional]
                 include_replicated_policies (bool): If includeReplicatedPolicies is set to true, then response will also contain replicated policies. By default, replication policies are not included in the response.. [optional]
                 include_stats (bool): If includeStats is set to true, then response will return number of protection groups and objects. By default, the protection stats are not included in the response.. [optional]
+                vault_ids ([int]): Filter by a list of Vault ids. Policies archiving to any of the specified vaults will be returned.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -630,7 +812,9 @@ class PolicyApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/policies',
                 'operation_id': 'get_protection_policies',
@@ -648,6 +832,7 @@ class PolicyApi(object):
                     'exclude_linked_policies',
                     'include_replicated_policies',
                     'include_stats',
+                    'vault_ids',
                 ],
                 'required': [],
                 'nullable': [
@@ -672,7 +857,9 @@ class PolicyApi(object):
                     ('types',): {
 
                         "REGULAR": "Regular",
-                        "INTERNAL": "Internal"
+                        "INTERNAL": "Internal",
+                        "RPO": "RPO",
+                        "PROTECTONCE": "ProtectOnce"
                     },
                 },
                 'openapi_types': {
@@ -694,6 +881,8 @@ class PolicyApi(object):
                         (bool,),
                     'include_stats':
                         (bool,),
+                    'vault_ids':
+                        ([int],),
                 },
                 'attribute_map': {
                     'request_initiator_type': 'requestInitiatorType',
@@ -705,6 +894,7 @@ class PolicyApi(object):
                     'exclude_linked_policies': 'excludeLinkedPolicies',
                     'include_replicated_policies': 'includeReplicatedPolicies',
                     'include_stats': 'includeStats',
+                    'vault_ids': 'vaultIds',
                 },
                 'location_map': {
                     'request_initiator_type': 'header',
@@ -716,12 +906,14 @@ class PolicyApi(object):
                     'exclude_linked_policies': 'query',
                     'include_replicated_policies': 'query',
                     'include_stats': 'query',
+                    'vault_ids': 'query',
                 },
                 'collection_format_map': {
                     'ids': 'csv',
                     'policy_names': 'csv',
                     'tenant_ids': 'csv',
                     'types': 'csv',
+                    'vault_ids': 'csv',
                 }
             },
             headers_map={
@@ -741,7 +933,7 @@ class PolicyApi(object):
         ):
             """List details about a single Protection Policy.  # noqa: E501
 
-            Returns the Protection Policy details based on provided Policy Id.  # noqa: E501
+            **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Returns the Protection Policy details based on provided Policy Id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -807,7 +999,9 @@ class PolicyApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/policies/{id}',
                 'operation_id': 'get_protection_policy_by_id',
@@ -876,7 +1070,7 @@ class PolicyApi(object):
         ):
             """Update a Protection Policy.  # noqa: E501
 
-            Specifies the request to update the existing Protection Policy. On successful update, returns the updated policy object.  # noqa: E501
+            **Privileges:** ```PROTECTION_POLICY_MODIFY``` <br><br>Specifies the request to update the existing Protection Policy. On successful update, returns the updated policy object.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -944,7 +1138,9 @@ class PolicyApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/policies/{id}',
                 'operation_id': 'update_protection_policy',

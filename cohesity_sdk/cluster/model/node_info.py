@@ -89,8 +89,8 @@ class NodeInfo(ModelNormal):
             'cpu': (int,),  # noqa: E501
             'hostname': (str,),  # noqa: E501
             'incarnation_id': (int,),  # noqa: E501
-            'interface_list': ([EndPoint],),  # noqa: E501
             'ipmi_ip': (str,),  # noqa: E501
+            'is_node_reachable': (bool,),  # noqa: E501
             'node_id': (int,),  # noqa: E501
             'node_model': (str,),  # noqa: E501
             'node_serial': (str,),  # noqa: E501
@@ -99,6 +99,7 @@ class NodeInfo(ModelNormal):
             'slot_number': (str,),  # noqa: E501
             'software_version': (str,),  # noqa: E501
             'system_memory_bytes': (int,),  # noqa: E501
+            'interface_list': ([EndPoint],),  # noqa: E501
         }
 
     @cached_property
@@ -116,8 +117,8 @@ class NodeInfo(ModelNormal):
         'cpu': 'cpu',  # noqa: E501
         'hostname': 'hostname',  # noqa: E501
         'incarnation_id': 'incarnationId',  # noqa: E501
-        'interface_list': 'interfaceList',  # noqa: E501
         'ipmi_ip': 'ipmiIp',  # noqa: E501
+        'is_node_reachable': 'isNodeReachable',  # noqa: E501
         'node_id': 'nodeId',  # noqa: E501
         'node_model': 'nodeModel',  # noqa: E501
         'node_serial': 'nodeSerial',  # noqa: E501
@@ -126,6 +127,7 @@ class NodeInfo(ModelNormal):
         'slot_number': 'slotNumber',  # noqa: E501
         'software_version': 'softwareVersion',  # noqa: E501
         'system_memory_bytes': 'systemMemoryBytes',  # noqa: E501
+        'interface_list': 'interfaceList',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -140,8 +142,28 @@ class NodeInfo(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, chassis_model, chassis_serial, cluster_id, cohesity_chassis_serial, cohesity_node_serial, cpu, hostname, incarnation_id, ipmi_ip, is_node_reachable, node_id, node_model, node_serial, product_model, services_version_info, slot_number, software_version, system_memory_bytes, *args, **kwargs):  # noqa: E501
         """NodeInfo - a model defined in OpenAPI
+
+        Args:
+            chassis_model (str): Chassis model.
+            chassis_serial (str): Chassis serial number programmed by manufacturer.
+            cluster_id (int): Specifies the Id of the cluster to which the node belongs.
+            cohesity_chassis_serial (str): Chassis serial number programmed by cohesity software.
+            cohesity_node_serial (str): Node serial number programmed by cohesity software.
+            cpu (int): Number of CPUs
+            hostname (str): Host name of the node reported by the kernel.
+            incarnation_id (int): Specifies the cluster incarnation Id.
+            ipmi_ip (str): Ipmi IpAddress
+            is_node_reachable (bool): Specifies whether the node is reachable or not
+            node_id (int): Specifies the Id of the node.
+            node_model (str): Node model.
+            node_serial (str): Node serial number programmed by manufacturer.
+            product_model (str): Product Model
+            services_version_info ([ServiceVersionInfo]): Specifies the version information of the cohesity services.
+            slot_number (str): Slot number of the node in the chassis.
+            software_version (str): Version of the Cohesity software running on the node.
+            system_memory_bytes (int): System Memory in bytes
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -175,24 +197,7 @@ class NodeInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            chassis_model (str): Chassis model.. [optional]  # noqa: E501
-            chassis_serial (str): Chassis serial number programmed by manufacturer.. [optional]  # noqa: E501
-            cluster_id (int): Specifies the Id of the cluster to which the node belongs.. [optional]  # noqa: E501
-            cohesity_chassis_serial (str): Chassis serial number programmed by cohesity software.. [optional]  # noqa: E501
-            cohesity_node_serial (str): Node serial number programmed by cohesity software.. [optional]  # noqa: E501
-            cpu (int): Number of CPUs. [optional]  # noqa: E501
-            hostname (str): Host name of the node reported by the kernel.. [optional]  # noqa: E501
-            incarnation_id (int): Specifies the cluster incarnation Id.. [optional]  # noqa: E501
             interface_list ([EndPoint]): List of interfaces in node.. [optional]  # noqa: E501
-            ipmi_ip (str): Ipmi IpAddress. [optional]  # noqa: E501
-            node_id (int): Specifies the Id of the node.. [optional]  # noqa: E501
-            node_model (str): Node model.. [optional]  # noqa: E501
-            node_serial (str): Node serial number programmed by manufacturer.. [optional]  # noqa: E501
-            product_model (str): Product Model. [optional]  # noqa: E501
-            services_version_info ([ServiceVersionInfo]): Specifies the version information of the cohesity services.. [optional]  # noqa: E501
-            slot_number (str): Slot number of the node in the chassis.. [optional]  # noqa: E501
-            software_version (str): Version of the Cohesity software running on the node.. [optional]  # noqa: E501
-            system_memory_bytes (int): System Memory in bytes. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -219,6 +224,24 @@ class NodeInfo(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.chassis_model = chassis_model
+        self.chassis_serial = chassis_serial
+        self.cluster_id = cluster_id
+        self.cohesity_chassis_serial = cohesity_chassis_serial
+        self.cohesity_node_serial = cohesity_node_serial
+        self.cpu = cpu
+        self.hostname = hostname
+        self.incarnation_id = incarnation_id
+        self.ipmi_ip = ipmi_ip
+        self.is_node_reachable = is_node_reachable
+        self.node_id = node_id
+        self.node_model = node_model
+        self.node_serial = node_serial
+        self.product_model = product_model
+        self.services_version_info = services_version_info
+        self.slot_number = slot_number
+        self.software_version = software_version
+        self.system_memory_bytes = system_memory_bytes
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

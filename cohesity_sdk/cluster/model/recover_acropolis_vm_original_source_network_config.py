@@ -75,6 +75,7 @@ class RecoverAcropolisVmOriginalSourceNetworkConfig(ModelNormal):
         """
         return {
             'detach_network': (bool, none_type,),  # noqa: E501
+            'disable_network': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,6 +86,7 @@ class RecoverAcropolisVmOriginalSourceNetworkConfig(ModelNormal):
 
     attribute_map = {
         'detach_network': 'detachNetwork',  # noqa: E501
+        'disable_network': 'disableNetwork',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -135,6 +137,7 @@ class RecoverAcropolisVmOriginalSourceNetworkConfig(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             detach_network (bool, none_type): If this is set to true, then the network will be detached from the recovered VMs. All the other networking parameters set will be ignored if set to true. Default value is false.. [optional]  # noqa: E501
+            disable_network (bool, none_type): Specifies whether the attached network should be left in disabled state. Default is false.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

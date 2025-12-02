@@ -58,6 +58,12 @@ class UpdateProtectionGroupsStateRequest(ModelNormal):
             'None': None,
             'KPAUSE': "kPause",
             'KRESUME': "kResume",
+            'KACTIVATE': "kActivate",
+            'KDEACTIVATE': "kDeactivate",
+        },
+        ('last_pause_reason',): {
+            'None': None,
+            'KTENANTDEACTIVATION': "kTenantDeactivation",
         },
     }
 
@@ -85,6 +91,9 @@ class UpdateProtectionGroupsStateRequest(ModelNormal):
         return {
             'action': (str, none_type,),  # noqa: E501
             'ids': ([str], none_type,),  # noqa: E501
+            'last_pause_reason': (str, none_type,),  # noqa: E501
+            'paused_note': (str, none_type,),  # noqa: E501
+            'tenant_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -96,6 +105,9 @@ class UpdateProtectionGroupsStateRequest(ModelNormal):
     attribute_map = {
         'action': 'action',  # noqa: E501
         'ids': 'ids',  # noqa: E501
+        'last_pause_reason': 'lastPauseReason',  # noqa: E501
+        'paused_note': 'pausedNote',  # noqa: E501
+        'tenant_id': 'tenantId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,6 +161,9 @@ class UpdateProtectionGroupsStateRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            last_pause_reason (str, none_type): Specifies the reason why the protection group was paused. [optional] if omitted the server will use the default value of "kTenantDeactivation"  # noqa: E501
+            paused_note (str, none_type): A note from the current user explaining the reason for pausing future runs, if applicable.. [optional]  # noqa: E501
+            tenant_id (str, none_type): Specifies the tenant id who has access to these protection groups.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

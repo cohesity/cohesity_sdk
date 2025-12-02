@@ -28,9 +28,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.credentials import Credentials
+    from cohesity_sdk.cluster.model.m365_csm_params import M365CsmParams
     from cohesity_sdk.cluster.model.objects_discovery_params import ObjectsDiscoveryParams
     from cohesity_sdk.cluster.model.office365_app_credentials import Office365AppCredentials
     globals()['Credentials'] = Credentials
+    globals()['M365CsmParams'] = M365CsmParams
     globals()['ObjectsDiscoveryParams'] = ObjectsDiscoveryParams
     globals()['Office365AppCredentials'] = Office365AppCredentials
 
@@ -92,6 +94,7 @@ class Office365SourceRegistrationParamsAllOf(ModelNormal):
         lazy_import()
         return {
             'enable_m365_csm_backup': (bool, none_type,),  # noqa: E501
+            'm365_csm_params': (M365CsmParams,),  # noqa: E501
             'o365_objects_discovery_params': (ObjectsDiscoveryParams,),  # noqa: E501
             'office365_app_credentials_list': ([Office365AppCredentials],),  # noqa: E501
             'office365_region': (str, none_type,),  # noqa: E501
@@ -109,6 +112,7 @@ class Office365SourceRegistrationParamsAllOf(ModelNormal):
 
     attribute_map = {
         'enable_m365_csm_backup': 'enableM365CSMBackup',  # noqa: E501
+        'm365_csm_params': 'm365CsmParams',  # noqa: E501
         'o365_objects_discovery_params': 'o365ObjectsDiscoveryParams',  # noqa: E501
         'office365_app_credentials_list': 'office365AppCredentialsList',  # noqa: E501
         'office365_region': 'office365Region',  # noqa: E501
@@ -166,6 +170,7 @@ class Office365SourceRegistrationParamsAllOf(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             enable_m365_csm_backup (bool, none_type): Specifies whether to enable M365 Storage Service API based(CSM) Backup for this M365 source.. [optional]  # noqa: E501
+            m365_csm_params (M365CsmParams): [optional]  # noqa: E501
             o365_objects_discovery_params (ObjectsDiscoveryParams): [optional]  # noqa: E501
             office365_app_credentials_list ([Office365AppCredentials]): Specifies a list of office365 azure application credentials needed to authenticate & authorize users for Office 365.. [optional]  # noqa: E501
             office365_region (str, none_type): Specifies the region where Office 365 Exchange environment is.. [optional]  # noqa: E501

@@ -77,6 +77,7 @@ class SubnetInfo(ModelNormal):
             'gateway': (str, none_type,),  # noqa: E501
             'netmask_bits': (int, none_type,),  # noqa: E501
             'subnet_ip': (str, none_type,),  # noqa: E501
+            'subnet_ipv4_mask': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -89,6 +90,7 @@ class SubnetInfo(ModelNormal):
         'gateway': 'gateway',  # noqa: E501
         'netmask_bits': 'netmaskBits',  # noqa: E501
         'subnet_ip': 'subnetIp',  # noqa: E501
+        'subnet_ipv4_mask': 'subnetIpv4Mask',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,6 +143,7 @@ class SubnetInfo(ModelNormal):
             gateway (str, none_type): Gateway.. [optional]  # noqa: E501
             netmask_bits (int, none_type): Subnet netmask bits.. [optional]  # noqa: E501
             subnet_ip (str, none_type): Subnet IP.. [optional]  # noqa: E501
+            subnet_ipv4_mask (str, none_type): Subnet ipv4 mask. This is used only for V4 subnet. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -116,8 +116,15 @@ class UpgradeCheckTestResult(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, test_id, test_kb_link, test_name, test_output, test_result, *args, **kwargs):  # noqa: E501
         """UpgradeCheckTestResult - a model defined in OpenAPI
+
+        Args:
+            test_id (str): The healthcheck test id
+            test_kb_link (str): The kb link for diagnosing test failure
+            test_name (str): The healthcheck test name
+            test_output (str): The healthcheck test output
+            test_result (str): The healthcheck test result
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -151,11 +158,6 @@ class UpgradeCheckTestResult(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            test_id (str): The healthcheck test id. [optional]  # noqa: E501
-            test_kb_link (str): The kb link for diagnosing test failure. [optional]  # noqa: E501
-            test_name (str): The healthcheck test name. [optional]  # noqa: E501
-            test_output (str): The healthcheck test output. [optional]  # noqa: E501
-            test_result (str): The healthcheck test result. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -182,6 +184,11 @@ class UpgradeCheckTestResult(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.test_id = test_id
+        self.test_kb_link = test_kb_link
+        self.test_name = test_name
+        self.test_output = test_output
+        self.test_result = test_result
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

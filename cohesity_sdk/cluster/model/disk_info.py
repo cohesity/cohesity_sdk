@@ -59,6 +59,7 @@ class DiskInfo(ModelNormal):
             'KSCSI': "kScsi",
             'KIDE': "kIde",
             'KSATA': "kSata",
+            'KNVME': "kNvme",
         },
     }
 

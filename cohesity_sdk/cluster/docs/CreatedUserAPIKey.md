@@ -6,6 +6,7 @@ Response instance after creating/rotating user API Keys.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_by_user_sid** | **str, none_type** | Specifies the user SID who created the API key. | [optional] [readonly] 
+**created_by_username** | **str, none_type** | Specifies the username of the user who created the API key. | [optional] [readonly] 
 **created_time_msecs** | **int, none_type** | Specifies the time in milliseconds when the API key was created. | [optional] [readonly] 
 **expiry_time_msecs** | **int, none_type** | Specifies the time in milliseconds when the API key will expire. null signifies no-expiry. | [optional] [readonly] 
 **id** | **str, none_type** | Specifies the unique id of the API key. | [optional] [readonly] 
@@ -13,6 +14,7 @@ Name | Type | Description | Notes
 **is_expired** | **bool, none_type** | Specifies if the API key has expired. | [optional] [readonly] 
 **last_rotated_time_msecs** | **int, none_type** | Specifies the time in milliseconds when the API key was last rotated. | [optional] [readonly] 
 **name** | **str, none_type** | Specifies the API key name. | [optional] [readonly] 
+**owner_username** | **str, none_type** | Specifies the username of the user who owns the API key. | [optional] [readonly] 
 **user_sid** | **str, none_type** | Specifies the user who owns the API key. | [optional] [readonly] 
 **api_key** | **str, none_type** | Specifies the API key. | [optional] [readonly] 
 

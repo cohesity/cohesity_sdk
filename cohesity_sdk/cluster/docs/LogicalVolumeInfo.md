@@ -5,7 +5,7 @@ Specifies the logical volume info for LVM or LDM volume.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**device_tree** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the tree structure of the logical volume. | [optional] 
+**device_tree** | [**DeviceTreeNode**](DeviceTreeNode.md) |  | [optional] 
 **logical_volume_name** | **str, none_type** | Specifies the logical volume name. | [optional] 
 **logical_volume_uuid** | **str, none_type** | Specifies the logical volume uuid. | [optional] 
 **volume_group_name** | **str, none_type** | Specifies the volume group name. | [optional] 

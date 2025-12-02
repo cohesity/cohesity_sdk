@@ -23,6 +23,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 from cohesity_sdk.cluster.model.active_directories import ActiveDirectories
 from cohesity_sdk.cluster.model.active_directory import ActiveDirectory
+from cohesity_sdk.cluster.model.active_directory_principals import ActiveDirectoryPrincipals
+from cohesity_sdk.cluster.model.active_directory_topology import ActiveDirectoryTopology
+from cohesity_sdk.cluster.model.add_active_directory_principals_parameters import AddActiveDirectoryPrincipalsParameters
+from cohesity_sdk.cluster.model.added_active_directory_principal import AddedActiveDirectoryPrincipal
 from cohesity_sdk.cluster.model.centrify_zones import CentrifyZones
 from cohesity_sdk.cluster.model.create_active_directory_request import CreateActiveDirectoryRequest
 from cohesity_sdk.cluster.model.domain_controllers_response import DomainControllersResponse
@@ -43,6 +47,130 @@ class ActiveDirectoryApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
+        def __add_active_directory_principals(
+            self,
+            body,
+            **kwargs
+        ):
+            """Add multiple groups or users on the Cohesity Cluster for the specified Active Directory principals. In addition, assign Cohesity roles to the users or groups to define their Cohesity privileges.  # noqa: E501
+
+            **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>After a group or user has been added to a Cohesity Cluster, the referenced Active Directory principal can be used by the Cohesity Cluster. In addition, this operation maps Cohesity roles with a group or user and this mapping defines the privileges allowed on the Cohesity Cluster for the group or user. For example if an 'management' group is created on the Cohesity Cluster for the Active Directory 'management' principal group and is associated with the Cohesity 'View' role, all users in the referenced Active Directory 'management' principal group can log in to the Cohesity Dashboard but will only have view-only privileges. These users cannot create new Protection Jobs, Policies, Views, etc. NOTE: Local Cohesity users and groups cannot be created by this operation. Local Cohesity users or groups do not have an associated Active Directory principals and are created directly in the default LOCAL domain.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.add_active_directory_principals(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body ([AddActiveDirectoryPrincipalsParameters]):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                [AddedActiveDirectoryPrincipal]
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.add_active_directory_principals = _Endpoint(
+            settings={
+                'response_type': ([AddedActiveDirectoryPrincipal],),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/active-directory-principals',
+                'operation_id': 'add_active_directory_principals',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        ([AddActiveDirectoryPrincipalsParameters],),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__add_active_directory_principals
+        )
+
         def __create_active_directory(
             self,
             body,
@@ -50,7 +178,7 @@ class ActiveDirectoryApi(object):
         ):
             """Create an Active Directory.  # noqa: E501
 
-            Create an Active Directory.  # noqa: E501
+            **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Create an Active Directory.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -115,7 +243,9 @@ class ActiveDirectoryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/active-directories',
                 'operation_id': 'create_active_directory',
@@ -174,7 +304,7 @@ class ActiveDirectoryApi(object):
         ):
             """Delete an Active Directory.  # noqa: E501
 
-            Delete an Active Directory.  # noqa: E501
+            **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Delete an Active Directory.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -246,7 +376,9 @@ class ActiveDirectoryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/active-directories/{id}',
                 'operation_id': 'delete_active_directory',
@@ -318,7 +450,7 @@ class ActiveDirectoryApi(object):
         ):
             """Get the list of Active Directories.  # noqa: E501
 
-            Get the list of Active Directories.  # noqa: E501
+            **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get the list of Active Directories.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -383,7 +515,9 @@ class ActiveDirectoryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/active-directories',
                 'operation_id': 'get_active_directory',
@@ -455,7 +589,7 @@ class ActiveDirectoryApi(object):
         ):
             """Get an Active Directory by id.  # noqa: E501
 
-            Get an Active Directory by id.  # noqa: E501
+            **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get an Active Directory by id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -525,7 +659,9 @@ class ActiveDirectoryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/active-directories/{id}',
                 'operation_id': 'get_active_directory_by_id',
@@ -565,7 +701,8 @@ class ActiveDirectoryApi(object):
                         "USER": "User",
                         "GROUP": "Group",
                         "COMPUTER": "Computer",
-                        "WELLKNOWNPRINCIPAL": "WellKnownPrincipal"
+                        "WELLKNOWNPRINCIPAL": "WellKnownPrincipal",
+                        "SERVICEACCOUNT": "ServiceAccount"
                     },
                 },
                 'openapi_types': {
@@ -612,6 +749,281 @@ class ActiveDirectoryApi(object):
             callable=__get_active_directory_by_id
         )
 
+        def __get_active_directory_principals(
+            self,
+            **kwargs
+        ):
+            """Get the list of user and group principals from the Active Directory that match the specified filter criteria.  # noqa: E501
+
+            **Privileges:** ```PRINCIPAL_VIEW, AD_LDAP_VIEW``` <br><br>Get the list of user and group principals from the Active Directory that match the specified filter criteria.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_active_directory_principals(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                domain_name (str): Specifies the domain name of the principals to search. If specified the principals in that domain are searched. Domain could be an Active Directory domain joined by the Cluster or any one of the trusted domains of the Active Directory domain or the LOCAL domain. If not specified, all the domains are searched.. [optional]
+                sids ([str]): Optionally filter by a list of security identifiers (SIDs) found in the specified domain. Only principals matching the specified SIDs are returned. If specified, a 'searchTerm' parameter should not be specified. Note: Duplicate SIDs will be ignored.. [optional]
+                search_term (str): Optionally filter by matching a substring. Only principals with a name or sAMAccountName that matches part or all of the specified substring are returned. If specified, a 'sids' parameter should not be specified. [optional]
+                include_computers (bool): Specifies if Computer/GMSA accounts need to be included in this search.. [optional]
+                include_service_accounts (bool): Specifies if service accounts should be included in the search result.. [optional]
+                object_class (str): Specifies the type of principal, a user or a group.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ActiveDirectoryPrincipals
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_active_directory_principals = _Endpoint(
+            settings={
+                'response_type': (ActiveDirectoryPrincipals,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/active-directory-principals',
+                'operation_id': 'get_active_directory_principals',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'domain_name',
+                    'sids',
+                    'search_term',
+                    'include_computers',
+                    'include_service_accounts',
+                    'object_class',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                    'object_class',
+                ],
+                'validation': [
+                    'domain_name',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('domain_name',): {
+
+                        'regex': {
+                            'pattern': r'^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9_\-]{0,61}[a-zA-Z0-9])(\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9_\-]{0,61}[a-zA-Z0-9]))*$',  # noqa: E501
+                        },
+                    },
+                },
+                'allowed_values': {
+                    ('object_class',): {
+
+                        "USER": "User",
+                        "GROUP": "Group",
+                        "COMPUTER": "Computer",
+                        "WELLKNOWNPRINCIPAL": "WellKnownPrincipal",
+                        "SERVICEACCOUNT": "ServiceAccount"
+                    },
+                },
+                'openapi_types': {
+                    'domain_name':
+                        (str,),
+                    'sids':
+                        ([str],),
+                    'search_term':
+                        (str,),
+                    'include_computers':
+                        (bool,),
+                    'include_service_accounts':
+                        (bool,),
+                    'object_class':
+                        (str,),
+                },
+                'attribute_map': {
+                    'domain_name': 'domainName',
+                    'sids': 'sids',
+                    'search_term': 'searchTerm',
+                    'include_computers': 'includeComputers',
+                    'include_service_accounts': 'includeServiceAccounts',
+                    'object_class': 'objectClass',
+                },
+                'location_map': {
+                    'domain_name': 'query',
+                    'sids': 'query',
+                    'search_term': 'query',
+                    'include_computers': 'query',
+                    'include_service_accounts': 'query',
+                    'object_class': 'query',
+                },
+                'collection_format_map': {
+                    'sids': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_active_directory_principals
+        )
+
+        def __get_active_directory_topology(
+            self,
+            **kwargs
+        ):
+            """Get Active Directory Topology  # noqa: E501
+
+            **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get the Active Directory topology for the cluster. The topology includes trust relationships between the Active Directories registered on the cluster and their neighboring domains.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_active_directory_topology(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ActiveDirectoryTopology
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_active_directory_topology = _Endpoint(
+            settings={
+                'response_type': (ActiveDirectoryTopology,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/active-directory-topology',
+                'operation_id': 'get_active_directory_topology',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_active_directory_topology
+        )
+
         def __get_centrify_zones(
             self,
             domain_name,
@@ -619,7 +1031,7 @@ class ActiveDirectoryApi(object):
         ):
             """Get Centrify Zones.  # noqa: E501
 
-            Get Centrify zones for a specified domain.  # noqa: E501
+            **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get Centrify zones for a specified domain.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -684,7 +1096,9 @@ class ActiveDirectoryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/centrify-zones',
                 'operation_id': 'get_centrify_zones',
@@ -747,7 +1161,7 @@ class ActiveDirectoryApi(object):
         ):
             """Get Domain Controllers of specified domains.  # noqa: E501
 
-            Get Domain Controllers of specified domains.  # noqa: E501
+            **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get Domain Controllers of specified domains.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -813,7 +1227,9 @@ class ActiveDirectoryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/domain-controllers',
                 'operation_id': 'get_domain_controllers',
@@ -881,7 +1297,7 @@ class ActiveDirectoryApi(object):
         ):
             """Get Trusted Domains.  # noqa: E501
 
-            Get Trusted Domains for a specified domain.  # noqa: E501
+            **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get Trusted Domains for a specified domain.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -946,7 +1362,9 @@ class ActiveDirectoryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/trusted-domains',
                 'operation_id': 'get_trusted_domains',
@@ -1003,7 +1421,7 @@ class ActiveDirectoryApi(object):
         ):
             """Rediscover trusted domains.  # noqa: E501
 
-            Re-trigger the trusted domains of an Active Directory.  # noqa: E501
+            **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Re-trigger the trusted domains of an Active Directory.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1071,7 +1489,9 @@ class ActiveDirectoryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/trusted-domains',
                 'operation_id': 'trigger_trusted_domains_discovery',
@@ -1134,7 +1554,7 @@ class ActiveDirectoryApi(object):
         ):
             """Update an Active Directory.  # noqa: E501
 
-            Update an Active Directory.  # noqa: E501
+            **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Update an Active Directory.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1202,7 +1622,9 @@ class ActiveDirectoryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/active-directories/{id}',
                 'operation_id': 'update_active_directory',
@@ -1266,7 +1688,7 @@ class ActiveDirectoryApi(object):
         ):
             """Update trusted domains.  # noqa: E501
 
-            To update trusted domains of an Active Directory.  # noqa: E501
+            **Privileges:** ```AD_LDAP_MODIFY``` <br><br>To update trusted domains of an Active Directory.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1334,7 +1756,9 @@ class ActiveDirectoryApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/trusted-domains',
                 'operation_id': 'update_trusted_domains',

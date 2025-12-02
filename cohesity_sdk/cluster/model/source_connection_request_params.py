@@ -30,14 +30,14 @@ def lazy_import():
     from cohesity_sdk.cluster.model.cassandra_connection_params import CassandraConnectionParams
     from cohesity_sdk.cluster.model.common_source_connection_request_params import CommonSourceConnectionRequestParams
     from cohesity_sdk.cluster.model.hadoop_connection_params import HadoopConnectionParams
-    from cohesity_sdk.cluster.model.mssql_connection_params import MssqlConnectionParams
+    from cohesity_sdk.cluster.model.ms_sql_common_connection_params import MsSQLCommonConnectionParams
     from cohesity_sdk.cluster.model.oracle_connection_params import OracleConnectionParams
     from cohesity_sdk.cluster.model.source_connection_request_params_all_of import SourceConnectionRequestParamsAllOf
     from cohesity_sdk.cluster.model.vmware_connection_params import VmwareConnectionParams
     globals()['CassandraConnectionParams'] = CassandraConnectionParams
     globals()['CommonSourceConnectionRequestParams'] = CommonSourceConnectionRequestParams
     globals()['HadoopConnectionParams'] = HadoopConnectionParams
-    globals()['MssqlConnectionParams'] = MssqlConnectionParams
+    globals()['MsSQLCommonConnectionParams'] = MsSQLCommonConnectionParams
     globals()['OracleConnectionParams'] = OracleConnectionParams
     globals()['SourceConnectionRequestParamsAllOf'] = SourceConnectionRequestParamsAllOf
     globals()['VmwareConnectionParams'] = VmwareConnectionParams
@@ -106,7 +106,7 @@ class SourceConnectionRequestParams(ModelComposed):
             'hbase_connection_params': (HadoopConnectionParams,),  # noqa: E501
             'hdfs_connection_params': (HadoopConnectionParams,),  # noqa: E501
             'hive_connection_params': (HadoopConnectionParams,),  # noqa: E501
-            'mssql_connection_params': (MssqlConnectionParams,),  # noqa: E501
+            'mssql_connection_params': (MsSQLCommonConnectionParams,),  # noqa: E501
             'oracle_connection_params': (OracleConnectionParams,),  # noqa: E501
             'vmware_connection_params': (VmwareConnectionParams,),  # noqa: E501
         }
@@ -185,7 +185,7 @@ class SourceConnectionRequestParams(ModelComposed):
             hbase_connection_params (HadoopConnectionParams): [optional]  # noqa: E501
             hdfs_connection_params (HadoopConnectionParams): [optional]  # noqa: E501
             hive_connection_params (HadoopConnectionParams): [optional]  # noqa: E501
-            mssql_connection_params (MssqlConnectionParams): [optional]  # noqa: E501
+            mssql_connection_params (MsSQLCommonConnectionParams): [optional]  # noqa: E501
             oracle_connection_params (OracleConnectionParams): [optional]  # noqa: E501
             vmware_connection_params (VmwareConnectionParams): [optional]  # noqa: E501
         """

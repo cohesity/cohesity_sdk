@@ -22,11 +22,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.register_remote_cluster_params import RegisterRemoteClusterParams
-from cohesity_sdk.cluster.model.remote_cluster import RemoteCluster
+from cohesity_sdk.cluster.model.register_remote_cluster_parameters import RegisterRemoteClusterParameters
+from cohesity_sdk.cluster.model.remote_cluster_params import RemoteClusterParams
 from cohesity_sdk.cluster.model.remote_clusters import RemoteClusters
 from cohesity_sdk.cluster.model.update_remote_cluster_params import UpdateRemoteClusterParams
-from cohesity_sdk.cluster.model.validate_remote_cluster_connection_param import ValidateRemoteClusterConnectionParam
+from cohesity_sdk.cluster.model.validate_remote_cluster_connection_params import ValidateRemoteClusterConnectionParams
 
 
 class RemoteClustersApi(object):
@@ -48,7 +48,7 @@ class RemoteClustersApi(object):
         ):
             """Unregister a Remote Cluster.  # noqa: E501
 
-            Unregister an external Remote Cluster.  # noqa: E501
+            **Privileges:** ```CLUSTER_REMOTE_MODIFY``` <br><br>Unregister an external Remote Cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -113,7 +113,9 @@ class RemoteClustersApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/remote-clusters/{clusterId}',
                 'operation_id': 'delete_remote_cluster',
@@ -169,7 +171,7 @@ class RemoteClustersApi(object):
         ):
             """Get Remote Cluster config by id.  # noqa: E501
 
-            Get Remote Cluster config by cluster id.  # noqa: E501
+            **Privileges:** ```CLUSTER_REMOTE_VIEW``` <br><br>Get Remote Cluster config by cluster id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -201,7 +203,7 @@ class RemoteClustersApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                RemoteCluster
+                UpdateRemoteClusterParams
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -230,11 +232,13 @@ class RemoteClustersApi(object):
 
         self.get_remote_cluster_by_id = _Endpoint(
             settings={
-                'response_type': (RemoteCluster,),
+                'response_type': (UpdateRemoteClusterParams,),
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/remote-clusters/{clusterId}',
                 'operation_id': 'get_remote_cluster_by_id',
@@ -289,7 +293,7 @@ class RemoteClustersApi(object):
         ):
             """Get all registered Remote Clusters.  # noqa: E501
 
-            List the Remote Clusters that are registered on this local Cluster and that matches the filter criteria specified using parameters.  # noqa: E501
+            **Privileges:** ```CLUSTER_REMOTE_VIEW``` <br><br>List the Remote Clusters that are registered on this local Cluster and that matches the filter criteria specified using parameters.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -303,6 +307,7 @@ class RemoteClustersApi(object):
                 node_addresses ([str]): Specifies a list of Remote Cluster IPs to filter.. [optional]
                 purpose ([str]): Specifies the purpose for which the remote cluster is being registered.. [optional]
                 include_encrypted_credentials (bool): If true, the response will include encrypted password.. [optional]
+                include_onprem_vault (bool): If true, the response will include onprem vault. Onprem vault will not be included by default.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -355,7 +360,9 @@ class RemoteClustersApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/remote-clusters',
                 'operation_id': 'get_remote_clusters',
@@ -369,6 +376,7 @@ class RemoteClustersApi(object):
                     'node_addresses',
                     'purpose',
                     'include_encrypted_credentials',
+                    'include_onprem_vault',
                 ],
                 'required': [],
                 'nullable': [
@@ -400,6 +408,8 @@ class RemoteClustersApi(object):
                         ([str],),
                     'include_encrypted_credentials':
                         (bool,),
+                    'include_onprem_vault':
+                        (bool,),
                 },
                 'attribute_map': {
                     'cluster_ids': 'clusterIds',
@@ -407,6 +417,7 @@ class RemoteClustersApi(object):
                     'node_addresses': 'nodeAddresses',
                     'purpose': 'purpose',
                     'include_encrypted_credentials': 'includeEncryptedCredentials',
+                    'include_onprem_vault': 'includeOnpremVault',
                 },
                 'location_map': {
                     'cluster_ids': 'query',
@@ -414,6 +425,7 @@ class RemoteClustersApi(object):
                     'node_addresses': 'query',
                     'purpose': 'query',
                     'include_encrypted_credentials': 'query',
+                    'include_onprem_vault': 'query',
                 },
                 'collection_format_map': {
                     'cluster_ids': 'csv',
@@ -439,7 +451,7 @@ class RemoteClustersApi(object):
         ):
             """Register a Remote Cluster.  # noqa: E501
 
-            Register a Remote Cluster on this local cluster for remote access and/or replication.  # noqa: E501
+            **Privileges:** ```CLUSTER_REMOTE_MODIFY``` <br><br>Register a Remote Cluster on this local cluster for remote access and/or replication.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -447,7 +459,7 @@ class RemoteClustersApi(object):
             >>> result = thread.get()
 
             Args:
-                body (RegisterRemoteClusterParams): Specifies the request to register Remote Cluster.
+                body (RegisterRemoteClusterParameters): Specifies the request to register Remote Cluster.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -471,7 +483,7 @@ class RemoteClustersApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                RemoteCluster
+                UpdateRemoteClusterParams
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -500,11 +512,13 @@ class RemoteClustersApi(object):
 
         self.register_remote_cluster = _Endpoint(
             settings={
-                'response_type': (RemoteCluster,),
+                'response_type': (UpdateRemoteClusterParams,),
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/remote-clusters',
                 'operation_id': 'register_remote_cluster',
@@ -532,7 +546,7 @@ class RemoteClustersApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (RegisterRemoteClusterParams,),
+                        (RegisterRemoteClusterParameters,),
                 },
                 'attribute_map': {
                 },
@@ -562,7 +576,7 @@ class RemoteClustersApi(object):
         ):
             """Update a Remote Cluster config.  # noqa: E501
 
-            Update the connection settings of the specified Remote Cluster that is registered on this Cluster.  # noqa: E501
+            **Privileges:** ```CLUSTER_REMOTE_MODIFY``` <br><br>Update the connection settings of the specified Remote Cluster that is registered on this Cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -595,7 +609,7 @@ class RemoteClustersApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                RemoteCluster
+                UpdateRemoteClusterParams
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -626,11 +640,13 @@ class RemoteClustersApi(object):
 
         self.update_remote_cluster = _Endpoint(
             settings={
-                'response_type': (RemoteCluster,),
+                'response_type': (UpdateRemoteClusterParams,),
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/remote-clusters/{clusterId}',
                 'operation_id': 'update_remote_cluster',
@@ -693,7 +709,7 @@ class RemoteClustersApi(object):
         ):
             """Validate Remote Cluster config.  # noqa: E501
 
-            Validate a Remote Cluster credentials.  # noqa: E501
+            **Privileges:** ```CLUSTER_REMOTE_MODIFY``` <br><br>Validate a Remote Cluster credentials. If includeRemoteClusterMetadata is true, response will include the remote cluster metadata.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -701,9 +717,10 @@ class RemoteClustersApi(object):
             >>> result = thread.get()
 
             Args:
-                body (ValidateRemoteClusterConnectionParam): Specifies the request to validate Remote Cluster.
+                body (ValidateRemoteClusterConnectionParams): Specifies the request to validate Remote Cluster.
 
             Keyword Args:
+                include_metadata (bool): Specifies if Remote Cluster metadata should be included in the response.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -725,7 +742,7 @@ class RemoteClustersApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                None
+                RemoteClusterParams
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -754,11 +771,13 @@ class RemoteClustersApi(object):
 
         self.validate_remote_cluster = _Endpoint(
             settings={
-                'response_type': None,
+                'response_type': (RemoteClusterParams,),
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/remote-clusters/validate',
                 'operation_id': 'validate_remote_cluster',
@@ -768,6 +787,7 @@ class RemoteClustersApi(object):
             params_map={
                 'all': [
                     'body',
+                    'include_metadata',
                 ],
                 'required': [
                     'body',
@@ -786,12 +806,16 @@ class RemoteClustersApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (ValidateRemoteClusterConnectionParam,),
+                        (ValidateRemoteClusterConnectionParams,),
+                    'include_metadata':
+                        (bool,),
                 },
                 'attribute_map': {
+                    'include_metadata': 'includeMetadata',
                 },
                 'location_map': {
                     'body': 'body',
+                    'include_metadata': 'query',
                 },
                 'collection_format_map': {
                 }

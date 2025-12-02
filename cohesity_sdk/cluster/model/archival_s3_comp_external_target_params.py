@@ -97,6 +97,7 @@ class ArchivalS3CompExternalTargetParams(ModelComposed):
             'bucket_owner_account_id': (str, none_type,),  # noqa: E501
             'is_forever_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
+            'is_network_optimized_gc': (bool, none_type,),  # noqa: E501
             'source_side_deduplication': (bool, none_type,),  # noqa: E501
             'storage_class': (str, none_type,),  # noqa: E501
         }
@@ -119,6 +120,7 @@ class ArchivalS3CompExternalTargetParams(ModelComposed):
         'bucket_owner_account_id': 'bucketOwnerAccountId',  # noqa: E501
         'is_forever_incremental_archival_enabled': 'isForeverIncrementalArchivalEnabled',  # noqa: E501
         'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
+        'is_network_optimized_gc': 'isNetworkOptimizedGC',  # noqa: E501
         'source_side_deduplication': 'sourceSideDeduplication',  # noqa: E501
         'storage_class': 'storageClass',  # noqa: E501
     }
@@ -184,6 +186,7 @@ class ArchivalS3CompExternalTargetParams(ModelComposed):
             bucket_owner_account_id (str, none_type): Specifies the account Id of the S3 bucket owner.. [optional]  # noqa: E501
             is_forever_incremental_archival_enabled (bool, none_type): Specifies if Forever Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
+            is_network_optimized_gc (bool, none_type): Specifies whether the garbage collection mode is network optimized or storage optimized. If this field is set to true, it refers to network optimized GC and if set to false, it refers to storage optimized GC.. [optional]  # noqa: E501
             source_side_deduplication (bool, none_type): Specifies the Source Side Deduplication setting for the S3 Compatible external target. [optional]  # noqa: E501
             storage_class (str, none_type): Specifies the S3Compatible External Target storage class.. [optional]  # noqa: E501
         """

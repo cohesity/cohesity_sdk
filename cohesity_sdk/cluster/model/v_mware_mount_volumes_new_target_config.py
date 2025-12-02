@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.credentials import Credentials
     from cohesity_sdk.cluster.model.recover_target import RecoverTarget
+    globals()['Credentials'] = Credentials
     globals()['RecoverTarget'] = RecoverTarget
 
 
@@ -81,7 +83,7 @@ class VMwareMountVolumesNewTargetConfig(ModelNormal):
         return {
             'bring_disks_online': (bool, none_type,),  # noqa: E501
             'mount_target': (RecoverTarget,),  # noqa: E501
-            'target_vm_credentials': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'target_vm_credentials': (Credentials,),  # noqa: E501
             'use_existing_agent': (bool, none_type,),  # noqa: E501
         }
 
@@ -149,7 +151,7 @@ class VMwareMountVolumesNewTargetConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            target_vm_credentials ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies credentials to access the target VM. This is required if bringDisksOnline is set to true and useExistingAgent set to false.. [optional]  # noqa: E501
+            target_vm_credentials (Credentials): [optional]  # noqa: E501
             use_existing_agent (bool, none_type): Specifies whether this will use an existing agent on the target vm or will deploy a new agent. This is required if bringDisksOnline is set to true.. [optional]  # noqa: E501
         """
 

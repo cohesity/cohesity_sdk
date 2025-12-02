@@ -31,11 +31,13 @@ def lazy_import():
     from cohesity_sdk.cluster.model.backup_nas_stats import BackupNasStats
     from cohesity_sdk.cluster.model.object_identifier import ObjectIdentifier
     from cohesity_sdk.cluster.model.object_stats_info_all_of import ObjectStatsInfoAllOf
+    from cohesity_sdk.cluster.model.object_string_identifier import ObjectStringIdentifier
     from cohesity_sdk.cluster.model.stats_task_info import StatsTaskInfo
     globals()['BackupGenericStats'] = BackupGenericStats
     globals()['BackupNasStats'] = BackupNasStats
     globals()['ObjectIdentifier'] = ObjectIdentifier
     globals()['ObjectStatsInfoAllOf'] = ObjectStatsInfoAllOf
+    globals()['ObjectStringIdentifier'] = ObjectStringIdentifier
     globals()['StatsTaskInfo'] = StatsTaskInfo
 
 
@@ -75,6 +77,13 @@ class ObjectStatsInfo(ModelComposed):
             'KAWS': "kAWS",
             'KACROPOLIS': "kAcropolis",
             'KGCP': "kGCP",
+            'KGCPBIGQUERY': "kGCPBigQuery",
+            'KGCPMYSQL': "kGCPMySQL",
+            'KGOOGLESPANNER': "kGoogleSpanner",
+            'KGCPPOSTGRESQL': "kGCPPostgreSQL",
+            'KGCPALLOYDBPOSTGRESQL': "kGCPAlloyDBPostgreSQL",
+            'KGCPSQLSERVER': "kGCPSQLServer",
+            'KGCPFIRESTORE': "kGCPFirestore",
             'KPHYSICAL': "kPhysical",
             'KPHYSICALFILES': "kPhysicalFiles",
             'KISILON': "kIsilon",
@@ -100,8 +109,39 @@ class ObjectStatsInfo(ModelComposed):
             'KHDFS': "kHdfs",
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
+            'KS3COMPATIBLE': "kS3Compatible",
+            'KSAPHANA': "kSAPHANA",
             'KUDA': "kUDA",
             'KSFDC': "kSfdc",
+            'KEXPERIMENTALADAPTER': "kExperimentalAdapter",
+            'KAZUREENTRAID': "kAzureEntraID",
+            'KAZUREMYSQL': "kAzureMySQL",
+            'KAZURECOSMOSDBNOSQL': "kAzureCosmosDBNoSQL",
+            'KAZURECOSMOSDBMONGODB': "kAzureCosmosDBMongoDB",
+            'KAZURECOSMOSDBCASSANDRA': "kAzureCosmosDBCassandra",
+            'KAZUREPOSTGRESQLSERVER': "kAzurePostgreSQLServer",
+            'KAZURESQL': "kAzureSQL",
+            'KAZURESQLDB': "kAzureSQLDB",
+            'KAZURESQLMI': "kAzureSQLMI",
+            'KAZURETABLESTORAGE': "kAzureTableStorage",
+            'KAZUREBLOBSTORAGE': "kAzureBlobStorage",
+            'KAZURETABLEAPI': "kAzureTableAPI",
+            'KMONGODBPHYSICAL': "kMongoDBPhysical",
+            'KGOOGLEWORKSPACE': "kGoogleWorkspace",
+            'KDB2': "kDB2",
+            'KSERVICENOW': "kServiceNow",
+            'KPOSTGRES': "kPostgres",
+            'KNUTANIXFS': "kNutanixFS",
+            'KAWSAURORAMYSQL': "kAWSAuroraMySQL",
+            'KAWSMYSQL': "kAWSMySQL",
+            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAWSRDSMSSQL': "kAWSRDSMSSQL",
+            'KAWSRDSORACLE': "kAWSRdsOracle",
+            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KAWSDOCUMENTDB': "kAWSDocumentDB",
+            'KAWSRDSPOSTGRESDB': "kAWSRDSPostgresDB",
+            'KAWSAURORAPOSTGRESDB': "kAWSAuroraPostgresDB",
+            'KAWSREDSHIFT': "kAWSRedshift",
         },
     }
 
@@ -124,6 +164,7 @@ class ObjectStatsInfo(ModelComposed):
         """
         lazy_import()
         return {
+            'entity_id': (ObjectStringIdentifier,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
@@ -141,6 +182,7 @@ class ObjectStatsInfo(ModelComposed):
 
 
     attribute_map = {
+        'entity_id': 'entityId',  # noqa: E501
         'environment': 'environment',  # noqa: E501
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
@@ -199,6 +241,7 @@ class ObjectStatsInfo(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            entity_id (ObjectStringIdentifier): [optional]  # noqa: E501
             environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
             id (int, none_type): Specifies object id.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501

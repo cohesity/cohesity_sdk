@@ -27,10 +27,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.archival_bandwidth_settings import ArchivalBandwidthSettings
-    from cohesity_sdk.cluster.model.tiering_bandwidth_settings import TieringBandwidthSettings
-    globals()['ArchivalBandwidthSettings'] = ArchivalBandwidthSettings
-    globals()['TieringBandwidthSettings'] = TieringBandwidthSettings
+    from cohesity_sdk.cluster.model.common_bandwidth_settings import CommonBandwidthSettings
+    globals()['CommonBandwidthSettings'] = CommonBandwidthSettings
 
 
 class GlobalBandwidthSettings(ModelNormal):
@@ -81,8 +79,8 @@ class GlobalBandwidthSettings(ModelNormal):
         """
         lazy_import()
         return {
-            'archival_params': (ArchivalBandwidthSettings,),  # noqa: E501
-            'tiering_params': (TieringBandwidthSettings,),  # noqa: E501
+            'archival_params': (CommonBandwidthSettings,),  # noqa: E501
+            'tiering_params': (CommonBandwidthSettings,),  # noqa: E501
         }
 
     @cached_property
@@ -143,8 +141,8 @@ class GlobalBandwidthSettings(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            archival_params (ArchivalBandwidthSettings): [optional]  # noqa: E501
-            tiering_params (TieringBandwidthSettings): [optional]  # noqa: E501
+            archival_params (CommonBandwidthSettings): [optional]  # noqa: E501
+            tiering_params (CommonBandwidthSettings): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

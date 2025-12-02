@@ -5,6 +5,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_protection_policy**](PolicyApi.md#create_protection_policy) | **POST** /data-protect/policies | Create a Protection Policy.
 [**delete_protection_policy**](PolicyApi.md#delete_protection_policy) | **DELETE** /data-protect/policies/{id} | Delete a Protection Policy.
+[**get_policy_summary**](PolicyApi.md#get_policy_summary) | **GET** /data-protect/policies/{id}/summary | Get the protection policy summary
 [**get_policy_template_by_id**](PolicyApi.md#get_policy_template_by_id) | **GET** /data-protect/policy-templates/{id} | List details about a single Policy Template.
 [**get_policy_templates**](PolicyApi.md#get_policy_templates) | **GET** /data-protect/policy-templates | List Policy Templates filtered by query parameters.
 [**get_protection_policies**](PolicyApi.md#get_protection_policies) | **GET** /data-protect/policies | List Protection Policies based on provided filtering parameters.
@@ -17,11 +18,13 @@ Method | HTTP request | Description
 
 Create a Protection Policy.
 
-Create the Protection Policy and returns the newly created policy object.
+**Privileges:** ```PROTECTION_POLICY_MODIFY``` <br><br>Create the Protection Policy and returns the newly created policy object.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.protection_policy_response import ProtectionPolicyResponse
@@ -63,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -84,11 +87,13 @@ Name | Type | Description  | Notes
 
 Delete a Protection Policy.
 
-Deletes a Protection Policy based on given policy id.
+**Privileges:** ```PROTECTION_POLICY_MODIFY``` <br><br>Deletes a Protection Policy based on given policy id.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -127,7 +132,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -143,16 +148,109 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_policy_summary**
+> PolicySummaryResponse get_policy_summary(id)
+
+Get the protection policy summary
+
+**Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Fetch the summary for a given protection policy.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.policy_summary_response import PolicySummaryResponse
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+id = "id_example" # str | Specifies the id of the policy whose summary should be retrieved. If this is not set, the API will return error.
+request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
+include_aggregated_last_run_summary = True # bool | Specifies whether to include summary of the last Protection Run of each Protection Source (optional)
+include_aggregated_runs_summary = True # bool | Specifies whether to include summary of all Protection Runs of the Protection Source or Protection Jobs. If this is set to true, then only the Protection Runs from the provided 'startTimeUsecs' and 'endTimeUsecs' are processed. (optional)
+start_time_usecs = 1 # int | Filter by a start time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that started after the specified time are included in the aggregated runs summary result. (optional)
+end_time_usecs = 1 # int | Filter by a end time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that completed before the specified time are included in the aggregated runs summary result. (optional)
+page_count = 1 # int | Specifies the limit of the number of Protection Sources or Protection Jobs to be returned as a part of the Protection Policy Summary. (optional)
+pagination_cookie = "paginationCookie_example" # str | If set, i.e. there are more results to display, use this value to get the next set of results, by using this value in paginationCookie param for the next request to GetProtectionPolicySummary. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Get the protection policy summary
+	api_response = client.policy.get_policy_summary(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PolicyApi->get_policy_summary: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get the protection policy summary
+	api_response = client.policy.get_policy_summary(id, request_initiator_type=request_initiator_type, include_aggregated_last_run_summary=include_aggregated_last_run_summary, include_aggregated_runs_summary=include_aggregated_runs_summary, start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, page_count=page_count, pagination_cookie=pagination_cookie)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PolicyApi->get_policy_summary: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| Specifies the id of the policy whose summary should be retrieved. If this is not set, the API will return error. |
+ **request_initiator_type** | **str**| Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. | [optional]
+ **include_aggregated_last_run_summary** | **bool**| Specifies whether to include summary of the last Protection Run of each Protection Source | [optional]
+ **include_aggregated_runs_summary** | **bool**| Specifies whether to include summary of all Protection Runs of the Protection Source or Protection Jobs. If this is set to true, then only the Protection Runs from the provided &#39;startTimeUsecs&#39; and &#39;endTimeUsecs&#39; are processed. | [optional]
+ **start_time_usecs** | **int**| Filter by a start time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that started after the specified time are included in the aggregated runs summary result. | [optional]
+ **end_time_usecs** | **int**| Filter by a end time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that completed before the specified time are included in the aggregated runs summary result. | [optional]
+ **page_count** | **int**| Specifies the limit of the number of Protection Sources or Protection Jobs to be returned as a part of the Protection Policy Summary. | [optional]
+ **pagination_cookie** | **str**| If set, i.e. there are more results to display, use this value to get the next set of results, by using this value in paginationCookie param for the next request to GetProtectionPolicySummary. | [optional]
+
+### Return type
+
+[**PolicySummaryResponse**](PolicySummaryResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_policy_template_by_id**
 > PolicyTemplateResponse get_policy_template_by_id(id)
 
 List details about a single Policy Template.
 
-Returns the Policy Template corresponding to the specified Policy Id.
+**Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Returns the Policy Template corresponding to the specified Policy Id.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -193,7 +291,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -214,11 +312,13 @@ Name | Type | Description  | Notes
 
 List Policy Templates filtered by query parameters.
 
-Returns the policy templates based on the filtering parameters. If no parameters are specified, then all the policy templates are returned.
+**Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Returns the policy templates based on the filtering parameters. If no parameters are specified, then all the policy templates are returned.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.policy_templates_response_with_pagination import PolicyTemplatesResponseWithPagination
@@ -274,7 +374,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -295,11 +395,13 @@ Name | Type | Description  | Notes
 
 List Protection Policies based on provided filtering parameters.
 
-Lists protection policies based on filtering query parameters.
+**Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Lists protection policies based on filtering query parameters.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.protection_policy_response_with_pagination import ProtectionPolicyResponseWithPagination
@@ -333,12 +435,15 @@ types = [
 exclude_linked_policies = True # bool | If excludeLinkedPolicies is set to true then only local policies created on cluster will be returned. The result will exclude all linked policies created from policy templates. (optional)
 include_replicated_policies = True # bool | If includeReplicatedPolicies is set to true, then response will also contain replicated policies. By default, replication policies are not included in the response. (optional)
 include_stats = True # bool | If includeStats is set to true, then response will return number of protection groups and objects. By default, the protection stats are not included in the response. (optional)
+vault_ids = [
+        1,
+    ] # [int] | Filter by a list of Vault ids. Policies archiving to any of the specified vaults will be returned. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# List Protection Policies based on provided filtering parameters.
-	api_response = client.policy.get_protection_policies(request_initiator_type=request_initiator_type, ids=ids, policy_names=policy_names, tenant_ids=tenant_ids, include_tenants=include_tenants, types=types, exclude_linked_policies=exclude_linked_policies, include_replicated_policies=include_replicated_policies, include_stats=include_stats)
+	api_response = client.policy.get_protection_policies(request_initiator_type=request_initiator_type, ids=ids, policy_names=policy_names, tenant_ids=tenant_ids, include_tenants=include_tenants, types=types, exclude_linked_policies=exclude_linked_policies, include_replicated_policies=include_replicated_policies, include_stats=include_stats, vault_ids=vault_ids)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PolicyApi->get_protection_policies: %s\n" % e)
@@ -358,6 +463,7 @@ Name | Type | Description  | Notes
  **exclude_linked_policies** | **bool**| If excludeLinkedPolicies is set to true then only local policies created on cluster will be returned. The result will exclude all linked policies created from policy templates. | [optional]
  **include_replicated_policies** | **bool**| If includeReplicatedPolicies is set to true, then response will also contain replicated policies. By default, replication policies are not included in the response. | [optional]
  **include_stats** | **bool**| If includeStats is set to true, then response will return number of protection groups and objects. By default, the protection stats are not included in the response. | [optional]
+ **vault_ids** | **[int]**| Filter by a list of Vault ids. Policies archiving to any of the specified vaults will be returned. | [optional]
 
 ### Return type
 
@@ -365,7 +471,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -386,11 +492,13 @@ Name | Type | Description  | Notes
 
 List details about a single Protection Policy.
 
-Returns the Protection Policy details based on provided Policy Id.
+**Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Returns the Protection Policy details based on provided Policy Id.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.protection_policy_response import ProtectionPolicyResponse
@@ -442,7 +550,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -463,11 +571,13 @@ Name | Type | Description  | Notes
 
 Update a Protection Policy.
 
-Specifies the request to update the existing Protection Policy. On successful update, returns the updated policy object.
+**Privileges:** ```PROTECTION_POLICY_MODIFY``` <br><br>Specifies the request to update the existing Protection Policy. On successful update, returns the updated policy object.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.protection_policy_response import ProtectionPolicyResponse
@@ -511,7 +621,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 

@@ -27,8 +27,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.dynamo_db_specific_params import DynamoDBSpecificParams
     from cohesity_sdk.cluster.model.s3_specific_params import S3SpecificParams
     from cohesity_sdk.cluster.model.standard_params import StandardParams
+    globals()['DynamoDBSpecificParams'] = DynamoDBSpecificParams
     globals()['S3SpecificParams'] = S3SpecificParams
     globals()['StandardParams'] = StandardParams
 
@@ -66,9 +68,23 @@ class AwsSourceRegistrationParams(ModelNormal):
             'KAWSGOVCLOUD': "kAWSGovCloud",
             'KAWSC2S': "kAWSC2S",
         },
+        ('use_cases',): {
+            'None': None,
+            'KEC2': "kEC2",
+            'KRDS': "kRDS",
+            'KPOSTGRES': "kPostgres",
+            'KDYNAMODB': "kDynamoDB",
+            'KS3': "kS3",
+            'KDOCUMENTDB': "kDocumentDB",
+            'KREDSHIFT': "kRedshift",
+        },
     }
 
     validations = {
+        ('use_cases',): {
+            'min_items': 1,
+        },
+
     }
 
     additional_properties_type = None
@@ -88,8 +104,10 @@ class AwsSourceRegistrationParams(ModelNormal):
         lazy_import()
         return {
             'subscription_type': (str, none_type,),  # noqa: E501
+            'dynamo_db_params': (DynamoDBSpecificParams,),  # noqa: E501
             's3_params': (S3SpecificParams,),  # noqa: E501
             'standard_params': (StandardParams,),  # noqa: E501
+            'use_cases': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -100,8 +118,10 @@ class AwsSourceRegistrationParams(ModelNormal):
 
     attribute_map = {
         'subscription_type': 'subscriptionType',  # noqa: E501
+        'dynamo_db_params': 'dynamoDBParams',  # noqa: E501
         's3_params': 's3Params',  # noqa: E501
         'standard_params': 'standardParams',  # noqa: E501
+        'use_cases': 'useCases',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -154,8 +174,10 @@ class AwsSourceRegistrationParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            dynamo_db_params (DynamoDBSpecificParams): [optional]  # noqa: E501
             s3_params (S3SpecificParams): [optional]  # noqa: E501
             standard_params (StandardParams): [optional]  # noqa: E501
+            use_cases ([str], none_type): The use cases for which the source is to be registered.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -60,6 +60,12 @@ class OracleObjectEntityParams(ModelNormal):
     """
 
     allowed_values = {
+        ('rman_backup_type',): {
+            'None': None,
+            'KIMAGECOPY': "kImageCopy",
+            'KBACKUPSETS': "kBackupSets",
+            'KSBT': "kSbt",
+        },
     }
 
     validations = {
@@ -83,6 +89,7 @@ class OracleObjectEntityParams(ModelNormal):
         return {
             'database_entity_info': (DatabaseEntityInfo,),  # noqa: E501
             'host_info': (HostInformation,),  # noqa: E501
+            'rman_backup_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,6 +101,7 @@ class OracleObjectEntityParams(ModelNormal):
     attribute_map = {
         'database_entity_info': 'databaseEntityInfo',  # noqa: E501
         'host_info': 'hostInfo',  # noqa: E501
+        'rman_backup_type': 'rmanBackupType',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -145,6 +153,7 @@ class OracleObjectEntityParams(ModelNormal):
 
             database_entity_info (DatabaseEntityInfo): [optional]  # noqa: E501
             host_info (HostInformation): [optional]  # noqa: E501
+            rman_backup_type (str, none_type): Specifies the type of Oracle RMAN backup type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

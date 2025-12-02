@@ -86,6 +86,7 @@ class PrimaryBackupTarget(ModelNormal):
         return {
             'archival_target_settings': (PrimaryArchivalTarget,),  # noqa: E501
             'target_type': (str, none_type,),  # noqa: E501
+            'use_default_backup_target': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -97,6 +98,7 @@ class PrimaryBackupTarget(ModelNormal):
     attribute_map = {
         'archival_target_settings': 'archivalTargetSettings',  # noqa: E501
         'target_type': 'targetType',  # noqa: E501
+        'use_default_backup_target': 'useDefaultBackupTarget',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,6 +150,7 @@ class PrimaryBackupTarget(ModelNormal):
 
             archival_target_settings (PrimaryArchivalTarget): [optional]  # noqa: E501
             target_type (str, none_type): Specifies the primary backup location where backups will be stored. If not specified, then default is assumed as local backup on Cohesity cluster.. [optional] if omitted the server will use the default value of "Local"  # noqa: E501
+            use_default_backup_target (bool, none_type): Specifies if the default primary backup target must be used for backups. If this is not specified or set to false, then targets specified in 'archivalTargetSettings' will be used for backups. If the value is specified as true, then default backup target is used internally. This field should only be set in the environment where tenant policy management is enabled and external targets are assigned to tenant when provisioning tenants.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

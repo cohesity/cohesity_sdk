@@ -27,8 +27,14 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.nis_netgroups import NisNetgroups
+    from cohesity_sdk.cluster.model.qo_s import QoS
+    from cohesity_sdk.cluster.model.storage_policy_override import StoragePolicyOverride
     from cohesity_sdk.cluster.model.subnet import Subnet
     from cohesity_sdk.cluster.model.view_protocol import ViewProtocol
+    globals()['NisNetgroups'] = NisNetgroups
+    globals()['QoS'] = QoS
+    globals()['StoragePolicyOverride'] = StoragePolicyOverride
     globals()['Subnet'] = Subnet
     globals()['ViewProtocol'] = ViewProtocol
 
@@ -84,11 +90,12 @@ class CloneViewParams(ModelNormal):
             'name': (str, none_type,),  # noqa: E501
             'data_lock_expiry_usecs': (int, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
+            'disable_s3_object_lock_config': (bool, none_type,),  # noqa: E501
             'is_read_only': (bool, none_type,),  # noqa: E501
-            'netgroup_whitelist': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'netgroup_whitelist': (NisNetgroups,),  # noqa: E501
             'protocol_access': ([ViewProtocol], none_type,),  # noqa: E501
-            'qos': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'storage_policy_override': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'qos': (QoS,),  # noqa: E501
+            'storage_policy_override': (StoragePolicyOverride,),  # noqa: E501
             'subnet_whitelist': ([Subnet], none_type,),  # noqa: E501
         }
 
@@ -102,6 +109,7 @@ class CloneViewParams(ModelNormal):
         'name': 'name',  # noqa: E501
         'data_lock_expiry_usecs': 'dataLockExpiryUsecs',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'disable_s3_object_lock_config': 'disableS3ObjectLockConfig',  # noqa: E501
         'is_read_only': 'isReadOnly',  # noqa: E501
         'netgroup_whitelist': 'netgroupWhitelist',  # noqa: E501
         'protocol_access': 'protocolAccess',  # noqa: E501
@@ -162,11 +170,12 @@ class CloneViewParams(ModelNormal):
 
             data_lock_expiry_usecs (int, none_type): DataLock (Write Once Read Many) lock expiry epoch time in microseconds. If a view is marked as a DataLock view, only a Data Security Officer (a user having Data Security Privilege) can delete the view until the lock expiry time.. [optional]  # noqa: E501
             description (str, none_type): Specifies the description of the cloned View.. [optional]  # noqa: E501
+            disable_s3_object_lock_config (bool, none_type): Specifies whether to disable S3 Object Lock configuration on the cloned S3 View. This field is only applicable if the source View is an S3 View with S3 Object Lock configuration enabled.. [optional]  # noqa: E501
             is_read_only (bool, none_type): Specifies if the view is a read only view. User will no longer be able to write to this view if this is set to true.. [optional]  # noqa: E501
-            netgroup_whitelist ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Array of Netgroups. Specifies a list of netgroups with domains that have permissions to access the View. (Overrides or extends the Netgroup specified at the global Cohesity Cluster level.). [optional]  # noqa: E501
+            netgroup_whitelist (NisNetgroups): [optional]  # noqa: E501
             protocol_access ([ViewProtocol], none_type): Specifies the supported Protocols for the View.. [optional]  # noqa: E501
-            qos ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Quality of Service (QoS) Policy for the View.. [optional]  # noqa: E501
-            storage_policy_override ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies if inline deduplication and compression settings inherited from the Storage Domain (View Box) should be disabled for this View.. [optional]  # noqa: E501
+            qos (QoS): [optional]  # noqa: E501
+            storage_policy_override (StoragePolicyOverride): [optional]  # noqa: E501
             subnet_whitelist ([Subnet], none_type): Array of Subnets. Specifies a list of Subnets with IP addresses that have permissions to access the View. (Overrides or extends the Subnets specified at the global Cohesity Cluster level.). [optional]  # noqa: E501
         """
 

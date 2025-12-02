@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **item_size** | **int, none_type** | Specifies the size in bytes for the indexed item. | [optional] 
 **owner_email** | **str, none_type** | Specifies the email of the owner of the document library item. | [optional] 
 **owner_name** | **str, none_type** | Specifies the name of the owner of the document library item. | [optional] 
+**subsite_item** | [**SubsiteItem**](SubsiteItem.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

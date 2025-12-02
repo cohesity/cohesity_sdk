@@ -6,7 +6,7 @@ Specifies group properties to update.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **str, none_type** | Specifies the description of the group. | [optional] 
-**local_group_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the LOCAL group properties. | [optional] 
+**local_group_params** | [**LocalGroupParams**](LocalGroupParams.md) |  | [optional] 
 **restricted** | **bool, none_type** | Specifies whether the Group is restricted. A restricted group can only view &amp; manage the objects it has permissions to. | [optional] 
 **roles** | **[str]** | Specifies the Cohesity roles to associate with the group. The Cohesity roles determine privileges on the Cohesity Cluster for this group. | [optional] 
 **tenant_ids** | **[str]** | Specifies a list of tenant ids who can access this group. | [optional] 

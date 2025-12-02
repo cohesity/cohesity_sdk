@@ -27,10 +27,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.azure_disk_exclusion_params import AzureDiskExclusionParams
     from cohesity_sdk.cluster.model.azure_native_protection_group_object_params import AzureNativeProtectionGroupObjectParams
     from cohesity_sdk.cluster.model.cloud_backup_script_params import CloudBackupScriptParams
     from cohesity_sdk.cluster.model.data_transfer_info import DataTransferInfo
     from cohesity_sdk.cluster.model.indexing_policy import IndexingPolicy
+    globals()['AzureDiskExclusionParams'] = AzureDiskExclusionParams
     globals()['AzureNativeProtectionGroupObjectParams'] = AzureNativeProtectionGroupObjectParams
     globals()['CloudBackupScriptParams'] = CloudBackupScriptParams
     globals()['DataTransferInfo'] = DataTransferInfo
@@ -91,6 +93,7 @@ class AzureNativeProtectionGroupParams(ModelNormal):
             'cloud_migration': (bool, none_type,),  # noqa: E501
             'cloud_pre_post_script': (CloudBackupScriptParams,),  # noqa: E501
             'data_transfer_info': (DataTransferInfo,),  # noqa: E501
+            'disk_exclusion_params': (AzureDiskExclusionParams,),  # noqa: E501
             'exclude_object_ids': ([int],),  # noqa: E501
             'exclude_vm_tag_ids': ([[int]], none_type,),  # noqa: E501
             'indexing_policy': (IndexingPolicy,),  # noqa: E501
@@ -110,6 +113,7 @@ class AzureNativeProtectionGroupParams(ModelNormal):
         'cloud_migration': 'cloudMigration',  # noqa: E501
         'cloud_pre_post_script': 'cloudPrePostScript',  # noqa: E501
         'data_transfer_info': 'dataTransferInfo',  # noqa: E501
+        'disk_exclusion_params': 'diskExclusionParams',  # noqa: E501
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'exclude_vm_tag_ids': 'excludeVmTagIds',  # noqa: E501
         'indexing_policy': 'indexingPolicy',  # noqa: E501
@@ -169,6 +173,7 @@ class AzureNativeProtectionGroupParams(ModelNormal):
             cloud_migration (bool, none_type): Specifies whether or not to move the workload to the cloud.. [optional]  # noqa: E501
             cloud_pre_post_script (CloudBackupScriptParams): [optional]  # noqa: E501
             data_transfer_info (DataTransferInfo): [optional]  # noqa: E501
+            disk_exclusion_params (AzureDiskExclusionParams): [optional]  # noqa: E501
             exclude_object_ids ([int]): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
             exclude_vm_tag_ids ([[int]], none_type): Array of arrays of VM Tag Ids that Specify VMs to Exclude.. [optional]  # noqa: E501
             indexing_policy (IndexingPolicy): [optional]  # noqa: E501

@@ -28,10 +28,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.helios_tag_info import HeliosTagInfo
+    from cohesity_sdk.cluster.model.object import Object
     from cohesity_sdk.cluster.model.object_protection_info import ObjectProtectionInfo
     from cohesity_sdk.cluster.model.secondary_id import SecondaryId
     from cohesity_sdk.cluster.model.tagged_snapshot_info import TaggedSnapshotInfo
     globals()['HeliosTagInfo'] = HeliosTagInfo
+    globals()['Object'] = Object
     globals()['ObjectProtectionInfo'] = ObjectProtectionInfo
     globals()['SecondaryId'] = SecondaryId
     globals()['TaggedSnapshotInfo'] = TaggedSnapshotInfo
@@ -88,7 +90,7 @@ class SearchObjectAllOf(ModelNormal):
             'helios_tags': ([HeliosTagInfo], none_type,),  # noqa: E501
             'object_protection_infos': ([ObjectProtectionInfo], none_type,),  # noqa: E501
             'secondary_ids': ([SecondaryId], none_type,),  # noqa: E501
-            'source_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'source_info': (Object,),  # noqa: E501
             'tagged_snapshots': ([TaggedSnapshotInfo], none_type,),  # noqa: E501
         }
 
@@ -156,7 +158,7 @@ class SearchObjectAllOf(ModelNormal):
             helios_tags ([HeliosTagInfo], none_type): Specifies the helios tag information for the object. [optional]  # noqa: E501
             object_protection_infos ([ObjectProtectionInfo], none_type): Specifies the object info on each cluster.. [optional]  # noqa: E501
             secondary_ids ([SecondaryId], none_type): Specifies secondary IDs associated to the object.. [optional]  # noqa: E501
-            source_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Source Object information.. [optional]  # noqa: E501
+            source_info (Object): [optional]  # noqa: E501
             tagged_snapshots ([TaggedSnapshotInfo], none_type): Specifies the helios tagged snapshots (snapshots which are tagged by user or thirdparty in control plane) for the object. [optional]  # noqa: E501
         """
 

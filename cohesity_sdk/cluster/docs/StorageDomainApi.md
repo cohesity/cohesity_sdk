@@ -15,16 +15,17 @@ Method | HTTP request | Description
 
 Create a Storage Domain.
 
-Create a Storage Domain.
+**Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Create a Storage Domain.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.storage_domain import StorageDomain
-from cohesity_sdk.cluster.model.create_storage_domain_param import CreateStorageDomainParam
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -37,7 +38,123 @@ client = ClusterClient(
 )
 
 
-body = CreateStorageDomainParam() # CreateStorageDomainParam | Specified the request to create a Storage Domain.
+body = StorageDomain(
+        ad_domain_name="ad_domain_name_example",
+        blob_brick_size_bytes=1,
+        cloud_domain_id=1,
+        cloud_down_water_fall_params=CloudDownWaterFallParams(
+            threshold_percentage=1,
+            threshold_secs=1,
+        ),
+        cluster_partition_id=1,
+        default_user_quota=QuotaPolicy(
+            alert_limit_bytes=1,
+            alert_threshold_percentage=1,
+            hard_limit_bytes=1,
+        ),
+        default_view_quota=QuotaPolicy(
+            alert_limit_bytes=1,
+            alert_threshold_percentage=1,
+            hard_limit_bytes=1,
+        ),
+        dek_rotation_enabled=True,
+        direct_archive_enabled=True,
+        kerberos_realm_name="kerberos_realm_name_example",
+        kms_server_id=1,
+        last_key_rotation_timestamp_msecs=1,
+        ldap_provider_id=1,
+        name="name_example",
+        nis_domain_names=[
+            "nis_domain_names_example",
+        ],
+        optimize_throughput_settings=True,
+        physical_quota=QuotaPolicy(
+            alert_limit_bytes=1,
+            alert_threshold_percentage=1,
+            hard_limit_bytes=1,
+        ),
+        purpose=StorageDomainPurposeParam("NetBackup"),
+        s3_buckets_enabled=True,
+        stats=DataUsageStats(
+            cloud_data_written_bytes=1,
+            cloud_data_written_bytes_timestamp_usec=1,
+            cloud_total_physical_usage_bytes=1,
+            cloud_total_physical_usage_bytes_timestamp_usec=1,
+            data_in_bytes=1,
+            data_in_bytes_after_dedup=1,
+            data_in_bytes_after_dedup_timestamp_usec=1,
+            data_in_bytes_timestamp_usec=1,
+            data_protect_logical_usage_bytes=1,
+            data_protect_logical_usage_bytes_timestamp_usec=1,
+            data_protect_physical_usage_bytes=1,
+            data_protect_physical_usage_bytes_timestamp_usec=1,
+            data_written_bytes=1,
+            data_written_bytes_timestamp_usec=1,
+            file_services_logical_usage_bytes=1,
+            file_services_logical_usage_bytes_timestamp_usec=1,
+            file_services_physical_usage_bytes=1,
+            file_services_physical_usage_bytes_timestamp_usec=1,
+            local_data_written_bytes=1,
+            local_data_written_bytes_timestamp_usec=1,
+            local_tier_resiliency_impact_bytes=1,
+            local_tier_resiliency_impact_bytes_timestamp_usec=1,
+            local_total_physical_usage_bytes=1,
+            local_total_physical_usage_bytes_timestamp_usec=1,
+            num_directories=1,
+            num_files=1,
+            outdated_logical_usage_bytes=1,
+            outdated_logical_usage_bytes_timestamp_usec=1,
+            storage_consumed_bytes=1,
+            storage_consumed_bytes_timestamp_usec=1,
+            total_logical_usage_bytes=1,
+            total_logical_usage_bytes_timestamp_usec=1,
+            unique_physical_data_bytes=1,
+        ),
+        storage_policy=StoragePolicy(
+            aes_encryption_mode="CBC",
+            app_marker_detection_enabled=True,
+            cloud_spill_vault_id=1,
+            compression_params=CompressionParams(
+                inline_enabled=True,
+                type="None",
+            ),
+            deduplication_compression_delay_secs=1,
+            deduplication_params=DeduplicationParams(
+                enabled=True,
+                inline_enabled=True,
+            ),
+            encryption_type="None",
+            erasure_coding_params=ErasureCodingParams(
+                delay_secs=1,
+                enabled=True,
+                inline_enabled=True,
+                num_coded_stripes=1,
+                num_data_stripes=1,
+            ),
+            num_disk_failures_tolerated=1,
+            num_node_failures_tolerated=1,
+        ),
+        subnet_whitelist=[
+            Subnet(
+                component="component_example",
+                description="description_example",
+                gateway="gateway_example",
+                id=1,
+                ip="ip_example",
+                netmask_bits=1,
+                netmask_ip4="netmask_ip4_example",
+                nfs_access="kDisabled",
+                nfs_squash="kNone",
+                s3_access="kDisabled",
+                smb_access="kDisabled",
+            ),
+        ],
+        tenant_ids=[
+            "tenant_ids_example",
+        ],
+        treat_file_sync_as_data_sync=True,
+        vault_id=1,
+    ) # StorageDomain | Specified the request to create a Storage Domain.
 
 # example passing only required values which don't have defaults set
 try:
@@ -53,7 +170,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateStorageDomainParam**](CreateStorageDomainParam.md)| Specified the request to create a Storage Domain. |
+ **body** | [**StorageDomain**](StorageDomain.md)| Specified the request to create a Storage Domain. |
 
 ### Return type
 
@@ -61,7 +178,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -82,11 +199,13 @@ Name | Type | Description  | Notes
 
 Delete a Storage Domain.
 
-Delete a Storage Domain.
+**Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Delete a Storage Domain.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -103,11 +222,20 @@ client = ClusterClient(
 
 
 id = 1 # int | Specified the Storage Domain id to delete.
+force = True # bool | If `true`, the Storage Domain can be deleted even if it contains LSUs that are paired with remote LSUs. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Delete a Storage Domain.
 	client.storage_domain.delete_storage_domain(id)
+except ApiException as e:
+	print("Exception when calling StorageDomainApi->delete_storage_domain: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Delete a Storage Domain.
+	client.storage_domain.delete_storage_domain(id, force=force)
 except ApiException as e:
 	print("Exception when calling StorageDomainApi->delete_storage_domain: %s\n" % e)
 ```
@@ -118,6 +246,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specified the Storage Domain id to delete. |
+ **force** | **bool**| If &#x60;true&#x60;, the Storage Domain can be deleted even if it contains LSUs that are paired with remote LSUs. | [optional]
 
 ### Return type
 
@@ -125,7 +254,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -146,11 +275,13 @@ void (empty response body)
 
 Get a Storage Domain by id.
 
-Get a Storage Domain by id.
+**Privileges:** ```STORAGE_DOMAIN_VIEW``` <br><br>Get a Storage Domain by id.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -208,7 +339,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -229,11 +360,13 @@ Name | Type | Description  | Notes
 
 Get Storage Domains.
 
-Get Storage Domains.
+**Privileges:** ```STORAGE_DOMAIN_VIEW``` <br><br>Get Storage Domains.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -266,7 +399,7 @@ include_tenants = True # bool | IncludeTenants specifies if Storage Domains of a
 include_stats = True # bool | Whether to include Storage Domain stats in response. (optional)
 include_time_series_schema = True # bool | Whether to include Storage Domain time series schema in response. (optional)
 include_file_count_by_size = True # bool | Whether to include Storage Domain file count by size. (optional)
-match_partial_names = True # bool | If true, the names in viewNames are matched by any partial rather than exactly matched. (optional)
+match_partial_names = True # bool | If set to true, names in the 'names' parameter will be matched partially instead of exactly. (optional)
 view_template_id = 1 # int | Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended. (optional)
 
 # example passing only required values which don't have defaults set
@@ -292,7 +425,7 @@ Name | Type | Description  | Notes
  **include_stats** | **bool**| Whether to include Storage Domain stats in response. | [optional]
  **include_time_series_schema** | **bool**| Whether to include Storage Domain time series schema in response. | [optional]
  **include_file_count_by_size** | **bool**| Whether to include Storage Domain file count by size. | [optional]
- **match_partial_names** | **bool**| If true, the names in viewNames are matched by any partial rather than exactly matched. | [optional]
+ **match_partial_names** | **bool**| If set to true, names in the &#39;names&#39; parameter will be matched partially instead of exactly. | [optional]
  **view_template_id** | **int**| Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended. | [optional]
 
 ### Return type
@@ -301,7 +434,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -322,16 +455,17 @@ Name | Type | Description  | Notes
 
 Update a Storage Domain.
 
-Update a Storage Domain.
+**Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Update a Storage Domain.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.storage_domain import StorageDomain
-from cohesity_sdk.cluster.model.update_storage_domain_param import UpdateStorageDomainParam
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -345,7 +479,123 @@ client = ClusterClient(
 
 
 id = 1 # int | Specified the Storage Domain id to update.
-body = UpdateStorageDomainParam() # UpdateStorageDomainParam | Specified the request to update a Storage Domain.
+body = StorageDomain(
+        ad_domain_name="ad_domain_name_example",
+        blob_brick_size_bytes=1,
+        cloud_domain_id=1,
+        cloud_down_water_fall_params=CloudDownWaterFallParams(
+            threshold_percentage=1,
+            threshold_secs=1,
+        ),
+        cluster_partition_id=1,
+        default_user_quota=QuotaPolicy(
+            alert_limit_bytes=1,
+            alert_threshold_percentage=1,
+            hard_limit_bytes=1,
+        ),
+        default_view_quota=QuotaPolicy(
+            alert_limit_bytes=1,
+            alert_threshold_percentage=1,
+            hard_limit_bytes=1,
+        ),
+        dek_rotation_enabled=True,
+        direct_archive_enabled=True,
+        kerberos_realm_name="kerberos_realm_name_example",
+        kms_server_id=1,
+        last_key_rotation_timestamp_msecs=1,
+        ldap_provider_id=1,
+        name="name_example",
+        nis_domain_names=[
+            "nis_domain_names_example",
+        ],
+        optimize_throughput_settings=True,
+        physical_quota=QuotaPolicy(
+            alert_limit_bytes=1,
+            alert_threshold_percentage=1,
+            hard_limit_bytes=1,
+        ),
+        purpose=StorageDomainPurposeParam("NetBackup"),
+        s3_buckets_enabled=True,
+        stats=DataUsageStats(
+            cloud_data_written_bytes=1,
+            cloud_data_written_bytes_timestamp_usec=1,
+            cloud_total_physical_usage_bytes=1,
+            cloud_total_physical_usage_bytes_timestamp_usec=1,
+            data_in_bytes=1,
+            data_in_bytes_after_dedup=1,
+            data_in_bytes_after_dedup_timestamp_usec=1,
+            data_in_bytes_timestamp_usec=1,
+            data_protect_logical_usage_bytes=1,
+            data_protect_logical_usage_bytes_timestamp_usec=1,
+            data_protect_physical_usage_bytes=1,
+            data_protect_physical_usage_bytes_timestamp_usec=1,
+            data_written_bytes=1,
+            data_written_bytes_timestamp_usec=1,
+            file_services_logical_usage_bytes=1,
+            file_services_logical_usage_bytes_timestamp_usec=1,
+            file_services_physical_usage_bytes=1,
+            file_services_physical_usage_bytes_timestamp_usec=1,
+            local_data_written_bytes=1,
+            local_data_written_bytes_timestamp_usec=1,
+            local_tier_resiliency_impact_bytes=1,
+            local_tier_resiliency_impact_bytes_timestamp_usec=1,
+            local_total_physical_usage_bytes=1,
+            local_total_physical_usage_bytes_timestamp_usec=1,
+            num_directories=1,
+            num_files=1,
+            outdated_logical_usage_bytes=1,
+            outdated_logical_usage_bytes_timestamp_usec=1,
+            storage_consumed_bytes=1,
+            storage_consumed_bytes_timestamp_usec=1,
+            total_logical_usage_bytes=1,
+            total_logical_usage_bytes_timestamp_usec=1,
+            unique_physical_data_bytes=1,
+        ),
+        storage_policy=StoragePolicy(
+            aes_encryption_mode="CBC",
+            app_marker_detection_enabled=True,
+            cloud_spill_vault_id=1,
+            compression_params=CompressionParams(
+                inline_enabled=True,
+                type="None",
+            ),
+            deduplication_compression_delay_secs=1,
+            deduplication_params=DeduplicationParams(
+                enabled=True,
+                inline_enabled=True,
+            ),
+            encryption_type="None",
+            erasure_coding_params=ErasureCodingParams(
+                delay_secs=1,
+                enabled=True,
+                inline_enabled=True,
+                num_coded_stripes=1,
+                num_data_stripes=1,
+            ),
+            num_disk_failures_tolerated=1,
+            num_node_failures_tolerated=1,
+        ),
+        subnet_whitelist=[
+            Subnet(
+                component="component_example",
+                description="description_example",
+                gateway="gateway_example",
+                id=1,
+                ip="ip_example",
+                netmask_bits=1,
+                netmask_ip4="netmask_ip4_example",
+                nfs_access="kDisabled",
+                nfs_squash="kNone",
+                s3_access="kDisabled",
+                smb_access="kDisabled",
+            ),
+        ],
+        tenant_ids=[
+            "tenant_ids_example",
+        ],
+        treat_file_sync_as_data_sync=True,
+        vault_id=1,
+    ) # StorageDomain | Specified the request to update a Storage Domain.
 
 # example passing only required values which don't have defaults set
 try:
@@ -362,7 +612,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specified the Storage Domain id to update. |
- **body** | [**UpdateStorageDomainParam**](UpdateStorageDomainParam.md)| Specified the request to update a Storage Domain. |
+ **body** | [**StorageDomain**](StorageDomain.md)| Specified the request to update a Storage Domain. |
 
 ### Return type
 
@@ -370,7 +620,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 

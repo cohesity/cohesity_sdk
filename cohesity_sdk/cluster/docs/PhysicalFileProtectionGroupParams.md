@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **objects** | [**[PhysicalFileProtectionGroupObjectParams]**](PhysicalFileProtectionGroupObjectParams.md) | Specifies the list of objects protected by this Protection Group. | 
 **allow_parallel_runs** | **bool, none_type** | Specifies whether or not this job can have parallel runs. | [optional] 
 **cobmr_backup** | **bool, none_type** | Specifies whether to take CoBMR backup. | [optional] 
+**continue_on_error** | **bool, none_type** | Specifies if physical file based backup should be continued or failed immediately on encountering an error. | [optional] 
 **continue_on_quiesce_failure** | **bool, none_type** | Specifies whether to continue backing up on quiesce failure. | [optional] 
 **dedup_exclusion_source_ids** | **[int]** | Specifies ids of sources for which deduplication has to be disabled. | [optional] 
 **excluded_vss_writers** | **[str], none_type** | Specifies writer names which should be excluded from physical file based backups. | [optional] 

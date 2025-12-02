@@ -21,6 +21,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from cohesity_sdk.cluster.model.configure_support_user_mfa_params import ConfigureSupportUserMfaParams
 from cohesity_sdk.cluster.model.create_email_otp_request_body import CreateEmailOtpRequestBody
 from cohesity_sdk.cluster.model.create_totp_key_request_body import CreateTotpKeyRequestBody
 from cohesity_sdk.cluster.model.error import Error
@@ -44,13 +45,137 @@ class MFAApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
+        def __configure_support_mfa_config(
+            self,
+            body,
+            **kwargs
+        ):
+            """Stores the updated MFA configuration.  # noqa: E501
+
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Configures MFA configuration for support user.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.configure_support_mfa_config(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (ConfigureSupportUserMfaParams): The update request for MFA Settings
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                UpdateMFAResult
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.configure_support_mfa_config = _Endpoint(
+            settings={
+                'response_type': (UpdateMFAResult,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/support-user/mfa',
+                'operation_id': 'configure_support_mfa_config',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (ConfigureSupportUserMfaParams,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__configure_support_mfa_config
+        )
+
         def __create_email_otp(
             self,
             **kwargs
         ):
             """Creates a new OTP to be sent to the user email.  # noqa: E501
 
-            Creates a new One Time Password for the user email. This is used for API login.  # noqa: E501
+            ```No Privileges Required``` <br><br>Creates a new One Time Password for the user email. This is used for API login.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -112,7 +237,9 @@ class MFAApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/email-otp',
                 'operation_id': 'create_email_otp',
@@ -167,7 +294,7 @@ class MFAApi(object):
         ):
             """Create a new TOTP secret URI and store the secret key.  # noqa: E501
 
-            Create a TOTP key.  # noqa: E501
+            ```No Privileges Required``` <br><br>Create a TOTP key.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -232,7 +359,9 @@ class MFAApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/totp-key',
                 'operation_id': 'create_totp_key',
@@ -288,7 +417,7 @@ class MFAApi(object):
         ):
             """Returns the current MFA configuration.  # noqa: E501
 
-            Returns the current MFA configuration for the cluster.  # noqa: E501
+            ```No Privileges Required``` <br><br>Returns the current MFA configuration for the cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -349,7 +478,9 @@ class MFAApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/mfa-config',
                 'operation_id': 'get_mfa_config',
@@ -397,7 +528,7 @@ class MFAApi(object):
         ):
             """Returns the current MFA configuration.  # noqa: E501
 
-            Returns the current MFA configuration for support user.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Returns the current MFA configuration for support user.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -458,7 +589,9 @@ class MFAApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/support-user/mfa',
                 'operation_id': 'get_support_mfa_config',
@@ -506,7 +639,7 @@ class MFAApi(object):
         ):
             """Creates a new OTP to be sent to the user email.  # noqa: E501
 
-            Creates a new One Time Password for the user email  # noqa: E501
+            ```No Privileges Required``` <br><br>Creates a new One Time Password for the user email  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -567,7 +700,9 @@ class MFAApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/send-email-otp',
                 'operation_id': 'send_email_otp',
@@ -615,7 +750,7 @@ class MFAApi(object):
         ):
             """Creates a new OTP to be sent to the linux support user email.  # noqa: E501
 
-            Creates a new one time password for linux support user email  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Creates a new one time password for linux support user email  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -676,7 +811,9 @@ class MFAApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/support-user/send-email-otp',
                 'operation_id': 'send_support_email_otp',
@@ -725,7 +862,7 @@ class MFAApi(object):
         ):
             """Stores the updated MFA configuration.  # noqa: E501
 
-            Stores the updated MFA configuration for the cluster.  # noqa: E501
+            **Privileges:** ```MFA_MODIFY``` <br><br>Stores the updated MFA configuration for the cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -790,7 +927,9 @@ class MFAApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/mfa-config',
                 'operation_id': 'update_mfa_config',
@@ -847,7 +986,7 @@ class MFAApi(object):
         ):
             """Stores the updated MFA configuration.  # noqa: E501
 
-            Update MFA configuration for support user.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update MFA configuration for support user. NOTE: Some functionality of this API is deprecated. It is recommended to use PUT /v2/support-user/mfa for setting MFA type and updating email. This API should be used only for enabling/disabling MFA.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -912,7 +1051,9 @@ class MFAApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/support-user/mfa',
                 'operation_id': 'update_support_mfa_config',
@@ -969,7 +1110,7 @@ class MFAApi(object):
         ):
             """Verify the totp code for support user.  # noqa: E501
 
-            Verify totp code for support user.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Verify totp code for support user.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1034,7 +1175,9 @@ class MFAApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/support-user/verify-totp',
                 'operation_id': 'verify_support_user_totp',

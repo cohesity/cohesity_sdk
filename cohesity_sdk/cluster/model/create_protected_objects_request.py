@@ -27,13 +27,13 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.common_object_protect_params import CommonObjectProtectParams
+    from cohesity_sdk.cluster.model.common_backup_params import CommonBackupParams
     from cohesity_sdk.cluster.model.create_protected_objects_request_all_of import CreateProtectedObjectsRequestAllOf
     from cohesity_sdk.cluster.model.env_specific_object_protection_request_params import EnvSpecificObjectProtectionRequestParams
     from cohesity_sdk.cluster.model.policy_config import PolicyConfig
     from cohesity_sdk.cluster.model.sla_rule import SlaRule
     from cohesity_sdk.cluster.model.time_of_day import TimeOfDay
-    globals()['CommonObjectProtectParams'] = CommonObjectProtectParams
+    globals()['CommonBackupParams'] = CommonBackupParams
     globals()['CreateProtectedObjectsRequestAllOf'] = CreateProtectedObjectsRequestAllOf
     globals()['EnvSpecificObjectProtectionRequestParams'] = EnvSpecificObjectProtectionRequestParams
     globals()['PolicyConfig'] = PolicyConfig
@@ -274,7 +274,7 @@ class CreateProtectedObjectsRequest(ModelComposed):
           'anyOf': [
           ],
           'allOf': [
-              CommonObjectProtectParams,
+              CommonBackupParams,
               CreateProtectedObjectsRequestAllOf,
           ],
           'oneOf': [

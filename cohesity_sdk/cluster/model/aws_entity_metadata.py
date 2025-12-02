@@ -27,8 +27,16 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.aws_aurora_entity_metadata import AwsAuroraEntityMetadata
+    from cohesity_sdk.cluster.model.aws_document_db_entity_metadata import AwsDocumentDBEntityMetadata
+    from cohesity_sdk.cluster.model.aws_entity_child_metadata import AwsEntityChildMetadata
     from cohesity_sdk.cluster.model.aws_postgres_entity_metadata import AwsPostgresEntityMetadata
+    from cohesity_sdk.cluster.model.aws_rds_entity_metadata import AwsRdsEntityMetadata
+    globals()['AwsAuroraEntityMetadata'] = AwsAuroraEntityMetadata
+    globals()['AwsDocumentDBEntityMetadata'] = AwsDocumentDBEntityMetadata
+    globals()['AwsEntityChildMetadata'] = AwsEntityChildMetadata
     globals()['AwsPostgresEntityMetadata'] = AwsPostgresEntityMetadata
+    globals()['AwsRdsEntityMetadata'] = AwsRdsEntityMetadata
 
 
 class AwsEntityMetadata(ModelNormal):
@@ -79,7 +87,11 @@ class AwsEntityMetadata(ModelNormal):
         """
         lazy_import()
         return {
+            'aurora_params': (AwsAuroraEntityMetadata,),  # noqa: E501
+            'child_metadata': (AwsEntityChildMetadata,),  # noqa: E501
+            'document_db_params': (AwsDocumentDBEntityMetadata,),  # noqa: E501
             'postgres_params': (AwsPostgresEntityMetadata,),  # noqa: E501
+            'rds_params': (AwsRdsEntityMetadata,),  # noqa: E501
         }
 
     @cached_property
@@ -89,7 +101,11 @@ class AwsEntityMetadata(ModelNormal):
 
 
     attribute_map = {
+        'aurora_params': 'auroraParams',  # noqa: E501
+        'child_metadata': 'childMetadata',  # noqa: E501
+        'document_db_params': 'documentDBParams',  # noqa: E501
         'postgres_params': 'postgresParams',  # noqa: E501
+        'rds_params': 'rdsParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -139,7 +155,11 @@ class AwsEntityMetadata(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            aurora_params (AwsAuroraEntityMetadata): [optional]  # noqa: E501
+            child_metadata (AwsEntityChildMetadata): [optional]  # noqa: E501
+            document_db_params (AwsDocumentDBEntityMetadata): [optional]  # noqa: E501
             postgres_params (AwsPostgresEntityMetadata): [optional]  # noqa: E501
+            rds_params (AwsRdsEntityMetadata): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

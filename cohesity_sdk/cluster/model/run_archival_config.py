@@ -88,6 +88,8 @@ class RunArchivalConfig(ModelNormal):
             'archival_target_type': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'copy_only_fully_successful': (bool, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'on_legal_hold': (bool, none_type,),  # noqa: E501
             'retention': (Retention,),  # noqa: E501
         }
 
@@ -101,6 +103,8 @@ class RunArchivalConfig(ModelNormal):
         'archival_target_type': 'archivalTargetType',  # noqa: E501
         'id': 'id',  # noqa: E501
         'copy_only_fully_successful': 'copyOnlyFullySuccessful',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'on_legal_hold': 'onLegalHold',  # noqa: E501
         'retention': 'retention',  # noqa: E501
     }
 
@@ -156,6 +160,8 @@ class RunArchivalConfig(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             copy_only_fully_successful (bool, none_type): Specifies if Snapshots are copied from a fully successful Protection Group Run or a partially successful Protection Group Run. If false, Snapshots are copied the Protection Group Run, even if the Run was not fully successful i.e. Snapshots were not captured for all Objects in the Protection Group. If true, Snapshots are copied only when the run is fully successful.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the archival target.. [optional]  # noqa: E501
+            on_legal_hold (bool, none_type): Specifies if the Run is on legal hold.. [optional]  # noqa: E501
             retention (Retention): [optional]  # noqa: E501
         """
 

@@ -11,8 +11,8 @@ Name | Type | Description | Notes
 **enable_smb_oplock** | **bool, none_type** | Specifies whether SMB opportunistic lock is enabled. | [optional] 
 **enable_smb_view_discovery** | **bool, none_type** | If set, it enables discovery of view for SMB. | [optional] 
 **enforce_smb_encryption** | **bool, none_type** | Specifies the SMB encryption for all the sessions for the View. If set, encryption is enforced for all the sessions for the View. When enabled all future and existing unencrypted sessions are disallowed. | [optional] 
-**share_permissions** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies share level permissions of the view. | [optional] 
-**smb_permissions_info** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the SMB permissions for the View. | [optional] 
+**share_permissions** | [**ViewSharePermissions**](ViewSharePermissions.md) |  | [optional] 
+**smb_permissions_info** | [**SmbPermissionsInfo**](SmbPermissionsInfo.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

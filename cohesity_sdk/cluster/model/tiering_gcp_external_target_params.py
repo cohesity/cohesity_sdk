@@ -28,8 +28,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.common_gcp_external_target_params import CommonGcpExternalTargetParams
+    from cohesity_sdk.cluster.model.gcp_authentication_methods_params import GCPAuthenticationMethodsParams
     from cohesity_sdk.cluster.model.tiering_gcp_external_target_params_all_of import TieringGcpExternalTargetParamsAllOf
     globals()['CommonGcpExternalTargetParams'] = CommonGcpExternalTargetParams
+    globals()['GCPAuthenticationMethodsParams'] = GCPAuthenticationMethodsParams
     globals()['TieringGcpExternalTargetParamsAllOf'] = TieringGcpExternalTargetParamsAllOf
 
 
@@ -86,10 +88,12 @@ class TieringGcpExternalTargetParams(ModelComposed):
         lazy_import()
         return {
             'bucket_name': (str, none_type,),  # noqa: E501
-            'client_email_address': (str, none_type,),  # noqa: E501
             'project_id': (str, none_type,),  # noqa: E501
             'storage_class': (str, none_type,),  # noqa: E501
+            'authentication_method': (GCPAuthenticationMethodsParams,),  # noqa: E501
+            'client_email_address': (str, none_type,),  # noqa: E501
             'client_private_key': (str, none_type,),  # noqa: E501
+            'region': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -100,10 +104,12 @@ class TieringGcpExternalTargetParams(ModelComposed):
 
     attribute_map = {
         'bucket_name': 'bucketName',  # noqa: E501
-        'client_email_address': 'clientEmailAddress',  # noqa: E501
         'project_id': 'projectId',  # noqa: E501
         'storage_class': 'storageClass',  # noqa: E501
+        'authentication_method': 'authenticationMethod',  # noqa: E501
+        'client_email_address': 'clientEmailAddress',  # noqa: E501
         'client_private_key': 'clientPrivateKey',  # noqa: E501
+        'region': 'region',  # noqa: E501
     }
 
     required_properties = set([
@@ -119,12 +125,11 @@ class TieringGcpExternalTargetParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, bucket_name, client_email_address, project_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, bucket_name, project_id, *args, **kwargs):  # noqa: E501
         """TieringGcpExternalTargetParams - a model defined in OpenAPI
 
         Args:
             bucket_name (str, none_type): Specifies the bucket name of the external target.
-            client_email_address (str, none_type): Specifies the client email address of the external target.
             project_id (str, none_type): Specifies the project Id of the external target.
 
         Keyword Args:
@@ -160,7 +165,10 @@ class TieringGcpExternalTargetParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            client_private_key (str, none_type): Specifies the client private key of the external target.. [optional]  # noqa: E501
+            authentication_method (GCPAuthenticationMethodsParams): [optional]  # noqa: E501
+            client_email_address (str, none_type): Specifies the client email address of the external target. This field is being deprecated, please use authenticationMethod instead.. [optional]  # noqa: E501
+            client_private_key (str, none_type): Specifies the client private key of the external target. This field is being deprecated, please use authenticationMethod instead.. [optional]  # noqa: E501
+            region (str, none_type): Specifies the Google Cloud region where the storage bucket is located (e.g., 'us-central1', 'europe-west1').. [optional]  # noqa: E501
         """
 
         storage_class = kwargs.get('storage_class', "GCPStandard")
@@ -197,7 +205,6 @@ class TieringGcpExternalTargetParams(ModelComposed):
         }
         required_args = {
             'bucket_name': bucket_name,
-            'client_email_address': client_email_address,
             'project_id': project_id,
             'storage_class': storage_class,
         }

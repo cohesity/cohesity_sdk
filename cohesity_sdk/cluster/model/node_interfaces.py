@@ -79,8 +79,11 @@ class NodeInterfaces(ModelNormal):
         """
         lazy_import()
         return {
+            'chassis_serial': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'interfaces': ([NetworkInterface],),  # noqa: E501
+            'ip': (str, none_type,),  # noqa: E501
+            'slot_number': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +93,11 @@ class NodeInterfaces(ModelNormal):
 
 
     attribute_map = {
+        'chassis_serial': 'chassisSerial',  # noqa: E501
         'id': 'id',  # noqa: E501
         'interfaces': 'interfaces',  # noqa: E501
+        'ip': 'ip',  # noqa: E501
+        'slot_number': 'slotNumber',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +147,11 @@ class NodeInterfaces(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            chassis_serial (str, none_type): Specifies the ip of the node.. [optional]  # noqa: E501
             id (int, none_type): Specifies the id of the node.. [optional]  # noqa: E501
             interfaces ([NetworkInterface]): Specifies the list of network interfaces present on this Node.. [optional]  # noqa: E501
+            ip (str, none_type): Specifies the ip of the node.. [optional]  # noqa: E501
+            slot_number (int, none_type): Specifies the slot number.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

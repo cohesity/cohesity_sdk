@@ -33,12 +33,16 @@ def lazy_import():
     from cohesity_sdk.cluster.model.azure_protection_group_params import AzureProtectionGroupParams
     from cohesity_sdk.cluster.model.cassandra_protection_group_params import CassandraProtectionGroupParams
     from cohesity_sdk.cluster.model.common_protection_group_response_params import CommonProtectionGroupResponseParams
+    from cohesity_sdk.cluster.model.common_protection_group_run_response_parameters import CommonProtectionGroupRunResponseParameters
     from cohesity_sdk.cluster.model.create_or_update_protection_group_request_all_of import CreateOrUpdateProtectionGroupRequestAllOf
+    from cohesity_sdk.cluster.model.db2_protection_group_params import DB2ProtectionGroupParams
     from cohesity_sdk.cluster.model.elastifile_protection_group_params import ElastifileProtectionGroupParams
     from cohesity_sdk.cluster.model.exchange_protection_group_params import ExchangeProtectionGroupParams
+    from cohesity_sdk.cluster.model.experimental_adapter_protection_group_params import ExperimentalAdapterProtectionGroupParams
     from cohesity_sdk.cluster.model.flashblade_protection_group_params import FlashbladeProtectionGroupParams
     from cohesity_sdk.cluster.model.gcp_protection_group_params import GcpProtectionGroupParams
     from cohesity_sdk.cluster.model.generic_nas_protection_group_params import GenericNasProtectionGroupParams
+    from cohesity_sdk.cluster.model.google_workspace_protection_group_params import GoogleWorkspaceProtectionGroupParams
     from cohesity_sdk.cluster.model.gpfs_protection_group_params import GpfsProtectionGroupParams
     from cohesity_sdk.cluster.model.hdfs_protection_group_params import HdfsProtectionGroupParams
     from cohesity_sdk.cluster.model.hyper_v_protection_group_params import HyperVProtectionGroupParams
@@ -48,21 +52,26 @@ def lazy_import():
     from cohesity_sdk.cluster.model.kubernetes_protection_group_params import KubernetesProtectionGroupParams
     from cohesity_sdk.cluster.model.kvm_protection_group_params import KvmProtectionGroupParams
     from cohesity_sdk.cluster.model.missing_entity_params import MissingEntityParams
+    from cohesity_sdk.cluster.model.mongo_db_ops_manager_protection_group_params import MongoDBOpsManagerProtectionGroupParams
     from cohesity_sdk.cluster.model.mongo_db_protection_group_params import MongoDBProtectionGroupParams
     from cohesity_sdk.cluster.model.mssql_protection_group_params import MSSQLProtectionGroupParams
     from cohesity_sdk.cluster.model.netapp_protection_group_params import NetappProtectionGroupParams
     from cohesity_sdk.cluster.model.nimble_protection_group_params import NimbleProtectionGroupParams
     from cohesity_sdk.cluster.model.no_sql_protection_group_params import NoSqlProtectionGroupParams
+    from cohesity_sdk.cluster.model.nutanix_fs_protection_group_params import NutanixFSProtectionGroupParams
     from cohesity_sdk.cluster.model.office365_protection_group_params import Office365ProtectionGroupParams
     from cohesity_sdk.cluster.model.oracle_protection_group_params import OracleProtectionGroupParams
+    from cohesity_sdk.cluster.model.pause_metadata import PauseMetadata
     from cohesity_sdk.cluster.model.physical_protection_group_params import PhysicalProtectionGroupParams
+    from cohesity_sdk.cluster.model.postgres_protection_group_params import PostgresProtectionGroupParams
     from cohesity_sdk.cluster.model.protection_group_alerting_policy import ProtectionGroupAlertingPolicy
-    from cohesity_sdk.cluster.model.protection_group_run import ProtectionGroupRun
     from cohesity_sdk.cluster.model.pure_protection_group_params import PureProtectionGroupParams
     from cohesity_sdk.cluster.model.remote_adapter_protection_group_params import RemoteAdapterProtectionGroupParams
+    from cohesity_sdk.cluster.model.s3_compatible_protection_group_params import S3CompatibleProtectionGroupParams
+    from cohesity_sdk.cluster.model.sap_hana_protection_group_params import SapHanaProtectionGroupParams
     from cohesity_sdk.cluster.model.sfdc_protection_group_params import SfdcProtectionGroupParams
     from cohesity_sdk.cluster.model.sla_rule import SlaRule
-    from cohesity_sdk.cluster.model.tenant import Tenant
+    from cohesity_sdk.cluster.model.tenant_info import TenantInfo
     from cohesity_sdk.cluster.model.time_of_day import TimeOfDay
     from cohesity_sdk.cluster.model.uda_protection_group_params import UdaProtectionGroupParams
     from cohesity_sdk.cluster.model.view_protection_group_params import ViewProtectionGroupParams
@@ -73,12 +82,16 @@ def lazy_import():
     globals()['AzureProtectionGroupParams'] = AzureProtectionGroupParams
     globals()['CassandraProtectionGroupParams'] = CassandraProtectionGroupParams
     globals()['CommonProtectionGroupResponseParams'] = CommonProtectionGroupResponseParams
+    globals()['CommonProtectionGroupRunResponseParameters'] = CommonProtectionGroupRunResponseParameters
     globals()['CreateOrUpdateProtectionGroupRequestAllOf'] = CreateOrUpdateProtectionGroupRequestAllOf
+    globals()['DB2ProtectionGroupParams'] = DB2ProtectionGroupParams
     globals()['ElastifileProtectionGroupParams'] = ElastifileProtectionGroupParams
     globals()['ExchangeProtectionGroupParams'] = ExchangeProtectionGroupParams
+    globals()['ExperimentalAdapterProtectionGroupParams'] = ExperimentalAdapterProtectionGroupParams
     globals()['FlashbladeProtectionGroupParams'] = FlashbladeProtectionGroupParams
     globals()['GcpProtectionGroupParams'] = GcpProtectionGroupParams
     globals()['GenericNasProtectionGroupParams'] = GenericNasProtectionGroupParams
+    globals()['GoogleWorkspaceProtectionGroupParams'] = GoogleWorkspaceProtectionGroupParams
     globals()['GpfsProtectionGroupParams'] = GpfsProtectionGroupParams
     globals()['HdfsProtectionGroupParams'] = HdfsProtectionGroupParams
     globals()['HyperVProtectionGroupParams'] = HyperVProtectionGroupParams
@@ -89,20 +102,25 @@ def lazy_import():
     globals()['KvmProtectionGroupParams'] = KvmProtectionGroupParams
     globals()['MSSQLProtectionGroupParams'] = MSSQLProtectionGroupParams
     globals()['MissingEntityParams'] = MissingEntityParams
+    globals()['MongoDBOpsManagerProtectionGroupParams'] = MongoDBOpsManagerProtectionGroupParams
     globals()['MongoDBProtectionGroupParams'] = MongoDBProtectionGroupParams
     globals()['NetappProtectionGroupParams'] = NetappProtectionGroupParams
     globals()['NimbleProtectionGroupParams'] = NimbleProtectionGroupParams
     globals()['NoSqlProtectionGroupParams'] = NoSqlProtectionGroupParams
+    globals()['NutanixFSProtectionGroupParams'] = NutanixFSProtectionGroupParams
     globals()['Office365ProtectionGroupParams'] = Office365ProtectionGroupParams
     globals()['OracleProtectionGroupParams'] = OracleProtectionGroupParams
+    globals()['PauseMetadata'] = PauseMetadata
     globals()['PhysicalProtectionGroupParams'] = PhysicalProtectionGroupParams
+    globals()['PostgresProtectionGroupParams'] = PostgresProtectionGroupParams
     globals()['ProtectionGroupAlertingPolicy'] = ProtectionGroupAlertingPolicy
-    globals()['ProtectionGroupRun'] = ProtectionGroupRun
     globals()['PureProtectionGroupParams'] = PureProtectionGroupParams
     globals()['RemoteAdapterProtectionGroupParams'] = RemoteAdapterProtectionGroupParams
+    globals()['S3CompatibleProtectionGroupParams'] = S3CompatibleProtectionGroupParams
+    globals()['SapHanaProtectionGroupParams'] = SapHanaProtectionGroupParams
     globals()['SfdcProtectionGroupParams'] = SfdcProtectionGroupParams
     globals()['SlaRule'] = SlaRule
-    globals()['Tenant'] = Tenant
+    globals()['TenantInfo'] = TenantInfo
     globals()['TimeOfDay'] = TimeOfDay
     globals()['UdaProtectionGroupParams'] = UdaProtectionGroupParams
     globals()['ViewProtectionGroupParams'] = ViewProtectionGroupParams
@@ -143,6 +161,13 @@ class ProtectionGroup(ModelComposed):
             'KVCD': "kVCD",
             'KAZURE': "kAzure",
             'KGCP': "kGCP",
+            'KGCPBIGQUERY': "kGCPBigQuery",
+            'KGCPMYSQL': "kGCPMySQL",
+            'KGOOGLESPANNER': "kGoogleSpanner",
+            'KGCPPOSTGRESQL': "kGCPPostgreSQL",
+            'KGCPALLOYDBPOSTGRESQL': "kGCPAlloyDBPostgreSQL",
+            'KGCPSQLSERVER': "kGCPSQLServer",
+            'KGCPFIRESTORE': "kGCPFirestore",
             'KKVM': "kKVM",
             'KACROPOLIS': "kAcropolis",
             'KAWS': "kAWS",
@@ -150,16 +175,48 @@ class ProtectionGroup(ModelComposed):
             'KAWSS3': "kAwsS3",
             'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KRDSPOSTGRESSNAPSHOTMANAGER': "kRDSPostgresSnapshotManager",
+            'KRDSMYSQLSNAPSHOTMANAGER': "kRDSMySQLSnapshotManager",
+            'KRDSMSSQLSNAPSHOTMANAGER': "kRDSMSSQLSnapshotManager",
+            'KRDSORACLESNAPSHOTMANAGER': "kRDSOracleSnapshotManager",
+            'KRDSMARIADBSNAPSHOTMANAGER': "kRDSMariaDBSnapshotManager",
+            'KRDSCUSTOMMSSQLSNAPSHOTMANAGER': "kRDSCustomMSSQLSnapshotManager",
+            'KRDSCUSTOMORACLESNAPSHOTMANAGER': "kRDSCustomOracleSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAURORAPOSTGRESSNAPSHOTMANAGER': "kAuroraPostgresSnapshotManager",
+            'KAURORAMYSQLSNAPSHOTMANAGER': "kAuroraMySQLSnapshotManager",
             'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAWSRDSPOSTGRES': "kAwsRDSPostgres",
+            'KAWSAURORAPOSTGRES': "kAwsAuroraPostgres",
+            'KAWSMYSQL': "kAWSMySQL",
+            'KAWSAURORAMYSQL': "kAWSAuroraMySQL",
+            'KAWSDYNAMODB': "kAwsDynamoDB",
+            'KAWSRDSORACLE': "kAWSRdsOracle",
+            'KAWSDOCUMENTDB': "kAWSDocumentDB",
+            'KAWSRDSPOSTGRESDB': "kAWSRDSPostgresDB",
+            'KAWSAURORAPOSTGRESDB': "kAWSAuroraPostgresDB",
+            'KAWSRDSMSSQL': "kAWSRDSMSSQL",
+            'KAWSREDSHIFT': "kAWSRedshift",
             'KAZURENATIVE': "kAzureNative",
             'KAZURESQL': "kAzureSQL",
+            'KAZUREENTRAID': "kAzureEntraID",
+            'KAZUREMYSQL': "kAzureMySQL",
+            'KAZURECOSMOSDBNOSQL': "kAzureCosmosDBNoSQL",
+            'KAZURECOSMOSDBMONGODB': "kAzureCosmosDBMongoDB",
+            'KAZURECOSMOSDBCASSANDRA': "kAzureCosmosDBCassandra",
+            'KAZUREPOSTGRESQLSERVER': "kAzurePostgreSQLServer",
+            'KAZURESQLDB': "kAzureSQLDB",
+            'KAZURESQLMI': "kAzureSQLMI",
+            'KAZURETABLESTORAGE': "kAzureTableStorage",
+            'KAZUREBLOBSTORAGE': "kAzureBlobStorage",
+            'KAZURETABLEAPI': "kAzureTableAPI",
             'KAZURESNAPSHOTMANAGER': "kAzureSnapshotManager",
             'KPHYSICAL': "kPhysical",
             'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
             'KNETAPP': "kNetapp",
+            'KNUTANIXFS': "kNutanixFS",
             'KGENERICNAS': "kGenericNas",
             'KISILON': "kIsilon",
             'KFLASHBLADE': "kFlashBlade",
@@ -185,11 +242,21 @@ class ProtectionGroup(ModelComposed):
             'KHDFS': "kHdfs",
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
+            'KSAPHANA': "kSAPHANA",
             'KUDA': "kUDA",
+            'KS3COMPATIBLE': "kS3Compatible",
             'KSFDC': "kSfdc",
             'KO365EXCHANGECSM': "kO365ExchangeCSM",
             'KO365ONEDRIVECSM': "kO365OneDriveCSM",
-            'KO365SHAREPOINTCSM': "kO365SharePointCSM",
+            'KO365SHAREPOINTCSM': "kO365SharepointCSM",
+            'KEXPERIMENTALADAPTER': "kExperimentalAdapter",
+            'KMONGODBPHYSICAL': "kMongoDBPhysical",
+            'KGOOGLEWORKSPACE': "kGoogleWorkspace",
+            'KGMAIL': "kGmail",
+            'KGOOGLEDRIVE': "kGoogleDrive",
+            'KDB2': "kDB2",
+            'KSERVICENOW': "kServiceNow",
+            'KPOSTGRES': "kPostgres",
         },
         ('priority',): {
             'None': None,
@@ -229,6 +296,7 @@ class ProtectionGroup(ModelComposed):
             'advanced_configs': ([KeyValuePair], none_type,),  # noqa: E501
             'alert_policy': (ProtectionGroupAlertingPolicy,),  # noqa: E501
             'cluster_id': (str, none_type,),  # noqa: E501
+            'creation_time_usecs': (int, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
@@ -239,11 +307,12 @@ class ProtectionGroup(ModelComposed):
             'is_paused': (bool, none_type,),  # noqa: E501
             'is_protect_once': (bool, none_type,),  # noqa: E501
             'last_modified_timestamp_usecs': (int, none_type,),  # noqa: E501
-            'last_run': (ProtectionGroupRun,),  # noqa: E501
+            'last_run': (CommonProtectionGroupRunResponseParameters,),  # noqa: E501
             'missing_entities': ([MissingEntityParams], none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'num_protected_objects': (int, none_type,),  # noqa: E501
             'pause_in_blackouts': (bool, none_type,),  # noqa: E501
+            'pause_metadata': (PauseMetadata,),  # noqa: E501
             'permissions': ([Tenant], none_type,),  # noqa: E501
             'policy_id': (str, none_type,),  # noqa: E501
             'priority': (str, none_type,),  # noqa: E501
@@ -258,11 +327,14 @@ class ProtectionGroup(ModelComposed):
             'azure_params': (AzureProtectionGroupParams,),  # noqa: E501
             'cassandra_params': (CassandraProtectionGroupParams,),  # noqa: E501
             'couchbase_params': (NoSqlProtectionGroupParams,),  # noqa: E501
+            'db2_params': (DB2ProtectionGroupParams,),  # noqa: E501
             'elastifile_params': (ElastifileProtectionGroupParams,),  # noqa: E501
             'exchange_params': (ExchangeProtectionGroupParams,),  # noqa: E501
+            'experimental_adapter_params': (ExperimentalAdapterProtectionGroupParams,),  # noqa: E501
             'flashblade_params': (FlashbladeProtectionGroupParams,),  # noqa: E501
             'gcp_params': (GcpProtectionGroupParams,),  # noqa: E501
             'generic_nas_params': (GenericNasProtectionGroupParams,),  # noqa: E501
+            'google_workspace_params': (GoogleWorkspaceProtectionGroupParams,),  # noqa: E501
             'gpfs_params': (GpfsProtectionGroupParams,),  # noqa: E501
             'hbase_params': (NoSqlProtectionGroupParams,),  # noqa: E501
             'hdfs_params': (HdfsProtectionGroupParams,),  # noqa: E501
@@ -272,15 +344,20 @@ class ProtectionGroup(ModelComposed):
             'isilon_params': (IsilonProtectionGroupParams,),  # noqa: E501
             'kubernetes_params': (KubernetesProtectionGroupParams,),  # noqa: E501
             'kvm_params': (KvmProtectionGroupParams,),  # noqa: E501
+            'mongodb_ops_params': (MongoDBOpsManagerProtectionGroupParams,),  # noqa: E501
             'mongodb_params': (MongoDBProtectionGroupParams,),  # noqa: E501
             'mssql_params': (MSSQLProtectionGroupParams,),  # noqa: E501
             'netapp_params': (NetappProtectionGroupParams,),  # noqa: E501
             'nimble_params': (NimbleProtectionGroupParams,),  # noqa: E501
+            'nutanix_fs_params': (NutanixFSProtectionGroupParams,),  # noqa: E501
             'office365_params': (Office365ProtectionGroupParams,),  # noqa: E501
             'oracle_params': (OracleProtectionGroupParams,),  # noqa: E501
             'physical_params': (PhysicalProtectionGroupParams,),  # noqa: E501
+            'postgres_params': (PostgresProtectionGroupParams,),  # noqa: E501
             'pure_params': (PureProtectionGroupParams,),  # noqa: E501
             'remote_adapter_params': (RemoteAdapterProtectionGroupParams,),  # noqa: E501
+            's3_compatible_params': (S3CompatibleProtectionGroupParams,),  # noqa: E501
+            'sap_hana_params': (SapHanaProtectionGroupParams,),  # noqa: E501
             'sfdc_params': (SfdcProtectionGroupParams,),  # noqa: E501
             'uda_params': (UdaProtectionGroupParams,),  # noqa: E501
             'view_params': (ViewProtectionGroupParams,),  # noqa: E501
@@ -298,6 +375,7 @@ class ProtectionGroup(ModelComposed):
         'advanced_configs': 'advancedConfigs',  # noqa: E501
         'alert_policy': 'alertPolicy',  # noqa: E501
         'cluster_id': 'clusterId',  # noqa: E501
+        'creation_time_usecs': 'creationTimeUsecs',  # noqa: E501
         'description': 'description',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'environment': 'environment',  # noqa: E501
@@ -313,6 +391,7 @@ class ProtectionGroup(ModelComposed):
         'name': 'name',  # noqa: E501
         'num_protected_objects': 'numProtectedObjects',  # noqa: E501
         'pause_in_blackouts': 'pauseInBlackouts',  # noqa: E501
+        'pause_metadata': 'pauseMetadata',  # noqa: E501
         'permissions': 'permissions',  # noqa: E501
         'policy_id': 'policyId',  # noqa: E501
         'priority': 'priority',  # noqa: E501
@@ -327,11 +406,14 @@ class ProtectionGroup(ModelComposed):
         'azure_params': 'azureParams',  # noqa: E501
         'cassandra_params': 'cassandraParams',  # noqa: E501
         'couchbase_params': 'couchbaseParams',  # noqa: E501
+        'db2_params': 'db2Params',  # noqa: E501
         'elastifile_params': 'elastifileParams',  # noqa: E501
         'exchange_params': 'exchangeParams',  # noqa: E501
+        'experimental_adapter_params': 'experimentalAdapterParams',  # noqa: E501
         'flashblade_params': 'flashbladeParams',  # noqa: E501
         'gcp_params': 'gcpParams',  # noqa: E501
         'generic_nas_params': 'genericNasParams',  # noqa: E501
+        'google_workspace_params': 'googleWorkspaceParams',  # noqa: E501
         'gpfs_params': 'gpfsParams',  # noqa: E501
         'hbase_params': 'hbaseParams',  # noqa: E501
         'hdfs_params': 'hdfsParams',  # noqa: E501
@@ -341,15 +423,20 @@ class ProtectionGroup(ModelComposed):
         'isilon_params': 'isilonParams',  # noqa: E501
         'kubernetes_params': 'kubernetesParams',  # noqa: E501
         'kvm_params': 'kvmParams',  # noqa: E501
+        'mongodb_ops_params': 'mongodbOpsParams',  # noqa: E501
         'mongodb_params': 'mongodbParams',  # noqa: E501
         'mssql_params': 'mssqlParams',  # noqa: E501
         'netapp_params': 'netappParams',  # noqa: E501
         'nimble_params': 'nimbleParams',  # noqa: E501
+        'nutanix_fs_params': 'nutanixFSParams',  # noqa: E501
         'office365_params': 'office365Params',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
+        'postgres_params': 'postgresParams',  # noqa: E501
         'pure_params': 'pureParams',  # noqa: E501
         'remote_adapter_params': 'remoteAdapterParams',  # noqa: E501
+        's3_compatible_params': 's3CompatibleParams',  # noqa: E501
+        'sap_hana_params': 'sapHanaParams',  # noqa: E501
         'sfdc_params': 'sfdcParams',  # noqa: E501
         'uda_params': 'udaParams',  # noqa: E501
         'view_params': 'viewParams',  # noqa: E501
@@ -408,6 +495,7 @@ class ProtectionGroup(ModelComposed):
             advanced_configs ([KeyValuePair], none_type): Specifies the advanced configuration for a protection job.. [optional]  # noqa: E501
             alert_policy (ProtectionGroupAlertingPolicy): [optional]  # noqa: E501
             cluster_id (str, none_type): Specifies the cluster ID.. [optional]  # noqa: E501
+            creation_time_usecs (int, none_type): Specifies the time in micro seconds when this protection group was created.. [optional]  # noqa: E501
             description (str, none_type): Specifies a description of the Protection Group.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.. [optional]  # noqa: E501
             environment (str, none_type): Specifies the environment of the Protection Group.. [optional]  # noqa: E501
@@ -418,11 +506,12 @@ class ProtectionGroup(ModelComposed):
             is_paused (bool, none_type): Specifies if the the Protection Group is paused. New runs are not scheduled for the paused Protection Groups. Active run if any is not impacted.. [optional]  # noqa: E501
             is_protect_once (bool, none_type): Specifies if the the Protection Group is using a protect once type of policy. This field is helpful to identify run happen for this group.. [optional]  # noqa: E501
             last_modified_timestamp_usecs (int, none_type): Specifies the last time this protection group was updated. If this is passed into a PUT request, then the backend will validate that the timestamp passed in matches the time that the protection group was actually last modified. If the two timestamps do not match, then the request will be rejected with a stale error.. [optional]  # noqa: E501
-            last_run (ProtectionGroupRun): [optional]  # noqa: E501
+            last_run (CommonProtectionGroupRunResponseParameters): [optional]  # noqa: E501
             missing_entities ([MissingEntityParams], none_type): Specifies the Information about missing entities.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the Protection Group.. [optional]  # noqa: E501
             num_protected_objects (int, none_type): Specifies the number of protected objects of the Protection Group.. [optional]  # noqa: E501
             pause_in_blackouts (bool, none_type): Specifies whether currently executing jobs should be paused if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if 'abortInBlackouts' is sent as true.. [optional]  # noqa: E501
+            pause_metadata (PauseMetadata): [optional]  # noqa: E501
             permissions ([Tenant], none_type): Specifies the list of tenants that have permissions for this protection group.. [optional]  # noqa: E501
             policy_id (str, none_type): Specifies the unique id of the Protection Policy associated with the Protection Group. The Policy provides retry settings Protection Schedules, Priority, SLA, etc.. [optional]  # noqa: E501
             priority (str, none_type): Specifies the priority of the Protection Group.. [optional]  # noqa: E501
@@ -437,11 +526,14 @@ class ProtectionGroup(ModelComposed):
             azure_params (AzureProtectionGroupParams): [optional]  # noqa: E501
             cassandra_params (CassandraProtectionGroupParams): [optional]  # noqa: E501
             couchbase_params (NoSqlProtectionGroupParams): [optional]  # noqa: E501
+            db2_params (DB2ProtectionGroupParams): [optional]  # noqa: E501
             elastifile_params (ElastifileProtectionGroupParams): [optional]  # noqa: E501
             exchange_params (ExchangeProtectionGroupParams): [optional]  # noqa: E501
+            experimental_adapter_params (ExperimentalAdapterProtectionGroupParams): [optional]  # noqa: E501
             flashblade_params (FlashbladeProtectionGroupParams): [optional]  # noqa: E501
             gcp_params (GcpProtectionGroupParams): [optional]  # noqa: E501
             generic_nas_params (GenericNasProtectionGroupParams): [optional]  # noqa: E501
+            google_workspace_params (GoogleWorkspaceProtectionGroupParams): [optional]  # noqa: E501
             gpfs_params (GpfsProtectionGroupParams): [optional]  # noqa: E501
             hbase_params (NoSqlProtectionGroupParams): [optional]  # noqa: E501
             hdfs_params (HdfsProtectionGroupParams): [optional]  # noqa: E501
@@ -451,15 +543,20 @@ class ProtectionGroup(ModelComposed):
             isilon_params (IsilonProtectionGroupParams): [optional]  # noqa: E501
             kubernetes_params (KubernetesProtectionGroupParams): [optional]  # noqa: E501
             kvm_params (KvmProtectionGroupParams): [optional]  # noqa: E501
+            mongodb_ops_params (MongoDBOpsManagerProtectionGroupParams): [optional]  # noqa: E501
             mongodb_params (MongoDBProtectionGroupParams): [optional]  # noqa: E501
             mssql_params (MSSQLProtectionGroupParams): [optional]  # noqa: E501
             netapp_params (NetappProtectionGroupParams): [optional]  # noqa: E501
             nimble_params (NimbleProtectionGroupParams): [optional]  # noqa: E501
+            nutanix_fs_params (NutanixFSProtectionGroupParams): [optional]  # noqa: E501
             office365_params (Office365ProtectionGroupParams): [optional]  # noqa: E501
             oracle_params (OracleProtectionGroupParams): [optional]  # noqa: E501
             physical_params (PhysicalProtectionGroupParams): [optional]  # noqa: E501
+            postgres_params (PostgresProtectionGroupParams): [optional]  # noqa: E501
             pure_params (PureProtectionGroupParams): [optional]  # noqa: E501
             remote_adapter_params (RemoteAdapterProtectionGroupParams): [optional]  # noqa: E501
+            s3_compatible_params (S3CompatibleProtectionGroupParams): [optional]  # noqa: E501
+            sap_hana_params (SapHanaProtectionGroupParams): [optional]  # noqa: E501
             sfdc_params (SfdcProtectionGroupParams): [optional]  # noqa: E501
             uda_params (UdaProtectionGroupParams): [optional]  # noqa: E501
             view_params (ViewProtectionGroupParams): [optional]  # noqa: E501

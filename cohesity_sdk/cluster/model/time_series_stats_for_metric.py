@@ -63,7 +63,6 @@ class TimeSeriesStatsForMetric(ModelNormal):
             'KINT64': "kInt64",
             'KDOUBLE': "kDouble",
             'KSTRING': "kString",
-            'KBYTES': "kBytes",
         },
     }
 

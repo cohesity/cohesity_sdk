@@ -20,11 +20,13 @@ Method | HTTP request | Description
 
 Configure Identity Provider
 
-Configure Identity Provider on the cluster. Currently this API is only for Open ID providers, but will be expanded to include SAML providers in the future.
+**Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Configure Identity Provider on the cluster. Currently this API is only for Open ID providers, but will be expanded to include SAML providers in the future.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -90,7 +92,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -111,11 +113,13 @@ Name | Type | Description  | Notes
 
 Configure identity provider
 
-Configure SAML based identity provider on the cluster
+**Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Configure SAML based identity provider on the cluster
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.create_idp_request_params import CreateIdpRequestParams
@@ -157,7 +161,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -178,11 +182,13 @@ Name | Type | Description  | Notes
 
 Delete Identity Provider
 
-Delete identity provider configuration on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
+**Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete identity provider configuration on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -221,7 +227,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -242,11 +248,13 @@ void (empty response body)
 
 Delete identity provider
 
-Delete SAML based identity provider configuration on the cluster
+**Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete SAML based identity provider configuration on the cluster
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -285,7 +293,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -306,11 +314,13 @@ void (empty response body)
 
 Get Identities
 
-Get Identity Providers configured on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
+**Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Identity Providers configured on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -364,7 +374,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -385,11 +395,13 @@ Name | Type | Description  | Notes
 
 Get identity providers
 
-Get SAML based identity providers configured on the cluster
+**Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get SAML based identity providers configured on the cluster
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.identity_provider_configurations import IdentityProviderConfigurations
@@ -447,7 +459,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -468,11 +480,13 @@ Name | Type | Description  | Notes
 
 Login to cluster using idp
 
-Redirects the client to the idp site with the URI to login
+```No Privileges Required``` <br><br>Redirects the client to the idp site with the URI to login
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -513,7 +527,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -534,11 +548,13 @@ Name | Type | Description  | Notes
 
 Perform Identity Action
 
-Perform an action on an Identity Provider. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
+**Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Perform an action on an Identity Provider. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.identity_action import IdentityAction
@@ -587,7 +603,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -608,11 +624,13 @@ Name | Type | Description  | Notes
 
 Update Identity Provider
 
-Update Identity Provider on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
+**Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Update Identity Provider on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -680,7 +698,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
@@ -701,16 +719,18 @@ Name | Type | Description  | Notes
 
 Update identity provider
 
-Update SAML based identity provider configurartion on the cluster
+**Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Update SAML based identity provider configurartion on the cluster
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.update_idp_request_params import UpdateIdpRequestParams
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.identity_provider_configuration import IdentityProviderConfiguration
+from cohesity_sdk.cluster.model.common_identity_provider_configuration import CommonIdentityProviderConfiguration
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -724,7 +744,19 @@ client = ClusterClient(
 
 
 id = 1 # int | Specifies id of idp configuration
-body = UpdateIdpRequestParams() # UpdateIdpRequestParams | Specifies parameters to update identity provider configuration
+body = CommonIdentityProviderConfiguration(
+        allow_local_user_login=True,
+        certificate="certificate_example",
+        certificate_filename="certificate_filename_example",
+        is_enabled=True,
+        issuer_id="issuer_id_example",
+        roles=[
+            "roles_example",
+        ],
+        saml_attribute_name="saml_attribute_name_example",
+        sign_request=True,
+        sso_url="sso_url_example",
+    ) # CommonIdentityProviderConfiguration | Specifies parameters to update identity provider configuration
 
 # example passing only required values which don't have defaults set
 try:
@@ -741,7 +773,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies id of idp configuration |
- **body** | [**UpdateIdpRequestParams**](UpdateIdpRequestParams.md)| Specifies parameters to update identity provider configuration |
+ **body** | [**CommonIdentityProviderConfiguration**](CommonIdentityProviderConfiguration.md)| Specifies parameters to update identity provider configuration |
 
 ### Return type
 
@@ -749,7 +781,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 

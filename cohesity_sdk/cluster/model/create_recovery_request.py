@@ -28,13 +28,18 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.cassandra_params import CassandraParams
+    from cohesity_sdk.cluster.model.common_filter_expression import CommonFilterExpression
     from cohesity_sdk.cluster.model.common_recovery_request_params import CommonRecoveryRequestParams
     from cohesity_sdk.cluster.model.couchbase_params import CouchbaseParams
     from cohesity_sdk.cluster.model.create_recovery_request_all_of import CreateRecoveryRequestAllOf
+    from cohesity_sdk.cluster.model.db2_params import DB2Params
+    from cohesity_sdk.cluster.model.experimental_adapter_params import ExperimentalAdapterParams
     from cohesity_sdk.cluster.model.hbase_params import HbaseParams
     from cohesity_sdk.cluster.model.hdfs_params import HdfsParams
     from cohesity_sdk.cluster.model.hive_params import HiveParams
+    from cohesity_sdk.cluster.model.mongodb_ops_manager_params import MongodbOpsManagerParams
     from cohesity_sdk.cluster.model.mongodb_params import MongodbParams
+    from cohesity_sdk.cluster.model.postgres_params import PostgresParams
     from cohesity_sdk.cluster.model.recover_acropolis_params import RecoverAcropolisParams
     from cohesity_sdk.cluster.model.recover_aws_params import RecoverAwsParams
     from cohesity_sdk.cluster.model.recover_azure_params import RecoverAzureParams
@@ -43,29 +48,39 @@ def lazy_import():
     from cohesity_sdk.cluster.model.recover_flashblade_params import RecoverFlashbladeParams
     from cohesity_sdk.cluster.model.recover_gcp_params import RecoverGcpParams
     from cohesity_sdk.cluster.model.recover_generic_nas_params import RecoverGenericNasParams
+    from cohesity_sdk.cluster.model.recover_google_workspace_params import RecoverGoogleWorkspaceParams
     from cohesity_sdk.cluster.model.recover_gpfs_params import RecoverGpfsParams
     from cohesity_sdk.cluster.model.recover_hyper_v_params import RecoverHyperVParams
     from cohesity_sdk.cluster.model.recover_isilon_params import RecoverIsilonParams
     from cohesity_sdk.cluster.model.recover_kubernetes_params import RecoverKubernetesParams
     from cohesity_sdk.cluster.model.recover_kvm_params import RecoverKvmParams
     from cohesity_sdk.cluster.model.recover_netapp_params import RecoverNetappParams
+    from cohesity_sdk.cluster.model.recover_nutanix_fs_params import RecoverNutanixFSParams
     from cohesity_sdk.cluster.model.recover_o365_params import RecoverO365Params
     from cohesity_sdk.cluster.model.recover_oracle_params import RecoverOracleParams
     from cohesity_sdk.cluster.model.recover_physical_params import RecoverPhysicalParams
     from cohesity_sdk.cluster.model.recover_pure_params import RecoverPureParams
+    from cohesity_sdk.cluster.model.recover_s3_compatible_params import RecoverS3CompatibleParams
     from cohesity_sdk.cluster.model.recover_salesforce_params import RecoverSalesforceParams
+    from cohesity_sdk.cluster.model.recover_service_now_params import RecoverServiceNowParams
     from cohesity_sdk.cluster.model.recover_sql_params import RecoverSqlParams
     from cohesity_sdk.cluster.model.recover_view_params import RecoverViewParams
     from cohesity_sdk.cluster.model.recover_vmware_params import RecoverVmwareParams
+    from cohesity_sdk.cluster.model.sap_hana_params import SapHanaParams
     from cohesity_sdk.cluster.model.uda_params import UdaParams
     globals()['CassandraParams'] = CassandraParams
+    globals()['CommonFilterExpression'] = CommonFilterExpression
     globals()['CommonRecoveryRequestParams'] = CommonRecoveryRequestParams
     globals()['CouchbaseParams'] = CouchbaseParams
     globals()['CreateRecoveryRequestAllOf'] = CreateRecoveryRequestAllOf
+    globals()['DB2Params'] = DB2Params
+    globals()['ExperimentalAdapterParams'] = ExperimentalAdapterParams
     globals()['HbaseParams'] = HbaseParams
     globals()['HdfsParams'] = HdfsParams
     globals()['HiveParams'] = HiveParams
+    globals()['MongodbOpsManagerParams'] = MongodbOpsManagerParams
     globals()['MongodbParams'] = MongodbParams
+    globals()['PostgresParams'] = PostgresParams
     globals()['RecoverAcropolisParams'] = RecoverAcropolisParams
     globals()['RecoverAwsParams'] = RecoverAwsParams
     globals()['RecoverAzureParams'] = RecoverAzureParams
@@ -74,20 +89,25 @@ def lazy_import():
     globals()['RecoverFlashbladeParams'] = RecoverFlashbladeParams
     globals()['RecoverGcpParams'] = RecoverGcpParams
     globals()['RecoverGenericNasParams'] = RecoverGenericNasParams
+    globals()['RecoverGoogleWorkspaceParams'] = RecoverGoogleWorkspaceParams
     globals()['RecoverGpfsParams'] = RecoverGpfsParams
     globals()['RecoverHyperVParams'] = RecoverHyperVParams
     globals()['RecoverIsilonParams'] = RecoverIsilonParams
     globals()['RecoverKubernetesParams'] = RecoverKubernetesParams
     globals()['RecoverKvmParams'] = RecoverKvmParams
     globals()['RecoverNetappParams'] = RecoverNetappParams
+    globals()['RecoverNutanixFSParams'] = RecoverNutanixFSParams
     globals()['RecoverO365Params'] = RecoverO365Params
     globals()['RecoverOracleParams'] = RecoverOracleParams
     globals()['RecoverPhysicalParams'] = RecoverPhysicalParams
     globals()['RecoverPureParams'] = RecoverPureParams
+    globals()['RecoverS3CompatibleParams'] = RecoverS3CompatibleParams
     globals()['RecoverSalesforceParams'] = RecoverSalesforceParams
+    globals()['RecoverServiceNowParams'] = RecoverServiceNowParams
     globals()['RecoverSqlParams'] = RecoverSqlParams
     globals()['RecoverViewParams'] = RecoverViewParams
     globals()['RecoverVmwareParams'] = RecoverVmwareParams
+    globals()['SapHanaParams'] = SapHanaParams
     globals()['UdaParams'] = UdaParams
 
 
@@ -130,6 +150,7 @@ class CreateRecoveryRequest(ModelComposed):
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
             'KNETAPP': "kNetapp",
+            'KNUTANIXFS': "kNutanixFS",
             'KGENERICNAS': "kGenericNas",
             'KISILON': "kIsilon",
             'KFLASHBLADE': "kFlashBlade",
@@ -148,9 +169,22 @@ class CreateRecoveryRequest(ModelComposed):
             'KCOUCHBASE': "kCouchbase",
             'KHDFS': "kHdfs",
             'KHIVE': "kHive",
+            'KS3COMPATIBLE': "kS3Compatible",
+            'KSAPHANA': "kSAPHANA",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
             'KSFDC': "kSfdc",
+            'KEXPERIMENTALADAPTER': "kExperimentalAdapter",
+            'KMONGODBPHYSICAL': "kMongoDBPhysical",
+            'KGOOGLEWORKSPACE': "kGoogleWorkspace",
+            'KDB2': "kDB2",
+            'KSERVICENOW': "kServiceNow",
+            'KPOSTGRES': "kPostgres",
+        },
+        ('nfs_protocol',): {
+            'None': None,
+            'KNFS3': "kNfs3",
+            'KNFS4_1': "kNfs4_1",
         },
     }
 
@@ -175,16 +209,21 @@ class CreateRecoveryRequest(ModelComposed):
         return {
             'name': (str, none_type,),  # noqa: E501
             'snapshot_environment': (str,),  # noqa: E501
+            'filter_params': (CommonFilterExpression,),  # noqa: E501
+            'nfs_protocol': (str, none_type,),  # noqa: E501
             'acropolis_params': (RecoverAcropolisParams,),  # noqa: E501
             'aws_params': (RecoverAwsParams,),  # noqa: E501
             'azure_params': (RecoverAzureParams,),  # noqa: E501
             'cassandra_params': (CassandraParams,),  # noqa: E501
             'couchbase_params': (CouchbaseParams,),  # noqa: E501
+            'db2_params': (DB2Params,),  # noqa: E501
             'elastifile_params': (RecoverElastifileParams,),  # noqa: E501
             'exchange_params': (RecoverExchangeParams,),  # noqa: E501
+            'experimental_adapter_params': (ExperimentalAdapterParams,),  # noqa: E501
             'flashblade_params': (RecoverFlashbladeParams,),  # noqa: E501
             'gcp_params': (RecoverGcpParams,),  # noqa: E501
             'generic_nas_params': (RecoverGenericNasParams,),  # noqa: E501
+            'google_workspace_params': (RecoverGoogleWorkspaceParams,),  # noqa: E501
             'gpfs_params': (RecoverGpfsParams,),  # noqa: E501
             'hbase_params': (HbaseParams,),  # noqa: E501
             'hdfs_params': (HdfsParams,),  # noqa: E501
@@ -194,13 +233,19 @@ class CreateRecoveryRequest(ModelComposed):
             'isilon_params': (RecoverIsilonParams,),  # noqa: E501
             'kubernetes_params': (RecoverKubernetesParams,),  # noqa: E501
             'kvm_params': (RecoverKvmParams,),  # noqa: E501
+            'mongodb_ops_params': (MongodbOpsManagerParams,),  # noqa: E501
             'mongodb_params': (MongodbParams,),  # noqa: E501
             'mssql_params': (RecoverSqlParams,),  # noqa: E501
             'netapp_params': (RecoverNetappParams,),  # noqa: E501
+            'nutanix_fs_params': (RecoverNutanixFSParams,),  # noqa: E501
             'office365_params': (RecoverO365Params,),  # noqa: E501
             'oracle_params': (RecoverOracleParams,),  # noqa: E501
             'physical_params': (RecoverPhysicalParams,),  # noqa: E501
+            'postgres_params': (PostgresParams,),  # noqa: E501
             'pure_params': (RecoverPureParams,),  # noqa: E501
+            's3_compatible_params': (RecoverS3CompatibleParams,),  # noqa: E501
+            'sap_hana_params': (SapHanaParams,),  # noqa: E501
+            'service_now_params': (RecoverServiceNowParams,),  # noqa: E501
             'sfdc_params': (RecoverSalesforceParams,),  # noqa: E501
             'uda_params': (UdaParams,),  # noqa: E501
             'view_params': (RecoverViewParams,),  # noqa: E501
@@ -216,16 +261,21 @@ class CreateRecoveryRequest(ModelComposed):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'snapshot_environment': 'snapshotEnvironment',  # noqa: E501
+        'filter_params': 'filterParams',  # noqa: E501
+        'nfs_protocol': 'nfsProtocol',  # noqa: E501
         'acropolis_params': 'acropolisParams',  # noqa: E501
         'aws_params': 'awsParams',  # noqa: E501
         'azure_params': 'azureParams',  # noqa: E501
         'cassandra_params': 'cassandraParams',  # noqa: E501
         'couchbase_params': 'couchbaseParams',  # noqa: E501
+        'db2_params': 'db2Params',  # noqa: E501
         'elastifile_params': 'elastifileParams',  # noqa: E501
         'exchange_params': 'exchangeParams',  # noqa: E501
+        'experimental_adapter_params': 'experimentalAdapterParams',  # noqa: E501
         'flashblade_params': 'flashbladeParams',  # noqa: E501
         'gcp_params': 'gcpParams',  # noqa: E501
         'generic_nas_params': 'genericNasParams',  # noqa: E501
+        'google_workspace_params': 'googleWorkspaceParams',  # noqa: E501
         'gpfs_params': 'gpfsParams',  # noqa: E501
         'hbase_params': 'hbaseParams',  # noqa: E501
         'hdfs_params': 'hdfsParams',  # noqa: E501
@@ -235,13 +285,19 @@ class CreateRecoveryRequest(ModelComposed):
         'isilon_params': 'isilonParams',  # noqa: E501
         'kubernetes_params': 'kubernetesParams',  # noqa: E501
         'kvm_params': 'kvmParams',  # noqa: E501
+        'mongodb_ops_params': 'mongodbOpsParams',  # noqa: E501
         'mongodb_params': 'mongodbParams',  # noqa: E501
         'mssql_params': 'mssqlParams',  # noqa: E501
         'netapp_params': 'netappParams',  # noqa: E501
+        'nutanix_fs_params': 'nutanixFSParams',  # noqa: E501
         'office365_params': 'office365Params',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
+        'postgres_params': 'postgresParams',  # noqa: E501
         'pure_params': 'pureParams',  # noqa: E501
+        's3_compatible_params': 's3CompatibleParams',  # noqa: E501
+        'sap_hana_params': 'sapHanaParams',  # noqa: E501
+        'service_now_params': 'serviceNowParams',  # noqa: E501
         'sfdc_params': 'sfdcParams',  # noqa: E501
         'uda_params': 'udaParams',  # noqa: E501
         'view_params': 'viewParams',  # noqa: E501
@@ -300,16 +356,21 @@ class CreateRecoveryRequest(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            filter_params (CommonFilterExpression): [optional]  # noqa: E501
+            nfs_protocol (str, none_type): Specifies NFS protocol version. This protocol will be employed if the recovery request mounts the Cohesity storage via NFS on the primary source.. [optional]  # noqa: E501
             acropolis_params (RecoverAcropolisParams): [optional]  # noqa: E501
             aws_params (RecoverAwsParams): [optional]  # noqa: E501
             azure_params (RecoverAzureParams): [optional]  # noqa: E501
             cassandra_params (CassandraParams): [optional]  # noqa: E501
             couchbase_params (CouchbaseParams): [optional]  # noqa: E501
+            db2_params (DB2Params): [optional]  # noqa: E501
             elastifile_params (RecoverElastifileParams): [optional]  # noqa: E501
             exchange_params (RecoverExchangeParams): [optional]  # noqa: E501
+            experimental_adapter_params (ExperimentalAdapterParams): [optional]  # noqa: E501
             flashblade_params (RecoverFlashbladeParams): [optional]  # noqa: E501
             gcp_params (RecoverGcpParams): [optional]  # noqa: E501
             generic_nas_params (RecoverGenericNasParams): [optional]  # noqa: E501
+            google_workspace_params (RecoverGoogleWorkspaceParams): [optional]  # noqa: E501
             gpfs_params (RecoverGpfsParams): [optional]  # noqa: E501
             hbase_params (HbaseParams): [optional]  # noqa: E501
             hdfs_params (HdfsParams): [optional]  # noqa: E501
@@ -319,13 +380,19 @@ class CreateRecoveryRequest(ModelComposed):
             isilon_params (RecoverIsilonParams): [optional]  # noqa: E501
             kubernetes_params (RecoverKubernetesParams): [optional]  # noqa: E501
             kvm_params (RecoverKvmParams): [optional]  # noqa: E501
+            mongodb_ops_params (MongodbOpsManagerParams): [optional]  # noqa: E501
             mongodb_params (MongodbParams): [optional]  # noqa: E501
             mssql_params (RecoverSqlParams): [optional]  # noqa: E501
             netapp_params (RecoverNetappParams): [optional]  # noqa: E501
+            nutanix_fs_params (RecoverNutanixFSParams): [optional]  # noqa: E501
             office365_params (RecoverO365Params): [optional]  # noqa: E501
             oracle_params (RecoverOracleParams): [optional]  # noqa: E501
             physical_params (RecoverPhysicalParams): [optional]  # noqa: E501
+            postgres_params (PostgresParams): [optional]  # noqa: E501
             pure_params (RecoverPureParams): [optional]  # noqa: E501
+            s3_compatible_params (RecoverS3CompatibleParams): [optional]  # noqa: E501
+            sap_hana_params (SapHanaParams): [optional]  # noqa: E501
+            service_now_params (RecoverServiceNowParams): [optional]  # noqa: E501
             sfdc_params (RecoverSalesforceParams): [optional]  # noqa: E501
             uda_params (UdaParams): [optional]  # noqa: E501
             view_params (RecoverViewParams): [optional]  # noqa: E501

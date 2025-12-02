@@ -83,6 +83,7 @@ class VmwareObjectProtectionRequestParamsAllOf(ModelNormal):
         return {
             'objects': ([VmwareObjectProtectionRequest],),  # noqa: E501
             'global_exclude_disks': ([DiskInfo], none_type,),  # noqa: E501
+            'global_include_disks': ([DiskInfo], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,6 +95,7 @@ class VmwareObjectProtectionRequestParamsAllOf(ModelNormal):
     attribute_map = {
         'objects': 'objects',  # noqa: E501
         'global_exclude_disks': 'globalExcludeDisks',  # noqa: E501
+        'global_include_disks': 'globalIncludeDisks',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,6 +149,7 @@ class VmwareObjectProtectionRequestParamsAllOf(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             global_exclude_disks ([DiskInfo], none_type): Specifies a list of disks to exclude from the backup.. [optional]  # noqa: E501
+            global_include_disks ([DiskInfo], none_type): Specifies a list of disks to include in the backup.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

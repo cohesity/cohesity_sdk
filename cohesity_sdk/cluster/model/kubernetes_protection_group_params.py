@@ -98,6 +98,7 @@ class KubernetesProtectionGroupParams(ModelNormal):
             'leverage_csi_snapshot': (bool, none_type,),  # noqa: E501
             'non_snapshot_backup': (bool, none_type,),  # noqa: E501
             'objects': ([KubernetesProtectionGroupObjectParams],),  # noqa: E501
+            'perform_source_side_deduplication': (bool, none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
             'vlan_params': (VlanParams,),  # noqa: E501
@@ -120,6 +121,7 @@ class KubernetesProtectionGroupParams(ModelNormal):
         'leverage_csi_snapshot': 'leverageCSISnapshot',  # noqa: E501
         'non_snapshot_backup': 'nonSnapshotBackup',  # noqa: E501
         'objects': 'objects',  # noqa: E501
+        'perform_source_side_deduplication': 'performSourceSideDeduplication',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
         'vlan_params': 'vlanParams',  # noqa: E501
@@ -182,6 +184,7 @@ class KubernetesProtectionGroupParams(ModelNormal):
             leverage_csi_snapshot (bool, none_type): Specifies if CSI snapshots should be used for backup of namespaces.. [optional]  # noqa: E501
             non_snapshot_backup (bool, none_type): Specifies if snapshot backup fails, non-snapshot backup will be proceeded.. [optional]  # noqa: E501
             objects ([KubernetesProtectionGroupObjectParams]): Specifies the objects included in the Protection Group.. [optional]  # noqa: E501
+            perform_source_side_deduplication (bool, none_type): Specifies whether or not to perform source side deduplication on this Protection Group.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
             vlan_params (VlanParams): [optional]  # noqa: E501

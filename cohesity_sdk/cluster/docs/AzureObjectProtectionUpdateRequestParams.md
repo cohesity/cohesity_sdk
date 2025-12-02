@@ -6,6 +6,7 @@ Specifies the parameters which are specific to Azure related Object Protection u
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **protection_type** | **str** | Specifies the Azure Protection Job type. | [optional] 
+**azure_entra_id_protection_type_params** | [**AzureEntraIDObjectProtectionParams**](AzureEntraIDObjectProtectionParams.md) |  | [optional] 
 **azure_sql_protection_type_params** | [**AzureSqlObjectProtectionParams**](AzureSqlObjectProtectionParams.md) |  | [optional] 
 **native_protection_type_params** | [**AzureNativeObjectProtectionParams**](AzureNativeObjectProtectionParams.md) |  | [optional] 
 

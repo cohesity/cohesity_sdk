@@ -69,6 +69,12 @@ class Disk(ModelNormal):
             'UNKNOWN': "Unknown",
             'NOTSUPPORTED': "NotSupported",
         },
+        ('ssd_usage_level',): {
+            'None': None,
+            'NORMAL': "Normal",
+            'WARNING': "Warning",
+            'CRITICAL': "Critical",
+        },
         ('status',): {
             'ONLINE': "Online",
             'OFFLINE': "Offline",
@@ -125,6 +131,7 @@ class Disk(ModelNormal):
             'services_acked_list': ([str], none_type,),  # noqa: E501
             'services_not_acked': (str, none_type,),  # noqa: E501
             'services_not_acked_list': ([str], none_type,),  # noqa: E501
+            'ssd_usage_level': (str, none_type,),  # noqa: E501
             'ssd_used_percentage': (int, none_type,),  # noqa: E501
             'status': (str,),  # noqa: E501
             'time_remaining': (int, none_type,),  # noqa: E501
@@ -154,6 +161,7 @@ class Disk(ModelNormal):
         'services_acked_list': 'servicesAckedList',  # noqa: E501
         'services_not_acked': 'servicesNotAcked',  # noqa: E501
         'services_not_acked_list': 'servicesNotAckedList',  # noqa: E501
+        'ssd_usage_level': 'ssdUsageLevel',  # noqa: E501
         'ssd_used_percentage': 'ssdUsedPercentage',  # noqa: E501
         'status': 'status',  # noqa: E501
         'time_remaining': 'timeRemaining',  # noqa: E501
@@ -223,6 +231,7 @@ class Disk(ModelNormal):
             services_acked_list ([str], none_type): Specifies the services already ACKed for removal of this entity.. [optional]  # noqa: E501
             services_not_acked (str, none_type): Specifies the services that are not ACKed after disk is marked for removal.. [optional]  # noqa: E501
             services_not_acked_list ([str], none_type): Specifies the services not ACKed yet for removal of this entity.. [optional]  # noqa: E501
+            ssd_usage_level (str, none_type): Specifies SSD usage level as Normal, Warning or Critical.. [optional]  # noqa: E501
             ssd_used_percentage (int, none_type): Specifies SSD used percentage.. [optional]  # noqa: E501
             status (str): Specifies status of the disk.. [optional]  # noqa: E501
             time_remaining (int, none_type): Specifies the total duration in seconds left to remove the Disk.. [optional]  # noqa: E501

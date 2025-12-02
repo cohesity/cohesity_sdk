@@ -74,8 +74,10 @@ class UserId(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'domain': (str, none_type,),  # noqa: E501
             'sid': (str, none_type,),  # noqa: E501
             'unix_uid': (int, none_type,),  # noqa: E501
+            'user_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +87,10 @@ class UserId(ModelNormal):
 
 
     attribute_map = {
+        'domain': 'domain',  # noqa: E501
         'sid': 'sid',  # noqa: E501
         'unix_uid': 'unixUid',  # noqa: E501
+        'user_name': 'userName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +140,10 @@ class UserId(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            domain (str, none_type): Specifies the domain name of the user, where the principal' account is maintained.. [optional]  # noqa: E501
             sid (str, none_type): Specifies the user sid.. [optional]  # noqa: E501
             unix_uid (int, none_type): Specifies the unix Uid.. [optional]  # noqa: E501
+            user_name (str, none_type): Specifies the full name of the user. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

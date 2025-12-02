@@ -6,8 +6,8 @@ Specifies the recovery options specific to Exchange environment.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **recovery_action** | **str** | Specifies the type of recover action to be performed. | 
-**recover_app_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the parameters to recover Exchange databases using SMB share. | [optional] 
-**recover_exchange_dbs_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the parameters to recover Exchange databases. | [optional] 
+**recover_app_params** | [**RecoverExchangeAppParams**](RecoverExchangeAppParams.md) |  | [optional] 
+**recover_exchange_dbs_params** | [**RecoverExchangeDbsParams**](RecoverExchangeDbsParams.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -82,6 +82,7 @@ class SyslogServer(ModelNormal):
             'is_tls_enabled': (bool, none_type,),  # noqa: E501
             'msg_pattern_list': ([str],),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
+            'permitted_peer': (str, none_type,),  # noqa: E501
             'port': (int, none_type,),  # noqa: E501
             'program_name_list': ([str],),  # noqa: E501
             'protocol': (str, none_type,),  # noqa: E501
@@ -104,6 +105,7 @@ class SyslogServer(ModelNormal):
         'is_tls_enabled': 'isTlsEnabled',  # noqa: E501
         'msg_pattern_list': 'msgPatternList',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'permitted_peer': 'permittedPeer',  # noqa: E501
         'port': 'port',  # noqa: E501
         'program_name_list': 'programNameList',  # noqa: E501
         'protocol': 'protocol',  # noqa: E501
@@ -166,6 +168,7 @@ class SyslogServer(ModelNormal):
             is_tls_enabled (bool, none_type): Specify whether to enable tls support.. [optional]  # noqa: E501
             msg_pattern_list ([str]): Send logs including the msg patterns to logging server.. [optional]  # noqa: E501
             name (str, none_type): Specifies a unique name for the syslog server on the Cluster.. [optional]  # noqa: E501
+            permitted_peer (str, none_type): Syslog server certificate common name.. [optional]  # noqa: E501
             port (int, none_type): Specifies the port where the syslog server listens.. [optional]  # noqa: E501
             program_name_list ([str]): Send programes related logs to logging server.. [optional]  # noqa: E501
             protocol (str, none_type): Specifies the protocol used to send the logs.. [optional]  # noqa: E501

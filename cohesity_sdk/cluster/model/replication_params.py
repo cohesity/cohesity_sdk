@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.bandwidth_throttling import BandwidthThrottling
     from cohesity_sdk.cluster.model.storage_domain_pair import StorageDomainPair
+    globals()['BandwidthThrottling'] = BandwidthThrottling
     globals()['StorageDomainPair'] = StorageDomainPair
 
 
@@ -80,7 +82,7 @@ class ReplicationParams(ModelNormal):
         lazy_import()
         return {
             'all_endpoints_reachable': (bool, none_type,),  # noqa: E501
-            'bandwidth_limit': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'bandwidth_limit': (BandwidthThrottling,),  # noqa: E501
             'compression_enabled': (bool, none_type,),  # noqa: E501
             'encryption_key': (str, none_type,),  # noqa: E501
             'storage_domain_pairs': ([StorageDomainPair],),  # noqa: E501
@@ -148,7 +150,7 @@ class ReplicationParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             all_endpoints_reachable (bool, none_type): Specifies if all endpoints on Remote Cluster are reachable.. [optional] if omitted the server will use the default value of False  # noqa: E501
-            bandwidth_limit ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies settings for limiting the data transfer rate between the local and Remote Clusters.. [optional]  # noqa: E501
+            bandwidth_limit (BandwidthThrottling): [optional]  # noqa: E501
             compression_enabled (bool, none_type): Specifies whether to compress the outbound data when transferring the replication data over the network to the Remote Cluster.. [optional] if omitted the server will use the default value of True  # noqa: E501
             encryption_key (str, none_type): Specifies the encryption key used for encrypting the replication data from a local Cluster to a Remote Cluster. If a key is not specified, replication traffic encryption is disabled. When Snapshots are replicated from a local Cluster to a Remote Cluster, the encryption key specified on the local Cluster must be the same as the key specified on the Remote Cluster.. [optional]  # noqa: E501
             storage_domain_pairs ([StorageDomainPair]): Specifies a list of Storage Domain pairs.. [optional]  # noqa: E501

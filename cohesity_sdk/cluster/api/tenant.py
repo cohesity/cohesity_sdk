@@ -56,7 +56,7 @@ class TenantApi(object):
         ):
             """Update assginment of properties for a tenant.  # noqa: E501
 
-            Assign/Unassign properties like storage domain, entities, policies etc. to the tenant. The API expects a list of all the assignments (policies etc.) that are supposed to be associated to the Tenant. The list of assignments passed get assigned to the Tenant and anything else that was already assigned gets unassigned. In case a few objects fail the assignment and some objects get assigned, error is returned for all assignments except for policies.  # noqa: E501
+            ```Unknown Privileges``` <br><br>Assign/Unassign properties like storage domain, entities, policies etc. to the tenant. The API expects a list of all the assignments (policies etc.) that are supposed to be associated to the Tenant. The list of assignments passed get assigned to the Tenant and anything else that was already assigned gets unassigned. In case a few objects fail the assignment and some objects get assigned, error is returned for all assignments except for policies.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -124,7 +124,9 @@ class TenantApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/tenants/{id}/assignments',
                 'operation_id': 'assign_properties_to_tenant',
@@ -194,6 +196,7 @@ class TenantApi(object):
         ):
             """Create a new Tenant.  # noqa: E501
 
+            **Privileges:** ```ORGANIZATION_MODIFY``` <br><br>  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -258,7 +261,9 @@ class TenantApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/tenants',
                 'operation_id': 'create_tenant',
@@ -315,6 +320,7 @@ class TenantApi(object):
         ):
             """Delete Tenant with given ID.  # noqa: E501
 
+            ```Unknown Privileges``` <br><br>  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -379,7 +385,9 @@ class TenantApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/tenants/{id}',
                 'operation_id': 'delete_tenant',
@@ -442,7 +450,7 @@ class TenantApi(object):
         ):
             """Get tenant assignments.  # noqa: E501
 
-            Get all assigned properties like storage domain, entities, policies, objects, views etc for a given tenant.  # noqa: E501
+            ```Unknown Privileges``` <br><br>Get all assigned properties like storage domain, entities, policies, objects, views etc for a given tenant.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -507,7 +515,9 @@ class TenantApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/tenants/{id}/assignments',
                 'operation_id': 'get_assigned_properties_for_tenant',
@@ -569,7 +579,7 @@ class TenantApi(object):
         ):
             """Get Tenants Config.  # noqa: E501
 
-            Get Tenant related configurations for the cluster.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Get Tenant related configurations for the cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -630,7 +640,9 @@ class TenantApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/clusters/tenant-config',
                 'operation_id': 'get_on_prem_tenant_config',
@@ -678,7 +690,7 @@ class TenantApi(object):
         ):
             """Get a Swift configuration.  # noqa: E501
 
-            Get a Swift configuration.  # noqa: E501
+            **Privileges:** ```KEYSTONE_VIEW``` <br><br>Get a Swift configuration.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -740,7 +752,9 @@ class TenantApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/tenants/swift',
                 'operation_id': 'get_tenant_swift',
@@ -793,6 +807,7 @@ class TenantApi(object):
         ):
             """Get a list of Tenants.  # noqa: E501
 
+            **Privileges:** ```ORGANIZATION_VIEW``` <br><br>  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -803,6 +818,8 @@ class TenantApi(object):
             Keyword Args:
                 ids ([str, none_type]): List of tenantIds to filter.. [optional]
                 statuses ([str, none_type]): Filter by current status of tenant. If left blank, only active and inactive tenants are returned.. [optional]
+                liveness_modes ([str, none_type]): Filter by liveness modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.. [optional]
+                ownership_modes ([str, none_type]): Filter by ownership modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -855,7 +872,9 @@ class TenantApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/tenants',
                 'operation_id': 'list_tenants',
@@ -866,12 +885,16 @@ class TenantApi(object):
                 'all': [
                     'ids',
                     'statuses',
+                    'liveness_modes',
+                    'ownership_modes',
                 ],
                 'required': [],
                 'nullable': [
                 ],
                 'enum': [
                     'statuses',
+                    'liveness_modes',
+                    'ownership_modes',
                 ],
                 'validation': [
                 ]
@@ -887,24 +910,45 @@ class TenantApi(object):
                         "MARKEDFORDELETION": "MarkedForDeletion",
                         "DELETED": "Deleted"
                     },
+                    ('liveness_modes',): {
+
+                        "ACTIVE": "Active",
+                        "STANDBY": "Standby",
+                        "SUSPEND": "Suspend"
+                    },
+                    ('ownership_modes',): {
+
+                        "PRIMARY": "Primary",
+                        "SECONDARY": "Secondary"
+                    },
                 },
                 'openapi_types': {
                     'ids':
                         ([str, none_type],),
                     'statuses':
                         ([str, none_type],),
+                    'liveness_modes':
+                        ([str, none_type],),
+                    'ownership_modes':
+                        ([str, none_type],),
                 },
                 'attribute_map': {
                     'ids': 'ids',
                     'statuses': 'statuses',
+                    'liveness_modes': 'livenessModes',
+                    'ownership_modes': 'ownershipModes',
                 },
                 'location_map': {
                     'ids': 'query',
                     'statuses': 'query',
+                    'liveness_modes': 'query',
+                    'ownership_modes': 'query',
                 },
                 'collection_format_map': {
                     'ids': 'csv',
                     'statuses': 'csv',
+                    'liveness_modes': 'csv',
+                    'ownership_modes': 'csv',
                 }
             },
             headers_map={
@@ -925,7 +969,7 @@ class TenantApi(object):
         ):
             """Perform actions on a Tenant.  # noqa: E501
 
-            Perform actions like activate and deactivate on a given Tenant.  # noqa: E501
+            ```Unknown Privileges``` <br><br>Perform actions like activate and deactivate on a given Tenant.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -993,7 +1037,9 @@ class TenantApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/tenants/{id}/actions',
                 'operation_id': 'perform_tenant_action',
@@ -1063,7 +1109,7 @@ class TenantApi(object):
         ):
             """Register Swift service on a Keystone server.  # noqa: E501
 
-            Register Swift service on Keystone server.  # noqa: E501
+            **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Register Swift service on Keystone server.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1128,7 +1174,9 @@ class TenantApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/tenants/swift/register',
                 'operation_id': 'register_swift',
@@ -1185,7 +1233,7 @@ class TenantApi(object):
         ):
             """Unregister Swift service from a Keystone server.  # noqa: E501
 
-            Unregister Swift service from Keystone server.  # noqa: E501
+            **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Unregister Swift service from Keystone server.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1250,7 +1298,9 @@ class TenantApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/tenants/swift/unregister',
                 'operation_id': 'unregister_swift',
@@ -1307,7 +1357,7 @@ class TenantApi(object):
         ):
             """Update Tenants Config.  # noqa: E501
 
-            Update Tenant related configurations for the cluster.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update Tenant related configurations for the cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1372,7 +1422,9 @@ class TenantApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/clusters/tenant-config',
                 'operation_id': 'update_on_prem_tenant_config',
@@ -1430,7 +1482,7 @@ class TenantApi(object):
         ):
             """Update Tenant.  # noqa: E501
 
-            Update Tenant's properties.  # noqa: E501
+            ```Unknown Privileges``` <br><br>Update Tenant's properties.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1498,7 +1550,9 @@ class TenantApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/tenants/{id}',
                 'operation_id': 'update_tenant',
@@ -1570,7 +1624,7 @@ class TenantApi(object):
         ):
             """Update a Swift configuration.  # noqa: E501
 
-            Update a Swift configuration.  # noqa: E501
+            **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Update a Swift configuration.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1635,7 +1689,9 @@ class TenantApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/tenants/swift',
                 'operation_id': 'update_tenant_swift',

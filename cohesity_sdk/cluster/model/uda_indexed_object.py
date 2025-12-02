@@ -28,10 +28,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.common_indexed_object_params import CommonIndexedObjectParams
+    from cohesity_sdk.cluster.model.object_summary import ObjectSummary
     from cohesity_sdk.cluster.model.snapshot_tag_info import SnapshotTagInfo
     from cohesity_sdk.cluster.model.tag_info import TagInfo
     from cohesity_sdk.cluster.model.uda_indexed_object_all_of import UdaIndexedObjectAllOf
     globals()['CommonIndexedObjectParams'] = CommonIndexedObjectParams
+    globals()['ObjectSummary'] = ObjectSummary
     globals()['SnapshotTagInfo'] = SnapshotTagInfo
     globals()['TagInfo'] = TagInfo
     globals()['UdaIndexedObjectAllOf'] = UdaIndexedObjectAllOf
@@ -91,7 +93,7 @@ class UdaIndexedObject(ModelComposed):
             'policy_name': (str, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'protection_group_name': (str, none_type,),  # noqa: E501
-            'source_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'source_info': (ObjectSummary,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
             'snapshot_tags': ([SnapshotTagInfo], none_type,),  # noqa: E501
             'tags': ([TagInfo], none_type,),  # noqa: E501
@@ -176,7 +178,7 @@ class UdaIndexedObject(ModelComposed):
             policy_name (str, none_type): Specifies the protection policy name for this file.. [optional]  # noqa: E501
             protection_group_id (str, none_type): \"Specifies the protection group id which contains this object.\". [optional]  # noqa: E501
             protection_group_name (str, none_type): \"Specifies the protection group name which contains this object.\". [optional]  # noqa: E501
-            source_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Source Object information.. [optional]  # noqa: E501
+            source_info (ObjectSummary): [optional]  # noqa: E501
             storage_domain_id (int, none_type): \"Specifies the Storage Domain id where the backup data of Object is present.\". [optional]  # noqa: E501
             snapshot_tags ([SnapshotTagInfo], none_type): Specifies snapshot tags applied to the object.. [optional]  # noqa: E501
             tags ([TagInfo], none_type): Specifies tag applied to the object.. [optional]  # noqa: E501

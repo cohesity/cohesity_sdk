@@ -75,8 +75,8 @@ class EndPoint(ModelNormal):
         """
         return {
             'index': (int,),  # noqa: E501
-            'ip_addresses': ([str],),  # noqa: E501
             'name': (str,),  # noqa: E501
+            'ip_addresses': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class EndPoint(ModelNormal):
 
     attribute_map = {
         'index': 'index',  # noqa: E501
-        'ip_addresses': 'ipAddresses',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'ip_addresses': 'ipAddresses',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -103,8 +103,12 @@ class EndPoint(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, index, name, *args, **kwargs):  # noqa: E501
         """EndPoint - a model defined in OpenAPI
+
+        Args:
+            index (int): Index of the interface as given by 'ip a' command.
+            name (str): Name of the interface like bond0.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -138,9 +142,7 @@ class EndPoint(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            index (int): Index of the interface as given by 'ip a' command.. [optional]  # noqa: E501
             ip_addresses ([str]): IP addresses on the interface. [optional]  # noqa: E501
-            name (str): Name of the interface like bond0.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -167,6 +169,8 @@ class EndPoint(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.index = index
+        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

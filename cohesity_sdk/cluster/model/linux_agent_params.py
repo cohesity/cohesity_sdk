@@ -60,6 +60,9 @@ class LinuxAgentParams(ModelNormal):
             'KSUSERPM': "kSuseRPM",
             'KDEB': "kDEB",
             'KPOWERPCRPM': "kPowerPCRPM",
+            'KS390XRPM': "kS390XRPM",
+            'KUNKNOWNLINUXPACKAGE': "kUnknownLinuxPackage",
+            'KAARCH64RPM': "kAarch64RPM",
         },
     }
 

@@ -30,9 +30,11 @@ def lazy_import():
     from cohesity_sdk.cluster.model.indexing_policy import IndexingPolicy
     from cohesity_sdk.cluster.model.office365_object_protection_common_params import Office365ObjectProtectionCommonParams
     from cohesity_sdk.cluster.model.office365_object_protection_object_params import Office365ObjectProtectionObjectParams
+    from cohesity_sdk.cluster.model.office365_teams_object_protection_params_all_of import Office365TeamsObjectProtectionParamsAllOf
     globals()['IndexingPolicy'] = IndexingPolicy
     globals()['Office365ObjectProtectionCommonParams'] = Office365ObjectProtectionCommonParams
     globals()['Office365ObjectProtectionObjectParams'] = Office365ObjectProtectionObjectParams
+    globals()['Office365TeamsObjectProtectionParamsAllOf'] = Office365TeamsObjectProtectionParamsAllOf
 
 
 class Office365TeamsObjectProtectionParams(ModelComposed):
@@ -62,6 +64,10 @@ class Office365TeamsObjectProtectionParams(ModelComposed):
     """
 
     allowed_values = {
+        ('exclusion_types',): {
+            'None': None,
+            'MEETINGRECORDINGS': "MeetingRecordings",
+        },
     }
 
     validations = {
@@ -91,6 +97,7 @@ class Office365TeamsObjectProtectionParams(ModelComposed):
             'indexing_policy': (IndexingPolicy,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
+            'exclusion_types': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -104,6 +111,7 @@ class Office365TeamsObjectProtectionParams(ModelComposed):
         'indexing_policy': 'indexingPolicy',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
+        'exclusion_types': 'exclusionTypes',  # noqa: E501
     }
 
     required_properties = set([
@@ -160,6 +168,7 @@ class Office365TeamsObjectProtectionParams(ModelComposed):
             indexing_policy (IndexingPolicy): [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
+            exclusion_types ([str], none_type): Specifies the types of exclusions to apply for Teams backup. For now, only 'MeetingRecordings' is supported, which excludes Microsoft Teams meeting recordings stored in default locations from backup.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -233,6 +242,7 @@ class Office365TeamsObjectProtectionParams(ModelComposed):
           ],
           'allOf': [
               Office365ObjectProtectionCommonParams,
+              Office365TeamsObjectProtectionParamsAllOf,
           ],
           'oneOf': [
           ],

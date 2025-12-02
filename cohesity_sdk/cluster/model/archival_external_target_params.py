@@ -31,10 +31,12 @@ def lazy_import():
     from cohesity_sdk.cluster.model.archival_azure_external_target_params import ArchivalAzureExternalTargetParams
     from cohesity_sdk.cluster.model.archival_external_target_params_all_of import ArchivalExternalTargetParamsAllOf
     from cohesity_sdk.cluster.model.archival_gcp_external_target_params import ArchivalGcpExternalTargetParams
+    from cohesity_sdk.cluster.model.archival_ibm_external_target_params import ArchivalIBMExternalTargetParams
     from cohesity_sdk.cluster.model.archival_nas_external_target_params import ArchivalNasExternalTargetParams
     from cohesity_sdk.cluster.model.archival_oracle_external_target_params import ArchivalOracleExternalTargetParams
     from cohesity_sdk.cluster.model.archival_qstar_tape_external_target_params import ArchivalQstarTapeExternalTargetParams
     from cohesity_sdk.cluster.model.archival_s3_comp_external_target_params import ArchivalS3CompExternalTargetParams
+    from cohesity_sdk.cluster.model.cloud_archival_direct_config import CloudArchivalDirectConfig
     from cohesity_sdk.cluster.model.common_archival_external_target_params import CommonArchivalExternalTargetParams
     from cohesity_sdk.cluster.model.encryption_settings import EncryptionSettings
     from cohesity_sdk.cluster.model.target_bandwidth_throttlings import TargetBandwidthThrottlings
@@ -42,10 +44,12 @@ def lazy_import():
     globals()['ArchivalAzureExternalTargetParams'] = ArchivalAzureExternalTargetParams
     globals()['ArchivalExternalTargetParamsAllOf'] = ArchivalExternalTargetParamsAllOf
     globals()['ArchivalGcpExternalTargetParams'] = ArchivalGcpExternalTargetParams
+    globals()['ArchivalIBMExternalTargetParams'] = ArchivalIBMExternalTargetParams
     globals()['ArchivalNasExternalTargetParams'] = ArchivalNasExternalTargetParams
     globals()['ArchivalOracleExternalTargetParams'] = ArchivalOracleExternalTargetParams
     globals()['ArchivalQstarTapeExternalTargetParams'] = ArchivalQstarTapeExternalTargetParams
     globals()['ArchivalS3CompExternalTargetParams'] = ArchivalS3CompExternalTargetParams
+    globals()['CloudArchivalDirectConfig'] = CloudArchivalDirectConfig
     globals()['CommonArchivalExternalTargetParams'] = CommonArchivalExternalTargetParams
     globals()['EncryptionSettings'] = EncryptionSettings
     globals()['TargetBandwidthThrottlings'] = TargetBandwidthThrottlings
@@ -88,6 +92,7 @@ class ArchivalExternalTargetParams(ModelComposed):
             'NAS': "NAS",
             'QSTARTAPE': "QStarTape",
             'S3COMPATIBLE': "S3Compatible",
+            'IBM': "IBM",
         },
     }
 
@@ -112,10 +117,12 @@ class ArchivalExternalTargetParams(ModelComposed):
         return {
             'encryption': (EncryptionSettings,),  # noqa: E501
             'storage_type': (str, none_type,),  # noqa: E501
+            'cad_config': (CloudArchivalDirectConfig,),  # noqa: E501
             'target_bandwidth_throttlings': (TargetBandwidthThrottlings,),  # noqa: E501
             'aws_params': (ArchivalAwsExternalTargetParams,),  # noqa: E501
             'azure_params': (ArchivalAzureExternalTargetParams,),  # noqa: E501
             'gcp_params': (ArchivalGcpExternalTargetParams,),  # noqa: E501
+            'ibm_params': (ArchivalIBMExternalTargetParams,),  # noqa: E501
             'nas_params': (ArchivalNasExternalTargetParams,),  # noqa: E501
             'oracle_params': (ArchivalOracleExternalTargetParams,),  # noqa: E501
             'qstar_tape_params': (ArchivalQstarTapeExternalTargetParams,),  # noqa: E501
@@ -131,10 +138,12 @@ class ArchivalExternalTargetParams(ModelComposed):
     attribute_map = {
         'encryption': 'encryption',  # noqa: E501
         'storage_type': 'storageType',  # noqa: E501
+        'cad_config': 'cadConfig',  # noqa: E501
         'target_bandwidth_throttlings': 'targetBandwidthThrottlings',  # noqa: E501
         'aws_params': 'awsParams',  # noqa: E501
         'azure_params': 'azureParams',  # noqa: E501
         'gcp_params': 'gcpParams',  # noqa: E501
+        'ibm_params': 'ibmParams',  # noqa: E501
         'nas_params': 'nasParams',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
         'qstar_tape_params': 'qstarTapeParams',  # noqa: E501
@@ -193,10 +202,12 @@ class ArchivalExternalTargetParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            cad_config (CloudArchivalDirectConfig): [optional]  # noqa: E501
             target_bandwidth_throttlings (TargetBandwidthThrottlings): [optional]  # noqa: E501
             aws_params (ArchivalAwsExternalTargetParams): [optional]  # noqa: E501
             azure_params (ArchivalAzureExternalTargetParams): [optional]  # noqa: E501
             gcp_params (ArchivalGcpExternalTargetParams): [optional]  # noqa: E501
+            ibm_params (ArchivalIBMExternalTargetParams): [optional]  # noqa: E501
             nas_params (ArchivalNasExternalTargetParams): [optional]  # noqa: E501
             oracle_params (ArchivalOracleExternalTargetParams): [optional]  # noqa: E501
             qstar_tape_params (ArchivalQstarTapeExternalTargetParams): [optional]  # noqa: E501

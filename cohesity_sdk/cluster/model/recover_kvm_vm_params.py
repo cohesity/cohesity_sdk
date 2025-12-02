@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.kvm_target_params_for_recover_vm import KvmTargetParamsForRecoverVm
     from cohesity_sdk.cluster.model.recover_protection_group_run_params import RecoverProtectionGroupRunParams
+    globals()['KvmTargetParamsForRecoverVm'] = KvmTargetParamsForRecoverVm
     globals()['RecoverProtectionGroupRunParams'] = RecoverProtectionGroupRunParams
 
 
@@ -83,7 +85,7 @@ class RecoverKvmVmParams(ModelNormal):
         lazy_import()
         return {
             'target_environment': (str,),  # noqa: E501
-            'kvm_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'kvm_target_params': (KvmTargetParamsForRecoverVm,),  # noqa: E501
             'recover_protection_group_runs_params': ([RecoverProtectionGroupRunParams], none_type,),  # noqa: E501
         }
 
@@ -149,7 +151,7 @@ class RecoverKvmVmParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            kvm_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for recovering to a KVM target.. [optional]  # noqa: E501
+            kvm_target_params (KvmTargetParamsForRecoverVm): [optional]  # noqa: E501
             recover_protection_group_runs_params ([RecoverProtectionGroupRunParams], none_type): Specifies the Protection Group Runs params to recover. All the VM's that are successfully backed up by specified Runs will be recovered. This can be specified along with individual snapshots of VMs. User has to make sure that specified Object snapshots and Protection Group Runs should not have any intersection. For example, user cannot specify multiple Runs which has same Object or an Object snapshot and a Run which has same Object's snapshot.. [optional]  # noqa: E501
         """
 

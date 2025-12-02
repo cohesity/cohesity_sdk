@@ -99,8 +99,11 @@ class UpgradeCheckRunTestsResult(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, test_run_instance_id, *args, **kwargs):  # noqa: E501
         """UpgradeCheckRunTestsResult - a model defined in OpenAPI
+
+        Args:
+            test_run_instance_id (int): Specifies test run instance allocated for upgrade checks
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -134,7 +137,6 @@ class UpgradeCheckRunTestsResult(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            test_run_instance_id (int): Specifies test run instance allocated for upgrade checks. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -161,6 +163,7 @@ class UpgradeCheckRunTestsResult(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.test_run_instance_id = test_run_instance_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -29,12 +29,14 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.archival_azure_external_target_params_all_of import ArchivalAzureExternalTargetParamsAllOf
     from cohesity_sdk.cluster.model.azure_archive_blob_params import AzureArchiveBlobParams
+    from cohesity_sdk.cluster.model.azure_cold_blob_params import AzureColdBlobParams
     from cohesity_sdk.cluster.model.azure_cool_blob_params import AzureCoolBlobParams
     from cohesity_sdk.cluster.model.azure_hot_blob_params import AzureHotBlobParams
     from cohesity_sdk.cluster.model.common_archival_azure_external_target_params import CommonArchivalAzureExternalTargetParams
     from cohesity_sdk.cluster.model.worm_specific_target_params import WormSpecificTargetParams
     globals()['ArchivalAzureExternalTargetParamsAllOf'] = ArchivalAzureExternalTargetParamsAllOf
     globals()['AzureArchiveBlobParams'] = AzureArchiveBlobParams
+    globals()['AzureColdBlobParams'] = AzureColdBlobParams
     globals()['AzureCoolBlobParams'] = AzureCoolBlobParams
     globals()['AzureHotBlobParams'] = AzureHotBlobParams
     globals()['CommonArchivalAzureExternalTargetParams'] = CommonArchivalAzureExternalTargetParams
@@ -73,6 +75,7 @@ class ArchivalAzureExternalTargetParams(ModelComposed):
             'AZUREARCHIVEBLOB': "AzureArchiveBlob",
             'AZURECOOLBLOB': "AzureCoolBlob",
             'AZUREHOTBLOB': "AzureHotBlob",
+            'AZURECOLDBLOB': "AzureColdBlob",
         },
     }
 
@@ -107,6 +110,7 @@ class ArchivalAzureExternalTargetParams(ModelComposed):
             'source_side_deduplication': (bool, none_type,),  # noqa: E501
             'worm_specific_target_params': (WormSpecificTargetParams,),  # noqa: E501
             'archive_blob_params': (AzureArchiveBlobParams,),  # noqa: E501
+            'cold_blob_params': (AzureColdBlobParams,),  # noqa: E501
             'cool_blob_params': (AzureCoolBlobParams,),  # noqa: E501
             'hot_blob_params': (AzureHotBlobParams,),  # noqa: E501
         }
@@ -130,6 +134,7 @@ class ArchivalAzureExternalTargetParams(ModelComposed):
         'source_side_deduplication': 'sourceSideDeduplication',  # noqa: E501
         'worm_specific_target_params': 'wormSpecificTargetParams',  # noqa: E501
         'archive_blob_params': 'archiveBlobParams',  # noqa: E501
+        'cold_blob_params': 'coldBlobParams',  # noqa: E501
         'cool_blob_params': 'coolBlobParams',  # noqa: E501
         'hot_blob_params': 'hotBlobParams',  # noqa: E501
     }
@@ -196,6 +201,7 @@ class ArchivalAzureExternalTargetParams(ModelComposed):
             source_side_deduplication (bool, none_type): Specifies the Source Side Deduplication setting for the Azure external target. [optional]  # noqa: E501
             worm_specific_target_params (WormSpecificTargetParams): [optional]  # noqa: E501
             archive_blob_params (AzureArchiveBlobParams): [optional]  # noqa: E501
+            cold_blob_params (AzureColdBlobParams): [optional]  # noqa: E501
             cool_blob_params (AzureCoolBlobParams): [optional]  # noqa: E501
             hot_blob_params (AzureHotBlobParams): [optional]  # noqa: E501
         """

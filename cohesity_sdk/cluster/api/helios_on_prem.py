@@ -43,7 +43,7 @@ class HeliosOnPremApi(object):
         ):
             """Retreive Helios OnPrem Configuration  # noqa: E501
 
-            View the configuration for Helios OnPrem VM Node.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>View the configuration for Helios OnPrem VM Node.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -104,7 +104,9 @@ class HeliosOnPremApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/helios-onprem/config',
                 'operation_id': 'get_helios_on_prem_config',
@@ -153,7 +155,7 @@ class HeliosOnPremApi(object):
         ):
             """Update Helios OnPrem Configuration  # noqa: E501
 
-            Update the configuration for Helios OnPrem VM Node.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the configuration for Helios OnPrem VM Node.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -218,7 +220,9 @@ class HeliosOnPremApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/helios-onprem/config',
                 'operation_id': 'update_helios_on_prem_config',

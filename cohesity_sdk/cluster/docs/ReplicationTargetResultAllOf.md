@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **multi_object_replication** | **bool, none_type** | Specifies whether view based replication was used. In this case, the view containing all objects is replicated as a whole instead of replicating on a per object basis. | [optional] 
 **on_legal_hold** | **bool, none_type** | Specifies the legal hold status for a replication target. | [optional] 
 **percentage_completed** | **int, none_type** | Specifies the progress in percentage. | [optional] 
+**progress_task_id** | **str, none_type** | Progress monitor task id. | [optional] 
 **queued_time_usecs** | **int, none_type** | Specifies the time when the replication is queued for schedule in Unix epoch Timestamp(in microseconds) for a target. | [optional] 
 **replication_task_id** | **str, none_type** | Task UID for a replication protection run. This is for tasks that are replicated from another cluster. | [optional] 
 **start_time_usecs** | **int, none_type** | Specifies the start time of replication in Unix epoch Timestamp(in microseconds) for a target. | [optional] 

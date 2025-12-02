@@ -27,8 +27,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.aws_fleet_params import AwsFleetParams
     from cohesity_sdk.cluster.model.iam_role_aws_credentials import IamRoleAwsCredentials
     from cohesity_sdk.cluster.model.iam_user_aws_credentials import IamUserAwsCredentials
+    globals()['AwsFleetParams'] = AwsFleetParams
     globals()['IamRoleAwsCredentials'] = IamRoleAwsCredentials
     globals()['IamUserAwsCredentials'] = IamUserAwsCredentials
 
@@ -65,6 +67,8 @@ class StandardParams(ModelNormal):
             'KUSEIAMUSER': "kUseIAMUser",
             'KUSEIAMROLE': "kUseIAMRole",
             'KUSEINSTANCEPROFILE': "kUseInstanceProfile",
+            'KSTANDARDCREDENTIALS': "kStandardCredentials",
+            'KKERBEROS': "kKerberos",
         },
     }
 
@@ -88,6 +92,7 @@ class StandardParams(ModelNormal):
         lazy_import()
         return {
             'auth_method_type': (str, none_type,),  # noqa: E501
+            'fleet_params': (AwsFleetParams,),  # noqa: E501
             'iam_role_aws_credentials': (IamRoleAwsCredentials,),  # noqa: E501
             'iam_user_aws_credentials': (IamUserAwsCredentials,),  # noqa: E501
         }
@@ -100,6 +105,7 @@ class StandardParams(ModelNormal):
 
     attribute_map = {
         'auth_method_type': 'authMethodType',  # noqa: E501
+        'fleet_params': 'fleetParams',  # noqa: E501
         'iam_role_aws_credentials': 'iamRoleAwsCredentials',  # noqa: E501
         'iam_user_aws_credentials': 'iamUserAwsCredentials',  # noqa: E501
     }
@@ -154,6 +160,7 @@ class StandardParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            fleet_params (AwsFleetParams): [optional]  # noqa: E501
             iam_role_aws_credentials (IamRoleAwsCredentials): [optional]  # noqa: E501
             iam_user_aws_credentials (IamUserAwsCredentials): [optional]  # noqa: E501
         """

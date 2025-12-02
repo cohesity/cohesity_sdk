@@ -28,7 +28,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.storage_domain import StorageDomain
+    from cohesity_sdk.cluster.model.storage_domains_settings import StorageDomainsSettings
     globals()['StorageDomain'] = StorageDomain
+    globals()['StorageDomainsSettings'] = StorageDomainsSettings
 
 
 class StorageDomains(ModelNormal):
@@ -79,6 +81,7 @@ class StorageDomains(ModelNormal):
         """
         lazy_import()
         return {
+            'settings': (StorageDomainsSettings,),  # noqa: E501
             'storage_domains': ([StorageDomain], none_type,),  # noqa: E501
         }
 
@@ -89,6 +92,7 @@ class StorageDomains(ModelNormal):
 
 
     attribute_map = {
+        'settings': 'settings',  # noqa: E501
         'storage_domains': 'storageDomains',  # noqa: E501
     }
 
@@ -139,6 +143,7 @@ class StorageDomains(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            settings (StorageDomainsSettings): [optional]  # noqa: E501
             storage_domains ([StorageDomain], none_type): Specifies the list of storage domains.. [optional]  # noqa: E501
         """
 

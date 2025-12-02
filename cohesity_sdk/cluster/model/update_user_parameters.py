@@ -28,8 +28,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.common_updatable_user_params import CommonUpdatableUserParams
+    from cohesity_sdk.cluster.model.local_user_update_params import LocalUserUpdateParams
     from cohesity_sdk.cluster.model.update_user_parameters_all_of import UpdateUserParametersAllOf
     globals()['CommonUpdatableUserParams'] = CommonUpdatableUserParams
+    globals()['LocalUserUpdateParams'] = LocalUserUpdateParams
     globals()['UpdateUserParametersAllOf'] = UpdateUserParametersAllOf
 
 
@@ -85,9 +87,12 @@ class UpdateUserParameters(ModelComposed):
             'effective_time_msecs': (int, none_type,),  # noqa: E501
             'expiry_time_msecs': (int, none_type,),  # noqa: E501
             'locked': (bool, none_type,),  # noqa: E501
+            'other_groups': ([str],),  # noqa: E501
+            'primary_group': (str, none_type,),  # noqa: E501
             'restricted': (bool, none_type,),  # noqa: E501
             'roles': ([str], none_type,),  # noqa: E501
-            'local_user_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'local_user_params': (LocalUserUpdateParams,),  # noqa: E501
+            'username': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -101,9 +106,12 @@ class UpdateUserParameters(ModelComposed):
         'effective_time_msecs': 'effectiveTimeMsecs',  # noqa: E501
         'expiry_time_msecs': 'expiryTimeMsecs',  # noqa: E501
         'locked': 'locked',  # noqa: E501
+        'other_groups': 'otherGroups',  # noqa: E501
+        'primary_group': 'primaryGroup',  # noqa: E501
         'restricted': 'restricted',  # noqa: E501
         'roles': 'roles',  # noqa: E501
         'local_user_params': 'localUserParams',  # noqa: E501
+        'username': 'username',  # noqa: E501
     }
 
     required_properties = set([
@@ -158,9 +166,12 @@ class UpdateUserParameters(ModelComposed):
             effective_time_msecs (int, none_type): Specifies the epoch time in milliseconds since when the user can login.. [optional]  # noqa: E501
             expiry_time_msecs (int, none_type): Specifies the epoch time in milliseconds when the user expires. Post expiry the user cannot access Cohesity cluster.. [optional]  # noqa: E501
             locked (bool, none_type): Specifies whether the User is locked.. [optional]  # noqa: E501
+            other_groups ([str]): Specifies additional groups the User may belong to.. [optional]  # noqa: E501
+            primary_group (str, none_type): Specifies the primary group of the User. Primary group is used for file access.. [optional]  # noqa: E501
             restricted (bool, none_type): Specifies whether the User is restricted. A restricted user can only view & manage the objects it has permissions to.. [optional]  # noqa: E501
             roles ([str], none_type): Specifies the Cohesity roles to associate with the user. The Cohesity roles determine privileges on the Cohesity Cluster for this user.. [optional]  # noqa: E501
-            local_user_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the LOCAL user properties. This field is required when updating LOCAL Cohesity User params.. [optional]  # noqa: E501
+            local_user_params (LocalUserUpdateParams): [optional]  # noqa: E501
+            username (str, none_type): Specifies the username.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

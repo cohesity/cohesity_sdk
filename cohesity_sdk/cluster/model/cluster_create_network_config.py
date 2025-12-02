@@ -90,11 +90,13 @@ class ClusterCreateNetworkConfig(ModelNormal):
             'ntp_servers': ([str], none_type,),  # noqa: E501
             'use_dhcp': (bool, none_type,),  # noqa: E501
             'dhcp_network_config': (ClusterDhcpNetworkConfig,),  # noqa: E501
+            'host_names': ([str], none_type,),  # noqa: E501
             'ip_preference': (str, none_type,),  # noqa: E501
             'manual_network_config': (ClusterManualNetworkConfig,),  # noqa: E501
             'secondary_dhcp_network_config': (ClusterDhcpNetworkConfig,),  # noqa: E501
             'secondary_manual_network_config': (ClusterManualNetworkConfig,),  # noqa: E501
             'vip_host_name': (str, none_type,),  # noqa: E501
+            'vips': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -108,11 +110,13 @@ class ClusterCreateNetworkConfig(ModelNormal):
         'ntp_servers': 'ntpServers',  # noqa: E501
         'use_dhcp': 'useDhcp',  # noqa: E501
         'dhcp_network_config': 'dhcpNetworkConfig',  # noqa: E501
+        'host_names': 'hostNames',  # noqa: E501
         'ip_preference': 'ipPreference',  # noqa: E501
         'manual_network_config': 'manualNetworkConfig',  # noqa: E501
         'secondary_dhcp_network_config': 'secondaryDhcpNetworkConfig',  # noqa: E501
         'secondary_manual_network_config': 'secondaryManualNetworkConfig',  # noqa: E501
         'vip_host_name': 'vipHostName',  # noqa: E501
+        'vips': 'vips',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -168,11 +172,13 @@ class ClusterCreateNetworkConfig(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             dhcp_network_config (ClusterDhcpNetworkConfig): [optional]  # noqa: E501
+            host_names ([str], none_type): Specifies list of FQDN hostname of the cluster.. [optional]  # noqa: E501
             ip_preference (str, none_type): Specifies IP preference of the cluster to be Ipv4/Ipv6. It is Ipv4 by default.. [optional]  # noqa: E501
             manual_network_config (ClusterManualNetworkConfig): [optional]  # noqa: E501
             secondary_dhcp_network_config (ClusterDhcpNetworkConfig): [optional]  # noqa: E501
             secondary_manual_network_config (ClusterManualNetworkConfig): [optional]  # noqa: E501
-            vip_host_name (str, none_type): Specifies the FQDN hostname of the cluster.. [optional]  # noqa: E501
+            vip_host_name (str, none_type): Specifies the FQDN hostname of the cluster. Note: This field will be deprecated in future. Use hostNames field instead.. [optional]  # noqa: E501
+            vips ([str]): Virtual IPs to add to the cluster.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

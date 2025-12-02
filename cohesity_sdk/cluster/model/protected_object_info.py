@@ -28,6 +28,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.object_protection_run_summary import ObjectProtectionRunSummary
+    from cohesity_sdk.cluster.model.object_string_identifier import ObjectStringIdentifier
     from cohesity_sdk.cluster.model.object_summary import ObjectSummary
     from cohesity_sdk.cluster.model.object_type_v_center_params import ObjectTypeVCenterParams
     from cohesity_sdk.cluster.model.object_type_windows_cluster_params import ObjectTypeWindowsClusterParams
@@ -35,8 +36,9 @@ def lazy_import():
     from cohesity_sdk.cluster.model.protected_object_group_backup_config import ProtectedObjectGroupBackupConfig
     from cohesity_sdk.cluster.model.protected_object_info_all_of import ProtectedObjectInfoAllOf
     from cohesity_sdk.cluster.model.sharepoint_object_params import SharepointObjectParams
-    from cohesity_sdk.cluster.model.tenant import Tenant
+    from cohesity_sdk.cluster.model.tenant_info import TenantInfo
     globals()['ObjectProtectionRunSummary'] = ObjectProtectionRunSummary
+    globals()['ObjectStringIdentifier'] = ObjectStringIdentifier
     globals()['ObjectSummary'] = ObjectSummary
     globals()['ObjectTypeVCenterParams'] = ObjectTypeVCenterParams
     globals()['ObjectTypeWindowsClusterParams'] = ObjectTypeWindowsClusterParams
@@ -44,7 +46,7 @@ def lazy_import():
     globals()['ProtectedObjectGroupBackupConfig'] = ProtectedObjectGroupBackupConfig
     globals()['ProtectedObjectInfoAllOf'] = ProtectedObjectInfoAllOf
     globals()['SharepointObjectParams'] = SharepointObjectParams
-    globals()['Tenant'] = Tenant
+    globals()['TenantInfo'] = TenantInfo
 
 
 class ProtectedObjectInfo(ModelComposed):
@@ -83,6 +85,13 @@ class ProtectedObjectInfo(ModelComposed):
             'KAWS': "kAWS",
             'KACROPOLIS': "kAcropolis",
             'KGCP': "kGCP",
+            'KGCPBIGQUERY': "kGCPBigQuery",
+            'KGCPMYSQL': "kGCPMySQL",
+            'KGOOGLESPANNER': "kGoogleSpanner",
+            'KGCPPOSTGRESQL': "kGCPPostgreSQL",
+            'KGCPALLOYDBPOSTGRESQL': "kGCPAlloyDBPostgreSQL",
+            'KGCPSQLSERVER': "kGCPSQLServer",
+            'KGCPFIRESTORE': "kGCPFirestore",
             'KPHYSICAL': "kPhysical",
             'KPHYSICALFILES': "kPhysicalFiles",
             'KISILON': "kIsilon",
@@ -108,8 +117,39 @@ class ProtectedObjectInfo(ModelComposed):
             'KHDFS': "kHdfs",
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
+            'KS3COMPATIBLE': "kS3Compatible",
+            'KSAPHANA': "kSAPHANA",
             'KUDA': "kUDA",
             'KSFDC': "kSfdc",
+            'KEXPERIMENTALADAPTER': "kExperimentalAdapter",
+            'KAZUREENTRAID': "kAzureEntraID",
+            'KAZUREMYSQL': "kAzureMySQL",
+            'KAZURECOSMOSDBNOSQL': "kAzureCosmosDBNoSQL",
+            'KAZURECOSMOSDBMONGODB': "kAzureCosmosDBMongoDB",
+            'KAZURECOSMOSDBCASSANDRA': "kAzureCosmosDBCassandra",
+            'KAZUREPOSTGRESQLSERVER': "kAzurePostgreSQLServer",
+            'KAZURESQL': "kAzureSQL",
+            'KAZURESQLDB': "kAzureSQLDB",
+            'KAZURESQLMI': "kAzureSQLMI",
+            'KAZURETABLESTORAGE': "kAzureTableStorage",
+            'KAZUREBLOBSTORAGE': "kAzureBlobStorage",
+            'KAZURETABLEAPI': "kAzureTableAPI",
+            'KMONGODBPHYSICAL': "kMongoDBPhysical",
+            'KGOOGLEWORKSPACE': "kGoogleWorkspace",
+            'KDB2': "kDB2",
+            'KSERVICENOW': "kServiceNow",
+            'KPOSTGRES': "kPostgres",
+            'KNUTANIXFS': "kNutanixFS",
+            'KAWSAURORAMYSQL': "kAWSAuroraMySQL",
+            'KAWSMYSQL': "kAWSMySQL",
+            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAWSRDSMSSQL': "kAWSRDSMSSQL",
+            'KAWSRDSORACLE': "kAWSRdsOracle",
+            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KAWSDOCUMENTDB': "kAWSDocumentDB",
+            'KAWSRDSPOSTGRESDB': "kAWSRDSPostgresDB",
+            'KAWSAURORAPOSTGRESDB': "kAWSAuroraPostgresDB",
+            'KAWSREDSHIFT': "kAWSRedshift",
         },
         ('object_type',): {
             'None': None,
@@ -140,6 +180,10 @@ class ProtectedObjectInfo(ModelComposed):
             'KORGMETADATA': "kOrgMetadata",
             'KSTORAGEPOLICY': "kStoragePolicy",
             'KVIRTUALAPPTEMPLATE': "kVirtualAppTemplate",
+            'KPROVIDERVDC': "kProviderVDC",
+            'KPLACEMENTPOLICY': "kPlacementPolicy",
+            'KSIZINGPOLICY': "kSizingPolicy",
+            'KCOMPUTEPOLICY': "kComputePolicy",
             'KDOMAIN': "kDomain",
             'KOUTLOOK': "kOutlook",
             'KMAILBOX': "kMailbox",
@@ -184,15 +228,40 @@ class ProtectedObjectInfo(ModelComposed):
             'KSUBNET': "kSubnet",
             'KCOMPUTEOPTIONS': "kComputeOptions",
             'KSNAPSHOTMANAGERPERMIT': "kSnapshotManagerPermit",
+            'KREGION': "kRegion",
             'KAVAILABILITYSET': "kAvailabilitySet",
             'KSQLSERVER': "kSQLServer",
             'KSQLDATABASE': "kSQLDatabase",
+            'KSQLMANAGEDINSTANCE': "kSQLManagedInstance",
+            'KMYSQLDATABASE': "kMySQLDatabase",
+            'KMYSQLFLEXIBLESERVER': "kMySQLFlexibleServer",
+            'KAZUREKUBERNETESCLUSTER': "kAzureKubernetesCluster",
+            'KAZUREKUBERNETESNAMESPACE': "kAzureKubernetesNamespace",
+            'KCOSMOSDBCASSANDRAACCOUNT': "kCosmosDBCassandraAccount",
+            'KCOSMOSDBCASSANDRAKEYSPACE': "kCosmosDBCassandraKeyspace",
+            'KAZURECOSMOSDBNOSQLACCOUNT': "kAzureCosmosDBNoSQLAccount",
+            'KAZURECOSMOSDBNOSQLDATABASE': "kAzureCosmosDBNoSQLDatabase",
+            'KAZURECOSMOSDBMONGODBACCOUNT': "kAzureCosmosDBMongoDBAccount",
+            'KAZURECOSMOSDBMONGODBDATABASE': "kAzureCosmosDBMongoDBDatabase",
+            'KCOSMOSDBTABLEACCOUNT': "kCosmosDBTableAccount",
+            'KCOSMOSDBTABLEAPI': "kCosmosDBTableAPI",
+            'KSQLMIDATABASE': "kSQLMIDatabase",
+            'KPOSTGRESQLFLEXIBLESERVER': "kPostgreSQLFlexibleServer",
+            'KPOSTGRESQLDATABASE': "kPostgreSQLDatabase",
+            'KCOSMOSDBTABLEAPITABLE': "kCosmosDBTableAPITable",
+            'KENTRAID': "kEntraID",
+            'KADMINUNIT': "kAdminUnit",
+            'KCONTACT': "kContact",
+            'KDEVICE': "kDevice",
+            'KDIRROLE': "kDirRole",
+            'KSERVICEPRINCIPAL': "kServicePrincipal",
+            'KAPPROLEASSIGNMENT': "kAppRoleAssignment",
+            'KCONDACCESSPOLICY': "kCondAccessPolicy",
             'KOVIRTMANAGER': "kOVirtManager",
             'KHOST': "kHost",
             'KSTORAGEDOMAIN': "kStorageDomain",
             'KVNICPROFILE': "kVNicProfile",
             'KIAMUSER': "kIAMUser",
-            'KREGION': "kRegion",
             'KAVAILABILITYZONE': "kAvailabilityZone",
             'KEC2INSTANCE': "kEC2Instance",
             'KVPC': "kVPC",
@@ -201,10 +270,20 @@ class ProtectedObjectInfo(ModelComposed):
             'KRDSOPTIONGROUP': "kRDSOptionGroup",
             'KRDSPARAMETERGROUP': "kRDSParameterGroup",
             'KRDSINSTANCE': "kRDSInstance",
+            'KRDSPOSTGRESINSTANCE': "kRDSPostgresInstance",
+            'KRDSMYSQLINSTANCE': "kRDSMySQLInstance",
+            'KRDSMSSQLINSTANCE': "kRDSMSSQLInstance",
+            'KRDSORACLEINSTANCE': "kRDSOracleInstance",
+            'KRDSMARIADBINSTANCE': "kRDSMariaDBInstance",
+            'KRDSCUSTOMMSSQLINSTANCE': "kRDSCustomMSSQLInstance",
+            'KRDSCUSTOMORACLEINSTANCE': "kRDSCustomOracleInstance",
             'KRDSSUBNET': "kRDSSubnet",
             'KRDSTAG': "kRDSTag",
+            'KREDSHIFTTAG': "kRedshiftTag",
             'KAURORATAG': "kAuroraTag",
             'KAURORACLUSTER': "kAuroraCluster",
+            'KAURORAPOSTGRESCLUSTER': "kAuroraPostgresCluster",
+            'KAURORAMYSQLCLUSTER': "kAuroraMySQLCluster",
             'KACCOUNT': "kAccount",
             'KSUBTASKPERMIT': "kSubTaskPermit",
             'KS3BUCKET': "kS3Bucket",
@@ -212,10 +291,25 @@ class ProtectedObjectInfo(ModelComposed):
             'KKMSKEY': "kKmsKey",
             'KRDSPOSTGRESDB': "kRDSPostgresDb",
             'KAURORACLUSTERPOSTGRESDB': "kAuroraClusterPostgresDb",
+            'KRDSMYSQLDB': "kRDSMySQLDb",
+            'KAURORAMYSQLDB': "kAuroraMySQLDb",
+            'KRDSMSSQLDB': "kRDSMSSQLDb",
+            'KRDSORACLEDB': "kRDSOracleDb",
+            'KRDSMARIADBDB': "kRDSMariaDBDb",
+            'KRDSCUSTOMMSSQLDB': "kRDSCustomMSSQLDb",
+            'KRDSCUSTOMORACLEDB': "kRDSCustomOracleDb",
+            'KAWSREDSHIFTCLUSTER': "kAWSRedshiftCluster",
+            'KAWSREDSHIFTDATABASE': "kAWSRedshiftDatabase",
+            'KAWSDOCUMENTDBCLUSTER': "kAWSDocumentDBCluster",
+            'KAWSDOCUMENTDBDB': "kAWSDocumentDBdb",
             'KPROJECT': "kProject",
             'KLABEL': "kLabel",
             'KMETADATA': "kMetadata",
             'KVPCCONNECTOR': "kVPCConnector",
+            'KBIGQUERYDATASET': "kBigQueryDataset",
+            'KSPANNERDATABASE': "kSpannerDatabase",
+            'KFIRESTOREDATABASE': "kFirestoreDatabase",
+            'KSQLSERVERDATABASE': "kSQLServerDatabase",
             'KPRISMCENTRAL': "kPrismCentral",
             'KOTHERHYPERVISORCLUSTER': "kOtherHypervisorCluster",
             'KZONE': "kZone",
@@ -234,6 +328,7 @@ class ProtectedObjectInfo(ModelComposed):
             'KORACLERACCLUSTER': "kOracleRACCluster",
             'KORACLEAPCLUSTER': "kOracleAPCluster",
             'KUNIXCLUSTER': "kUnixCluster",
+            'KORACLECLUSTER': "kOracleCluster",
             'KSERVICE': "kService",
             'KPVC': "kPVC",
             'KPERSISTENTVOLUMECLAIM': "kPersistentVolumeClaim",
@@ -254,8 +349,23 @@ class ProtectedObjectInfo(ModelComposed):
             'KTABLESPACE': "kTableSpace",
             'KPDB': "kPDB",
             'KOBJECT': "kObject",
+            'KSAPHANACLUSTER': "kSapHanaCluster",
+            'KSAPHANASID': "kSapHanaSID",
+            'KSAPHANADATABASE': "kSapHanaDatabase",
+            'KDB2CLUSTER': "kDB2Cluster",
+            'KDB2INSTANCE': "kDB2Instance",
+            'KDB2DATABASE': "kDB2Database",
+            'KPOSTGRESCLUSTER': "kPostgresCluster",
+            'KPOSTGRESINSTANCE': "kPostgresInstance",
+            'KPOSTGRESDATABASE': "kPostgresDatabase",
             'KORG': "kOrg",
             'KAPPINSTANCE': "kAppInstance",
+            'KOPSMANAGER': "kOpsManager",
+            'KSHAREDDRIVES': "kSharedDrives",
+            'KSHAREDDRIVE': "kSharedDrive",
+            'KPRISMELEMENT': "kPrismElement",
+            'KFILESERVER': "kFileServer",
+            'KMOUNTTARGET': "kMountTarget",
         },
         ('os_type',): {
             'None': None,
@@ -274,12 +384,54 @@ class ProtectedObjectInfo(ModelComposed):
             'KNATIVE': "kNative",
             'KSNAPSHOTMANAGER': "kSnapshotManager",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KRDSPOSTGRESSNAPSHOTMANAGER': "kRDSPostgresSnapshotManager",
+            'KRDSMYSQLSNAPSHOTMANAGER': "kRDSMySQLSnapshotManager",
+            'KRDSMSSQLSNAPSHOTMANAGER': "kRDSMSSQLSnapshotManager",
+            'KRDSORACLESNAPSHOTMANAGER': "kRDSOracleSnapshotManager",
+            'KRDSMARIADBSNAPSHOTMANAGER': "kRDSMariaDBSnapshotManager",
+            'KRDSCUSTOMMSSQLSNAPSHOTMANAGER': "kRDSCustomMSSQLSnapshotManager",
+            'KRDSCUSTOMORACLESNAPSHOTMANAGER': "kRDSCustomOracleSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAURORAPOSTGRESSNAPSHOTMANAGER': "kAuroraPostgresSnapshotManager",
+            'KAURORAMYSQLSNAPSHOTMANAGER': "kAuroraMySQLSnapshotManager",
             'KAWSS3': "kAwsS3",
             'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAWSAURORAPOSTGRES': "kAwsAuroraPostgres",
+            'KAWSRDSPOSTGRES': "kAwsRDSPostgres",
+            'KAWSMYSQL': "kAWSMySQL",
+            'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
+            'KAWSDYNAMODB': "kAwsDynamoDB",
+            'KAWSAURORAMYSQL': "kAWSAuroraMySQL",
+            'KAWSRDSORACLE': "kAWSRdsOracle",
+            'KAWSDOCUMENTDB': "kAWSDocumentDB",
+            'KAWSRDSPOSTGRESDB': "kAWSRDSPostgresDB",
+            'KAWSAURORAPOSTGRESDB': "kAWSAuroraPostgresDB",
+            'KAWSRDSMSSQL': "kAWSRDSMSSQL",
+            'KAWSREDSHIFT': "kAWSRedshift",
             'KAZURESQL': "kAzureSQL",
+            'KAZUREENTRAID': "kAzureEntraID",
+            'KAZUREMYSQL': "kAzureMySQL",
+            'KAZURECOSMOSDBNOSQL': "kAzureCosmosDBNoSQL",
+            'KAZURECOSMOSDBMONGODB': "kAzureCosmosDBMongoDB",
+            'KAZURECOSMOSDBCASSANDRA': "kAzureCosmosDBCassandra",
+            'KAZUREBLOBSTORAGE': "kAzureBlobStorage",
+            'KAZUREPOSTGRESQLSERVER': "kAzurePostgreSQLServer",
+            'KAZURESQLDB': "kAzureSQLDB",
+            'KAZURESQLMI': "kAzureSQLMI",
+            'KAZURETABLESTORAGE': "kAzureTableStorage",
+            'KAZURETABLEAPI': "kAzureTableAPI",
+            'KKUBERNETES': "kKubernetes",
+            'KGCPBIGQUERY': "kGCPBigQuery",
+            'KGOOGLESPANNER': "kGoogleSpanner",
+            'KGCPFIRESTORE': "kGCPFirestore",
+            'KGCPMYSQL': "kGCPMySQL",
+            'KGCPPOSTGRESQL': "kGCPPostgreSQL",
+            'KGCPALLOYDBPOSTGRESQL': "kGCPAlloyDBPostgreSQL",
+            'KGCPSQLSERVER': "kGCPSQLServer",
             'KFILE': "kFile",
             'KVOLUME': "kVolume",
+            'KGMAIL': "kGmail",
+            'KGOOGLEDRIVE': "kGoogleDrive",
         },
     }
 
@@ -302,6 +454,7 @@ class ProtectedObjectInfo(ModelComposed):
         """
         lazy_import()
         return {
+            'entity_id': (ObjectStringIdentifier,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
@@ -331,6 +484,7 @@ class ProtectedObjectInfo(ModelComposed):
 
 
     attribute_map = {
+        'entity_id': 'entityId',  # noqa: E501
         'environment': 'environment',  # noqa: E501
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
@@ -401,6 +555,7 @@ class ProtectedObjectInfo(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            entity_id (ObjectStringIdentifier): [optional]  # noqa: E501
             environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
             id (int, none_type): Specifies object id.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501

@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.external_vendor_tenant_metadata import ExternalVendorTenantMetadata
     from cohesity_sdk.cluster.model.tenant_network import TenantNetwork
+    globals()['ExternalVendorTenantMetadata'] = ExternalVendorTenantMetadata
     globals()['TenantNetwork'] = TenantNetwork
 
 
@@ -58,6 +60,20 @@ class TenantInfo(ModelNormal):
     """
 
     allowed_values = {
+        ('active_deactivation',): {
+            'None': None,
+            'NONE': "None",
+            'SUCCESS': "Success",
+            'FAILURE': "Failure",
+            'INPROGRESS': "InProgress",
+        },
+        ('finished_deactivations',): {
+            'None': None,
+            'NONE': "None",
+            'SUCCESS': "Success",
+            'FAILURE': "Failure",
+            'INPROGRESS': "InProgress",
+        },
         ('status',): {
             'None': None,
             'ACTIVE': "Active",
@@ -86,9 +102,12 @@ class TenantInfo(ModelNormal):
         """
         lazy_import()
         return {
+            'active_deactivation': (str, none_type,),  # noqa: E501
             'created_at_time_msecs': (int, none_type,),  # noqa: E501
             'deleted_at_time_msecs': (int, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
+            'external_vendor_metadata': (ExternalVendorTenantMetadata,),  # noqa: E501
+            'finished_deactivations': ([str, none_type], none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'is_managed_on_helios': (bool, none_type,),  # noqa: E501
             'last_updated_at_time_msecs': (int, none_type,),  # noqa: E501
@@ -104,9 +123,12 @@ class TenantInfo(ModelNormal):
 
 
     attribute_map = {
+        'active_deactivation': 'activeDeactivation',  # noqa: E501
         'created_at_time_msecs': 'createdAtTimeMsecs',  # noqa: E501
         'deleted_at_time_msecs': 'deletedAtTimeMsecs',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'external_vendor_metadata': 'externalVendorMetadata',  # noqa: E501
+        'finished_deactivations': 'finishedDeactivations',  # noqa: E501
         'id': 'id',  # noqa: E501
         'is_managed_on_helios': 'isManagedOnHelios',  # noqa: E501
         'last_updated_at_time_msecs': 'lastUpdatedAtTimeMsecs',  # noqa: E501
@@ -162,9 +184,12 @@ class TenantInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            active_deactivation (str, none_type): Specifies info about the active deactivation of this tenant, if any.. [optional]  # noqa: E501
             created_at_time_msecs (int, none_type): Epoch time when tenant was created.. [optional]  # noqa: E501
             deleted_at_time_msecs (int, none_type): Epoch time when tenant was last updated.. [optional]  # noqa: E501
             description (str, none_type): Description about the tenant.. [optional]  # noqa: E501
+            external_vendor_metadata (ExternalVendorTenantMetadata): [optional]  # noqa: E501
+            finished_deactivations ([str, none_type], none_type): Specifies a history of deactivations for this tenant. Only the latest 5 deactivations are preserved.. [optional]  # noqa: E501
             id (str, none_type): The tenant id.. [optional]  # noqa: E501
             is_managed_on_helios (bool, none_type): Flag to indicate if tenant is managed on helios. [optional]  # noqa: E501
             last_updated_at_time_msecs (int, none_type): Epoch time when tenant was last updated.. [optional]  # noqa: E501

@@ -74,8 +74,8 @@ class AwsIAmRoleParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'account_id': (str, none_type,),  # noqa: E501
             'i_am_role': (str, none_type,),  # noqa: E501
+            'account_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class AwsIAmRoleParams(ModelNormal):
 
 
     attribute_map = {
-        'account_id': 'accountId',  # noqa: E501
         'i_am_role': 'iAmRole',  # noqa: E501
+        'account_id': 'accountId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -101,11 +101,10 @@ class AwsIAmRoleParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, account_id, i_am_role, *args, **kwargs):  # noqa: E501
+    def __init__(self, i_am_role, *args, **kwargs):  # noqa: E501
         """AwsIAmRoleParams - a model defined in OpenAPI
 
         Args:
-            account_id (str, none_type): Specifies the Account Id of the external target.
             i_am_role (str, none_type): Specifies the I Am Role of the external target.
 
         Keyword Args:
@@ -140,6 +139,7 @@ class AwsIAmRoleParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            account_id (str, none_type): Specifies the Account Id of the external target.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -166,7 +166,6 @@ class AwsIAmRoleParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.account_id = account_id
         self.i_am_role = i_am_role
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

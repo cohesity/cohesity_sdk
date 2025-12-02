@@ -61,6 +61,9 @@ class AliasSmbConfig(ModelNormal):
     }
 
     validations = {
+        ('super_user_sids',): {
+        },
+
     }
 
     additional_properties_type = None
@@ -163,7 +166,7 @@ class AliasSmbConfig(ModelNormal):
             is_share_level_permission_empty (bool, none_type): Indicate if share level permission is cleared by user.. [optional]  # noqa: E501
             oplock_enabled (bool, none_type): Indicate the operation lock is enabled by this view.. [optional]  # noqa: E501
             permissions ([SmbPermission], none_type): Share level permissions. Note: Supported Access: FullControl, Modify, ReadOnly. Supported type: Allow, Deny.. [optional]  # noqa: E501
-            super_user_sids ([str], none_type): Specifies a list of super user sids.. [optional]  # noqa: E501
+            super_user_sids ([str], none_type): Specifies a list of super user sids. Duplicate SIDs are not allowed.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

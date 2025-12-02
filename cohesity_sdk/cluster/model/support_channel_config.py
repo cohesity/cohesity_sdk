@@ -76,6 +76,10 @@ class SupportChannelConfig(ModelNormal):
         return {
             'end_time_usecs': (int, none_type,),  # noqa: E501
             'is_enabled': (bool, none_type,),  # noqa: E501
+            'enable_extension': (bool, none_type,),  # noqa: E501
+            'extension_duration_hours': (int, none_type,),  # noqa: E501
+            'force_enable_reverse_tunnel': (bool,),  # noqa: E501
+            'node_ids': ([int], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,6 +91,10 @@ class SupportChannelConfig(ModelNormal):
     attribute_map = {
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'is_enabled': 'isEnabled',  # noqa: E501
+        'enable_extension': 'enableExtension',  # noqa: E501
+        'extension_duration_hours': 'extensionDurationHours',  # noqa: E501
+        'force_enable_reverse_tunnel': 'forceEnableReverseTunnel',  # noqa: E501
+        'node_ids': 'nodeIds',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -106,7 +114,7 @@ class SupportChannelConfig(ModelNormal):
 
         Args:
             end_time_usecs (int, none_type): Specifies the support channel expiry time.
-            is_enabled (bool, none_type): Specifies id the support channel is enabled.
+            is_enabled (bool, none_type): Specifies if the support channel should be enabled.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -140,6 +148,10 @@ class SupportChannelConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            enable_extension (bool, none_type): Specifies if the support channel extension is allowed.. [optional]  # noqa: E501
+            extension_duration_hours (int, none_type): Specifies the support channel extension duration in hours.. [optional]  # noqa: E501
+            force_enable_reverse_tunnel (bool): Specifies if SSH reverse tunnel should be initiated with RT server. Use this only if there are connectivity issues with Support Channel server.. [optional]  # noqa: E501
+            node_ids ([int], none_type): List of nodes where support channel should be enabled in addition to master node.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

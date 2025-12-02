@@ -29,10 +29,16 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.aws_entity_metadata import AwsEntityMetadata
     from cohesity_sdk.cluster.model.azure_entity_metadata import AzureEntityMetadata
+    from cohesity_sdk.cluster.model.experimental_adapter_entity_metadata import ExperimentalAdapterEntityMetadata
+    from cohesity_sdk.cluster.model.gcp_entity_metadata import GCPEntityMetadata
     from cohesity_sdk.cluster.model.maintenance_mode_config import MaintenanceModeConfig
+    from cohesity_sdk.cluster.model.tag_attribute_params import TagAttributeParams
     globals()['AwsEntityMetadata'] = AwsEntityMetadata
     globals()['AzureEntityMetadata'] = AzureEntityMetadata
+    globals()['ExperimentalAdapterEntityMetadata'] = ExperimentalAdapterEntityMetadata
+    globals()['GCPEntityMetadata'] = GCPEntityMetadata
     globals()['MaintenanceModeConfig'] = MaintenanceModeConfig
+    globals()['TagAttributeParams'] = TagAttributeParams
 
 
 class EntityMetadataParams(ModelNormal):
@@ -86,7 +92,10 @@ class EntityMetadataParams(ModelNormal):
             'entity_id': (int,),  # noqa: E501
             'aws_params': (AwsEntityMetadata,),  # noqa: E501
             'azure_params': (AzureEntityMetadata,),  # noqa: E501
+            'experimental_adapter_params': (ExperimentalAdapterEntityMetadata,),  # noqa: E501
+            'gcp_params': (GCPEntityMetadata,),  # noqa: E501
             'maintenance_mode_config': (MaintenanceModeConfig,),  # noqa: E501
+            'user_tag_attributes': ([TagAttributeParams],),  # noqa: E501
         }
 
     @cached_property
@@ -99,7 +108,10 @@ class EntityMetadataParams(ModelNormal):
         'entity_id': 'entityId',  # noqa: E501
         'aws_params': 'awsParams',  # noqa: E501
         'azure_params': 'azureParams',  # noqa: E501
+        'experimental_adapter_params': 'experimentalAdapterParams',  # noqa: E501
+        'gcp_params': 'gcpParams',  # noqa: E501
         'maintenance_mode_config': 'maintenanceModeConfig',  # noqa: E501
+        'user_tag_attributes': 'userTagAttributes',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -154,7 +166,10 @@ class EntityMetadataParams(ModelNormal):
 
             aws_params (AwsEntityMetadata): [optional]  # noqa: E501
             azure_params (AzureEntityMetadata): [optional]  # noqa: E501
+            experimental_adapter_params (ExperimentalAdapterEntityMetadata): [optional]  # noqa: E501
+            gcp_params (GCPEntityMetadata): [optional]  # noqa: E501
             maintenance_mode_config (MaintenanceModeConfig): [optional]  # noqa: E501
+            user_tag_attributes ([TagAttributeParams]): Specifies the tag attributes associated with the entity created by the user. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

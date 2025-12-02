@@ -46,7 +46,7 @@ class LDAPApi(object):
         ):
             """Create Ldap provider.  # noqa: E501
 
-            Create Ldap provider with given parameters.  # noqa: E501
+            **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Create Ldap provider with given parameters.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -111,7 +111,9 @@ class LDAPApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/ldap',
                 'operation_id': 'create_ldap_provider',
@@ -168,7 +170,7 @@ class LDAPApi(object):
         ):
             """Delete LDAP provider.  # noqa: E501
 
-            Delete LDAP provider which will be identified by given Id.  # noqa: E501
+            **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Delete LDAP provider which will be identified by given Id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -233,7 +235,9 @@ class LDAPApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/ldap/{id}',
                 'operation_id': 'delete_ldap_provider',
@@ -289,7 +293,7 @@ class LDAPApi(object):
         ):
             """Get LDAP connection status.  # noqa: E501
 
-            Get LDAP connection status.  # noqa: E501
+            **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get LDAP connection status.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -354,7 +358,9 @@ class LDAPApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/ldap/{id}/connection-status',
                 'operation_id': 'get_ldap_connection_status',
@@ -409,7 +415,7 @@ class LDAPApi(object):
         ):
             """Get Groups.  # noqa: E501
 
-            Get LDAPs.  # noqa: E501
+            **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get LDAPs.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -473,7 +479,9 @@ class LDAPApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/ldap',
                 'operation_id': 'get_ldaps',
@@ -539,7 +547,7 @@ class LDAPApi(object):
         ):
             """Update Ldap provider.  # noqa: E501
 
-            Modify Ldap provider with given parameters.  # noqa: E501
+            **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Modify Ldap provider with given parameters.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -604,7 +612,9 @@ class LDAPApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/ldap',
                 'operation_id': 'update_ldap_provider',

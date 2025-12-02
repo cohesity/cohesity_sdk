@@ -21,6 +21,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from cohesity_sdk.cluster.model.audit_log import AuditLog
 from cohesity_sdk.cluster.model.audit_logs import AuditLogs
 from cohesity_sdk.cluster.model.audit_logs_actions import AuditLogsActions
 from cohesity_sdk.cluster.model.audit_logs_entity_types import AuditLogsEntityTypes
@@ -40,13 +41,137 @@ class AuditLogApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
+        def __create_audit_logs(
+            self,
+            body,
+            **kwargs
+        ):
+            """Create cluster audit logs.  # noqa: E501
+
+            ```No Privileges Required``` <br><br>Create a cluster audit logs.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.create_audit_logs(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (AuditLog): Request to create a audit log.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                AuditLogsEntityTypes
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.create_audit_logs = _Endpoint(
+            settings={
+                'response_type': (AuditLogsEntityTypes,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/create-audit-logs',
+                'operation_id': 'create_audit_logs',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (AuditLog,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__create_audit_logs
+        )
+
         def __get_audit_logs(
             self,
             **kwargs
         ):
             """Get cluster audit logs.  # noqa: E501
 
-            Get a cluster audit logs.  # noqa: E501
+            **Privileges:** ```CLUSTER_AUDIT``` <br><br>Get a cluster audit logs.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -118,7 +243,9 @@ class AuditLogApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/audit-logs',
                 'operation_id': 'get_audit_logs',
@@ -194,6 +321,7 @@ class AuditLogApi(object):
                         "LDAP": "Ldap",
                         "ANTIVIRUSSERVICEGROUP": "AntivirusServiceGroup",
                         "INFECTEDFILE": "InfectedFile",
+                        "INFECTEDOBJECT": "InfectedObject",
                         "PREFERREDDOMAINCONTROLLER": "PreferredDomainController",
                         "GROUP": "Group",
                         "ROLE": "Role",
@@ -245,7 +373,12 @@ class AuditLogApi(object):
                         "HOSTMAPPING": "HostMapping",
                         "FIREWALLSETTING": "FirewallSetting",
                         "CLUSTERSNAPSHOTPOLICY": "ClusterSnapshotPolicy",
-                        "NODEPOWER": "NodePower"
+                        "NODEPOWER": "NodePower",
+                        "CERTSTORE": "CertStore",
+                        "SYSLOGSERVERCONFIGURATION": "SyslogServerConfiguration",
+                        "FORTKNOXVAULTCLUSTER": "FortknoxVaultCluster",
+                        "FORTKNOXVAULTPAIR": "FortknoxVaultPair",
+                        "COHESITYCAREMOTETRUSTROOTS": "CohesityCaRemoteTrustRoots"
                     },
                     ('actions',): {
                         'None': None,
@@ -383,7 +516,7 @@ class AuditLogApi(object):
         ):
             """Get cluster audit logs actions.  # noqa: E501
 
-            Get all actions of cluster audit logs.  # noqa: E501
+            **Privileges:** ```CLUSTER_AUDIT``` <br><br>Get all actions of cluster audit logs.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -444,7 +577,9 @@ class AuditLogApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/audit-logs/actions',
                 'operation_id': 'get_audit_logs_actions',
@@ -492,7 +627,7 @@ class AuditLogApi(object):
         ):
             """Get cluster audit logs entity types.  # noqa: E501
 
-            Get all entity types of cluster audit logs.  # noqa: E501
+            **Privileges:** ```CLUSTER_AUDIT``` <br><br>Get all entity types of cluster audit logs.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -553,7 +688,9 @@ class AuditLogApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/audit-logs/entity-types',
                 'operation_id': 'get_audit_logs_entity_types',
@@ -601,7 +738,7 @@ class AuditLogApi(object):
         ):
             """Get filer audit log configs.  # noqa: E501
 
-            Get filer audit log configs.  # noqa: E501
+            **Privileges:** ```CLUSTER_AUDIT``` <br><br>Get filer audit log configs.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -662,7 +799,9 @@ class AuditLogApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/audit-logs/filer-configs',
                 'operation_id': 'get_filer_audit_log_configs',
@@ -711,7 +850,7 @@ class AuditLogApi(object):
         ):
             """Update filer audit log configs.  # noqa: E501
 
-            Update filer audit log configs.  # noqa: E501
+            **Privileges:** ```CLUSTER_AUDIT``` <br><br>Update filer audit log configs.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -776,7 +915,9 @@ class AuditLogApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/audit-logs/filer-configs',
                 'operation_id': 'update_filer_audit_log_configs',

@@ -19,6 +19,8 @@ Name | Type | Description | Notes
 **storage_domain_name** | **str, none_type** | Specifies the storage domain associated with the target. | [optional] 
 **tenant_ids** | **[str]** | Specifies the list of tenantIds for the External Target | [optional] 
 **use_for_apollo_mr_store** | **bool, none_type** | Specifies whether this external target is used to store apollo mr records. | [optional] 
+**use_rolling_object_lock** | **bool, none_type** | Whether the vault should use rolling object lock. | [optional] 
+**worm_lock_in_compliance_mode** | **bool, none_type** | Whether archives to this vault should use compliance mode when adding data locks to objects. | [optional] 
 **archival_params** | [**ArchivalExternalTargetParams**](ArchivalExternalTargetParams.md) |  | [optional] 
 **tiering_params** | [**TieringExternalTargetParams**](TieringExternalTargetParams.md) |  | [optional] 
 

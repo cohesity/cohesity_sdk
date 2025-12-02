@@ -45,7 +45,7 @@ class RemoteStorageApi(object):
         ):
             """Delete Remote Storage Registration  # noqa: E501
 
-            Delete remote storage registration.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete remote storage registration.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -110,7 +110,9 @@ class RemoteStorageApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/remote-storage/{id}',
                 'operation_id': 'delete_remote_storage_registration',
@@ -165,7 +167,7 @@ class RemoteStorageApi(object):
         ):
             """Get Registered Remote Storage Servers List  # noqa: E501
 
-            Get summary about list of registered remote storage servers.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Get summary about list of registered remote storage servers.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -226,7 +228,9 @@ class RemoteStorageApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/remote-storage',
                 'operation_id': 'get_registered_remote_storage_list',
@@ -275,7 +279,7 @@ class RemoteStorageApi(object):
         ):
             """Get remote storage details  # noqa: E501
 
-            Get details of remote storage given by id.  # noqa: E501
+            **Privileges:** ```CLUSTER_VIEW``` <br><br>Get details of remote storage given by id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -343,7 +347,9 @@ class RemoteStorageApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/remote-storage/{id}',
                 'operation_id': 'get_remote_storage_details',
@@ -414,7 +420,7 @@ class RemoteStorageApi(object):
         ):
             """Register Remote Storage  # noqa: E501
 
-            Register a remote storage to be used for disaggregated storage.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Register a remote storage to be used for disaggregated storage.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -479,7 +485,9 @@ class RemoteStorageApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/remote-storage',
                 'operation_id': 'register_new_remote_storage',
@@ -537,7 +545,7 @@ class RemoteStorageApi(object):
         ):
             """Update Remote Storage Config  # noqa: E501
 
-            Update Registered Remote Storage Config.  # noqa: E501
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update Registered Remote Storage Config.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -605,7 +613,9 @@ class RemoteStorageApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/remote-storage/{id}',
                 'operation_id': 'update_remote_storage_registration',

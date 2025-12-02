@@ -75,6 +75,7 @@ class NodeRemovalParams(ModelNormal):
         """
         return {
             'cancel': (bool, none_type,),  # noqa: E501
+            'is_clear_pre_check_result_only': (bool, none_type,),  # noqa: E501
             'is_offline': (bool, none_type,),  # noqa: E501
             'is_validate_only': (bool, none_type,),  # noqa: E501
         }
@@ -87,6 +88,7 @@ class NodeRemovalParams(ModelNormal):
 
     attribute_map = {
         'cancel': 'cancel',  # noqa: E501
+        'is_clear_pre_check_result_only': 'isClearPreCheckResultOnly',  # noqa: E501
         'is_offline': 'isOffline',  # noqa: E501
         'is_validate_only': 'isValidateOnly',  # noqa: E501
     }
@@ -141,6 +143,7 @@ class NodeRemovalParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            is_clear_pre_check_result_only (bool, none_type): Specifies whether request is for clearing pre-check result only. [optional] if omitted the server will use the default value of False  # noqa: E501
             is_offline (bool, none_type): Specifies whether node being removed is offline.. [optional] if omitted the server will use the default value of False  # noqa: E501
             is_validate_only (bool, none_type): Specifies whether request is for pre-check validations only. [optional] if omitted the server will use the default value of False  # noqa: E501
         """

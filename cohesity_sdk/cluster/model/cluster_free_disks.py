@@ -79,7 +79,7 @@ class ClusterFreeDisks(ModelNormal):
         """
         lazy_import()
         return {
-            'node_free_disks': ([NodeFreeDisks], none_type,),  # noqa: E501
+            'node_free_disks': ([NodeFreeDisks],),  # noqa: E501
         }
 
     @cached_property
@@ -108,7 +108,7 @@ class ClusterFreeDisks(ModelNormal):
         """ClusterFreeDisks - a model defined in OpenAPI
 
         Args:
-            node_free_disks ([NodeFreeDisks], none_type): Specifies list of free disks of cluster.
+            node_free_disks ([NodeFreeDisks]): Specifies list of free disks of cluster.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

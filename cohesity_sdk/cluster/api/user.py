@@ -22,24 +22,31 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from cohesity_sdk.cluster.model.active_sessions_count_params import ActiveSessionsCountParams
+from cohesity_sdk.cluster.model.added_principal_response_object import AddedPrincipalResponseObject
 from cohesity_sdk.cluster.model.assigned_sources import AssignedSources
 from cohesity_sdk.cluster.model.create_groups_params import CreateGroupsParams
 from cohesity_sdk.cluster.model.create_or_update_api_key_request import CreateOrUpdateAPIKeyRequest
+from cohesity_sdk.cluster.model.create_principal_request_params import CreatePrincipalRequestParams
 from cohesity_sdk.cluster.model.create_user_session_request_params import CreateUserSessionRequestParams
 from cohesity_sdk.cluster.model.create_users_parameters import CreateUsersParameters
 from cohesity_sdk.cluster.model.created_user_api_key import CreatedUserAPIKey
 from cohesity_sdk.cluster.model.delete_groups_request import DeleteGroupsRequest
 from cohesity_sdk.cluster.model.delete_users_request import DeleteUsersRequest
 from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.get_user_task_notifications_response_object import GetUserTaskNotificationsResponseObject
 from cohesity_sdk.cluster.model.group_params import GroupParams
 from cohesity_sdk.cluster.model.groups import Groups
 from cohesity_sdk.cluster.model.s3_keys import S3Keys
 from cohesity_sdk.cluster.model.secret_key_entity import SecretKeyEntity
 from cohesity_sdk.cluster.model.security_principals import SecurityPrincipals
+from cohesity_sdk.cluster.model.success_resp import SuccessResp
 from cohesity_sdk.cluster.model.update_group_parameters import UpdateGroupParameters
+from cohesity_sdk.cluster.model.update_linux_password_request import UpdateLinuxPasswordRequest
 from cohesity_sdk.cluster.model.update_user_parameters import UpdateUserParameters
 from cohesity_sdk.cluster.model.user_api_key import UserAPIKey
 from cohesity_sdk.cluster.model.user_api_keys import UserAPIKeys
+from cohesity_sdk.cluster.model.user_otp_params import UserOtpParams
+from cohesity_sdk.cluster.model.user_otp_response_object import UserOtpResponseObject
 from cohesity_sdk.cluster.model.user_params import UserParams
 from cohesity_sdk.cluster.model.user_session import UserSession
 from cohesity_sdk.cluster.model.users_list import UsersList
@@ -57,6 +64,130 @@ class UserApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
+        def __add_principals(
+            self,
+            body,
+            **kwargs
+        ):
+            """Add the specified principals for the users or groups created on the Cohesity Cluster.  # noqa: E501
+
+            **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>After a group or user has been added to a Cohesity Cluster, the referenced principal can be used by the group or user. In addition, this operation maps Cohesity roles with a group or user and this mapping defines the privileges allowed on the Cohesity Cluster for the group or user.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.add_principals(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (CreatePrincipalRequestParams): Specifies parameters to add multiple principals.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                AddedPrincipalResponseObject
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.add_principals = _Endpoint(
+            settings={
+                'response_type': (AddedPrincipalResponseObject,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/principals',
+                'operation_id': 'add_principals',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (CreatePrincipalRequestParams,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__add_principals
+        )
+
         def __create_group(
             self,
             body,
@@ -64,7 +195,7 @@ class UserApi(object):
         ):
             """Create Groups  # noqa: E501
 
-            If an Active Directory/IdP domain is specified, a new group is added to the Cohesity Cluster for the specified Active Directory/IdP group principal. If the LOCAL domain is specified, a new group is created directly in the default LOCAL domain on the Cohesity Cluster.  # noqa: E501
+            **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>If an Active Directory/IdP domain is specified, a new group is added to the Cohesity Cluster for the specified Active Directory/IdP group principal. If the LOCAL domain is specified, a new group is created directly in the default LOCAL domain on the Cohesity Cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -129,7 +260,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/groups',
                 'operation_id': 'create_group',
@@ -186,7 +319,7 @@ class UserApi(object):
         ):
             """Create a user session  # noqa: E501
 
-            Create a user session  # noqa: E501
+            ```No Privileges Required``` <br><br>Creates a new user session. Session Management must be enabled before exercising this endpoint. <br/>Subsequent requests to other Cohesity REST API operations must specify the returned session token and 'session-id' in the http header in the following format: `session-id: generated-session-key`   # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -250,7 +383,7 @@ class UserApi(object):
                 'response_type': (UserSession,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/users/sessions',
@@ -309,7 +442,7 @@ class UserApi(object):
         ):
             """Create a new user API key.  # noqa: E501
 
-            Create a new user API key.  # noqa: E501
+            ```No Privileges Required``` <br><br>Create a new user API key.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -377,7 +510,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/users/{userSid}/api-keys',
                 'operation_id': 'create_user_api_key',
@@ -440,7 +575,7 @@ class UserApi(object):
         ):
             """Add one or more users to Cohesity Cluster.  # noqa: E501
 
-            Add one or more users to Cohesity Cluster.  # noqa: E501
+            **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Add one or more users to Cohesity Cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -505,7 +640,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/users',
                 'operation_id': 'create_users',
@@ -562,7 +699,7 @@ class UserApi(object):
         ):
             """Delete Group  # noqa: E501
 
-            If the group on the Cohesity Cluster was added for an Active Directory/IdP group, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.  # noqa: E501
+            **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>If the group on the Cohesity Cluster was added for an Active Directory/IdP group, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -627,7 +764,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/groups/{sid}',
                 'operation_id': 'delete_group',
@@ -683,7 +822,7 @@ class UserApi(object):
         ):
             """Delete Groups  # noqa: E501
 
-            If the Cohesity group was created against an Active Directory/IdP, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.  # noqa: E501
+            **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>If the Cohesity group was created against an Active Directory/IdP, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -748,7 +887,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/groups/delete',
                 'operation_id': 'delete_groups',
@@ -804,7 +945,7 @@ class UserApi(object):
         ):
             """Delete user sessions  # noqa: E501
 
-            Deletes all sessions for given user sid or system wide sessions  # noqa: E501
+            ```No Privileges Required``` <br><br>Deletes all sessions for given user sid or system wide sessions  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -866,7 +1007,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/users/sessions',
                 'operation_id': 'delete_session',
@@ -920,7 +1063,7 @@ class UserApi(object):
         ):
             """Delete a Cohesity (LOCAL/IdP/AD) user.  # noqa: E501
 
-            Delete a Cohesity user.  # noqa: E501
+            **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete a Cohesity user.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -985,7 +1128,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/users/{sid}',
                 'operation_id': 'delete_user',
@@ -1042,7 +1187,7 @@ class UserApi(object):
         ):
             """Delete a user API key.  # noqa: E501
 
-            Delete a user API key.  # noqa: E501
+            ```No Privileges Required``` <br><br>Delete a user API key.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1110,7 +1255,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/users/{userSid}/api-keys/{id}',
                 'operation_id': 'delete_user_api_key_by_id',
@@ -1172,7 +1319,7 @@ class UserApi(object):
         ):
             """Delete one or more Cohesity users.  # noqa: E501
 
-            Delete one or more Cohesity users.  # noqa: E501
+            **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete one or more Cohesity users.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1237,7 +1384,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/users/delete',
                 'operation_id': 'delete_users',
@@ -1293,7 +1442,7 @@ class UserApi(object):
         ):
             """Get sessions count  # noqa: E501
 
-            Get the number of user sessions.  # noqa: E501
+            **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get the number of user sessions.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1355,7 +1504,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/users/sessions',
                 'operation_id': 'get_active_sessions_count',
@@ -1409,7 +1560,7 @@ class UserApi(object):
         ):
             """Get the list of all API keys which are created or owned by the user.  # noqa: E501
 
-            Get the list of all API keys which are created or owned by the user.  # noqa: E501
+            ```No Privileges Required``` <br><br>Get the list of all API keys which are created or owned by the user.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1474,7 +1625,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/api-keys',
                 'operation_id': 'get_all_api_keys',
@@ -1545,7 +1698,7 @@ class UserApi(object):
         ):
             """Get Group by SID  # noqa: E501
 
-            Get Group by SID.  # noqa: E501
+            ```No Privileges Required``` <br><br>Get Group by SID.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1610,7 +1763,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/groups/{sid}',
                 'operation_id': 'get_group_by_sid',
@@ -1665,7 +1820,7 @@ class UserApi(object):
         ):
             """Get Groups.  # noqa: E501
 
-            Get groups on the Cohesity cluster.  # noqa: E501
+            ```No Privileges Required``` <br><br>Get groups on the Cohesity cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1733,7 +1888,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/groups',
                 'operation_id': 'get_groups',
@@ -1821,7 +1978,7 @@ class UserApi(object):
         ):
             """Fetch sources & views assigned to a user/group.  # noqa: E501
 
-            Fetches all the sources assigned to a principal.  # noqa: E501
+            ```No Privileges Required``` <br><br>Fetches all the sources assigned to a principal.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1886,7 +2043,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/security-principals/{sid}/sources',
                 'operation_id': 'get_principal_sources',
@@ -1942,7 +2101,7 @@ class UserApi(object):
         ):
             """Get Security Principals.  # noqa: E501
 
-            Get Security Principals  # noqa: E501
+            **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Security Principals  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2007,7 +2166,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/security-principals',
                 'operation_id': 'get_security_principals',
@@ -2070,7 +2231,7 @@ class UserApi(object):
         ):
             """Get the API key by id.  # noqa: E501
 
-            Get the API key by id.  # noqa: E501
+            ```No Privileges Required``` <br><br>Get the API key by id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2138,7 +2299,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/users/{userSid}/api-keys/{id}',
                 'operation_id': 'get_user_api_key_by_id',
@@ -2200,7 +2363,7 @@ class UserApi(object):
         ):
             """Get the list of API keys owned by the user.  # noqa: E501
 
-            Returns the list of API keys owned by the user. For security reasons there is no way to retrieve the key itself after it's created.  # noqa: E501
+            ```No Privileges Required``` <br><br>Returns the list of API keys owned by the user. For security reasons there is no way to retrieve the key itself after it's created.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2268,7 +2431,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/users/{userSid}/api-keys',
                 'operation_id': 'get_user_api_keys',
@@ -2340,7 +2505,7 @@ class UserApi(object):
         ):
             """Get User by SID.  # noqa: E501
 
-            Get User by SID.  # noqa: E501
+            ```No Privileges Required``` <br><br>Get User by SID.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2405,7 +2570,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/users/{sid}',
                 'operation_id': 'get_user_by_sid',
@@ -2454,13 +2621,148 @@ class UserApi(object):
             callable=__get_user_by_sid
         )
 
+        def __get_user_task_notifications(
+            self,
+            sid,
+            **kwargs
+        ):
+            """Get task notifications for the given user.  # noqa: E501
+
+            **Privileges:** ```CLUSTER_VIEW, TENANT_VIEW``` <br><br>Get task notifications for the given user.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_user_task_notifications(sid, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                sid (str): Specify the SID of the user.
+
+            Keyword Args:
+                include_count (bool): Specifies whether the notification count is needed or not.. [optional]
+                exclude_event_logs (bool): Specifies whether to exclude event logs within the response.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GetUserTaskNotificationsResponseObject
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['sid'] = \
+                sid
+            return self.call_with_http_info(**kwargs)
+
+        self.get_user_task_notifications = _Endpoint(
+            settings={
+                'response_type': (GetUserTaskNotificationsResponseObject,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/users/{sid}/notifications',
+                'operation_id': 'get_user_task_notifications',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'sid',
+                    'include_count',
+                    'exclude_event_logs',
+                ],
+                'required': [
+                    'sid',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'sid':
+                        (str,),
+                    'include_count':
+                        (bool,),
+                    'exclude_event_logs':
+                        (bool,),
+                },
+                'attribute_map': {
+                    'sid': 'sid',
+                    'include_count': 'includeCount',
+                    'exclude_event_logs': 'excludeEventLogs',
+                },
+                'location_map': {
+                    'sid': 'path',
+                    'include_count': 'query',
+                    'exclude_event_logs': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_user_task_notifications
+        )
+
         def __get_users(
             self,
             **kwargs
         ):
             """Get Users.  # noqa: E501
 
-            Get Users.  # noqa: E501
+            ```No Privileges Required``` <br><br>Get Users.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2529,7 +2831,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/users',
                 'operation_id': 'get_users',
@@ -2623,7 +2927,7 @@ class UserApi(object):
         ):
             """Reset S3 secret access key  # noqa: E501
 
-            Reset the S3 secret access key for the specified user on the Cohesity Cluster. Admin users who have the Manage Users privilege can generate keys for other users. When generating a new key, anyone using the old key will lose access until they retrieve and use the newly generated key. The user must have the following privilege to access this endpoint, 'Manage S3 Keys'.  # noqa: E501
+            ```No Privileges Required``` <br><br>Reset the S3 secret access key for the specified user on the Cohesity Cluster. Admin users who have the Manage Users privilege can generate keys for other users. When generating a new key, anyone using the old key will lose access until they retrieve and use the newly generated key. The user must have the following privilege to access this endpoint, 'Manage S3 Keys'.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2688,7 +2992,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/users/{sid}/s3-secret-key',
                 'operation_id': 'regenerate_s3_key',
@@ -2745,7 +3051,7 @@ class UserApi(object):
         ):
             """Refresh an existing user API key.  # noqa: E501
 
-            Refresh an existing user API key.  # noqa: E501
+            ```No Privileges Required``` <br><br>Refresh an existing user API key.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2813,7 +3119,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/users/{userSid}/api-keys/{id}/rotate',
                 'operation_id': 'rotate_user_api_key',
@@ -2876,7 +3184,7 @@ class UserApi(object):
         ):
             """Update Group  # noqa: E501
 
-            Only group settings on the Cohesity Cluster are updated. No changes are made to the referenced group principal on the Active Directory/IdP.  # noqa: E501
+            **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Only group settings on the Cohesity Cluster are updated. No changes are made to the referenced group principal on the Active Directory/IdP.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2944,7 +3252,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/groups/{sid}',
                 'operation_id': 'update_group',
@@ -3000,6 +3310,130 @@ class UserApi(object):
             callable=__update_group
         )
 
+        def __update_linux_credentials_v2(
+            self,
+            body,
+            **kwargs
+        ):
+            """Update or validate linux user password.  # noqa: E501
+
+            **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update or validate linux user password.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_linux_credentials_v2(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (UpdateLinuxPasswordRequest): Specifies the linux user parameters.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                SuccessResp
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.update_linux_credentials_v2 = _Endpoint(
+            settings={
+                'response_type': (SuccessResp,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/users/linux-password',
+                'operation_id': 'update_linux_credentials_v2',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (UpdateLinuxPasswordRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__update_linux_credentials_v2
+        )
+
         def __update_principal_sources(
             self,
             sid,
@@ -3008,7 +3442,7 @@ class UserApi(object):
         ):
             """Update protection sources assigned to a user/group.  # noqa: E501
 
-            Update protection sources assigned to a user/group.  # noqa: E501
+            ```No Privileges Required``` <br><br>Update protection sources assigned to a user/group.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -3076,7 +3510,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/security-principals/{sid}/sources',
                 'operation_id': 'update_principal_sources',
@@ -3140,7 +3576,7 @@ class UserApi(object):
         ):
             """Update User information.  # noqa: E501
 
-            Update an existing user on the Cohesity Cluster. Only user settings on the Cohesity Cluster are updated. No changes are made to the referenced user principal on the Active Directory/IdP.  # noqa: E501
+            ```No Privileges Required``` <br><br>Update an existing user on the Cohesity Cluster. Only user settings on the Cohesity Cluster are updated. No changes are made to the referenced user principal on the Active Directory/IdP.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -3208,7 +3644,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/users/{sid}',
                 'operation_id': 'update_user',
@@ -3273,7 +3711,7 @@ class UserApi(object):
         ):
             """Update a user API key.  # noqa: E501
 
-            Update a user API key.  # noqa: E501
+            ```No Privileges Required``` <br><br>Update a user API key.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -3344,7 +3782,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/users/{userSid}/api-keys/{id}',
                 'operation_id': 'update_user_api_key_by_id',
@@ -3414,7 +3854,7 @@ class UserApi(object):
         ):
             """Update S3 keys for a User  # noqa: E501
 
-            Update the S3 Access/Secret Keys for a User on the Cohesity Cluster.  # noqa: E501
+            ```No Privileges Required``` <br><br>Update the S3 Access/Secret Keys for a User on the Cohesity Cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -3482,7 +3922,9 @@ class UserApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/users/{sid}/update-s3-keys',
                 'operation_id': 'update_user_s3_keys',
@@ -3536,4 +3978,128 @@ class UserApi(object):
             },
             api_client=api_client,
             callable=__update_user_s3_keys
+        )
+
+        def __verify_user_otp(
+            self,
+            body,
+            **kwargs
+        ):
+            """Verify the OTP for a user.  # noqa: E501
+
+            ```No Privileges Required``` <br><br>Returns the user info if the otp verification is successful.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.verify_user_otp(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (UserOtpParams): Request to verify OTP.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                UserOtpResponseObject
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.verify_user_otp = _Endpoint(
+            settings={
+                'response_type': (UserOtpResponseObject,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
+                ],
+                'endpoint_path': '/users/verify-otp',
+                'operation_id': 'verify_user_otp',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (UserOtpParams,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__verify_user_otp
         )

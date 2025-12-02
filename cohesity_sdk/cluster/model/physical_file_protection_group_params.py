@@ -97,6 +97,7 @@ class PhysicalFileProtectionGroupParams(ModelNormal):
             'objects': ([PhysicalFileProtectionGroupObjectParams],),  # noqa: E501
             'allow_parallel_runs': (bool, none_type,),  # noqa: E501
             'cobmr_backup': (bool, none_type,),  # noqa: E501
+            'continue_on_error': (bool, none_type,),  # noqa: E501
             'continue_on_quiesce_failure': (bool, none_type,),  # noqa: E501
             'dedup_exclusion_source_ids': ([int],),  # noqa: E501
             'excluded_vss_writers': ([str], none_type,),  # noqa: E501
@@ -121,6 +122,7 @@ class PhysicalFileProtectionGroupParams(ModelNormal):
         'objects': 'objects',  # noqa: E501
         'allow_parallel_runs': 'allowParallelRuns',  # noqa: E501
         'cobmr_backup': 'cobmrBackup',  # noqa: E501
+        'continue_on_error': 'continueOnError',  # noqa: E501
         'continue_on_quiesce_failure': 'continueOnQuiesceFailure',  # noqa: E501
         'dedup_exclusion_source_ids': 'dedupExclusionSourceIds',  # noqa: E501
         'excluded_vss_writers': 'excludedVssWriters',  # noqa: E501
@@ -187,6 +189,7 @@ class PhysicalFileProtectionGroupParams(ModelNormal):
 
             allow_parallel_runs (bool, none_type): Specifies whether or not this job can have parallel runs.. [optional]  # noqa: E501
             cobmr_backup (bool, none_type): Specifies whether to take CoBMR backup.. [optional]  # noqa: E501
+            continue_on_error (bool, none_type): Specifies if physical file based backup should be continued or failed immediately on encountering an error.. [optional]  # noqa: E501
             continue_on_quiesce_failure (bool, none_type): Specifies whether to continue backing up on quiesce failure.. [optional]  # noqa: E501
             dedup_exclusion_source_ids ([int]): Specifies ids of sources for which deduplication has to be disabled.. [optional]  # noqa: E501
             excluded_vss_writers ([str], none_type): Specifies writer names which should be excluded from physical file based backups.. [optional]  # noqa: E501

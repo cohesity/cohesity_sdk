@@ -7,7 +7,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cloned_db_backup_status** | **str, none_type** | Whether to report error if SQL database is cloned. | [optional] 
 **db_backup_if_not_online_status** | **str, none_type** | Whether to report error if SQL database is not online. | [optional] 
+**log_chain_break_auto_trigger_oob_incr_backup** | **bool, none_type** | If set to true, out of band incremental backup will be started when the log chain is broken and it would be started at the end of the log backup. Default value is false. | [optional] 
 **missing_db_backup_status** | **str, none_type** | Fail the backup job when the database is missing. The database may be missing if it is deleted or corrupted. | [optional] 
+**new_database_auto_trigger_oob_incr_backup** | **bool, none_type** | If set to true, out of band incremental backup will be triggered when a new database is found and it would be started at the end of the log backup. Default value is false. | [optional] 
 **offline_restoring_db_backup_status** | **str, none_type** | Fail the backup job when database is offline or restoring. | [optional] 
 **read_only_db_backup_status** | **str, none_type** | Whether to skip backup for read-only SQL databases. | [optional] 
 **report_all_non_autoprotect_db_errors** | **str, none_type** | Whether to report error for all dbs in non-autoprotect jobs. | [optional] 

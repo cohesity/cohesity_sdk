@@ -47,7 +47,7 @@ class ExternalTargetApi(object):
         ):
             """Create a External Target.  # noqa: E501
 
-            Create a External Target.  # noqa: E501
+            **Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Create a External Target.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -112,7 +112,9 @@ class ExternalTargetApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets',
                 'operation_id': 'create_external_target',
@@ -169,7 +171,7 @@ class ExternalTargetApi(object):
         ):
             """Delete a External Target.  # noqa: E501
 
-            Returns Success if the External Target is deleted.  # noqa: E501
+            **Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Returns Success if the External Target is deleted.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -235,7 +237,9 @@ class ExternalTargetApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets/{id}',
                 'operation_id': 'delete_external_target',
@@ -296,7 +300,7 @@ class ExternalTargetApi(object):
         ):
             """List details about single External Target.  # noqa: E501
 
-            Returns the External Target corresponding to the specified Group id.  # noqa: E501
+            **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Returns the External Target corresponding to the specified Group id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -361,7 +365,9 @@ class ExternalTargetApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets/{id}',
                 'operation_id': 'get_external_target_by_id',
@@ -417,7 +423,7 @@ class ExternalTargetApi(object):
         ):
             """Get the encryption key info for an external target  # noqa: E501
 
-            Get the encryption key info for an external target  # noqa: E501
+            **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Get the encryption key info for an external target  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -482,7 +488,9 @@ class ExternalTargetApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets/{id}/encryption-key',
                 'operation_id': 'get_external_target_encryption_key_info',
@@ -540,7 +548,7 @@ class ExternalTargetApi(object):
         ):
             """List archive media information  # noqa: E501
 
-            Returns the media information about the specified archive service uid (such as a QStar tape archive service).  # noqa: E501
+            ```Unknown Privileges``` <br><br>Returns the media information about the specified archive service uid (such as a QStar tape archive service).  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -613,7 +621,9 @@ class ExternalTargetApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets/media-info',
                 'operation_id': 'get_external_target_media_info',
@@ -691,7 +701,7 @@ class ExternalTargetApi(object):
         ):
             """Get the list of External Target Settings.  # noqa: E501
 
-            Get the list of External Target Settings  # noqa: E501
+            **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Get the list of External Target Settings  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -752,7 +762,9 @@ class ExternalTargetApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets/settings',
                 'operation_id': 'get_external_target_settings',
@@ -800,7 +812,7 @@ class ExternalTargetApi(object):
         ):
             """Get the list of External Targets.  # noqa: E501
 
-            Get the list of External Targets.  # noqa: E501
+            **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Get the list of External Targets.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -868,7 +880,9 @@ class ExternalTargetApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets',
                 'operation_id': 'get_external_targets',
@@ -905,7 +919,8 @@ class ExternalTargetApi(object):
 
                         "ARCHIVAL": "Archival",
                         "TIERING": "Tiering",
-                        "RPAAS": "Rpaas"
+                        "RPAAS": "Rpaas",
+                        "LOGBACKUP": "Logbackup"
                     },
                     ('storage_types',): {
 
@@ -916,7 +931,8 @@ class ExternalTargetApi(object):
                         "NAS": "Nas",
                         "NAS": "NAS",
                         "QSTARTAPE": "QStarTape",
-                        "S3COMPATIBLE": "S3Compatible"
+                        "S3COMPATIBLE": "S3Compatible",
+                        "IBM": "IBM"
                     },
                     ('storage_classes',): {
 
@@ -931,9 +947,15 @@ class ExternalTargetApi(object):
                         "AZUREARCHIVEBLOB": "AzureArchiveBlob",
                         "AZURECOOLBLOB": "AzureCoolBlob",
                         "AZUREHOTBLOB": "AzureHotBlob",
+                        "AZURECOLDBLOB": "AzureColdBlob",
                         "GCPSTANDARD": "GCPStandard",
                         "GCPCOLDLINE": "GCPColdline",
                         "GCPNEARLINE": "GCPNearline",
+                        "GCPARCHIVE": "GCPArchive",
+                        "IBMCOSSTANDARD": "IBMCOSStandard",
+                        "IBMCOSSMARTTIER": "IBMCOSSmartTier",
+                        "IBMCOSVAULT": "IBMCOSVault",
+                        "IBMCOSCOLDVAULT": "IBMCOSColdVault",
                         "ORACLEOBJECTSTORAGE": "OracleObjectStorage",
                         "ORACLEARCHIVESTORAGE": "OracleArchiveStorage",
                         "S3COMPATIBLEREGULAR": "S3CompatibleRegular",
@@ -942,7 +964,8 @@ class ExternalTargetApi(object):
                     ('ownership_contexts',): {
 
                         "LOCAL": "Local",
-                        "FORTKNOX": "FortKnox"
+                        "FORTKNOX": "FortKnox",
+                        "FORTKNOXONPREM": "FortKnoxOnprem"
                     },
                 },
                 'openapi_types': {
@@ -1007,7 +1030,7 @@ class ExternalTargetApi(object):
         ):
             """Update a External Target.  # noqa: E501
 
-            Update the specified External Target.  # noqa: E501
+            **Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Update the specified External Target.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1075,7 +1098,9 @@ class ExternalTargetApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets/{id}',
                 'operation_id': 'update_external_target',
@@ -1138,7 +1163,7 @@ class ExternalTargetApi(object):
         ):
             """Update External Target Settings  # noqa: E501
 
-            Update External Target Settings  # noqa: E501
+            **Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Update External Target Settings  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1203,7 +1228,9 @@ class ExternalTargetApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets/settings',
                 'operation_id': 'update_external_target_settings',

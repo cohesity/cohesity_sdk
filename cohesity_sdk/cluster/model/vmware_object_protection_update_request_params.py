@@ -97,8 +97,11 @@ class VmwareObjectProtectionUpdateRequestParams(ModelComposed):
             'pre_post_script': (PrePostScriptParams,),  # noqa: E501
             'skip_physical_rdm_disks': (bool, none_type,),  # noqa: E501
             'exclude_disks': ([DiskInfo],),  # noqa: E501
+            'include_disks': ([DiskInfo],),  # noqa: E501
             'truncate_exchange_logs': (bool, none_type,),  # noqa: E501
             'exclude_object_ids': ([int, none_type],),  # noqa: E501
+            'global_exclude_disks': ([DiskInfo],),  # noqa: E501
+            'global_include_disks': ([DiskInfo],),  # noqa: E501
         }
 
     @cached_property
@@ -116,8 +119,11 @@ class VmwareObjectProtectionUpdateRequestParams(ModelComposed):
         'pre_post_script': 'prePostScript',  # noqa: E501
         'skip_physical_rdm_disks': 'skipPhysicalRDMDisks',  # noqa: E501
         'exclude_disks': 'excludeDisks',  # noqa: E501
+        'include_disks': 'includeDisks',  # noqa: E501
         'truncate_exchange_logs': 'truncateExchangeLogs',  # noqa: E501
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
+        'global_exclude_disks': 'globalExcludeDisks',  # noqa: E501
+        'global_include_disks': 'globalIncludeDisks',  # noqa: E501
     }
 
     required_properties = set([
@@ -176,8 +182,11 @@ class VmwareObjectProtectionUpdateRequestParams(ModelComposed):
             pre_post_script (PrePostScriptParams): [optional]  # noqa: E501
             skip_physical_rdm_disks (bool, none_type): Specifies whether or not to skip backing up physical RDM disks. Physical RDM disks cannot be backed up, so if you attempt to backup a VM with physical RDM disks and this value is set to 'false', then those VM backups will fail.. [optional]  # noqa: E501
             exclude_disks ([DiskInfo]): Specifies a list of disks to exclude from being protected. This is only applicable to VM objects.. [optional]  # noqa: E501
+            include_disks ([DiskInfo]): Specifies a list of disks to be protected. This is only applicable to VM objects.. [optional]  # noqa: E501
             truncate_exchange_logs (bool, none_type): Specifies whether or not to truncate MS Exchange logs while taking an app consistent snapshot of this object. This is only applicable to objects which have a registered MS Exchange app.. [optional]  # noqa: E501
             exclude_object_ids ([int, none_type]): Specifies the list of IDs of the objects to not be protected in this backup. This field only applies if provided object id is non leaf entity such as Tag or a folder. This can be used to ignore specific objects under a parent object which has been included for protection.. [optional]  # noqa: E501
+            global_exclude_disks ([DiskInfo]): Specifies a list of disks to exclude from the backup.. [optional]  # noqa: E501
+            global_include_disks ([DiskInfo]): Specifies a list of disks to include in the backup.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

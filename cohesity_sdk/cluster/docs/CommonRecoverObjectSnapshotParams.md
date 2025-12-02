@@ -6,16 +6,17 @@ Specifies the common snapshot parameters for a protected object.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **snapshot_id** | **str** | Specifies the snapshot id. | 
-**archival_target_info** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the archival target information if the snapshot is an archival snapshot. | [optional] 
+**archival_target_info** | [**ArchivalTargetSummaryInfo**](ArchivalTargetSummaryInfo.md) |  | [optional] 
 **bytes_restored** | **int, none_type** | Specify the total bytes restored. | [optional] [readonly] 
 **end_time_usecs** | **int, none_type** | Specifies the end time of the Recovery in Unix timestamp epoch in microseconds. This field will be populated only after Recovery is finished. | [optional] [readonly] 
 **messages** | **[str], none_type** | Specify error messages about the object. | [optional] [readonly] 
-**object_info** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the information about the object for which the snapshot is taken. | [optional] 
+**object_info** | [**ObjectSummary**](ObjectSummary.md) |  | [optional] 
 **point_in_time_usecs** | **int, none_type** | Specifies the timestamp (in microseconds. from epoch) for recovering to a point-in-time in the past. | [optional] 
 **progress_task_id** | **str, none_type** | Progress monitor task id for Recovery of VM. | [optional] [readonly] 
 **protection_group_id** | **str, none_type** | Specifies the protection group id of the object snapshot. | [optional] 
 **protection_group_name** | **str, none_type** | Specifies the protection group name of the object snapshot. | [optional] 
 **recover_from_standby** | **bool, none_type** | Specifies that user wants to perform standby restore if it is enabled for this object. | [optional] 
+**replication_target_info** | [**ReplicationTargetSummaryInfo**](ReplicationTargetSummaryInfo.md) |  | [optional] 
 **snapshot_creation_time_usecs** | **int, none_type** | Specifies the time when the snapshot is created in Unix timestamp epoch in microseconds. | [optional] [readonly] 
 **snapshot_target_type** | **str, none_type** | Specifies the snapshot target type. | [optional] [readonly] 
 **start_time_usecs** | **int, none_type** | Specifies the start time of the Recovery in Unix timestamp epoch in microseconds. | [optional] [readonly] 

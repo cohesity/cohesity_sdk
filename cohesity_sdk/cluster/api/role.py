@@ -47,7 +47,7 @@ class RoleApi(object):
         ):
             """Create a Role.  # noqa: E501
 
-            Create a Role.  # noqa: E501
+            **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Create a Role.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -112,7 +112,9 @@ class RoleApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/roles',
                 'operation_id': 'create_role',
@@ -169,7 +171,7 @@ class RoleApi(object):
         ):
             """Delete a Role.  # noqa: E501
 
-            Delete a Role.  # noqa: E501
+            **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete a Role.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -234,7 +236,9 @@ class RoleApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/roles/{name}',
                 'operation_id': 'delete_role',
@@ -289,7 +293,7 @@ class RoleApi(object):
         ):
             """Get Roles.  # noqa: E501
 
-            Get Roles.  # noqa: E501
+            **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Roles.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -353,7 +357,9 @@ class RoleApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/roles',
                 'operation_id': 'get_roles',
@@ -420,7 +426,7 @@ class RoleApi(object):
         ):
             """Update a Role.  # noqa: E501
 
-            Update a Role.  # noqa: E501
+            **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Update a Role.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -488,7 +494,9 @@ class RoleApi(object):
                 'auth': [
                     'TokenHeader',
         
-                    'APIKeyHeader'
+                    'APIKeyHeader',
+                    'Bearer',
+                    'SessionIdHeader'
                 ],
                 'endpoint_path': '/roles/{name}',
                 'operation_id': 'update_role',
