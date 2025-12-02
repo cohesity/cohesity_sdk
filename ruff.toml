@@ -1,0 +1,8 @@
+[lint]
+# Ignore F821 (undefined name) errors in generated SDK
+# These are caused by lazy imports and UNKNOWN_BASE_TYPE from OpenAPI generator
+ignore = []
+
+[lint.per-file-ignores]
+# Ignore F821 in all generated SDK files since they use lazy imports
+"cohesity_sdk/**/*.py" = ["F821"]

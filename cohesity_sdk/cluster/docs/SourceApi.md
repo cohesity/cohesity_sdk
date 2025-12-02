@@ -1,5 +1,6 @@
-# cohesity_sdk.SourceApi
+# cohesity_sdk.cluster.SourceApi
 
+All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -44,117 +45,68 @@ Create Microsoft 365 Azure Applications for a given domain.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.create_azure_application_request_params import CreateAzureApplicationRequestParams
-from cohesity_sdk.cluster.model.create_azure_application_response_params import CreateAzureApplicationResponseParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_azure_application_request_params import CreateAzureApplicationRequestParams
+from cohesity_sdk.cluster.models.create_azure_application_response_params import CreateAzureApplicationResponseParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = CreateAzureApplicationRequestParams(
-        access_token="access_token_example",
-        app_count=1,
-        azure_tenant_id="azure_tenant_id_example",
-        certificate_thumbprints=[
-            "certificate_thumbprints_example",
-        ],
-        existing_microsoft365_app_credentials_list=[
-            Office365AppCredentials(
-                client_certificate=CertificateObjectWithMetadata(
-                    certificate=CertificateObject(
-                        data='YQ==',
-                        format="P12",
-                        password="password_example",
-                    ),
-                    display_name="display_name_example",
-                    environments=[
-                        "microsoft365",
-                    ],
-                    expiry_time_usecs=1,
-                    generated_by="External",
-                    issued_time_usecs=1,
-                    issuer=CertificateNameProperties(
-                        common_name="common_name_example",
-                        organization="organization_example",
-                        organization_unit="organization_unit_example",
-                    ),
-                    subject=CertificateNameProperties(
-                        common_name="common_name_example",
-                        organization="organization_example",
-                        organization_unit="organization_unit_example",
-                    ),
-                    thumbprint="thumbprint_example",
-                ),
-                client_id="client_id_example",
-                client_secret="client_secret_example",
-            ),
-        ],
-        microsoft365_region="Default",
-        o365_app_credentials_list_for_cert_update=[
-            Office365AppCredentials(
-                client_certificate=CertificateObjectWithMetadata(
-                    certificate=CertificateObject(
-                        data='YQ==',
-                        format="P12",
-                        password="password_example",
-                    ),
-                    display_name="display_name_example",
-                    environments=[
-                        "microsoft365",
-                    ],
-                    expiry_time_usecs=1,
-                    generated_by="External",
-                    issued_time_usecs=1,
-                    issuer=CertificateNameProperties(
-                        common_name="common_name_example",
-                        organization="organization_example",
-                        organization_unit="organization_unit_example",
-                    ),
-                    subject=CertificateNameProperties(
-                        common_name="common_name_example",
-                        organization="organization_example",
-                        organization_unit="organization_unit_example",
-                    ),
-                    thumbprint="thumbprint_example",
-                ),
-                client_id="client_id_example",
-                client_secret="client_secret_example",
-            ),
-        ],
-        update_app_key_only=False,
-        use_cases=[
-            "kVirtualMachine",
-        ],
-        username="username_example",
-    ) # CreateAzureApplicationRequestParams | Specifies the parameters to create Azure applications within a given Microsoft365 source.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Create Microsoft 365 Azure Applications for a given domain.
-	api_response = client.source.create_azure_applications(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->create_azure_applications: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    body = cohesity_sdk.cluster.CreateAzureApplicationRequestParams() # CreateAzureApplicationRequestParams | Specifies the parameters to create Azure applications within a given Microsoft365 source.
+
+    try:
+        # Create Microsoft 365 Azure Applications for a given domain.
+        api_response = api_instance.create_azure_applications(body)
+        print("The response of SourceApi->create_azure_applications:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->create_azure_applications: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateAzureApplicationRequestParams**](CreateAzureApplicationRequestParams.md)| Specifies the parameters to create Azure applications within a given Microsoft365 source. |
+ **body** | [**CreateAzureApplicationRequestParams**](CreateAzureApplicationRequestParams.md)| Specifies the parameters to create Azure applications within a given Microsoft365 source. | 
 
 ### Return type
 
@@ -162,15 +114,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -188,117 +140,68 @@ Create/Update Microsoft 365 Azure Applications for a given domain.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.create_azure_application_request_params import CreateAzureApplicationRequestParams
-from cohesity_sdk.cluster.model.create_azure_application_response_params import CreateAzureApplicationResponseParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_azure_application_request_params import CreateAzureApplicationRequestParams
+from cohesity_sdk.cluster.models.create_azure_application_response_params import CreateAzureApplicationResponseParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = CreateAzureApplicationRequestParams(
-        access_token="access_token_example",
-        app_count=1,
-        azure_tenant_id="azure_tenant_id_example",
-        certificate_thumbprints=[
-            "certificate_thumbprints_example",
-        ],
-        existing_microsoft365_app_credentials_list=[
-            Office365AppCredentials(
-                client_certificate=CertificateObjectWithMetadata(
-                    certificate=CertificateObject(
-                        data='YQ==',
-                        format="P12",
-                        password="password_example",
-                    ),
-                    display_name="display_name_example",
-                    environments=[
-                        "microsoft365",
-                    ],
-                    expiry_time_usecs=1,
-                    generated_by="External",
-                    issued_time_usecs=1,
-                    issuer=CertificateNameProperties(
-                        common_name="common_name_example",
-                        organization="organization_example",
-                        organization_unit="organization_unit_example",
-                    ),
-                    subject=CertificateNameProperties(
-                        common_name="common_name_example",
-                        organization="organization_example",
-                        organization_unit="organization_unit_example",
-                    ),
-                    thumbprint="thumbprint_example",
-                ),
-                client_id="client_id_example",
-                client_secret="client_secret_example",
-            ),
-        ],
-        microsoft365_region="Default",
-        o365_app_credentials_list_for_cert_update=[
-            Office365AppCredentials(
-                client_certificate=CertificateObjectWithMetadata(
-                    certificate=CertificateObject(
-                        data='YQ==',
-                        format="P12",
-                        password="password_example",
-                    ),
-                    display_name="display_name_example",
-                    environments=[
-                        "microsoft365",
-                    ],
-                    expiry_time_usecs=1,
-                    generated_by="External",
-                    issued_time_usecs=1,
-                    issuer=CertificateNameProperties(
-                        common_name="common_name_example",
-                        organization="organization_example",
-                        organization_unit="organization_unit_example",
-                    ),
-                    subject=CertificateNameProperties(
-                        common_name="common_name_example",
-                        organization="organization_example",
-                        organization_unit="organization_unit_example",
-                    ),
-                    thumbprint="thumbprint_example",
-                ),
-                client_id="client_id_example",
-                client_secret="client_secret_example",
-            ),
-        ],
-        update_app_key_only=False,
-        use_cases=[
-            "kVirtualMachine",
-        ],
-        username="username_example",
-    ) # CreateAzureApplicationRequestParams | Specifies the parameters to create/update Azure applications within a given Microsoft365 source.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Create/Update Microsoft 365 Azure Applications for a given domain.
-	api_response = client.source.create_or_update_azure_applications(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->create_or_update_azure_applications: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    body = cohesity_sdk.cluster.CreateAzureApplicationRequestParams() # CreateAzureApplicationRequestParams | Specifies the parameters to create/update Azure applications within a given Microsoft365 source.
+
+    try:
+        # Create/Update Microsoft 365 Azure Applications for a given domain.
+        api_response = api_instance.create_or_update_azure_applications(body)
+        print("The response of SourceApi->create_or_update_azure_applications:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->create_or_update_azure_applications: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateAzureApplicationRequestParams**](CreateAzureApplicationRequestParams.md)| Specifies the parameters to create/update Azure applications within a given Microsoft365 source. |
+ **body** | [**CreateAzureApplicationRequestParams**](CreateAzureApplicationRequestParams.md)| Specifies the parameters to create/update Azure applications within a given Microsoft365 source. | 
 
 ### Return type
 
@@ -306,15 +209,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -332,46 +235,67 @@ Delete an application server registration.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.un_register_application_servers_params import UnRegisterApplicationServersParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.un_register_application_servers_params import UnRegisterApplicationServersParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies the id of the Application Server.
-body = UnRegisterApplicationServersParams(
-        application_environments=[
-            "kVMware",
-        ],
-    ) # UnRegisterApplicationServersParams | Specifies the request to unregister a an application server.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Delete an application server registration.
-	client.source.delete_application_servers_registration(id, body)
-except ApiException as e:
-	print("Exception when calling SourceApi->delete_application_servers_registration: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    id = 56 # int | Specifies the id of the Application Server.
+    body = cohesity_sdk.cluster.UnRegisterApplicationServersParams() # UnRegisterApplicationServersParams | Specifies the request to unregister a an application server.
+
+    try:
+        # Delete an application server registration.
+        api_instance.delete_application_servers_registration(id, body)
+    except Exception as e:
+        print("Exception when calling SourceApi->delete_application_servers_registration: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the id of the Application Server. |
- **body** | [**UnRegisterApplicationServersParams**](UnRegisterApplicationServersParams.md)| Specifies the request to unregister a an application server. |
+ **id** | **int**| Specifies the id of the Application Server. | 
+ **body** | [**UnRegisterApplicationServersParams**](UnRegisterApplicationServersParams.md)| Specifies the request to unregister a an application server. | 
 
 ### Return type
 
@@ -379,15 +303,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -405,75 +329,65 @@ Deletes Azure Applications
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.delete_azure_application_request_params import DeleteAzureApplicationRequestParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.delete_azure_application_request_params import DeleteAzureApplicationRequestParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = DeleteAzureApplicationRequestParams(
-        access_token="access_token_example",
-        azure_applications_list=[
-            Office365AppCredentials(
-                client_certificate=CertificateObjectWithMetadata(
-                    certificate=CertificateObject(
-                        data='YQ==',
-                        format="P12",
-                        password="password_example",
-                    ),
-                    display_name="display_name_example",
-                    environments=[
-                        "microsoft365",
-                    ],
-                    expiry_time_usecs=1,
-                    generated_by="External",
-                    issued_time_usecs=1,
-                    issuer=CertificateNameProperties(
-                        common_name="common_name_example",
-                        organization="organization_example",
-                        organization_unit="organization_unit_example",
-                    ),
-                    subject=CertificateNameProperties(
-                        common_name="common_name_example",
-                        organization="organization_example",
-                        organization_unit="organization_unit_example",
-                    ),
-                    thumbprint="thumbprint_example",
-                ),
-                client_id="client_id_example",
-                client_secret="client_secret_example",
-            ),
-        ],
-        azure_tenant_id="azure_tenant_id_example",
-        skip_client_id_verification=True,
-    ) # DeleteAzureApplicationRequestParams | Specifies the parameters to delete Azure applications
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Deletes Azure Applications
-	client.source.delete_azure_applications(body)
-except ApiException as e:
-	print("Exception when calling SourceApi->delete_azure_applications: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    body = cohesity_sdk.cluster.DeleteAzureApplicationRequestParams() # DeleteAzureApplicationRequestParams | Specifies the parameters to delete Azure applications
+
+    try:
+        # Deletes Azure Applications
+        api_instance.delete_azure_applications(body)
+    except Exception as e:
+        print("Exception when calling SourceApi->delete_azure_applications: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**DeleteAzureApplicationRequestParams**](DeleteAzureApplicationRequestParams.md)| Specifies the parameters to delete Azure applications |
+ **body** | [**DeleteAzureApplicationRequestParams**](DeleteAzureApplicationRequestParams.md)| Specifies the parameters to delete Azure applications | 
 
 ### Return type
 
@@ -481,15 +395,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -507,39 +421,64 @@ Deletes the Self-Service configuration for a Microsoft365 source.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-uuid = "uuid_example" # str | Specifies the UUID of the Microsoft365 Source.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Deletes the Self-Service configuration for a Microsoft365 source.
-	client.source.delete_m365_self_service_config(uuid)
-except ApiException as e:
-	print("Exception when calling SourceApi->delete_m365_self_service_config: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    uuid = 'uuid_example' # str | Specifies the UUID of the Microsoft365 Source.
+
+    try:
+        # Deletes the Self-Service configuration for a Microsoft365 source.
+        api_instance.delete_m365_self_service_config(uuid)
+    except Exception as e:
+        print("Exception when calling SourceApi->delete_m365_self_service_config: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| Specifies the UUID of the Microsoft365 Source. |
+ **uuid** | **str**| Specifies the UUID of the Microsoft365 Source. | 
 
 ### Return type
 
@@ -547,15 +486,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -564,7 +503,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_protection_source_registration**
-> delete_protection_source_registration(id)
+> delete_protection_source_registration(id, body=body)
 
 Delete Protection Source Registration.
 
@@ -573,55 +512,67 @@ Delete Protection Source Registration.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.source_un_register_request_params import SourceUnRegisterRequestParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.source_un_register_request_params import SourceUnRegisterRequestParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies the ID of the Protection Source Registration.
-body = SourceUnRegisterRequestParams(
-        azure_params=AzureSourceUnRegisterParams(
-            graph_access_token="graph_access_token_example",
-            management_access_token="management_access_token_example",
-        ),
-    ) # SourceUnRegisterRequestParams | Specifies the request to unregister a source. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Delete Protection Source Registration.
-	client.source.delete_protection_source_registration(id)
-except ApiException as e:
-	print("Exception when calling SourceApi->delete_protection_source_registration: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Delete Protection Source Registration.
-	client.source.delete_protection_source_registration(id, body=body)
-except ApiException as e:
-	print("Exception when calling SourceApi->delete_protection_source_registration: %s\n" % e)
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    id = 56 # int | Specifies the ID of the Protection Source Registration.
+    body = cohesity_sdk.cluster.SourceUnRegisterRequestParams() # SourceUnRegisterRequestParams | Specifies the request to unregister a source. (optional)
+
+    try:
+        # Delete Protection Source Registration.
+        api_instance.delete_protection_source_registration(id, body=body)
+    except Exception as e:
+        print("Exception when calling SourceApi->delete_protection_source_registration: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the ID of the Protection Source Registration. |
- **body** | [**SourceUnRegisterRequestParams**](SourceUnRegisterRequestParams.md)| Specifies the request to unregister a source. | [optional]
+ **id** | **int**| Specifies the ID of the Protection Source Registration. | 
+ **body** | [**SourceUnRegisterRequestParams**](SourceUnRegisterRequestParams.md)| Specifies the request to unregister a source. | [optional] 
 
 ### Return type
 
@@ -629,15 +580,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -655,41 +606,67 @@ Enables billing profile for the MBS service for the tenant.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.m365_backup_controller_billing_response_params import M365BackupControllerBillingResponseParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.m365_backup_controller_billing_response_params import M365BackupControllerBillingResponseParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-azure_token = "azureToken_example" # str | 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Enables billing profile for the MBS service for the tenant.
-	api_response = client.source.enable_mbs_billing_profile(azure_token)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->enable_mbs_billing_profile: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    azure_token = 'azure_token_example' # str | 
+
+    try:
+        # Enables billing profile for the MBS service for the tenant.
+        api_response = api_instance.enable_mbs_billing_profile(azure_token)
+        print("The response of SourceApi->enable_mbs_billing_profile:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->enable_mbs_billing_profile: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **azure_token** | **str**|  |
+ **azure_token** | **str**|  | 
 
 ### Return type
 
@@ -697,15 +674,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -723,45 +700,68 @@ Generate access token for Microsoft365 Device Authorization Grant flow.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.generate_m365_device_access_token_response_params import GenerateM365DeviceAccessTokenResponseParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.generate_m365_device_access_token_request_params import GenerateM365DeviceAccessTokenRequestParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.generate_m365_device_access_token_request_params import GenerateM365DeviceAccessTokenRequestParams
+from cohesity_sdk.cluster.models.generate_m365_device_access_token_response_params import GenerateM365DeviceAccessTokenResponseParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = GenerateM365DeviceAccessTokenRequestParams(
-        device_code="device_code_example",
-        domain="domain_example",
-    ) # GenerateM365DeviceAccessTokenRequestParams | Specifies the parameters to validate and generate access token for authorizing the client within Microsoft365.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Generate access token for Microsoft365 Device Authorization Grant flow.
-	api_response = client.source.generate_m365_device_access_token(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->generate_m365_device_access_token: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    body = cohesity_sdk.cluster.GenerateM365DeviceAccessTokenRequestParams() # GenerateM365DeviceAccessTokenRequestParams | Specifies the parameters to validate and generate access token for authorizing the client within Microsoft365.
+
+    try:
+        # Generate access token for Microsoft365 Device Authorization Grant flow.
+        api_response = api_instance.generate_m365_device_access_token(body)
+        print("The response of SourceApi->generate_m365_device_access_token:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->generate_m365_device_access_token: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**GenerateM365DeviceAccessTokenRequestParams**](GenerateM365DeviceAccessTokenRequestParams.md)| Specifies the parameters to validate and generate access token for authorizing the client within Microsoft365. |
+ **body** | [**GenerateM365DeviceAccessTokenRequestParams**](GenerateM365DeviceAccessTokenRequestParams.md)| Specifies the parameters to validate and generate access token for authorizing the client within Microsoft365. | 
 
 ### Return type
 
@@ -769,15 +769,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -795,44 +795,68 @@ Generate device code for Microsoft365 Device Authorization Grant flow.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.generate_m365_device_code_request_params import GenerateM365DeviceCodeRequestParams
-from cohesity_sdk.cluster.model.generate_m365_device_code_response_params import GenerateM365DeviceCodeResponseParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.generate_m365_device_code_request_params import GenerateM365DeviceCodeRequestParams
+from cohesity_sdk.cluster.models.generate_m365_device_code_response_params import GenerateM365DeviceCodeResponseParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = GenerateM365DeviceCodeRequestParams(
-        domain="domain_example",
-    ) # GenerateM365DeviceCodeRequestParams | Specifies the parameters to generate the user and device code to initiate authentication with Microsoft365.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Generate device code for Microsoft365 Device Authorization Grant flow.
-	api_response = client.source.generate_m365_device_code(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->generate_m365_device_code: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    body = cohesity_sdk.cluster.GenerateM365DeviceCodeRequestParams() # GenerateM365DeviceCodeRequestParams | Specifies the parameters to generate the user and device code to initiate authentication with Microsoft365.
+
+    try:
+        # Generate device code for Microsoft365 Device Authorization Grant flow.
+        api_response = api_instance.generate_m365_device_code(body)
+        print("The response of SourceApi->generate_m365_device_code:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->generate_m365_device_code: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**GenerateM365DeviceCodeRequestParams**](GenerateM365DeviceCodeRequestParams.md)| Specifies the parameters to generate the user and device code to initiate authentication with Microsoft365. |
+ **body** | [**GenerateM365DeviceCodeRequestParams**](GenerateM365DeviceCodeRequestParams.md)| Specifies the parameters to generate the user and device code to initiate authentication with Microsoft365. | 
 
 ### Return type
 
@@ -840,15 +864,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -857,7 +881,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_m365_backup_controller**
-> get_m365_backup_controller()
+> get_m365_backup_controller(azure_token=azure_token)
 
 Fetches the Microsoft 365 registered Backup Controller by the Cohesity App for the owner tenant
 
@@ -866,40 +890,64 @@ Fetches the Microsoft 365 registered Backup Controller by the Cohesity App for t
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-azure_token = "azureToken_example" # str | Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Fetches the Microsoft 365 registered Backup Controller by the Cohesity App for the owner tenant
-	client.source.get_m365_backup_controller(azure_token=azure_token)
-except ApiException as e:
-	print("Exception when calling SourceApi->get_m365_backup_controller: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    azure_token = 'azure_token_example' # str | Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All (optional)
+
+    try:
+        # Fetches the Microsoft 365 registered Backup Controller by the Cohesity App for the owner tenant
+        api_instance.get_m365_backup_controller(azure_token=azure_token)
+    except Exception as e:
+        print("Exception when calling SourceApi->get_m365_backup_controller: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **azure_token** | **str**| Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All | [optional]
+ **azure_token** | **str**| Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All | [optional] 
 
 ### Return type
 
@@ -907,15 +955,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | (empty) |  -  |
@@ -925,7 +973,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_microsoft365_self_service_config**
-> GetM365SelfServiceConfigResponse get_microsoft365_self_service_config()
+> List[CreateM365SelfServiceConfigRequestParams] get_microsoft365_self_service_config(domain=domain, tenant_id=tenant_id, workload_type=workload_type)
 
 Get the list of Microsoft365 Self-Service configurations
 
@@ -934,62 +982,87 @@ Get the list of Microsoft365 Self-Service configurations
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.get_m365_self_service_config_response import GetM365SelfServiceConfigResponse
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_m365_self_service_config_request_params import CreateM365SelfServiceConfigRequestParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-domain = "domain_example" # str, none_type | Specifies the domain name for the Microsoft365 source. (optional)
-tenant_id = "tenantId_example" # str, none_type | Specifies the Cohesity Tenant ID for the source owner. (optional)
-workload_type = "kO365Exchange" # str, none_type | Specifies the workload type as filter for fetching Self-Service configuration types. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get the list of Microsoft365 Self-Service configurations
-	api_response = client.source.get_microsoft365_self_service_config(domain=domain, tenant_id=tenant_id, workload_type=workload_type)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->get_microsoft365_self_service_config: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    domain = 'domain_example' # str | Specifies the domain name for the Microsoft365 source. (optional)
+    tenant_id = 'tenant_id_example' # str | Specifies the Cohesity Tenant ID for the source owner. (optional)
+    workload_type = 'workload_type_example' # str | Specifies the workload type as filter for fetching Self-Service configuration types. (optional)
+
+    try:
+        # Get the list of Microsoft365 Self-Service configurations
+        api_response = api_instance.get_microsoft365_self_service_config(domain=domain, tenant_id=tenant_id, workload_type=workload_type)
+        print("The response of SourceApi->get_microsoft365_self_service_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->get_microsoft365_self_service_config: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **domain** | **str, none_type**| Specifies the domain name for the Microsoft365 source. | [optional]
- **tenant_id** | **str, none_type**| Specifies the Cohesity Tenant ID for the source owner. | [optional]
- **workload_type** | **str, none_type**| Specifies the workload type as filter for fetching Self-Service configuration types. | [optional]
+ **domain** | **str**| Specifies the domain name for the Microsoft365 source. | [optional] 
+ **tenant_id** | **str**| Specifies the Cohesity Tenant ID for the source owner. | [optional] 
+ **workload_type** | **str**| Specifies the workload type as filter for fetching Self-Service configuration types. | [optional] 
 
 ### Return type
 
-[**GetM365SelfServiceConfigResponse**](GetM365SelfServiceConfigResponse.md)
+[**List[CreateM365SelfServiceConfigRequestParams]**](CreateM365SelfServiceConfigRequestParams.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1007,45 +1080,71 @@ Get Network Entities within a Resource pool
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.sources import Sources
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.sources import Sources
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies the entity Id of the resource pool
-v_center_id = 1 # int | Specifies the entity Id of the vCenter
-ancestor_entity_type = "kDatacenter" # str | Specifies the ancestor entity type i.e. the node in the entity hierarchy which lies at a higher level than the resource pool entity id.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Get Network Entities within a Resource pool
-	api_response = client.source.get_network_entities(id, v_center_id, ancestor_entity_type)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->get_network_entities: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    id = 56 # int | Specifies the entity Id of the resource pool
+    v_center_id = 56 # int | Specifies the entity Id of the vCenter
+    ancestor_entity_type = 'ancestor_entity_type_example' # str | Specifies the ancestor entity type i.e. the node in the entity hierarchy which lies at a higher level than the resource pool entity id.
+
+    try:
+        # Get Network Entities within a Resource pool
+        api_response = api_instance.get_network_entities(id, v_center_id, ancestor_entity_type)
+        print("The response of SourceApi->get_network_entities:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->get_network_entities: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the entity Id of the resource pool |
- **v_center_id** | **int**| Specifies the entity Id of the vCenter |
- **ancestor_entity_type** | **str**| Specifies the ancestor entity type i.e. the node in the entity hierarchy which lies at a higher level than the resource pool entity id. |
+ **id** | **int**| Specifies the entity Id of the resource pool | 
+ **v_center_id** | **int**| Specifies the entity Id of the vCenter | 
+ **ancestor_entity_type** | **str**| Specifies the ancestor entity type i.e. the node in the entity hierarchy which lies at a higher level than the resource pool entity id. | 
 
 ### Return type
 
@@ -1053,15 +1152,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1070,7 +1169,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_protection_source_registration**
-> SourceRegistration get_protection_source_registration(id)
+> SourceRegistration get_protection_source_registration(id, request_initiator_type=request_initiator_type)
 
 Get a Protection Source registration.
 
@@ -1079,52 +1178,69 @@ Get a Protection Source registration.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.source_registration import SourceRegistration
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.source_registration import SourceRegistration
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies the id of the Protection Source registration.
-request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Get a Protection Source registration.
-	api_response = client.source.get_protection_source_registration(id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->get_protection_source_registration: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get a Protection Source registration.
-	api_response = client.source.get_protection_source_registration(id, request_initiator_type=request_initiator_type)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->get_protection_source_registration: %s\n" % e)
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    id = 56 # int | Specifies the id of the Protection Source registration.
+    request_initiator_type = 'request_initiator_type_example' # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
+
+    try:
+        # Get a Protection Source registration.
+        api_response = api_instance.get_protection_source_registration(id, request_initiator_type=request_initiator_type)
+        print("The response of SourceApi->get_protection_source_registration:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->get_protection_source_registration: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the id of the Protection Source registration. |
- **request_initiator_type** | **str**| Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. | [optional]
+ **id** | **int**| Specifies the id of the Protection Source registration. | 
+ **request_initiator_type** | **str**| Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. | [optional] 
 
 ### Return type
 
@@ -1132,15 +1248,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1149,7 +1265,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_protection_sources**
-> Sources get_protection_sources()
+> Sources get_protection_sources(request_initiator_type=request_initiator_type, tenant_ids=tenant_ids, include_tenants=include_tenants, include_source_credentials=include_source_credentials, encryption_key=encryption_key)
 
 Get a List of Protection Sources.
 
@@ -1158,52 +1274,75 @@ Get a List of Protection Sources.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.sources import Sources
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.sources import Sources
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
-tenant_ids = [
-        "tenantIds_example",
-    ] # [str] | TenantIds contains ids of the tenants for which Sources are to be returned. (optional)
-include_tenants = True # bool | If true, the response will include Sources which belong belong to all tenants which the current user has permission to see. If false, then only Sources for the current user will be returned. (optional)
-include_source_credentials = True # bool | If true, the encrypted crednetial for the registered sources will be included. Credential is first encrypted with internal key and then reencrypted with user supplied encryption key. (optional)
-encryption_key = "encryptionKey_example" # str | Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get a List of Protection Sources.
-	api_response = client.source.get_protection_sources(request_initiator_type=request_initiator_type, tenant_ids=tenant_ids, include_tenants=include_tenants, include_source_credentials=include_source_credentials, encryption_key=encryption_key)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->get_protection_sources: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    request_initiator_type = 'request_initiator_type_example' # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
+    tenant_ids = ['tenant_ids_example'] # List[str] | TenantIds contains ids of the tenants for which Sources are to be returned. (optional)
+    include_tenants = True # bool | If true, the response will include Sources which belong belong to all tenants which the current user has permission to see. If false, then only Sources for the current user will be returned. (optional)
+    include_source_credentials = True # bool | If true, the encrypted crednetial for the registered sources will be included. Credential is first encrypted with internal key and then reencrypted with user supplied encryption key. (optional)
+    encryption_key = 'encryption_key_example' # str | Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. (optional)
+
+    try:
+        # Get a List of Protection Sources.
+        api_response = api_instance.get_protection_sources(request_initiator_type=request_initiator_type, tenant_ids=tenant_ids, include_tenants=include_tenants, include_source_credentials=include_source_credentials, encryption_key=encryption_key)
+        print("The response of SourceApi->get_protection_sources:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->get_protection_sources: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request_initiator_type** | **str**| Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. | [optional]
- **tenant_ids** | **[str]**| TenantIds contains ids of the tenants for which Sources are to be returned. | [optional]
- **include_tenants** | **bool**| If true, the response will include Sources which belong belong to all tenants which the current user has permission to see. If false, then only Sources for the current user will be returned. | [optional]
- **include_source_credentials** | **bool**| If true, the encrypted crednetial for the registered sources will be included. Credential is first encrypted with internal key and then reencrypted with user supplied encryption key. | [optional]
- **encryption_key** | **str**| Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. | [optional]
+ **request_initiator_type** | **str**| Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. | [optional] 
+ **tenant_ids** | [**List[str]**](str.md)| TenantIds contains ids of the tenants for which Sources are to be returned. | [optional] 
+ **include_tenants** | **bool**| If true, the response will include Sources which belong belong to all tenants which the current user has permission to see. If false, then only Sources for the current user will be returned. | [optional] 
+ **include_source_credentials** | **bool**| If true, the encrypted crednetial for the registered sources will be included. Credential is first encrypted with internal key and then reencrypted with user supplied encryption key. | [optional] 
+ **encryption_key** | **str**| Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. | [optional] 
 
 ### Return type
 
@@ -1211,15 +1350,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1228,7 +1367,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_source_attribute_filters**
-> SourceAttributeFiltersResponseParams get_source_attribute_filters(source_uuid)
+> SourceAttributeFiltersResponseParams get_source_attribute_filters(source_uuid, environment=environment)
 
 List attribute filters for a source.
 
@@ -1237,52 +1376,69 @@ List attribute filters for a source.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.source_attribute_filters_response_params import SourceAttributeFiltersResponseParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.source_attribute_filters_response_params import SourceAttributeFiltersResponseParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-source_uuid = "sourceUuid_example" # str | Specifies the source UUID of the parent entity.
-environment = "kVMware" # str, none_type | Specifies the environment type of the Protection Source. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# List attribute filters for a source.
-	api_response = client.source.get_source_attribute_filters(source_uuid)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->get_source_attribute_filters: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# List attribute filters for a source.
-	api_response = client.source.get_source_attribute_filters(source_uuid, environment=environment)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->get_source_attribute_filters: %s\n" % e)
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    source_uuid = 'source_uuid_example' # str | Specifies the source UUID of the parent entity.
+    environment = 'environment_example' # str | Specifies the environment type of the Protection Source. (optional)
+
+    try:
+        # List attribute filters for a source.
+        api_response = api_instance.get_source_attribute_filters(source_uuid, environment=environment)
+        print("The response of SourceApi->get_source_attribute_filters:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->get_source_attribute_filters: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **source_uuid** | **str**| Specifies the source UUID of the parent entity. |
- **environment** | **str, none_type**| Specifies the environment type of the Protection Source. | [optional]
+ **source_uuid** | **str**| Specifies the source UUID of the parent entity. | 
+ **environment** | **str**| Specifies the environment type of the Protection Source. | [optional] 
 
 ### Return type
 
@@ -1290,15 +1446,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1307,7 +1463,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_source_registrations**
-> SourceRegistrations get_source_registrations()
+> SourceRegistrations get_source_registrations(ids=ids, tenant_ids=tenant_ids, include_tenants=include_tenants, include_source_credentials=include_source_credentials, encryption_key=encryption_key, use_cached_data=use_cached_data, include_external_metadata=include_external_metadata, ignore_tenant_migration_in_progress_check=ignore_tenant_migration_in_progress_check)
 
 Get the list of Protection Source registrations.
 
@@ -1316,60 +1472,81 @@ Get the list of Protection Source registrations.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.source_registrations import SourceRegistrations
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.source_registrations import SourceRegistrations
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-ids = [
-        1,
-    ] # [int] | Ids specifies the list of source registration ids to return. If left empty, every source registration will be returned by default. (optional)
-tenant_ids = [
-        "tenantIds_example",
-    ] # [str] | TenantIds contains ids of the tenants for which objects are to be returned. (optional)
-include_tenants = True # bool | If true, the response will include Registrations which were created by all tenants which the current user has permission to see. If false, then only Registrations created by the current user will be returned. (optional)
-include_source_credentials = True # bool | If true, the encrypted crednetial for the registered sources will be included. Credential is first encrypted with internal key and then reencrypted with user supplied encryption key. (optional)
-encryption_key = "encryptionKey_example" # str | Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. (optional)
-use_cached_data = True # bool | Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. (optional)
-include_external_metadata = True # bool | If true, the external entity metadata like maintenance mode config for the registered sources will be included. (optional)
-ignore_tenant_migration_in_progress_check = True # bool | If true, tenant migration check will be ignored (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get the list of Protection Source registrations.
-	api_response = client.source.get_source_registrations(ids=ids, tenant_ids=tenant_ids, include_tenants=include_tenants, include_source_credentials=include_source_credentials, encryption_key=encryption_key, use_cached_data=use_cached_data, include_external_metadata=include_external_metadata, ignore_tenant_migration_in_progress_check=ignore_tenant_migration_in_progress_check)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->get_source_registrations: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    ids = [56] # List[int] | Ids specifies the list of source registration ids to return. If left empty, every source registration will be returned by default. (optional)
+    tenant_ids = ['tenant_ids_example'] # List[str] | TenantIds contains ids of the tenants for which objects are to be returned. (optional)
+    include_tenants = True # bool | If true, the response will include Registrations which were created by all tenants which the current user has permission to see. If false, then only Registrations created by the current user will be returned. (optional)
+    include_source_credentials = True # bool | If true, the encrypted crednetial for the registered sources will be included. Credential is first encrypted with internal key and then reencrypted with user supplied encryption key. (optional)
+    encryption_key = 'encryption_key_example' # str | Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. (optional)
+    use_cached_data = True # bool | Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. (optional)
+    include_external_metadata = True # bool | If true, the external entity metadata like maintenance mode config for the registered sources will be included. (optional)
+    ignore_tenant_migration_in_progress_check = True # bool | If true, tenant migration check will be ignored (optional)
+
+    try:
+        # Get the list of Protection Source registrations.
+        api_response = api_instance.get_source_registrations(ids=ids, tenant_ids=tenant_ids, include_tenants=include_tenants, include_source_credentials=include_source_credentials, encryption_key=encryption_key, use_cached_data=use_cached_data, include_external_metadata=include_external_metadata, ignore_tenant_migration_in_progress_check=ignore_tenant_migration_in_progress_check)
+        print("The response of SourceApi->get_source_registrations:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->get_source_registrations: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ids** | **[int]**| Ids specifies the list of source registration ids to return. If left empty, every source registration will be returned by default. | [optional]
- **tenant_ids** | **[str]**| TenantIds contains ids of the tenants for which objects are to be returned. | [optional]
- **include_tenants** | **bool**| If true, the response will include Registrations which were created by all tenants which the current user has permission to see. If false, then only Registrations created by the current user will be returned. | [optional]
- **include_source_credentials** | **bool**| If true, the encrypted crednetial for the registered sources will be included. Credential is first encrypted with internal key and then reencrypted with user supplied encryption key. | [optional]
- **encryption_key** | **str**| Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. | [optional]
- **use_cached_data** | **bool**| Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. | [optional]
- **include_external_metadata** | **bool**| If true, the external entity metadata like maintenance mode config for the registered sources will be included. | [optional]
- **ignore_tenant_migration_in_progress_check** | **bool**| If true, tenant migration check will be ignored | [optional]
+ **ids** | [**List[int]**](int.md)| Ids specifies the list of source registration ids to return. If left empty, every source registration will be returned by default. | [optional] 
+ **tenant_ids** | [**List[str]**](str.md)| TenantIds contains ids of the tenants for which objects are to be returned. | [optional] 
+ **include_tenants** | **bool**| If true, the response will include Registrations which were created by all tenants which the current user has permission to see. If false, then only Registrations created by the current user will be returned. | [optional] 
+ **include_source_credentials** | **bool**| If true, the encrypted crednetial for the registered sources will be included. Credential is first encrypted with internal key and then reencrypted with user supplied encryption key. | [optional] 
+ **encryption_key** | **str**| Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. | [optional] 
+ **use_cached_data** | **bool**| Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. | [optional] 
+ **include_external_metadata** | **bool**| If true, the external entity metadata like maintenance mode config for the registered sources will be included. | [optional] 
+ **ignore_tenant_migration_in_progress_check** | **bool**| If true, tenant migration check will be ignored | [optional] 
 
 ### Return type
 
@@ -1377,15 +1554,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1403,41 +1580,67 @@ Get VDC Details.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.vdc_object import VdcObject
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.vdc_object import VdcObject
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies the ID of the VMware virtual datacenter.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Get VDC Details.
-	api_response = client.source.get_vdc_details(id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->get_vdc_details: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    id = 56 # int | Specifies the ID of the VMware virtual datacenter.
+
+    try:
+        # Get VDC Details.
+        api_response = api_instance.get_vdc_details(id)
+        print("The response of SourceApi->get_vdc_details:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->get_vdc_details: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the ID of the VMware virtual datacenter. |
+ **id** | **int**| Specifies the ID of the VMware virtual datacenter. | 
 
 ### Return type
 
@@ -1445,15 +1648,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1462,7 +1665,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_application_servers**
-> ListAppServersResponse list_application_servers(root_node_id, application_environment)
+> ListAppServersResponse list_application_servers(root_node_id, application_environment, environment=environment, node_id=node_id, next_entity_id=next_entity_id, page_size=page_size, after_cursor_entity_id=after_cursor_entity_id, before_cursor_entity_id=before_cursor_entity_id)
 
 The Application Servers in a Protection Source tree.
 
@@ -1471,64 +1674,81 @@ The Application Servers in a Protection Source tree.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.list_app_servers_response import ListAppServersResponse
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.list_app_servers_response import ListAppServersResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-root_node_id = 1 # int | Specifies the Protection Source Id of the root node of a Protection Sources tree. A root node represents a registered Source on the Cohesity Cluster, such as a vCenter Server.
-application_environment = "kSQL" # str | Specifies the types of applications such as 'kSQL', 'kExchange', 'kAD' etc. running on the Protection Source.
-environment = "kVMware" # str | Specifies the environment of the Protection Source tree. (optional)
-node_id = 1 # int | Specifies the Protection Source Id of the entity in the Protection Source tree hosting the applications. (optional)
-next_entity_id = 1 # int, none_type | Specifies the entity id for the Node at any level within the Source entity hierarchy whose children are to be paginated. (optional)
-page_size = 1 # int, none_type | Specifies the maximum number of entities to be returned within the page. (optional)
-after_cursor_entity_id = 1 # int, none_type | Specifies the entity id starting from which the items are to be returned (optional)
-before_cursor_entity_id = 1 # int, none_type | Specifies the entity id upto which the items are to be returned (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# The Application Servers in a Protection Source tree.
-	api_response = client.source.list_application_servers(root_node_id, application_environment)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->list_application_servers: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# The Application Servers in a Protection Source tree.
-	api_response = client.source.list_application_servers(root_node_id, application_environment, environment=environment, node_id=node_id, next_entity_id=next_entity_id, page_size=page_size, after_cursor_entity_id=after_cursor_entity_id, before_cursor_entity_id=before_cursor_entity_id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->list_application_servers: %s\n" % e)
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    root_node_id = 56 # int | Specifies the Protection Source Id of the root node of a Protection Sources tree. A root node represents a registered Source on the Cohesity Cluster, such as a vCenter Server.
+    application_environment = 'application_environment_example' # str | Specifies the types of applications such as 'kSQL', 'kExchange', 'kAD' etc. running on the Protection Source.
+    environment = 'environment_example' # str | Specifies the environment of the Protection Source tree. (optional)
+    node_id = 56 # int | Specifies the Protection Source Id of the entity in the Protection Source tree hosting the applications. (optional)
+    next_entity_id = 56 # int | Specifies the entity id for the Node at any level within the Source entity hierarchy whose children are to be paginated. (optional)
+    page_size = 56 # int | Specifies the maximum number of entities to be returned within the page. (optional)
+    after_cursor_entity_id = 56 # int | Specifies the entity id starting from which the items are to be returned (optional)
+    before_cursor_entity_id = 56 # int | Specifies the entity id upto which the items are to be returned (optional)
+
+    try:
+        # The Application Servers in a Protection Source tree.
+        api_response = api_instance.list_application_servers(root_node_id, application_environment, environment=environment, node_id=node_id, next_entity_id=next_entity_id, page_size=page_size, after_cursor_entity_id=after_cursor_entity_id, before_cursor_entity_id=before_cursor_entity_id)
+        print("The response of SourceApi->list_application_servers:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->list_application_servers: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **root_node_id** | **int**| Specifies the Protection Source Id of the root node of a Protection Sources tree. A root node represents a registered Source on the Cohesity Cluster, such as a vCenter Server. |
- **application_environment** | **str**| Specifies the types of applications such as &#39;kSQL&#39;, &#39;kExchange&#39;, &#39;kAD&#39; etc. running on the Protection Source. |
- **environment** | **str**| Specifies the environment of the Protection Source tree. | [optional]
- **node_id** | **int**| Specifies the Protection Source Id of the entity in the Protection Source tree hosting the applications. | [optional]
- **next_entity_id** | **int, none_type**| Specifies the entity id for the Node at any level within the Source entity hierarchy whose children are to be paginated. | [optional]
- **page_size** | **int, none_type**| Specifies the maximum number of entities to be returned within the page. | [optional]
- **after_cursor_entity_id** | **int, none_type**| Specifies the entity id starting from which the items are to be returned | [optional]
- **before_cursor_entity_id** | **int, none_type**| Specifies the entity id upto which the items are to be returned | [optional]
+ **root_node_id** | **int**| Specifies the Protection Source Id of the root node of a Protection Sources tree. A root node represents a registered Source on the Cohesity Cluster, such as a vCenter Server. | 
+ **application_environment** | **str**| Specifies the types of applications such as &#39;kSQL&#39;, &#39;kExchange&#39;, &#39;kAD&#39; etc. running on the Protection Source. | 
+ **environment** | **str**| Specifies the environment of the Protection Source tree. | [optional] 
+ **node_id** | **int**| Specifies the Protection Source Id of the entity in the Protection Source tree hosting the applications. | [optional] 
+ **next_entity_id** | **int**| Specifies the entity id for the Node at any level within the Source entity hierarchy whose children are to be paginated. | [optional] 
+ **page_size** | **int**| Specifies the maximum number of entities to be returned within the page. | [optional] 
+ **after_cursor_entity_id** | **int**| Specifies the entity id starting from which the items are to be returned | [optional] 
+ **before_cursor_entity_id** | **int**| Specifies the entity id upto which the items are to be returned | [optional] 
 
 ### Return type
 
@@ -1536,15 +1756,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1562,81 +1782,70 @@ Perform Partial Update on Protection Source registration. Currently this API is 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.source_registration_patch_request_params import SourceRegistrationPatchRequestParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.source_registration import SourceRegistration
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.source_registration import SourceRegistration
+from cohesity_sdk.cluster.models.source_registration_patch_request_params import SourceRegistrationPatchRequestParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies the id of the Protection Source registration.
-body = SourceRegistrationPatchRequestParams(
-        cassandra_params=CassandraSourceRegistrationPatchParams(
-            cassandra_credentials=CassandraSourceRegistrationParamsAllOfCassandraCredentials(
-                password="password_example",
-                username="username_example",
-            ),
-            commit_log_backup_location="commit_log_backup_location_example",
-            config_directory="config_directory_example",
-            data_center_names=[
-                "data_center_names_example",
-            ],
-            dse_configuration_directory="dse_configuration_directory_example",
-            dse_solr_info=DSESolrInfo(
-                solr_nodes=[
-                    "solr_nodes_example",
-                ],
-                solr_port=1,
-            ),
-            is_dse_authenticator=True,
-            is_dse_tiered_storage=True,
-            jmx_credentials=CassandraSourceRegistrationParamsAllOfJmxCredentials(
-                password="password_example",
-                username="username_example",
-            ),
-            kerberos_principal="kerberos_principal_example",
-            seed_node="seed_node_example",
-            ssh_password_credentials=SshPasswordCredentials(
-                password="password_example",
-                username="username_example",
-            ),
-            ssh_private_key_credentials=SshPrivateKeyCredentials(
-                passphrase="passphrase_example",
-                private_key="private_key_example",
-                user_id="user_id_example",
-            ),
-        ),
-        environment="kVMware",
-    ) # SourceRegistrationPatchRequestParams | Specifies the parameters to partially update the registration.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Perform Partial Update on Protection Source registration. Currently this API is supported only for Cassandra
-	api_response = client.source.patch_protection_source_registration(id, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->patch_protection_source_registration: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    id = 56 # int | Specifies the id of the Protection Source registration.
+    body = cohesity_sdk.cluster.SourceRegistrationPatchRequestParams() # SourceRegistrationPatchRequestParams | Specifies the parameters to partially update the registration.
+
+    try:
+        # Perform Partial Update on Protection Source registration. Currently this API is supported only for Cassandra
+        api_response = api_instance.patch_protection_source_registration(id, body)
+        print("The response of SourceApi->patch_protection_source_registration:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->patch_protection_source_registration: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the id of the Protection Source registration. |
- **body** | [**SourceRegistrationPatchRequestParams**](SourceRegistrationPatchRequestParams.md)| Specifies the parameters to partially update the registration. |
+ **id** | **int**| Specifies the id of the Protection Source registration. | 
+ **body** | [**SourceRegistrationPatchRequestParams**](SourceRegistrationPatchRequestParams.md)| Specifies the parameters to partially update the registration. | 
 
 ### Return type
 
@@ -1644,15 +1853,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1670,41 +1879,67 @@ Get a Protection Sources.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.source import Source
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.source import Source
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies the id of the Protection Source.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Get a Protection Sources.
-	api_response = client.source.protection_source_by_id(id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->protection_source_by_id: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    id = 56 # int | Specifies the id of the Protection Source.
+
+    try:
+        # Get a Protection Sources.
+        api_response = api_instance.protection_source_by_id(id)
+        print("The response of SourceApi->protection_source_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->protection_source_by_id: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the id of the Protection Source. |
+ **id** | **int**| Specifies the id of the Protection Source. | 
 
 ### Return type
 
@@ -1712,15 +1947,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1738,39 +1973,64 @@ Refresh a Protection Source.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies the id of the Protection Source.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Refresh a Protection Source.
-	client.source.refresh_protection_source_by_id(id)
-except ApiException as e:
-	print("Exception when calling SourceApi->refresh_protection_source_by_id: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    id = 56 # int | Specifies the id of the Protection Source.
+
+    try:
+        # Refresh a Protection Source.
+        api_instance.refresh_protection_source_by_id(id)
+    except Exception as e:
+        print("Exception when calling SourceApi->refresh_protection_source_by_id: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the id of the Protection Source. |
+ **id** | **int**| Specifies the id of the Protection Source. | 
 
 ### Return type
 
@@ -1778,15 +2038,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1804,41 +2064,67 @@ Registers the Cohesity App to be the Microsoft 365 Backup Controller
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.get_m365_backup_controller_response_params import GetM365BackupControllerResponseParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_m365_backup_controller_response_params import GetM365BackupControllerResponseParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-azure_token = "azureToken_example" # str | Specifies the JWT obtained through user with the scope for BackupRestore-Control.ReadWrite.All
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Registers the Cohesity App to be the Microsoft 365 Backup Controller
-	api_response = client.source.register_m365_backup_controller(azure_token)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->register_m365_backup_controller: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    azure_token = 'azure_token_example' # str | Specifies the JWT obtained through user with the scope for BackupRestore-Control.ReadWrite.All
+
+    try:
+        # Registers the Cohesity App to be the Microsoft 365 Backup Controller
+        api_response = api_instance.register_m365_backup_controller(azure_token)
+        print("The response of SourceApi->register_m365_backup_controller:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->register_m365_backup_controller: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **azure_token** | **str**| Specifies the JWT obtained through user with the scope for BackupRestore-Control.ReadWrite.All |
+ **azure_token** | **str**| Specifies the JWT obtained through user with the scope for BackupRestore-Control.ReadWrite.All | 
 
 ### Return type
 
@@ -1846,15 +2132,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -1872,42 +2158,68 @@ Register a Protection Source.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.source_registration_request_params import SourceRegistrationRequestParams
-from cohesity_sdk.cluster.model.source_registration import SourceRegistration
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.source_registration import SourceRegistration
+from cohesity_sdk.cluster.models.source_registration_request_params import SourceRegistrationRequestParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = SourceRegistrationRequestParams() # SourceRegistrationRequestParams | Specifies the parameters to register a Protection Source.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Register a Protection Source.
-	api_response = client.source.register_protection_source(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->register_protection_source: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    body = cohesity_sdk.cluster.SourceRegistrationRequestParams() # SourceRegistrationRequestParams | Specifies the parameters to register a Protection Source.
+
+    try:
+        # Register a Protection Source.
+        api_response = api_instance.register_protection_source(body)
+        print("The response of SourceApi->register_protection_source:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->register_protection_source: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SourceRegistrationRequestParams**](SourceRegistrationRequestParams.md)| Specifies the parameters to register a Protection Source. |
+ **body** | [**SourceRegistrationRequestParams**](SourceRegistrationRequestParams.md)| Specifies the parameters to register a Protection Source. | 
 
 ### Return type
 
@@ -1915,15 +2227,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -1941,42 +2253,68 @@ Test connection to a source.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.source_connection_response_params import SourceConnectionResponseParams
-from cohesity_sdk.cluster.model.source_connection_request_params import SourceConnectionRequestParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.source_connection_request_params import SourceConnectionRequestParams
+from cohesity_sdk.cluster.models.source_connection_response_params import SourceConnectionResponseParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = SourceConnectionRequestParams() # SourceConnectionRequestParams | Specifies the parameters to test connectivity with a source.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Test connection to a source.
-	api_response = client.source.test_connection_protection_source(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->test_connection_protection_source: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    body = cohesity_sdk.cluster.SourceConnectionRequestParams() # SourceConnectionRequestParams | Specifies the parameters to test connectivity with a source.
+
+    try:
+        # Test connection to a source.
+        api_response = api_instance.test_connection_protection_source(body)
+        print("The response of SourceApi->test_connection_protection_source:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->test_connection_protection_source: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SourceConnectionRequestParams**](SourceConnectionRequestParams.md)| Specifies the parameters to test connectivity with a source. |
+ **body** | [**SourceConnectionRequestParams**](SourceConnectionRequestParams.md)| Specifies the parameters to test connectivity with a source. | 
 
 ### Return type
 
@@ -1984,15 +2322,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -2001,7 +2339,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **unregister_m365_backup_controller**
-> unregister_m365_backup_controller(id)
+> unregister_m365_backup_controller(id, azure_token=azure_token)
 
 Unregisters the Cohesity App as the Microsoft 365 Backup Controller
 
@@ -2010,49 +2348,66 @@ Unregisters the Cohesity App as the Microsoft 365 Backup Controller
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = "id_example" # str, none_type | Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller.
-azure_token = "azureToken_example" # str | Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Unregisters the Cohesity App as the Microsoft 365 Backup Controller
-	client.source.unregister_m365_backup_controller(id)
-except ApiException as e:
-	print("Exception when calling SourceApi->unregister_m365_backup_controller: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Unregisters the Cohesity App as the Microsoft 365 Backup Controller
-	client.source.unregister_m365_backup_controller(id, azure_token=azure_token)
-except ApiException as e:
-	print("Exception when calling SourceApi->unregister_m365_backup_controller: %s\n" % e)
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    id = 'id_example' # str | Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller.
+    azure_token = 'azure_token_example' # str | Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All (optional)
+
+    try:
+        # Unregisters the Cohesity App as the Microsoft 365 Backup Controller
+        api_instance.unregister_m365_backup_controller(id, azure_token=azure_token)
+    except Exception as e:
+        print("Exception when calling SourceApi->unregister_m365_backup_controller: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str, none_type**| Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller. |
- **azure_token** | **str**| Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All | [optional]
+ **id** | **str**| Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller. | 
+ **azure_token** | **str**| Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All | [optional] 
 
 ### Return type
 
@@ -2060,15 +2415,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -2086,44 +2441,70 @@ Registers or update owner entity with applications.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.application_servers_registration_request_params import ApplicationServersRegistrationRequestParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_application_servers_registration_params import CommonApplicationServersRegistrationParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.application_servers_registration_request_params import ApplicationServersRegistrationRequestParams
+from cohesity_sdk.cluster.models.common_application_servers_registration_params import CommonApplicationServersRegistrationParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies the id of the source entity for application registration.
-body = ApplicationServersRegistrationRequestParams() # ApplicationServersRegistrationRequestParams | Specifies the parameters to register an application entity.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Registers or update owner entity with applications.
-	api_response = client.source.update_application_servers_registration(id, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->update_application_servers_registration: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    id = 56 # int | Specifies the id of the source entity for application registration.
+    body = cohesity_sdk.cluster.ApplicationServersRegistrationRequestParams() # ApplicationServersRegistrationRequestParams | Specifies the parameters to register an application entity.
+
+    try:
+        # Registers or update owner entity with applications.
+        api_response = api_instance.update_application_servers_registration(id, body)
+        print("The response of SourceApi->update_application_servers_registration:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->update_application_servers_registration: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the id of the source entity for application registration. |
- **body** | [**ApplicationServersRegistrationRequestParams**](ApplicationServersRegistrationRequestParams.md)| Specifies the parameters to register an application entity. |
+ **id** | **int**| Specifies the id of the source entity for application registration. | 
+ **body** | [**ApplicationServersRegistrationRequestParams**](ApplicationServersRegistrationRequestParams.md)| Specifies the parameters to register an application entity. | 
 
 ### Return type
 
@@ -2131,15 +2512,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -2148,7 +2529,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_m365_backup_controller**
-> GetM365BackupControllerResponseParams update_m365_backup_controller(azure_token, id)
+> GetM365BackupControllerResponseParams update_m365_backup_controller(azure_token, id, state=state)
 
 Updates the status of the registered M365 Backup Controller
 
@@ -2157,54 +2538,71 @@ Updates the status of the registered M365 Backup Controller
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.get_m365_backup_controller_response_params import GetM365BackupControllerResponseParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_m365_backup_controller_response_params import GetM365BackupControllerResponseParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-azure_token = "azureToken_example" # str | Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All
-id = "id_example" # str, none_type | Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller.
-state = "Inactive" # str, none_type | Specifies the state of the Backup Controller. The state parameter can only be either set to Active/Inactive within the request. The other states like PendingInactive & PendingActive are not applicable. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Updates the status of the registered M365 Backup Controller
-	api_response = client.source.update_m365_backup_controller(azure_token, id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->update_m365_backup_controller: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Updates the status of the registered M365 Backup Controller
-	api_response = client.source.update_m365_backup_controller(azure_token, id, state=state)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->update_m365_backup_controller: %s\n" % e)
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    azure_token = 'azure_token_example' # str | Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All
+    id = 'id_example' # str | Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller.
+    state = 'state_example' # str | Specifies the state of the Backup Controller. The state parameter can only be either set to Active/Inactive within the request. The other states like PendingInactive & PendingActive are not applicable. (optional)
+
+    try:
+        # Updates the status of the registered M365 Backup Controller
+        api_response = api_instance.update_m365_backup_controller(azure_token, id, state=state)
+        print("The response of SourceApi->update_m365_backup_controller:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->update_m365_backup_controller: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **azure_token** | **str**| Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All |
- **id** | **str, none_type**| Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller. |
- **state** | **str, none_type**| Specifies the state of the Backup Controller. The state parameter can only be either set to Active/Inactive within the request. The other states like PendingInactive &amp; PendingActive are not applicable. | [optional]
+ **azure_token** | **str**| Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All | 
+ **id** | **str**| Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller. | 
+ **state** | **str**| Specifies the state of the Backup Controller. The state parameter can only be either set to Active/Inactive within the request. The other states like PendingInactive &amp; PendingActive are not applicable. | [optional] 
 
 ### Return type
 
@@ -2212,15 +2610,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -2238,70 +2636,69 @@ Create or Update the Self-Service configuration for a Microsoft365 source.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.create_m365_self_service_config_request_params import CreateM365SelfServiceConfigRequestParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_m365_self_service_config_request_params import CreateM365SelfServiceConfigRequestParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-uuid = "uuid_example" # str | Specifies the UUID of the Microsoft365 Source.
-body = CreateM365SelfServiceConfigRequestParams(
-        domain="domain_example",
-        mailbox_params=M365SelfServiceWorkloadParams(
-            allowed_security_groups=[
-                M365SelfServiceSecurityGroupInfo(
-                    enable_download=True,
-                    global_id="global_id_example",
-                    name="name_example",
-                ),
-            ],
-        ),
-        oidc_config=OIDCStandardConfiguration(
-            client_id="client_id_example",
-            issuer="issuer_example",
-        ),
-        one_drive_params=M365SelfServiceWorkloadParams(
-            allowed_security_groups=[
-                M365SelfServiceSecurityGroupInfo(
-                    enable_download=True,
-                    global_id="global_id_example",
-                    name="name_example",
-                ),
-            ],
-        ),
-        preferred_authentication_mode="AzureAD",
-        tenant_id="tenant_id_example",
-        uuid="uuid_example",
-    ) # CreateM365SelfServiceConfigRequestParams | Specifies the parameters to enable Self-Service for a Microsoft365 source. This configuration will apply to all regions incase the same source is registered across regions.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Create or Update the Self-Service configuration for a Microsoft365 source.
-	api_response = client.source.update_m365_self_service_config(uuid, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->update_m365_self_service_config: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    uuid = 'uuid_example' # str | Specifies the UUID of the Microsoft365 Source.
+    body = cohesity_sdk.cluster.CreateM365SelfServiceConfigRequestParams() # CreateM365SelfServiceConfigRequestParams | Specifies the parameters to enable Self-Service for a Microsoft365 source. This configuration will apply to all regions incase the same source is registered across regions.
+
+    try:
+        # Create or Update the Self-Service configuration for a Microsoft365 source.
+        api_response = api_instance.update_m365_self_service_config(uuid, body)
+        print("The response of SourceApi->update_m365_self_service_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->update_m365_self_service_config: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| Specifies the UUID of the Microsoft365 Source. |
- **body** | [**CreateM365SelfServiceConfigRequestParams**](CreateM365SelfServiceConfigRequestParams.md)| Specifies the parameters to enable Self-Service for a Microsoft365 source. This configuration will apply to all regions incase the same source is registered across regions. |
+ **uuid** | **str**| Specifies the UUID of the Microsoft365 Source. | 
+ **body** | [**CreateM365SelfServiceConfigRequestParams**](CreateM365SelfServiceConfigRequestParams.md)| Specifies the parameters to enable Self-Service for a Microsoft365 source. This configuration will apply to all regions incase the same source is registered across regions. | 
 
 ### Return type
 
@@ -2309,15 +2706,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -2336,44 +2733,70 @@ Update Protection Source registration.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.source_registration_update_request_params import SourceRegistrationUpdateRequestParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.source_registration import SourceRegistration
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.source_registration import SourceRegistration
+from cohesity_sdk.cluster.models.source_registration_update_request_params import SourceRegistrationUpdateRequestParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies the id of the Protection Source registration.
-body = SourceRegistrationUpdateRequestParams() # SourceRegistrationUpdateRequestParams | Specifies the parameters to update the registration.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update Protection Source registration.
-	api_response = client.source.update_protection_source_registration(id, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->update_protection_source_registration: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    id = 56 # int | Specifies the id of the Protection Source registration.
+    body = cohesity_sdk.cluster.SourceRegistrationUpdateRequestParams() # SourceRegistrationUpdateRequestParams | Specifies the parameters to update the registration.
+
+    try:
+        # Update Protection Source registration.
+        api_response = api_instance.update_protection_source_registration(id, body)
+        print("The response of SourceApi->update_protection_source_registration:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SourceApi->update_protection_source_registration: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the id of the Protection Source registration. |
- **body** | [**SourceRegistrationUpdateRequestParams**](SourceRegistrationUpdateRequestParams.md)| Specifies the parameters to update the registration. |
+ **id** | **int**| Specifies the id of the Protection Source registration. | 
+ **body** | [**SourceRegistrationUpdateRequestParams**](SourceRegistrationUpdateRequestParams.md)| Specifies the parameters to update the registration. | 
 
 ### Return type
 
@@ -2381,15 +2804,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |

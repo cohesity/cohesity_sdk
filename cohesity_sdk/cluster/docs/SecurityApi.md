@@ -1,5 +1,6 @@
-# cohesity_sdk.SecurityApi
+# cohesity_sdk.cluster.SecurityApi
 
+All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -34,59 +35,68 @@ Create Certificate Signing Requests on the cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.create_clientcsr_response_body import CreateClientcsrResponseBody
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_csr_request_params import CommonCsrRequestParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.common_csr_request_params import CommonCsrRequestParams
+from cohesity_sdk.cluster.models.create_clientcsr_response_body import CreateClientcsrResponseBody
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = CommonCsrRequestParams(
-        city="city_example",
-        common_name="common_name_example",
-        country_code="country_code_example",
-        dns_names=[
-            "dns_names_example",
-        ],
-        email_address="email_address_example",
-        host_ips=[
-            "host_ips_example",
-        ],
-        key_size_bits=1,
-        key_type="rsa",
-        organization="organization_example",
-        organization_unit="organization_unit_example",
-        service_name="iris",
-        state="state_example",
-    ) # CommonCsrRequestParams | Specifies the parameters to create the Certificate Signing Requests.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Create Certificate Signing Requests on the cluster.
-	api_response = client.security.create_clientcsr(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SecurityApi->create_clientcsr: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+    body = cohesity_sdk.cluster.CommonCsrRequestParams() # CommonCsrRequestParams | Specifies the parameters to create the Certificate Signing Requests.
+
+    try:
+        # Create Certificate Signing Requests on the cluster.
+        api_response = api_instance.create_clientcsr(body)
+        print("The response of SecurityApi->create_clientcsr:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SecurityApi->create_clientcsr: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CommonCsrRequestParams**](CommonCsrRequestParams.md)| Specifies the parameters to create the Certificate Signing Requests. |
+ **body** | **CommonCsrRequestParams**| Specifies the parameters to create the Certificate Signing Requests. | 
 
 ### Return type
 
@@ -94,15 +104,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -120,59 +130,68 @@ Create a Certificate Signing Request on the cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_csr_response_params import CommonCsrResponseParams
-from cohesity_sdk.cluster.model.common_csr_request_params import CommonCsrRequestParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.common_csr_request_params import CommonCsrRequestParams
+from cohesity_sdk.cluster.models.common_csr_response_params import CommonCsrResponseParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = CommonCsrRequestParams(
-        city="city_example",
-        common_name="common_name_example",
-        country_code="country_code_example",
-        dns_names=[
-            "dns_names_example",
-        ],
-        email_address="email_address_example",
-        host_ips=[
-            "host_ips_example",
-        ],
-        key_size_bits=1,
-        key_type="rsa",
-        organization="organization_example",
-        organization_unit="organization_unit_example",
-        service_name="iris",
-        state="state_example",
-    ) # CommonCsrRequestParams | Specifies the parameters to create a Certificate Signing Request.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Create a Certificate Signing Request on the cluster.
-	api_response = client.security.create_csr(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SecurityApi->create_csr: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+    body = cohesity_sdk.cluster.CommonCsrRequestParams() # CommonCsrRequestParams | Specifies the parameters to create a Certificate Signing Request.
+
+    try:
+        # Create a Certificate Signing Request on the cluster.
+        api_response = api_instance.create_csr(body)
+        print("The response of SecurityApi->create_csr:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SecurityApi->create_csr: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CommonCsrRequestParams**](CommonCsrRequestParams.md)| Specifies the parameters to create a Certificate Signing Request. |
+ **body** | **CommonCsrRequestParams**| Specifies the parameters to create a Certificate Signing Request. | 
 
 ### Return type
 
@@ -180,15 +199,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -206,39 +225,64 @@ Delete a Certificate Signing Request on the cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = "id_example" # str | Specifies the id of the csr to be deleted.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Delete a Certificate Signing Request on the cluster.
-	client.security.delete_csr(id)
-except ApiException as e:
-	print("Exception when calling SecurityApi->delete_csr: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+    id = 'id_example' # str | Specifies the id of the csr to be deleted.
+
+    try:
+        # Delete a Certificate Signing Request on the cluster.
+        api_instance.delete_csr(id)
+    except Exception as e:
+        print("Exception when calling SecurityApi->delete_csr: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| Specifies the id of the csr to be deleted. |
+ **id** | **str**| Specifies the id of the csr to be deleted. | 
 
 ### Return type
 
@@ -246,15 +290,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -272,36 +316,62 @@ Gets the list of ciphers enabled on the cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.ciphers_resp import CiphersResp
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ciphers_resp import CiphersResp
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Gets the list of ciphers enabled on the cluster.
-	api_response = client.security.get_ciphers()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SecurityApi->get_ciphers: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+
+    try:
+        # Gets the list of ciphers enabled on the cluster.
+        api_response = api_instance.get_ciphers()
+        print("The response of SecurityApi->get_ciphers:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SecurityApi->get_ciphers: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -310,15 +380,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -336,41 +406,67 @@ List the specified Certificate Signing Request.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_csr_response_params import CommonCsrResponseParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.common_csr_response_params import CommonCsrResponseParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = "id_example" # str | Specifies the id of the csr.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# List the specified Certificate Signing Request.
-	api_response = client.security.get_csr_by_id(id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SecurityApi->get_csr_by_id: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+    id = 'id_example' # str | Specifies the id of the csr.
+
+    try:
+        # List the specified Certificate Signing Request.
+        api_response = api_instance.get_csr_by_id(id)
+        print("The response of SecurityApi->get_csr_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SecurityApi->get_csr_by_id: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| Specifies the id of the csr. |
+ **id** | **str**| Specifies the id of the csr. | 
 
 ### Return type
 
@@ -378,15 +474,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -395,7 +491,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_csr_list**
-> GetCsrListResponseBody get_csr_list()
+> List[CommonCsrResponseParams] get_csr_list(service_name=service_name, ids=ids)
 
 List Certificate Signing Requests on the cluster.
 
@@ -404,62 +500,85 @@ List Certificate Signing Requests on the cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.get_csr_list_response_body import GetCsrListResponseBody
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.common_csr_response_params import CommonCsrResponseParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-service_name = "iris" # str | Specifies the Cohesity service name for which the CSR is generated. If this is not specified, all the csrs on the cluster will be returned. (optional)
-ids = [
-        "ids_example",
-    ] # [str] | Specifies the ids of the csrs. If this is not specified, all the csrs on the cluster will be returned. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# List Certificate Signing Requests on the cluster.
-	api_response = client.security.get_csr_list(service_name=service_name, ids=ids)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SecurityApi->get_csr_list: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+    service_name = 'service_name_example' # str | Specifies the Cohesity service name for which the CSR is generated. If this is not specified, all the csrs on the cluster will be returned. (optional)
+    ids = ['ids_example'] # List[str] | Specifies the ids of the csrs. If this is not specified, all the csrs on the cluster will be returned. (optional)
+
+    try:
+        # List Certificate Signing Requests on the cluster.
+        api_response = api_instance.get_csr_list(service_name=service_name, ids=ids)
+        print("The response of SecurityApi->get_csr_list:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SecurityApi->get_csr_list: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **service_name** | **str**| Specifies the Cohesity service name for which the CSR is generated. If this is not specified, all the csrs on the cluster will be returned. | [optional]
- **ids** | **[str]**| Specifies the ids of the csrs. If this is not specified, all the csrs on the cluster will be returned. | [optional]
+ **service_name** | **str**| Specifies the Cohesity service name for which the CSR is generated. If this is not specified, all the csrs on the cluster will be returned. | [optional] 
+ **ids** | [**List[str]**](str.md)| Specifies the ids of the csrs. If this is not specified, all the csrs on the cluster will be returned. | [optional] 
 
 ### Return type
 
-[**GetCsrListResponseBody**](GetCsrListResponseBody.md)
+[**List[CommonCsrResponseParams]**](CommonCsrResponseParams.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -477,36 +596,62 @@ Gets the list of object store ciphers enabled on the cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.object_store_ciphers_resp import ObjectStoreCiphersResp
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.object_store_ciphers_resp import ObjectStoreCiphersResp
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Gets the list of object store ciphers enabled on the cluster.
-	api_response = client.security.get_object_store_ciphers()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SecurityApi->get_object_store_ciphers: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+
+    try:
+        # Gets the list of object store ciphers enabled on the cluster.
+        api_response = api_instance.get_object_store_ciphers()
+        print("The response of SecurityApi->get_object_store_ciphers:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SecurityApi->get_object_store_ciphers: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -515,15 +660,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -541,36 +686,62 @@ Get cluster security settings.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.security_config_response import SecurityConfigResponse
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.security_config_response import SecurityConfigResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get cluster security settings.
-	api_response = client.security.get_security_config()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SecurityApi->get_security_config: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+
+    try:
+        # Get cluster security settings.
+        api_response = api_instance.get_security_config()
+        print("The response of SecurityApi->get_security_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SecurityApi->get_security_config: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -579,15 +750,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -596,7 +767,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ssl_certificates**
-> GetSslCertificatesResult get_ssl_certificates()
+> List[SslCertificate] get_ssl_certificates(service_name=service_name)
 
 Get list of SSL certificates.
 
@@ -605,58 +776,83 @@ Get list of SSL certificates.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.get_ssl_certificates_result import GetSslCertificatesResult
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ssl_certificate import SslCertificate
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-service_name = "iris" # str | Specifies the service name for which the certificate details needs to be returned. If this is not specified, all certificates are returned. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get list of SSL certificates.
-	api_response = client.security.get_ssl_certificates(service_name=service_name)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SecurityApi->get_ssl_certificates: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+    service_name = 'service_name_example' # str | Specifies the service name for which the certificate details needs to be returned. If this is not specified, all certificates are returned. (optional)
+
+    try:
+        # Get list of SSL certificates.
+        api_response = api_instance.get_ssl_certificates(service_name=service_name)
+        print("The response of SecurityApi->get_ssl_certificates:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SecurityApi->get_ssl_certificates: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **service_name** | **str**| Specifies the service name for which the certificate details needs to be returned. If this is not specified, all certificates are returned. | [optional]
+ **service_name** | **str**| Specifies the service name for which the certificate details needs to be returned. If this is not specified, all certificates are returned. | [optional] 
 
 ### Return type
 
-[**GetSslCertificatesResult**](GetSslCertificatesResult.md)
+[**List[SslCertificate]**](SslCertificate.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -674,45 +870,68 @@ Import the signed certificates on the cluster after the Certificate Signing Requ
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.import_certificate_by_clientcsr_response_body import ImportCertificateByClientcsrResponseBody
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.import_certificate_by_clientcsr_request import ImportCertificateByClientcsrRequest
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.import_certificate_by_clientcsr_request import ImportCertificateByClientcsrRequest
+from cohesity_sdk.cluster.models.import_certificate_by_clientcsr_response_body import ImportCertificateByClientcsrResponseBody
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = ImportCertificateByClientcsrRequest(
-        certificate_client="certificate_client_example",
-        certificate_server="certificate_server_example",
-    ) # ImportCertificateByClientcsrRequest | Specifies the parameters to import the certificate.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Import the signed certificates on the cluster after the Certificate Signing Requests are created.
-	api_response = client.security.import_certificate_by_clientcsr(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SecurityApi->import_certificate_by_clientcsr: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+    body = cohesity_sdk.cluster.ImportCertificateByClientcsrRequest() # ImportCertificateByClientcsrRequest | Specifies the parameters to import the certificate.
+
+    try:
+        # Import the signed certificates on the cluster after the Certificate Signing Requests are created.
+        api_response = api_instance.import_certificate_by_clientcsr(body)
+        print("The response of SecurityApi->import_certificate_by_clientcsr:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SecurityApi->import_certificate_by_clientcsr: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ImportCertificateByClientcsrRequest**](ImportCertificateByClientcsrRequest.md)| Specifies the parameters to import the certificate. |
+ **body** | [**ImportCertificateByClientcsrRequest**](ImportCertificateByClientcsrRequest.md)| Specifies the parameters to import the certificate. | 
 
 ### Return type
 
@@ -720,15 +939,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -746,41 +965,67 @@ List the specified Certificate.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.trusted_ca import TrustedCa
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.trusted_ca import TrustedCa
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = "id_example" # str | Specifies the id of the certificate.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# List the specified Certificate.
-	api_response = client.security.list_trusted_ca_by_id(id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SecurityApi->list_trusted_ca_by_id: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+    id = 'id_example' # str | Specifies the id of the certificate.
+
+    try:
+        # List the specified Certificate.
+        api_response = api_instance.list_trusted_ca_by_id(id)
+        print("The response of SecurityApi->list_trusted_ca_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SecurityApi->list_trusted_ca_by_id: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| Specifies the id of the certificate. |
+ **id** | **str**| Specifies the id of the certificate. | 
 
 ### Return type
 
@@ -788,15 +1033,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -805,7 +1050,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_trusted_cas**
-> ListTrustedCasResult list_trusted_cas()
+> ListTrustedCasResult list_trusted_cas(ids=ids, names=names)
 
 List all Certificates with cluster trust store.
 
@@ -814,48 +1059,69 @@ List all Certificates with cluster trust store.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.list_trusted_cas_result import ListTrustedCasResult
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.list_trusted_cas_result import ListTrustedCasResult
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-ids = [
-        "ids_example",
-    ] # [str] | Specifies the ids of the certificates to be returned. (optional)
-names = [
-        "names_example",
-    ] # [str] | Specifies the names of the certificates to be returned. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# List all Certificates with cluster trust store.
-	api_response = client.security.list_trusted_cas(ids=ids, names=names)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SecurityApi->list_trusted_cas: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+    ids = ['ids_example'] # List[str] | Specifies the ids of the certificates to be returned. (optional)
+    names = ['names_example'] # List[str] | Specifies the names of the certificates to be returned. (optional)
+
+    try:
+        # List all Certificates with cluster trust store.
+        api_response = api_instance.list_trusted_cas(ids=ids, names=names)
+        print("The response of SecurityApi->list_trusted_cas:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SecurityApi->list_trusted_cas: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ids** | **[str]**| Specifies the ids of the certificates to be returned. | [optional]
- **names** | **[str]**| Specifies the names of the certificates to be returned. | [optional]
+ **ids** | [**List[str]**](str.md)| Specifies the ids of the certificates to be returned. | [optional] 
+ **names** | [**List[str]**](str.md)| Specifies the names of the certificates to be returned. | [optional] 
 
 ### Return type
 
@@ -863,15 +1129,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -889,47 +1155,68 @@ Enable/Disable a list of ciphers on the cluster. Iris must be restarted for the 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.ciphers_resp import CiphersResp
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.modify_ciphers_request_body import ModifyCiphersRequestBody
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ciphers_resp import CiphersResp
+from cohesity_sdk.cluster.models.modify_ciphers_request_body import ModifyCiphersRequestBody
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = ModifyCiphersRequestBody(
-        ciphers=[
-            "TLS_AES_256_GCM_SHA384",
-        ],
-        enable=True,
-    ) # ModifyCiphersRequestBody | Enable/Disable ciphers.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Enable/Disable a list of ciphers on the cluster. Iris must be restarted for the change to take effect.
-	api_response = client.security.modify_ciphers(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SecurityApi->modify_ciphers: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+    body = cohesity_sdk.cluster.ModifyCiphersRequestBody() # ModifyCiphersRequestBody | Enable/Disable ciphers.
+
+    try:
+        # Enable/Disable a list of ciphers on the cluster. Iris must be restarted for the change to take effect.
+        api_response = api_instance.modify_ciphers(body)
+        print("The response of SecurityApi->modify_ciphers:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SecurityApi->modify_ciphers: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ModifyCiphersRequestBody**](ModifyCiphersRequestBody.md)| Enable/Disable ciphers. |
+ **body** | [**ModifyCiphersRequestBody**](ModifyCiphersRequestBody.md)| Enable/Disable ciphers. | 
 
 ### Return type
 
@@ -937,15 +1224,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -963,47 +1250,68 @@ Enable/Disable a list of object store ciphers on the cluster. Bridge must be res
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.object_store_ciphers_resp import ObjectStoreCiphersResp
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.modify_object_store_ciphers_request_body import ModifyObjectStoreCiphersRequestBody
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.modify_object_store_ciphers_request_body import ModifyObjectStoreCiphersRequestBody
+from cohesity_sdk.cluster.models.object_store_ciphers_resp import ObjectStoreCiphersResp
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = ModifyObjectStoreCiphersRequestBody(
-        ciphers=[
-            "TLS_AES_256_GCM_SHA384",
-        ],
-        enable=True,
-    ) # ModifyObjectStoreCiphersRequestBody | Enable/Disable object store ciphers.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Enable/Disable a list of object store ciphers on the cluster. Bridge must be restarted for the change to take effect.
-	api_response = client.security.modify_object_store_ciphers(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SecurityApi->modify_object_store_ciphers: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+    body = cohesity_sdk.cluster.ModifyObjectStoreCiphersRequestBody() # ModifyObjectStoreCiphersRequestBody | Enable/Disable object store ciphers.
+
+    try:
+        # Enable/Disable a list of object store ciphers on the cluster. Bridge must be restarted for the change to take effect.
+        api_response = api_instance.modify_object_store_ciphers(body)
+        print("The response of SecurityApi->modify_object_store_ciphers:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SecurityApi->modify_object_store_ciphers: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ModifyObjectStoreCiphersRequestBody**](ModifyObjectStoreCiphersRequestBody.md)| Enable/Disable object store ciphers. |
+ **body** | [**ModifyObjectStoreCiphersRequestBody**](ModifyObjectStoreCiphersRequestBody.md)| Enable/Disable object store ciphers. | 
 
 ### Return type
 
@@ -1011,15 +1319,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1037,51 +1345,68 @@ Register CA Certificate to the cluster trust store.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.register_trusted_cas import RegisterTrustedCas
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.list_trusted_cas_result import ListTrustedCasResult
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.list_trusted_cas_result import ListTrustedCasResult
+from cohesity_sdk.cluster.models.register_trusted_cas import RegisterTrustedCas
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = RegisterTrustedCas(
-        certificates=[
-            TrustedCaRequest(
-                certificate="certificate_example",
-                description="description_example",
-                name="name_example",
-            ),
-        ],
-        only_validate=True,
-    ) # RegisterTrustedCas | Specifies the parameters to register a Certificate.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Register CA Certificate to the cluster trust store.
-	api_response = client.security.register_trusted_cas(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SecurityApi->register_trusted_cas: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+    body = cohesity_sdk.cluster.RegisterTrustedCas() # RegisterTrustedCas | Specifies the parameters to register a Certificate.
+
+    try:
+        # Register CA Certificate to the cluster trust store.
+        api_response = api_instance.register_trusted_cas(body)
+        print("The response of SecurityApi->register_trusted_cas:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SecurityApi->register_trusted_cas: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**RegisterTrustedCas**](RegisterTrustedCas.md)| Specifies the parameters to register a Certificate. |
+ **body** | [**RegisterTrustedCas**](RegisterTrustedCas.md)| Specifies the parameters to register a Certificate. | 
 
 ### Return type
 
@@ -1089,15 +1414,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -1115,39 +1440,64 @@ Unregister CA Certificate from the cluster trust store.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = "id_example" # str | Specifies the id of the certificate to be unregistered.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Unregister CA Certificate from the cluster trust store.
-	client.security.unregister_trusted_ca(id)
-except ApiException as e:
-	print("Exception when calling SecurityApi->unregister_trusted_ca: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+    id = 'id_example' # str | Specifies the id of the certificate to be unregistered.
+
+    try:
+        # Unregister CA Certificate from the cluster trust store.
+        api_instance.unregister_trusted_ca(id)
+    except Exception as e:
+        print("Exception when calling SecurityApi->unregister_trusted_ca: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| Specifies the id of the certificate to be unregistered. |
+ **id** | **str**| Specifies the id of the certificate to be unregistered. | 
 
 ### Return type
 
@@ -1155,15 +1505,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1181,45 +1531,68 @@ Update the signed certificate on the cluster after a Certificate Signing Request
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.update_certificate_by_csr_request import UpdateCertificateByCsrRequest
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.update_certificate_by_csr_response_body import UpdateCertificateByCsrResponseBody
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.update_certificate_by_csr_request import UpdateCertificateByCsrRequest
+from cohesity_sdk.cluster.models.update_certificate_by_csr_response_body import UpdateCertificateByCsrResponseBody
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = UpdateCertificateByCsrRequest(
-        certificate="certificate_example",
-        csr_id="csr_id_example",
-    ) # UpdateCertificateByCsrRequest | Specifies the parameters to update the certificate.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update the signed certificate on the cluster after a Certificate Signing Request is created.
-	api_response = client.security.update_certificate_by_csr(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SecurityApi->update_certificate_by_csr: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+    body = cohesity_sdk.cluster.UpdateCertificateByCsrRequest() # UpdateCertificateByCsrRequest | Specifies the parameters to update the certificate.
+
+    try:
+        # Update the signed certificate on the cluster after a Certificate Signing Request is created.
+        api_response = api_instance.update_certificate_by_csr(body)
+        print("The response of SecurityApi->update_certificate_by_csr:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SecurityApi->update_certificate_by_csr: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UpdateCertificateByCsrRequest**](UpdateCertificateByCsrRequest.md)| Specifies the parameters to update the certificate. |
+ **body** | [**UpdateCertificateByCsrRequest**](UpdateCertificateByCsrRequest.md)| Specifies the parameters to update the certificate. | 
 
 ### Return type
 
@@ -1227,15 +1600,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1253,85 +1626,68 @@ Update cluster security settings.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.security_config import SecurityConfig
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.security_config_response import SecurityConfigResponse
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.security_config import SecurityConfig
+from cohesity_sdk.cluster.models.security_config_response import SecurityConfigResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = SecurityConfig(
-        account_lockout=SecurityConfigAccountLockout(
-            failed_login_lock_time_duration_mins=1,
-            inactivity_time_days=1,
-            max_failed_login_attempts=1,
-        ),
-        auth_token_timeout_minutes=1,
-        certificate_based_auth=SecurityConfigCertificateBasedAuth(
-            ad_mapping="SamAccountName",
-            certificate_mapping="CommonName",
-            enable_mapping_based_authentication=True,
-        ),
-        data_classification=SecurityConfigDataClassification(
-            classified_data_message="classified_data_message_example",
-            is_data_classified=True,
-            unclassified_data_message="unclassified_data_message_example",
-        ),
-        inactivity_timeout_m_secs=1,
-        password_lifetime=SecurityConfigPasswordLifetime(
-            max_lifetime_days=1,
-            min_lifetime_days=0,
-        ),
-        password_reuse=SecurityConfigPasswordReuse(
-            num_different_chars=0,
-            num_disallowed_old_passwords=0,
-        ),
-        password_strength=SecurityConfigPasswordStrength(
-            include_lower_letter=True,
-            include_number=True,
-            include_special_char=True,
-            include_upper_letter=True,
-            min_length=0,
-        ),
-        session_configuration=SecurityConfigSessionConfiguration(
-            absolute_timeout=1,
-            inactivity_timeout=1,
-            limit_sessions=True,
-            session_limit_per_user=1,
-            session_limit_system_wide=1,
-        ),
-        ssh_configuration=SecurityConfigSshConfiguration(
-            ssh_timeout_in_mins=1,
-        ),
-    ) # SecurityConfig | Specifies the parameters to update security config.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update cluster security settings.
-	api_response = client.security.update_security_config(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SecurityApi->update_security_config: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+    body = cohesity_sdk.cluster.SecurityConfig() # SecurityConfig | Specifies the parameters to update security config.
+
+    try:
+        # Update cluster security settings.
+        api_response = api_instance.update_security_config(body)
+        print("The response of SecurityApi->update_security_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SecurityApi->update_security_config: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SecurityConfig**](SecurityConfig.md)| Specifies the parameters to update security config. |
+ **body** | **SecurityConfig**| Specifies the parameters to update security config. | 
 
 ### Return type
 
@@ -1339,15 +1695,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1365,41 +1721,67 @@ Validate CA Certificate.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.trusted_ca import TrustedCa
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.trusted_ca import TrustedCa
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = "id_example" # str | Specifies the id of the certificate to be validated.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Validate CA Certificate.
-	api_response = client.security.validate_trusted_ca_by_id(id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SecurityApi->validate_trusted_ca_by_id: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+    id = 'id_example' # str | Specifies the id of the certificate to be validated.
+
+    try:
+        # Validate CA Certificate.
+        api_response = api_instance.validate_trusted_ca_by_id(id)
+        print("The response of SecurityApi->validate_trusted_ca_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SecurityApi->validate_trusted_ca_by_id: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| Specifies the id of the certificate to be validated. |
+ **id** | **str**| Specifies the id of the certificate to be validated. | 
 
 ### Return type
 
@@ -1407,15 +1789,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |

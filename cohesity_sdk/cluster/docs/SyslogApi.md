@@ -1,5 +1,6 @@
-# cohesity_sdk.SyslogApi
+# cohesity_sdk.cluster.SyslogApi
 
+All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -27,64 +28,67 @@ Add Syslog Server
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.syslog_server import SyslogServer
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.syslog_server import SyslogServer
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = SyslogServer(
-        ca_certificate="ca_certificate_example",
-        enabled=True,
-        facility_list=[
-            "facility_list_example",
-        ],
-        id=1,
-        ip="ip_example",
-        is_tls_enabled=True,
-        msg_pattern_list=[
-            "msg_pattern_list_example",
-        ],
-        name="name_example",
-        permitted_peer="permitted_peer_example",
-        port=1,
-        program_name_list=[
-            "program_name_list_example",
-        ],
-        protocol="protocol_example",
-        raw_msg_pattern_list=[
-            "raw_msg_pattern_list_example",
-        ],
-        token_id="token_id_example",
-    ) # SyslogServer | Specifies parameters to add syslog server.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Add Syslog Server
-	api_response = client.syslog.add_syslog_server(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SyslogApi->add_syslog_server: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SyslogApi(api_client)
+    body = cohesity_sdk.cluster.SyslogServer() # SyslogServer | Specifies parameters to add syslog server.
+
+    try:
+        # Add Syslog Server
+        api_response = api_instance.add_syslog_server(body)
+        print("The response of SyslogApi->add_syslog_server:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SyslogApi->add_syslog_server: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SyslogServer**](SyslogServer.md)| Specifies parameters to add syslog server. |
+ **body** | [**SyslogServer**](SyslogServer.md)| Specifies parameters to add syslog server. | 
 
 ### Return type
 
@@ -92,15 +96,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -109,7 +113,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_supported_syslog_auth_modes**
-> [str] get_supported_syslog_auth_modes()
+> List[str] get_supported_syslog_auth_modes()
 
 Get supported program names.
 
@@ -118,52 +122,78 @@ Get supported program names.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get supported program names.
-	api_response = client.syslog.get_supported_syslog_auth_modes()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SyslogApi->get_supported_syslog_auth_modes: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SyslogApi(api_client)
+
+    try:
+        # Get supported program names.
+        api_response = api_instance.get_supported_syslog_auth_modes()
+        print("The response of SyslogApi->get_supported_syslog_auth_modes:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SyslogApi->get_supported_syslog_auth_modes: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-**[str]**
+**List[str]**
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Supported authentication modes for syslog server configuration. |  -  |
@@ -172,7 +202,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_supported_syslog_program_names**
-> [str] get_supported_syslog_program_names()
+> List[str] get_supported_syslog_program_names()
 
 Get supported program names.
 
@@ -181,52 +211,78 @@ Get supported program names.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get supported program names.
-	api_response = client.syslog.get_supported_syslog_program_names()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SyslogApi->get_supported_syslog_program_names: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SyslogApi(api_client)
+
+    try:
+        # Get supported program names.
+        api_response = api_instance.get_supported_syslog_program_names()
+        print("The response of SyslogApi->get_supported_syslog_program_names:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SyslogApi->get_supported_syslog_program_names: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-**[str]**
+**List[str]**
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -244,36 +300,62 @@ Get cluster audit tags.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.syslog_audit_tag import SyslogAuditTag
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.syslog_audit_tag import SyslogAuditTag
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get cluster audit tags.
-	api_response = client.syslog.get_syslog_audit_tags()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SyslogApi->get_syslog_audit_tags: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SyslogApi(api_client)
+
+    try:
+        # Get cluster audit tags.
+        api_response = api_instance.get_syslog_audit_tags()
+        print("The response of SyslogApi->get_syslog_audit_tags:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SyslogApi->get_syslog_audit_tags: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -282,15 +364,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -308,41 +390,67 @@ Get a syslog server by id.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.syslog_server import SyslogServer
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.syslog_server import SyslogServer
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies the id of syslog server.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Get a syslog server by id.
-	api_response = client.syslog.get_syslog_server_by_id(id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SyslogApi->get_syslog_server_by_id: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SyslogApi(api_client)
+    id = 56 # int | Specifies the id of syslog server.
+
+    try:
+        # Get a syslog server by id.
+        api_response = api_instance.get_syslog_server_by_id(id)
+        print("The response of SyslogApi->get_syslog_server_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SyslogApi->get_syslog_server_by_id: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the id of syslog server. |
+ **id** | **int**| Specifies the id of syslog server. | 
 
 ### Return type
 
@@ -350,15 +458,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -376,41 +484,67 @@ Get a syslog server reachability status.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.syslog_server_status import SyslogServerStatus
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.syslog_server_status import SyslogServerStatus
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies the id of syslog server.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Get a syslog server reachability status.
-	api_response = client.syslog.get_syslog_server_status_by_id(id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SyslogApi->get_syslog_server_status_by_id: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SyslogApi(api_client)
+    id = 56 # int | Specifies the id of syslog server.
+
+    try:
+        # Get a syslog server reachability status.
+        api_response = api_instance.get_syslog_server_status_by_id(id)
+        print("The response of SyslogApi->get_syslog_server_status_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SyslogApi->get_syslog_server_status_by_id: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the id of syslog server. |
+ **id** | **int**| Specifies the id of syslog server. | 
 
 ### Return type
 
@@ -418,15 +552,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -444,36 +578,62 @@ Get list of syslog servers.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.syslog_servers import SyslogServers
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.syslog_servers import SyslogServers
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get list of syslog servers.
-	api_response = client.syslog.get_syslog_servers()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SyslogApi->get_syslog_servers: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SyslogApi(api_client)
+
+    try:
+        # Get list of syslog servers.
+        api_response = api_instance.get_syslog_servers()
+        print("The response of SyslogApi->get_syslog_servers:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SyslogApi->get_syslog_servers: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -482,15 +642,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -499,7 +659,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_syslog_server_by_id**
-> SyslogServer patch_syslog_server_by_id(id)
+> SyslogServer patch_syslog_server_by_id(id, body=body)
 
 Patch a syslog server by id.
 
@@ -508,75 +668,69 @@ Patch a syslog server by id.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.syslog_server import SyslogServer
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.syslog_server import SyslogServer
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies the id of syslog server.
-body = SyslogServer(
-        ca_certificate="ca_certificate_example",
-        enabled=True,
-        facility_list=[
-            "facility_list_example",
-        ],
-        id=1,
-        ip="ip_example",
-        is_tls_enabled=True,
-        msg_pattern_list=[
-            "msg_pattern_list_example",
-        ],
-        name="name_example",
-        permitted_peer="permitted_peer_example",
-        port=1,
-        program_name_list=[
-            "program_name_list_example",
-        ],
-        protocol="protocol_example",
-        raw_msg_pattern_list=[
-            "raw_msg_pattern_list_example",
-        ],
-        token_id="token_id_example",
-    ) # SyslogServer | Specifies the body of syslog server fields to patch. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Patch a syslog server by id.
-	api_response = client.syslog.patch_syslog_server_by_id(id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SyslogApi->patch_syslog_server_by_id: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Patch a syslog server by id.
-	api_response = client.syslog.patch_syslog_server_by_id(id, body=body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SyslogApi->patch_syslog_server_by_id: %s\n" % e)
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SyslogApi(api_client)
+    id = 56 # int | Specifies the id of syslog server.
+    body = cohesity_sdk.cluster.SyslogServer() # SyslogServer | Specifies the body of syslog server fields to patch. (optional)
+
+    try:
+        # Patch a syslog server by id.
+        api_response = api_instance.patch_syslog_server_by_id(id, body=body)
+        print("The response of SyslogApi->patch_syslog_server_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SyslogApi->patch_syslog_server_by_id: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the id of syslog server. |
- **body** | [**SyslogServer**](SyslogServer.md)| Specifies the body of syslog server fields to patch. | [optional]
+ **id** | **int**| Specifies the id of syslog server. | 
+ **body** | [**SyslogServer**](SyslogServer.md)| Specifies the body of syslog server fields to patch. | [optional] 
 
 ### Return type
 
@@ -584,15 +738,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -610,39 +764,64 @@ Remove syslog server by id
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies a unique id of the syslog server.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Remove syslog server by id
-	client.syslog.remove_syslog_server(id)
-except ApiException as e:
-	print("Exception when calling SyslogApi->remove_syslog_server: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SyslogApi(api_client)
+    id = 56 # int | Specifies a unique id of the syslog server.
+
+    try:
+        # Remove syslog server by id
+        api_instance.remove_syslog_server(id)
+    except Exception as e:
+        print("Exception when calling SyslogApi->remove_syslog_server: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies a unique id of the syslog server. |
+ **id** | **int**| Specifies a unique id of the syslog server. | 
 
 ### Return type
 
@@ -650,15 +829,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -676,34 +855,59 @@ Remove syslog servers
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Remove syslog servers
-	client.syslog.remove_syslog_servers()
-except ApiException as e:
-	print("Exception when calling SyslogApi->remove_syslog_servers: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SyslogApi(api_client)
+
+    try:
+        # Remove syslog servers
+        api_instance.remove_syslog_servers()
+    except Exception as e:
+        print("Exception when calling SyslogApi->remove_syslog_servers: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -712,15 +916,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -729,7 +933,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_syslog_audit_tags**
-> SyslogAuditTag update_syslog_audit_tags()
+> SyslogAuditTag update_syslog_audit_tags(body=body)
 
 Update cluster audit tags.
 
@@ -738,47 +942,67 @@ Update cluster audit tags.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.syslog_audit_tag import SyslogAuditTag
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.syslog_audit_tag import SyslogAuditTag
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = SyslogAuditTag(
-        alert_audit="alert_audit_example",
-        cluster_audit="cluster_audit_example",
-        data_protection_events_audit="data_protection_events_audit_example",
-        filer_audit="filer_audit_example",
-    ) # SyslogAuditTag | Specifies syslog audit tag to update. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Update cluster audit tags.
-	api_response = client.syslog.update_syslog_audit_tags(body=body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SyslogApi->update_syslog_audit_tags: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SyslogApi(api_client)
+    body = cohesity_sdk.cluster.SyslogAuditTag() # SyslogAuditTag | Specifies syslog audit tag to update. (optional)
+
+    try:
+        # Update cluster audit tags.
+        api_response = api_instance.update_syslog_audit_tags(body=body)
+        print("The response of SyslogApi->update_syslog_audit_tags:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SyslogApi->update_syslog_audit_tags: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SyslogAuditTag**](SyslogAuditTag.md)| Specifies syslog audit tag to update. | [optional]
+ **body** | [**SyslogAuditTag**](SyslogAuditTag.md)| Specifies syslog audit tag to update. | [optional] 
 
 ### Return type
 
@@ -786,15 +1010,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -803,7 +1027,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_syslog_server_by_id**
-> SyslogServer update_syslog_server_by_id(id)
+> SyslogServer update_syslog_server_by_id(id, body=body)
 
 Update a syslog server by id.
 
@@ -812,75 +1036,69 @@ Update a syslog server by id.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.syslog_server import SyslogServer
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.syslog_server import SyslogServer
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies the id of syslog server.
-body = SyslogServer(
-        ca_certificate="ca_certificate_example",
-        enabled=True,
-        facility_list=[
-            "facility_list_example",
-        ],
-        id=1,
-        ip="ip_example",
-        is_tls_enabled=True,
-        msg_pattern_list=[
-            "msg_pattern_list_example",
-        ],
-        name="name_example",
-        permitted_peer="permitted_peer_example",
-        port=1,
-        program_name_list=[
-            "program_name_list_example",
-        ],
-        protocol="protocol_example",
-        raw_msg_pattern_list=[
-            "raw_msg_pattern_list_example",
-        ],
-        token_id="token_id_example",
-    ) # SyslogServer | Specifies the body of syslog server body to update. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update a syslog server by id.
-	api_response = client.syslog.update_syslog_server_by_id(id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SyslogApi->update_syslog_server_by_id: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Update a syslog server by id.
-	api_response = client.syslog.update_syslog_server_by_id(id, body=body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SyslogApi->update_syslog_server_by_id: %s\n" % e)
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SyslogApi(api_client)
+    id = 56 # int | Specifies the id of syslog server.
+    body = cohesity_sdk.cluster.SyslogServer() # SyslogServer | Specifies the body of syslog server body to update. (optional)
+
+    try:
+        # Update a syslog server by id.
+        api_response = api_instance.update_syslog_server_by_id(id, body=body)
+        print("The response of SyslogApi->update_syslog_server_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SyslogApi->update_syslog_server_by_id: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the id of syslog server. |
- **body** | [**SyslogServer**](SyslogServer.md)| Specifies the body of syslog server body to update. | [optional]
+ **id** | **int**| Specifies the id of syslog server. | 
+ **body** | [**SyslogServer**](SyslogServer.md)| Specifies the body of syslog server body to update. | [optional] 
 
 ### Return type
 
@@ -888,15 +1106,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |

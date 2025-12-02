@@ -3,12 +3,30 @@
 Specifies the parameters which are specific to Azure related with tier type Cold Blob
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**category** | **str, none_type** | Specifies the category of the external target. | 
-**function_app_deployment_key** | **str, none_type** | Specifies the access key to deploy Azure function to function app | [optional] 
-**function_app_name** | **str, none_type** | Specifies the name of the Azure function app, which is the host of Azure functions. | [optional] 
+**category** | **str** | Specifies the category of the external target. | 
+**function_app_deployment_key** | **str** | Specifies the access key to deploy Azure function to function app | [optional] 
+**function_app_name** | **str** | Specifies the name of the Azure function app, which is the host of Azure functions. | [optional] 
 
+## Example
+
+```python
+from cohesity_sdk.cluster.models.azure_cold_blob_params import AzureColdBlobParams
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of AzureColdBlobParams from a JSON string
+azure_cold_blob_params_instance = AzureColdBlobParams.from_json(json)
+# print the JSON string representation of the object
+print(AzureColdBlobParams.to_json())
+
+# convert the object into a dict
+azure_cold_blob_params_dict = azure_cold_blob_params_instance.to_dict()
+# create an instance of AzureColdBlobParams from a dict
+azure_cold_blob_params_from_dict = AzureColdBlobParams.from_dict(azure_cold_blob_params_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

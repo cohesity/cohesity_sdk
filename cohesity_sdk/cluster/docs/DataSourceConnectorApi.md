@@ -1,5 +1,6 @@
-# cohesity_sdk.DataSourceConnectorApi
+# cohesity_sdk.cluster.DataSourceConnectorApi
 
+All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -20,39 +21,64 @@ Delete a data-source connector using its ID
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-connector_id = "connectorId_example" # str | Specifies the unique ID of the connector which is to be deleted.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Delete a data-source connector using its ID
-	client.data_source_connector.delete_data_source_connector(connector_id)
-except ApiException as e:
-	print("Exception when calling DataSourceConnectorApi->delete_data_source_connector: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.DataSourceConnectorApi(api_client)
+    connector_id = 'connector_id_example' # str | Specifies the unique ID of the connector which is to be deleted.
+
+    try:
+        # Delete a data-source connector using its ID
+        api_instance.delete_data_source_connector(connector_id)
+    except Exception as e:
+        print("Exception when calling DataSourceConnectorApi->delete_data_source_connector: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **connector_id** | **str**| Specifies the unique ID of the connector which is to be deleted. |
+ **connector_id** | **str**| Specifies the unique ID of the connector which is to be deleted. | 
 
 ### Return type
 
@@ -60,15 +86,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -86,35 +112,61 @@ void (empty response body)
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.connector_metadata import ConnectorMetadata
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.connector_metadata import ConnectorMetadata
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	api_response = client.data_source_connector.get_connector_metadata()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling DataSourceConnectorApi->get_connector_metadata: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.DataSourceConnectorApi(api_client)
+
+    try:
+        api_response = api_instance.get_connector_metadata()
+        print("The response of DataSourceConnectorApi->get_connector_metadata:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DataSourceConnectorApi->get_connector_metadata: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -123,15 +175,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -140,7 +192,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_data_source_connectors**
-> DataSourceConnectorList get_data_source_connectors()
+> DataSourceConnectorList get_data_source_connectors(connector_ids=connector_ids, connector_names=connector_names, tenant_id=tenant_id, connection_id=connection_id)
 
 Get data-source connectors
 
@@ -149,52 +201,73 @@ Get data-source connectors
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.data_source_connector_list import DataSourceConnectorList
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.data_source_connector_list import DataSourceConnectorList
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-connector_ids = [
-        "connectorIds_example",
-    ] # [str], none_type | Specifies the unique IDs of the connectors which are to be fetched. (optional)
-connector_names = [
-        "connectorNames_example",
-    ] # [str], none_type | Specifies the names of the connectors which are to be fetched. (optional)
-tenant_id = "tenantId_example" # str, none_type | Specifies the ID of the tenant for which the connectors are to be fetched. (optional)
-connection_id = "connectionId_example" # str, none_type | Specifies the ID of the connection, connectors belonging to which are to be fetched. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get data-source connectors
-	api_response = client.data_source_connector.get_data_source_connectors(connector_ids=connector_ids, connector_names=connector_names, tenant_id=tenant_id, connection_id=connection_id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling DataSourceConnectorApi->get_data_source_connectors: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.DataSourceConnectorApi(api_client)
+    connector_ids = ['connector_ids_example'] # List[str] | Specifies the unique IDs of the connectors which are to be fetched. (optional)
+    connector_names = ['connector_names_example'] # List[str] | Specifies the names of the connectors which are to be fetched. (optional)
+    tenant_id = 'tenant_id_example' # str | Specifies the ID of the tenant for which the connectors are to be fetched. (optional)
+    connection_id = 'connection_id_example' # str | Specifies the ID of the connection, connectors belonging to which are to be fetched. (optional)
+
+    try:
+        # Get data-source connectors
+        api_response = api_instance.get_data_source_connectors(connector_ids=connector_ids, connector_names=connector_names, tenant_id=tenant_id, connection_id=connection_id)
+        print("The response of DataSourceConnectorApi->get_data_source_connectors:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DataSourceConnectorApi->get_data_source_connectors: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **connector_ids** | **[str], none_type**| Specifies the unique IDs of the connectors which are to be fetched. | [optional]
- **connector_names** | **[str], none_type**| Specifies the names of the connectors which are to be fetched. | [optional]
- **tenant_id** | **str, none_type**| Specifies the ID of the tenant for which the connectors are to be fetched. | [optional]
- **connection_id** | **str, none_type**| Specifies the ID of the connection, connectors belonging to which are to be fetched. | [optional]
+ **connector_ids** | [**List[str]**](str.md)| Specifies the unique IDs of the connectors which are to be fetched. | [optional] 
+ **connector_names** | [**List[str]**](str.md)| Specifies the names of the connectors which are to be fetched. | [optional] 
+ **tenant_id** | **str**| Specifies the ID of the tenant for which the connectors are to be fetched. | [optional] 
+ **connection_id** | **str**| Specifies the ID of the connection, connectors belonging to which are to be fetched. | [optional] 
 
 ### Return type
 
@@ -202,15 +275,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -228,46 +301,70 @@ Patch a data-source connector using its ID
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.data_source_connector import DataSourceConnector
-from cohesity_sdk.cluster.model.patch_data_source_connector_request import PatchDataSourceConnectorRequest
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.data_source_connector import DataSourceConnector
+from cohesity_sdk.cluster.models.patch_data_source_connector_request import PatchDataSourceConnectorRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-connector_id = "connectorId_example" # str, none_type | Specifies the unique ID of the connector which is to be patched.
-body = PatchDataSourceConnectorRequest(
-        connector_name="connector_name_example",
-    ) # PatchDataSourceConnectorRequest | Specifies the properties of a data-source connector to patch.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Patch a data-source connector using its ID
-	api_response = client.data_source_connector.patch_data_source_connector(connector_id, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling DataSourceConnectorApi->patch_data_source_connector: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.DataSourceConnectorApi(api_client)
+    connector_id = 'connector_id_example' # str | Specifies the unique ID of the connector which is to be patched.
+    body = cohesity_sdk.cluster.PatchDataSourceConnectorRequest() # PatchDataSourceConnectorRequest | Specifies the properties of a data-source connector to patch.
+
+    try:
+        # Patch a data-source connector using its ID
+        api_response = api_instance.patch_data_source_connector(connector_id, body)
+        print("The response of DataSourceConnectorApi->patch_data_source_connector:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DataSourceConnectorApi->patch_data_source_connector: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **connector_id** | **str, none_type**| Specifies the unique ID of the connector which is to be patched. |
- **body** | [**PatchDataSourceConnectorRequest**](PatchDataSourceConnectorRequest.md)| Specifies the properties of a data-source connector to patch. |
+ **connector_id** | **str**| Specifies the unique ID of the connector which is to be patched. | 
+ **body** | [**PatchDataSourceConnectorRequest**](PatchDataSourceConnectorRequest.md)| Specifies the properties of a data-source connector to patch. | 
 
 ### Return type
 
@@ -275,15 +372,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -301,52 +398,67 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.create_or_update_connector_metadata_request import CreateOrUpdateConnectorMetadataRequest
-from cohesity_sdk.cluster.model.connector_metadata import ConnectorMetadata
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.connector_metadata import ConnectorMetadata
+from cohesity_sdk.cluster.models.create_or_update_connector_metadata_request import CreateOrUpdateConnectorMetadataRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = CreateOrUpdateConnectorMetadataRequest(
-        connector_metadata=ConnectorMetadata(
-            connector_image_metadata=ConnectorImageMetadata(
-                connector_image_file_list=[
-                    ConnectorImageFile(
-                        image_type="VSI",
-                        url="url_example",
-                    ),
-                ],
-            ),
-        ),
-    ) # CreateOrUpdateConnectorMetadataRequest | Specifies information about the connectors.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	api_response = client.data_source_connector.update_connector_metadata(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling DataSourceConnectorApi->update_connector_metadata: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.DataSourceConnectorApi(api_client)
+    body = cohesity_sdk.cluster.CreateOrUpdateConnectorMetadataRequest() # CreateOrUpdateConnectorMetadataRequest | Specifies information about the connectors.
+
+    try:
+        api_response = api_instance.update_connector_metadata(body)
+        print("The response of DataSourceConnectorApi->update_connector_metadata:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DataSourceConnectorApi->update_connector_metadata: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateOrUpdateConnectorMetadataRequest**](CreateOrUpdateConnectorMetadataRequest.md)| Specifies information about the connectors. |
+ **body** | [**CreateOrUpdateConnectorMetadataRequest**](CreateOrUpdateConnectorMetadataRequest.md)| Specifies information about the connectors. | 
 
 ### Return type
 
@@ -354,15 +466,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |

@@ -1,5 +1,6 @@
-# cohesity_sdk.FortknoxOnpremApi
+# cohesity_sdk.cluster.FortknoxOnpremApi
 
+All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -31,41 +32,67 @@ Check the API key for the Primary Cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.check_api_key_result import CheckAPIKeyResult
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.check_api_key_result import CheckAPIKeyResult
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-cluster_id = 1 # int | Specifies the cluster id of the Fortknox Onprem Primary Cluster to update.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Check the API key for the Primary Cluster.
-	api_response = client.fortknox_onprem.check_primary_cluster_api_key(cluster_id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling FortknoxOnpremApi->check_primary_cluster_api_key: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.FortknoxOnpremApi(api_client)
+    cluster_id = 56 # int | Specifies the cluster id of the Fortknox Onprem Primary Cluster to update.
+
+    try:
+        # Check the API key for the Primary Cluster.
+        api_response = api_instance.check_primary_cluster_api_key(cluster_id)
+        print("The response of FortknoxOnpremApi->check_primary_cluster_api_key:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FortknoxOnpremApi->check_primary_cluster_api_key: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | **int**| Specifies the cluster id of the Fortknox Onprem Primary Cluster to update. |
+ **cluster_id** | **int**| Specifies the cluster id of the Fortknox Onprem Primary Cluster to update. | 
 
 ### Return type
 
@@ -73,15 +100,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -99,42 +126,68 @@ Create connection for a Fortknox Onprem primary cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.create_or_update_primary_cluster_connection_params import CreateOrUpdatePrimaryClusterConnectionParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_identifier import ClusterIdentifier
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_identifier import ClusterIdentifier
+from cohesity_sdk.cluster.models.create_or_update_primary_cluster_connection_params import CreateOrUpdatePrimaryClusterConnectionParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = CreateOrUpdatePrimaryClusterConnectionParams() # CreateOrUpdatePrimaryClusterConnectionParams | Specifies the request to create connection for a Fortknox Onprem Primary Cluster.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Create connection for a Fortknox Onprem primary cluster.
-	api_response = client.fortknox_onprem.create_fortknox_onprem_primary_cluster_connection(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling FortknoxOnpremApi->create_fortknox_onprem_primary_cluster_connection: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.FortknoxOnpremApi(api_client)
+    body = cohesity_sdk.cluster.CreateOrUpdatePrimaryClusterConnectionParams() # CreateOrUpdatePrimaryClusterConnectionParams | Specifies the request to create connection for a Fortknox Onprem Primary Cluster.
+
+    try:
+        # Create connection for a Fortknox Onprem primary cluster.
+        api_response = api_instance.create_fortknox_onprem_primary_cluster_connection(body)
+        print("The response of FortknoxOnpremApi->create_fortknox_onprem_primary_cluster_connection:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FortknoxOnpremApi->create_fortknox_onprem_primary_cluster_connection: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateOrUpdatePrimaryClusterConnectionParams**](CreateOrUpdatePrimaryClusterConnectionParams.md)| Specifies the request to create connection for a Fortknox Onprem Primary Cluster. |
+ **body** | [**CreateOrUpdatePrimaryClusterConnectionParams**](CreateOrUpdatePrimaryClusterConnectionParams.md)| Specifies the request to create connection for a Fortknox Onprem Primary Cluster. | 
 
 ### Return type
 
@@ -142,15 +195,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -168,39 +221,64 @@ Unregister an Fortknox Onprem Primary Cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-cluster_id = 1 # int | Specifies the cluster id of the Fortknox Onprem Primary Cluster to unregister.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Unregister an Fortknox Onprem Primary Cluster.
-	client.fortknox_onprem.delete_fortknox_onprem_primary_cluster(cluster_id)
-except ApiException as e:
-	print("Exception when calling FortknoxOnpremApi->delete_fortknox_onprem_primary_cluster: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.FortknoxOnpremApi(api_client)
+    cluster_id = 56 # int | Specifies the cluster id of the Fortknox Onprem Primary Cluster to unregister.
+
+    try:
+        # Unregister an Fortknox Onprem Primary Cluster.
+        api_instance.delete_fortknox_onprem_primary_cluster(cluster_id)
+    except Exception as e:
+        print("Exception when calling FortknoxOnpremApi->delete_fortknox_onprem_primary_cluster: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | **int**| Specifies the cluster id of the Fortknox Onprem Primary Cluster to unregister. |
+ **cluster_id** | **int**| Specifies the cluster id of the Fortknox Onprem Primary Cluster to unregister. | 
 
 ### Return type
 
@@ -208,15 +286,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -234,41 +312,67 @@ Get a Fortknox Onprem Primary Cluster by id.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.fortknox_onprem_primary_cluster import FortknoxOnpremPrimaryCluster
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.fortknox_onprem_primary_cluster import FortknoxOnpremPrimaryCluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-cluster_id = 1 # int | Specifies the cluster id of Fortknox Onprem Primary Cluster to fetch.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Get a Fortknox Onprem Primary Cluster by id.
-	api_response = client.fortknox_onprem.get_fortknox_onprem_primary_cluster_by_id(cluster_id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling FortknoxOnpremApi->get_fortknox_onprem_primary_cluster_by_id: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.FortknoxOnpremApi(api_client)
+    cluster_id = 56 # int | Specifies the cluster id of Fortknox Onprem Primary Cluster to fetch.
+
+    try:
+        # Get a Fortknox Onprem Primary Cluster by id.
+        api_response = api_instance.get_fortknox_onprem_primary_cluster_by_id(cluster_id)
+        print("The response of FortknoxOnpremApi->get_fortknox_onprem_primary_cluster_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FortknoxOnpremApi->get_fortknox_onprem_primary_cluster_by_id: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | **int**| Specifies the cluster id of Fortknox Onprem Primary Cluster to fetch. |
+ **cluster_id** | **int**| Specifies the cluster id of Fortknox Onprem Primary Cluster to fetch. | 
 
 ### Return type
 
@@ -276,15 +380,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -293,7 +397,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_fortknox_onprem_primary_clusters**
-> FortknoxOnpremPrimaryClusters get_fortknox_onprem_primary_clusters()
+> FortknoxOnpremPrimaryClusters get_fortknox_onprem_primary_clusters(cluster_ids=cluster_ids, cluster_names=cluster_names)
 
 Get all registered Fortknox Onprem Primary Clusters.
 
@@ -302,48 +406,69 @@ Get all registered Fortknox Onprem Primary Clusters.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.fortknox_onprem_primary_clusters import FortknoxOnpremPrimaryClusters
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.fortknox_onprem_primary_clusters import FortknoxOnpremPrimaryClusters
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-cluster_ids = [
-        1,
-    ] # [int] | Specifies a list of Cluster ids to filter. (optional)
-cluster_names = [
-        "clusterNames_example",
-    ] # [str] | Specifies a list of Cluster names to filter. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get all registered Fortknox Onprem Primary Clusters.
-	api_response = client.fortknox_onprem.get_fortknox_onprem_primary_clusters(cluster_ids=cluster_ids, cluster_names=cluster_names)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling FortknoxOnpremApi->get_fortknox_onprem_primary_clusters: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.FortknoxOnpremApi(api_client)
+    cluster_ids = [56] # List[int] | Specifies a list of Cluster ids to filter. (optional)
+    cluster_names = ['cluster_names_example'] # List[str] | Specifies a list of Cluster names to filter. (optional)
+
+    try:
+        # Get all registered Fortknox Onprem Primary Clusters.
+        api_response = api_instance.get_fortknox_onprem_primary_clusters(cluster_ids=cluster_ids, cluster_names=cluster_names)
+        print("The response of FortknoxOnpremApi->get_fortknox_onprem_primary_clusters:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FortknoxOnpremApi->get_fortknox_onprem_primary_clusters: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_ids** | **[int]**| Specifies a list of Cluster ids to filter. | [optional]
- **cluster_names** | **[str]**| Specifies a list of Cluster names to filter. | [optional]
+ **cluster_ids** | [**List[int]**](int.md)| Specifies a list of Cluster ids to filter. | [optional] 
+ **cluster_names** | [**List[str]**](str.md)| Specifies a list of Cluster names to filter. | [optional] 
 
 ### Return type
 
@@ -351,15 +476,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -377,41 +502,67 @@ Get a Fortknox Onprem Vault Cluster by id.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.fortknox_onprem_vault_cluster import FortknoxOnpremVaultCluster
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.fortknox_onprem_vault_cluster import FortknoxOnpremVaultCluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-cluster_id = 1 # int | Specifies the cluster id of Fortknox Onprem Vault Cluster to fetch.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Get a Fortknox Onprem Vault Cluster by id.
-	api_response = client.fortknox_onprem.get_fortknox_onprem_vault_cluster_by_id(cluster_id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling FortknoxOnpremApi->get_fortknox_onprem_vault_cluster_by_id: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.FortknoxOnpremApi(api_client)
+    cluster_id = 56 # int | Specifies the cluster id of Fortknox Onprem Vault Cluster to fetch.
+
+    try:
+        # Get a Fortknox Onprem Vault Cluster by id.
+        api_response = api_instance.get_fortknox_onprem_vault_cluster_by_id(cluster_id)
+        print("The response of FortknoxOnpremApi->get_fortknox_onprem_vault_cluster_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FortknoxOnpremApi->get_fortknox_onprem_vault_cluster_by_id: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | **int**| Specifies the cluster id of Fortknox Onprem Vault Cluster to fetch. |
+ **cluster_id** | **int**| Specifies the cluster id of Fortknox Onprem Vault Cluster to fetch. | 
 
 ### Return type
 
@@ -419,15 +570,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -436,7 +587,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_fortknox_onprem_vault_clusters**
-> FortknoxOnpremVaultClusters get_fortknox_onprem_vault_clusters()
+> FortknoxOnpremVaultClusters get_fortknox_onprem_vault_clusters(cluster_ids=cluster_ids, cluster_names=cluster_names)
 
 Get all registered Fortknox Onprem Vault Clusters.
 
@@ -445,48 +596,69 @@ Get all registered Fortknox Onprem Vault Clusters.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.fortknox_onprem_vault_clusters import FortknoxOnpremVaultClusters
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.fortknox_onprem_vault_clusters import FortknoxOnpremVaultClusters
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-cluster_ids = [
-        1,
-    ] # [int] | Specifies a list of Cluster ids to filter. (optional)
-cluster_names = [
-        "clusterNames_example",
-    ] # [str] | Specifies a list of Cluster names to filter. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get all registered Fortknox Onprem Vault Clusters.
-	api_response = client.fortknox_onprem.get_fortknox_onprem_vault_clusters(cluster_ids=cluster_ids, cluster_names=cluster_names)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling FortknoxOnpremApi->get_fortknox_onprem_vault_clusters: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.FortknoxOnpremApi(api_client)
+    cluster_ids = [56] # List[int] | Specifies a list of Cluster ids to filter. (optional)
+    cluster_names = ['cluster_names_example'] # List[str] | Specifies a list of Cluster names to filter. (optional)
+
+    try:
+        # Get all registered Fortknox Onprem Vault Clusters.
+        api_response = api_instance.get_fortknox_onprem_vault_clusters(cluster_ids=cluster_ids, cluster_names=cluster_names)
+        print("The response of FortknoxOnpremApi->get_fortknox_onprem_vault_clusters:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FortknoxOnpremApi->get_fortknox_onprem_vault_clusters: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_ids** | **[int]**| Specifies a list of Cluster ids to filter. | [optional]
- **cluster_names** | **[str]**| Specifies a list of Cluster names to filter. | [optional]
+ **cluster_ids** | [**List[int]**](int.md)| Specifies a list of Cluster ids to filter. | [optional] 
+ **cluster_names** | [**List[str]**](str.md)| Specifies a list of Cluster names to filter. | [optional] 
 
 ### Return type
 
@@ -494,15 +666,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -511,7 +683,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_fortknox_onprem_vaulting_activities**
-> FortknoxOnpremVaultingActivities get_fortknox_onprem_vaulting_activities()
+> FortknoxOnpremVaultingActivities get_fortknox_onprem_vaulting_activities(start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, statuses=statuses, source_cluster_ids=source_cluster_ids, pagination_cookie=pagination_cookie, max_runs=max_runs)
 
 Get a list of Fortknox Onprem vaulting activities.
 
@@ -520,56 +692,77 @@ Get a list of Fortknox Onprem vaulting activities.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.fortknox_onprem_vaulting_activities import FortknoxOnpremVaultingActivities
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.fortknox_onprem_vaulting_activities import FortknoxOnpremVaultingActivities
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-start_time_usecs = 1 # int | Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only vaulting runs started after this time will be returned. By default, it is set to 7 days prior to the current time. (optional)
-end_time_usecs = 1 # int | End time for time range filter. Specify the end time as a Unix epoch Timestamp (in microseconds), only vaulting runs started before this time will be returned. By default, it is the current time. (optional)
-statuses = [
-        "Accepted",
-    ] # [str] | Specifies a list of Fortknox Onprem vaulting replication runs status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped. (optional)
-source_cluster_ids = [
-        1,
-    ] # [int] | sourceClusterIds contains ids of the source clusters for which vaulting replication runs are to be returned. (optional)
-pagination_cookie = "paginationCookie_example" # str, none_type | Specifies the cookie to fetch the next page of results (optional)
-max_runs = 1 # int, none_type | Specifies the max number of runs to return. If not specified, at most 100 runs will be returned. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get a list of Fortknox Onprem vaulting activities.
-	api_response = client.fortknox_onprem.get_fortknox_onprem_vaulting_activities(start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, statuses=statuses, source_cluster_ids=source_cluster_ids, pagination_cookie=pagination_cookie, max_runs=max_runs)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling FortknoxOnpremApi->get_fortknox_onprem_vaulting_activities: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.FortknoxOnpremApi(api_client)
+    start_time_usecs = 56 # int | Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only vaulting runs started after this time will be returned. By default, it is set to 7 days prior to the current time. (optional)
+    end_time_usecs = 56 # int | End time for time range filter. Specify the end time as a Unix epoch Timestamp (in microseconds), only vaulting runs started before this time will be returned. By default, it is the current time. (optional)
+    statuses = ['statuses_example'] # List[str] | Specifies a list of Fortknox Onprem vaulting replication runs status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped. (optional)
+    source_cluster_ids = [56] # List[int] | sourceClusterIds contains ids of the source clusters for which vaulting replication runs are to be returned. (optional)
+    pagination_cookie = 'pagination_cookie_example' # str | Specifies the cookie to fetch the next page of results (optional)
+    max_runs = 56 # int | Specifies the max number of runs to return. If not specified, at most 100 runs will be returned. (optional)
+
+    try:
+        # Get a list of Fortknox Onprem vaulting activities.
+        api_response = api_instance.get_fortknox_onprem_vaulting_activities(start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, statuses=statuses, source_cluster_ids=source_cluster_ids, pagination_cookie=pagination_cookie, max_runs=max_runs)
+        print("The response of FortknoxOnpremApi->get_fortknox_onprem_vaulting_activities:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FortknoxOnpremApi->get_fortknox_onprem_vaulting_activities: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **start_time_usecs** | **int**| Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only vaulting runs started after this time will be returned. By default, it is set to 7 days prior to the current time. | [optional]
- **end_time_usecs** | **int**| End time for time range filter. Specify the end time as a Unix epoch Timestamp (in microseconds), only vaulting runs started before this time will be returned. By default, it is the current time. | [optional]
- **statuses** | **[str]**| Specifies a list of Fortknox Onprem vaulting replication runs status, runs matching the status will be returned.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused.&lt;br&gt; &#39;Skipped&#39; indicates that the run was skipped. | [optional]
- **source_cluster_ids** | **[int]**| sourceClusterIds contains ids of the source clusters for which vaulting replication runs are to be returned. | [optional]
- **pagination_cookie** | **str, none_type**| Specifies the cookie to fetch the next page of results | [optional]
- **max_runs** | **int, none_type**| Specifies the max number of runs to return. If not specified, at most 100 runs will be returned. | [optional]
+ **start_time_usecs** | **int**| Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only vaulting runs started after this time will be returned. By default, it is set to 7 days prior to the current time. | [optional] 
+ **end_time_usecs** | **int**| End time for time range filter. Specify the end time as a Unix epoch Timestamp (in microseconds), only vaulting runs started before this time will be returned. By default, it is the current time. | [optional] 
+ **statuses** | [**List[str]**](str.md)| Specifies a list of Fortknox Onprem vaulting replication runs status, runs matching the status will be returned.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused.&lt;br&gt; &#39;Skipped&#39; indicates that the run was skipped. | [optional] 
+ **source_cluster_ids** | [**List[int]**](int.md)| sourceClusterIds contains ids of the source clusters for which vaulting replication runs are to be returned. | [optional] 
+ **pagination_cookie** | **str**| Specifies the cookie to fetch the next page of results | [optional] 
+ **max_runs** | **int**| Specifies the max number of runs to return. If not specified, at most 100 runs will be returned. | [optional] 
 
 ### Return type
 
@@ -577,15 +770,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -603,36 +796,62 @@ Get whether the cluster is a vault cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.is_vault_cluster_params import IsVaultClusterParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.is_vault_cluster_params import IsVaultClusterParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get whether the cluster is a vault cluster.
-	api_response = client.fortknox_onprem.get_is_vault_cluster()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling FortknoxOnpremApi->get_is_vault_cluster: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.FortknoxOnpremApi(api_client)
+
+    try:
+        # Get whether the cluster is a vault cluster.
+        api_response = api_instance.get_is_vault_cluster()
+        print("The response of FortknoxOnpremApi->get_is_vault_cluster:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FortknoxOnpremApi->get_is_vault_cluster: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -641,15 +860,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -667,36 +886,62 @@ Get all precheck options required for vault configuration.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.precheck_options import PrecheckOptions
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.precheck_options import PrecheckOptions
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get all precheck options required for vault configuration.
-	api_response = client.fortknox_onprem.list_fortknox_onprem_vault_cluster_prechecks()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling FortknoxOnpremApi->list_fortknox_onprem_vault_cluster_prechecks: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.FortknoxOnpremApi(api_client)
+
+    try:
+        # Get all precheck options required for vault configuration.
+        api_response = api_instance.list_fortknox_onprem_vault_cluster_prechecks()
+        print("The response of FortknoxOnpremApi->list_fortknox_onprem_vault_cluster_prechecks:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FortknoxOnpremApi->list_fortknox_onprem_vault_cluster_prechecks: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -705,15 +950,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -731,36 +976,62 @@ Get all precheck options required for vault configuration.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.precheck_options import PrecheckOptions
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.precheck_options import PrecheckOptions
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get all precheck options required for vault configuration.
-	api_response = client.fortknox_onprem.list_fortknox_vault_prechecks()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling FortknoxOnpremApi->list_fortknox_vault_prechecks: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.FortknoxOnpremApi(api_client)
+
+    try:
+        # Get all precheck options required for vault configuration.
+        api_response = api_instance.list_fortknox_vault_prechecks()
+        print("The response of FortknoxOnpremApi->list_fortknox_vault_prechecks:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FortknoxOnpremApi->list_fortknox_vault_prechecks: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -769,15 +1040,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -795,45 +1066,67 @@ Refresh the API key for the Primary Cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_credentials_params import CommonCredentialsParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.common_credentials_params import CommonCredentialsParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-cluster_id = 1 # int | Specifies the cluster id of the Fortknox Onprem Primary Cluster to update.
-body = CommonCredentialsParams(
-        password="password_example",
-        username="username_example",
-    ) # CommonCredentialsParams | Specifies the request to refresh the API key of a Fortknox Onprem Primary Cluster.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Refresh the API key for the Primary Cluster.
-	client.fortknox_onprem.refresh_primary_cluster_api_key(cluster_id, body)
-except ApiException as e:
-	print("Exception when calling FortknoxOnpremApi->refresh_primary_cluster_api_key: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.FortknoxOnpremApi(api_client)
+    cluster_id = 56 # int | Specifies the cluster id of the Fortknox Onprem Primary Cluster to update.
+    body = cohesity_sdk.cluster.CommonCredentialsParams() # CommonCredentialsParams | Specifies the request to refresh the API key of a Fortknox Onprem Primary Cluster.
+
+    try:
+        # Refresh the API key for the Primary Cluster.
+        api_instance.refresh_primary_cluster_api_key(cluster_id, body)
+    except Exception as e:
+        print("Exception when calling FortknoxOnpremApi->refresh_primary_cluster_api_key: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | **int**| Specifies the cluster id of the Fortknox Onprem Primary Cluster to update. |
- **body** | [**CommonCredentialsParams**](CommonCredentialsParams.md)| Specifies the request to refresh the API key of a Fortknox Onprem Primary Cluster. |
+ **cluster_id** | **int**| Specifies the cluster id of the Fortknox Onprem Primary Cluster to update. | 
+ **body** | **CommonCredentialsParams**| Specifies the request to refresh the API key of a Fortknox Onprem Primary Cluster. | 
 
 ### Return type
 
@@ -841,15 +1134,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -867,42 +1160,68 @@ Register a Fortknox Onprem Primary Cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.create_fortknox_onprem_primary_cluster_params import CreateFortknoxOnpremPrimaryClusterParams
-from cohesity_sdk.cluster.model.fortknox_onprem_primary_cluster import FortknoxOnpremPrimaryCluster
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_fortknox_onprem_primary_cluster_params import CreateFortknoxOnpremPrimaryClusterParams
+from cohesity_sdk.cluster.models.fortknox_onprem_primary_cluster import FortknoxOnpremPrimaryCluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = CreateFortknoxOnpremPrimaryClusterParams() # CreateFortknoxOnpremPrimaryClusterParams | Specifies the request to register a Fortknox Onprem Primary Cluster.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Register a Fortknox Onprem Primary Cluster.
-	api_response = client.fortknox_onprem.register_fortknox_onprem_primary_cluster(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling FortknoxOnpremApi->register_fortknox_onprem_primary_cluster: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.FortknoxOnpremApi(api_client)
+    body = cohesity_sdk.cluster.CreateFortknoxOnpremPrimaryClusterParams() # CreateFortknoxOnpremPrimaryClusterParams | Specifies the request to register a Fortknox Onprem Primary Cluster.
+
+    try:
+        # Register a Fortknox Onprem Primary Cluster.
+        api_response = api_instance.register_fortknox_onprem_primary_cluster(body)
+        print("The response of FortknoxOnpremApi->register_fortknox_onprem_primary_cluster:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FortknoxOnpremApi->register_fortknox_onprem_primary_cluster: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateFortknoxOnpremPrimaryClusterParams**](CreateFortknoxOnpremPrimaryClusterParams.md)| Specifies the request to register a Fortknox Onprem Primary Cluster. |
+ **body** | [**CreateFortknoxOnpremPrimaryClusterParams**](CreateFortknoxOnpremPrimaryClusterParams.md)| Specifies the request to register a Fortknox Onprem Primary Cluster. | 
 
 ### Return type
 
@@ -910,15 +1229,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -936,44 +1255,70 @@ Update the registration of a Fortknox Onprem Primary Cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.fortknox_onprem_primary_cluster import FortknoxOnpremPrimaryCluster
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.fortknox_onprem_cluster_common_params import FortknoxOnpremClusterCommonParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.fortknox_onprem_cluster_common_params import FortknoxOnpremClusterCommonParams
+from cohesity_sdk.cluster.models.fortknox_onprem_primary_cluster import FortknoxOnpremPrimaryCluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-cluster_id = 1 # int | Specifies the cluster id of the Fortknox Onprem Primary Cluster to update.
-body = FortknoxOnpremClusterCommonParams() # FortknoxOnpremClusterCommonParams | Specifies the request to update Fortknox Onprem Primary Cluster config.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update the registration of a Fortknox Onprem Primary Cluster.
-	api_response = client.fortknox_onprem.update_fortknox_onprem_primary_cluster(cluster_id, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling FortknoxOnpremApi->update_fortknox_onprem_primary_cluster: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.FortknoxOnpremApi(api_client)
+    cluster_id = 56 # int | Specifies the cluster id of the Fortknox Onprem Primary Cluster to update.
+    body = cohesity_sdk.cluster.FortknoxOnpremClusterCommonParams() # FortknoxOnpremClusterCommonParams | Specifies the request to update Fortknox Onprem Primary Cluster config.
+
+    try:
+        # Update the registration of a Fortknox Onprem Primary Cluster.
+        api_response = api_instance.update_fortknox_onprem_primary_cluster(cluster_id, body)
+        print("The response of FortknoxOnpremApi->update_fortknox_onprem_primary_cluster:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FortknoxOnpremApi->update_fortknox_onprem_primary_cluster: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | **int**| Specifies the cluster id of the Fortknox Onprem Primary Cluster to update. |
- **body** | [**FortknoxOnpremClusterCommonParams**](FortknoxOnpremClusterCommonParams.md)| Specifies the request to update Fortknox Onprem Primary Cluster config. |
+ **cluster_id** | **int**| Specifies the cluster id of the Fortknox Onprem Primary Cluster to update. | 
+ **body** | **FortknoxOnpremClusterCommonParams**| Specifies the request to update Fortknox Onprem Primary Cluster config. | 
 
 ### Return type
 
@@ -981,15 +1326,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1007,44 +1352,70 @@ Update connection for a Fortknox Onprem primary cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.create_or_update_primary_cluster_connection_params import CreateOrUpdatePrimaryClusterConnectionParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_identifier import ClusterIdentifier
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_identifier import ClusterIdentifier
+from cohesity_sdk.cluster.models.create_or_update_primary_cluster_connection_params import CreateOrUpdatePrimaryClusterConnectionParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-cluster_id = 1 # int | Specifies the cluster id of the Fortknox Onprem Primary Cluster to update.
-body = CreateOrUpdatePrimaryClusterConnectionParams() # CreateOrUpdatePrimaryClusterConnectionParams | Specifies the request to update connection for a Fortknox Onprem Primary Cluster.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update connection for a Fortknox Onprem primary cluster.
-	api_response = client.fortknox_onprem.update_fortknox_onprem_primary_cluster_connection(cluster_id, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling FortknoxOnpremApi->update_fortknox_onprem_primary_cluster_connection: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.FortknoxOnpremApi(api_client)
+    cluster_id = 56 # int | Specifies the cluster id of the Fortknox Onprem Primary Cluster to update.
+    body = cohesity_sdk.cluster.CreateOrUpdatePrimaryClusterConnectionParams() # CreateOrUpdatePrimaryClusterConnectionParams | Specifies the request to update connection for a Fortknox Onprem Primary Cluster.
+
+    try:
+        # Update connection for a Fortknox Onprem primary cluster.
+        api_response = api_instance.update_fortknox_onprem_primary_cluster_connection(cluster_id, body)
+        print("The response of FortknoxOnpremApi->update_fortknox_onprem_primary_cluster_connection:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FortknoxOnpremApi->update_fortknox_onprem_primary_cluster_connection: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | **int**| Specifies the cluster id of the Fortknox Onprem Primary Cluster to update. |
- **body** | [**CreateOrUpdatePrimaryClusterConnectionParams**](CreateOrUpdatePrimaryClusterConnectionParams.md)| Specifies the request to update connection for a Fortknox Onprem Primary Cluster. |
+ **cluster_id** | **int**| Specifies the cluster id of the Fortknox Onprem Primary Cluster to update. | 
+ **body** | [**CreateOrUpdatePrimaryClusterConnectionParams**](CreateOrUpdatePrimaryClusterConnectionParams.md)| Specifies the request to update connection for a Fortknox Onprem Primary Cluster. | 
 
 ### Return type
 
@@ -1052,15 +1423,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1078,43 +1449,67 @@ Update whether the cluster is a vault cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.is_vault_cluster_params import IsVaultClusterParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.is_vault_cluster_params import IsVaultClusterParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = IsVaultClusterParams(
-        is_vault_cluster=True,
-    ) # IsVaultClusterParams | Params to update whether the cluster is a vault cluster.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update whether the cluster is a vault cluster.
-	api_response = client.fortknox_onprem.update_is_vault_cluster(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling FortknoxOnpremApi->update_is_vault_cluster: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.FortknoxOnpremApi(api_client)
+    body = cohesity_sdk.cluster.IsVaultClusterParams() # IsVaultClusterParams | Params to update whether the cluster is a vault cluster.
+
+    try:
+        # Update whether the cluster is a vault cluster.
+        api_response = api_instance.update_is_vault_cluster(body)
+        print("The response of FortknoxOnpremApi->update_is_vault_cluster:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FortknoxOnpremApi->update_is_vault_cluster: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**IsVaultClusterParams**](IsVaultClusterParams.md)| Params to update whether the cluster is a vault cluster. |
+ **body** | [**IsVaultClusterParams**](IsVaultClusterParams.md)| Params to update whether the cluster is a vault cluster. | 
 
 ### Return type
 
@@ -1122,15 +1517,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |

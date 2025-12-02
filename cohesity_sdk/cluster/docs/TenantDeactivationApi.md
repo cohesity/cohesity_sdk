@@ -1,5 +1,6 @@
-# cohesity_sdk.TenantDeactivationApi
+# cohesity_sdk.cluster.TenantDeactivationApi
 
+All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -8,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **initiate_multi_tenant_deactivation**
-> InitiateMultiTenantDeactivation initiate_multi_tenant_deactivation()
+> InitiateMultiTenantDeactivation initiate_multi_tenant_deactivation(liveness_mode=liveness_mode, ownership_mode=ownership_mode)
 
 
 
@@ -17,43 +18,68 @@ Method | HTTP request | Description
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.initiate_multi_tenant_deactivation import InitiateMultiTenantDeactivation
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.initiate_multi_tenant_deactivation import InitiateMultiTenantDeactivation
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-liveness_mode = "Active" # str, none_type | Liveness mode for the tenants on this cluster. (optional)
-ownership_mode = "Primary" # str, none_type | Ownership mode for the tenants on this cluster. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	api_response = client.tenant_deactivation.initiate_multi_tenant_deactivation(liveness_mode=liveness_mode, ownership_mode=ownership_mode)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling TenantDeactivationApi->initiate_multi_tenant_deactivation: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.TenantDeactivationApi(api_client)
+    liveness_mode = 'liveness_mode_example' # str | Liveness mode for the tenants on this cluster. (optional)
+    ownership_mode = 'ownership_mode_example' # str | Ownership mode for the tenants on this cluster. (optional)
+
+    try:
+        api_response = api_instance.initiate_multi_tenant_deactivation(liveness_mode=liveness_mode, ownership_mode=ownership_mode)
+        print("The response of TenantDeactivationApi->initiate_multi_tenant_deactivation:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TenantDeactivationApi->initiate_multi_tenant_deactivation: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **liveness_mode** | **str, none_type**| Liveness mode for the tenants on this cluster. | [optional]
- **ownership_mode** | **str, none_type**| Ownership mode for the tenants on this cluster. | [optional]
+ **liveness_mode** | **str**| Liveness mode for the tenants on this cluster. | [optional] 
+ **ownership_mode** | **str**| Ownership mode for the tenants on this cluster. | [optional] 
 
 ### Return type
 
@@ -61,15 +87,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Success |  -  |
@@ -87,40 +113,66 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.initiate_tenant_deactivation import InitiateTenantDeactivation
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.initiate_tenant_deactivation import InitiateTenantDeactivation
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = "C/" # str | The Tenant id.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	api_response = client.tenant_deactivation.initiate_tenant_deactivation(id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling TenantDeactivationApi->initiate_tenant_deactivation: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.TenantDeactivationApi(api_client)
+    id = 'id_example' # str | The Tenant id.
+
+    try:
+        api_response = api_instance.initiate_tenant_deactivation(id)
+        print("The response of TenantDeactivationApi->initiate_tenant_deactivation:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TenantDeactivationApi->initiate_tenant_deactivation: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The Tenant id. |
+ **id** | **str**| The Tenant id. | 
 
 ### Return type
 
@@ -128,15 +180,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Success |  -  |

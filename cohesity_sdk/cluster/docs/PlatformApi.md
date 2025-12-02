@@ -1,5 +1,6 @@
-# cohesity_sdk.PlatformApi
+# cohesity_sdk.cluster.PlatformApi
 
+All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -122,50 +123,68 @@ Create Cluster Host Mappings
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.host_mappings_parameters import HostMappingsParameters
-from cohesity_sdk.cluster.model.host_mappings import HostMappings
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.host_entry import HostEntry
+from cohesity_sdk.cluster.models.host_mappings import HostMappings
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = HostMappingsParameters([
-        HostEntry(
-            description="description_example",
-            domain_names=[
-                "domain_names_example",
-            ],
-            ip="ip_example",
-        ),
-    ]) # HostMappingsParameters | Specifies the request to add entries to /etc/hosts
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Create Cluster Host Mappings
-	api_response = client.platform.add_hosts(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->add_hosts: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = [cohesity_sdk.cluster.HostEntry()] # List[HostEntry] | Specifies the request to add entries to /etc/hosts
+
+    try:
+        # Create Cluster Host Mappings
+        api_response = api_instance.add_hosts(body)
+        print("The response of PlatformApi->add_hosts:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->add_hosts: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**HostMappingsParameters**](HostMappingsParameters.md)| Specifies the request to add entries to /etc/hosts |
+ **body** | [**List[HostEntry]**](HostEntry.md)| Specifies the request to add entries to /etc/hosts | 
 
 ### Return type
 
@@ -173,15 +192,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -199,53 +218,68 @@ Add remote disk
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.remote_disks import RemoteDisks
-from cohesity_sdk.cluster.model.add_remote_disk_response_body import AddRemoteDiskResponseBody
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.add_remote_disk_response_body import AddRemoteDiskResponseBody
+from cohesity_sdk.cluster.models.remote_disks import RemoteDisks
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = RemoteDisks(
-        remote_disks=[
-            RemoteDisk(
-                data_vip="data_vip_example",
-                file_system_name="file_system_name_example",
-                mount_path="mount_path_example",
-                node_id=1,
-                node_ip="node_ip_example",
-                tier="PCIeSSD",
-            ),
-        ],
-    ) # RemoteDisks | Specifies the remote disk configuration.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Add remote disk
-	api_response = client.platform.add_remote_disk(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->add_remote_disk: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.RemoteDisks() # RemoteDisks | Specifies the remote disk configuration.
+
+    try:
+        # Add remote disk
+        api_response = api_instance.add_remote_disk(body)
+        print("The response of PlatformApi->add_remote_disk:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->add_remote_disk: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**RemoteDisks**](RemoteDisks.md)| Specifies the remote disk configuration. |
+ **body** | [**RemoteDisks**](RemoteDisks.md)| Specifies the remote disk configuration. | 
 
 ### Return type
 
@@ -253,15 +287,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -279,47 +313,68 @@ Change cluster services states.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.change_services_states_params import ChangeServicesStatesParams
-from cohesity_sdk.cluster.model.change_services_states_result import ChangeServicesStatesResult
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.change_services_states_params import ChangeServicesStatesParams
+from cohesity_sdk.cluster.models.change_services_states_result import ChangeServicesStatesResult
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = ChangeServicesStatesParams(
-        action="kStart",
-        services=[
-            "kInvalidService",
-        ],
-    ) # ChangeServicesStatesParams | Specifies the parameters to change cluster services states.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Change cluster services states.
-	api_response = client.platform.change_services_states(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->change_services_states: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.ChangeServicesStatesParams() # ChangeServicesStatesParams | Specifies the parameters to change cluster services states.
+
+    try:
+        # Change cluster services states.
+        api_response = api_instance.change_services_states(body)
+        print("The response of PlatformApi->change_services_states:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->change_services_states: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ChangeServicesStatesParams**](ChangeServicesStatesParams.md)| Specifies the parameters to change cluster services states. |
+ **body** | [**ChangeServicesStatesParams**](ChangeServicesStatesParams.md)| Specifies the parameters to change cluster services states. | 
 
 ### Return type
 
@@ -327,15 +382,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Success |  -  |
@@ -353,34 +408,59 @@ Clear SMTP configuration.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Clear SMTP configuration.
-	client.platform.clear_smtp_configuration()
-except ApiException as e:
-	print("Exception when calling PlatformApi->clear_smtp_configuration: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Clear SMTP configuration.
+        api_instance.clear_smtp_configuration()
+    except Exception as e:
+        print("Exception when calling PlatformApi->clear_smtp_configuration: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -389,15 +469,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -415,50 +495,68 @@ To delete IPMI Users for cluster
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.ipmi_text_response import IpmiTextResponse
-from cohesity_sdk.cluster.model.cluster_delete_ipmi_users import ClusterDeleteIpmiUsers
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_delete_ipmi_users import ClusterDeleteIpmiUsers
+from cohesity_sdk.cluster.models.ipmi_text_response import IpmiTextResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = ClusterDeleteIpmiUsers(
-        cluster_ipmi_username="cluster_ipmi_username_example",
-        node_ipmi_usernames=[
-            "node_ipmi_usernames_example",
-        ],
-        node_ips=[
-            "node_ips_example",
-        ],
-    ) # ClusterDeleteIpmiUsers | Specifies the parameters to delete cluster ipmi users.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# To delete IPMI Users for cluster
-	api_response = client.platform.cluster_delete_ipmi_users(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->cluster_delete_ipmi_users: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.ClusterDeleteIpmiUsers() # ClusterDeleteIpmiUsers | Specifies the parameters to delete cluster ipmi users.
+
+    try:
+        # To delete IPMI Users for cluster
+        api_response = api_instance.cluster_delete_ipmi_users(body)
+        print("The response of PlatformApi->cluster_delete_ipmi_users:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->cluster_delete_ipmi_users: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ClusterDeleteIpmiUsers**](ClusterDeleteIpmiUsers.md)| Specifies the parameters to delete cluster ipmi users. |
+ **body** | [**ClusterDeleteIpmiUsers**](ClusterDeleteIpmiUsers.md)| Specifies the parameters to delete cluster ipmi users. | 
 
 ### Return type
 
@@ -466,15 +564,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -492,54 +590,68 @@ To update IPMI Users for cluster
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.ipmi_text_response import IpmiTextResponse
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_update_ipmi_users import ClusterUpdateIpmiUsers
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_update_ipmi_users import ClusterUpdateIpmiUsers
+from cohesity_sdk.cluster.models.ipmi_text_response import IpmiTextResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = ClusterUpdateIpmiUsers(
-        cluster_ipmi_password="cluster_ipmi_password_example",
-        cluster_ipmi_username="cluster_ipmi_username_example",
-        node_ipmi_passwords=[
-            "node_ipmi_passwords_example",
-        ],
-        node_ipmi_usernames=[
-            "node_ipmi_usernames_example",
-        ],
-        node_ips=[
-            "node_ips_example",
-        ],
-    ) # ClusterUpdateIpmiUsers | Specifies the parameters to update cluster ipmi users.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# To update IPMI Users for cluster
-	api_response = client.platform.cluster_update_ipmi_users(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->cluster_update_ipmi_users: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.ClusterUpdateIpmiUsers() # ClusterUpdateIpmiUsers | Specifies the parameters to update cluster ipmi users.
+
+    try:
+        # To update IPMI Users for cluster
+        api_response = api_instance.cluster_update_ipmi_users(body)
+        print("The response of PlatformApi->cluster_update_ipmi_users:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->cluster_update_ipmi_users: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ClusterUpdateIpmiUsers**](ClusterUpdateIpmiUsers.md)| Specifies the parameters to update cluster ipmi users. |
+ **body** | [**ClusterUpdateIpmiUsers**](ClusterUpdateIpmiUsers.md)| Specifies the parameters to update cluster ipmi users. | 
 
 ### Return type
 
@@ -547,15 +659,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -573,46 +685,67 @@ Create a new network bond.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.create_bond_params import CreateBondParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_bond_params import CreateBondParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = CreateBondParams(
-        name="name_example",
-        slaves=[
-            "slaves_example",
-        ],
-    ) # CreateBondParams | Parameters to create bond.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Create a new network bond.
-	api_response = client.platform.create_bond(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->create_bond: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.CreateBondParams() # CreateBondParams | Parameters to create bond.
+
+    try:
+        # Create a new network bond.
+        api_response = api_instance.create_bond(body)
+        print("The response of PlatformApi->create_bond:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->create_bond: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateBondParams**](CreateBondParams.md)| Parameters to create bond. |
+ **body** | [**CreateBondParams**](CreateBondParams.md)| Parameters to create bond. | 
 
 ### Return type
 
@@ -620,15 +753,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -646,241 +779,68 @@ Create a cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.cluster import Cluster
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.create_cluster_params import CreateClusterParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster import Cluster
+from cohesity_sdk.cluster.models.create_cluster_params import CreateClusterParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = CreateClusterParams(
-        cloud_cluster_params=ClusterCreateCloudParams(
-            cluster_partition_hostname="cluster_partition_hostname_example",
-            cluster_size="Small",
-            disk_all_nodes_reachable=[
-                True,
-            ],
-            disk_component_exclusive=[
-                "disk_component_exclusive_example",
-            ],
-            disk_self_fault_tolerant=[
-                True,
-            ],
-            disk_serials=[
-                "disk_serials_example",
-            ],
-            disk_tiers=[
-                "disk_tiers_example",
-            ],
-            enable_cloud_rf1=True,
-            encryption_config=EncryptionConfigurationParams(
-                enable_fips_mode=True,
-                enable_hardware_encryption=True,
-                enable_software_encryption=True,
-                rotation_period=1,
-            ),
-            ip_preference=1,
-            metadata_fault_tolerance=1,
-            node_ips=[
-                "node_ips_example",
-            ],
-            trust_domain="trust_domain_example",
-        ),
-        enable_encryption=True,
-        name="name_example",
-        network_config=ClusterCreateNetworkConfig(
-            dhcp_network_config=ClusterDhcpNetworkConfig(
-                dns_servers=[
-                    "dns_servers_example",
-                ],
-            ),
-            domain_names=[
-                "domain_names_example",
-            ],
-            ip_preference="Ipv4",
-            manual_network_config=ClusterManualNetworkConfig(
-                dns_servers=[
-                    "dns_servers_example",
-                ],
-                gateway="gateway_example",
-                subnet_ip="subnet_ip_example",
-                subnet_mask="subnet_mask_example",
-            ),
-            ntp_servers=[
-                "ntp_servers_example",
-            ],
-            secondary_dhcp_network_config=ClusterDhcpNetworkConfig(
-                dns_servers=[
-                    "dns_servers_example",
-                ],
-            ),
-            secondary_manual_network_config=ClusterManualNetworkConfig(
-                dns_servers=[
-                    "dns_servers_example",
-                ],
-                gateway="gateway_example",
-                subnet_ip="subnet_ip_example",
-                subnet_mask="subnet_mask_example",
-            ),
-            use_dhcp=True,
-            vip_host_name="vip_host_name_example",
-            vips=[
-                "vips_example",
-            ],
-        ),
-        physical_cluster_params=ClusterCreatePhysicalParams(
-            allow_api_based_fetch=True,
-            apps_subnet_ip="apps_subnet_ip_example",
-            apps_subnet_ip_v6="apps_subnet_ip_v6_example",
-            apps_subnet_mask="apps_subnet_mask_example",
-            apps_subnet_mask_v6="apps_subnet_mask_v6_example",
-            cluster_destroy_hmac_key="cluster_destroy_hmac_key_example",
-            cluster_subnet_groups=[
-                NodeGroup(
-                    bgp_instance=BgpInstance(
-                        local_as=1,
-                        peers=[
-                            BgpPeer(
-                                address_or_tag="address_or_tag_example",
-                                description="description_example",
-                                remote_as=1,
-                                timers=BgpTimers(
-                                    hold_time=1,
-                                    keep_alive=1,
-                                ),
-                            ),
-                        ],
-                        timers=BgpTimers(
-                            hold_time=1,
-                            keep_alive=1,
-                        ),
-                    ),
-                    dns_servers_info=DnsServersInfo(
-                        dns_servers=[
-                            "dns_servers_example",
-                        ],
-                    ),
-                    id=1,
-                    name="name_example",
-                    node_ids=[
-                        1,
-                    ],
-                    node_ips=[
-                        "node_ips_example",
-                    ],
-                    subnet_info=SubnetInfo(
-                        gateway="gateway_example",
-                        netmask_bits=1,
-                        subnet_ip="subnet_ip_example",
-                        subnet_ipv4_mask="subnet_ipv4_mask_example",
-                    ),
-                    type=1,
-                ),
-            ],
-            enable_cluster_destroy=True,
-            encryption_config=EncryptionConfigurationParams(
-                enable_fips_mode=True,
-                enable_hardware_encryption=True,
-                enable_software_encryption=True,
-                rotation_period=1,
-            ),
-            ip_preference=1,
-            ipmi_config=IpmiConfigurationParams(
-                ipmi_gateway="ipmi_gateway_example",
-                ipmi_password="ipmi_password_example",
-                ipmi_subnet_mask="ipmi_subnet_mask_example",
-                ipmi_username="ipmi_username_example",
-            ),
-            metadata_fault_tolerance=1,
-            node_configs=[
-                NodeConfigParams(
-                    id=1,
-                    ip="ip_example",
-                    ipmi_ip="ipmi_ip_example",
-                    is_compute_node=True,
-                ),
-            ],
-            nodes=[
-                ClusterCreateNodeParams(
-                    node_id=1,
-                    node_ip="node_ip_example",
-                ),
-            ],
-            trust_domain="trust_domain_example",
-        ),
-        proxy_server_config=ClusterProxyServerConfig(
-            ip="ip_example",
-            is_disabled=True,
-            password="password_example",
-            port=1,
-            username="username_example",
-        ),
-        rigel_cluster_params=ClusterCreateRigelParams(
-            claim_token="claim_token_example",
-            nodes=[
-                RigelClusterNode(
-                    node_id=1,
-                    node_ip="node_ip_example",
-                    secondary_node_ip="secondary_node_ip_example",
-                ),
-            ],
-        ),
-        type="Physical",
-        virtual_cluster_params=ClusterCreateVirtualParams(
-            allow_api_based_fetch=True,
-            apps_subnet_ip="apps_subnet_ip_example",
-            apps_subnet_ip_v6="apps_subnet_ip_v6_example",
-            apps_subnet_mask="apps_subnet_mask_example",
-            apps_subnet_mask_v6="apps_subnet_mask_v6_example",
-            cluster_destroy_hmac_key="cluster_destroy_hmac_key_example",
-            enable_cluster_destroy=True,
-            encryption_config=EncryptionConfigurationParams(
-                enable_fips_mode=True,
-                enable_hardware_encryption=True,
-                enable_software_encryption=True,
-                rotation_period=1,
-            ),
-            ip_preference=1,
-            metadata_fault_tolerance=1,
-            node_configs=[
-                NodeConfigParams(
-                    id=1,
-                    ip="ip_example",
-                    ipmi_ip="ipmi_ip_example",
-                    is_compute_node=True,
-                ),
-            ],
-            trust_domain="trust_domain_example",
-        ),
-    ) # CreateClusterParams | Specifies the parameters to create cluster.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Create a cluster.
-	api_response = client.platform.create_cluster(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->create_cluster: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.CreateClusterParams() # CreateClusterParams | Specifies the parameters to create cluster.
+
+    try:
+        # Create a cluster.
+        api_response = api_instance.create_cluster(body)
+        print("The response of PlatformApi->create_cluster:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->create_cluster: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateClusterParams**](CreateClusterParams.md)| Specifies the parameters to create cluster. |
+ **body** | [**CreateClusterParams**](CreateClusterParams.md)| Specifies the parameters to create cluster. | 
 
 ### Return type
 
@@ -888,15 +848,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -914,42 +874,68 @@ Create vlan
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_vlan_params import ClusterVlanParams
-from cohesity_sdk.cluster.model.create_cluster_vlan_params import CreateClusterVlanParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_vlan_params import ClusterVlanParams
+from cohesity_sdk.cluster.models.create_cluster_vlan_params import CreateClusterVlanParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = CreateClusterVlanParams() # CreateClusterVlanParams | Parameters to create a vlan.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Create vlan
-	api_response = client.platform.create_cluster_vlan(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->create_cluster_vlan: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.CreateClusterVlanParams() # CreateClusterVlanParams | Parameters to create a vlan.
+
+    try:
+        # Create vlan
+        api_response = api_instance.create_cluster_vlan(body)
+        print("The response of PlatformApi->create_cluster_vlan:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->create_cluster_vlan: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateClusterVlanParams**](CreateClusterVlanParams.md)| Parameters to create a vlan. |
+ **body** | [**CreateClusterVlanParams**](CreateClusterVlanParams.md)| Parameters to create a vlan. | 
 
 ### Return type
 
@@ -957,15 +943,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -983,59 +969,68 @@ Create interface group
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.interface_group import InterfaceGroup
-from cohesity_sdk.cluster.model.interface_group_params import InterfaceGroupParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.interface_group import InterfaceGroup
+from cohesity_sdk.cluster.models.interface_group_params import InterfaceGroupParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = InterfaceGroupParams(
-        name="name_example",
-        network_params=InterfaceGroupNetworkParams(
-            bond_interface_params=BondInterfaceNetworkParams(
-                bonding_mode="ActiveBackup",
-                lacp_rate="Slow",
-                xmit_hash_policy="layer2",
-            ),
-            mtu=1,
-        ),
-        node_interface_params=[
-            NodeInterfaceParams(
-                interface_name="interface_name_example",
-                node_id=1,
-            ),
-        ],
-        type="Bond",
-    ) # InterfaceGroupParams | Parameters to create an interface group.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Create interface group
-	api_response = client.platform.create_interface_group(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->create_interface_group: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.InterfaceGroupParams() # InterfaceGroupParams | Parameters to create an interface group.
+
+    try:
+        # Create interface group
+        api_response = api_instance.create_interface_group(body)
+        print("The response of PlatformApi->create_interface_group:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->create_interface_group: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**InterfaceGroupParams**](InterfaceGroupParams.md)| Parameters to create an interface group. |
+ **body** | [**InterfaceGroupParams**](InterfaceGroupParams.md)| Parameters to create an interface group. | 
 
 ### Return type
 
@@ -1043,15 +1038,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -1069,54 +1064,67 @@ Creare a proxy server.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.proxy_server import ProxyServer
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.proxy_server import ProxyServer
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = ProxyServer(
-        address="address_example",
-        is_disabled=True,
-        name="name_example",
-        port=1,
-        schemes=[
-            "schemes_example",
-        ],
-        services=[
-            "services_example",
-        ],
-        type="type_example",
-        username="username_example",
-    ) # ProxyServer | Specifies parameters to create the proxy server.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Creare a proxy server.
-	api_response = client.platform.create_proxy_server(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->create_proxy_server: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.ProxyServer() # ProxyServer | Specifies parameters to create the proxy server.
+
+    try:
+        # Creare a proxy server.
+        api_response = api_instance.create_proxy_server(body)
+        print("The response of PlatformApi->create_proxy_server:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->create_proxy_server: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ProxyServer**](ProxyServer.md)| Specifies parameters to create the proxy server. |
+ **body** | **ProxyServer**| Specifies parameters to create the proxy server. | 
 
 ### Return type
 
@@ -1124,15 +1132,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -1150,52 +1158,67 @@ Create racks
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.racks import Racks
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.racks import Racks
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = Racks(
-        racks=[
-            Rack(
-                chassis_ids=[
-                    1,
-                ],
-                id=1,
-                location="location_example",
-                name="name_example",
-            ),
-        ],
-    ) # Racks | Specifies the parameters to create racks.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Create racks
-	api_response = client.platform.create_racks(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->create_racks: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.Racks() # Racks | Specifies the parameters to create racks.
+
+    try:
+        # Create racks
+        api_response = api_instance.create_racks(body)
+        print("The response of PlatformApi->create_racks:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->create_racks: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Racks**](Racks.md)| Specifies the parameters to create racks. |
+ **body** | [**Racks**](Racks.md)| Specifies the parameters to create racks. | 
 
 ### Return type
 
@@ -1203,15 +1226,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -1229,34 +1252,59 @@ Delete AMQP Target Config
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Delete AMQP Target Config
-	client.platform.delete_amqp_target_config()
-except ApiException as e:
-	print("Exception when calling PlatformApi->delete_amqp_target_config: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Delete AMQP Target Config
+        api_instance.delete_amqp_target_config()
+    except Exception as e:
+        print("Exception when calling PlatformApi->delete_amqp_target_config: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1265,15 +1313,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1291,34 +1339,59 @@ Delete cluster snapshot policy.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Delete cluster snapshot policy.
-	client.platform.delete_cluster_snapshot_policy()
-except ApiException as e:
-	print("Exception when calling PlatformApi->delete_cluster_snapshot_policy: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Delete cluster snapshot policy.
+        api_instance.delete_cluster_snapshot_policy()
+    except Exception as e:
+        print("Exception when calling PlatformApi->delete_cluster_snapshot_policy: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1327,15 +1400,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1353,39 +1426,64 @@ Delete vlan
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-vlan_interface_group_name = "vlanInterfaceGroupName_example" # str | Vlan interface group name, it should be in interface_group_name.vlan_id format.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Delete vlan
-	client.platform.delete_cluster_vlan(vlan_interface_group_name)
-except ApiException as e:
-	print("Exception when calling PlatformApi->delete_cluster_vlan: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    vlan_interface_group_name = 'vlan_interface_group_name_example' # str | Vlan interface group name, it should be in interface_group_name.vlan_id format.
+
+    try:
+        # Delete vlan
+        api_instance.delete_cluster_vlan(vlan_interface_group_name)
+    except Exception as e:
+        print("Exception when calling PlatformApi->delete_cluster_vlan: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **vlan_interface_group_name** | **str**| Vlan interface group name, it should be in interface_group_name.vlan_id format. |
+ **vlan_interface_group_name** | **str**| Vlan interface group name, it should be in interface_group_name.vlan_id format. | 
 
 ### Return type
 
@@ -1393,15 +1491,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1419,47 +1517,65 @@ Deletes multiple Host Mappings within the cluster
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.delete_hosts_parameters import DeleteHostsParameters
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.delete_hosts_parameters import DeleteHostsParameters
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = DeleteHostsParameters(
-        domain_names=[
-            "domain_names_example",
-        ],
-        ips=[
-            "ips_example",
-        ],
-    ) # DeleteHostsParameters | Specifies the params to delete host mappings
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Deletes multiple Host Mappings within the cluster
-	client.platform.delete_hosts(body)
-except ApiException as e:
-	print("Exception when calling PlatformApi->delete_hosts: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.DeleteHostsParameters() # DeleteHostsParameters | Specifies the params to delete host mappings
+
+    try:
+        # Deletes multiple Host Mappings within the cluster
+        api_instance.delete_hosts(body)
+    except Exception as e:
+        print("Exception when calling PlatformApi->delete_hosts: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**DeleteHostsParameters**](DeleteHostsParameters.md)| Specifies the params to delete host mappings |
+ **body** | [**DeleteHostsParameters**](DeleteHostsParameters.md)| Specifies the params to delete host mappings | 
 
 ### Return type
 
@@ -1467,15 +1583,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1493,39 +1609,64 @@ Delete interface group
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-name = "name_example" # str | Name of the interface group.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Delete interface group
-	client.platform.delete_interface_group(name)
-except ApiException as e:
-	print("Exception when calling PlatformApi->delete_interface_group: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    name = 'name_example' # str | Name of the interface group.
+
+    try:
+        # Delete interface group
+        api_instance.delete_interface_group(name)
+    except Exception as e:
+        print("Exception when calling PlatformApi->delete_interface_group: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the interface group. |
+ **name** | **str**| Name of the interface group. | 
 
 ### Return type
 
@@ -1533,15 +1674,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1559,46 +1700,68 @@ To delete IPMI User for node
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.delete_ipmi_user import DeleteIpmiUser
-from cohesity_sdk.cluster.model.ipmi_text_response import IpmiTextResponse
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.delete_ipmi_user import DeleteIpmiUser
+from cohesity_sdk.cluster.models.ipmi_text_response import IpmiTextResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = DeleteIpmiUser(
-        node_id="node_id_example",
-        node_ip="node_ip_example",
-        username="username_example",
-    ) # DeleteIpmiUser | Specifies the parameters to delete an ipmi user from given node.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# To delete IPMI User for node
-	api_response = client.platform.delete_ipmi_user(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->delete_ipmi_user: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.DeleteIpmiUser() # DeleteIpmiUser | Specifies the parameters to delete an ipmi user from given node.
+
+    try:
+        # To delete IPMI User for node
+        api_response = api_instance.delete_ipmi_user(body)
+        print("The response of PlatformApi->delete_ipmi_user:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->delete_ipmi_user: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**DeleteIpmiUser**](DeleteIpmiUser.md)| Specifies the parameters to delete an ipmi user from given node. |
+ **body** | [**DeleteIpmiUser**](DeleteIpmiUser.md)| Specifies the parameters to delete an ipmi user from given node. | 
 
 ### Return type
 
@@ -1606,15 +1769,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1632,36 +1795,62 @@ Discover new disks
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_free_disks import ClusterFreeDisks
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_free_disks import ClusterFreeDisks
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Discover new disks
-	api_response = client.platform.discover_disks()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->discover_disks: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Discover new disks
+        api_response = api_instance.discover_disks()
+        print("The response of PlatformApi->discover_disks:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->discover_disks: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1670,15 +1859,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1696,46 +1885,67 @@ Identify a disk
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.disk_identify import DiskIdentify
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.disk_identify import DiskIdentify
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = DiskIdentify(
-        disk_id=1,
-        identify=True,
-        node_id=1,
-        serial_number="serial_number_example",
-    ) # DiskIdentify | Specifies the parameter to identify disk.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Identify a disk
-	api_response = client.platform.disk_identify(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->disk_identify: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.DiskIdentify() # DiskIdentify | Specifies the parameter to identify disk.
+
+    try:
+        # Identify a disk
+        api_response = api_instance.disk_identify(body)
+        print("The response of PlatformApi->disk_identify:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->disk_identify: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**DiskIdentify**](DiskIdentify.md)| Specifies the parameter to identify disk. |
+ **body** | [**DiskIdentify**](DiskIdentify.md)| Specifies the parameter to identify disk. | 
 
 ### Return type
 
@@ -1743,15 +1953,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1769,57 +1979,67 @@ Assimilate disks.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_free_disks import ClusterFreeDisks
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_free_disks import ClusterFreeDisks
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = ClusterFreeDisks(
-        node_free_disks=[
-            NodeFreeDisks(
-                chassis_serial="chassis_serial_example",
-                free_disks=[
-                    FreeDisk(
-                        location="location_example",
-                        path="path_example",
-                        serial_number="serial_number_example",
-                        size_in_bytes=1,
-                    ),
-                ],
-                node_id=1,
-                slot=1,
-            ),
-        ],
-    ) # ClusterFreeDisks | Specifies the parameter to assimilate disks.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Assimilate disks.
-	api_response = client.platform.disks_assimilate(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->disks_assimilate: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.ClusterFreeDisks() # ClusterFreeDisks | Specifies the parameter to assimilate disks.
+
+    try:
+        # Assimilate disks.
+        api_response = api_instance.disks_assimilate(body)
+        print("The response of PlatformApi->disks_assimilate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->disks_assimilate: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ClusterFreeDisks**](ClusterFreeDisks.md)| Specifies the parameter to assimilate disks. |
+ **body** | [**ClusterFreeDisks**](ClusterFreeDisks.md)| Specifies the parameter to assimilate disks. | 
 
 ### Return type
 
@@ -1827,15 +2047,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1853,36 +2073,62 @@ Get AMQP Target Config
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_amqp_target_config import ClusterAMQPTargetConfig
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_amqp_target_config import ClusterAMQPTargetConfig
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get AMQP Target Config
-	api_response = client.platform.get_amqp_target_config()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_amqp_target_config: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Get AMQP Target Config
+        api_response = api_instance.get_amqp_target_config()
+        print("The response of PlatformApi->get_amqp_target_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_amqp_target_config: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1891,15 +2137,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1908,7 +2154,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_chassis**
-> ChassisList get_chassis()
+> ChassisList get_chassis(no_rack_assigned=no_rack_assigned)
 
 Get list of chassis
 
@@ -1917,42 +2163,67 @@ Get list of chassis
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.chassis_list import ChassisList
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.chassis_list import ChassisList
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-no_rack_assigned = True # bool | Filters chassis that have no rack assigned. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get list of chassis
-	api_response = client.platform.get_chassis(no_rack_assigned=no_rack_assigned)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_chassis: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    no_rack_assigned = True # bool | Filters chassis that have no rack assigned. (optional)
+
+    try:
+        # Get list of chassis
+        api_response = api_instance.get_chassis(no_rack_assigned=no_rack_assigned)
+        print("The response of PlatformApi->get_chassis:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_chassis: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **no_rack_assigned** | **bool**| Filters chassis that have no rack assigned. | [optional]
+ **no_rack_assigned** | **bool**| Filters chassis that have no rack assigned. | [optional] 
 
 ### Return type
 
@@ -1960,15 +2231,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1986,41 +2257,67 @@ Get a chassis by chassis id.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.chassis import Chassis
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.chassis import Chassis
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies the id of chassis.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Get a chassis by chassis id.
-	api_response = client.platform.get_chassis_by_id(id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_chassis_by_id: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    id = 56 # int | Specifies the id of chassis.
+
+    try:
+        # Get a chassis by chassis id.
+        api_response = api_instance.get_chassis_by_id(id)
+        print("The response of PlatformApi->get_chassis_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_chassis_by_id: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the id of chassis. |
+ **id** | **int**| Specifies the id of chassis. | 
 
 ### Return type
 
@@ -2028,15 +2325,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -2045,7 +2342,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_cluster**
-> Cluster get_cluster()
+> Cluster get_cluster(fetch_stats=fetch_stats, fetch_time_series_schema=fetch_time_series_schema, include_minimum_nodes_info=include_minimum_nodes_info, fetch_patch_info=fetch_patch_info, fetch_license_info=fetch_license_info, fetch_encryption_info=fetch_encryption_info, fetch_metadata_info=fetch_metadata_info, fetch_upgrade_info=fetch_upgrade_info)
 
 Retrieve Cluster Configuration
 
@@ -2054,56 +2351,81 @@ Retrieve Cluster Configuration
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.cluster import Cluster
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster import Cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-fetch_stats = True # bool | If 'true', also get statistics about the Cohesity Cluster. (optional)
-fetch_time_series_schema = True # bool | Specifies whether to get time series schema info of the cluster (optional)
-include_minimum_nodes_info = True # bool | Specifies whether to include info about minimum failure domains (optional)
-fetch_patch_info = True # bool | If 'true', return patch information about the Cohesity Cluster. (optional)
-fetch_license_info = True # bool | If 'true', return licensing information about the Cohesity Cluster. (optional)
-fetch_encryption_info = True # bool | If 'true', return encryption information about the Cohesity Cluster. (optional)
-fetch_metadata_info = True # bool | If 'true', return metadata information about the Cohesity Cluster. (optional)
-fetch_upgrade_info = True # bool | If 'true', return upgrade information about the Cohesity Cluster. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Retrieve Cluster Configuration
-	api_response = client.platform.get_cluster(fetch_stats=fetch_stats, fetch_time_series_schema=fetch_time_series_schema, include_minimum_nodes_info=include_minimum_nodes_info, fetch_patch_info=fetch_patch_info, fetch_license_info=fetch_license_info, fetch_encryption_info=fetch_encryption_info, fetch_metadata_info=fetch_metadata_info, fetch_upgrade_info=fetch_upgrade_info)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_cluster: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    fetch_stats = True # bool | If 'true', also get statistics about the Cohesity Cluster. (optional)
+    fetch_time_series_schema = True # bool | Specifies whether to get time series schema info of the cluster (optional)
+    include_minimum_nodes_info = True # bool | Specifies whether to include info about minimum failure domains (optional)
+    fetch_patch_info = True # bool | If 'true', return patch information about the Cohesity Cluster. (optional)
+    fetch_license_info = True # bool | If 'true', return licensing information about the Cohesity Cluster. (optional)
+    fetch_encryption_info = True # bool | If 'true', return encryption information about the Cohesity Cluster. (optional)
+    fetch_metadata_info = True # bool | If 'true', return metadata information about the Cohesity Cluster. (optional)
+    fetch_upgrade_info = True # bool | If 'true', return upgrade information about the Cohesity Cluster. (optional)
+
+    try:
+        # Retrieve Cluster Configuration
+        api_response = api_instance.get_cluster(fetch_stats=fetch_stats, fetch_time_series_schema=fetch_time_series_schema, include_minimum_nodes_info=include_minimum_nodes_info, fetch_patch_info=fetch_patch_info, fetch_license_info=fetch_license_info, fetch_encryption_info=fetch_encryption_info, fetch_metadata_info=fetch_metadata_info, fetch_upgrade_info=fetch_upgrade_info)
+        print("The response of PlatformApi->get_cluster:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_cluster: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fetch_stats** | **bool**| If &#39;true&#39;, also get statistics about the Cohesity Cluster. | [optional]
- **fetch_time_series_schema** | **bool**| Specifies whether to get time series schema info of the cluster | [optional]
- **include_minimum_nodes_info** | **bool**| Specifies whether to include info about minimum failure domains | [optional]
- **fetch_patch_info** | **bool**| If &#39;true&#39;, return patch information about the Cohesity Cluster. | [optional]
- **fetch_license_info** | **bool**| If &#39;true&#39;, return licensing information about the Cohesity Cluster. | [optional]
- **fetch_encryption_info** | **bool**| If &#39;true&#39;, return encryption information about the Cohesity Cluster. | [optional]
- **fetch_metadata_info** | **bool**| If &#39;true&#39;, return metadata information about the Cohesity Cluster. | [optional]
- **fetch_upgrade_info** | **bool**| If &#39;true&#39;, return upgrade information about the Cohesity Cluster. | [optional]
+ **fetch_stats** | **bool**| If &#39;true&#39;, also get statistics about the Cohesity Cluster. | [optional] 
+ **fetch_time_series_schema** | **bool**| Specifies whether to get time series schema info of the cluster | [optional] 
+ **include_minimum_nodes_info** | **bool**| Specifies whether to include info about minimum failure domains | [optional] 
+ **fetch_patch_info** | **bool**| If &#39;true&#39;, return patch information about the Cohesity Cluster. | [optional] 
+ **fetch_license_info** | **bool**| If &#39;true&#39;, return licensing information about the Cohesity Cluster. | [optional] 
+ **fetch_encryption_info** | **bool**| If &#39;true&#39;, return encryption information about the Cohesity Cluster. | [optional] 
+ **fetch_metadata_info** | **bool**| If &#39;true&#39;, return metadata information about the Cohesity Cluster. | [optional] 
+ **fetch_upgrade_info** | **bool**| If &#39;true&#39;, return upgrade information about the Cohesity Cluster. | [optional] 
 
 ### Return type
 
@@ -2111,15 +2433,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -2137,36 +2459,62 @@ To get IPMI LAN info for the cluster
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_ipmi_lan_info import ClusterIpmiLanInfo
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_ipmi_lan_info import ClusterIpmiLanInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# To get IPMI LAN info for the cluster
-	api_response = client.platform.get_cluster_ipmi_lan_info()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_cluster_ipmi_lan_info: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # To get IPMI LAN info for the cluster
+        api_response = api_instance.get_cluster_ipmi_lan_info()
+        print("The response of PlatformApi->get_cluster_ipmi_lan_info:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_cluster_ipmi_lan_info: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -2175,15 +2523,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -2201,36 +2549,62 @@ To get IPMI users info for the cluster
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_ipmi_users import ClusterIpmiUsers
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_ipmi_users import ClusterIpmiUsers
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# To get IPMI users info for the cluster
-	api_response = client.platform.get_cluster_ipmi_users()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_cluster_ipmi_users: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # To get IPMI users info for the cluster
+        api_response = api_instance.get_cluster_ipmi_users()
+        print("The response of PlatformApi->get_cluster_ipmi_users:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_cluster_ipmi_users: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -2239,15 +2613,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -2265,36 +2639,62 @@ Get Cluster Local Domain SID
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.cluster_local_domain_sid import ClusterLocalDomainSID
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_local_domain_sid import ClusterLocalDomainSID
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get Cluster Local Domain SID
-	api_response = client.platform.get_cluster_local_domain_sid()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_cluster_local_domain_sid: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Get Cluster Local Domain SID
+        api_response = api_instance.get_cluster_local_domain_sid()
+        print("The response of PlatformApi->get_cluster_local_domain_sid:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_cluster_local_domain_sid: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -2303,15 +2703,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -2329,36 +2729,62 @@ Get Cluster Metadata
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_metadata_request import ClusterMetadataRequest
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_metadata_request import ClusterMetadataRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get Cluster Metadata
-	api_response = client.platform.get_cluster_metadata()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_cluster_metadata: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Get Cluster Metadata
+        api_response = api_instance.get_cluster_metadata()
+        print("The response of PlatformApi->get_cluster_metadata:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_cluster_metadata: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -2367,15 +2793,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -2384,7 +2810,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_cluster_operation_status_list**
-> ClusterOperationListResponse get_cluster_operation_status_list()
+> List[ClusterOperationStatus] get_cluster_operation_status_list(operation_types=operation_types, operation_ids=operation_ids, include_finished_operations=include_finished_operations, include_event_logs=include_event_logs, start_time=start_time, end_time=end_time)
 
 Get cluster operations status.
 
@@ -2393,72 +2819,93 @@ Get cluster operations status.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.cluster_operation_list_response import ClusterOperationListResponse
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_operation_status import ClusterOperationStatus
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-operation_types = [
-        "Destroy",
-    ] # [str] | One or more operation types to query for. (optional)
-operation_ids = [
-        "operationIds_example",
-    ] # [str] | One or more operation ids to query for. (optional)
-include_finished_operations = True # bool | Controls whether finished operations should be included in the query results. The default value is false. Applicable only for patch apply, revert, and upgrade operations (optional)
-include_event_logs = True # bool | Controls whether event logs should be included in the query results. If set to true, 'operationIds' becomes mandatory. The default value is false. Applicable only for patch apply, revert, and upgrade operations (optional)
-start_time = 1 # int | Filters operations that started after the specified time. Applicable only for patch apply, revert, and upgrade operations (optional)
-end_time = 1 # int | Filters operations that ended before the specified time. Applicable only for patch apply, revert, and upgrade operations (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get cluster operations status.
-	api_response = client.platform.get_cluster_operation_status_list(operation_types=operation_types, operation_ids=operation_ids, include_finished_operations=include_finished_operations, include_event_logs=include_event_logs, start_time=start_time, end_time=end_time)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_cluster_operation_status_list: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    operation_types = ['operation_types_example'] # List[str] | One or more operation types to query for. (optional)
+    operation_ids = ['operation_ids_example'] # List[str] | One or more operation ids to query for. (optional)
+    include_finished_operations = True # bool | Controls whether finished operations should be included in the query results. The default value is false. Applicable only for patch apply, revert, and upgrade operations (optional)
+    include_event_logs = True # bool | Controls whether event logs should be included in the query results. If set to true, 'operationIds' becomes mandatory. The default value is false. Applicable only for patch apply, revert, and upgrade operations (optional)
+    start_time = 56 # int | Filters operations that started after the specified time. Applicable only for patch apply, revert, and upgrade operations (optional)
+    end_time = 56 # int | Filters operations that ended before the specified time. Applicable only for patch apply, revert, and upgrade operations (optional)
+
+    try:
+        # Get cluster operations status.
+        api_response = api_instance.get_cluster_operation_status_list(operation_types=operation_types, operation_ids=operation_ids, include_finished_operations=include_finished_operations, include_event_logs=include_event_logs, start_time=start_time, end_time=end_time)
+        print("The response of PlatformApi->get_cluster_operation_status_list:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_cluster_operation_status_list: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **operation_types** | **[str]**| One or more operation types to query for. | [optional]
- **operation_ids** | **[str]**| One or more operation ids to query for. | [optional]
- **include_finished_operations** | **bool**| Controls whether finished operations should be included in the query results. The default value is false. Applicable only for patch apply, revert, and upgrade operations | [optional]
- **include_event_logs** | **bool**| Controls whether event logs should be included in the query results. If set to true, &#39;operationIds&#39; becomes mandatory. The default value is false. Applicable only for patch apply, revert, and upgrade operations | [optional]
- **start_time** | **int**| Filters operations that started after the specified time. Applicable only for patch apply, revert, and upgrade operations | [optional]
- **end_time** | **int**| Filters operations that ended before the specified time. Applicable only for patch apply, revert, and upgrade operations | [optional]
+ **operation_types** | [**List[str]**](str.md)| One or more operation types to query for. | [optional] 
+ **operation_ids** | [**List[str]**](str.md)| One or more operation ids to query for. | [optional] 
+ **include_finished_operations** | **bool**| Controls whether finished operations should be included in the query results. The default value is false. Applicable only for patch apply, revert, and upgrade operations | [optional] 
+ **include_event_logs** | **bool**| Controls whether event logs should be included in the query results. If set to true, &#39;operationIds&#39; becomes mandatory. The default value is false. Applicable only for patch apply, revert, and upgrade operations | [optional] 
+ **start_time** | **int**| Filters operations that started after the specified time. Applicable only for patch apply, revert, and upgrade operations | [optional] 
+ **end_time** | **int**| Filters operations that ended before the specified time. Applicable only for patch apply, revert, and upgrade operations | [optional] 
 
 ### Return type
 
-[**ClusterOperationListResponse**](ClusterOperationListResponse.md)
+[**List[ClusterOperationStatus]**](ClusterOperationStatus.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -2476,36 +2923,62 @@ Get packages
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.cluster_packages import ClusterPackages
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_packages import ClusterPackages
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get packages
-	api_response = client.platform.get_cluster_packages()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_cluster_packages: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Get packages
+        api_response = api_instance.get_cluster_packages()
+        print("The response of PlatformApi->get_cluster_packages:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_cluster_packages: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -2514,15 +2987,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -2540,36 +3013,62 @@ Get cluster snapshot policy.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_snapshot_policy import ClusterSnapshotPolicy
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_snapshot_policy import ClusterSnapshotPolicy
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get cluster snapshot policy.
-	api_response = client.platform.get_cluster_snapshot_policy()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_cluster_snapshot_policy: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Get cluster snapshot policy.
+        api_response = api_instance.get_cluster_snapshot_policy()
+        print("The response of PlatformApi->get_cluster_snapshot_policy:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_cluster_snapshot_policy: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -2578,15 +3077,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -2595,7 +3094,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_cluster_state**
-> ClusterStateParams get_cluster_state()
+> ClusterStateParams get_cluster_state(system_apps=system_apps)
 
 Get cluster state
 
@@ -2604,42 +3103,67 @@ Get cluster state
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.cluster_state_params import ClusterStateParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_state_params import ClusterStateParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-system_apps = True # bool | The filter whether or not to get the system apps state details. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get cluster state
-	api_response = client.platform.get_cluster_state(system_apps=system_apps)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_cluster_state: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    system_apps = True # bool | The filter whether or not to get the system apps state details. (optional)
+
+    try:
+        # Get cluster state
+        api_response = api_instance.get_cluster_state(system_apps=system_apps)
+        print("The response of PlatformApi->get_cluster_state:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_cluster_state: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **system_apps** | **bool**| The filter whether or not to get the system apps state details. | [optional]
+ **system_apps** | **bool**| The filter whether or not to get the system apps state details. | [optional] 
 
 ### Return type
 
@@ -2647,15 +3171,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -2673,36 +3197,62 @@ Get cluster status.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_status import ClusterStatus
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_status import ClusterStatus
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get cluster status.
-	api_response = client.platform.get_cluster_status()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_cluster_status: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Get cluster status.
+        api_response = api_instance.get_cluster_status()
+        print("The response of PlatformApi->get_cluster_status:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_cluster_status: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -2711,15 +3261,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -2728,7 +3278,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_cluster_subnets_info**
-> [Subnet] get_cluster_subnets_info()
+> List[Subnet] get_cluster_subnets_info()
 
 Get cluster subnets info.
 
@@ -2737,53 +3287,79 @@ Get cluster subnets info.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.subnet import Subnet
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.subnet import Subnet
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get cluster subnets info.
-	api_response = client.platform.get_cluster_subnets_info()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_cluster_subnets_info: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Get cluster subnets info.
+        api_response = api_instance.get_cluster_subnets_info()
+        print("The response of PlatformApi->get_cluster_subnets_info:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_cluster_subnets_info: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**[Subnet]**](Subnet.md)
+[**List[Subnet]**](Subnet.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -2801,41 +3377,67 @@ Get vlan
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_vlan_params import ClusterVlanParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_vlan_params import ClusterVlanParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-vlan_interface_group_name = "vlanInterfaceGroupName_example" # str | Vlan interface group name, it should be in interface_group_name.vlan_id format.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Get vlan
-	api_response = client.platform.get_cluster_vlan(vlan_interface_group_name)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_cluster_vlan: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    vlan_interface_group_name = 'vlan_interface_group_name_example' # str | Vlan interface group name, it should be in interface_group_name.vlan_id format.
+
+    try:
+        # Get vlan
+        api_response = api_instance.get_cluster_vlan(vlan_interface_group_name)
+        print("The response of PlatformApi->get_cluster_vlan:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_cluster_vlan: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **vlan_interface_group_name** | **str**| Vlan interface group name, it should be in interface_group_name.vlan_id format. |
+ **vlan_interface_group_name** | **str**| Vlan interface group name, it should be in interface_group_name.vlan_id format. | 
 
 ### Return type
 
@@ -2843,15 +3445,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -2860,7 +3462,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_cluster_vlans**
-> ClusterVlans get_cluster_vlans()
+> ClusterVlans get_cluster_vlans(vlan_interface_group_names=vlan_interface_group_names, tenant_ids=tenant_ids, include_tenants=include_tenants, skip_primary_and_bond_iface=skip_primary_and_bond_iface, compress_ips_to_ranges=compress_ips_to_ranges)
 
 Get vlans
 
@@ -2869,54 +3471,75 @@ Get vlans
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_vlans import ClusterVlans
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_vlans import ClusterVlans
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-vlan_interface_group_names = [
-        "vlanInterfaceGroupNames_example",
-    ] # [str] | Vlan interface group names, it should be in interface_group_name.vlan_id format. (optional)
-tenant_ids = [
-        "tenantIds_example",
-    ] # [str] | Ids of the tenants, used to get vlans assigned to tenants. (optional)
-include_tenants = True # bool | If true, the response includes vlans which belongs to all the tenants the current user has permissions to see. (optional) if omitted the server will use the default value of True
-skip_primary_and_bond_iface = False # bool | If true, vlan primary and bond interfaces are not returned in the response. (optional) if omitted the server will use the default value of False
-compress_ips_to_ranges = False # bool | Compress vlan IPs to list of contigous IP ranges with startIp and endIp. (optional) if omitted the server will use the default value of False
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get vlans
-	api_response = client.platform.get_cluster_vlans(vlan_interface_group_names=vlan_interface_group_names, tenant_ids=tenant_ids, include_tenants=include_tenants, skip_primary_and_bond_iface=skip_primary_and_bond_iface, compress_ips_to_ranges=compress_ips_to_ranges)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_cluster_vlans: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    vlan_interface_group_names = ['vlan_interface_group_names_example'] # List[str] | Vlan interface group names, it should be in interface_group_name.vlan_id format. (optional)
+    tenant_ids = ['tenant_ids_example'] # List[str] | Ids of the tenants, used to get vlans assigned to tenants. (optional)
+    include_tenants = True # bool | If true, the response includes vlans which belongs to all the tenants the current user has permissions to see. (optional) (default to True)
+    skip_primary_and_bond_iface = False # bool | If true, vlan primary and bond interfaces are not returned in the response. (optional) (default to False)
+    compress_ips_to_ranges = False # bool | Compress vlan IPs to list of contigous IP ranges with startIp and endIp. (optional) (default to False)
+
+    try:
+        # Get vlans
+        api_response = api_instance.get_cluster_vlans(vlan_interface_group_names=vlan_interface_group_names, tenant_ids=tenant_ids, include_tenants=include_tenants, skip_primary_and_bond_iface=skip_primary_and_bond_iface, compress_ips_to_ranges=compress_ips_to_ranges)
+        print("The response of PlatformApi->get_cluster_vlans:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_cluster_vlans: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **vlan_interface_group_names** | **[str]**| Vlan interface group names, it should be in interface_group_name.vlan_id format. | [optional]
- **tenant_ids** | **[str]**| Ids of the tenants, used to get vlans assigned to tenants. | [optional]
- **include_tenants** | **bool**| If true, the response includes vlans which belongs to all the tenants the current user has permissions to see. | [optional] if omitted the server will use the default value of True
- **skip_primary_and_bond_iface** | **bool**| If true, vlan primary and bond interfaces are not returned in the response. | [optional] if omitted the server will use the default value of False
- **compress_ips_to_ranges** | **bool**| Compress vlan IPs to list of contigous IP ranges with startIp and endIp. | [optional] if omitted the server will use the default value of False
+ **vlan_interface_group_names** | [**List[str]**](str.md)| Vlan interface group names, it should be in interface_group_name.vlan_id format. | [optional] 
+ **tenant_ids** | [**List[str]**](str.md)| Ids of the tenants, used to get vlans assigned to tenants. | [optional] 
+ **include_tenants** | **bool**| If true, the response includes vlans which belongs to all the tenants the current user has permissions to see. | [optional] [default to True]
+ **skip_primary_and_bond_iface** | **bool**| If true, vlan primary and bond interfaces are not returned in the response. | [optional] [default to False]
+ **compress_ips_to_ranges** | **bool**| Compress vlan IPs to list of contigous IP ranges with startIp and endIp. | [optional] [default to False]
 
 ### Return type
 
@@ -2924,15 +3547,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -2950,36 +3573,62 @@ Fetch Node Hardware Information
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.hardware_info import HardwareInfo
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.hardware_info import HardwareInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Fetch Node Hardware Information
-	api_response = client.platform.get_hardware_info()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_hardware_info: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Fetch Node Hardware Information
+        api_response = api_instance.get_hardware_info()
+        print("The response of PlatformApi->get_hardware_info:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_hardware_info: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -2988,15 +3637,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -3005,7 +3654,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_interface_groups**
-> InterfaceGroups get_interface_groups()
+> InterfaceGroups get_interface_groups(ids=ids)
 
 Get interface groups
 
@@ -3014,44 +3663,67 @@ Get interface groups
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.interface_groups import InterfaceGroups
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.interface_groups import InterfaceGroups
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-ids = [
-        1,
-    ] # [int] | Ids of the interface groups. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get interface groups
-	api_response = client.platform.get_interface_groups(ids=ids)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_interface_groups: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    ids = [56] # List[int] | Ids of the interface groups. (optional)
+
+    try:
+        # Get interface groups
+        api_response = api_instance.get_interface_groups(ids=ids)
+        print("The response of PlatformApi->get_interface_groups:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_interface_groups: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ids** | **[int]**| Ids of the interface groups. | [optional]
+ **ids** | [**List[int]**](int.md)| Ids of the interface groups. | [optional] 
 
 ### Return type
 
@@ -3059,15 +3731,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -3076,7 +3748,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ipmi_fru_info**
-> IpmiFruInfo get_ipmi_fru_info()
+> IpmiFruInfo get_ipmi_fru_info(node_id=node_id, node_ip=node_ip)
 
 To get IPMI FRU info
 
@@ -3085,44 +3757,69 @@ To get IPMI FRU info
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.ipmi_fru_info import IpmiFruInfo
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ipmi_fru_info import IpmiFruInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-node_id = "nodeId_example" # str, none_type | Specifies the node id of the node for which fru info is requested. This parameter is incompatible with 'nodeIp'. (optional)
-node_ip = "nodeIp_example" # str, none_type | Specifies the IP Address of the node for which fru info is requested. This parameter is incompatible with 'nodeId'. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# To get IPMI FRU info
-	api_response = client.platform.get_ipmi_fru_info(node_id=node_id, node_ip=node_ip)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_ipmi_fru_info: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    node_id = 'node_id_example' # str | Specifies the node id of the node for which fru info is requested. This parameter is incompatible with 'nodeIp'. (optional)
+    node_ip = 'node_ip_example' # str | Specifies the IP Address of the node for which fru info is requested. This parameter is incompatible with 'nodeId'. (optional)
+
+    try:
+        # To get IPMI FRU info
+        api_response = api_instance.get_ipmi_fru_info(node_id=node_id, node_ip=node_ip)
+        print("The response of PlatformApi->get_ipmi_fru_info:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_ipmi_fru_info: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **node_id** | **str, none_type**| Specifies the node id of the node for which fru info is requested. This parameter is incompatible with &#39;nodeIp&#39;. | [optional]
- **node_ip** | **str, none_type**| Specifies the IP Address of the node for which fru info is requested. This parameter is incompatible with &#39;nodeId&#39;. | [optional]
+ **node_id** | **str**| Specifies the node id of the node for which fru info is requested. This parameter is incompatible with &#39;nodeIp&#39;. | [optional] 
+ **node_ip** | **str**| Specifies the IP Address of the node for which fru info is requested. This parameter is incompatible with &#39;nodeId&#39;. | [optional] 
 
 ### Return type
 
@@ -3130,15 +3827,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -3147,7 +3844,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ipmi_lan_info**
-> IpmiLanInfo get_ipmi_lan_info()
+> IpmiLanInfo get_ipmi_lan_info(node_id=node_id, node_ip=node_ip)
 
 To get IPMI LAN info
 
@@ -3156,44 +3853,69 @@ To get IPMI LAN info
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.ipmi_lan_info import IpmiLanInfo
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ipmi_lan_info import IpmiLanInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-node_id = "nodeId_example" # str, none_type | Specifies the node id of the node for which lan info is requested. This parameter is incompatible with 'nodeIp'. (optional)
-node_ip = "nodeIp_example" # str, none_type | Specifies the IP Address of the node for which lan info is requested. This parameter is incompatible with 'nodeId'. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# To get IPMI LAN info
-	api_response = client.platform.get_ipmi_lan_info(node_id=node_id, node_ip=node_ip)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_ipmi_lan_info: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    node_id = 'node_id_example' # str | Specifies the node id of the node for which lan info is requested. This parameter is incompatible with 'nodeIp'. (optional)
+    node_ip = 'node_ip_example' # str | Specifies the IP Address of the node for which lan info is requested. This parameter is incompatible with 'nodeId'. (optional)
+
+    try:
+        # To get IPMI LAN info
+        api_response = api_instance.get_ipmi_lan_info(node_id=node_id, node_ip=node_ip)
+        print("The response of PlatformApi->get_ipmi_lan_info:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_ipmi_lan_info: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **node_id** | **str, none_type**| Specifies the node id of the node for which lan info is requested. This parameter is incompatible with &#39;nodeIp&#39;. | [optional]
- **node_ip** | **str, none_type**| Specifies the IP Address of the node for which lan info is requested. This parameter is incompatible with &#39;nodeId&#39;. | [optional]
+ **node_id** | **str**| Specifies the node id of the node for which lan info is requested. This parameter is incompatible with &#39;nodeIp&#39;. | [optional] 
+ **node_ip** | **str**| Specifies the IP Address of the node for which lan info is requested. This parameter is incompatible with &#39;nodeId&#39;. | [optional] 
 
 ### Return type
 
@@ -3201,15 +3923,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -3218,7 +3940,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ipmi_sdr_info**
-> IpmiSdrInfo get_ipmi_sdr_info()
+> IpmiSdrInfo get_ipmi_sdr_info(node_id=node_id, node_ip=node_ip)
 
 To get IPMI SDR Info
 
@@ -3227,44 +3949,69 @@ To get IPMI SDR Info
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.ipmi_sdr_info import IpmiSdrInfo
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ipmi_sdr_info import IpmiSdrInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-node_id = "nodeId_example" # str, none_type | Specifies the node id of the node for which sdr is requested. This parameter is incompatible with 'nodeIp'. (optional)
-node_ip = "nodeIp_example" # str, none_type | Specifies the IP Address of the node for which sdr is requested. This parameter is incompatible with 'nodeId'. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# To get IPMI SDR Info
-	api_response = client.platform.get_ipmi_sdr_info(node_id=node_id, node_ip=node_ip)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_ipmi_sdr_info: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    node_id = 'node_id_example' # str | Specifies the node id of the node for which sdr is requested. This parameter is incompatible with 'nodeIp'. (optional)
+    node_ip = 'node_ip_example' # str | Specifies the IP Address of the node for which sdr is requested. This parameter is incompatible with 'nodeId'. (optional)
+
+    try:
+        # To get IPMI SDR Info
+        api_response = api_instance.get_ipmi_sdr_info(node_id=node_id, node_ip=node_ip)
+        print("The response of PlatformApi->get_ipmi_sdr_info:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_ipmi_sdr_info: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **node_id** | **str, none_type**| Specifies the node id of the node for which sdr is requested. This parameter is incompatible with &#39;nodeIp&#39;. | [optional]
- **node_ip** | **str, none_type**| Specifies the IP Address of the node for which sdr is requested. This parameter is incompatible with &#39;nodeId&#39;. | [optional]
+ **node_id** | **str**| Specifies the node id of the node for which sdr is requested. This parameter is incompatible with &#39;nodeIp&#39;. | [optional] 
+ **node_ip** | **str**| Specifies the IP Address of the node for which sdr is requested. This parameter is incompatible with &#39;nodeId&#39;. | [optional] 
 
 ### Return type
 
@@ -3272,15 +4019,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -3289,7 +4036,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ipmi_sel**
-> IpmiSel get_ipmi_sel()
+> IpmiSel get_ipmi_sel(node_id=node_id, node_ip=node_ip, verbose=verbose)
 
 To get IPMI SEL
 
@@ -3298,46 +4045,71 @@ To get IPMI SEL
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.ipmi_sel import IpmiSel
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ipmi_sel import IpmiSel
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-node_id = "nodeId_example" # str, none_type | Specifies the node id of the node for which sel is requested. This parameter is incompatible with 'nodeIp'. (optional)
-node_ip = "nodeIp_example" # str, none_type | Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with 'nodeId'. (optional)
-verbose = True # bool, none_type | Specifies the Verbosity of log produced by sel request. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# To get IPMI SEL
-	api_response = client.platform.get_ipmi_sel(node_id=node_id, node_ip=node_ip, verbose=verbose)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_ipmi_sel: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    node_id = 'node_id_example' # str | Specifies the node id of the node for which sel is requested. This parameter is incompatible with 'nodeIp'. (optional)
+    node_ip = 'node_ip_example' # str | Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with 'nodeId'. (optional)
+    verbose = True # bool | Specifies the Verbosity of log produced by sel request. (optional)
+
+    try:
+        # To get IPMI SEL
+        api_response = api_instance.get_ipmi_sel(node_id=node_id, node_ip=node_ip, verbose=verbose)
+        print("The response of PlatformApi->get_ipmi_sel:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_ipmi_sel: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **node_id** | **str, none_type**| Specifies the node id of the node for which sel is requested. This parameter is incompatible with &#39;nodeIp&#39;. | [optional]
- **node_ip** | **str, none_type**| Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with &#39;nodeId&#39;. | [optional]
- **verbose** | **bool, none_type**| Specifies the Verbosity of log produced by sel request. | [optional]
+ **node_id** | **str**| Specifies the node id of the node for which sel is requested. This parameter is incompatible with &#39;nodeIp&#39;. | [optional] 
+ **node_ip** | **str**| Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with &#39;nodeId&#39;. | [optional] 
+ **verbose** | **bool**| Specifies the Verbosity of log produced by sel request. | [optional] 
 
 ### Return type
 
@@ -3345,15 +4117,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -3362,7 +4134,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ipmi_sel_info**
-> IpmiSelInfo get_ipmi_sel_info()
+> IpmiSelInfo get_ipmi_sel_info(node_id=node_id, node_ip=node_ip)
 
 To get IPMI SEL Info
 
@@ -3371,44 +4143,69 @@ To get IPMI SEL Info
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.ipmi_sel_info import IpmiSelInfo
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ipmi_sel_info import IpmiSelInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-node_id = "nodeId_example" # str, none_type | Specifies the node id of the node for which sel is requested. This parameter is incompatible with 'nodeIp'. (optional)
-node_ip = "nodeIp_example" # str, none_type | Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with 'nodeId'. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# To get IPMI SEL Info
-	api_response = client.platform.get_ipmi_sel_info(node_id=node_id, node_ip=node_ip)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_ipmi_sel_info: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    node_id = 'node_id_example' # str | Specifies the node id of the node for which sel is requested. This parameter is incompatible with 'nodeIp'. (optional)
+    node_ip = 'node_ip_example' # str | Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with 'nodeId'. (optional)
+
+    try:
+        # To get IPMI SEL Info
+        api_response = api_instance.get_ipmi_sel_info(node_id=node_id, node_ip=node_ip)
+        print("The response of PlatformApi->get_ipmi_sel_info:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_ipmi_sel_info: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **node_id** | **str, none_type**| Specifies the node id of the node for which sel is requested. This parameter is incompatible with &#39;nodeIp&#39;. | [optional]
- **node_ip** | **str, none_type**| Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with &#39;nodeId&#39;. | [optional]
+ **node_id** | **str**| Specifies the node id of the node for which sel is requested. This parameter is incompatible with &#39;nodeIp&#39;. | [optional] 
+ **node_ip** | **str**| Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with &#39;nodeId&#39;. | [optional] 
 
 ### Return type
 
@@ -3416,15 +4213,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -3433,7 +4230,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ipmi_users**
-> IpmiUsers get_ipmi_users()
+> IpmiUsers get_ipmi_users(node_id=node_id, node_ip=node_ip)
 
 To get IPMI User Info for node
 
@@ -3442,44 +4239,69 @@ To get IPMI User Info for node
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.ipmi_users import IpmiUsers
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ipmi_users import IpmiUsers
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-node_id = "nodeId_example" # str, none_type | Specifies the node id of the node for which ipmi users info is requested. This parameter is incompatible with 'nodeIp'. (optional)
-node_ip = "nodeIp_example" # str, none_type | Specifies the IP address of the node for which ipmi users info is requested. This parameter is incompatible with 'nodeId'. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# To get IPMI User Info for node
-	api_response = client.platform.get_ipmi_users(node_id=node_id, node_ip=node_ip)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_ipmi_users: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    node_id = 'node_id_example' # str | Specifies the node id of the node for which ipmi users info is requested. This parameter is incompatible with 'nodeIp'. (optional)
+    node_ip = 'node_ip_example' # str | Specifies the IP address of the node for which ipmi users info is requested. This parameter is incompatible with 'nodeId'. (optional)
+
+    try:
+        # To get IPMI User Info for node
+        api_response = api_instance.get_ipmi_users(node_id=node_id, node_ip=node_ip)
+        print("The response of PlatformApi->get_ipmi_users:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_ipmi_users: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **node_id** | **str, none_type**| Specifies the node id of the node for which ipmi users info is requested. This parameter is incompatible with &#39;nodeIp&#39;. | [optional]
- **node_ip** | **str, none_type**| Specifies the IP address of the node for which ipmi users info is requested. This parameter is incompatible with &#39;nodeId&#39;. | [optional]
+ **node_id** | **str**| Specifies the node id of the node for which ipmi users info is requested. This parameter is incompatible with &#39;nodeIp&#39;. | [optional] 
+ **node_ip** | **str**| Specifies the IP address of the node for which ipmi users info is requested. This parameter is incompatible with &#39;nodeId&#39;. | [optional] 
 
 ### Return type
 
@@ -3487,15 +4309,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -3513,36 +4335,62 @@ Get whether the cluster is a DMaaS cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.d_maa_s_info import DMaaSInfo
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.d_maa_s_info import DMaaSInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get whether the cluster is a DMaaS cluster.
-	api_response = client.platform.get_is_d_maa_s_cluster()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_is_d_maa_s_cluster: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Get whether the cluster is a DMaaS cluster.
+        api_response = api_instance.get_is_d_maa_s_cluster()
+        print("The response of PlatformApi->get_is_d_maa_s_cluster:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_is_d_maa_s_cluster: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -3551,15 +4399,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -3577,36 +4425,62 @@ Get Kubernetes Infra Health Status
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error_response import ErrorResponse
-from cohesity_sdk.cluster.model.get_kubernetes_status_response import GetKubernetesStatusResponse
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_kubernetes_status_response import GetKubernetesStatusResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get Kubernetes Infra Health Status
-	api_response = client.platform.get_kubernetes_infra_health_status()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_kubernetes_infra_health_status: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Get Kubernetes Infra Health Status
+        api_response = api_instance.get_kubernetes_infra_health_status()
+        print("The response of PlatformApi->get_kubernetes_infra_health_status:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_kubernetes_infra_health_status: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -3615,15 +4489,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  -  |
@@ -3641,36 +4515,62 @@ Get login banner.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.login_banner import LoginBanner
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.login_banner import LoginBanner
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get login banner.
-	api_response = client.platform.get_login_banner()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_login_banner: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Get login banner.
+        api_response = api_instance.get_login_banner()
+        print("The response of PlatformApi->get_login_banner:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_login_banner: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -3679,15 +4579,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -3696,7 +4596,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_network_interfaces**
-> ClusterInterfaces get_network_interfaces()
+> ClusterInterfaces get_network_interfaces(node_id=node_id, cache=cache, bond_interface_only=bond_interface_only, iface_group_assigned_only=iface_group_assigned_only, include_uplink_switch_info=include_uplink_switch_info, include_bond_slave_details=include_bond_slave_details, include_stats=include_stats)
 
 Get list of interfaces
 
@@ -3705,54 +4605,79 @@ Get list of interfaces
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_interfaces import ClusterInterfaces
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_interfaces import ClusterInterfaces
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-node_id = 1 # int | Node id, used to get interfaces on a particular node. (optional)
-cache = False # bool | Get interfaces information from cache. (optional) if omitted the server will use the default value of False
-bond_interface_only = False # bool | Specifies if only show bond interface info. (optional) if omitted the server will use the default value of False
-iface_group_assigned_only = False # bool | Specifies if only show interface group assigned interface info. (optional) if omitted the server will use the default value of False
-include_uplink_switch_info = False # bool | Specifies if include uplink switch info. (optional) if omitted the server will use the default value of False
-include_bond_slave_details = False # bool | Specifies if include bond secondary detailed info. (optional) if omitted the server will use the default value of False
-include_stats = False # bool | Specifies if include stats. (optional) if omitted the server will use the default value of False
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get list of interfaces
-	api_response = client.platform.get_network_interfaces(node_id=node_id, cache=cache, bond_interface_only=bond_interface_only, iface_group_assigned_only=iface_group_assigned_only, include_uplink_switch_info=include_uplink_switch_info, include_bond_slave_details=include_bond_slave_details, include_stats=include_stats)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_network_interfaces: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    node_id = 56 # int | Node id, used to get interfaces on a particular node. (optional)
+    cache = False # bool | Get interfaces information from cache. (optional) (default to False)
+    bond_interface_only = False # bool | Specifies if only show bond interface info. (optional) (default to False)
+    iface_group_assigned_only = False # bool | Specifies if only show interface group assigned interface info. (optional) (default to False)
+    include_uplink_switch_info = False # bool | Specifies if include uplink switch info. (optional) (default to False)
+    include_bond_slave_details = False # bool | Specifies if include bond secondary detailed info. (optional) (default to False)
+    include_stats = False # bool | Specifies if include stats. (optional) (default to False)
+
+    try:
+        # Get list of interfaces
+        api_response = api_instance.get_network_interfaces(node_id=node_id, cache=cache, bond_interface_only=bond_interface_only, iface_group_assigned_only=iface_group_assigned_only, include_uplink_switch_info=include_uplink_switch_info, include_bond_slave_details=include_bond_slave_details, include_stats=include_stats)
+        print("The response of PlatformApi->get_network_interfaces:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_network_interfaces: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **node_id** | **int**| Node id, used to get interfaces on a particular node. | [optional]
- **cache** | **bool**| Get interfaces information from cache. | [optional] if omitted the server will use the default value of False
- **bond_interface_only** | **bool**| Specifies if only show bond interface info. | [optional] if omitted the server will use the default value of False
- **iface_group_assigned_only** | **bool**| Specifies if only show interface group assigned interface info. | [optional] if omitted the server will use the default value of False
- **include_uplink_switch_info** | **bool**| Specifies if include uplink switch info. | [optional] if omitted the server will use the default value of False
- **include_bond_slave_details** | **bool**| Specifies if include bond secondary detailed info. | [optional] if omitted the server will use the default value of False
- **include_stats** | **bool**| Specifies if include stats. | [optional] if omitted the server will use the default value of False
+ **node_id** | **int**| Node id, used to get interfaces on a particular node. | [optional] 
+ **cache** | **bool**| Get interfaces information from cache. | [optional] [default to False]
+ **bond_interface_only** | **bool**| Specifies if only show bond interface info. | [optional] [default to False]
+ **iface_group_assigned_only** | **bool**| Specifies if only show interface group assigned interface info. | [optional] [default to False]
+ **include_uplink_switch_info** | **bool**| Specifies if include uplink switch info. | [optional] [default to False]
+ **include_bond_slave_details** | **bool**| Specifies if include bond secondary detailed info. | [optional] [default to False]
+ **include_stats** | **bool**| Specifies if include stats. | [optional] [default to False]
 
 ### Return type
 
@@ -3760,15 +4685,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -3777,7 +4702,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_nodes**
-> [Node] get_nodes()
+> List[Node] get_nodes(ids=ids, include_marked_for_removal=include_marked_for_removal, include_only_unassigned_nodes=include_only_unassigned_nodes, cluster_partition_ids=cluster_partition_ids, fetch_stats=fetch_stats, show_system_disks=show_system_disks)
 
 List Nodes of the cluster.
 
@@ -3786,72 +4711,93 @@ List Nodes of the cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.node import Node
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.node import Node
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-ids = [
-        1,
-    ] # [int] | \"List of IDs to be returned. If empty, all nodes are returned.\" (optional)
-include_marked_for_removal = True # bool | IncludeMarkedForRemoval is used to specify whether to include nodes marked for removal. (optional)
-include_only_unassigned_nodes = True # bool | IncludeOnlyUnassignedNodes will return nodes that are not yet assigned to any cluster partition. If this parameter is specified as true and ClusterPartitionIdList is also non-empty, then no nodes will be returned. (optional)
-cluster_partition_ids = [
-        1,
-    ] # [int] | ClusterPartitionIdList specifies the list of Ids used to filter the nodes by specified cluster partition. (optional)
-fetch_stats = True # bool | FetchStats is used to specify whether to call Stats service to fetch the stats for the nodes. Stats not displayed by default (optional)
-show_system_disks = True # bool | ShowSystemdisks is used to specify whether to display system disks for the nodes. Not populated by default. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# List Nodes of the cluster.
-	api_response = client.platform.get_nodes(ids=ids, include_marked_for_removal=include_marked_for_removal, include_only_unassigned_nodes=include_only_unassigned_nodes, cluster_partition_ids=cluster_partition_ids, fetch_stats=fetch_stats, show_system_disks=show_system_disks)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_nodes: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    ids = [56] # List[int] | \"List of IDs to be returned. If empty, all nodes are returned.\" (optional)
+    include_marked_for_removal = True # bool | IncludeMarkedForRemoval is used to specify whether to include nodes marked for removal. (optional)
+    include_only_unassigned_nodes = True # bool | IncludeOnlyUnassignedNodes will return nodes that are not yet assigned to any cluster partition. If this parameter is specified as true and ClusterPartitionIdList is also non-empty, then no nodes will be returned. (optional)
+    cluster_partition_ids = [56] # List[int] | ClusterPartitionIdList specifies the list of Ids used to filter the nodes by specified cluster partition. (optional)
+    fetch_stats = True # bool | FetchStats is used to specify whether to call Stats service to fetch the stats for the nodes. Stats not displayed by default (optional)
+    show_system_disks = True # bool | ShowSystemdisks is used to specify whether to display system disks for the nodes. Not populated by default. (optional)
+
+    try:
+        # List Nodes of the cluster.
+        api_response = api_instance.get_nodes(ids=ids, include_marked_for_removal=include_marked_for_removal, include_only_unassigned_nodes=include_only_unassigned_nodes, cluster_partition_ids=cluster_partition_ids, fetch_stats=fetch_stats, show_system_disks=show_system_disks)
+        print("The response of PlatformApi->get_nodes:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_nodes: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ids** | **[int]**| \&quot;List of IDs to be returned. If empty, all nodes are returned.\&quot; | [optional]
- **include_marked_for_removal** | **bool**| IncludeMarkedForRemoval is used to specify whether to include nodes marked for removal. | [optional]
- **include_only_unassigned_nodes** | **bool**| IncludeOnlyUnassignedNodes will return nodes that are not yet assigned to any cluster partition. If this parameter is specified as true and ClusterPartitionIdList is also non-empty, then no nodes will be returned. | [optional]
- **cluster_partition_ids** | **[int]**| ClusterPartitionIdList specifies the list of Ids used to filter the nodes by specified cluster partition. | [optional]
- **fetch_stats** | **bool**| FetchStats is used to specify whether to call Stats service to fetch the stats for the nodes. Stats not displayed by default | [optional]
- **show_system_disks** | **bool**| ShowSystemdisks is used to specify whether to display system disks for the nodes. Not populated by default. | [optional]
+ **ids** | [**List[int]**](int.md)| \&quot;List of IDs to be returned. If empty, all nodes are returned.\&quot; | [optional] 
+ **include_marked_for_removal** | **bool**| IncludeMarkedForRemoval is used to specify whether to include nodes marked for removal. | [optional] 
+ **include_only_unassigned_nodes** | **bool**| IncludeOnlyUnassignedNodes will return nodes that are not yet assigned to any cluster partition. If this parameter is specified as true and ClusterPartitionIdList is also non-empty, then no nodes will be returned. | [optional] 
+ **cluster_partition_ids** | [**List[int]**](int.md)| ClusterPartitionIdList specifies the list of Ids used to filter the nodes by specified cluster partition. | [optional] 
+ **fetch_stats** | **bool**| FetchStats is used to specify whether to call Stats service to fetch the stats for the nodes. Stats not displayed by default | [optional] 
+ **show_system_disks** | **bool**| ShowSystemdisks is used to specify whether to display system disks for the nodes. Not populated by default. | [optional] 
 
 ### Return type
 
-[**[Node]**](Node.md)
+[**List[Node]**](Node.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -3869,36 +4815,62 @@ Get list of NTP servers.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.ntp_server_list import NtpServerList
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ntp_server_list import NtpServerList
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get list of NTP servers.
-	api_response = client.platform.get_ntp_servers()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_ntp_servers: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Get list of NTP servers.
+        api_response = api_instance.get_ntp_servers()
+        print("The response of PlatformApi->get_ntp_servers:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_ntp_servers: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -3907,15 +4879,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -3933,36 +4905,62 @@ Get list of proxy servers
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.proxy_server_list import ProxyServerList
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.proxy_server_list import ProxyServerList
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get list of proxy servers
-	api_response = client.platform.get_proxy_servers()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_proxy_servers: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Get list of proxy servers
+        api_response = api_instance.get_proxy_servers()
+        print("The response of PlatformApi->get_proxy_servers:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_proxy_servers: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -3971,15 +4969,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -3997,41 +4995,67 @@ Get a rack by rack id.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.rack import Rack
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.rack import Rack
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies the id of rack.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Get a rack by rack id.
-	api_response = client.platform.get_rack_by_id(id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_rack_by_id: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    id = 56 # int | Specifies the id of rack.
+
+    try:
+        # Get a rack by rack id.
+        api_response = api_instance.get_rack_by_id(id)
+        print("The response of PlatformApi->get_rack_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_rack_by_id: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the id of rack. |
+ **id** | **int**| Specifies the id of rack. | 
 
 ### Return type
 
@@ -4039,15 +5063,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -4065,36 +5089,62 @@ Get list of racks
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.racks import Racks
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.racks import Racks
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get list of racks
-	api_response = client.platform.get_racks()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_racks: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Get list of racks
+        api_response = api_instance.get_racks()
+        print("The response of PlatformApi->get_racks:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_racks: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -4103,15 +5153,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -4120,7 +5170,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_remote_disks**
-> RemoteDisks get_remote_disks()
+> RemoteDisks get_remote_disks(disk_ids=disk_ids, node_ids=node_ids, tiers=tiers, mount_path=mount_path, file_system=file_system)
 
 Get remote disks
 
@@ -4129,56 +5179,75 @@ Get remote disks
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.remote_disks import RemoteDisks
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.remote_disks import RemoteDisks
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-disk_ids = [
-        1,
-    ] # [int] | Specifies a list of disk ids, only disks having these ids will be returned. (optional)
-node_ids = [
-        1,
-    ] # [int] | Specifies a list of node ids, only disks in these nodes will be returned. (optional)
-tiers = [
-        "PCIeSSD",
-    ] # [str] | Specifies a list of disk tiers, only disks with given tiers will be returned. (optional)
-mount_path = "mountPath_example" # str | This field is deprecated. Providing this queryparam will not have any impact. Please use fileSystem query param to filter instead. (optional)
-file_system = "fileSystem_example" # str | Specified file system name to search. only disks with file system name that partially matches the specified name will be returned. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get remote disks
-	api_response = client.platform.get_remote_disks(disk_ids=disk_ids, node_ids=node_ids, tiers=tiers, mount_path=mount_path, file_system=file_system)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_remote_disks: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    disk_ids = [56] # List[int] | Specifies a list of disk ids, only disks having these ids will be returned. (optional)
+    node_ids = [56] # List[int] | Specifies a list of node ids, only disks in these nodes will be returned. (optional)
+    tiers = ['tiers_example'] # List[str] | Specifies a list of disk tiers, only disks with given tiers will be returned. (optional)
+    mount_path = 'mount_path_example' # str | This field is deprecated. Providing this queryparam will not have any impact. Please use fileSystem query param to filter instead. (optional)
+    file_system = 'file_system_example' # str | Specified file system name to search. only disks with file system name that partially matches the specified name will be returned. (optional)
+
+    try:
+        # Get remote disks
+        api_response = api_instance.get_remote_disks(disk_ids=disk_ids, node_ids=node_ids, tiers=tiers, mount_path=mount_path, file_system=file_system)
+        print("The response of PlatformApi->get_remote_disks:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_remote_disks: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **disk_ids** | **[int]**| Specifies a list of disk ids, only disks having these ids will be returned. | [optional]
- **node_ids** | **[int]**| Specifies a list of node ids, only disks in these nodes will be returned. | [optional]
- **tiers** | **[str]**| Specifies a list of disk tiers, only disks with given tiers will be returned. | [optional]
- **mount_path** | **str**| This field is deprecated. Providing this queryparam will not have any impact. Please use fileSystem query param to filter instead. | [optional]
- **file_system** | **str**| Specified file system name to search. only disks with file system name that partially matches the specified name will be returned. | [optional]
+ **disk_ids** | [**List[int]**](int.md)| Specifies a list of disk ids, only disks having these ids will be returned. | [optional] 
+ **node_ids** | [**List[int]**](int.md)| Specifies a list of node ids, only disks in these nodes will be returned. | [optional] 
+ **tiers** | [**List[str]**](str.md)| Specifies a list of disk tiers, only disks with given tiers will be returned. | [optional] 
+ **mount_path** | **str**| This field is deprecated. Providing this queryparam will not have any impact. Please use fileSystem query param to filter instead. | [optional] 
+ **file_system** | **str**| Specified file system name to search. only disks with file system name that partially matches the specified name will be returned. | [optional] 
 
 ### Return type
 
@@ -4186,15 +5255,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -4203,7 +5272,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_service_gflags**
-> [ServiceGflags] get_service_gflags()
+> List[ServiceGflags] get_service_gflags(gflags=gflags, service_name=service_name)
 
 Gets cluster gflags for a service.
 
@@ -4212,62 +5281,85 @@ Gets cluster gflags for a service.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.service_gflags import ServiceGflags
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.service_gflags import ServiceGflags
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-gflags = [
-        "gflags_example",
-    ] # [str] | \"Specifies a list of gflag names. If specified, only gflags matching the gflag name list will be returned.\" (optional)
-service_name = "kInvalidService" # str | Specifies the service name. If specified, only gflags matching the service name will be returned. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Gets cluster gflags for a service.
-	api_response = client.platform.get_service_gflags(gflags=gflags, service_name=service_name)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_service_gflags: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    gflags = ['gflags_example'] # List[str] | \"Specifies a list of gflag names. If specified, only gflags matching the gflag name list will be returned.\" (optional)
+    service_name = 'service_name_example' # str | Specifies the service name. If specified, only gflags matching the service name will be returned. (optional)
+
+    try:
+        # Gets cluster gflags for a service.
+        api_response = api_instance.get_service_gflags(gflags=gflags, service_name=service_name)
+        print("The response of PlatformApi->get_service_gflags:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_service_gflags: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **gflags** | **[str]**| \&quot;Specifies a list of gflag names. If specified, only gflags matching the gflag name list will be returned.\&quot; | [optional]
- **service_name** | **str**| Specifies the service name. If specified, only gflags matching the service name will be returned. | [optional]
+ **gflags** | [**List[str]**](str.md)| \&quot;Specifies a list of gflag names. If specified, only gflags matching the gflag name list will be returned.\&quot; | [optional] 
+ **service_name** | **str**| Specifies the service name. If specified, only gflags matching the service name will be returned. | [optional] 
 
 ### Return type
 
-[**[ServiceGflags]**](ServiceGflags.md)
+[**List[ServiceGflags]**](ServiceGflags.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -4285,36 +5377,62 @@ Get SMTP configuration.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.smtp_configuration import SMTPConfiguration
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.smtp_configuration import SMTPConfiguration
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get SMTP configuration.
-	api_response = client.platform.get_smtp_configuration()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_smtp_configuration: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Get SMTP configuration.
+        api_response = api_instance.get_smtp_configuration()
+        print("The response of PlatformApi->get_smtp_configuration:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_smtp_configuration: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -4323,15 +5441,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -4349,36 +5467,62 @@ Get Software Components
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.software_components import SoftwareComponents
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.software_components import SoftwareComponents
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get Software Components
-	api_response = client.platform.get_software_components()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_software_components: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Get Software Components
+        api_response = api_instance.get_software_components()
+        print("The response of PlatformApi->get_software_components:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_software_components: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -4387,15 +5531,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -4413,36 +5557,62 @@ Get support channel configuration.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.support_channel import SupportChannel
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.support_channel import SupportChannel
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get support channel configuration.
-	api_response = client.platform.get_support_channel_config()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_support_channel_config: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Get support channel configuration.
+        api_response = api_instance.get_support_channel_config()
+        print("The response of PlatformApi->get_support_channel_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_support_channel_config: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -4451,15 +5621,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -4468,7 +5638,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_sw_update_history**
-> GetClusterSWUpdateHistoryResponseParams get_sw_update_history(include_node_history)
+> List[ClusterSWUpdateHistoryEvent] get_sw_update_history(include_node_history)
 
 Get cluster software history
 
@@ -4477,57 +5647,83 @@ Get cluster software history
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.get_cluster_sw_update_history_response_params import GetClusterSWUpdateHistoryResponseParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_sw_update_history_event import ClusterSWUpdateHistoryEvent
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-include_node_history = True # bool | Flag to specify whether to fetch data from current node or all the nodes. 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Get cluster software history
-	api_response = client.platform.get_sw_update_history(include_node_history)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_sw_update_history: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    include_node_history = True # bool | Flag to specify whether to fetch data from current node or all the nodes. 
+
+    try:
+        # Get cluster software history
+        api_response = api_instance.get_sw_update_history(include_node_history)
+        print("The response of PlatformApi->get_sw_update_history:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->get_sw_update_history: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **include_node_history** | **bool**| Flag to specify whether to fetch data from current node or all the nodes.  |
+ **include_node_history** | **bool**| Flag to specify whether to fetch data from current node or all the nodes.  | 
 
 ### Return type
 
-[**GetClusterSWUpdateHistoryResponseParams**](GetClusterSWUpdateHistoryResponseParams.md)
+[**List[ClusterSWUpdateHistoryEvent]**](ClusterSWUpdateHistoryEvent.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -4545,45 +5741,69 @@ Identify node
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.node_identify_params import NodeIdentifyParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.node_identify_params import NodeIdentifyParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies id of node to identify.
-body = NodeIdentifyParams(
-        identify=True,
-    ) # NodeIdentifyParams | Specifies the parameter to identify node.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Identify node
-	api_response = client.platform.identify_node(id, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->identify_node: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    id = 56 # int | Specifies id of node to identify.
+    body = cohesity_sdk.cluster.NodeIdentifyParams() # NodeIdentifyParams | Specifies the parameter to identify node.
+
+    try:
+        # Identify node
+        api_response = api_instance.identify_node(id, body)
+        print("The response of PlatformApi->identify_node:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->identify_node: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies id of node to identify. |
- **body** | [**NodeIdentifyParams**](NodeIdentifyParams.md)| Specifies the parameter to identify node. |
+ **id** | **int**| Specifies id of node to identify. | 
+ **body** | [**NodeIdentifyParams**](NodeIdentifyParams.md)| Specifies the parameter to identify node. | 
 
 ### Return type
 
@@ -4591,15 +5811,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -4617,41 +5837,66 @@ Import Crl File
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-file_name = "file_name_example" # str | 
-crlfile = open('/path/to/file', 'rb') # file_type | 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Import Crl File
-	client.platform.import_crl_file(file_name, crlfile)
-except ApiException as e:
-	print("Exception when calling PlatformApi->import_crl_file: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    file_name = 'file_name_example' # str | 
+    crlfile = None # bytearray | 
+
+    try:
+        # Import Crl File
+        api_instance.import_crl_file(file_name, crlfile)
+    except Exception as e:
+        print("Exception when calling PlatformApi->import_crl_file: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **file_name** | **str**|  |
- **crlfile** | **file_type**|  |
+ **file_name** | **str**|  | 
+ **crlfile** | **bytearray**|  | 
 
 ### Return type
 
@@ -4659,15 +5904,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -4676,7 +5921,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_disks**
-> DisksList list_disks()
+> DisksList list_disks(node_id=node_id)
 
 Get list of disks
 
@@ -4685,42 +5930,67 @@ Get list of disks
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.disks_list import DisksList
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.disks_list import DisksList
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-node_id = 1 # int | Specifies node id of the node to get list of disks (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get list of disks
-	api_response = client.platform.list_disks(node_id=node_id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->list_disks: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    node_id = 56 # int | Specifies node id of the node to get list of disks (optional)
+
+    try:
+        # Get list of disks
+        api_response = api_instance.list_disks(node_id=node_id)
+        print("The response of PlatformApi->list_disks:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->list_disks: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **node_id** | **int**| Specifies node id of the node to get list of disks | [optional]
+ **node_id** | **int**| Specifies node id of the node to get list of disks | [optional] 
 
 ### Return type
 
@@ -4728,15 +5998,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -4745,7 +6015,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_free_nodes**
-> FreeNodes list_free_nodes()
+> FreeNodes list_free_nodes(ips=ips)
 
 List the free Cohesity Nodes present on a network.
 
@@ -4754,44 +6024,67 @@ List the free Cohesity Nodes present on a network.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.free_nodes import FreeNodes
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.free_nodes import FreeNodes
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-ips = [
-        "ips_example",
-    ] # [str] | \"Specifies a list of ips of nodes among which free and compatible nodes to be returned\" (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# List the free Cohesity Nodes present on a network.
-	api_response = client.platform.list_free_nodes(ips=ips)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->list_free_nodes: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    ips = ['ips_example'] # List[str] | \"Specifies a list of ips of nodes among which free and compatible nodes to be returned\" (optional)
+
+    try:
+        # List the free Cohesity Nodes present on a network.
+        api_response = api_instance.list_free_nodes(ips=ips)
+        print("The response of PlatformApi->list_free_nodes:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->list_free_nodes: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ips** | **[str]**| \&quot;Specifies a list of ips of nodes among which free and compatible nodes to be returned\&quot; | [optional]
+ **ips** | [**List[str]**](str.md)| \&quot;Specifies a list of ips of nodes among which free and compatible nodes to be returned\&quot; | [optional] 
 
 ### Return type
 
@@ -4799,15 +6092,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -4825,36 +6118,62 @@ List Host Mappings
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.host_mappings import HostMappings
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.host_mappings import HostMappings
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# List Host Mappings
-	api_response = client.platform.list_hosts()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->list_hosts: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # List Host Mappings
+        api_response = api_instance.list_hosts()
+        print("The response of PlatformApi->list_hosts:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->list_hosts: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -4863,15 +6182,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -4880,7 +6199,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_services_states**
-> ClusterServicesStates list_services_states()
+> ClusterServicesStates list_services_states(body=body)
 
 List services states
 
@@ -4889,47 +6208,68 @@ List services states
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.cluster_services_states import ClusterServicesStates
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_services_states_params import ClusterServicesStatesParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_services_states import ClusterServicesStates
+from cohesity_sdk.cluster.models.cluster_services_states_params import ClusterServicesStatesParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = ClusterServicesStatesParams(
-        node_ids=[
-            1,
-        ],
-    ) # ClusterServicesStatesParams | Specifies the parameters to get cluster services states. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# List services states
-	api_response = client.platform.list_services_states(body=body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->list_services_states: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.ClusterServicesStatesParams() # ClusterServicesStatesParams | Specifies the parameters to get cluster services states. (optional)
+
+    try:
+        # List services states
+        api_response = api_instance.list_services_states(body=body)
+        print("The response of PlatformApi->list_services_states:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->list_services_states: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ClusterServicesStatesParams**](ClusterServicesStatesParams.md)| Specifies the parameters to get cluster services states. | [optional]
+ **body** | [**ClusterServicesStatesParams**](ClusterServicesStatesParams.md)| Specifies the parameters to get cluster services states. | [optional] 
 
 ### Return type
 
@@ -4937,15 +6277,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Success |  -  |
@@ -4963,44 +6303,67 @@ Sets/clears the BaseOS upgrade cluster operation.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.mark_baseos_upgrade_info import MarkBaseosUpgradeInfo
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.mark_baseos_upgrade_info import MarkBaseosUpgradeInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = MarkBaseosUpgradeInfo(
-        message="message_example",
-        set_operation=True,
-    ) # MarkBaseosUpgradeInfo | Param to whether set/clear BaseOS uprgade  operation.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Sets/clears the BaseOS upgrade cluster operation.
-	api_response = client.platform.mark_baseos_upgrade(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->mark_baseos_upgrade: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.MarkBaseosUpgradeInfo() # MarkBaseosUpgradeInfo | Param to whether set/clear BaseOS uprgade  operation.
+
+    try:
+        # Sets/clears the BaseOS upgrade cluster operation.
+        api_response = api_instance.mark_baseos_upgrade(body)
+        print("The response of PlatformApi->mark_baseos_upgrade:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->mark_baseos_upgrade: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**MarkBaseosUpgradeInfo**](MarkBaseosUpgradeInfo.md)| Param to whether set/clear BaseOS uprgade  operation. |
+ **body** | [**MarkBaseosUpgradeInfo**](MarkBaseosUpgradeInfo.md)| Param to whether set/clear BaseOS uprgade  operation. | 
 
 ### Return type
 
@@ -5008,15 +6371,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -5034,48 +6397,70 @@ Mark Disk for removal
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.remove_disk import RemoveDisk
-from cohesity_sdk.cluster.model.disk_removal_params import DiskRemovalParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.disk_removal_params import DiskRemovalParams
+from cohesity_sdk.cluster.models.remove_disk import RemoveDisk
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies unique id of the disk to mark for removal.
-body = DiskRemovalParams(
-        cancel=True,
-        is_clear_pre_check_result_only=False,
-        is_validate_only=False,
-    ) # DiskRemovalParams | Specifies parameters to mark/cancel disk removal.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Mark Disk for removal
-	api_response = client.platform.mark_disk_removal(id, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->mark_disk_removal: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    id = 56 # int | Specifies unique id of the disk to mark for removal.
+    body = cohesity_sdk.cluster.DiskRemovalParams() # DiskRemovalParams | Specifies parameters to mark/cancel disk removal.
+
+    try:
+        # Mark Disk for removal
+        api_response = api_instance.mark_disk_removal(id, body)
+        print("The response of PlatformApi->mark_disk_removal:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->mark_disk_removal: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies unique id of the disk to mark for removal. |
- **body** | [**DiskRemovalParams**](DiskRemovalParams.md)| Specifies parameters to mark/cancel disk removal. |
+ **id** | **int**| Specifies unique id of the disk to mark for removal. | 
+ **body** | [**DiskRemovalParams**](DiskRemovalParams.md)| Specifies parameters to mark/cancel disk removal. | 
 
 ### Return type
 
@@ -5083,15 +6468,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -5109,49 +6494,70 @@ Mark Node for removal
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.node_removal_params import NodeRemovalParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.remove_node import RemoveNode
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.node_removal_params import NodeRemovalParams
+from cohesity_sdk.cluster.models.remove_node import RemoveNode
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies id of node to cancel removal.
-body = NodeRemovalParams(
-        cancel=True,
-        is_clear_pre_check_result_only=False,
-        is_offline=False,
-        is_validate_only=False,
-    ) # NodeRemovalParams | Specifies parameters to initiate/cancel node removal .
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Mark Node for removal
-	api_response = client.platform.mark_node_removal(id, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->mark_node_removal: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    id = 56 # int | Specifies id of node to cancel removal.
+    body = cohesity_sdk.cluster.NodeRemovalParams() # NodeRemovalParams | Specifies parameters to initiate/cancel node removal .
+
+    try:
+        # Mark Node for removal
+        api_response = api_instance.mark_node_removal(id, body)
+        print("The response of PlatformApi->mark_node_removal:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->mark_node_removal: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies id of node to cancel removal. |
- **body** | [**NodeRemovalParams**](NodeRemovalParams.md)| Specifies parameters to initiate/cancel node removal . |
+ **id** | **int**| Specifies id of node to cancel removal. | 
+ **body** | [**NodeRemovalParams**](NodeRemovalParams.md)| Specifies parameters to initiate/cancel node removal . | 
 
 ### Return type
 
@@ -5159,15 +6565,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -5185,45 +6591,68 @@ Import a signed certificate used for n2n communication
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.node_cert_request import NodeCertRequest
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.node_cert_result import NodeCertResult
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.node_cert_request import NodeCertRequest
+from cohesity_sdk.cluster.models.node_cert_result import NodeCertResult
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = NodeCertRequest(
-        ca_cert="ca_cert_example",
-        signed_cert="signed_cert_example",
-    ) # NodeCertRequest | The parameters to import the signed cert.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Import a signed certificate used for n2n communication
-	api_response = client.platform.node_import_signed_cert(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->node_import_signed_cert: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.NodeCertRequest() # NodeCertRequest | The parameters to import the signed cert.
+
+    try:
+        # Import a signed certificate used for n2n communication
+        api_response = api_instance.node_import_signed_cert(body)
+        print("The response of PlatformApi->node_import_signed_cert:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->node_import_signed_cert: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**NodeCertRequest**](NodeCertRequest.md)| The parameters to import the signed cert. |
+ **body** | [**NodeCertRequest**](NodeCertRequest.md)| The parameters to import the signed cert. | 
 
 ### Return type
 
@@ -5231,15 +6660,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -5248,7 +6677,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **node_information**
-> NodeInfo node_information()
+> NodeInfo node_information(show_services_version_info=show_services_version_info, only_check_node_reachability=only_check_node_reachability)
 
 Fetch Node General Information
 
@@ -5257,44 +6686,69 @@ Fetch Node General Information
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.node_info import NodeInfo
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.node_info import NodeInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-show_services_version_info = True # bool | Specifies whether to show version info of the services running on the node. (optional)
-only_check_node_reachability = False # bool | Specifies to show only node reachability details (optional) if omitted the server will use the default value of False
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Fetch Node General Information
-	api_response = client.platform.node_information(show_services_version_info=show_services_version_info, only_check_node_reachability=only_check_node_reachability)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->node_information: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    show_services_version_info = True # bool | Specifies whether to show version info of the services running on the node. (optional)
+    only_check_node_reachability = False # bool | Specifies to show only node reachability details (optional) (default to False)
+
+    try:
+        # Fetch Node General Information
+        api_response = api_instance.node_information(show_services_version_info=show_services_version_info, only_check_node_reachability=only_check_node_reachability)
+        print("The response of PlatformApi->node_information:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->node_information: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **show_services_version_info** | **bool**| Specifies whether to show version info of the services running on the node. | [optional]
- **only_check_node_reachability** | **bool**| Specifies to show only node reachability details | [optional] if omitted the server will use the default value of False
+ **show_services_version_info** | **bool**| Specifies whether to show version info of the services running on the node. | [optional] 
+ **only_check_node_reachability** | **bool**| Specifies to show only node reachability details | [optional] [default to False]
 
 ### Return type
 
@@ -5302,15 +6756,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -5328,36 +6782,62 @@ Fetch Node status Information
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.node_status_result import NodeStatusResult
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.node_status_result import NodeStatusResult
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Fetch Node status Information
-	api_response = client.platform.node_status()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->node_status: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Fetch Node status Information
+        api_response = api_instance.node_status()
+        print("The response of PlatformApi->node_status:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->node_status: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -5366,15 +6846,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -5392,44 +6872,68 @@ Get the SSH public key.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.public_key_response import PublicKeyResponse
-from cohesity_sdk.cluster.model.public_key_request import PublicKeyRequest
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.public_key_request import PublicKeyRequest
+from cohesity_sdk.cluster.models.public_key_response import PublicKeyResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = PublicKeyRequest(
-        workflow_type="DataProtection",
-    ) # PublicKeyRequest | Specifies the parameters required to retrieve SSH public key
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Get the SSH public key.
-	api_response = client.platform.public_key_request(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->public_key_request: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.PublicKeyRequest() # PublicKeyRequest | Specifies the parameters required to retrieve SSH public key
+
+    try:
+        # Get the SSH public key.
+        api_response = api_instance.public_key_request(body)
+        print("The response of PlatformApi->public_key_request:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->public_key_request: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**PublicKeyRequest**](PublicKeyRequest.md)| Specifies the parameters required to retrieve SSH public key |
+ **body** | [**PublicKeyRequest**](PublicKeyRequest.md)| Specifies the parameters required to retrieve SSH public key | 
 
 ### Return type
 
@@ -5437,15 +6941,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Describes the structure of SSH public key. |  -  |
@@ -5463,39 +6967,64 @@ Remove specified proxy server.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-name = "name_example" # str | Specifies name of the proxy server.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Remove specified proxy server.
-	client.platform.remove_proxy_server(name)
-except ApiException as e:
-	print("Exception when calling PlatformApi->remove_proxy_server: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    name = 'name_example' # str | Specifies name of the proxy server.
+
+    try:
+        # Remove specified proxy server.
+        api_instance.remove_proxy_server(name)
+    except Exception as e:
+        print("Exception when calling PlatformApi->remove_proxy_server: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Specifies name of the proxy server. |
+ **name** | **str**| Specifies name of the proxy server. | 
 
 ### Return type
 
@@ -5503,15 +7032,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -5529,39 +7058,64 @@ Remove remote disk
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies the id of the remote disk to remove.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Remove remote disk
-	client.platform.remove_remote_disk(id)
-except ApiException as e:
-	print("Exception when calling PlatformApi->remove_remote_disk: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    id = 56 # int | Specifies the id of the remote disk to remove.
+
+    try:
+        # Remove remote disk
+        api_instance.remove_remote_disk(id)
+    except Exception as e:
+        print("Exception when calling PlatformApi->remove_remote_disk: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the id of the remote disk to remove. |
+ **id** | **int**| Specifies the id of the remote disk to remove. | 
 
 ### Return type
 
@@ -5569,15 +7123,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -5595,45 +7149,68 @@ To reset IPMI BMC for given node
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.reset_ipmi_bmc_params import ResetIpmiBmcParams
-from cohesity_sdk.cluster.model.ipmi_text_response import IpmiTextResponse
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ipmi_text_response import IpmiTextResponse
+from cohesity_sdk.cluster.models.reset_ipmi_bmc_params import ResetIpmiBmcParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = ResetIpmiBmcParams(
-        node_id="node_id_example",
-        node_ip="node_ip_example",
-    ) # ResetIpmiBmcParams | Specifies the parameters to reset ipmi bmc for given node.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# To reset IPMI BMC for given node
-	api_response = client.platform.reset_ipmi_bmc(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->reset_ipmi_bmc: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.ResetIpmiBmcParams() # ResetIpmiBmcParams | Specifies the parameters to reset ipmi bmc for given node.
+
+    try:
+        # To reset IPMI BMC for given node
+        api_response = api_instance.reset_ipmi_bmc(body)
+        print("The response of PlatformApi->reset_ipmi_bmc:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->reset_ipmi_bmc: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ResetIpmiBmcParams**](ResetIpmiBmcParams.md)| Specifies the parameters to reset ipmi bmc for given node. |
+ **body** | [**ResetIpmiBmcParams**](ResetIpmiBmcParams.md)| Specifies the parameters to reset ipmi bmc for given node. | 
 
 ### Return type
 
@@ -5641,15 +7218,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -5658,7 +7235,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **restore_configuration**
-> [RestoreConfig] restore_configuration()
+> List[RestoreConfig] restore_configuration()
 
 Restore configuration.
 
@@ -5667,53 +7244,79 @@ Restore configuration.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.restore_config import RestoreConfig
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.restore_config import RestoreConfig
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Restore configuration.
-	api_response = client.platform.restore_configuration()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->restore_configuration: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+
+    try:
+        # Restore configuration.
+        api_response = api_instance.restore_configuration()
+        print("The response of PlatformApi->restore_configuration:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->restore_configuration: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**[RestoreConfig]**](RestoreConfig.md)
+[**List[RestoreConfig]**](RestoreConfig.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Specifies response of restore config during one-helios cluster create. |  -  |
@@ -5731,43 +7334,65 @@ Reboot or shutdown nodes in cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.node_power_operation import NodePowerOperation
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.node_power_operation import NodePowerOperation
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = NodePowerOperation(
-        node_id=1,
-        operation="poweroff",
-    ) # NodePowerOperation | Specifies the reboot or shutdown operation.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Reboot or shutdown nodes in cluster.
-	client.platform.set_node_power(body)
-except ApiException as e:
-	print("Exception when calling PlatformApi->set_node_power: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.NodePowerOperation() # NodePowerOperation | Specifies the reboot or shutdown operation.
+
+    try:
+        # Reboot or shutdown nodes in cluster.
+        api_instance.set_node_power(body)
+    except Exception as e:
+        print("Exception when calling PlatformApi->set_node_power: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**NodePowerOperation**](NodePowerOperation.md)| Specifies the reboot or shutdown operation. |
+ **body** | [**NodePowerOperation**](NodePowerOperation.md)| Specifies the reboot or shutdown operation. | 
 
 ### Return type
 
@@ -5775,15 +7400,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -5801,46 +7426,67 @@ Update Airgap config
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.airgap_config import AirgapConfig
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.airgap_config import AirgapConfig
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = AirgapConfig(
-        airgap_status="Enable",
-        exception_profiles=[
-            "exception_profiles_example",
-        ],
-    ) # AirgapConfig | Specifies the parameters to update airgap config.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update Airgap config
-	api_response = client.platform.update_airgap_config(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_airgap_config: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.AirgapConfig() # AirgapConfig | Specifies the parameters to update airgap config.
+
+    try:
+        # Update Airgap config
+        api_response = api_instance.update_airgap_config(body)
+        print("The response of PlatformApi->update_airgap_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_airgap_config: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AirgapConfig**](AirgapConfig.md)| Specifies the parameters to update airgap config. |
+ **body** | [**AirgapConfig**](AirgapConfig.md)| Specifies the parameters to update airgap config. | 
 
 ### Return type
 
@@ -5848,15 +7494,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Success |  -  |
@@ -5874,49 +7520,67 @@ Update AMQP Target Config
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_amqp_target_config import ClusterAMQPTargetConfig
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_amqp_target_config import ClusterAMQPTargetConfig
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = ClusterAMQPTargetConfig(
-        certificate="certificate_example",
-        exchange="exchange_example",
-        filer_id=1,
-        password="password_example",
-        server_ip="server_ip_example",
-        username="username_example",
-        virtual_host="virtual_host_example",
-    ) # ClusterAMQPTargetConfig | Specifies the parameters to update cluster AMQP target config.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update AMQP Target Config
-	api_response = client.platform.update_amqp_target_config(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_amqp_target_config: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.ClusterAMQPTargetConfig() # ClusterAMQPTargetConfig | Specifies the parameters to update cluster AMQP target config.
+
+    try:
+        # Update AMQP Target Config
+        api_response = api_instance.update_amqp_target_config(body)
+        print("The response of PlatformApi->update_amqp_target_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_amqp_target_config: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ClusterAMQPTargetConfig**](ClusterAMQPTargetConfig.md)| Specifies the parameters to update cluster AMQP target config. |
+ **body** | [**ClusterAMQPTargetConfig**](ClusterAMQPTargetConfig.md)| Specifies the parameters to update cluster AMQP target config. | 
 
 ### Return type
 
@@ -5924,15 +7588,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -5941,7 +7605,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_chassis_by_id**
-> Chassis update_chassis_by_id(id)
+> Chassis update_chassis_by_id(id, body=body)
 
 Update a chassis by chassis id.
 
@@ -5950,63 +7614,69 @@ Update a chassis by chassis id.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.chassis import Chassis
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.chassis import Chassis
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies the id of chassis.
-body = Chassis(
-        chassis_node_base=1,
-        hardware_model="hardware_model_example",
-        id=1,
-        location="location_example",
-        name="name_example",
-        node_ids=[
-            1,
-        ],
-        rack_id=1,
-        serial_number="serial_number_example",
-    ) # Chassis | Specifies the parameters to update chassis. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update a chassis by chassis id.
-	api_response = client.platform.update_chassis_by_id(id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_chassis_by_id: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Update a chassis by chassis id.
-	api_response = client.platform.update_chassis_by_id(id, body=body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_chassis_by_id: %s\n" % e)
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    id = 56 # int | Specifies the id of chassis.
+    body = cohesity_sdk.cluster.Chassis() # Chassis | Specifies the parameters to update chassis. (optional)
+
+    try:
+        # Update a chassis by chassis id.
+        api_response = api_instance.update_chassis_by_id(id, body=body)
+        print("The response of PlatformApi->update_chassis_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_chassis_by_id: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the id of chassis. |
- **body** | [**Chassis**](Chassis.md)| Specifies the parameters to update chassis. | [optional]
+ **id** | **int**| Specifies the id of chassis. | 
+ **body** | [**Chassis**](Chassis.md)| Specifies the parameters to update chassis. | [optional] 
 
 ### Return type
 
@@ -6014,15 +7684,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -6040,431 +7710,67 @@ Update a cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.cluster import Cluster
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster import Cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = Cluster(
-        aes_encryption_mode="aes_encryption_mode_example",
-        amqp_target_config=ClusterAMQPTargetConfig(
-            certificate="certificate_example",
-            exchange="exchange_example",
-            filer_id=1,
-            password="password_example",
-            server_ip="server_ip_example",
-            username="username_example",
-            virtual_host="virtual_host_example",
-        ),
-        apps_subnet=SubnetDefinition(
-            component="component_example",
-            description="description_example",
-            id=1,
-            ip="ip_example",
-            netmask_bits=1,
-            netmask_ip4="netmask_ip4_example",
-            nfs_access="kDisabled",
-            nfs_all_squash=True,
-            nfs_root_squash=True,
-            s3_access={},
-            smb_access="kDisabled",
-            tenant_id="tenant_id_example",
-        ),
-        assigned_racks_count=1,
-        attempt_agent_ports_upgrade=True,
-        auth_support_for_pkg_downloads=True,
-        auth_type="kPasswordOnly",
-        authorized_ssh_public_keys=[
-            "authorized_ssh_public_keys_example",
-        ],
-        available_metadata_space=1,
-        banner_enabled=True,
-        centralized_patching_enabled=True,
-        chassis_count=1,
-        cloud_rf1_enabled=True,
-        cluster_audit_log_config=ClusterAuditLogConfig(),
-        cluster_deployment_type="kStandAlone",
-        cluster_software_version="cluster_software_version_example",
-        cohesion_cluster_params=CohesionClusterConfigParams(
-        ),
-        created_time_msecs=1,
-        current_op_scheduled_time_secs=1,
-        current_operation="kRemoveNode",
-        current_time_msecs=1,
-        description="description_example",
-        disk_count_by_tier=[
-            CountByTier(
-                disk_count=1,
-                storage_tier="PCIeSSD",
-            ),
-        ],
-        dns_server_ips=[
-            "dns_server_ips_example",
-        ],
-        domain_names=[
-            "domain_names_example",
-        ],
-        enable_active_monitoring=True,
-        enable_patches_download=True,
-        enable_upgrade_pkg_polling=True,
-        encryption_key_rotation_period_secs=1,
-        eula_config=EulaConfig(
-            signed_by_user="signed_by_user_example",
-            signed_time=1,
-            signed_version=1,
-        ),
-        fault_tolerance_level="kNode",
-        file_services_audit_log_config=AuditLogConfig(
-            enabled=True,
-            retention_period_days=1,
-        ),
-        gateway="gateway_example",
-        google_analytics_enabled=True,
-        hardware_encryption_enabled=True,
-        hardware_info=ClusterHardwareInfo(
-            hardware_models=[
-                "hardware_models_example",
-            ],
-            hardware_vendors=[
-                "hardware_vendors_example",
-            ],
-        ),
-        ip_preference=1,
-        is_athena_subnet_clash=True,
-        is_cluster_mfa_enabled=True,
-        is_documentation_local=True,
-        is_patch_apply_aborted=True,
-        is_patch_revert_aborted=True,
-        is_upgrade_aborted=True,
-        kms_server_id=1,
-        language_locale="language_locale_example",
-        license_state=LicenseState(
-            failed_attempts=1,
-            state="kInProgressNewCluster",
-        ),
-        load_balancer_vip_config=LoadBalancerConfig(
-            gateway="gateway_example",
-            host_name="host_name_example",
-            subnet=SubnetDefinition(
-                component="component_example",
-                description="description_example",
-                id=1,
-                ip="ip_example",
-                netmask_bits=1,
-                netmask_ip4="netmask_ip4_example",
-                nfs_access="kDisabled",
-                nfs_all_squash=True,
-                nfs_root_squash=True,
-                s3_access={},
-                smb_access="kDisabled",
-                tenant_id="tenant_id_example",
-            ),
-            virtual_ip_vec=[
-                "virtual_ip_vec_example",
-            ],
-        ),
-        local_auth_domain_name="local_auth_domain_name_example",
-        local_groups_enabled=True,
-        metadata=ClusterMetadataRequest(
-            authentication_methods=ClusterAuthMethodsMetadata(
-                external_target_authentication=ExternalTargetAuthMetadata(
-                    trusted_profile_id="trusted_profile_id_example",
-                ),
-                fetch_roles_authentication=ClusterRolesAuthMetadata(
-                    trusted_profile_id="trusted_profile_id_example",
-                ),
-                kms_authentication=KmsAuthMetadata(
-                    trusted_profile_id="trusted_profile_id_example",
-                ),
-            ),
-            custom_properties=[
-                ClusterCustomMetadata(
-                    key="key_example",
-                    value="value_example",
-                ),
-            ],
-            docs=[
-                ClusterDocsMetadata(
-                    purpose="APIDocs",
-                    url="url_example",
-                ),
-            ],
-            service_endpoints=[
-                ServiceEndpointsMetadata(
-                    cloud_service_name="VPC",
-                    iam_params=IbmIAMCServiceMetadata(
-                        fqdn="fqdn_example",
-                    ),
-                    vpc_params=IbmVPCServiceMetadata(
-                        api_configs=[
-                            IbmVPCAPIMetadata(
-                                endpoint_suffix="endpoint_suffix_example",
-                                version="0480-72-88",
-                            ),
-                        ],
-                        fqdn="fqdn_example",
-                    ),
-                ),
-            ],
-            sla=ClusterSLAMetadata(
-                default_sla=1,
-                minimum_sla=1,
-            ),
-        ),
-        metadata_fault_tolerance_factor=1,
-        minimum_failure_domains_needed=1,
-        multi_tenancy_enabled=True,
-        name="name_example",
-        network_config=ClusterCreateNetworkConfig(
-            dhcp_network_config=ClusterDhcpNetworkConfig(
-                dns_servers=[
-                    "dns_servers_example",
-                ],
-            ),
-            domain_names=[
-                "domain_names_example",
-            ],
-            ip_preference="Ipv4",
-            manual_network_config=ClusterManualNetworkConfig(
-                dns_servers=[
-                    "dns_servers_example",
-                ],
-                gateway="gateway_example",
-                subnet_ip="subnet_ip_example",
-                subnet_mask="subnet_mask_example",
-            ),
-            ntp_servers=[
-                "ntp_servers_example",
-            ],
-            secondary_dhcp_network_config=ClusterDhcpNetworkConfig(
-                dns_servers=[
-                    "dns_servers_example",
-                ],
-            ),
-            secondary_manual_network_config=ClusterManualNetworkConfig(
-                dns_servers=[
-                    "dns_servers_example",
-                ],
-                gateway="gateway_example",
-                subnet_ip="subnet_ip_example",
-                subnet_mask="subnet_mask_example",
-            ),
-            use_dhcp=True,
-            vip_host_name="vip_host_name_example",
-            vips=[
-                "vips_example",
-            ],
-        ),
-        node_count=1,
-        node_ips="node_ips_example",
-        ntp_settings=NTPSettings(
-            ntp_authentication_enabled=True,
-            ntp_servers_internal=True,
-        ),
-        patch_apply_failure_error_message="patch_apply_failure_error_message_example",
-        patch_revert_failure_error_message="patch_revert_failure_error_message_example",
-        patch_revert_version="patch_revert_version_example",
-        patch_target_version="patch_target_version_example",
-        patch_v2_reverts_allowed=True,
-        patch_version="patch_version_example",
-        pcie_ssd_tier_rebalance_delay_secs=1,
-        proto_rpc_encryption_enabled=True,
-        proxy_server_config=ClusterProxyServerConfig(
-            ip="ip_example",
-            is_disabled=True,
-            password="password_example",
-            port=1,
-            username="username_example",
-        ),
-        proxy_vm_subnet="proxy_vm_subnet_example",
-        reverse_tunnel_enabled=True,
-        reverse_tunnel_end_time_msecs=1,
-        rigel_cluster_params=RigelClusterConfigParams(
-            dataplane_endpoint="dataplane_endpoint_example",
-            nodes=[
-                RigelClusterNode(
-                    node_id=1,
-                    node_ip="node_ip_example",
-                    secondary_node_ip="secondary_node_ip_example",
-                ),
-            ],
-        ),
-        s3_virtual_hosted_domain_names=[
-            "s3_virtual_hosted_domain_names_example",
-        ],
-        sata_hdd_tier_admission_control=1,
-        schema_info_list=[
-            SchemaInfo(
-                entity_id="entity_id_example",
-                key="key_example",
-                metric_name="metric_name_example",
-                schema_name="schema_name_example",
-            ),
-        ],
-        security_mode_dod=True,
-        smb_ad_disabled=True,
-        smb_multichannel_enabled=True,
-        software_type="kRegular",
-        split_key_host_access=True,
-        stats=ClusterStats(
-            cloud_usage_perf_stats=UsageAndPerformanceStats(
-                data_in_bytes=1,
-                data_in_bytes_after_reduction=1,
-                min_usable_physical_capacity_bytes=1,
-                num_bytes_read=1,
-                num_bytes_written=1,
-                physical_capacity_bytes=1,
-                read_ios=1,
-                read_latency_msecs=3.14,
-                system_capacity_bytes=1,
-                system_usage_bytes=1,
-                total_physical_raw_usage_bytes=1,
-                total_physical_usage_bytes=1,
-                write_ios=1,
-                write_latency_msecs=3.14,
-            ),
-            data_reduction_ratio=3.14,
-            data_usage_stats=DataUsageStatsDefinition(
-                cloud_data_written_bytes=1,
-                cloud_data_written_bytes_timestamp_usec=1,
-                cloud_total_physical_usage_bytes=1,
-                cloud_total_physical_usage_bytes_timestamp_usec=1,
-                data_in_bytes=1,
-                data_in_bytes_after_dedup=1,
-                data_in_bytes_after_dedup_timestamp_usec=1,
-                data_in_bytes_prev=1,
-                data_in_bytes_prev_timestamp_usec=1,
-                data_in_bytes_timestamp_usec=1,
-                data_protect_logical_usage_bytes=1,
-                data_protect_logical_usage_bytes_timestamp_usec=1,
-                data_protect_physical_usage_bytes=1,
-                data_protect_physical_usage_bytes_timestamp_usec=1,
-                data_written_bytes=1,
-                data_written_bytes_prev=1,
-                data_written_bytes_prev_timestamp_usec=1,
-                data_written_bytes_timestamp_usec=1,
-                file_services_logical_usage_bytes=1,
-                file_services_logical_usage_bytes_timestamp_usec=1,
-                file_services_physical_usage_bytes=1,
-                file_services_physical_usage_bytes_timestamp_usec=1,
-                local_data_written_bytes=1,
-                local_data_written_bytes_timestamp_usec=1,
-                local_tier_resiliency_impact_bytes=1,
-                local_tier_resiliency_impact_bytes_prev=1,
-                local_tier_resiliency_impact_bytes_prev_timestamp_usec=1,
-                local_tier_resiliency_impact_bytes_timestamp_usec=1,
-                local_total_physical_usage_bytes=1,
-                local_total_physical_usage_bytes_timestamp_usec=1,
-                num_directories=1,
-                num_directories_prev=1,
-                num_files=1,
-                num_files_prev=1,
-                outdated_logical_usage_bytes=1,
-                outdated_logical_usage_bytes_timestamp_usec=1,
-                storage_consumed_bytes=1,
-                storage_consumed_bytes_prev=1,
-                storage_consumed_bytes_prev_timestamp_usec=1,
-                storage_consumed_bytes_timestamp_usec=1,
-                total_logical_usage_bytes=1,
-                total_logical_usage_bytes_timestamp_usec=1,
-                unique_physical_data_bytes=1,
-                unique_physical_data_bytes_timestamp_usec=1,
-            ),
-            id=1,
-            local_usage_perf_stats=UsageAndPerformanceStats(
-                data_in_bytes=1,
-                data_in_bytes_after_reduction=1,
-                min_usable_physical_capacity_bytes=1,
-                num_bytes_read=1,
-                num_bytes_written=1,
-                physical_capacity_bytes=1,
-                read_ios=1,
-                read_latency_msecs=3.14,
-                system_capacity_bytes=1,
-                system_usage_bytes=1,
-                total_physical_raw_usage_bytes=1,
-                total_physical_usage_bytes=1,
-                write_ios=1,
-                write_latency_msecs=3.14,
-            ),
-            logical_stats=LogicalStats(
-                total_logical_usage_bytes=1,
-            ),
-            usage_perf_stats=UsageAndPerformanceStats(
-                data_in_bytes=1,
-                data_in_bytes_after_reduction=1,
-                min_usable_physical_capacity_bytes=1,
-                num_bytes_read=1,
-                num_bytes_written=1,
-                physical_capacity_bytes=1,
-                read_ios=1,
-                read_latency_msecs=3.14,
-                system_capacity_bytes=1,
-                system_usage_bytes=1,
-                total_physical_raw_usage_bytes=1,
-                total_physical_usage_bytes=1,
-                write_ios=1,
-                write_latency_msecs=3.14,
-            ),
-        ),
-        supported_config=SupportedConfig(
-            min_nodes_allowed=1,
-            supported_erasure_coding=[
-                "supported_erasure_coding_example",
-            ],
-        ),
-        target_software_version="target_software_version_example",
-        tenant_viewbox_sharing_enabled=True,
-        tiering_audit_log_config=AuditLogConfig(
-            enabled=True,
-            retention_period_days=1,
-        ),
-        timezone="timezone_example",
-        trust_domain="trust_domain_example",
-        turbo_mode=True,
-        upgrade_failure_error_string="upgrade_failure_error_string_example",
-        use_default_agent_ports=True,
-        use_heimdall=True,
-        used_metadata_space_pct=3.14,
-        views_global_settings=ViewsGlobalSettings(
-            enable_remote_views_gui_visibility=True,
-            enable_remote_views_visibility=True,
-            enable_smb_auth=True,
-            enable_smb_multi_channel=True,
-            s3_virtual_hosted_domain_names=[
-                "s3_virtual_hosted_domain_names_example",
-            ],
-        ),
-    ) # Cluster | Specifies the parameters to update cluster.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update a cluster.
-	api_response = client.platform.update_cluster(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_cluster: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.Cluster() # Cluster | Specifies the parameters to update cluster.
+
+    try:
+        # Update a cluster.
+        api_response = api_instance.update_cluster(body)
+        print("The response of PlatformApi->update_cluster:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_cluster: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Cluster**](Cluster.md)| Specifies the parameters to update cluster. |
+ **body** | [**Cluster**](Cluster.md)| Specifies the parameters to update cluster. | 
 
 ### Return type
 
@@ -6472,15 +7778,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -6498,53 +7804,68 @@ To update IPMI LAN info for the cluster
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.ipmi_text_response import IpmiTextResponse
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_ipmi_lan_info import ClusterIpmiLanInfo
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_ipmi_lan_info import ClusterIpmiLanInfo
+from cohesity_sdk.cluster.models.ipmi_text_response import IpmiTextResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = ClusterIpmiLanInfo(
-        cluster_ipmi_gateway="cluster_ipmi_gateway_example",
-        cluster_ipmi_subnet_mask="cluster_ipmi_subnet_mask_example",
-        node_ipmi_entries=[
-            NodeIpmiInfoEntry(
-                node_ip="node_ip_example",
-                node_ipmi_gateway="node_ipmi_gateway_example",
-                node_ipmi_ip="node_ipmi_ip_example",
-                node_ipmi_subnet_mask="node_ipmi_subnet_mask_example",
-            ),
-        ],
-    ) # ClusterIpmiLanInfo | Specifies the parameters to update the information about LAN for the cluster in which current node is present.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# To update IPMI LAN info for the cluster
-	api_response = client.platform.update_cluster_ipmi_lan_info(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_cluster_ipmi_lan_info: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.ClusterIpmiLanInfo() # ClusterIpmiLanInfo | Specifies the parameters to update the information about LAN for the cluster in which current node is present.
+
+    try:
+        # To update IPMI LAN info for the cluster
+        api_response = api_instance.update_cluster_ipmi_lan_info(body)
+        print("The response of PlatformApi->update_cluster_ipmi_lan_info:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_cluster_ipmi_lan_info: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ClusterIpmiLanInfo**](ClusterIpmiLanInfo.md)| Specifies the parameters to update the information about LAN for the cluster in which current node is present. |
+ **body** | [**ClusterIpmiLanInfo**](ClusterIpmiLanInfo.md)| Specifies the parameters to update the information about LAN for the cluster in which current node is present. | 
 
 ### Return type
 
@@ -6552,15 +7873,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -6578,55 +7899,68 @@ Update cluster snapshot policy.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.update_snapshot_policy_params import UpdateSnapshotPolicyParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_snapshot_policy import ClusterSnapshotPolicy
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_snapshot_policy import ClusterSnapshotPolicy
+from cohesity_sdk.cluster.models.update_snapshot_policy_params import UpdateSnapshotPolicyParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = UpdateSnapshotPolicyParams(
-        days_of_month=[
-            1,
-        ],
-        days_of_week=[
-            "days_of_week_example",
-        ],
-        num_of_days_to_keep=1,
-        num_of_versions_to_keep=1,
-        suspend_retention_policy=True,
-        suspend_schedule_policy=True,
-        time="time_example",
-        time_zone="time_zone_example",
-    ) # UpdateSnapshotPolicyParams | Specifies the parameters to update cluster snapshot policy.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update cluster snapshot policy.
-	api_response = client.platform.update_cluster_snapshot_policy(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_cluster_snapshot_policy: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.UpdateSnapshotPolicyParams() # UpdateSnapshotPolicyParams | Specifies the parameters to update cluster snapshot policy.
+
+    try:
+        # Update cluster snapshot policy.
+        api_response = api_instance.update_cluster_snapshot_policy(body)
+        print("The response of PlatformApi->update_cluster_snapshot_policy:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_cluster_snapshot_policy: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UpdateSnapshotPolicyParams**](UpdateSnapshotPolicyParams.md)| Specifies the parameters to update cluster snapshot policy. |
+ **body** | [**UpdateSnapshotPolicyParams**](UpdateSnapshotPolicyParams.md)| Specifies the parameters to update cluster snapshot policy. | 
 
 ### Return type
 
@@ -6634,15 +7968,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -6651,7 +7985,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_cluster_software**
-> ClusterSWUpdateResponseParams update_cluster_software(body)
+> List[ClusterOperationTypeAndId] update_cluster_software(body)
 
 Update cluster software
 
@@ -6660,100 +7994,84 @@ Update cluster software
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.cluster_sw_update_response_params import ClusterSWUpdateResponseParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_sw_update_params import ClusterSWUpdateParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_operation_type_and_id import ClusterOperationTypeAndId
+from cohesity_sdk.cluster.models.cluster_sw_update_params import ClusterSWUpdateParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = ClusterSWUpdateParams(
-        assess_software_update_params=AssessSoftwareUpdateParams(
-            package_type="Upgrade",
-            phase="Pre",
-            version_name="version_name_example",
-        ),
-        node_type="ClusterNode",
-        operation_type="DownloadUpgradePackage",
-        patch_params=PatchParams(
-            abort_on_pre_checks_failure=True,
-            apply_patch_in_parallel=False,
-            node_ids=[
-                1,
-            ],
-            package_url=ArtifactUrl(
-                auth_headers=[
-                    AuthHeader(
-                        key="key_example",
-                        value="value_example",
-                    ),
-                ],
-                url="url_example",
-            ),
-            version_name="version_name_example",
-        ),
-        upgrade_params=UpgradeParams(
-            abort_on_pre_checks_failure=True,
-            auto_agent_upgrade=True,
-            ignore_sw_incompatibility=False,
-            md5_sum="md5_sum_example",
-            package_url=ArtifactUrl(
-                auth_headers=[
-                    AuthHeader(
-                        key="key_example",
-                        value="value_example",
-                    ),
-                ],
-                url="url_example",
-            ),
-            run_upgrade_in_parallel=False,
-            version_name="version_name_example",
-        ),
-    ) # ClusterSWUpdateParams | The parameters to update the software on the cluster.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update cluster software
-	api_response = client.platform.update_cluster_software(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_cluster_software: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.ClusterSWUpdateParams() # ClusterSWUpdateParams | The parameters to update the software on the cluster.
+
+    try:
+        # Update cluster software
+        api_response = api_instance.update_cluster_software(body)
+        print("The response of PlatformApi->update_cluster_software:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_cluster_software: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ClusterSWUpdateParams**](ClusterSWUpdateParams.md)| The parameters to update the software on the cluster. |
+ **body** | [**ClusterSWUpdateParams**](ClusterSWUpdateParams.md)| The parameters to update the software on the cluster. | 
 
 ### Return type
 
-[**ClusterSWUpdateResponseParams**](ClusterSWUpdateResponseParams.md)
+[**List[ClusterOperationTypeAndId]**](ClusterOperationTypeAndId.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Success |  -  |
@@ -6762,7 +8080,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_cluster_subnets**
-> [Subnet] update_cluster_subnets(body)
+> List[Subnet] update_cluster_subnets(body)
 
 Update the Cluster Subnets
 
@@ -6771,73 +8089,84 @@ Update the Cluster Subnets
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.subnet import Subnet
-from cohesity_sdk.cluster.model.update_cluster_subnets_params import UpdateClusterSubnetsParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.subnet import Subnet
+from cohesity_sdk.cluster.models.update_cluster_subnets_params import UpdateClusterSubnetsParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = UpdateClusterSubnetsParams(
-        cluster_subnets=[
-            Subnet(
-                component="component_example",
-                description="description_example",
-                gateway="gateway_example",
-                id=1,
-                ip="ip_example",
-                netmask_bits=1,
-                netmask_ip4="netmask_ip4_example",
-                nfs_access="kDisabled",
-                nfs_squash="kNone",
-                s3_access="kDisabled",
-                smb_access="kDisabled",
-            ),
-        ],
-    ) # UpdateClusterSubnetsParams | 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update the Cluster Subnets
-	api_response = client.platform.update_cluster_subnets(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_cluster_subnets: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.UpdateClusterSubnetsParams() # UpdateClusterSubnetsParams | 
+
+    try:
+        # Update the Cluster Subnets
+        api_response = api_instance.update_cluster_subnets(body)
+        print("The response of PlatformApi->update_cluster_subnets:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_cluster_subnets: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UpdateClusterSubnetsParams**](UpdateClusterSubnetsParams.md)|  |
+ **body** | [**UpdateClusterSubnetsParams**](UpdateClusterSubnetsParams.md)|  | 
 
 ### Return type
 
-[**[Subnet]**](Subnet.md)
+[**List[Subnet]**](Subnet.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -6854,90 +8183,70 @@ Update vlan
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_vlan_params import ClusterVlanParams
-from cohesity_sdk.cluster.model.update_cluster_vlan_params import UpdateClusterVlanParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_vlan_params import ClusterVlanParams
+from cohesity_sdk.cluster.models.update_cluster_vlan_params import UpdateClusterVlanParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-vlan_interface_group_name = "vlanInterfaceGroupName_example" # str | Vlan interface group name, it should be in interface_group_name.vlan_id format.
-body = UpdateClusterVlanParams(
-        all_tenant_access=False,
-        app_ips=[
-            "app_ips_example",
-        ],
-        description="description_example",
-        dns_delegation_zones=[
-            DnsDelegationZone(
-                dns_zone_resolved_vips=[
-                    "dns_zone_resolved_vips_example",
-                ],
-                dns_zone_vips=[
-                    "dns_zone_vips_example",
-                ],
-                name="name_example",
-            ),
-        ],
-        ecmp_enabled=False,
-        fqdn="fqdn_example",
-        gateway="gateway_example",
-        gateway_v6="gateway_v6_example",
-        interface_name="interface_name_example",
-        ip_addresses_type="Ipv4",
-        ip_pools=[
-            IpPool(
-                ips=[
-                    "ips_example",
-                ],
-                name="name_example",
-            ),
-        ],
-        ip_ranges=[
-            IpRange(
-                end_ip="end_ip_example",
-                start_ip="start_ip_example",
-            ),
-        ],
-        ips=[
-            "ips_example",
-        ],
-        loopback_interface_group_id=1,
-        mtu=1,
-        subnet="subnet_example",
-        subnet_v6="subnet_v6_example",
-        tenant_id="tenant_id_example",
-        vlan_name="vlan_name_example",
-    ) # UpdateClusterVlanParams | Parameters to update vlan on the cluster.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update vlan
-	api_response = client.platform.update_cluster_vlan(vlan_interface_group_name, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_cluster_vlan: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    vlan_interface_group_name = 'vlan_interface_group_name_example' # str | Vlan interface group name, it should be in interface_group_name.vlan_id format.
+    body = cohesity_sdk.cluster.UpdateClusterVlanParams() # UpdateClusterVlanParams | Parameters to update vlan on the cluster.
+
+    try:
+        # Update vlan
+        api_response = api_instance.update_cluster_vlan(vlan_interface_group_name, body)
+        print("The response of PlatformApi->update_cluster_vlan:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_cluster_vlan: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **vlan_interface_group_name** | **str**| Vlan interface group name, it should be in interface_group_name.vlan_id format. |
- **body** | [**UpdateClusterVlanParams**](UpdateClusterVlanParams.md)| Parameters to update vlan on the cluster. |
+ **vlan_interface_group_name** | **str**| Vlan interface group name, it should be in interface_group_name.vlan_id format. | 
+ **body** | [**UpdateClusterVlanParams**](UpdateClusterVlanParams.md)| Parameters to update vlan on the cluster. | 
 
 ### Return type
 
@@ -6945,15 +8254,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -6962,7 +8271,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_feature_flag**
-> FeatureFlagList update_feature_flag(body)
+> List[FeatureFlag] update_feature_flag(body)
 
 Update feature flag override status.
 
@@ -6971,65 +8280,84 @@ Update feature flag override status.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.feature_flag_list import FeatureFlagList
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.update_feature_flag_params import UpdateFeatureFlagParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.feature_flag import FeatureFlag
+from cohesity_sdk.cluster.models.update_feature_flag_params import UpdateFeatureFlagParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = UpdateFeatureFlagParams(
-        clear=True,
-        is_approved=True,
-        is_ui_feature=True,
-        name="name_example",
-        reason="reason_example",
-        timestamp=1,
-    ) # UpdateFeatureFlagParams | Param for feature flag override request.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update feature flag override status.
-	api_response = client.platform.update_feature_flag(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_feature_flag: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.UpdateFeatureFlagParams() # UpdateFeatureFlagParams | Param for feature flag override request.
+
+    try:
+        # Update feature flag override status.
+        api_response = api_instance.update_feature_flag(body)
+        print("The response of PlatformApi->update_feature_flag:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_feature_flag: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UpdateFeatureFlagParams**](UpdateFeatureFlagParams.md)| Param for feature flag override request. |
+ **body** | [**UpdateFeatureFlagParams**](UpdateFeatureFlagParams.md)| Param for feature flag override request. | 
 
 ### Return type
 
-[**FeatureFlagList**](FeatureFlagList.md)
+[**List[FeatureFlag]**](FeatureFlag.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -7047,50 +8375,68 @@ Update Host Mappings
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.host_mappings_parameters import HostMappingsParameters
-from cohesity_sdk.cluster.model.host_mappings import HostMappings
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.host_entry import HostEntry
+from cohesity_sdk.cluster.models.host_mappings import HostMappings
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = HostMappingsParameters([
-        HostEntry(
-            description="description_example",
-            domain_names=[
-                "domain_names_example",
-            ],
-            ip="ip_example",
-        ),
-    ]) # HostMappingsParameters | 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update Host Mappings
-	api_response = client.platform.update_hosts(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_hosts: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = [cohesity_sdk.cluster.HostEntry()] # List[HostEntry] | 
+
+    try:
+        # Update Host Mappings
+        api_response = api_instance.update_hosts(body)
+        print("The response of PlatformApi->update_hosts:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_hosts: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**HostMappingsParameters**](HostMappingsParameters.md)|  |
+ **body** | [**List[HostEntry]**](HostEntry.md)|  | 
 
 ### Return type
 
@@ -7098,15 +8444,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -7124,61 +8470,70 @@ Update interface group
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.interface_group import InterfaceGroup
-from cohesity_sdk.cluster.model.interface_group_params import InterfaceGroupParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.interface_group import InterfaceGroup
+from cohesity_sdk.cluster.models.interface_group_params import InterfaceGroupParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-name = "name_example" # str | Name of the interface group.
-body = InterfaceGroupParams(
-        name="name_example",
-        network_params=InterfaceGroupNetworkParams(
-            bond_interface_params=BondInterfaceNetworkParams(
-                bonding_mode="ActiveBackup",
-                lacp_rate="Slow",
-                xmit_hash_policy="layer2",
-            ),
-            mtu=1,
-        ),
-        node_interface_params=[
-            NodeInterfaceParams(
-                interface_name="interface_name_example",
-                node_id=1,
-            ),
-        ],
-        type="Bond",
-    ) # InterfaceGroupParams | Parameters to update an interface group on the cluster.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update interface group
-	api_response = client.platform.update_interface_group(name, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_interface_group: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    name = 'name_example' # str | Name of the interface group.
+    body = cohesity_sdk.cluster.InterfaceGroupParams() # InterfaceGroupParams | Parameters to update an interface group on the cluster.
+
+    try:
+        # Update interface group
+        api_response = api_instance.update_interface_group(name, body)
+        print("The response of PlatformApi->update_interface_group:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_interface_group: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the interface group. |
- **body** | [**InterfaceGroupParams**](InterfaceGroupParams.md)| Parameters to update an interface group on the cluster. |
+ **name** | **str**| Name of the interface group. | 
+ **body** | [**InterfaceGroupParams**](InterfaceGroupParams.md)| Parameters to update an interface group on the cluster. | 
 
 ### Return type
 
@@ -7186,15 +8541,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -7212,47 +8567,68 @@ To update IPMI User Info for node
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.ipmi_text_response import IpmiTextResponse
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.update_ipmi_user import UpdateIpmiUser
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ipmi_text_response import IpmiTextResponse
+from cohesity_sdk.cluster.models.update_ipmi_user import UpdateIpmiUser
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = UpdateIpmiUser(
-        node_id="node_id_example",
-        node_ip="node_ip_example",
-        password="password_example",
-        username="username_example",
-    ) # UpdateIpmiUser | Specifies the parameters to add an ipmi user to node.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# To update IPMI User Info for node
-	api_response = client.platform.update_ipmi_user(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_ipmi_user: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.UpdateIpmiUser() # UpdateIpmiUser | Specifies the parameters to add an ipmi user to node.
+
+    try:
+        # To update IPMI User Info for node
+        api_response = api_instance.update_ipmi_user(body)
+        print("The response of PlatformApi->update_ipmi_user:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_ipmi_user: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UpdateIpmiUser**](UpdateIpmiUser.md)| Specifies the parameters to add an ipmi user to node. |
+ **body** | [**UpdateIpmiUser**](UpdateIpmiUser.md)| Specifies the parameters to add an ipmi user to node. | 
 
 ### Return type
 
@@ -7260,15 +8636,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -7286,43 +8662,67 @@ Update whether the cluster is a DMaaS cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.d_maa_s_info import DMaaSInfo
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.d_maa_s_info import DMaaSInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = DMaaSInfo(
-        is_dmaas=True,
-    ) # DMaaSInfo | Param to update whether the cluster is a DMaaS cluster.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update whether the cluster is a DMaaS cluster.
-	api_response = client.platform.update_is_d_maa_s_cluster(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_is_d_maa_s_cluster: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.DMaaSInfo() # DMaaSInfo | Param to update whether the cluster is a DMaaS cluster.
+
+    try:
+        # Update whether the cluster is a DMaaS cluster.
+        api_response = api_instance.update_is_d_maa_s_cluster(body)
+        print("The response of PlatformApi->update_is_d_maa_s_cluster:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_is_d_maa_s_cluster: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**DMaaSInfo**](DMaaSInfo.md)| Param to update whether the cluster is a DMaaS cluster. |
+ **body** | [**DMaaSInfo**](DMaaSInfo.md)| Param to update whether the cluster is a DMaaS cluster. | 
 
 ### Return type
 
@@ -7330,15 +8730,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -7356,44 +8756,67 @@ Update login banner.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.login_banner import LoginBanner
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.login_banner import LoginBanner
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = LoginBanner(
-        content="content_example",
-        is_enabled=True,
-    ) # LoginBanner | Specifies text to update the login banner.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update login banner.
-	api_response = client.platform.update_login_banner(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_login_banner: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.LoginBanner() # LoginBanner | Specifies text to update the login banner.
+
+    try:
+        # Update login banner.
+        api_response = api_instance.update_login_banner(body)
+        print("The response of PlatformApi->update_login_banner:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_login_banner: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**LoginBanner**](LoginBanner.md)| Specifies text to update the login banner. |
+ **body** | [**LoginBanner**](LoginBanner.md)| Specifies text to update the login banner. | 
 
 ### Return type
 
@@ -7401,15 +8824,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -7427,53 +8850,67 @@ Update NTP servers.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.ntp_server_list import NtpServerList
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ntp_server_list import NtpServerList
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = NtpServerList(
-        ntp_authentication_enabled=True,
-        ntp_server_auth_info=[
-            NtpAuthKeyInfo(
-                ntp_server_address="ntp_server_address_example",
-                ntp_server_auth_key_encryption_algorithm="SHA1",
-                ntp_server_auth_key_id=1,
-                ntp_server_auth_key_value="ntp_server_auth_key_value_example",
-            ),
-        ],
-        ntp_servers=[
-            "ntp_servers_example",
-        ],
-    ) # NtpServerList | Specifies parameters to update NTP sever configuration.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update NTP servers.
-	api_response = client.platform.update_ntp_servers(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_ntp_servers: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.NtpServerList() # NtpServerList | Specifies parameters to update NTP sever configuration.
+
+    try:
+        # Update NTP servers.
+        api_response = api_instance.update_ntp_servers(body)
+        print("The response of PlatformApi->update_ntp_servers:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_ntp_servers: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**NtpServerList**](NtpServerList.md)| Specifies parameters to update NTP sever configuration. |
+ **body** | [**NtpServerList**](NtpServerList.md)| Specifies parameters to update NTP sever configuration. | 
 
 ### Return type
 
@@ -7481,15 +8918,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -7506,56 +8943,69 @@ Update specified proxy server.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.proxy_server import ProxyServer
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.proxy_server import ProxyServer
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-name = "name_example" # str | Specifies name of the proxy server.
-body = ProxyServer(
-        address="address_example",
-        is_disabled=True,
-        name="name_example",
-        port=1,
-        schemes=[
-            "schemes_example",
-        ],
-        services=[
-            "services_example",
-        ],
-        type="type_example",
-        username="username_example",
-    ) # ProxyServer | Specifies parameters to update the proxy server.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update specified proxy server.
-	api_response = client.platform.update_proxy_server(name, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_proxy_server: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    name = 'name_example' # str | Specifies name of the proxy server.
+    body = cohesity_sdk.cluster.ProxyServer() # ProxyServer | Specifies parameters to update the proxy server.
+
+    try:
+        # Update specified proxy server.
+        api_response = api_instance.update_proxy_server(name, body)
+        print("The response of PlatformApi->update_proxy_server:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_proxy_server: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Specifies name of the proxy server. |
- **body** | [**ProxyServer**](ProxyServer.md)| Specifies parameters to update the proxy server. |
+ **name** | **str**| Specifies name of the proxy server. | 
+ **body** | **ProxyServer**| Specifies parameters to update the proxy server. | 
 
 ### Return type
 
@@ -7563,15 +9013,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -7580,7 +9030,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_rack_by_id**
-> Rack update_rack_by_id(id)
+> Rack update_rack_by_id(id, body=body)
 
 
 
@@ -7589,57 +9039,68 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.rack import Rack
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.rack import Rack
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies the id of rack.
-body = Rack(
-        chassis_ids=[
-            1,
-        ],
-        id=1,
-        location="location_example",
-        name="name_example",
-    ) # Rack | Specifies the parameters to update rack. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	api_response = client.platform.update_rack_by_id(id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_rack_by_id: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	api_response = client.platform.update_rack_by_id(id, body=body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_rack_by_id: %s\n" % e)
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    id = 56 # int | Specifies the id of rack.
+    body = cohesity_sdk.cluster.Rack() # Rack | Specifies the parameters to update rack. (optional)
+
+    try:
+        api_response = api_instance.update_rack_by_id(id, body=body)
+        print("The response of PlatformApi->update_rack_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_rack_by_id: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the id of rack. |
- **body** | [**Rack**](Rack.md)| Specifies the parameters to update rack. | [optional]
+ **id** | **int**| Specifies the id of rack. | 
+ **body** | [**Rack**](Rack.md)| Specifies the parameters to update rack. | [optional] 
 
 ### Return type
 
@@ -7647,15 +9108,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -7673,52 +9134,67 @@ Update racks
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.racks import Racks
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.racks import Racks
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = Racks(
-        racks=[
-            Rack(
-                chassis_ids=[
-                    1,
-                ],
-                id=1,
-                location="location_example",
-                name="name_example",
-            ),
-        ],
-    ) # Racks | Specifies the parameters to update racks.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update racks
-	api_response = client.platform.update_racks(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_racks: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.Racks() # Racks | Specifies the parameters to update racks.
+
+    try:
+        # Update racks
+        api_response = api_instance.update_racks(body)
+        print("The response of PlatformApi->update_racks:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_racks: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Racks**](Racks.md)| Specifies the parameters to update racks. |
+ **body** | [**Racks**](Racks.md)| Specifies the parameters to update racks. | 
 
 ### Return type
 
@@ -7726,15 +9202,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -7743,7 +9219,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_restore_configuration**
-> [RestoreConfig] update_restore_configuration(body)
+> List[RestoreConfig] update_restore_configuration(body)
 
 Update Restore configuration.
 
@@ -7752,74 +9228,84 @@ Update Restore configuration.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.restore_config_payload import RestoreConfigPayload
-from cohesity_sdk.cluster.model.restore_config import RestoreConfig
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.restore_config import RestoreConfig
+from cohesity_sdk.cluster.models.restore_config_payload import RestoreConfigPayload
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = RestoreConfigPayload(
-        object_path=ObjectPath(
-            data_store_path=DataStorePath(
-                elastic="elastic_example",
-                mongo="mongo_example",
-                postgres="postgres_example",
-            ),
-            default_path="default_path_example",
-        ),
-        s3_config=S3RestoreConfig(
-            access_key="access_key_example",
-            bucket="bucket_example",
-            host="host_example",
-            region="region_example",
-            secret_key="secret_key_example",
-        ),
-    ) # RestoreConfigPayload | 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update Restore configuration.
-	api_response = client.platform.update_restore_configuration(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_restore_configuration: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.RestoreConfigPayload() # RestoreConfigPayload | 
+
+    try:
+        # Update Restore configuration.
+        api_response = api_instance.update_restore_configuration(body)
+        print("The response of PlatformApi->update_restore_configuration:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_restore_configuration: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**RestoreConfigPayload**](RestoreConfigPayload.md)|  |
+ **body** | **RestoreConfigPayload**|  | 
 
 ### Return type
 
-[**[RestoreConfig]**](RestoreConfig.md)
+[**List[RestoreConfig]**](RestoreConfig.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Specifies response of restore config during one-helios cluster create. |  -  |
@@ -7828,7 +9314,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_service_gflags**
-> [ServiceGflags] update_service_gflags(body)
+> List[ServiceGflags] update_service_gflags(body)
 
 Update the gflags
 
@@ -7837,75 +9323,84 @@ Update the gflags
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.update_gflag_parameters import UpdateGflagParameters
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.service_gflags import ServiceGflags
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.service_gflags import ServiceGflags
+from cohesity_sdk.cluster.models.update_gflag_parameters import UpdateGflagParameters
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = UpdateGflagParameters(
-        effective_now=True,
-        reason="reason_example",
-        service_flags=ServiceGflags(
-            gflags=[
-                Gflag(
-                    clear=False,
-                    name="name_example",
-                    product_model="product_model_example",
-                    reason="reason_example",
-                    timestamp=1,
-                    value="value_example",
-                ),
-            ],
-            service_name="kInvalidService",
-        ),
-        skip_existence_check=True,
-    ) # UpdateGflagParameters | 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update the gflags
-	api_response = client.platform.update_service_gflags(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_service_gflags: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.UpdateGflagParameters() # UpdateGflagParameters | 
+
+    try:
+        # Update the gflags
+        api_response = api_instance.update_service_gflags(body)
+        print("The response of PlatformApi->update_service_gflags:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_service_gflags: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UpdateGflagParameters**](UpdateGflagParameters.md)|  |
+ **body** | [**UpdateGflagParameters**](UpdateGflagParameters.md)|  | 
 
 ### Return type
 
-[**[ServiceGflags]**](ServiceGflags.md)
+[**List[ServiceGflags]**](ServiceGflags.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -7923,42 +9418,68 @@ Update SMTP configuration.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.smtp_configuration import SMTPConfiguration
-from cohesity_sdk.cluster.model.update_smtp_params import UpdateSMTPParams
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.smtp_configuration import SMTPConfiguration
+from cohesity_sdk.cluster.models.update_smtp_params import UpdateSMTPParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = UpdateSMTPParams() # UpdateSMTPParams | Specifies the parameters to update cluster SMTP configuration.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update SMTP configuration.
-	api_response = client.platform.update_smtp_configuration(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_smtp_configuration: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.UpdateSMTPParams() # UpdateSMTPParams | Specifies the parameters to update cluster SMTP configuration.
+
+    try:
+        # Update SMTP configuration.
+        api_response = api_instance.update_smtp_configuration(body)
+        print("The response of PlatformApi->update_smtp_configuration:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_smtp_configuration: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UpdateSMTPParams**](UpdateSMTPParams.md)| Specifies the parameters to update cluster SMTP configuration. |
+ **body** | [**UpdateSMTPParams**](UpdateSMTPParams.md)| Specifies the parameters to update cluster SMTP configuration. | 
 
 ### Return type
 
@@ -7966,15 +9487,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -7992,50 +9513,67 @@ Update support channel configuration.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.support_channel_config import SupportChannelConfig
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.support_channel_config import SupportChannelConfig
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = SupportChannelConfig(
-        enable_extension=True,
-        end_time_usecs=1,
-        extension_duration_hours=1,
-        force_enable_reverse_tunnel=True,
-        is_enabled=True,
-        node_ids=[
-            1,
-        ],
-    ) # SupportChannelConfig | Specifies the support channel configuration.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update support channel configuration.
-	api_response = client.platform.update_support_channel_config(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_support_channel_config: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.SupportChannelConfig() # SupportChannelConfig | Specifies the support channel configuration.
+
+    try:
+        # Update support channel configuration.
+        api_response = api_instance.update_support_channel_config(body)
+        print("The response of PlatformApi->update_support_channel_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->update_support_channel_config: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SupportChannelConfig**](SupportChannelConfig.md)| Specifies the support channel configuration. |
+ **body** | [**SupportChannelConfig**](SupportChannelConfig.md)| Specifies the support channel configuration. | 
 
 ### Return type
 
@@ -8043,15 +9581,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -8069,41 +9607,67 @@ Get upgrade checks results.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.upgrade_checks_results import UpgradeChecksResults
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.upgrade_checks_results import UpgradeChecksResults
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-test_run_instance_id = 1 # int | Specifies test run instance for which to fetch results
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Get upgrade checks results.
-	api_response = client.platform.upgrade_check_get_results(test_run_instance_id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->upgrade_check_get_results: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    test_run_instance_id = 56 # int | Specifies test run instance for which to fetch results
+
+    try:
+        # Get upgrade checks results.
+        api_response = api_instance.upgrade_check_get_results(test_run_instance_id)
+        print("The response of PlatformApi->upgrade_check_get_results:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->upgrade_check_get_results: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **test_run_instance_id** | **int**| Specifies test run instance for which to fetch results |
+ **test_run_instance_id** | **int**| Specifies test run instance for which to fetch results | 
 
 ### Return type
 
@@ -8111,15 +9675,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -8137,44 +9701,68 @@ Run upgrade checks on cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.upgrade_check_run_tests_result import UpgradeCheckRunTestsResult
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.upgrade_check_run_tests_request import UpgradeCheckRunTestsRequest
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.upgrade_check_run_tests_request import UpgradeCheckRunTestsRequest
+from cohesity_sdk.cluster.models.upgrade_check_run_tests_result import UpgradeCheckRunTestsResult
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = UpgradeCheckRunTestsRequest(
-        request_type="PreUpgrade",
-    ) # UpgradeCheckRunTestsRequest | Run upgrade checks on cluster.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Run upgrade checks on cluster.
-	api_response = client.platform.upgrade_check_run_tests(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->upgrade_check_run_tests: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.UpgradeCheckRunTestsRequest() # UpgradeCheckRunTestsRequest | Run upgrade checks on cluster.
+
+    try:
+        # Run upgrade checks on cluster.
+        api_response = api_instance.upgrade_check_run_tests(body)
+        print("The response of PlatformApi->upgrade_check_run_tests:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->upgrade_check_run_tests: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UpgradeCheckRunTestsRequest**](UpgradeCheckRunTestsRequest.md)| Run upgrade checks on cluster. |
+ **body** | [**UpgradeCheckRunTestsRequest**](UpgradeCheckRunTestsRequest.md)| Run upgrade checks on cluster. | 
 
 ### Return type
 
@@ -8182,15 +9770,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -8208,49 +9796,68 @@ Upgrade a free node.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.node_upgrade_parameters import NodeUpgradeParameters
-from cohesity_sdk.cluster.model.node_upgrade_result import NodeUpgradeResult
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.node_upgrade_parameters import NodeUpgradeParameters
+from cohesity_sdk.cluster.models.node_upgrade_result import NodeUpgradeResult
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = NodeUpgradeParameters(
-        node_ids=[
-            1,
-        ],
-        target_sw_version="target_sw_version_example",
-        upgrade_all_free_nodes=True,
-        upgrade_self=True,
-    ) # NodeUpgradeParameters | The parameters to upgrade free node(s).
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Upgrade a free node.
-	api_response = client.platform.upgrade_nodes(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->upgrade_nodes: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.NodeUpgradeParameters() # NodeUpgradeParameters | The parameters to upgrade free node(s).
+
+    try:
+        # Upgrade a free node.
+        api_response = api_instance.upgrade_nodes(body)
+        print("The response of PlatformApi->upgrade_nodes:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->upgrade_nodes: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**NodeUpgradeParameters**](NodeUpgradeParameters.md)| The parameters to upgrade free node(s). |
+ **body** | [**NodeUpgradeParameters**](NodeUpgradeParameters.md)| The parameters to upgrade free node(s). | 
 
 ### Return type
 
@@ -8258,15 +9865,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Success |  -  |
@@ -8275,7 +9882,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **upload_file_package**
-> upload_file_package(package_file)
+> upload_file_package(package_file, package_type=package_type)
 
 Upload package by files
 
@@ -8284,49 +9891,66 @@ Upload package by files
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-package_file = open('/path/to/file', 'rb') # file_type | Binary content of the file.
-package_type = "Upgrade" # str | Package Type. (optional) if omitted the server will use the default value of "Upgrade"
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Upload package by files
-	client.platform.upload_file_package(package_file)
-except ApiException as e:
-	print("Exception when calling PlatformApi->upload_file_package: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Upload package by files
-	client.platform.upload_file_package(package_file, package_type=package_type)
-except ApiException as e:
-	print("Exception when calling PlatformApi->upload_file_package: %s\n" % e)
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    package_file = None # bytearray | Binary content of the file.
+    package_type = Upgrade # str | Package Type. (optional) (default to Upgrade)
+
+    try:
+        # Upload package by files
+        api_instance.upload_file_package(package_file, package_type=package_type)
+    except Exception as e:
+        print("Exception when calling PlatformApi->upload_file_package: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **package_file** | **file_type**| Binary content of the file. |
- **package_type** | **str**| Package Type. | [optional] if omitted the server will use the default value of "Upgrade"
+ **package_file** | **bytearray**| Binary content of the file. | 
+ **package_type** | **str**| Package Type. | [optional] [default to Upgrade]
 
 ### Return type
 
@@ -8334,15 +9958,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -8360,42 +9984,65 @@ Validate SMTP configuration.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.test_smtp_config import TestSMTPConfig
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.test_smtp_config import TestSMTPConfig
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = TestSMTPConfig(
-        email="email_example",
-    ) # TestSMTPConfig | Specifies the request parameters to validate SMTP configuration.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Validate SMTP configuration.
-	client.platform.validate_smtp_configuration(body)
-except ApiException as e:
-	print("Exception when calling PlatformApi->validate_smtp_configuration: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.TestSMTPConfig() # TestSMTPConfig | Specifies the request parameters to validate SMTP configuration.
+
+    try:
+        # Validate SMTP configuration.
+        api_instance.validate_smtp_configuration(body)
+    except Exception as e:
+        print("Exception when calling PlatformApi->validate_smtp_configuration: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**TestSMTPConfig**](TestSMTPConfig.md)| Specifies the request parameters to validate SMTP configuration. |
+ **body** | [**TestSMTPConfig**](TestSMTPConfig.md)| Specifies the request parameters to validate SMTP configuration. | 
 
 ### Return type
 
@@ -8403,15 +10050,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -8429,47 +10076,68 @@ To verify IPMI User with Password for node
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.ipmi_text_response import IpmiTextResponse
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.verify_ipmi_user import VerifyIpmiUser
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ipmi_text_response import IpmiTextResponse
+from cohesity_sdk.cluster.models.verify_ipmi_user import VerifyIpmiUser
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = VerifyIpmiUser(
-        node_id="node_id_example",
-        node_ip="node_ip_example",
-        password="password_example",
-        username="username_example",
-    ) # VerifyIpmiUser | Specifies the parameters to add an ipmi user to node.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# To verify IPMI User with Password for node
-	api_response = client.platform.verify_ipmi_user(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->verify_ipmi_user: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.PlatformApi(api_client)
+    body = cohesity_sdk.cluster.VerifyIpmiUser() # VerifyIpmiUser | Specifies the parameters to add an ipmi user to node.
+
+    try:
+        # To verify IPMI User with Password for node
+        api_response = api_instance.verify_ipmi_user(body)
+        print("The response of PlatformApi->verify_ipmi_user:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PlatformApi->verify_ipmi_user: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**VerifyIpmiUser**](VerifyIpmiUser.md)| Specifies the parameters to add an ipmi user to node. |
+ **body** | [**VerifyIpmiUser**](VerifyIpmiUser.md)| Specifies the parameters to add an ipmi user to node. | 
 
 ### Return type
 
@@ -8477,15 +10145,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |

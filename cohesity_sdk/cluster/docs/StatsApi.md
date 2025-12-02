@@ -1,5 +1,6 @@
-# cohesity_sdk.StatsApi
+# cohesity_sdk.cluster.StatsApi
 
+All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -29,36 +30,62 @@ Get Cluster Storage Stats.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_storage_stats import ClusterStorageStats
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cluster_storage_stats import ClusterStorageStats
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get Cluster Storage Stats.
-	api_response = client.stats.get_cluster_storage_stats()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling StatsApi->get_cluster_storage_stats: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.StatsApi(api_client)
+
+    try:
+        # Get Cluster Storage Stats.
+        api_response = api_instance.get_cluster_storage_stats()
+        print("The response of StatsApi->get_cluster_storage_stats:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StatsApi->get_cluster_storage_stats: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -67,15 +94,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -84,7 +111,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_files_stats**
-> FilesStats get_files_stats()
+> FilesStats get_files_stats(entity_type=entity_type)
 
 Get Stats of Files.
 
@@ -93,42 +120,67 @@ Get Stats of Files.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.files_stats import FilesStats
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.files_stats import FilesStats
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-entity_type = "kCluster" # str | Specifies the entity type based on which the files stats are calculated. By default stats are calculated based on Cluster (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get Stats of Files.
-	api_response = client.stats.get_files_stats(entity_type=entity_type)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling StatsApi->get_files_stats: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.StatsApi(api_client)
+    entity_type = 'entity_type_example' # str | Specifies the entity type based on which the files stats are calculated. By default stats are calculated based on Cluster (optional)
+
+    try:
+        # Get Stats of Files.
+        api_response = api_instance.get_files_stats(entity_type=entity_type)
+        print("The response of StatsApi->get_files_stats:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StatsApi->get_files_stats: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **entity_type** | **str**| Specifies the entity type based on which the files stats are calculated. By default stats are calculated based on Cluster | [optional]
+ **entity_type** | **str**| Specifies the entity type based on which the files stats are calculated. By default stats are calculated based on Cluster | [optional] 
 
 ### Return type
 
@@ -136,15 +188,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -153,7 +205,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_protection_runs_stats**
-> GetProtectionRunsStatusResponseBody get_protection_runs_stats()
+> GetProtectionRunsStatusResponseBody get_protection_runs_stats(start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, run_status=run_status)
 
 Get statistics of protection runs.
 
@@ -162,48 +214,71 @@ Get statistics of protection runs.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.get_protection_runs_status_response_body import GetProtectionRunsStatusResponseBody
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_protection_runs_status_response_body import GetProtectionRunsStatusResponseBody
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-start_time_usecs = 1 # int | Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be counted. By default it is current time minus a day. (optional)
-end_time_usecs = 1 # int | Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be counted. By default it is current time. (optional)
-run_status = [
-        "Running",
-    ] # [str] | Specifies a list of status, runs matching the status will be returned. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Failed' indicates that the run has failed. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get statistics of protection runs.
-	api_response = client.stats.get_protection_runs_stats(start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, run_status=run_status)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling StatsApi->get_protection_runs_stats: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.StatsApi(api_client)
+    start_time_usecs = 56 # int | Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be counted. By default it is current time minus a day. (optional)
+    end_time_usecs = 56 # int | Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be counted. By default it is current time. (optional)
+    run_status = ['run_status_example'] # List[str] | Specifies a list of status, runs matching the status will be returned. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Failed' indicates that the run has failed. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. (optional)
+
+    try:
+        # Get statistics of protection runs.
+        api_response = api_instance.get_protection_runs_stats(start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, run_status=run_status)
+        print("The response of StatsApi->get_protection_runs_stats:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StatsApi->get_protection_runs_stats: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **start_time_usecs** | **int**| Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be counted. By default it is current time minus a day. | [optional]
- **end_time_usecs** | **int**| Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be counted. By default it is current time. | [optional]
- **run_status** | **[str]**| Specifies a list of status, runs matching the status will be returned. &#39;Running&#39; indicates that the run is still running. &#39;Canceled&#39; indicates that the run has been canceled. &#39;Failed&#39; indicates that the run has failed. &#39;Succeeded&#39; indicates that the run has finished successfully. &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages. | [optional]
+ **start_time_usecs** | **int**| Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be counted. By default it is current time minus a day. | [optional] 
+ **end_time_usecs** | **int**| Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be counted. By default it is current time. | [optional] 
+ **run_status** | [**List[str]**](str.md)| Specifies a list of status, runs matching the status will be returned. &#39;Running&#39; indicates that the run is still running. &#39;Canceled&#39; indicates that the run has been canceled. &#39;Failed&#39; indicates that the run has failed. &#39;Succeeded&#39; indicates that the run has finished successfully. &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages. | [optional] 
 
 ### Return type
 
@@ -211,15 +286,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -228,7 +303,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_replication_backlog_stats**
-> ReplicationBacklogStats get_replication_backlog_stats()
+> ReplicationBacklogStats get_replication_backlog_stats(include_tenants=include_tenants, is_in_bound=is_in_bound, target_cluster_list=target_cluster_list)
 
 Get Time Series Stats for Replication Backlog.
 
@@ -237,48 +312,71 @@ Get Time Series Stats for Replication Backlog.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.replication_backlog_stats import ReplicationBacklogStats
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.replication_backlog_stats import ReplicationBacklogStats
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-include_tenants = True # bool | IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. (optional)
-is_in_bound = True # bool | Specifies whether to get inbound or outbound replication backlog stats. Default is false. (optional)
-target_cluster_list = [
-        1,
-    ] # [int] | Filters stats to only include entities that were replicated to the specified target remote cluster IDs. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get Time Series Stats for Replication Backlog.
-	api_response = client.stats.get_replication_backlog_stats(include_tenants=include_tenants, is_in_bound=is_in_bound, target_cluster_list=target_cluster_list)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling StatsApi->get_replication_backlog_stats: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.StatsApi(api_client)
+    include_tenants = True # bool | IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. (optional)
+    is_in_bound = True # bool | Specifies whether to get inbound or outbound replication backlog stats. Default is false. (optional)
+    target_cluster_list = [56] # List[int] | Filters stats to only include entities that were replicated to the specified target remote cluster IDs. (optional)
+
+    try:
+        # Get Time Series Stats for Replication Backlog.
+        api_response = api_instance.get_replication_backlog_stats(include_tenants=include_tenants, is_in_bound=is_in_bound, target_cluster_list=target_cluster_list)
+        print("The response of StatsApi->get_replication_backlog_stats:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StatsApi->get_replication_backlog_stats: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **include_tenants** | **bool**| IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user&#39;s organization should be returned. | [optional]
- **is_in_bound** | **bool**| Specifies whether to get inbound or outbound replication backlog stats. Default is false. | [optional]
- **target_cluster_list** | **[int]**| Filters stats to only include entities that were replicated to the specified target remote cluster IDs. | [optional]
+ **include_tenants** | **bool**| IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user&#39;s organization should be returned. | [optional] 
+ **is_in_bound** | **bool**| Specifies whether to get inbound or outbound replication backlog stats. Default is false. | [optional] 
+ **target_cluster_list** | [**List[int]**](int.md)| Filters stats to only include entities that were replicated to the specified target remote cluster IDs. | [optional] 
 
 ### Return type
 
@@ -286,15 +384,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -303,7 +401,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_replication_clusters**
-> ReplicationClustersResponse get_replication_clusters(start_time_msecs, rollup_interval_secs, target_cluster_list)
+> ReplicationClustersResponse get_replication_clusters(start_time_msecs, rollup_interval_secs, target_cluster_list, include_tenants=include_tenants, is_in_bound=is_in_bound, prorate_data_points=prorate_data_points, end_time_msecs=end_time_msecs)
 
 
 
@@ -312,62 +410,78 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.replication_clusters_response import ReplicationClustersResponse
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.replication_clusters_response import ReplicationClustersResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-start_time_msecs = 1 # int | Specifies the start time of series stats.
-rollup_interval_secs = 1 # int | Specifies the time interval granularity for the specified rollup function.
-target_cluster_list = [
-        1,
-    ] # [int] | List of cluster IDs for which replication data should be retrieved. Must include at least one cluster.
-include_tenants = True # bool | IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. (optional)
-is_in_bound = True # bool | Specifies whether to get inbound or outbound replication backlog stats. Default is false. (optional)
-prorate_data_points = True # bool | Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. (optional)
-end_time_msecs = 1 # int | Specifies the end time of series stats, by default it is current time. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	api_response = client.stats.get_replication_clusters(start_time_msecs, rollup_interval_secs, target_cluster_list)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling StatsApi->get_replication_clusters: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	api_response = client.stats.get_replication_clusters(start_time_msecs, rollup_interval_secs, target_cluster_list, include_tenants=include_tenants, is_in_bound=is_in_bound, prorate_data_points=prorate_data_points, end_time_msecs=end_time_msecs)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling StatsApi->get_replication_clusters: %s\n" % e)
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.StatsApi(api_client)
+    start_time_msecs = 56 # int | Specifies the start time of series stats.
+    rollup_interval_secs = 56 # int | Specifies the time interval granularity for the specified rollup function.
+    target_cluster_list = [56] # List[int] | List of cluster IDs for which replication data should be retrieved. Must include at least one cluster.
+    include_tenants = True # bool | IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. (optional)
+    is_in_bound = True # bool | Specifies whether to get inbound or outbound replication backlog stats. Default is false. (optional)
+    prorate_data_points = True # bool | Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. (optional)
+    end_time_msecs = 56 # int | Specifies the end time of series stats, by default it is current time. (optional)
+
+    try:
+        api_response = api_instance.get_replication_clusters(start_time_msecs, rollup_interval_secs, target_cluster_list, include_tenants=include_tenants, is_in_bound=is_in_bound, prorate_data_points=prorate_data_points, end_time_msecs=end_time_msecs)
+        print("The response of StatsApi->get_replication_clusters:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StatsApi->get_replication_clusters: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **start_time_msecs** | **int**| Specifies the start time of series stats. |
- **rollup_interval_secs** | **int**| Specifies the time interval granularity for the specified rollup function. |
- **target_cluster_list** | **[int]**| List of cluster IDs for which replication data should be retrieved. Must include at least one cluster. |
- **include_tenants** | **bool**| IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user&#39;s organization should be returned. | [optional]
- **is_in_bound** | **bool**| Specifies whether to get inbound or outbound replication backlog stats. Default is false. | [optional]
- **prorate_data_points** | **bool**| Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. | [optional]
- **end_time_msecs** | **int**| Specifies the end time of series stats, by default it is current time. | [optional]
+ **start_time_msecs** | **int**| Specifies the start time of series stats. | 
+ **rollup_interval_secs** | **int**| Specifies the time interval granularity for the specified rollup function. | 
+ **target_cluster_list** | [**List[int]**](int.md)| List of cluster IDs for which replication data should be retrieved. Must include at least one cluster. | 
+ **include_tenants** | **bool**| IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user&#39;s organization should be returned. | [optional] 
+ **is_in_bound** | **bool**| Specifies whether to get inbound or outbound replication backlog stats. Default is false. | [optional] 
+ **prorate_data_points** | **bool**| Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. | [optional] 
+ **end_time_msecs** | **int**| Specifies the end time of series stats, by default it is current time. | [optional] 
 
 ### Return type
 
@@ -375,15 +489,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -392,7 +506,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_replication_data_trend**
-> TimeSeriesStats get_replication_data_trend(start_time_msecs, rollup_interval_secs)
+> TimeSeriesStats get_replication_data_trend(start_time_msecs, rollup_interval_secs, include_tenants=include_tenants, is_in_bound=is_in_bound, prorate_data_points=prorate_data_points, end_time_msecs=end_time_msecs, target_cluster_list=target_cluster_list)
 
 
 
@@ -401,62 +515,78 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.time_series_stats import TimeSeriesStats
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.time_series_stats import TimeSeriesStats
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-start_time_msecs = 1 # int | Specifies the start time of series stats.
-rollup_interval_secs = 1 # int | Specifies the time interval granularity for the specified rollup function.
-include_tenants = True # bool | IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. (optional)
-is_in_bound = True # bool | Specifies whether to get inbound or outbound replication backlog stats. Default is false. (optional)
-prorate_data_points = True # bool | Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. (optional)
-end_time_msecs = 1 # int | Specifies the end time of series stats, by default it is current time. (optional)
-target_cluster_list = [
-        1,
-    ] # [int] | Filters stats to only include entities that were replicated to the specified target remote cluster IDs. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	api_response = client.stats.get_replication_data_trend(start_time_msecs, rollup_interval_secs)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling StatsApi->get_replication_data_trend: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	api_response = client.stats.get_replication_data_trend(start_time_msecs, rollup_interval_secs, include_tenants=include_tenants, is_in_bound=is_in_bound, prorate_data_points=prorate_data_points, end_time_msecs=end_time_msecs, target_cluster_list=target_cluster_list)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling StatsApi->get_replication_data_trend: %s\n" % e)
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.StatsApi(api_client)
+    start_time_msecs = 56 # int | Specifies the start time of series stats.
+    rollup_interval_secs = 56 # int | Specifies the time interval granularity for the specified rollup function.
+    include_tenants = True # bool | IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. (optional)
+    is_in_bound = True # bool | Specifies whether to get inbound or outbound replication backlog stats. Default is false. (optional)
+    prorate_data_points = True # bool | Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. (optional)
+    end_time_msecs = 56 # int | Specifies the end time of series stats, by default it is current time. (optional)
+    target_cluster_list = [56] # List[int] | Filters stats to only include entities that were replicated to the specified target remote cluster IDs. (optional)
+
+    try:
+        api_response = api_instance.get_replication_data_trend(start_time_msecs, rollup_interval_secs, include_tenants=include_tenants, is_in_bound=is_in_bound, prorate_data_points=prorate_data_points, end_time_msecs=end_time_msecs, target_cluster_list=target_cluster_list)
+        print("The response of StatsApi->get_replication_data_trend:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StatsApi->get_replication_data_trend: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **start_time_msecs** | **int**| Specifies the start time of series stats. |
- **rollup_interval_secs** | **int**| Specifies the time interval granularity for the specified rollup function. |
- **include_tenants** | **bool**| IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user&#39;s organization should be returned. | [optional]
- **is_in_bound** | **bool**| Specifies whether to get inbound or outbound replication backlog stats. Default is false. | [optional]
- **prorate_data_points** | **bool**| Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. | [optional]
- **end_time_msecs** | **int**| Specifies the end time of series stats, by default it is current time. | [optional]
- **target_cluster_list** | **[int]**| Filters stats to only include entities that were replicated to the specified target remote cluster IDs. | [optional]
+ **start_time_msecs** | **int**| Specifies the start time of series stats. | 
+ **rollup_interval_secs** | **int**| Specifies the time interval granularity for the specified rollup function. | 
+ **include_tenants** | **bool**| IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user&#39;s organization should be returned. | [optional] 
+ **is_in_bound** | **bool**| Specifies whether to get inbound or outbound replication backlog stats. Default is false. | [optional] 
+ **prorate_data_points** | **bool**| Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. | [optional] 
+ **end_time_msecs** | **int**| Specifies the end time of series stats, by default it is current time. | [optional] 
+ **target_cluster_list** | [**List[int]**](int.md)| Filters stats to only include entities that were replicated to the specified target remote cluster IDs. | [optional] 
 
 ### Return type
 
@@ -464,15 +594,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -481,7 +611,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_replication_objects**
-> ReplicationObjectsList get_replication_objects()
+> ReplicationObjectsList get_replication_objects(start_time_msecs=start_time_msecs, end_time_msecs=end_time_msecs, include_tenants=include_tenants, is_in_bound=is_in_bound, target_cluster_list=target_cluster_list)
 
 
 
@@ -490,51 +620,74 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.replication_objects_list import ReplicationObjectsList
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.replication_objects_list import ReplicationObjectsList
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-start_time_msecs = 1 # int | Specifies the start time of series stats. (optional)
-end_time_msecs = 1 # int | Specifies the end time of series stats, by default it is current time. (optional)
-include_tenants = True # bool | IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. (optional)
-is_in_bound = True # bool | Specifies whether to get inbound or outbound replication backlog stats. Default is false. (optional)
-target_cluster_list = [
-        1,
-    ] # [int] | Filters stats to only include entities that were replicated to the specified target remote cluster IDs. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	api_response = client.stats.get_replication_objects(start_time_msecs=start_time_msecs, end_time_msecs=end_time_msecs, include_tenants=include_tenants, is_in_bound=is_in_bound, target_cluster_list=target_cluster_list)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling StatsApi->get_replication_objects: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.StatsApi(api_client)
+    start_time_msecs = 56 # int | Specifies the start time of series stats. (optional)
+    end_time_msecs = 56 # int | Specifies the end time of series stats, by default it is current time. (optional)
+    include_tenants = True # bool | IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. (optional)
+    is_in_bound = True # bool | Specifies whether to get inbound or outbound replication backlog stats. Default is false. (optional)
+    target_cluster_list = [56] # List[int] | Filters stats to only include entities that were replicated to the specified target remote cluster IDs. (optional)
+
+    try:
+        api_response = api_instance.get_replication_objects(start_time_msecs=start_time_msecs, end_time_msecs=end_time_msecs, include_tenants=include_tenants, is_in_bound=is_in_bound, target_cluster_list=target_cluster_list)
+        print("The response of StatsApi->get_replication_objects:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StatsApi->get_replication_objects: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **start_time_msecs** | **int**| Specifies the start time of series stats. | [optional]
- **end_time_msecs** | **int**| Specifies the end time of series stats, by default it is current time. | [optional]
- **include_tenants** | **bool**| IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user&#39;s organization should be returned. | [optional]
- **is_in_bound** | **bool**| Specifies whether to get inbound or outbound replication backlog stats. Default is false. | [optional]
- **target_cluster_list** | **[int]**| Filters stats to only include entities that were replicated to the specified target remote cluster IDs. | [optional]
+ **start_time_msecs** | **int**| Specifies the start time of series stats. | [optional] 
+ **end_time_msecs** | **int**| Specifies the end time of series stats, by default it is current time. | [optional] 
+ **include_tenants** | **bool**| IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user&#39;s organization should be returned. | [optional] 
+ **is_in_bound** | **bool**| Specifies whether to get inbound or outbound replication backlog stats. Default is false. | [optional] 
+ **target_cluster_list** | [**List[int]**](int.md)| Filters stats to only include entities that were replicated to the specified target remote cluster IDs. | [optional] 
 
 ### Return type
 
@@ -542,15 +695,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -559,7 +712,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_replication_objects_trend**
-> TimeSeriesStats get_replication_objects_trend(start_time_msecs, rollup_interval_secs)
+> TimeSeriesStats get_replication_objects_trend(start_time_msecs, rollup_interval_secs, include_tenants=include_tenants, prorate_data_points=prorate_data_points, end_time_msecs=end_time_msecs, target_cluster_list=target_cluster_list)
 
 
 
@@ -568,60 +721,76 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.time_series_stats import TimeSeriesStats
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.time_series_stats import TimeSeriesStats
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-start_time_msecs = 1 # int | Specifies the start time of series stats.
-rollup_interval_secs = 1 # int | Specifies the time interval granularity for the specified rollup function.
-include_tenants = True # bool | IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. (optional)
-prorate_data_points = True # bool | Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. (optional)
-end_time_msecs = 1 # int | Specifies the end time of series stats, by default it is current time. (optional)
-target_cluster_list = [
-        1,
-    ] # [int] | Filters stats to only include entities that were replicated to the specified target remote cluster IDs. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	api_response = client.stats.get_replication_objects_trend(start_time_msecs, rollup_interval_secs)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling StatsApi->get_replication_objects_trend: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	api_response = client.stats.get_replication_objects_trend(start_time_msecs, rollup_interval_secs, include_tenants=include_tenants, prorate_data_points=prorate_data_points, end_time_msecs=end_time_msecs, target_cluster_list=target_cluster_list)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling StatsApi->get_replication_objects_trend: %s\n" % e)
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.StatsApi(api_client)
+    start_time_msecs = 56 # int | Specifies the start time of series stats.
+    rollup_interval_secs = 56 # int | Specifies the time interval granularity for the specified rollup function.
+    include_tenants = True # bool | IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. (optional)
+    prorate_data_points = True # bool | Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. (optional)
+    end_time_msecs = 56 # int | Specifies the end time of series stats, by default it is current time. (optional)
+    target_cluster_list = [56] # List[int] | Filters stats to only include entities that were replicated to the specified target remote cluster IDs. (optional)
+
+    try:
+        api_response = api_instance.get_replication_objects_trend(start_time_msecs, rollup_interval_secs, include_tenants=include_tenants, prorate_data_points=prorate_data_points, end_time_msecs=end_time_msecs, target_cluster_list=target_cluster_list)
+        print("The response of StatsApi->get_replication_objects_trend:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StatsApi->get_replication_objects_trend: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **start_time_msecs** | **int**| Specifies the start time of series stats. |
- **rollup_interval_secs** | **int**| Specifies the time interval granularity for the specified rollup function. |
- **include_tenants** | **bool**| IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user&#39;s organization should be returned. | [optional]
- **prorate_data_points** | **bool**| Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. | [optional]
- **end_time_msecs** | **int**| Specifies the end time of series stats, by default it is current time. | [optional]
- **target_cluster_list** | **[int]**| Filters stats to only include entities that were replicated to the specified target remote cluster IDs. | [optional]
+ **start_time_msecs** | **int**| Specifies the start time of series stats. | 
+ **rollup_interval_secs** | **int**| Specifies the time interval granularity for the specified rollup function. | 
+ **include_tenants** | **bool**| IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user&#39;s organization should be returned. | [optional] 
+ **prorate_data_points** | **bool**| Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. | [optional] 
+ **end_time_msecs** | **int**| Specifies the end time of series stats, by default it is current time. | [optional] 
+ **target_cluster_list** | [**List[int]**](int.md)| Filters stats to only include entities that were replicated to the specified target remote cluster IDs. | [optional] 
 
 ### Return type
 
@@ -629,15 +798,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -655,43 +824,69 @@ Compute the statistics on the Restore tasks on the cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.restore_stats import RestoreStats
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.restore_stats import RestoreStats
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-start_time_usecs = 1 # int | Specifies the start time Unix time epoch in microseconds from which the restore stats are computed.
-end_time_usecs = 1 # int | Specifies the end time Unix time epoch in microseconds to which the restore stats are computed.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Compute the statistics on the Restore tasks on the cluster.
-	api_response = client.stats.get_restore_stats(start_time_usecs, end_time_usecs)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling StatsApi->get_restore_stats: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.StatsApi(api_client)
+    start_time_usecs = 56 # int | Specifies the start time Unix time epoch in microseconds from which the restore stats are computed.
+    end_time_usecs = 56 # int | Specifies the end time Unix time epoch in microseconds to which the restore stats are computed.
+
+    try:
+        # Compute the statistics on the Restore tasks on the cluster.
+        api_response = api_instance.get_restore_stats(start_time_usecs, end_time_usecs)
+        print("The response of StatsApi->get_restore_stats:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StatsApi->get_restore_stats: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **start_time_usecs** | **int**| Specifies the start time Unix time epoch in microseconds from which the restore stats are computed. |
- **end_time_usecs** | **int**| Specifies the end time Unix time epoch in microseconds to which the restore stats are computed. |
+ **start_time_usecs** | **int**| Specifies the start time Unix time epoch in microseconds from which the restore stats are computed. | 
+ **end_time_usecs** | **int**| Specifies the end time Unix time epoch in microseconds to which the restore stats are computed. | 
 
 ### Return type
 
@@ -699,15 +894,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -716,7 +911,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_time_series_stats**
-> TimeSeriesStats get_time_series_stats(schema_name, metric_names, start_time_msecs)
+> TimeSeriesStats get_time_series_stats(schema_name, metric_names, start_time_msecs, entity_id=entity_id, entity_id_list=entity_id_list, prorate_data_points=prorate_data_points, include_growth_change=include_growth_change, end_time_msecs=end_time_msecs, rollup_function=rollup_function, rollup_interval_secs=rollup_interval_secs)
 
 Get Time Series Stats.
 
@@ -725,72 +920,85 @@ Get Time Series Stats.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.time_series_stats import TimeSeriesStats
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.time_series_stats import TimeSeriesStats
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-schema_name = "schemaName_example" # str | Specifies the schema name.
-metric_names = [
-        "metricNames_example",
-    ] # [str] | Specifies a list of metric names.
-start_time_msecs = 1 # int | Specifies the start time of series stats.
-entity_id = "entityId_example" # str | Specifies the entity id. (optional)
-entity_id_list = [
-        "entityIdList_example",
-    ] # [str] | Specifies an entity id list represented as a string. The stats result will be the sum over all these entities. Duplicate id's will be ignored. If both EntityIdList and EntityId are specified, EntityId will be ignored. (optional)
-prorate_data_points = True # bool | Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. This should be used only when rollup function is provided. (optional)
-include_growth_change = True # bool | Specifies if the response should return the difference of a data point with the previous datapoint. Used for determining the change in growth rate. Datapoint could be +x, 0, -x showing the growth is up, no change or down respectively. (optional)
-end_time_msecs = 1 # int | Specifies the end time of series stats, by default it is current time. (optional)
-rollup_function = "kSum" # str | Specifies the rollup function to apply to the data points for the time interval specified by rollupInternalSecs. (optional)
-rollup_interval_secs = 1 # int | Specifies the time interval granularity for the specified rollup function. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Get Time Series Stats.
-	api_response = client.stats.get_time_series_stats(schema_name, metric_names, start_time_msecs)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling StatsApi->get_time_series_stats: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get Time Series Stats.
-	api_response = client.stats.get_time_series_stats(schema_name, metric_names, start_time_msecs, entity_id=entity_id, entity_id_list=entity_id_list, prorate_data_points=prorate_data_points, include_growth_change=include_growth_change, end_time_msecs=end_time_msecs, rollup_function=rollup_function, rollup_interval_secs=rollup_interval_secs)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling StatsApi->get_time_series_stats: %s\n" % e)
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.StatsApi(api_client)
+    schema_name = 'schema_name_example' # str | Specifies the schema name.
+    metric_names = ['metric_names_example'] # List[str] | Specifies a list of metric names.
+    start_time_msecs = 56 # int | Specifies the start time of series stats.
+    entity_id = 'entity_id_example' # str | Specifies the entity id. (optional)
+    entity_id_list = ['entity_id_list_example'] # List[str] | Specifies an entity id list represented as a string. The stats result will be the sum over all these entities. Duplicate id's will be ignored. If both EntityIdList and EntityId are specified, EntityId will be ignored. (optional)
+    prorate_data_points = True # bool | Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. This should be used only when rollup function is provided. (optional)
+    include_growth_change = True # bool | Specifies if the response should return the difference of a data point with the previous datapoint. Used for determining the change in growth rate. Datapoint could be +x, 0, -x showing the growth is up, no change or down respectively. (optional)
+    end_time_msecs = 56 # int | Specifies the end time of series stats, by default it is current time. (optional)
+    rollup_function = 'rollup_function_example' # str | Specifies the rollup function to apply to the data points for the time interval specified by rollupInternalSecs. (optional)
+    rollup_interval_secs = 56 # int | Specifies the time interval granularity for the specified rollup function. (optional)
+
+    try:
+        # Get Time Series Stats.
+        api_response = api_instance.get_time_series_stats(schema_name, metric_names, start_time_msecs, entity_id=entity_id, entity_id_list=entity_id_list, prorate_data_points=prorate_data_points, include_growth_change=include_growth_change, end_time_msecs=end_time_msecs, rollup_function=rollup_function, rollup_interval_secs=rollup_interval_secs)
+        print("The response of StatsApi->get_time_series_stats:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StatsApi->get_time_series_stats: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **schema_name** | **str**| Specifies the schema name. |
- **metric_names** | **[str]**| Specifies a list of metric names. |
- **start_time_msecs** | **int**| Specifies the start time of series stats. |
- **entity_id** | **str**| Specifies the entity id. | [optional]
- **entity_id_list** | **[str]**| Specifies an entity id list represented as a string. The stats result will be the sum over all these entities. Duplicate id&#39;s will be ignored. If both EntityIdList and EntityId are specified, EntityId will be ignored. | [optional]
- **prorate_data_points** | **bool**| Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. This should be used only when rollup function is provided. | [optional]
- **include_growth_change** | **bool**| Specifies if the response should return the difference of a data point with the previous datapoint. Used for determining the change in growth rate. Datapoint could be +x, 0, -x showing the growth is up, no change or down respectively. | [optional]
- **end_time_msecs** | **int**| Specifies the end time of series stats, by default it is current time. | [optional]
- **rollup_function** | **str**| Specifies the rollup function to apply to the data points for the time interval specified by rollupInternalSecs. | [optional]
- **rollup_interval_secs** | **int**| Specifies the time interval granularity for the specified rollup function. | [optional]
+ **schema_name** | **str**| Specifies the schema name. | 
+ **metric_names** | [**List[str]**](str.md)| Specifies a list of metric names. | 
+ **start_time_msecs** | **int**| Specifies the start time of series stats. | 
+ **entity_id** | **str**| Specifies the entity id. | [optional] 
+ **entity_id_list** | [**List[str]**](str.md)| Specifies an entity id list represented as a string. The stats result will be the sum over all these entities. Duplicate id&#39;s will be ignored. If both EntityIdList and EntityId are specified, EntityId will be ignored. | [optional] 
+ **prorate_data_points** | **bool**| Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. This should be used only when rollup function is provided. | [optional] 
+ **include_growth_change** | **bool**| Specifies if the response should return the difference of a data point with the previous datapoint. Used for determining the change in growth rate. Datapoint could be +x, 0, -x showing the growth is up, no change or down respectively. | [optional] 
+ **end_time_msecs** | **int**| Specifies the end time of series stats, by default it is current time. | [optional] 
+ **rollup_function** | **str**| Specifies the rollup function to apply to the data points for the time interval specified by rollupInternalSecs. | [optional] 
+ **rollup_interval_secs** | **int**| Specifies the time interval granularity for the specified rollup function. | [optional] 
 
 ### Return type
 
@@ -798,15 +1006,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -815,7 +1023,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_top_views_stats**
-> ViewsStats get_top_views_stats()
+> ViewsStats get_top_views_stats(metric=metric, protocol=protocol, num_top_views=num_top_views, last_hours=last_hours)
 
 Get stats for the top views, which are the views with largest value of 'stats.valueInLastHours' for a given combination of 'metric', 'protocol' & 'lastHours' params. The API uses suitable defaults if any of the parameters are not specified.
 
@@ -824,48 +1032,73 @@ Get stats for the top views, which are the views with largest value of 'stats.va
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.views_stats import ViewsStats
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.views_stats import ViewsStats
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-metric = "kNumBytesRead" # str, none_type | Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead. (optional) if omitted the server will use the default value of "kNumBytesRead"
-protocol = "kAny" # str, none_type | Specifies the protocol to sort. Defaults to kAny. (optional) if omitted the server will use the default value of "kAny"
-num_top_views = 100 # int, none_type | Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the 'metric' param. Minimum value has to be 1. Defaults to 100. (optional) if omitted the server will use the default value of 100
-last_hours = 24 # int, none_type | Specifies the last hours of stats to sort. Defaults to 24. (optional) if omitted the server will use the default value of 24
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get stats for the top views, which are the views with largest value of 'stats.valueInLastHours' for a given combination of 'metric', 'protocol' & 'lastHours' params. The API uses suitable defaults if any of the parameters are not specified.
-	api_response = client.stats.get_top_views_stats(metric=metric, protocol=protocol, num_top_views=num_top_views, last_hours=last_hours)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling StatsApi->get_top_views_stats: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.StatsApi(api_client)
+    metric = kNumBytesRead # str | Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead. (optional) (default to kNumBytesRead)
+    protocol = kAny # str | Specifies the protocol to sort. Defaults to kAny. (optional) (default to kAny)
+    num_top_views = 100 # int | Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the 'metric' param. Minimum value has to be 1. Defaults to 100. (optional) (default to 100)
+    last_hours = 24 # int | Specifies the last hours of stats to sort. Defaults to 24. (optional) (default to 24)
+
+    try:
+        # Get stats for the top views, which are the views with largest value of 'stats.valueInLastHours' for a given combination of 'metric', 'protocol' & 'lastHours' params. The API uses suitable defaults if any of the parameters are not specified.
+        api_response = api_instance.get_top_views_stats(metric=metric, protocol=protocol, num_top_views=num_top_views, last_hours=last_hours)
+        print("The response of StatsApi->get_top_views_stats:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StatsApi->get_top_views_stats: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **metric** | **str, none_type**| Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead. | [optional] if omitted the server will use the default value of "kNumBytesRead"
- **protocol** | **str, none_type**| Specifies the protocol to sort. Defaults to kAny. | [optional] if omitted the server will use the default value of "kAny"
- **num_top_views** | **int, none_type**| Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the &#39;metric&#39; param. Minimum value has to be 1. Defaults to 100. | [optional] if omitted the server will use the default value of 100
- **last_hours** | **int, none_type**| Specifies the last hours of stats to sort. Defaults to 24. | [optional] if omitted the server will use the default value of 24
+ **metric** | **str**| Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead. | [optional] [default to kNumBytesRead]
+ **protocol** | **str**| Specifies the protocol to sort. Defaults to kAny. | [optional] [default to kAny]
+ **num_top_views** | **int**| Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the &#39;metric&#39; param. Minimum value has to be 1. Defaults to 100. | [optional] [default to 100]
+ **last_hours** | **int**| Specifies the last hours of stats to sort. Defaults to 24. | [optional] [default to 24]
 
 ### Return type
 
@@ -873,15 +1106,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -890,7 +1123,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_view_client_stats**
-> ViewClientsStats get_view_client_stats()
+> ViewClientsStats get_view_client_stats(metric=metric, num_top_view_clients=num_top_view_clients, last_hours=last_hours)
 
 Get Stats of View Clients
 
@@ -899,46 +1132,71 @@ Get Stats of View Clients
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.view_clients_stats import ViewClientsStats
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.view_clients_stats import ViewClientsStats
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-metric = "kNumBytesRead" # str, none_type | Specifies the metric to which stats has to be sorted. (optional)
-num_top_view_clients = 1 # int, none_type | Specifies the number of view clients for which stats has to be computed. Specifying this field will return the Views sorted in the descending order on the metric specified. If specified, minimum value is 1. If not specified, all view clients will be returned. If metric is not specified, this parameter must also not be specified. (optional)
-last_hours = 1 # int, none_type | Specifies the last hours of stats to sort. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get Stats of View Clients
-	api_response = client.stats.get_view_client_stats(metric=metric, num_top_view_clients=num_top_view_clients, last_hours=last_hours)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling StatsApi->get_view_client_stats: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.StatsApi(api_client)
+    metric = 'metric_example' # str | Specifies the metric to which stats has to be sorted. (optional)
+    num_top_view_clients = 56 # int | Specifies the number of view clients for which stats has to be computed. Specifying this field will return the Views sorted in the descending order on the metric specified. If specified, minimum value is 1. If not specified, all view clients will be returned. If metric is not specified, this parameter must also not be specified. (optional)
+    last_hours = 56 # int | Specifies the last hours of stats to sort. (optional)
+
+    try:
+        # Get Stats of View Clients
+        api_response = api_instance.get_view_client_stats(metric=metric, num_top_view_clients=num_top_view_clients, last_hours=last_hours)
+        print("The response of StatsApi->get_view_client_stats:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StatsApi->get_view_client_stats: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **metric** | **str, none_type**| Specifies the metric to which stats has to be sorted. | [optional]
- **num_top_view_clients** | **int, none_type**| Specifies the number of view clients for which stats has to be computed. Specifying this field will return the Views sorted in the descending order on the metric specified. If specified, minimum value is 1. If not specified, all view clients will be returned. If metric is not specified, this parameter must also not be specified. | [optional]
- **last_hours** | **int, none_type**| Specifies the last hours of stats to sort. | [optional]
+ **metric** | **str**| Specifies the metric to which stats has to be sorted. | [optional] 
+ **num_top_view_clients** | **int**| Specifies the number of view clients for which stats has to be computed. Specifying this field will return the Views sorted in the descending order on the metric specified. If specified, minimum value is 1. If not specified, all view clients will be returned. If metric is not specified, this parameter must also not be specified. | [optional] 
+ **last_hours** | **int**| Specifies the last hours of stats to sort. | [optional] 
 
 ### Return type
 
@@ -946,15 +1204,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -963,7 +1221,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_views_stats**
-> ViewsStats get_views_stats()
+> ViewsStats get_views_stats(metric=metric, protocol=protocol, num_top_views=num_top_views, last_hours=last_hours)
 
 Get stats for the top views, which are the views with largest value of 'stats.valueInLastHours' for a given combination of 'metric', 'protocol' & 'lastHours' params. The API uses suitable defaults if any of the parameters are not specified.
 
@@ -972,48 +1230,73 @@ Get stats for the top views, which are the views with largest value of 'stats.va
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.views_stats import ViewsStats
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.views_stats import ViewsStats
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-metric = "kNumBytesRead" # str, none_type | Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead. (optional) if omitted the server will use the default value of "kNumBytesRead"
-protocol = "kAny" # str, none_type | Specifies the protocol to sort. Defaults to kAny. (optional) if omitted the server will use the default value of "kAny"
-num_top_views = 100 # int, none_type | Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the 'metric' param. Minimum value has to be 1. Defaults to 100. (optional) if omitted the server will use the default value of 100
-last_hours = 24 # int, none_type | Specifies the last hours of stats to sort. Defaults to 24. (optional) if omitted the server will use the default value of 24
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get stats for the top views, which are the views with largest value of 'stats.valueInLastHours' for a given combination of 'metric', 'protocol' & 'lastHours' params. The API uses suitable defaults if any of the parameters are not specified.
-	api_response = client.stats.get_views_stats(metric=metric, protocol=protocol, num_top_views=num_top_views, last_hours=last_hours)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling StatsApi->get_views_stats: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.StatsApi(api_client)
+    metric = kNumBytesRead # str | Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead. (optional) (default to kNumBytesRead)
+    protocol = kAny # str | Specifies the protocol to sort. Defaults to kAny. (optional) (default to kAny)
+    num_top_views = 100 # int | Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the 'metric' param. Minimum value has to be 1. Defaults to 100. (optional) (default to 100)
+    last_hours = 24 # int | Specifies the last hours of stats to sort. Defaults to 24. (optional) (default to 24)
+
+    try:
+        # Get stats for the top views, which are the views with largest value of 'stats.valueInLastHours' for a given combination of 'metric', 'protocol' & 'lastHours' params. The API uses suitable defaults if any of the parameters are not specified.
+        api_response = api_instance.get_views_stats(metric=metric, protocol=protocol, num_top_views=num_top_views, last_hours=last_hours)
+        print("The response of StatsApi->get_views_stats:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StatsApi->get_views_stats: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **metric** | **str, none_type**| Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead. | [optional] if omitted the server will use the default value of "kNumBytesRead"
- **protocol** | **str, none_type**| Specifies the protocol to sort. Defaults to kAny. | [optional] if omitted the server will use the default value of "kAny"
- **num_top_views** | **int, none_type**| Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the &#39;metric&#39; param. Minimum value has to be 1. Defaults to 100. | [optional] if omitted the server will use the default value of 100
- **last_hours** | **int, none_type**| Specifies the last hours of stats to sort. Defaults to 24. | [optional] if omitted the server will use the default value of 24
+ **metric** | **str**| Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead. | [optional] [default to kNumBytesRead]
+ **protocol** | **str**| Specifies the protocol to sort. Defaults to kAny. | [optional] [default to kAny]
+ **num_top_views** | **int**| Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the &#39;metric&#39; param. Minimum value has to be 1. Defaults to 100. | [optional] [default to 100]
+ **last_hours** | **int**| Specifies the last hours of stats to sort. Defaults to 24. | [optional] [default to 24]
 
 ### Return type
 
@@ -1021,15 +1304,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1047,36 +1330,62 @@ Get Workload Stats Schema.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.workload_stats_summary import WorkloadStatsSummary
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.workload_stats_summary import WorkloadStatsSummary
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get Workload Stats Schema.
-	api_response = client.stats.get_workload_stats()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling StatsApi->get_workload_stats: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.StatsApi(api_client)
+
+    try:
+        # Get Workload Stats Schema.
+        api_response = api_instance.get_workload_stats()
+        print("The response of StatsApi->get_workload_stats:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StatsApi->get_workload_stats: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1085,15 +1394,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |

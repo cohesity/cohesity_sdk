@@ -1,5 +1,6 @@
-# cohesity_sdk.AccessTokenApi
+# cohesity_sdk.cluster.AccessTokenApi
 
+All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -15,44 +16,44 @@ Create a new API access token
 
 ### Example
 
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.create_access_token_request_params import CreateAccessTokenRequestParams
-from cohesity_sdk.cluster.model.access_token_response import AccessTokenResponse
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.access_token_response import AccessTokenResponse
+from cohesity_sdk.cluster.models.create_access_token_request_params import CreateAccessTokenRequestParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
+)
 
-client = ClusterClient(cluster_vip)
 
-body = CreateAccessTokenRequestParams(
-        certificate="certificate_example",
-        domain="domain_example",
-        mfa_params=MfaParams(
-            otp_code="otp_code_example",
-            otp_type="email",
-        ),
-        password="password_example",
-        private_key="private_key_example",
-        username="username_example",
-    ) # CreateAccessTokenRequestParams | Specifies the parameters to generate an access token
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.AccessTokenApi(api_client)
+    body = cohesity_sdk.cluster.CreateAccessTokenRequestParams() # CreateAccessTokenRequestParams | Specifies the parameters to generate an access token
 
-# example passing only required values which don't have defaults set
-try:
-	# Create a new API access token
-	api_response = client.access_token.create_access_token(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling AccessTokenApi->create_access_token: %s\n" % e)
+    try:
+        # Create a new API access token
+        api_response = api_instance.create_access_token(body)
+        print("The response of AccessTokenApi->create_access_token:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AccessTokenApi->create_access_token: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateAccessTokenRequestParams**](CreateAccessTokenRequestParams.md)| Specifies the parameters to generate an access token |
+ **body** | [**CreateAccessTokenRequestParams**](CreateAccessTokenRequestParams.md)| Specifies the parameters to generate an access token | 
 
 ### Return type
 
@@ -67,8 +68,8 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |

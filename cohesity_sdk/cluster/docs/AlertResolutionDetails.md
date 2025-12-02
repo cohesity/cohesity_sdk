@@ -3,14 +3,32 @@
 Specifies information about the Alert Resolution.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**resolution_details** | **str, none_type** | Specifies detailed notes about the Resolution. | [optional] 
-**resolution_id** | **int, none_type** | Specifies the unique resolution id assigned in helios. | [optional] 
-**resolution_summary** | **str, none_type** | Specifies short description about the Resolution. | [optional] 
-**timestamp_usecs** | **int, none_type** | Specifies unix epoch timestamp (in microseconds) when the Alert was resolved.  | [optional] 
-**user_name** | **str, none_type** | Specifies name of the Cohesity Cluster user who resolved the Alerts.  | [optional] 
+**resolution_details** | **str** | Specifies detailed notes about the Resolution. | [optional] 
+**resolution_id** | **int** | Specifies the unique resolution id assigned in helios. | [optional] 
+**resolution_summary** | **str** | Specifies short description about the Resolution. | [optional] 
+**timestamp_usecs** | **int** | Specifies unix epoch timestamp (in microseconds) when the Alert was resolved.  | [optional] 
+**user_name** | **str** | Specifies name of the Cohesity Cluster user who resolved the Alerts.  | [optional] 
 
+## Example
+
+```python
+from cohesity_sdk.cluster.models.alert_resolution_details import AlertResolutionDetails
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of AlertResolutionDetails from a JSON string
+alert_resolution_details_instance = AlertResolutionDetails.from_json(json)
+# print the JSON string representation of the object
+print(AlertResolutionDetails.to_json())
+
+# convert the object into a dict
+alert_resolution_details_dict = alert_resolution_details_instance.to_dict()
+# create an instance of AlertResolutionDetails from a dict
+alert_resolution_details_from_dict = AlertResolutionDetails.from_dict(alert_resolution_details_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

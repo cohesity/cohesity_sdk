@@ -1,5 +1,6 @@
-# cohesity_sdk.IdentityProviderApi
+# cohesity_sdk.cluster.IdentityProviderApi
 
+All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -25,66 +26,67 @@ Configure Identity Provider
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.identity_config import IdentityConfig
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.identity_config import IdentityConfig
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = IdentityConfig(
-        domain="domain_example",
-        identity_provider_type="OpenIdConnect",
-        is_enabled=True,
-        last_modified_timestamp_usecs=1,
-        o_auth2_params=OAuth2Provider(
-            audiences=[
-                OAuthAudience(
-                    audience_id="audience_id_example",
-                    client_ids=[
-                        "client_ids_example",
-                    ],
-                ),
-            ],
-            polling_frequency_mins=1440,
-            public_key_url="public_key_url_example",
-        ),
-        open_id_connect_params=OpenIdProvider(
-            audience_ids=[
-                "audience_ids_example",
-            ],
-            polling_frequency_mins=1440,
-            public_key_url="public_key_url_example",
-        ),
-        tenant_id="tenant_id_example",
-    ) # IdentityConfig | Specifies parameters to configure Identity
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Configure Identity Provider
-	api_response = client.identity_provider.create_identity(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling IdentityProviderApi->create_identity: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
+    body = cohesity_sdk.cluster.IdentityConfig() # IdentityConfig | Specifies parameters to configure Identity
+
+    try:
+        # Configure Identity Provider
+        api_response = api_instance.create_identity(body)
+        print("The response of IdentityProviderApi->create_identity:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling IdentityProviderApi->create_identity: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**IdentityConfig**](IdentityConfig.md)| Specifies parameters to configure Identity |
+ **body** | [**IdentityConfig**](IdentityConfig.md)| Specifies parameters to configure Identity | 
 
 ### Return type
 
@@ -92,15 +94,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -118,42 +120,68 @@ Configure identity provider
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.create_idp_request_params import CreateIdpRequestParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.identity_provider_configuration import IdentityProviderConfiguration
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_idp_request_params import CreateIdpRequestParams
+from cohesity_sdk.cluster.models.identity_provider_configuration import IdentityProviderConfiguration
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = CreateIdpRequestParams() # CreateIdpRequestParams | Specifies parameters to configure identity provider
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Configure identity provider
-	api_response = client.identity_provider.create_identity_provider(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling IdentityProviderApi->create_identity_provider: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
+    body = cohesity_sdk.cluster.CreateIdpRequestParams() # CreateIdpRequestParams | Specifies parameters to configure identity provider
+
+    try:
+        # Configure identity provider
+        api_response = api_instance.create_identity_provider(body)
+        print("The response of IdentityProviderApi->create_identity_provider:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling IdentityProviderApi->create_identity_provider: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateIdpRequestParams**](CreateIdpRequestParams.md)| Specifies parameters to configure identity provider |
+ **body** | [**CreateIdpRequestParams**](CreateIdpRequestParams.md)| Specifies parameters to configure identity provider | 
 
 ### Return type
 
@@ -161,15 +189,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -187,39 +215,64 @@ Delete Identity Provider
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies id of identity provider configuration
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Delete Identity Provider
-	client.identity_provider.delete_identity(id)
-except ApiException as e:
-	print("Exception when calling IdentityProviderApi->delete_identity: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
+    id = 56 # int | Specifies id of identity provider configuration
+
+    try:
+        # Delete Identity Provider
+        api_instance.delete_identity(id)
+    except Exception as e:
+        print("Exception when calling IdentityProviderApi->delete_identity: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies id of identity provider configuration |
+ **id** | **int**| Specifies id of identity provider configuration | 
 
 ### Return type
 
@@ -227,15 +280,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -253,39 +306,64 @@ Delete identity provider
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies id of idp configuration
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Delete identity provider
-	client.identity_provider.delete_identity_provider(id)
-except ApiException as e:
-	print("Exception when calling IdentityProviderApi->delete_identity_provider: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
+    id = 56 # int | Specifies id of idp configuration
+
+    try:
+        # Delete identity provider
+        api_instance.delete_identity_provider(id)
+    except Exception as e:
+        print("Exception when calling IdentityProviderApi->delete_identity_provider: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies id of idp configuration |
+ **id** | **int**| Specifies id of idp configuration | 
 
 ### Return type
 
@@ -293,15 +371,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -310,7 +388,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_identities**
-> IdentityConfigs get_identities()
+> IdentityConfigs get_identities(ids=ids, tenant_ids=tenant_ids, domains=domains, include_all_tenants=include_all_tenants)
 
 Get Identities
 
@@ -319,54 +397,73 @@ Get Identities
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.identity_configs import IdentityConfigs
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.identity_configs import IdentityConfigs
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-ids = [
-        1,
-    ] # [int] | Specifies IDs of configured identity providers (optional)
-tenant_ids = [
-        "tenantIds_example",
-    ] # [str] | Specifies the tenant id's to get IDPs configured on tenants (optional)
-domains = [
-        "domains_example",
-    ] # [str] | Specifies domains of the IDP configurations (optional)
-include_all_tenants = True # bool | Specifies if IDP configurations on all the tenants under the hierarchy of the logged in user should be returned (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get Identities
-	api_response = client.identity_provider.get_identities(ids=ids, tenant_ids=tenant_ids, domains=domains, include_all_tenants=include_all_tenants)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling IdentityProviderApi->get_identities: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
+    ids = [56] # List[int] | Specifies IDs of configured identity providers (optional)
+    tenant_ids = ['tenant_ids_example'] # List[str] | Specifies the tenant id's to get IDPs configured on tenants (optional)
+    domains = ['domains_example'] # List[str] | Specifies domains of the IDP configurations (optional)
+    include_all_tenants = True # bool | Specifies if IDP configurations on all the tenants under the hierarchy of the logged in user should be returned (optional)
+
+    try:
+        # Get Identities
+        api_response = api_instance.get_identities(ids=ids, tenant_ids=tenant_ids, domains=domains, include_all_tenants=include_all_tenants)
+        print("The response of IdentityProviderApi->get_identities:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling IdentityProviderApi->get_identities: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ids** | **[int]**| Specifies IDs of configured identity providers | [optional]
- **tenant_ids** | **[str]**| Specifies the tenant id&#39;s to get IDPs configured on tenants | [optional]
- **domains** | **[str]**| Specifies domains of the IDP configurations | [optional]
- **include_all_tenants** | **bool**| Specifies if IDP configurations on all the tenants under the hierarchy of the logged in user should be returned | [optional]
+ **ids** | [**List[int]**](int.md)| Specifies IDs of configured identity providers | [optional] 
+ **tenant_ids** | [**List[str]**](str.md)| Specifies the tenant id&#39;s to get IDPs configured on tenants | [optional] 
+ **domains** | [**List[str]**](str.md)| Specifies domains of the IDP configurations | [optional] 
+ **include_all_tenants** | **bool**| Specifies if IDP configurations on all the tenants under the hierarchy of the logged in user should be returned | [optional] 
 
 ### Return type
 
@@ -374,15 +471,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -391,7 +488,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_identity_providers**
-> IdentityProviderConfigurations get_identity_providers()
+> IdentityProviderConfigurations get_identity_providers(ids=ids, tenant_ids=tenant_ids, names=names, domains=domains, include_all_tenants=include_all_tenants)
 
 Get identity providers
 
@@ -400,58 +497,75 @@ Get identity providers
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.identity_provider_configurations import IdentityProviderConfigurations
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.identity_provider_configurations import IdentityProviderConfigurations
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-ids = [
-        1,
-    ] # [int] | Specifies ids of configured identity providers (optional)
-tenant_ids = [
-        "tenantIds_example",
-    ] # [str] | Specifies the tenant id's to get idps configured on tenants (optional)
-names = [
-        "names_example",
-    ] # [str] | Specifies the names of the identity providers (optional)
-domains = [
-        "domains_example",
-    ] # [str] | Specifies domains of the idp configurations (optional)
-include_all_tenants = True # bool | Specifies if idp configurations on all the tenants under the hierarchy of the logged in user should be returned (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get identity providers
-	api_response = client.identity_provider.get_identity_providers(ids=ids, tenant_ids=tenant_ids, names=names, domains=domains, include_all_tenants=include_all_tenants)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling IdentityProviderApi->get_identity_providers: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
+    ids = [56] # List[int] | Specifies ids of configured identity providers (optional)
+    tenant_ids = ['tenant_ids_example'] # List[str] | Specifies the tenant id's to get idps configured on tenants (optional)
+    names = ['names_example'] # List[str] | Specifies the names of the identity providers (optional)
+    domains = ['domains_example'] # List[str] | Specifies domains of the idp configurations (optional)
+    include_all_tenants = True # bool | Specifies if idp configurations on all the tenants under the hierarchy of the logged in user should be returned (optional)
+
+    try:
+        # Get identity providers
+        api_response = api_instance.get_identity_providers(ids=ids, tenant_ids=tenant_ids, names=names, domains=domains, include_all_tenants=include_all_tenants)
+        print("The response of IdentityProviderApi->get_identity_providers:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling IdentityProviderApi->get_identity_providers: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ids** | **[int]**| Specifies ids of configured identity providers | [optional]
- **tenant_ids** | **[str]**| Specifies the tenant id&#39;s to get idps configured on tenants | [optional]
- **names** | **[str]**| Specifies the names of the identity providers | [optional]
- **domains** | **[str]**| Specifies domains of the idp configurations | [optional]
- **include_all_tenants** | **bool**| Specifies if idp configurations on all the tenants under the hierarchy of the logged in user should be returned | [optional]
+ **ids** | [**List[int]**](int.md)| Specifies ids of configured identity providers | [optional] 
+ **tenant_ids** | [**List[str]**](str.md)| Specifies the tenant id&#39;s to get idps configured on tenants | [optional] 
+ **names** | [**List[str]**](str.md)| Specifies the names of the identity providers | [optional] 
+ **domains** | [**List[str]**](str.md)| Specifies domains of the idp configurations | [optional] 
+ **include_all_tenants** | **bool**| Specifies if idp configurations on all the tenants under the hierarchy of the logged in user should be returned | [optional] 
 
 ### Return type
 
@@ -459,15 +573,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -476,7 +590,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **idps_login**
-> Error idps_login()
+> Error idps_login(tenant_id=tenant_id)
 
 Login to cluster using idp
 
@@ -485,41 +599,67 @@ Login to cluster using idp
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.error import Error
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-tenant_id = "tenantId_example" # str | Specifies an optional tenantId for which the SSO login should be done. If this is not specified, cluster SSO login is done. (optional)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Login to cluster using idp
-	api_response = client.identity_provider.idps_login(tenant_id=tenant_id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling IdentityProviderApi->idps_login: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
+    tenant_id = 'tenant_id_example' # str | Specifies an optional tenantId for which the SSO login should be done. If this is not specified, cluster SSO login is done. (optional)
+
+    try:
+        # Login to cluster using idp
+        api_response = api_instance.idps_login(tenant_id=tenant_id)
+        print("The response of IdentityProviderApi->idps_login:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling IdentityProviderApi->idps_login: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tenant_id** | **str**| Specifies an optional tenantId for which the SSO login should be done. If this is not specified, cluster SSO login is done. | [optional]
+ **tenant_id** | **str**| Specifies an optional tenantId for which the SSO login should be done. If this is not specified, cluster SSO login is done. | [optional] 
 
 ### Return type
 
@@ -527,15 +667,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **302** | No Content |  -  |
@@ -553,49 +693,67 @@ Perform Identity Action
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.identity_action import IdentityAction
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.identity_action import IdentityAction
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = IdentityAction(
-        identity_provider_type="OpenIdConnect",
-        o_auth2_params=OAuth2Action(
-            action="RefreshPublicKeys",
-        ),
-        open_id_connect_params=OpenIdConnectAction(
-            action="RefreshPublicKeys",
-        ),
-    ) # IdentityAction | Specifies parameters perform an identity action.
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Perform Identity Action
-	api_response = client.identity_provider.perform_identity_action(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling IdentityProviderApi->perform_identity_action: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
+    body = cohesity_sdk.cluster.IdentityAction() # IdentityAction | Specifies parameters perform an identity action.
+
+    try:
+        # Perform Identity Action
+        api_response = api_instance.perform_identity_action(body)
+        print("The response of IdentityProviderApi->perform_identity_action:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling IdentityProviderApi->perform_identity_action: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**IdentityAction**](IdentityAction.md)| Specifies parameters perform an identity action. |
+ **body** | [**IdentityAction**](IdentityAction.md)| Specifies parameters perform an identity action. | 
 
 ### Return type
 
@@ -603,15 +761,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -629,68 +787,69 @@ Update Identity Provider
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.identity_config import IdentityConfig
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.identity_config import IdentityConfig
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies id of identity provider configuration
-body = IdentityConfig(
-        domain="domain_example",
-        identity_provider_type="OpenIdConnect",
-        is_enabled=True,
-        last_modified_timestamp_usecs=1,
-        o_auth2_params=OAuth2Provider(
-            audiences=[
-                OAuthAudience(
-                    audience_id="audience_id_example",
-                    client_ids=[
-                        "client_ids_example",
-                    ],
-                ),
-            ],
-            polling_frequency_mins=1440,
-            public_key_url="public_key_url_example",
-        ),
-        open_id_connect_params=OpenIdProvider(
-            audience_ids=[
-                "audience_ids_example",
-            ],
-            polling_frequency_mins=1440,
-            public_key_url="public_key_url_example",
-        ),
-        tenant_id="tenant_id_example",
-    ) # IdentityConfig | Specifies parameters to update identity provider configuration
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update Identity Provider
-	api_response = client.identity_provider.update_identity(id, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling IdentityProviderApi->update_identity: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
+    id = 56 # int | Specifies id of identity provider configuration
+    body = cohesity_sdk.cluster.IdentityConfig() # IdentityConfig | Specifies parameters to update identity provider configuration
+
+    try:
+        # Update Identity Provider
+        api_response = api_instance.update_identity(id, body)
+        print("The response of IdentityProviderApi->update_identity:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling IdentityProviderApi->update_identity: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies id of identity provider configuration |
- **body** | [**IdentityConfig**](IdentityConfig.md)| Specifies parameters to update identity provider configuration |
+ **id** | **int**| Specifies id of identity provider configuration | 
+ **body** | [**IdentityConfig**](IdentityConfig.md)| Specifies parameters to update identity provider configuration | 
 
 ### Return type
 
@@ -698,15 +857,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -724,56 +883,70 @@ Update identity provider
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (Bearer):
 * Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.identity_provider_configuration import IdentityProviderConfiguration
-from cohesity_sdk.cluster.model.common_identity_provider_configuration import CommonIdentityProviderConfiguration
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.common_identity_provider_configuration import CommonIdentityProviderConfiguration
+from cohesity_sdk.cluster.models.identity_provider_configuration import IdentityProviderConfiguration
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-id = 1 # int | Specifies id of idp configuration
-body = CommonIdentityProviderConfiguration(
-        allow_local_user_login=True,
-        certificate="certificate_example",
-        certificate_filename="certificate_filename_example",
-        is_enabled=True,
-        issuer_id="issuer_id_example",
-        roles=[
-            "roles_example",
-        ],
-        saml_attribute_name="saml_attribute_name_example",
-        sign_request=True,
-        sso_url="sso_url_example",
-    ) # CommonIdentityProviderConfiguration | Specifies parameters to update identity provider configuration
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Update identity provider
-	api_response = client.identity_provider.update_identity_provider(id, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling IdentityProviderApi->update_identity_provider: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
+    id = 56 # int | Specifies id of idp configuration
+    body = cohesity_sdk.cluster.CommonIdentityProviderConfiguration() # CommonIdentityProviderConfiguration | Specifies parameters to update identity provider configuration
+
+    try:
+        # Update identity provider
+        api_response = api_instance.update_identity_provider(id, body)
+        print("The response of IdentityProviderApi->update_identity_provider:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling IdentityProviderApi->update_identity_provider: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies id of idp configuration |
- **body** | [**CommonIdentityProviderConfiguration**](CommonIdentityProviderConfiguration.md)| Specifies parameters to update identity provider configuration |
+ **id** | **int**| Specifies id of idp configuration | 
+ **body** | **CommonIdentityProviderConfiguration**| Specifies parameters to update identity provider configuration | 
 
 ### Return type
 
@@ -781,15 +954,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |

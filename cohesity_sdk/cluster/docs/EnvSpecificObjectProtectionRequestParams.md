@@ -3,9 +3,10 @@
 Specifies the parameters which are specific to adapter identified by environment.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**environment** | **str, none_type** | Specifies the environment for current object. | [optional] 
+**environment** | **str** | Specifies the environment for current object. | [optional] 
 **aws_params** | [**AwsObjectProtectionRequestParams**](AwsObjectProtectionRequestParams.md) |  | [optional] 
 **azure_params** | [**AzureObjectProtectionRequestParams**](AzureObjectProtectionRequestParams.md) |  | [optional] 
 **elastifile_params** | [**ElastifileObjectProtectionRequestParams**](ElastifileObjectProtectionRequestParams.md) |  | [optional] 
@@ -29,6 +30,23 @@ Name | Type | Description | Notes
 **uda_params** | [**UdaObjectProtectionParams**](UdaObjectProtectionParams.md) |  | [optional] 
 **vmware_params** | [**VmwareObjectProtectionRequestParams**](VmwareObjectProtectionRequestParams.md) |  | [optional] 
 
+## Example
+
+```python
+from cohesity_sdk.cluster.models.env_specific_object_protection_request_params import EnvSpecificObjectProtectionRequestParams
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of EnvSpecificObjectProtectionRequestParams from a JSON string
+env_specific_object_protection_request_params_instance = EnvSpecificObjectProtectionRequestParams.from_json(json)
+# print the JSON string representation of the object
+print(EnvSpecificObjectProtectionRequestParams.to_json())
+
+# convert the object into a dict
+env_specific_object_protection_request_params_dict = env_specific_object_protection_request_params_instance.to_dict()
+# create an instance of EnvSpecificObjectProtectionRequestParams from a dict
+env_specific_object_protection_request_params_from_dict = EnvSpecificObjectProtectionRequestParams.from_dict(env_specific_object_protection_request_params_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

@@ -3,19 +3,37 @@
 Specifies the parameters which are specific to GCP related External Targets of archival purpose type.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bucket_name** | **str, none_type** | Specifies the bucket name of the external target. | 
-**project_id** | **str, none_type** | Specifies the project Id of the external target. | 
-**storage_class** | **str, none_type** | Specifies the GCP External Target storage class. | 
 **authentication_method** | [**GCPAuthenticationMethodsParams**](GCPAuthenticationMethodsParams.md) |  | [optional] 
-**client_email_address** | **str, none_type** | Specifies the client email address of the external target. This field is being deprecated, please use authenticationMethod instead. | [optional] 
-**client_private_key** | **str, none_type** | Specifies the client private key of the external target. This field is being deprecated, please use authenticationMethod instead. | [optional] 
-**region** | **str, none_type** | Specifies the Google Cloud region where the storage bucket is located (e.g., &#39;us-central1&#39;, &#39;europe-west1&#39;). | [optional] 
-**is_forever_incremental_archival_enabled** | **bool, none_type** | Specifies if Forever Incremental Archival setting is enabled or not. | [optional] 
-**is_incremental_archival_enabled** | **bool, none_type** | Specifies if Incremental Archival setting is enabled or not. | [optional] 
-**source_side_deduplication** | **bool, none_type** | Specifies the Source Side Deduplication setting for the GCP external target | [optional] 
+**bucket_name** | **str** | Specifies the bucket name of the external target. | 
+**client_email_address** | **str** | Specifies the client email address of the external target. This field is being deprecated, please use authenticationMethod instead. | [optional] 
+**client_private_key** | **str** | Specifies the client private key of the external target. This field is being deprecated, please use authenticationMethod instead. | [optional] 
+**project_id** | **str** | Specifies the project Id of the external target. | 
+**region** | **str** | Specifies the Google Cloud region where the storage bucket is located (e.g., &#39;us-central1&#39;, &#39;europe-west1&#39;). | [optional] 
+**is_forever_incremental_archival_enabled** | **bool** | Specifies if Forever Incremental Archival setting is enabled or not. | [optional] 
+**is_incremental_archival_enabled** | **bool** | Specifies if Incremental Archival setting is enabled or not. | [optional] 
+**source_side_deduplication** | **bool** | Specifies the Source Side Deduplication setting for the GCP external target | [optional] 
+**storage_class** | **str** | Specifies the GCP External Target storage class. | 
 
+## Example
+
+```python
+from cohesity_sdk.cluster.models.archival_gcp_external_target_params import ArchivalGcpExternalTargetParams
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of ArchivalGcpExternalTargetParams from a JSON string
+archival_gcp_external_target_params_instance = ArchivalGcpExternalTargetParams.from_json(json)
+# print the JSON string representation of the object
+print(ArchivalGcpExternalTargetParams.to_json())
+
+# convert the object into a dict
+archival_gcp_external_target_params_dict = archival_gcp_external_target_params_instance.to_dict()
+# create an instance of ArchivalGcpExternalTargetParams from a dict
+archival_gcp_external_target_params_from_dict = ArchivalGcpExternalTargetParams.from_dict(archival_gcp_external_target_params_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 
