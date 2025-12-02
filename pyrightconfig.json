@@ -1,7 +1,0 @@
-{
-  "typeCheckingMode": "basic",
-  "reportUndefinedVariable": "none",
-  "include": [
-    "generated_sdk"
-  ]
-}
