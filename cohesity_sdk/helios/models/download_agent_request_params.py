@@ -44,8 +44,8 @@ class DownloadAgentRequestParams(BaseModel):
     @field_validator('platform')
     def platform_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['kLinux', 'kWindows', 'kAix', 'kSolaris', 'kSapHana', 'kSapOracle', 'kCockroachDB', 'kMySQL', 'kHPUX', 'kVOS', 'kVMWareCDPFilter']):
-            raise ValueError("must be one of enum values ('kLinux', 'kWindows', 'kAix', 'kSolaris', 'kSapHana', 'kSapOracle', 'kCockroachDB', 'kMySQL', 'kHPUX', 'kVOS', 'kVMWareCDPFilter')")
+        if value not in set(['kAix', 'kCockroachDB', 'kDB2', 'kHPUX', 'kLinux', 'kMariaDB', 'kMySQL', 'kPostgreSQL', 'kSapASE', 'kSapHana', 'kSapMaxDB', 'kSapOracle', 'kSapSybase', 'kSapSybaseIQ', 'kSolaris', 'kVMWareCDPFilter', 'kVOS', 'kWindows']):
+            raise ValueError("must be one of enum values ('kAix', 'kCockroachDB', 'kDB2', 'kHPUX', 'kLinux', 'kMariaDB', 'kMySQL', 'kPostgreSQL', 'kSapASE', 'kSapHana', 'kSapMaxDB', 'kSapOracle', 'kSapSybase', 'kSapSybaseIQ', 'kSolaris', 'kVMWareCDPFilter', 'kVOS', 'kWindows')")
         return value
 
     model_config = ConfigDict(

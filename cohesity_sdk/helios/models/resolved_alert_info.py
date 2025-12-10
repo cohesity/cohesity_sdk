@@ -27,10 +27,13 @@ class ResolvedAlertInfo(BaseModel):
     The infomation of the alert being resolved
     """ # noqa: E501
     alert_id: Optional[StrictInt] = Field(default=None, description="Id of the alert", alias="alertId")
+    alert_id_str: Optional[StrictStr] = Field(default=None, description="Alert Id with string format", alias="alertIdStr")
     alert_name: Optional[StrictStr] = Field(default=None, description="Name of the alert being resolved", alias="alertName")
     cluster_id: Optional[StrictInt] = Field(default=None, description="Id of the cluster which the alert is associated", alias="clusterId")
+    first_timestamp_usecs: Optional[StrictInt] = Field(default=None, description="First occurrence of the alert", alias="firstTimestampUsecs")
     resolved_time_usec: Optional[StrictInt] = Field(default=None, alias="resolvedTimeUsec")
-    __properties: ClassVar[List[str]] = ["alertId", "alertName", "clusterId", "resolvedTimeUsec"]
+    service_instance_id: Optional[StrictStr] = Field(default=None, description="Id of the service instance which the alert is associated", alias="serviceInstanceId")
+    __properties: ClassVar[List[str]] = ["alertId", "alertIdStr", "alertName", "clusterId", "firstTimestampUsecs", "resolvedTimeUsec", "serviceInstanceId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,6 +79,11 @@ class ResolvedAlertInfo(BaseModel):
         if self.cluster_id is None and "cluster_id" in self.model_fields_set:
             _dict['clusterId'] = None
 
+        # set to None if service_instance_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.service_instance_id is None and "service_instance_id" in self.model_fields_set:
+            _dict['serviceInstanceId'] = None
+
         return _dict
 
     @classmethod
@@ -89,9 +97,12 @@ class ResolvedAlertInfo(BaseModel):
 
         _obj = cls.model_validate({
             "alertId": obj.get("alertId"),
+            "alertIdStr": obj.get("alertIdStr"),
             "alertName": obj.get("alertName"),
             "clusterId": obj.get("clusterId"),
-            "resolvedTimeUsec": obj.get("resolvedTimeUsec")
+            "firstTimestampUsecs": obj.get("firstTimestampUsecs"),
+            "resolvedTimeUsec": obj.get("resolvedTimeUsec"),
+            "serviceInstanceId": obj.get("serviceInstanceId")
         })
         return _obj
 

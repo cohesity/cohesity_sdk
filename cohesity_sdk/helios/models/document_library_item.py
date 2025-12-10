@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.snapshot_tag_info import SnapshotTagInfo
+from cohesity_sdk.helios.models.subsite_item import SubsiteItem
 from cohesity_sdk.helios.models.tag_info import TagInfo
 from typing import Set
 from typing_extensions import Self
@@ -40,10 +41,12 @@ class DocumentLibraryItem(BaseModel):
     tags: Optional[List[TagInfo]] = Field(default=None, description="Specifies tag applied to the object.")
     creation_time_secs: Optional[StrictInt] = Field(default=None, description="Specifies the Unix timestamp epoch in seconds at which this item is created.", alias="creationTimeSecs")
     file_type: Optional[StrictStr] = Field(default=None, description="Specifies the file type.", alias="fileType")
+    item_id: Optional[StrictStr] = Field(default=None, description="Specifies the id of the document library item.", alias="itemId")
     item_size: Optional[StrictInt] = Field(default=None, description="Specifies the size in bytes for the indexed item.", alias="itemSize")
     owner_email: Optional[StrictStr] = Field(default=None, description="Specifies the email of the owner of the document library item.", alias="ownerEmail")
     owner_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the owner of the document library item.", alias="ownerName")
-    __properties: ClassVar[List[str]] = ["name", "path", "policyId", "policyName", "protectionGroupId", "protectionGroupName", "sourceInfo", "storageDomainId", "snapshotTags", "tags", "creationTimeSecs", "fileType", "itemSize", "ownerEmail", "ownerName"]
+    subsite_item: Optional[SubsiteItem] = Field(default=None, alias="subsiteItem")
+    __properties: ClassVar[List[str]] = ["name", "path", "policyId", "policyName", "protectionGroupId", "protectionGroupName", "sourceInfo", "storageDomainId", "snapshotTags", "tags", "creationTimeSecs", "fileType", "itemId", "itemSize", "ownerEmail", "ownerName", "subsiteItem"]
 
     @field_validator('file_type')
     def file_type_validate_enum(cls, value):
@@ -108,6 +111,9 @@ class DocumentLibraryItem(BaseModel):
                 if _item_tags:
                     _items.append(_item_tags.to_dict())
             _dict['tags'] = _items
+        # override the default output from pydantic by calling `to_dict()` of subsite_item
+        if self.subsite_item:
+            _dict['subsiteItem'] = self.subsite_item.to_dict()
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
@@ -163,6 +169,11 @@ class DocumentLibraryItem(BaseModel):
         if self.file_type is None and "file_type" in self.model_fields_set:
             _dict['fileType'] = None
 
+        # set to None if item_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.item_id is None and "item_id" in self.model_fields_set:
+            _dict['itemId'] = None
+
         # set to None if item_size (nullable) is None
         # and model_fields_set contains the field
         if self.item_size is None and "item_size" in self.model_fields_set:
@@ -202,9 +213,11 @@ class DocumentLibraryItem(BaseModel):
             "tags": [TagInfo.from_dict(_item) for _item in obj["tags"]] if obj.get("tags") is not None else None,
             "creationTimeSecs": obj.get("creationTimeSecs"),
             "fileType": obj.get("fileType"),
+            "itemId": obj.get("itemId"),
             "itemSize": obj.get("itemSize"),
             "ownerEmail": obj.get("ownerEmail"),
-            "ownerName": obj.get("ownerName")
+            "ownerName": obj.get("ownerName"),
+            "subsiteItem": SubsiteItem.from_dict(obj["subsiteItem"]) if obj.get("subsiteItem") is not None else None
         })
         return _obj
 

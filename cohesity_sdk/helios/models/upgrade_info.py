@@ -29,11 +29,23 @@ class UpgradeInfo(BaseModel):
     """ # noqa: E501
     cluster_id: Optional[StrictInt] = Field(default=None, description="Specifies cluster's id.", alias="clusterId")
     cluster_incarnation_id: Optional[StrictInt] = Field(default=None, description="Specifies cluster's incarnation id.", alias="clusterIncarnationId")
+    patch_software_version: Optional[StrictStr] = Field(default=None, description="Patch software version against which these logs are generated. This is specified for Patch type only.", alias="patchSoftwareVersion")
     software_version: Optional[StrictStr] = Field(default=None, description="Upgrade software version against which these logs are generated.", alias="softwareVersion")
+    type: Optional[StrictStr] = Field(default=None, description="Specifies the type of upgrade on a cluster.")
     upgrade_logs: Optional[List[NodeUpgradeLog]] = Field(default=None, description="Upgrade logs per node.", alias="upgradeLogs")
     upgrade_percent_complete: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Upgrade percentage complete so far.", alias="upgradePercentComplete")
     upgrade_status: Optional[StrictStr] = Field(default=None, description="Upgrade status.", alias="upgradeStatus")
-    __properties: ClassVar[List[str]] = ["clusterId", "clusterIncarnationId", "softwareVersion", "upgradeLogs", "upgradePercentComplete", "upgradeStatus"]
+    __properties: ClassVar[List[str]] = ["clusterId", "clusterIncarnationId", "patchSoftwareVersion", "softwareVersion", "type", "upgradeLogs", "upgradePercentComplete", "upgradeStatus"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['Upgrade', 'Patch', 'UpgradePatch']):
+            raise ValueError("must be one of enum values ('Upgrade', 'Patch', 'UpgradePatch')")
+        return value
 
     @field_validator('upgrade_status')
     def upgrade_status_validate_enum(cls, value):
@@ -41,8 +53,8 @@ class UpgradeInfo(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Complete', 'InProgress', 'Failed', 'ClusterUnreachable']):
-            raise ValueError("must be one of enum values ('Complete', 'InProgress', 'Failed', 'ClusterUnreachable')")
+        if value not in set(['Scheduled', 'Complete', 'InProgress', 'Failed', 'ClusterUnreachable']):
+            raise ValueError("must be one of enum values ('Scheduled', 'Complete', 'InProgress', 'Failed', 'ClusterUnreachable')")
         return value
 
     model_config = ConfigDict(
@@ -91,10 +103,20 @@ class UpgradeInfo(BaseModel):
                 if _item_upgrade_logs:
                     _items.append(_item_upgrade_logs.to_dict())
             _dict['upgradeLogs'] = _items
+        # set to None if patch_software_version (nullable) is None
+        # and model_fields_set contains the field
+        if self.patch_software_version is None and "patch_software_version" in self.model_fields_set:
+            _dict['patchSoftwareVersion'] = None
+
         # set to None if software_version (nullable) is None
         # and model_fields_set contains the field
         if self.software_version is None and "software_version" in self.model_fields_set:
             _dict['softwareVersion'] = None
+
+        # set to None if type (nullable) is None
+        # and model_fields_set contains the field
+        if self.type is None and "type" in self.model_fields_set:
+            _dict['type'] = None
 
         # set to None if upgrade_logs (nullable) is None
         # and model_fields_set contains the field
@@ -125,7 +147,9 @@ class UpgradeInfo(BaseModel):
         _obj = cls.model_validate({
             "clusterId": obj.get("clusterId"),
             "clusterIncarnationId": obj.get("clusterIncarnationId"),
+            "patchSoftwareVersion": obj.get("patchSoftwareVersion"),
             "softwareVersion": obj.get("softwareVersion"),
+            "type": obj.get("type"),
             "upgradeLogs": [NodeUpgradeLog.from_dict(_item) for _item in obj["upgradeLogs"]] if obj.get("upgradeLogs") is not None else None,
             "upgradePercentComplete": obj.get("upgradePercentComplete"),
             "upgradeStatus": obj.get("upgradeStatus")

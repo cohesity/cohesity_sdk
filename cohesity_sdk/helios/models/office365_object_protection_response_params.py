@@ -42,8 +42,8 @@ class Office365ObjectProtectionResponseParams(BaseModel):
     @field_validator('object_protection_type')
     def object_protection_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['kMailbox', 'kOneDrive', 'kSharePoint', 'kPublicFolders', 'kGroups', 'kTeams']):
-            raise ValueError("must be one of enum values ('kMailbox', 'kOneDrive', 'kSharePoint', 'kPublicFolders', 'kGroups', 'kTeams')")
+        if value not in set(['kMailbox', 'kOneDrive', 'kSharePoint', 'kPublicFolders', 'kGroups', 'kTeams', 'kMailboxCSM', 'kOneDriveCSM', 'kSharePointCSM']):
+            raise ValueError("must be one of enum values ('kMailbox', 'kOneDrive', 'kSharePoint', 'kPublicFolders', 'kGroups', 'kTeams', 'kMailboxCSM', 'kOneDriveCSM', 'kSharePointCSM')")
         return value
 
     model_config = ConfigDict(

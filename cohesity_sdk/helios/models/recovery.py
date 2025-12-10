@@ -21,11 +21,16 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.cassandra_params import CassandraParams
+from cohesity_sdk.helios.models.child_task_params import ChildTaskParams
+from cohesity_sdk.helios.models.common_filter_expression import CommonFilterExpression
 from cohesity_sdk.helios.models.couchbase_params import CouchbaseParams
 from cohesity_sdk.helios.models.creation_info import CreationInfo
+from cohesity_sdk.helios.models.db2_params import DB2Params
+from cohesity_sdk.helios.models.experimental_adapter_params import ExperimentalAdapterParams
 from cohesity_sdk.helios.models.hbase_params import HbaseParams
 from cohesity_sdk.helios.models.hdfs_params import HdfsParams
 from cohesity_sdk.helios.models.hive_params import HiveParams
+from cohesity_sdk.helios.models.mongodb_ops_manager_params import MongodbOpsManagerParams
 from cohesity_sdk.helios.models.mongodb_params import MongodbParams
 from cohesity_sdk.helios.models.recover_acropolis_params import RecoverAcropolisParams
 from cohesity_sdk.helios.models.recover_aws_params import RecoverAwsParams
@@ -35,6 +40,7 @@ from cohesity_sdk.helios.models.recover_exchange_params import RecoverExchangePa
 from cohesity_sdk.helios.models.recover_flashblade_params import RecoverFlashbladeParams
 from cohesity_sdk.helios.models.recover_gcp_params import RecoverGcpParams
 from cohesity_sdk.helios.models.recover_generic_nas_params import RecoverGenericNasParams
+from cohesity_sdk.helios.models.recover_google_workspace_params import RecoverGoogleWorkspaceParams
 from cohesity_sdk.helios.models.recover_gpfs_params import RecoverGpfsParams
 from cohesity_sdk.helios.models.recover_hyper_v_params import RecoverHyperVParams
 from cohesity_sdk.helios.models.recover_isilon_params import RecoverIsilonParams
@@ -45,11 +51,14 @@ from cohesity_sdk.helios.models.recover_o365_params import RecoverO365Params
 from cohesity_sdk.helios.models.recover_oracle_params import RecoverOracleParams
 from cohesity_sdk.helios.models.recover_physical_params import RecoverPhysicalParams
 from cohesity_sdk.helios.models.recover_pure_params import RecoverPureParams
+from cohesity_sdk.helios.models.recover_s3_compatible_params import RecoverS3CompatibleParams
 from cohesity_sdk.helios.models.recover_salesforce_params import RecoverSalesforceParams
+from cohesity_sdk.helios.models.recover_service_now_params import RecoverServiceNowParams
 from cohesity_sdk.helios.models.recover_sql_params import RecoverSqlParams
 from cohesity_sdk.helios.models.recover_view_params import RecoverViewParams
 from cohesity_sdk.helios.models.recover_vmware_params import RecoverVmwareParams
 from cohesity_sdk.helios.models.retrieve_archive_task import RetrieveArchiveTask
+from cohesity_sdk.helios.models.sap_hana_params import SapHanaParams
 from cohesity_sdk.helios.models.tenant import Tenant
 from cohesity_sdk.helios.models.uda_params import UdaParams
 from typing import Set
@@ -60,33 +69,45 @@ class Recovery(BaseModel):
     Specifies a Recovery.
     """ # noqa: E501
     can_tear_down: Optional[StrictBool] = Field(default=None, description="Specifies whether it's possible to tear down the objects created by the recovery.", alias="canTearDown")
+    child_tasks: Optional[List[ChildTaskParams]] = Field(default=None, description="The child tasks used as part of the restore.", alias="childTasks")
     creation_info: Optional[CreationInfo] = Field(default=None, alias="creationInfo")
     end_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the end time of the Recovery in Unix timestamp epoch in microseconds. This field will be populated only after Recovery is finished.", alias="endTimeUsecs")
+    error_messages: Optional[List[StrictStr]] = Field(default=None, description="Specifies error messages about the recovery.", alias="errorMessages")
+    filter_params: Optional[CommonFilterExpression] = Field(default=None, alias="filterParams")
     id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Specifies the id of the Recovery.")
     is_multi_stage_restore: Optional[StrictBool] = Field(default=None, description="Specifies whether the current recovery operation is a multi-stage restore operation. This is currently used by VMware recoveres for the migration/hot-standby use case.", alias="isMultiStageRestore")
     is_parent_recovery: Optional[StrictBool] = Field(default=None, description="Specifies whether the current recovery operation has created child recoveries. This is currently used in SQL recovery where multiple child recoveries can be tracked under a common/parent recovery.", alias="isParentRecovery")
     messages: Optional[List[StrictStr]] = Field(default=None, description="Specifies messages about the recovery.")
     name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the Recovery.")
+    nfs_protocol: Optional[StrictStr] = Field(default=None, description="Specifies NFS protocol version. This protocol will be employed if the recovery request mounts the Cohesity storage via NFS on the primary source.", alias="nfsProtocol")
+    num_granular_objects_restored_successfully: Optional[StrictInt] = Field(default=None, description="Specifies the total number of objects that were successfully restored. The remaining objects were either skipped or had some error in restore operation.", alias="numGranularObjectsRestoredSuccessfully")
+    num_granular_objects_to_restore: Optional[StrictInt] = Field(default=None, description="Specifies the total number of objects which were requested to be restored.", alias="numGranularObjectsToRestore")
+    num_objects: Optional[StrictInt] = Field(default=None, description="Specifies the object count in a recovery task.", alias="numObjects")
     parent_recovery_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="If current recovery is child recovery triggered by another parent recovery operation, then this field willt specify the id of the parent recovery.", alias="parentRecoveryId")
     permissions: Optional[List[Tenant]] = Field(default=None, description="Specifies the list of tenants that have permissions for this recovery.")
     progress_task_id: Optional[StrictStr] = Field(default=None, description="Progress monitor task id for Recovery.", alias="progressTaskId")
     recovery_action: Optional[StrictStr] = Field(default=None, description="Specifies the type of recover action.", alias="recoveryAction")
     retrieve_archive_tasks: Optional[List[RetrieveArchiveTask]] = Field(default=None, description="Specifies the list of persistent state of a retrieve of an archive task.", alias="retrieveArchiveTasks")
+    retry_tear_down: Optional[StrictBool] = Field(default=None, description="Specifies whether it's possible to retry tear down of objects created by recovery operation.", alias="retryTearDown")
     snapshot_environment: Optional[StrictStr] = Field(default=None, description="Specifies the type of snapshot environment for which the Recovery was performed.", alias="snapshotEnvironment")
     start_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the start time of the Recovery in Unix timestamp epoch in microseconds.", alias="startTimeUsecs")
     status: Optional[StrictStr] = Field(default=None, description="Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages. 'Skipped' indicates that the Recovery task was skipped.")
     tear_down_message: Optional[StrictStr] = Field(default=None, description="Specifies the error message about the tear down operation if it fails.", alias="tearDownMessage")
     tear_down_status: Optional[StrictStr] = Field(default=None, description="Specifies the status of the tear down operation. This is only set when the canTearDown is set to true. 'DestroyScheduled' indicates that the tear down is ready to schedule. 'Destroying' indicates that the tear down is still running. 'Destroyed' indicates that the tear down succeeded. 'DestroyError' indicates that the tear down failed.", alias="tearDownStatus")
+    warning_messages: Optional[List[StrictStr]] = Field(default=None, description="Specifies warning messages about the recovery.", alias="warningMessages")
     acropolis_params: Optional[RecoverAcropolisParams] = Field(default=None, alias="acropolisParams")
     aws_params: Optional[RecoverAwsParams] = Field(default=None, alias="awsParams")
     azure_params: Optional[RecoverAzureParams] = Field(default=None, alias="azureParams")
     cassandra_params: Optional[CassandraParams] = Field(default=None, alias="cassandraParams")
     couchbase_params: Optional[CouchbaseParams] = Field(default=None, alias="couchbaseParams")
+    db2_params: Optional[DB2Params] = Field(default=None, alias="db2Params")
     elastifile_params: Optional[RecoverElastifileParams] = Field(default=None, alias="elastifileParams")
     exchange_params: Optional[RecoverExchangeParams] = Field(default=None, alias="exchangeParams")
+    experimental_adapter_params: Optional[ExperimentalAdapterParams] = Field(default=None, alias="experimentalAdapterParams")
     flashblade_params: Optional[RecoverFlashbladeParams] = Field(default=None, alias="flashbladeParams")
     gcp_params: Optional[RecoverGcpParams] = Field(default=None, alias="gcpParams")
     generic_nas_params: Optional[RecoverGenericNasParams] = Field(default=None, alias="genericNasParams")
+    google_workspace_params: Optional[RecoverGoogleWorkspaceParams] = Field(default=None, alias="googleWorkspaceParams")
     gpfs_params: Optional[RecoverGpfsParams] = Field(default=None, alias="gpfsParams")
     hbase_params: Optional[HbaseParams] = Field(default=None, alias="hbaseParams")
     hdfs_params: Optional[HdfsParams] = Field(default=None, alias="hdfsParams")
@@ -96,6 +117,7 @@ class Recovery(BaseModel):
     isilon_params: Optional[RecoverIsilonParams] = Field(default=None, alias="isilonParams")
     kubernetes_params: Optional[RecoverKubernetesParams] = Field(default=None, alias="kubernetesParams")
     kvm_params: Optional[RecoverKvmParams] = Field(default=None, alias="kvmParams")
+    mongodb_ops_params: Optional[MongodbOpsManagerParams] = Field(default=None, alias="mongodbOpsParams")
     mongodb_params: Optional[MongodbParams] = Field(default=None, alias="mongodbParams")
     mssql_params: Optional[RecoverSqlParams] = Field(default=None, alias="mssqlParams")
     netapp_params: Optional[RecoverNetappParams] = Field(default=None, alias="netappParams")
@@ -103,11 +125,14 @@ class Recovery(BaseModel):
     oracle_params: Optional[RecoverOracleParams] = Field(default=None, alias="oracleParams")
     physical_params: Optional[RecoverPhysicalParams] = Field(default=None, alias="physicalParams")
     pure_params: Optional[RecoverPureParams] = Field(default=None, alias="pureParams")
+    s3_compatible_params: Optional[RecoverS3CompatibleParams] = Field(default=None, alias="s3CompatibleParams")
+    sap_hana_params: Optional[SapHanaParams] = Field(default=None, alias="sapHanaParams")
+    service_now_params: Optional[RecoverServiceNowParams] = Field(default=None, alias="serviceNowParams")
     sfdc_params: Optional[RecoverSalesforceParams] = Field(default=None, alias="sfdcParams")
     uda_params: Optional[UdaParams] = Field(default=None, alias="udaParams")
     view_params: Optional[RecoverViewParams] = Field(default=None, alias="viewParams")
     vmware_params: Optional[RecoverVmwareParams] = Field(default=None, alias="vmwareParams")
-    __properties: ClassVar[List[str]] = ["canTearDown", "creationInfo", "endTimeUsecs", "id", "isMultiStageRestore", "isParentRecovery", "messages", "name", "parentRecoveryId", "permissions", "progressTaskId", "recoveryAction", "retrieveArchiveTasks", "snapshotEnvironment", "startTimeUsecs", "status", "tearDownMessage", "tearDownStatus", "acropolisParams", "awsParams", "azureParams", "cassandraParams", "couchbaseParams", "elastifileParams", "exchangeParams", "flashbladeParams", "gcpParams", "genericNasParams", "gpfsParams", "hbaseParams", "hdfsParams", "hiveParams", "hypervParams", "ibmFlashSystemParams", "isilonParams", "kubernetesParams", "kvmParams", "mongodbParams", "mssqlParams", "netappParams", "office365Params", "oracleParams", "physicalParams", "pureParams", "sfdcParams", "udaParams", "viewParams", "vmwareParams"]
+    __properties: ClassVar[List[str]] = ["canTearDown", "childTasks", "creationInfo", "endTimeUsecs", "errorMessages", "filterParams", "id", "isMultiStageRestore", "isParentRecovery", "messages", "name", "nfsProtocol", "numGranularObjectsRestoredSuccessfully", "numGranularObjectsToRestore", "numObjects", "parentRecoveryId", "permissions", "progressTaskId", "recoveryAction", "retrieveArchiveTasks", "retryTearDown", "snapshotEnvironment", "startTimeUsecs", "status", "tearDownMessage", "tearDownStatus", "warningMessages", "acropolisParams", "awsParams", "azureParams", "cassandraParams", "couchbaseParams", "db2Params", "elastifileParams", "exchangeParams", "experimentalAdapterParams", "flashbladeParams", "gcpParams", "genericNasParams", "googleWorkspaceParams", "gpfsParams", "hbaseParams", "hdfsParams", "hiveParams", "hypervParams", "ibmFlashSystemParams", "isilonParams", "kubernetesParams", "kvmParams", "mongodbOpsParams", "mongodbParams", "mssqlParams", "netappParams", "office365Params", "oracleParams", "physicalParams", "pureParams", "s3CompatibleParams", "sapHanaParams", "serviceNowParams", "sfdcParams", "udaParams", "viewParams", "vmwareParams"]
 
     @field_validator('id')
     def id_validate_regular_expression(cls, value):
@@ -117,6 +142,16 @@ class Recovery(BaseModel):
 
         if not re.match(r"^\d+:\d+:\d+$", value):
             raise ValueError(r"must validate the regular expression /^\d+:\d+:\d+$/")
+        return value
+
+    @field_validator('nfs_protocol')
+    def nfs_protocol_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['kNfs3', 'kNfs4_1']):
+            raise ValueError("must be one of enum values ('kNfs3', 'kNfs4_1')")
         return value
 
     @field_validator('parent_recovery_id')
@@ -135,8 +170,8 @@ class Recovery(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['RecoverVMs', 'RecoverFiles', 'InstantVolumeMount', 'RecoverVmDisks', 'RecoverVApps', 'RecoverVAppTemplates', 'UptierSnapshot', 'RecoverRDS', 'RecoverAurora', 'RecoverS3Buckets', 'RecoverRDSPostgres', 'RecoverAzureSQL', 'RecoverApps', 'CloneApps', 'RecoverNasVolume', 'RecoverPhysicalVolumes', 'RecoverSystem', 'RecoverExchangeDbs', 'CloneAppView', 'RecoverSanVolumes', 'RecoverSanGroup', 'RecoverMailbox', 'RecoverOneDrive', 'RecoverSharePoint', 'RecoverPublicFolders', 'RecoverMsGroup', 'RecoverMsTeam', 'ConvertToPst', 'DownloadChats', 'RecoverNamespaces', 'RecoverObjects', 'RecoverSfdcObjects', 'RecoverSfdcOrg', 'RecoverSfdcRecords', 'DownloadFilesAndFolders', 'CloneVMs', 'CloneView', 'CloneRefreshApp', 'CloneVMsToView', 'ConvertAndDeployVMs', 'DeployVMs']):
-            raise ValueError("must be one of enum values ('RecoverVMs', 'RecoverFiles', 'InstantVolumeMount', 'RecoverVmDisks', 'RecoverVApps', 'RecoverVAppTemplates', 'UptierSnapshot', 'RecoverRDS', 'RecoverAurora', 'RecoverS3Buckets', 'RecoverRDSPostgres', 'RecoverAzureSQL', 'RecoverApps', 'CloneApps', 'RecoverNasVolume', 'RecoverPhysicalVolumes', 'RecoverSystem', 'RecoverExchangeDbs', 'CloneAppView', 'RecoverSanVolumes', 'RecoverSanGroup', 'RecoverMailbox', 'RecoverOneDrive', 'RecoverSharePoint', 'RecoverPublicFolders', 'RecoverMsGroup', 'RecoverMsTeam', 'ConvertToPst', 'DownloadChats', 'RecoverNamespaces', 'RecoverObjects', 'RecoverSfdcObjects', 'RecoverSfdcOrg', 'RecoverSfdcRecords', 'DownloadFilesAndFolders', 'CloneVMs', 'CloneView', 'CloneRefreshApp', 'CloneVMsToView', 'ConvertAndDeployVMs', 'DeployVMs')")
+        if value not in set(['RecoverVMs', 'RecoverFiles', 'InstantVolumeMount', 'RecoverVmDisks', 'RecoverVApps', 'RecoverVAppTemplates', 'UptierSnapshot', 'RecoverRDS', 'RecoverAurora', 'RecoverS3Buckets', 'RecoverRDSPostgres', 'RecoverAwsDynamoDB', 'RecoverRDSMySQL', 'RecoverRDSAuroraMySQL', 'RecoverGCPBigQuery', 'RecoverAzureSQL', 'RecoverAzureEntraID', 'RecoverAzureMySQL', 'RecoverApps', 'CloneApps', 'RecoverAppFiles', 'RecoverNasVolume', 'RecoverPhysicalVolumes', 'RecoverSystem', 'RecoverSnapshotToView', 'RecoverExchangeDbs', 'CloneAppView', 'RecoverSanVolumes', 'RecoverSanGroup', 'RecoverMailbox', 'RecoverOneDrive', 'RecoverSharePoint', 'RecoverPublicFolders', 'RecoverMsGroup', 'RecoverMsTeam', 'ConvertToPst', 'DownloadChats', 'RecoverMailboxCSM', 'RecoverOneDriveCSM', 'RecoverSharePointCSM', 'RecoverO365ToExchangeServer', 'RecoverNamespaces', 'DownloadFilesAndFolders', 'RecoverObjects', 'RecoverSfdcObjects', 'RecoverSfdcOrg', 'RecoverSfdcRecords', 'RecoverGmail', 'RecoverGoogleDrive', 'CloneVMs', 'CloneView', 'CloneRefreshApp', 'CloneVMsToView', 'ConvertAndDeployVMs', 'DeployVMs', 'RecoverMongodbClusters', 'RecoverServiceNowTables', 'RecoverServiceNowInstance', 'DownloadTables']):
+            raise ValueError("must be one of enum values ('RecoverVMs', 'RecoverFiles', 'InstantVolumeMount', 'RecoverVmDisks', 'RecoverVApps', 'RecoverVAppTemplates', 'UptierSnapshot', 'RecoverRDS', 'RecoverAurora', 'RecoverS3Buckets', 'RecoverRDSPostgres', 'RecoverAwsDynamoDB', 'RecoverRDSMySQL', 'RecoverRDSAuroraMySQL', 'RecoverGCPBigQuery', 'RecoverAzureSQL', 'RecoverAzureEntraID', 'RecoverAzureMySQL', 'RecoverApps', 'CloneApps', 'RecoverAppFiles', 'RecoverNasVolume', 'RecoverPhysicalVolumes', 'RecoverSystem', 'RecoverSnapshotToView', 'RecoverExchangeDbs', 'CloneAppView', 'RecoverSanVolumes', 'RecoverSanGroup', 'RecoverMailbox', 'RecoverOneDrive', 'RecoverSharePoint', 'RecoverPublicFolders', 'RecoverMsGroup', 'RecoverMsTeam', 'ConvertToPst', 'DownloadChats', 'RecoverMailboxCSM', 'RecoverOneDriveCSM', 'RecoverSharePointCSM', 'RecoverO365ToExchangeServer', 'RecoverNamespaces', 'DownloadFilesAndFolders', 'RecoverObjects', 'RecoverSfdcObjects', 'RecoverSfdcOrg', 'RecoverSfdcRecords', 'RecoverGmail', 'RecoverGoogleDrive', 'CloneVMs', 'CloneView', 'CloneRefreshApp', 'CloneVMsToView', 'ConvertAndDeployVMs', 'DeployVMs', 'RecoverMongodbClusters', 'RecoverServiceNowTables', 'RecoverServiceNowInstance', 'DownloadTables')")
         return value
 
     @field_validator('snapshot_environment')
@@ -145,8 +180,8 @@ class Recovery(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kVMware', 'kHyperV', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kPhysical', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc']):
-            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kPhysical', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc')")
+        if value not in set(['kVMware', 'kHyperV', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kPhysical', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kS3Compatible', 'kSAPHANA', 'kHBase', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kPhysical', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kS3Compatible', 'kSAPHANA', 'kHBase', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow')")
         return value
 
     @field_validator('status')
@@ -155,8 +190,8 @@ class Recovery(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped']):
-            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped')")
+        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold']):
+            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold')")
         return value
 
     @field_validator('tear_down_status')
@@ -165,8 +200,8 @@ class Recovery(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['DestroyScheduled', 'Destroying', 'Destroyed', 'DestroyError']):
-            raise ValueError("must be one of enum values ('DestroyScheduled', 'Destroying', 'Destroyed', 'DestroyError')")
+        if value not in set(['DestroyScheduled', 'Destroying', 'Destroyed', 'DestroySkipped', 'DestroyError']):
+            raise ValueError("must be one of enum values ('DestroyScheduled', 'Destroying', 'Destroyed', 'DestroySkipped', 'DestroyError')")
         return value
 
     model_config = ConfigDict(
@@ -199,8 +234,12 @@ class Recovery(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
+            "num_granular_objects_restored_successfully",
+            "num_granular_objects_to_restore",
         ])
 
         _dict = self.model_dump(
@@ -208,9 +247,19 @@ class Recovery(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in child_tasks (list)
+        _items = []
+        if self.child_tasks:
+            for _item_child_tasks in self.child_tasks:
+                if _item_child_tasks:
+                    _items.append(_item_child_tasks.to_dict())
+            _dict['childTasks'] = _items
         # override the default output from pydantic by calling `to_dict()` of creation_info
         if self.creation_info:
             _dict['creationInfo'] = self.creation_info.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of filter_params
+        if self.filter_params:
+            _dict['filterParams'] = self.filter_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in permissions (list)
         _items = []
         if self.permissions:
@@ -240,12 +289,18 @@ class Recovery(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of couchbase_params
         if self.couchbase_params:
             _dict['couchbaseParams'] = self.couchbase_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of db2_params
+        if self.db2_params:
+            _dict['db2Params'] = self.db2_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of elastifile_params
         if self.elastifile_params:
             _dict['elastifileParams'] = self.elastifile_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of exchange_params
         if self.exchange_params:
             _dict['exchangeParams'] = self.exchange_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of experimental_adapter_params
+        if self.experimental_adapter_params:
+            _dict['experimentalAdapterParams'] = self.experimental_adapter_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of flashblade_params
         if self.flashblade_params:
             _dict['flashbladeParams'] = self.flashblade_params.to_dict()
@@ -255,6 +310,9 @@ class Recovery(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of generic_nas_params
         if self.generic_nas_params:
             _dict['genericNasParams'] = self.generic_nas_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of google_workspace_params
+        if self.google_workspace_params:
+            _dict['googleWorkspaceParams'] = self.google_workspace_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of gpfs_params
         if self.gpfs_params:
             _dict['gpfsParams'] = self.gpfs_params.to_dict()
@@ -282,6 +340,9 @@ class Recovery(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of kvm_params
         if self.kvm_params:
             _dict['kvmParams'] = self.kvm_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of mongodb_ops_params
+        if self.mongodb_ops_params:
+            _dict['mongodbOpsParams'] = self.mongodb_ops_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of mongodb_params
         if self.mongodb_params:
             _dict['mongodbParams'] = self.mongodb_params.to_dict()
@@ -303,6 +364,15 @@ class Recovery(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of pure_params
         if self.pure_params:
             _dict['pureParams'] = self.pure_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of s3_compatible_params
+        if self.s3_compatible_params:
+            _dict['s3CompatibleParams'] = self.s3_compatible_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of sap_hana_params
+        if self.sap_hana_params:
+            _dict['sapHanaParams'] = self.sap_hana_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of service_now_params
+        if self.service_now_params:
+            _dict['serviceNowParams'] = self.service_now_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of sfdc_params
         if self.sfdc_params:
             _dict['sfdcParams'] = self.sfdc_params.to_dict()
@@ -320,10 +390,20 @@ class Recovery(BaseModel):
         if self.can_tear_down is None and "can_tear_down" in self.model_fields_set:
             _dict['canTearDown'] = None
 
+        # set to None if child_tasks (nullable) is None
+        # and model_fields_set contains the field
+        if self.child_tasks is None and "child_tasks" in self.model_fields_set:
+            _dict['childTasks'] = None
+
         # set to None if end_time_usecs (nullable) is None
         # and model_fields_set contains the field
         if self.end_time_usecs is None and "end_time_usecs" in self.model_fields_set:
             _dict['endTimeUsecs'] = None
+
+        # set to None if error_messages (nullable) is None
+        # and model_fields_set contains the field
+        if self.error_messages is None and "error_messages" in self.model_fields_set:
+            _dict['errorMessages'] = None
 
         # set to None if id (nullable) is None
         # and model_fields_set contains the field
@@ -350,6 +430,26 @@ class Recovery(BaseModel):
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
 
+        # set to None if nfs_protocol (nullable) is None
+        # and model_fields_set contains the field
+        if self.nfs_protocol is None and "nfs_protocol" in self.model_fields_set:
+            _dict['nfsProtocol'] = None
+
+        # set to None if num_granular_objects_restored_successfully (nullable) is None
+        # and model_fields_set contains the field
+        if self.num_granular_objects_restored_successfully is None and "num_granular_objects_restored_successfully" in self.model_fields_set:
+            _dict['numGranularObjectsRestoredSuccessfully'] = None
+
+        # set to None if num_granular_objects_to_restore (nullable) is None
+        # and model_fields_set contains the field
+        if self.num_granular_objects_to_restore is None and "num_granular_objects_to_restore" in self.model_fields_set:
+            _dict['numGranularObjectsToRestore'] = None
+
+        # set to None if num_objects (nullable) is None
+        # and model_fields_set contains the field
+        if self.num_objects is None and "num_objects" in self.model_fields_set:
+            _dict['numObjects'] = None
+
         # set to None if parent_recovery_id (nullable) is None
         # and model_fields_set contains the field
         if self.parent_recovery_id is None and "parent_recovery_id" in self.model_fields_set:
@@ -369,6 +469,11 @@ class Recovery(BaseModel):
         # and model_fields_set contains the field
         if self.retrieve_archive_tasks is None and "retrieve_archive_tasks" in self.model_fields_set:
             _dict['retrieveArchiveTasks'] = None
+
+        # set to None if retry_tear_down (nullable) is None
+        # and model_fields_set contains the field
+        if self.retry_tear_down is None and "retry_tear_down" in self.model_fields_set:
+            _dict['retryTearDown'] = None
 
         # set to None if start_time_usecs (nullable) is None
         # and model_fields_set contains the field
@@ -390,6 +495,11 @@ class Recovery(BaseModel):
         if self.tear_down_status is None and "tear_down_status" in self.model_fields_set:
             _dict['tearDownStatus'] = None
 
+        # set to None if warning_messages (nullable) is None
+        # and model_fields_set contains the field
+        if self.warning_messages is None and "warning_messages" in self.model_fields_set:
+            _dict['warningMessages'] = None
+
         return _dict
 
     @classmethod
@@ -403,33 +513,45 @@ class Recovery(BaseModel):
 
         _obj = cls.model_validate({
             "canTearDown": obj.get("canTearDown"),
+            "childTasks": [ChildTaskParams.from_dict(_item) for _item in obj["childTasks"]] if obj.get("childTasks") is not None else None,
             "creationInfo": CreationInfo.from_dict(obj["creationInfo"]) if obj.get("creationInfo") is not None else None,
             "endTimeUsecs": obj.get("endTimeUsecs"),
+            "errorMessages": obj.get("errorMessages"),
+            "filterParams": CommonFilterExpression.from_dict(obj["filterParams"]) if obj.get("filterParams") is not None else None,
             "id": obj.get("id"),
             "isMultiStageRestore": obj.get("isMultiStageRestore"),
             "isParentRecovery": obj.get("isParentRecovery"),
             "messages": obj.get("messages"),
             "name": obj.get("name"),
+            "nfsProtocol": obj.get("nfsProtocol"),
+            "numGranularObjectsRestoredSuccessfully": obj.get("numGranularObjectsRestoredSuccessfully"),
+            "numGranularObjectsToRestore": obj.get("numGranularObjectsToRestore"),
+            "numObjects": obj.get("numObjects"),
             "parentRecoveryId": obj.get("parentRecoveryId"),
             "permissions": [Tenant.from_dict(_item) for _item in obj["permissions"]] if obj.get("permissions") is not None else None,
             "progressTaskId": obj.get("progressTaskId"),
             "recoveryAction": obj.get("recoveryAction"),
             "retrieveArchiveTasks": [RetrieveArchiveTask.from_dict(_item) for _item in obj["retrieveArchiveTasks"]] if obj.get("retrieveArchiveTasks") is not None else None,
+            "retryTearDown": obj.get("retryTearDown"),
             "snapshotEnvironment": obj.get("snapshotEnvironment"),
             "startTimeUsecs": obj.get("startTimeUsecs"),
             "status": obj.get("status"),
             "tearDownMessage": obj.get("tearDownMessage"),
             "tearDownStatus": obj.get("tearDownStatus"),
+            "warningMessages": obj.get("warningMessages"),
             "acropolisParams": RecoverAcropolisParams.from_dict(obj["acropolisParams"]) if obj.get("acropolisParams") is not None else None,
             "awsParams": RecoverAwsParams.from_dict(obj["awsParams"]) if obj.get("awsParams") is not None else None,
             "azureParams": RecoverAzureParams.from_dict(obj["azureParams"]) if obj.get("azureParams") is not None else None,
             "cassandraParams": CassandraParams.from_dict(obj["cassandraParams"]) if obj.get("cassandraParams") is not None else None,
             "couchbaseParams": CouchbaseParams.from_dict(obj["couchbaseParams"]) if obj.get("couchbaseParams") is not None else None,
+            "db2Params": DB2Params.from_dict(obj["db2Params"]) if obj.get("db2Params") is not None else None,
             "elastifileParams": RecoverElastifileParams.from_dict(obj["elastifileParams"]) if obj.get("elastifileParams") is not None else None,
             "exchangeParams": RecoverExchangeParams.from_dict(obj["exchangeParams"]) if obj.get("exchangeParams") is not None else None,
+            "experimentalAdapterParams": ExperimentalAdapterParams.from_dict(obj["experimentalAdapterParams"]) if obj.get("experimentalAdapterParams") is not None else None,
             "flashbladeParams": RecoverFlashbladeParams.from_dict(obj["flashbladeParams"]) if obj.get("flashbladeParams") is not None else None,
             "gcpParams": RecoverGcpParams.from_dict(obj["gcpParams"]) if obj.get("gcpParams") is not None else None,
             "genericNasParams": RecoverGenericNasParams.from_dict(obj["genericNasParams"]) if obj.get("genericNasParams") is not None else None,
+            "googleWorkspaceParams": RecoverGoogleWorkspaceParams.from_dict(obj["googleWorkspaceParams"]) if obj.get("googleWorkspaceParams") is not None else None,
             "gpfsParams": RecoverGpfsParams.from_dict(obj["gpfsParams"]) if obj.get("gpfsParams") is not None else None,
             "hbaseParams": HbaseParams.from_dict(obj["hbaseParams"]) if obj.get("hbaseParams") is not None else None,
             "hdfsParams": HdfsParams.from_dict(obj["hdfsParams"]) if obj.get("hdfsParams") is not None else None,
@@ -439,6 +561,7 @@ class Recovery(BaseModel):
             "isilonParams": RecoverIsilonParams.from_dict(obj["isilonParams"]) if obj.get("isilonParams") is not None else None,
             "kubernetesParams": RecoverKubernetesParams.from_dict(obj["kubernetesParams"]) if obj.get("kubernetesParams") is not None else None,
             "kvmParams": RecoverKvmParams.from_dict(obj["kvmParams"]) if obj.get("kvmParams") is not None else None,
+            "mongodbOpsParams": MongodbOpsManagerParams.from_dict(obj["mongodbOpsParams"]) if obj.get("mongodbOpsParams") is not None else None,
             "mongodbParams": MongodbParams.from_dict(obj["mongodbParams"]) if obj.get("mongodbParams") is not None else None,
             "mssqlParams": RecoverSqlParams.from_dict(obj["mssqlParams"]) if obj.get("mssqlParams") is not None else None,
             "netappParams": RecoverNetappParams.from_dict(obj["netappParams"]) if obj.get("netappParams") is not None else None,
@@ -446,6 +569,9 @@ class Recovery(BaseModel):
             "oracleParams": RecoverOracleParams.from_dict(obj["oracleParams"]) if obj.get("oracleParams") is not None else None,
             "physicalParams": RecoverPhysicalParams.from_dict(obj["physicalParams"]) if obj.get("physicalParams") is not None else None,
             "pureParams": RecoverPureParams.from_dict(obj["pureParams"]) if obj.get("pureParams") is not None else None,
+            "s3CompatibleParams": RecoverS3CompatibleParams.from_dict(obj["s3CompatibleParams"]) if obj.get("s3CompatibleParams") is not None else None,
+            "sapHanaParams": SapHanaParams.from_dict(obj["sapHanaParams"]) if obj.get("sapHanaParams") is not None else None,
+            "serviceNowParams": RecoverServiceNowParams.from_dict(obj["serviceNowParams"]) if obj.get("serviceNowParams") is not None else None,
             "sfdcParams": RecoverSalesforceParams.from_dict(obj["sfdcParams"]) if obj.get("sfdcParams") is not None else None,
             "udaParams": UdaParams.from_dict(obj["udaParams"]) if obj.get("udaParams") is not None else None,
             "viewParams": RecoverViewParams.from_dict(obj["viewParams"]) if obj.get("viewParams") is not None else None,

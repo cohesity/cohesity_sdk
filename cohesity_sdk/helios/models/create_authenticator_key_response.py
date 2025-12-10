@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.totp_key_info import TotpKeyInfo
 from typing import Set
@@ -31,6 +31,16 @@ class CreateAuthenticatorKeyResponse(BaseModel):
     email: Optional[Dict[str, Any]] = Field(default=None, description="No Content")
     totp: Optional[TotpKeyInfo] = None
     __properties: ClassVar[List[str]] = ["authenticator_type", "email", "totp"]
+
+    @field_validator('authenticator_type')
+    def authenticator_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['email', 'totp', 'salesforce']):
+            raise ValueError("must be one of enum values ('email', 'totp', 'salesforce')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

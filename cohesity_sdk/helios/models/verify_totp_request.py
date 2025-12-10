@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Set
 from typing_extensions import Self
 
@@ -26,8 +27,20 @@ class VerifyTotpRequest(BaseModel):
     """
     Holds the Totp code to be verified.
     """ # noqa: E501
+    purpose: Optional[StrictStr] = Field(default=None, description="Specifies the purpose of the totp code verification. * `DisableMfa` - To be used when disabling the MFA. * `VerifyOtp` (Default) - To be used when verifying OTP.")
+    support_user_password: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(default=None, description="Specifies the support user password, required for totp verification while disabling MFA.", alias="supportUserPassword")
     totp_code: Optional[StrictStr] = Field(default=None, description="Specifies the Totp code.", alias="totpCode")
-    __properties: ClassVar[List[str]] = ["totpCode"]
+    __properties: ClassVar[List[str]] = ["purpose", "supportUserPassword", "totpCode"]
+
+    @field_validator('purpose')
+    def purpose_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['DisableMfa', 'VerifyOtp']):
+            raise ValueError("must be one of enum values ('DisableMfa', 'VerifyOtp')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -68,6 +81,16 @@ class VerifyTotpRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if purpose (nullable) is None
+        # and model_fields_set contains the field
+        if self.purpose is None and "purpose" in self.model_fields_set:
+            _dict['purpose'] = None
+
+        # set to None if support_user_password (nullable) is None
+        # and model_fields_set contains the field
+        if self.support_user_password is None and "support_user_password" in self.model_fields_set:
+            _dict['supportUserPassword'] = None
+
         # set to None if totp_code (nullable) is None
         # and model_fields_set contains the field
         if self.totp_code is None and "totp_code" in self.model_fields_set:
@@ -85,6 +108,8 @@ class VerifyTotpRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "purpose": obj.get("purpose"),
+            "supportUserPassword": obj.get("supportUserPassword"),
             "totpCode": obj.get("totpCode")
         })
         return _obj

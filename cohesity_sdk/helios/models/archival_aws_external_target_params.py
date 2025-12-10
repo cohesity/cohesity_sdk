@@ -39,6 +39,8 @@ class ArchivalAwsExternalTargetParams(BaseModel):
     bucket_owner_account_id: Optional[StrictStr] = Field(default=None, description="Specifies the account Id of the S3 bucket owner.", alias="bucketOwnerAccountId")
     is_forever_incremental_archival_enabled: Optional[StrictBool] = Field(default=None, description="Specifies if Forever Incremental Archival setting is enabled or not.", alias="isForeverIncrementalArchivalEnabled")
     is_incremental_archival_enabled: Optional[StrictBool] = Field(default=None, description="Specifies if Incremental Archival setting is enabled or not.", alias="isIncrementalArchivalEnabled")
+    lambda_private_endpoint: Optional[StrictStr] = Field(default=None, description="Lambda private endpoint if the traffic needs to be routed through a private link.", alias="lambdaPrivateEndpoint")
+    private_endpoint: Optional[StrictStr] = Field(default=None, description="Private endpoint if specified.", alias="privateEndpoint")
     source_side_deduplication: Optional[StrictBool] = Field(default=None, description="Specifies the Source Side Deduplication setting for the AWS external target", alias="sourceSideDeduplication")
     storage_class: Optional[StrictStr] = Field(description="Specifies the AWS External Target storage class.", alias="storageClass")
     aws_glacier_params: Optional[AwsGlacierParams] = Field(default=None, alias="awsGlacierParams")
@@ -49,7 +51,7 @@ class ArchivalAwsExternalTargetParams(BaseModel):
     aws_s3_one_zone_ia_params: Optional[AwsS3OneZoneIAParams] = Field(default=None, alias="awsS3OneZoneIAParams")
     aws_s3_standard_ia_params: Optional[AwsS3StandardIAParams] = Field(default=None, alias="awsS3StandardIAParams")
     aws_s3_standard_params: Optional[AwsS3StandardParams] = Field(default=None, alias="awsS3StandardParams")
-    __properties: ClassVar[List[str]] = ["bucketName", "region", "bucketOwnerAccountId", "isForeverIncrementalArchivalEnabled", "isIncrementalArchivalEnabled", "sourceSideDeduplication", "storageClass", "awsGlacierParams", "awsS3GlacierDeepArchiveParams", "awsS3GlacierIRParams", "awsS3GlacierParams", "awsS3IntelligentParams", "awsS3OneZoneIAParams", "awsS3StandardIAParams", "awsS3StandardParams"]
+    __properties: ClassVar[List[str]] = ["bucketName", "region", "bucketOwnerAccountId", "isForeverIncrementalArchivalEnabled", "isIncrementalArchivalEnabled", "lambdaPrivateEndpoint", "privateEndpoint", "sourceSideDeduplication", "storageClass", "awsGlacierParams", "awsS3GlacierDeepArchiveParams", "awsS3GlacierIRParams", "awsS3GlacierParams", "awsS3IntelligentParams", "awsS3OneZoneIAParams", "awsS3StandardIAParams", "awsS3StandardParams"]
 
     @field_validator('storage_class')
     def storage_class_validate_enum(cls, value):
@@ -149,6 +151,16 @@ class ArchivalAwsExternalTargetParams(BaseModel):
         if self.is_incremental_archival_enabled is None and "is_incremental_archival_enabled" in self.model_fields_set:
             _dict['isIncrementalArchivalEnabled'] = None
 
+        # set to None if lambda_private_endpoint (nullable) is None
+        # and model_fields_set contains the field
+        if self.lambda_private_endpoint is None and "lambda_private_endpoint" in self.model_fields_set:
+            _dict['lambdaPrivateEndpoint'] = None
+
+        # set to None if private_endpoint (nullable) is None
+        # and model_fields_set contains the field
+        if self.private_endpoint is None and "private_endpoint" in self.model_fields_set:
+            _dict['privateEndpoint'] = None
+
         # set to None if source_side_deduplication (nullable) is None
         # and model_fields_set contains the field
         if self.source_side_deduplication is None and "source_side_deduplication" in self.model_fields_set:
@@ -176,6 +188,8 @@ class ArchivalAwsExternalTargetParams(BaseModel):
             "bucketOwnerAccountId": obj.get("bucketOwnerAccountId"),
             "isForeverIncrementalArchivalEnabled": obj.get("isForeverIncrementalArchivalEnabled"),
             "isIncrementalArchivalEnabled": obj.get("isIncrementalArchivalEnabled"),
+            "lambdaPrivateEndpoint": obj.get("lambdaPrivateEndpoint"),
+            "privateEndpoint": obj.get("privateEndpoint"),
             "sourceSideDeduplication": obj.get("sourceSideDeduplication"),
             "storageClass": obj.get("storageClass"),
             "awsGlacierParams": AwsGlacierParams.from_dict(obj["awsGlacierParams"]) if obj.get("awsGlacierParams") is not None else None,

@@ -29,7 +29,8 @@ class SMBPrincipal(BaseModel):
     domain: Optional[StrictStr] = Field(default=None, description="Specifies the domain of the principal. For active directories, this is the fully qualified domain name (FQDN).")
     name: Optional[StrictStr] = Field(default=None, description="Specifies the principal name.")
     object_class: Optional[StrictStr] = Field(default=None, description="Specifies the principal class.", alias="objectClass")
-    __properties: ClassVar[List[str]] = ["domain", "name", "objectClass"]
+    sid: Optional[StrictStr] = Field(default=None, description="Specifies the SID of the principal.")
+    __properties: ClassVar[List[str]] = ["domain", "name", "objectClass", "sid"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,6 +86,11 @@ class SMBPrincipal(BaseModel):
         if self.object_class is None and "object_class" in self.model_fields_set:
             _dict['objectClass'] = None
 
+        # set to None if sid (nullable) is None
+        # and model_fields_set contains the field
+        if self.sid is None and "sid" in self.model_fields_set:
+            _dict['sid'] = None
+
         return _dict
 
     @classmethod
@@ -99,7 +105,8 @@ class SMBPrincipal(BaseModel):
         _obj = cls.model_validate({
             "domain": obj.get("domain"),
             "name": obj.get("name"),
-            "objectClass": obj.get("objectClass")
+            "objectClass": obj.get("objectClass"),
+            "sid": obj.get("sid")
         })
         return _obj
 

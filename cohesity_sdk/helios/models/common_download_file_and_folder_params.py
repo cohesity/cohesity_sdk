@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.common_recover_file_and_folder_info import CommonRecoverFileAndFolderInfo
+from cohesity_sdk.helios.models.download_file_details import DownloadFileDetails
 from typing import Set
 from typing_extensions import Self
 
@@ -28,9 +29,10 @@ class CommonDownloadFileAndFolderParams(BaseModel):
     Specifies the parameters to download files and folders.
     """ # noqa: E501
     download_file_path: Optional[StrictStr] = Field(default=None, description="Specifies the path location to download the files and folders.", alias="downloadFilePath")
+    download_file_path_list: Optional[List[Optional[DownloadFileDetails]]] = Field(default=None, description="Specifies list of file locations deatils to download.", alias="downloadFilePathList")
     expiry_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the time upto which the download link is available.", alias="expiryTimeUsecs")
     files_and_folders: Optional[List[CommonRecoverFileAndFolderInfo]] = Field(default=None, description="Specifies the info about the files and folders to be recovered.", alias="filesAndFolders")
-    __properties: ClassVar[List[str]] = ["downloadFilePath", "expiryTimeUsecs", "filesAndFolders"]
+    __properties: ClassVar[List[str]] = ["downloadFilePath", "downloadFilePathList", "expiryTimeUsecs", "filesAndFolders"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,6 +73,13 @@ class CommonDownloadFileAndFolderParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in download_file_path_list (list)
+        _items = []
+        if self.download_file_path_list:
+            for _item_download_file_path_list in self.download_file_path_list:
+                if _item_download_file_path_list:
+                    _items.append(_item_download_file_path_list.to_dict())
+            _dict['downloadFilePathList'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in files_and_folders (list)
         _items = []
         if self.files_and_folders:
@@ -82,6 +91,11 @@ class CommonDownloadFileAndFolderParams(BaseModel):
         # and model_fields_set contains the field
         if self.download_file_path is None and "download_file_path" in self.model_fields_set:
             _dict['downloadFilePath'] = None
+
+        # set to None if download_file_path_list (nullable) is None
+        # and model_fields_set contains the field
+        if self.download_file_path_list is None and "download_file_path_list" in self.model_fields_set:
+            _dict['downloadFilePathList'] = None
 
         # set to None if expiry_time_usecs (nullable) is None
         # and model_fields_set contains the field
@@ -106,6 +120,7 @@ class CommonDownloadFileAndFolderParams(BaseModel):
 
         _obj = cls.model_validate({
             "downloadFilePath": obj.get("downloadFilePath"),
+            "downloadFilePathList": [DownloadFileDetails.from_dict(_item) for _item in obj["downloadFilePathList"]] if obj.get("downloadFilePathList") is not None else None,
             "expiryTimeUsecs": obj.get("expiryTimeUsecs"),
             "filesAndFolders": [CommonRecoverFileAndFolderInfo.from_dict(_item) for _item in obj["filesAndFolders"]] if obj.get("filesAndFolders") is not None else None
         })

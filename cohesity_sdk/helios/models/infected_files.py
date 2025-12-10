@@ -25,10 +25,10 @@ from typing_extensions import Self
 
 class InfectedFiles(BaseModel):
     """
-    Specifies a list of infected files.
+    Specifies a list of infected entities.
     """ # noqa: E501
-    cookie: Optional[StrictStr] = Field(default=None, description="Specifies the pagination cookie. Cookie is used to  resume the enumeration of infected files. When the cookie is set the fields viewNameVec, includeQuarantinedFiles and includeUnquarantinedFiles are ignored. ")
-    infected_files: Optional[List[InfectedFile]] = Field(default=None, description="Specifies the list of infected files.", alias="infectedFiles")
+    cookie: Optional[StrictStr] = Field(default=None, description="Specifies the pagination cookie. Cookie is used to  resume the enumeration of infected entities. When the cookie is set the fields viewNameVec, includeQuarantinedFiles and include UnquarantinedFiles are ignored. ")
+    infected_files: Optional[List[InfectedFile]] = Field(default=None, description="Specifies the list of infected entities.", alias="infectedFiles")
     __properties: ClassVar[List[str]] = ["cookie", "infectedFiles"]
 
     model_config = ConfigDict(

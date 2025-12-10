@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.helios_backup_policy import HeliosBackupPolicy
@@ -38,12 +38,14 @@ class HeliosPolicyRequest(BaseModel):
     data_lock: Optional[StrictStr] = Field(default=None, description="This field is now deprecated. Please use the DataLockConfig in the backup retention.", alias="dataLock")
     description: Optional[StrictStr] = Field(default=None, description="Specifies the description of the Protection Policy.")
     extended_retention: Optional[List[HeliosExtendedRetentionPolicy]] = Field(default=None, description="Specifies additional retention policies that should be applied to the backup snapshots. A backup snapshot will be retained up to a time that is the maximum of all retention policies that are applicable to it.", alias="extendedRetention")
+    is_cbs_enabled: Optional[StrictBool] = Field(default=None, description="Specifies true if Calender Based Schedule is supported by client. Default value is assumed as false for this feature.", alias="isCBSEnabled")
     name: Optional[StrictStr] = Field(description="Specifies the name of the Protection Policy.")
     remote_target_policy: Optional[HeliosTargetsConfiguration] = Field(default=None, alias="remoteTargetPolicy")
     retry_options: Optional[HeliosRetryOptions] = Field(default=None, alias="retryOptions")
     tenant_ids: Optional[List[Optional[StrictStr]]] = Field(default=None, description="Specifies the tenants which have access to this object.", alias="tenantIds")
     type: Optional[StrictStr] = Field(description="Specifies the type of the Protection Policy to be created on Helios.")
-    __properties: ClassVar[List[str]] = ["backupPolicy", "blackoutWindow", "clusterIdentifier", "dataLock", "description", "extendedRetention", "name", "remoteTargetPolicy", "retryOptions", "tenantIds", "type"]
+    version: Optional[StrictInt] = Field(default=None, description="Specifies the current policy verison. Policy version is incremented for optionally supporting new features and differentialting across releases.")
+    __properties: ClassVar[List[str]] = ["backupPolicy", "blackoutWindow", "clusterIdentifier", "dataLock", "description", "extendedRetention", "isCBSEnabled", "name", "remoteTargetPolicy", "retryOptions", "tenantIds", "type", "version"]
 
     @field_validator('cluster_identifier')
     def cluster_identifier_validate_regular_expression(cls, value):
@@ -164,6 +166,11 @@ class HeliosPolicyRequest(BaseModel):
         if self.extended_retention is None and "extended_retention" in self.model_fields_set:
             _dict['extendedRetention'] = None
 
+        # set to None if is_cbs_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.is_cbs_enabled is None and "is_cbs_enabled" in self.model_fields_set:
+            _dict['isCBSEnabled'] = None
+
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
@@ -173,6 +180,11 @@ class HeliosPolicyRequest(BaseModel):
         # and model_fields_set contains the field
         if self.type is None and "type" in self.model_fields_set:
             _dict['type'] = None
+
+        # set to None if version (nullable) is None
+        # and model_fields_set contains the field
+        if self.version is None and "version" in self.model_fields_set:
+            _dict['version'] = None
 
         return _dict
 
@@ -192,11 +204,13 @@ class HeliosPolicyRequest(BaseModel):
             "dataLock": obj.get("dataLock"),
             "description": obj.get("description"),
             "extendedRetention": [HeliosExtendedRetentionPolicy.from_dict(_item) for _item in obj["extendedRetention"]] if obj.get("extendedRetention") is not None else None,
+            "isCBSEnabled": obj.get("isCBSEnabled"),
             "name": obj.get("name"),
             "remoteTargetPolicy": HeliosTargetsConfiguration.from_dict(obj["remoteTargetPolicy"]) if obj.get("remoteTargetPolicy") is not None else None,
             "retryOptions": HeliosRetryOptions.from_dict(obj["retryOptions"]) if obj.get("retryOptions") is not None else None,
             "tenantIds": obj.get("tenantIds"),
-            "type": obj.get("type")
+            "type": obj.get("type"),
+            "version": obj.get("version")
         })
         return _obj
 

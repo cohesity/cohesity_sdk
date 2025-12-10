@@ -28,7 +28,7 @@ class FreeDisk(BaseModel):
     """ # noqa: E501
     location: Optional[StrictStr] = Field(default=None, description="Specifies the location of disk.")
     path: Optional[StrictStr] = Field(default=None, description="Specifies path of disk.")
-    serial_number: Optional[StrictStr] = Field(description="Specifies serial number of disk.", alias="serialNumber")
+    serial_number: StrictStr = Field(description="Specifies serial number of disk.", alias="serialNumber")
     size_in_bytes: Optional[StrictInt] = Field(default=None, description="Size of disk.", alias="sizeInBytes")
     __properties: ClassVar[List[str]] = ["location", "path", "serialNumber", "sizeInBytes"]
 
@@ -80,11 +80,6 @@ class FreeDisk(BaseModel):
         # and model_fields_set contains the field
         if self.path is None and "path" in self.model_fields_set:
             _dict['path'] = None
-
-        # set to None if serial_number (nullable) is None
-        # and model_fields_set contains the field
-        if self.serial_number is None and "serial_number" in self.model_fields_set:
-            _dict['serialNumber'] = None
 
         # set to None if size_in_bytes (nullable) is None
         # and model_fields_set contains the field

@@ -29,10 +29,16 @@ class SPClusterInfo(BaseModel):
     cluster_id: Optional[StrictInt] = Field(default=None, description="Specifies cluster id.", alias="clusterId")
     cluster_incarnation_id: Optional[StrictInt] = Field(default=None, description="Specifies cluster incarnation id.", alias="clusterIncarnationId")
     cluster_name: Optional[StrictStr] = Field(default=None, description="Specifies cluster's name.", alias="clusterName")
+    current_version: Optional[StrictStr] = Field(default=None, description="Specifies the currently running version on cluster.", alias="currentVersion")
     health: Optional[StrictStr] = Field(default=None, description="Specifies the health of the cluster.")
     is_connected_to_helios: Optional[StrictBool] = Field(default=None, description="Specifies if the cluster is connected to helios.", alias="isConnectedToHelios")
+    node_ips: Optional[List[StrictStr]] = Field(default=None, description="Specifies an array of node ips for the cluster.", alias="nodeIps")
+    number_of_nodes: Optional[StrictInt] = Field(default=None, description="Specifies the number of nodes in the cluster.", alias="numberOfNodes")
     provider_type: Optional[StrictStr] = Field(default=None, description="Specifies the type of the cluster provider.", alias="providerType")
-    __properties: ClassVar[List[str]] = ["clusterId", "clusterIncarnationId", "clusterName", "health", "isConnectedToHelios", "providerType"]
+    total_capacity: Optional[StrictInt] = Field(default=None, description="Specifies total capacity of the cluster in bytes.", alias="totalCapacity")
+    type: Optional[StrictStr] = Field(default=None, description="Specifies the type of the SP cluster.")
+    used_capacity: Optional[StrictInt] = Field(default=None, description="Specifies how much of the cluster capacity is consumed in bytes.", alias="usedCapacity")
+    __properties: ClassVar[List[str]] = ["clusterId", "clusterIncarnationId", "clusterName", "currentVersion", "health", "isConnectedToHelios", "nodeIps", "numberOfNodes", "providerType", "totalCapacity", "type", "usedCapacity"]
 
     @field_validator('health')
     def health_validate_enum(cls, value):
@@ -108,6 +114,11 @@ class SPClusterInfo(BaseModel):
         if self.cluster_name is None and "cluster_name" in self.model_fields_set:
             _dict['clusterName'] = None
 
+        # set to None if current_version (nullable) is None
+        # and model_fields_set contains the field
+        if self.current_version is None and "current_version" in self.model_fields_set:
+            _dict['currentVersion'] = None
+
         # set to None if health (nullable) is None
         # and model_fields_set contains the field
         if self.health is None and "health" in self.model_fields_set:
@@ -118,10 +129,35 @@ class SPClusterInfo(BaseModel):
         if self.is_connected_to_helios is None and "is_connected_to_helios" in self.model_fields_set:
             _dict['isConnectedToHelios'] = None
 
+        # set to None if node_ips (nullable) is None
+        # and model_fields_set contains the field
+        if self.node_ips is None and "node_ips" in self.model_fields_set:
+            _dict['nodeIps'] = None
+
+        # set to None if number_of_nodes (nullable) is None
+        # and model_fields_set contains the field
+        if self.number_of_nodes is None and "number_of_nodes" in self.model_fields_set:
+            _dict['numberOfNodes'] = None
+
         # set to None if provider_type (nullable) is None
         # and model_fields_set contains the field
         if self.provider_type is None and "provider_type" in self.model_fields_set:
             _dict['providerType'] = None
+
+        # set to None if total_capacity (nullable) is None
+        # and model_fields_set contains the field
+        if self.total_capacity is None and "total_capacity" in self.model_fields_set:
+            _dict['totalCapacity'] = None
+
+        # set to None if type (nullable) is None
+        # and model_fields_set contains the field
+        if self.type is None and "type" in self.model_fields_set:
+            _dict['type'] = None
+
+        # set to None if used_capacity (nullable) is None
+        # and model_fields_set contains the field
+        if self.used_capacity is None and "used_capacity" in self.model_fields_set:
+            _dict['usedCapacity'] = None
 
         return _dict
 
@@ -138,9 +174,15 @@ class SPClusterInfo(BaseModel):
             "clusterId": obj.get("clusterId"),
             "clusterIncarnationId": obj.get("clusterIncarnationId"),
             "clusterName": obj.get("clusterName"),
+            "currentVersion": obj.get("currentVersion"),
             "health": obj.get("health"),
             "isConnectedToHelios": obj.get("isConnectedToHelios"),
-            "providerType": obj.get("providerType")
+            "nodeIps": obj.get("nodeIps"),
+            "numberOfNodes": obj.get("numberOfNodes"),
+            "providerType": obj.get("providerType"),
+            "totalCapacity": obj.get("totalCapacity"),
+            "type": obj.get("type"),
+            "usedCapacity": obj.get("usedCapacity")
         })
         return _obj
 

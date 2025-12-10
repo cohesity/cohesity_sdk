@@ -11,15 +11,18 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from cohesity_sdk.helios.models.firewall_entry import FirewallEntry
 from cohesity_sdk.helios.models.firewall_ip_sets import FirewallIPSets
 from cohesity_sdk.helios.models.firewall_profile_names_params import FirewallProfileNamesParams
 from cohesity_sdk.helios.models.firewall_profile_params import FirewallProfileParams
 from cohesity_sdk.helios.models.firewall_profiles import FirewallProfiles
 from cohesity_sdk.helios.models.success_resp import SuccessResp
+from cohesity_sdk.helios.models.update_firewall_request import UpdateFirewallRequest
 
 from cohesity_sdk.helios.api_client import ApiClient, RequestSerialized
 from cohesity_sdk.helios.api_response import ApiResponse
@@ -40,10 +43,314 @@ class FirewallApi:
 
 
     @validate_call
+    def create_firewall_profile(
+        self,
+        body: Annotated[FirewallProfileParams, Field(description="Specifies the parameters to configure firewall profiles.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> FirewallProfileParams:
+        """Create a firewall profile.
+
+        Create a firewall profile.
+
+        :param body: Specifies the parameters to configure firewall profiles. (required)
+        :type body: FirewallProfileParams
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_firewall_profile_serialize(
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "FirewallProfileParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def create_firewall_profile_with_http_info(
+        self,
+        body: Annotated[FirewallProfileParams, Field(description="Specifies the parameters to configure firewall profiles.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[FirewallProfileParams]:
+        """Create a firewall profile.
+
+        Create a firewall profile.
+
+        :param body: Specifies the parameters to configure firewall profiles. (required)
+        :type body: FirewallProfileParams
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_firewall_profile_serialize(
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "FirewallProfileParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def create_firewall_profile_without_preload_content(
+        self,
+        body: Annotated[FirewallProfileParams, Field(description="Specifies the parameters to configure firewall profiles.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create a firewall profile.
+
+        Create a firewall profile.
+
+        :param body: Specifies the parameters to configure firewall profiles. (required)
+        :type body: FirewallProfileParams
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_firewall_profile_serialize(
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "FirewallProfileParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _create_firewall_profile_serialize(
+        self,
+        body,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/network/firewall/profiles',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def list_firewall_ip_sets(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -61,9 +368,9 @@ class FirewallApi:
 
         List all firewall IP sets.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -113,8 +420,8 @@ class FirewallApi:
     @validate_call
     def list_firewall_ip_sets_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -132,9 +439,9 @@ class FirewallApi:
 
         List all firewall IP sets.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -184,8 +491,8 @@ class FirewallApi:
     @validate_call
     def list_firewall_ip_sets_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -203,9 +510,9 @@ class FirewallApi:
 
         List all firewall IP sets.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -318,8 +625,8 @@ class FirewallApi:
     @validate_call
     def list_firewall_profiles(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -337,9 +644,9 @@ class FirewallApi:
 
         List the firewall profiles & their attachments.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -389,8 +696,8 @@ class FirewallApi:
     @validate_call
     def list_firewall_profiles_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -408,9 +715,9 @@ class FirewallApi:
 
         List the firewall profiles & their attachments.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -460,8 +767,8 @@ class FirewallApi:
     @validate_call
     def list_firewall_profiles_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -479,9 +786,9 @@ class FirewallApi:
 
         List the firewall profiles & their attachments.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -592,11 +899,10 @@ class FirewallApi:
 
 
     @validate_call
-    def remove_firewall_profiles(
+    def list_firewall_settings(
         self,
-        body: Annotated[FirewallProfileNamesParams, Field(description="Specifies the parameters to remove firewall profiles and their attachments.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -609,16 +915,14 @@ class FirewallApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> SuccessResp:
-        """Remove firewall profiles.
+    ) -> FirewallEntry:
+        """List all firewall settings.
 
-        Remove firewall profiles and their attachments.
+        List the firewall settings available in the cluster.
 
-        :param body: Specifies the parameters to remove firewall profiles and their attachments. (required)
-        :type body: FirewallProfileNamesParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -641,6 +945,577 @@ class FirewallApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        _param = self._list_firewall_settings_serialize(
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "FirewallEntry",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def list_firewall_settings_with_http_info(
+        self,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[FirewallEntry]:
+        """List all firewall settings.
+
+        List the firewall settings available in the cluster.
+
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_firewall_settings_serialize(
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "FirewallEntry",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def list_firewall_settings_without_preload_content(
+        self,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List all firewall settings.
+
+        List the firewall settings available in the cluster.
+
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_firewall_settings_serialize(
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "FirewallEntry",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_firewall_settings_serialize(
+        self,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/network/firewall',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def remove_firewall_profile_by_name(
+        self,
+        name: Annotated[StrictStr, Field(description="Specifies the name of the profile.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Remove firewall profile.
+
+        Remove firewall profile.
+
+        :param name: Specifies the name of the profile. (required)
+        :type name: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_firewall_profile_by_name_serialize(
+            name=name,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def remove_firewall_profile_by_name_with_http_info(
+        self,
+        name: Annotated[StrictStr, Field(description="Specifies the name of the profile.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Remove firewall profile.
+
+        Remove firewall profile.
+
+        :param name: Specifies the name of the profile. (required)
+        :type name: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_firewall_profile_by_name_serialize(
+            name=name,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def remove_firewall_profile_by_name_without_preload_content(
+        self,
+        name: Annotated[StrictStr, Field(description="Specifies the name of the profile.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Remove firewall profile.
+
+        Remove firewall profile.
+
+        :param name: Specifies the name of the profile. (required)
+        :type name: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_firewall_profile_by_name_serialize(
+            name=name,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _remove_firewall_profile_by_name_serialize(
+        self,
+        name,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if name is not None:
+            _path_params['name'] = name
+        # process the query parameters
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/network/firewall/profiles/{name}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def remove_firewall_profiles(
+        self,
+        body: Annotated[FirewallProfileNamesParams, Field(description="Specifies the parameters to remove firewall profiles and their attachments.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> SuccessResp:
+        """(Deprecated) Remove firewall profiles.
+
+        Remove firewall profiles and their attachments - deprecated - use delete /network/firewall/profiles/{name}
+
+        :param body: Specifies the parameters to remove firewall profiles and their attachments. (required)
+        :type body: FirewallProfileNamesParams
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+        warnings.warn("PUT /network/firewall/profile/remove is deprecated.", DeprecationWarning)
 
         _param = self._remove_firewall_profiles_serialize(
             body=body,
@@ -670,8 +1545,8 @@ class FirewallApi:
     def remove_firewall_profiles_with_http_info(
         self,
         body: Annotated[FirewallProfileNamesParams, Field(description="Specifies the parameters to remove firewall profiles and their attachments.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -685,15 +1560,15 @@ class FirewallApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[SuccessResp]:
-        """Remove firewall profiles.
+        """(Deprecated) Remove firewall profiles.
 
-        Remove firewall profiles and their attachments.
+        Remove firewall profiles and their attachments - deprecated - use delete /network/firewall/profiles/{name}
 
         :param body: Specifies the parameters to remove firewall profiles and their attachments. (required)
         :type body: FirewallProfileNamesParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -716,6 +1591,7 @@ class FirewallApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("PUT /network/firewall/profile/remove is deprecated.", DeprecationWarning)
 
         _param = self._remove_firewall_profiles_serialize(
             body=body,
@@ -745,8 +1621,8 @@ class FirewallApi:
     def remove_firewall_profiles_without_preload_content(
         self,
         body: Annotated[FirewallProfileNamesParams, Field(description="Specifies the parameters to remove firewall profiles and their attachments.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -760,15 +1636,15 @@ class FirewallApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Remove firewall profiles.
+        """(Deprecated) Remove firewall profiles.
 
-        Remove firewall profiles and their attachments.
+        Remove firewall profiles and their attachments - deprecated - use delete /network/firewall/profiles/{name}
 
         :param body: Specifies the parameters to remove firewall profiles and their attachments. (required)
         :type body: FirewallProfileNamesParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -791,6 +1667,7 @@ class FirewallApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("PUT /network/firewall/profile/remove is deprecated.", DeprecationWarning)
 
         _param = self._remove_firewall_profiles_serialize(
             body=body,
@@ -898,8 +1775,8 @@ class FirewallApi:
     @validate_call
     def reset_firewall_profile(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -917,9 +1794,9 @@ class FirewallApi:
 
         Reset firewall profiles, ip-sets & their attachments.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -969,8 +1846,8 @@ class FirewallApi:
     @validate_call
     def reset_firewall_profile_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -988,9 +1865,9 @@ class FirewallApi:
 
         Reset firewall profiles, ip-sets & their attachments.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1040,8 +1917,8 @@ class FirewallApi:
     @validate_call
     def reset_firewall_profile_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1059,9 +1936,9 @@ class FirewallApi:
 
         Reset firewall profiles, ip-sets & their attachments.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1172,315 +2049,11 @@ class FirewallApi:
 
 
     @validate_call
-    def update_firewall_ip_sets(
-        self,
-        body: Annotated[FirewallIPSets, Field(description="Specifies the update request parameters.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> FirewallIPSets:
-        """Update firewall IP sets
-
-        Update firewall IP sets.
-
-        :param body: Specifies the update request parameters. (required)
-        :type body: FirewallIPSets
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._update_firewall_ip_sets_serialize(
-            body=body,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "FirewallIPSets",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def update_firewall_ip_sets_with_http_info(
-        self,
-        body: Annotated[FirewallIPSets, Field(description="Specifies the update request parameters.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[FirewallIPSets]:
-        """Update firewall IP sets
-
-        Update firewall IP sets.
-
-        :param body: Specifies the update request parameters. (required)
-        :type body: FirewallIPSets
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._update_firewall_ip_sets_serialize(
-            body=body,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "FirewallIPSets",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def update_firewall_ip_sets_without_preload_content(
-        self,
-        body: Annotated[FirewallIPSets, Field(description="Specifies the update request parameters.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Update firewall IP sets
-
-        Update firewall IP sets.
-
-        :param body: Specifies the update request parameters. (required)
-        :type body: FirewallIPSets
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._update_firewall_ip_sets_serialize(
-            body=body,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "FirewallIPSets",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _update_firewall_ip_sets_serialize(
-        self,
-        body,
-        access_cluster_id,
-        region_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        if access_cluster_id is not None:
-            _header_params['accessClusterId'] = access_cluster_id
-        if region_id is not None:
-            _header_params['regionId'] = region_id
-        # process the form parameters
-        # process the body parameter
-        if body is not None:
-            _body_params = body
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'APIKeyHeader'
-        ]
-
-        return self.api_client.param_serialize(
-            method='PUT',
-            resource_path='/network/firewall/ip-sets',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
     def update_firewall_profile(
         self,
         body: Annotated[FirewallProfileParams, Field(description="Specifies the parameters to configure firewall profiles and/or their attachments.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1494,15 +2067,15 @@ class FirewallApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> FirewallProfileParams:
-        """Update firewall profiles & their attachments.
+        """(Deprecated) Update firewall profiles & their attachments.
 
-        Update the firewall profiles and/or their attachments.
+        Update the firewall profiles and/or their attachments  - deprecated - use put /network/firewall/profiles/{name}
 
         :param body: Specifies the parameters to configure firewall profiles and/or their attachments. (required)
         :type body: FirewallProfileParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1525,6 +2098,7 @@ class FirewallApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("PUT /network/firewall/profile is deprecated.", DeprecationWarning)
 
         _param = self._update_firewall_profile_serialize(
             body=body,
@@ -1554,8 +2128,8 @@ class FirewallApi:
     def update_firewall_profile_with_http_info(
         self,
         body: Annotated[FirewallProfileParams, Field(description="Specifies the parameters to configure firewall profiles and/or their attachments.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1569,15 +2143,15 @@ class FirewallApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[FirewallProfileParams]:
-        """Update firewall profiles & their attachments.
+        """(Deprecated) Update firewall profiles & their attachments.
 
-        Update the firewall profiles and/or their attachments.
+        Update the firewall profiles and/or their attachments  - deprecated - use put /network/firewall/profiles/{name}
 
         :param body: Specifies the parameters to configure firewall profiles and/or their attachments. (required)
         :type body: FirewallProfileParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1600,6 +2174,7 @@ class FirewallApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("PUT /network/firewall/profile is deprecated.", DeprecationWarning)
 
         _param = self._update_firewall_profile_serialize(
             body=body,
@@ -1629,8 +2204,8 @@ class FirewallApi:
     def update_firewall_profile_without_preload_content(
         self,
         body: Annotated[FirewallProfileParams, Field(description="Specifies the parameters to configure firewall profiles and/or their attachments.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1644,15 +2219,15 @@ class FirewallApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Update firewall profiles & their attachments.
+        """(Deprecated) Update firewall profiles & their attachments.
 
-        Update the firewall profiles and/or their attachments.
+        Update the firewall profiles and/or their attachments  - deprecated - use put /network/firewall/profiles/{name}
 
         :param body: Specifies the parameters to configure firewall profiles and/or their attachments. (required)
         :type body: FirewallProfileParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1675,6 +2250,7 @@ class FirewallApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("PUT /network/firewall/profile is deprecated.", DeprecationWarning)
 
         _param = self._update_firewall_profile_serialize(
             body=body,
@@ -1780,11 +2356,12 @@ class FirewallApi:
 
 
     @validate_call
-    def update_firewall_profiles(
+    def update_firewall_profile_by_name(
         self,
-        body: Annotated[FirewallProfiles, Field(description="Specifies the parameters to configure firewall profiles and/or their attachments.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        name: Annotated[StrictStr, Field(description="Specifies the name of the profile.")],
+        body: Annotated[FirewallProfileParams, Field(description="Specifies the parameters to configure firewall profiles.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1797,16 +2374,18 @@ class FirewallApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> FirewallProfiles:
-        """Update firewall profiles & their attachments.
+    ) -> FirewallProfileParams:
+        """Update the firewall profile.
 
-        Update the firewall profiles and/or their attachments.
+        Update the firewall profile.
 
-        :param body: Specifies the parameters to configure firewall profiles and/or their attachments. (required)
-        :type body: FirewallProfiles
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param name: Specifies the name of the profile. (required)
+        :type name: str
+        :param body: Specifies the parameters to configure firewall profiles. (required)
+        :type body: FirewallProfileParams
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1830,7 +2409,8 @@ class FirewallApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._update_firewall_profiles_serialize(
+        _param = self._update_firewall_profile_by_name_serialize(
+            name=name,
             body=body,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
@@ -1841,7 +2421,7 @@ class FirewallApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "FirewallProfiles",
+            '200': "FirewallProfileParams",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1855,11 +2435,12 @@ class FirewallApi:
 
 
     @validate_call
-    def update_firewall_profiles_with_http_info(
+    def update_firewall_profile_by_name_with_http_info(
         self,
-        body: Annotated[FirewallProfiles, Field(description="Specifies the parameters to configure firewall profiles and/or their attachments.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        name: Annotated[StrictStr, Field(description="Specifies the name of the profile.")],
+        body: Annotated[FirewallProfileParams, Field(description="Specifies the parameters to configure firewall profiles.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1872,16 +2453,18 @@ class FirewallApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[FirewallProfiles]:
-        """Update firewall profiles & their attachments.
+    ) -> ApiResponse[FirewallProfileParams]:
+        """Update the firewall profile.
 
-        Update the firewall profiles and/or their attachments.
+        Update the firewall profile.
 
-        :param body: Specifies the parameters to configure firewall profiles and/or their attachments. (required)
-        :type body: FirewallProfiles
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param name: Specifies the name of the profile. (required)
+        :type name: str
+        :param body: Specifies the parameters to configure firewall profiles. (required)
+        :type body: FirewallProfileParams
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1905,7 +2488,8 @@ class FirewallApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._update_firewall_profiles_serialize(
+        _param = self._update_firewall_profile_by_name_serialize(
+            name=name,
             body=body,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
@@ -1916,7 +2500,7 @@ class FirewallApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "FirewallProfiles",
+            '200': "FirewallProfileParams",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1930,11 +2514,12 @@ class FirewallApi:
 
 
     @validate_call
-    def update_firewall_profiles_without_preload_content(
+    def update_firewall_profile_by_name_without_preload_content(
         self,
-        body: Annotated[FirewallProfiles, Field(description="Specifies the parameters to configure firewall profiles and/or their attachments.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        name: Annotated[StrictStr, Field(description="Specifies the name of the profile.")],
+        body: Annotated[FirewallProfileParams, Field(description="Specifies the parameters to configure firewall profiles.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1948,15 +2533,17 @@ class FirewallApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Update firewall profiles & their attachments.
+        """Update the firewall profile.
 
-        Update the firewall profiles and/or their attachments.
+        Update the firewall profile.
 
-        :param body: Specifies the parameters to configure firewall profiles and/or their attachments. (required)
-        :type body: FirewallProfiles
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param name: Specifies the name of the profile. (required)
+        :type name: str
+        :param body: Specifies the parameters to configure firewall profiles. (required)
+        :type body: FirewallProfileParams
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1980,7 +2567,8 @@ class FirewallApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._update_firewall_profiles_serialize(
+        _param = self._update_firewall_profile_by_name_serialize(
+            name=name,
             body=body,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
@@ -1991,7 +2579,7 @@ class FirewallApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "FirewallProfiles",
+            '200': "FirewallProfileParams",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2000,7 +2588,314 @@ class FirewallApi:
         return response_data.response
 
 
-    def _update_firewall_profiles_serialize(
+    def _update_firewall_profile_by_name_serialize(
+        self,
+        name,
+        body,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if name is not None:
+            _path_params['name'] = name
+        # process the query parameters
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/network/firewall/profiles/{name}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_firewall_settings(
+        self,
+        body: Annotated[UpdateFirewallRequest, Field(description="Specifies the parameters to configure firewall settings.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> FirewallEntry:
+        """Update firewall settings.
+
+        Update the firewall settings available in the cluster.
+
+        :param body: Specifies the parameters to configure firewall settings. (required)
+        :type body: UpdateFirewallRequest
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_firewall_settings_serialize(
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "FirewallEntry",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_firewall_settings_with_http_info(
+        self,
+        body: Annotated[UpdateFirewallRequest, Field(description="Specifies the parameters to configure firewall settings.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[FirewallEntry]:
+        """Update firewall settings.
+
+        Update the firewall settings available in the cluster.
+
+        :param body: Specifies the parameters to configure firewall settings. (required)
+        :type body: UpdateFirewallRequest
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_firewall_settings_serialize(
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "FirewallEntry",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_firewall_settings_without_preload_content(
+        self,
+        body: Annotated[UpdateFirewallRequest, Field(description="Specifies the parameters to configure firewall settings.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update firewall settings.
+
+        Update the firewall settings available in the cluster.
+
+        :param body: Specifies the parameters to configure firewall settings. (required)
+        :type body: UpdateFirewallRequest
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_firewall_settings_serialize(
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "FirewallEntry",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_firewall_settings_serialize(
         self,
         body,
         access_cluster_id,
@@ -2067,7 +2962,7 @@ class FirewallApi:
 
         return self.api_client.param_serialize(
             method='PUT',
-            resource_path='/network/firewall/profiles',
+            resource_path='/network/firewall',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

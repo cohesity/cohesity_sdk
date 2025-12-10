@@ -28,6 +28,7 @@ class GetCopyStatParams(BaseModel):
     GetCopyStatParams
     """ # noqa: E501
     cluster_identifiers: Optional[List[StrictStr]] = Field(default=None, description="This is a list of cluster identifiers to query snapshots for", alias="clusterIdentifiers")
+    filter_by_status: Optional[List[StrictStr]] = Field(default=None, description="pecifies the protection run entity statuses to query snapshots for.", alias="filterByStatus")
     from_run_start_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp in Unix time epoch in microseconds to filter snapshots whose corresponding run started after this value.", alias="fromRunStartTimeUsecs")
     has_anomaly_tag: Optional[StrictBool] = Field(default=None, description="This is a boolean to indicate if there are any anomaly tags on this run.", alias="hasAnomalyTag")
     locations: Optional[List[StrictStr]] = Field(default=None, description="This is to filter the type of runs to return.")
@@ -42,7 +43,18 @@ class GetCopyStatParams(BaseModel):
     tags: Optional[List[SnapshotTag]] = Field(default=None, description="List of tags to filter.")
     tenant_ids: Optional[List[StrictStr]] = Field(default=None, description="List of tenant ids in an account.", alias="tenantIds")
     to_run_start_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp in Unix time epoch in microseconds to filter snapshots whose corresponding run started before this value.", alias="toRunStartTimeUsecs")
-    __properties: ClassVar[List[str]] = ["clusterIdentifiers", "fromRunStartTimeUsecs", "hasAnomalyTag", "locations", "objectIds", "pageCount", "pageSize", "protectionGroupIds", "regionIds", "requestedData", "runInstanceIds", "snapshotIds", "tags", "tenantIds", "toRunStartTimeUsecs"]
+    __properties: ClassVar[List[str]] = ["clusterIdentifiers", "filterByStatus", "fromRunStartTimeUsecs", "hasAnomalyTag", "locations", "objectIds", "pageCount", "pageSize", "protectionGroupIds", "regionIds", "requestedData", "runInstanceIds", "snapshotIds", "tags", "tenantIds", "toRunStartTimeUsecs"]
+
+    @field_validator('filter_by_status')
+    def filter_by_status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        for i in value:
+            if i not in set(['canceled', 'success', 'warning', 'failure']):
+                raise ValueError("each list item must be one of ('canceled', 'success', 'warning', 'failure')")
+        return value
 
     @field_validator('locations')
     def locations_validate_enum(cls, value):
@@ -145,6 +157,7 @@ class GetCopyStatParams(BaseModel):
 
         _obj = cls.model_validate({
             "clusterIdentifiers": obj.get("clusterIdentifiers"),
+            "filterByStatus": obj.get("filterByStatus"),
             "fromRunStartTimeUsecs": obj.get("fromRunStartTimeUsecs"),
             "hasAnomalyTag": obj.get("hasAnomalyTag"),
             "locations": obj.get("locations"),

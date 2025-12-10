@@ -26,10 +26,11 @@ class AwsS3ObjectLevelParams(BaseModel):
     """
     Specifies the Aws S3 object level settings for object protection.
     """ # noqa: E501
+    exclude_object_ids: Optional[List[Optional[StrictInt]]] = Field(default=None, description="Specifies the list of IDs of the objects to not be protected in this backup. This field only applies if provided object id is non leaf entity such as Tag or a folder. This can be used to ignore specific objects (can include tags) under a parent object which has been included for protection.", alias="excludeObjectIds")
     id: Optional[StrictInt] = Field(description="Specifies the id of the object being protected. This can be a leaf level or non leaf level object.")
     object_prefix_exclusions: Optional[List[StrictStr]] = Field(default=None, description="Specifies the list of prefix paths excluded. Objects containing any of these prefixes in their path will be excluded.", alias="objectPrefixExclusions")
     object_prefix_inclusions: Optional[List[StrictStr]] = Field(default=None, description="Specifies the list of prefix paths included. Objects containing any of these prefixes in their path will be included. Among inclusion and exclusion, inclusion will take precedence.", alias="objectPrefixInclusions")
-    __properties: ClassVar[List[str]] = ["id", "objectPrefixExclusions", "objectPrefixInclusions"]
+    __properties: ClassVar[List[str]] = ["excludeObjectIds", "id", "objectPrefixExclusions", "objectPrefixInclusions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,6 +88,7 @@ class AwsS3ObjectLevelParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "excludeObjectIds": obj.get("excludeObjectIds"),
             "id": obj.get("id"),
             "objectPrefixExclusions": obj.get("objectPrefixExclusions"),
             "objectPrefixInclusions": obj.get("objectPrefixInclusions")

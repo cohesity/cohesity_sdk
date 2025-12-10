@@ -32,6 +32,7 @@ class SourceConnectionRequestParams(BaseModel):
     Specifies the parameters to test connectivity with a source.
     """ # noqa: E501
     connection_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user.", alias="connectionId")
+    data_source_connection_id: Optional[StrictStr] = Field(default=None, description="Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user. This is connectionId in string format to help UI preserve the precision for int values larger than 2^53 - 1", alias="dataSourceConnectionId")
     environment: Optional[StrictStr] = Field(description="Specifies the environment type of the Protection Source.")
     cassandra_connection_params: Optional[CassandraConnectionParams] = Field(default=None, alias="cassandraConnectionParams")
     hbase_connection_params: Optional[HadoopConnectionParams] = Field(default=None, alias="hbaseConnectionParams")
@@ -40,7 +41,7 @@ class SourceConnectionRequestParams(BaseModel):
     mssql_connection_params: Optional[MssqlConnectionParams] = Field(default=None, alias="mssqlConnectionParams")
     oracle_connection_params: Optional[OracleConnectionParams] = Field(default=None, alias="oracleConnectionParams")
     vmware_connection_params: Optional[VmwareConnectionParams] = Field(default=None, alias="vmwareConnectionParams")
-    __properties: ClassVar[List[str]] = ["connectionId", "environment", "cassandraConnectionParams", "hbaseConnectionParams", "hdfsConnectionParams", "hiveConnectionParams", "mssqlConnectionParams", "oracleConnectionParams", "vmwareConnectionParams"]
+    __properties: ClassVar[List[str]] = ["connectionId", "dataSourceConnectionId", "environment", "cassandraConnectionParams", "hbaseConnectionParams", "hdfsConnectionParams", "hiveConnectionParams", "mssqlConnectionParams", "oracleConnectionParams", "vmwareConnectionParams"]
 
     @field_validator('environment')
     def environment_validate_enum(cls, value):
@@ -117,6 +118,11 @@ class SourceConnectionRequestParams(BaseModel):
         if self.connection_id is None and "connection_id" in self.model_fields_set:
             _dict['connectionId'] = None
 
+        # set to None if data_source_connection_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.data_source_connection_id is None and "data_source_connection_id" in self.model_fields_set:
+            _dict['dataSourceConnectionId'] = None
+
         # set to None if environment (nullable) is None
         # and model_fields_set contains the field
         if self.environment is None and "environment" in self.model_fields_set:
@@ -135,6 +141,7 @@ class SourceConnectionRequestParams(BaseModel):
 
         _obj = cls.model_validate({
             "connectionId": obj.get("connectionId"),
+            "dataSourceConnectionId": obj.get("dataSourceConnectionId"),
             "environment": obj.get("environment"),
             "cassandraConnectionParams": CassandraConnectionParams.from_dict(obj["cassandraConnectionParams"]) if obj.get("cassandraConnectionParams") is not None else None,
             "hbaseConnectionParams": HadoopConnectionParams.from_dict(obj["hbaseConnectionParams"]) if obj.get("hbaseConnectionParams") is not None else None,

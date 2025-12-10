@@ -27,24 +27,32 @@ class ClusterInfo(BaseModel):
     """
     Specifies the clusters hardware type, memory used and total memory capacity, health, connected or not, current version, available versions and the upgrade status.
     """ # noqa: E501
+    auth_support_for_pkg_downloads: Optional[StrictBool] = Field(default=None, description="If cluster can support authHeader for upgrade or not.", alias="authSupportForPkgDownloads")
     available_versions: Optional[List[AvailableReleaseVersion]] = Field(default=None, description="Specifies the release versions the cluster can upgrade to.", alias="availableVersions")
+    centralized_patching_enabled: Optional[StrictBool] = Field(default=None, description="Specifies if cluster can support patching via Helios.", alias="centralizedPatchingEnabled")
     cluster_id: Optional[StrictInt] = Field(default=None, description="Specifies cluster id.", alias="clusterId")
     cluster_incarnation_id: Optional[StrictInt] = Field(default=None, description="Specifies cluster incarnation id.", alias="clusterIncarnationId")
     cluster_name: Optional[StrictStr] = Field(default=None, description="Specifies cluster's name.", alias="clusterName")
+    current_patch_version: Optional[StrictStr] = Field(default=None, description="Specifies current patch version of the cluster.", alias="currentPatchVersion")
     current_version: Optional[StrictStr] = Field(default=None, description="Specifies if the cluster is connected to helios.", alias="currentVersion")
     health: Optional[StrictStr] = Field(default=None, description="Specifies the health of the cluster.")
     is_connected_to_helios: Optional[StrictBool] = Field(default=None, description="Specifies if the cluster is connected to helios.", alias="isConnectedToHelios")
     location: Optional[StrictStr] = Field(default=None, description="Specifies the location of the cluster.")
+    multi_tenancy_enabled: Optional[StrictBool] = Field(default=None, description="Specifies if multi tenancy is enabled in the cluster.", alias="multiTenancyEnabled")
     node_ips: Optional[List[StrictStr]] = Field(default=None, description="Specifies an array of node ips for the cluster.", alias="nodeIps")
     number_of_nodes: Optional[StrictInt] = Field(default=None, description="Specifies the number of nodes in the cluster.", alias="numberOfNodes")
+    patch_target_upgrade_url: Optional[StrictStr] = Field(default=None, description="Specifies the patch package URL for the cluster. This is populated for patch update only.", alias="patchTargetUpgradeUrl")
+    patch_target_version: Optional[StrictStr] = Field(default=None, description="Specifies target version to which clusters are upgrading. This is populated for patch update only.", alias="patchTargetVersion")
     provider_type: Optional[StrictStr] = Field(default=None, description="Specifies the type of the cluster provider.", alias="providerType")
     scheduled_timestamp: Optional[StrictInt] = Field(default=None, description="Time at which an upgrade is scheduled.", alias="scheduledTimestamp")
     status: Optional[StrictStr] = Field(default=None, description="Specifies the upgrade status of the cluster.")
-    target_version: Optional[StrictStr] = Field(default=None, description="Specifies target version to which clusters are to be upgraded.", alias="targetVersion")
+    target_upgrade_url: Optional[StrictStr] = Field(default=None, description="Specifies the upgrade URL for the cluster. This is populated for upgrade only", alias="targetUpgradeUrl")
+    target_version: Optional[StrictStr] = Field(default=None, description="Specifies target version to which clusters are to be upgraded. This is populated for upgrade only.", alias="targetVersion")
     total_capacity: Optional[StrictInt] = Field(default=None, description="Specifies how total memory capacity of the cluster.", alias="totalCapacity")
     type: Optional[StrictStr] = Field(default=None, description="Specifies the type of the cluster.")
+    update_type: Optional[StrictStr] = Field(default=None, description="Specifies the type of upgrade performed on a cluster. This is to be used with status field to know the status of the upgrade action performed on cluster.", alias="updateType")
     used_capacity: Optional[StrictInt] = Field(default=None, description="Specifies how much of the cluster capacity is consumed.", alias="usedCapacity")
-    __properties: ClassVar[List[str]] = ["availableVersions", "clusterId", "clusterIncarnationId", "clusterName", "currentVersion", "health", "isConnectedToHelios", "location", "nodeIps", "numberOfNodes", "providerType", "scheduledTimestamp", "status", "targetVersion", "totalCapacity", "type", "usedCapacity"]
+    __properties: ClassVar[List[str]] = ["authSupportForPkgDownloads", "availableVersions", "centralizedPatchingEnabled", "clusterId", "clusterIncarnationId", "clusterName", "currentPatchVersion", "currentVersion", "health", "isConnectedToHelios", "location", "multiTenancyEnabled", "nodeIps", "numberOfNodes", "patchTargetUpgradeUrl", "patchTargetVersion", "providerType", "scheduledTimestamp", "status", "targetUpgradeUrl", "targetVersion", "totalCapacity", "type", "updateType", "usedCapacity"]
 
     @field_validator('health')
     def health_validate_enum(cls, value):
@@ -84,6 +92,16 @@ class ClusterInfo(BaseModel):
 
         if value not in set(['VMRobo', 'Physical']):
             raise ValueError("must be one of enum values ('VMRobo', 'Physical')")
+        return value
+
+    @field_validator('update_type')
+    def update_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['Upgrade', 'Patch', 'UpgradePatch']):
+            raise ValueError("must be one of enum values ('Upgrade', 'Patch', 'UpgradePatch')")
         return value
 
     model_config = ConfigDict(
@@ -132,10 +150,20 @@ class ClusterInfo(BaseModel):
                 if _item_available_versions:
                     _items.append(_item_available_versions.to_dict())
             _dict['availableVersions'] = _items
+        # set to None if auth_support_for_pkg_downloads (nullable) is None
+        # and model_fields_set contains the field
+        if self.auth_support_for_pkg_downloads is None and "auth_support_for_pkg_downloads" in self.model_fields_set:
+            _dict['authSupportForPkgDownloads'] = None
+
         # set to None if available_versions (nullable) is None
         # and model_fields_set contains the field
         if self.available_versions is None and "available_versions" in self.model_fields_set:
             _dict['availableVersions'] = None
+
+        # set to None if centralized_patching_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.centralized_patching_enabled is None and "centralized_patching_enabled" in self.model_fields_set:
+            _dict['centralizedPatchingEnabled'] = None
 
         # set to None if cluster_id (nullable) is None
         # and model_fields_set contains the field
@@ -151,6 +179,11 @@ class ClusterInfo(BaseModel):
         # and model_fields_set contains the field
         if self.cluster_name is None and "cluster_name" in self.model_fields_set:
             _dict['clusterName'] = None
+
+        # set to None if current_patch_version (nullable) is None
+        # and model_fields_set contains the field
+        if self.current_patch_version is None and "current_patch_version" in self.model_fields_set:
+            _dict['currentPatchVersion'] = None
 
         # set to None if current_version (nullable) is None
         # and model_fields_set contains the field
@@ -172,6 +205,11 @@ class ClusterInfo(BaseModel):
         if self.location is None and "location" in self.model_fields_set:
             _dict['location'] = None
 
+        # set to None if multi_tenancy_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.multi_tenancy_enabled is None and "multi_tenancy_enabled" in self.model_fields_set:
+            _dict['multiTenancyEnabled'] = None
+
         # set to None if node_ips (nullable) is None
         # and model_fields_set contains the field
         if self.node_ips is None and "node_ips" in self.model_fields_set:
@@ -181,6 +219,16 @@ class ClusterInfo(BaseModel):
         # and model_fields_set contains the field
         if self.number_of_nodes is None and "number_of_nodes" in self.model_fields_set:
             _dict['numberOfNodes'] = None
+
+        # set to None if patch_target_upgrade_url (nullable) is None
+        # and model_fields_set contains the field
+        if self.patch_target_upgrade_url is None and "patch_target_upgrade_url" in self.model_fields_set:
+            _dict['patchTargetUpgradeUrl'] = None
+
+        # set to None if patch_target_version (nullable) is None
+        # and model_fields_set contains the field
+        if self.patch_target_version is None and "patch_target_version" in self.model_fields_set:
+            _dict['patchTargetVersion'] = None
 
         # set to None if provider_type (nullable) is None
         # and model_fields_set contains the field
@@ -197,6 +245,11 @@ class ClusterInfo(BaseModel):
         if self.status is None and "status" in self.model_fields_set:
             _dict['status'] = None
 
+        # set to None if target_upgrade_url (nullable) is None
+        # and model_fields_set contains the field
+        if self.target_upgrade_url is None and "target_upgrade_url" in self.model_fields_set:
+            _dict['targetUpgradeUrl'] = None
+
         # set to None if target_version (nullable) is None
         # and model_fields_set contains the field
         if self.target_version is None and "target_version" in self.model_fields_set:
@@ -211,6 +264,11 @@ class ClusterInfo(BaseModel):
         # and model_fields_set contains the field
         if self.type is None and "type" in self.model_fields_set:
             _dict['type'] = None
+
+        # set to None if update_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.update_type is None and "update_type" in self.model_fields_set:
+            _dict['updateType'] = None
 
         # set to None if used_capacity (nullable) is None
         # and model_fields_set contains the field
@@ -229,22 +287,30 @@ class ClusterInfo(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "authSupportForPkgDownloads": obj.get("authSupportForPkgDownloads"),
             "availableVersions": [AvailableReleaseVersion.from_dict(_item) for _item in obj["availableVersions"]] if obj.get("availableVersions") is not None else None,
+            "centralizedPatchingEnabled": obj.get("centralizedPatchingEnabled"),
             "clusterId": obj.get("clusterId"),
             "clusterIncarnationId": obj.get("clusterIncarnationId"),
             "clusterName": obj.get("clusterName"),
+            "currentPatchVersion": obj.get("currentPatchVersion"),
             "currentVersion": obj.get("currentVersion"),
             "health": obj.get("health"),
             "isConnectedToHelios": obj.get("isConnectedToHelios"),
             "location": obj.get("location"),
+            "multiTenancyEnabled": obj.get("multiTenancyEnabled"),
             "nodeIps": obj.get("nodeIps"),
             "numberOfNodes": obj.get("numberOfNodes"),
+            "patchTargetUpgradeUrl": obj.get("patchTargetUpgradeUrl"),
+            "patchTargetVersion": obj.get("patchTargetVersion"),
             "providerType": obj.get("providerType"),
             "scheduledTimestamp": obj.get("scheduledTimestamp"),
             "status": obj.get("status"),
+            "targetUpgradeUrl": obj.get("targetUpgradeUrl"),
             "targetVersion": obj.get("targetVersion"),
             "totalCapacity": obj.get("totalCapacity"),
             "type": obj.get("type"),
+            "updateType": obj.get("updateType"),
             "usedCapacity": obj.get("usedCapacity")
         })
         return _obj

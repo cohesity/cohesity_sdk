@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.network_interface import NetworkInterface
 from typing import Set
@@ -27,9 +27,12 @@ class NodeInterfaces(BaseModel):
     """
     Specifies the interfaces present on a Node.
     """ # noqa: E501
+    chassis_serial: Optional[StrictStr] = Field(default=None, description="Specifies the ip of the node.", alias="chassisSerial")
     id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the node.")
     interfaces: Optional[List[NetworkInterface]] = Field(default=None, description="Specifies the list of network interfaces present on this Node.")
-    __properties: ClassVar[List[str]] = ["id", "interfaces"]
+    ip: Optional[StrictStr] = Field(default=None, description="Specifies the ip of the node.")
+    slot_number: Optional[StrictInt] = Field(default=None, description="Specifies the slot number.", alias="slotNumber")
+    __properties: ClassVar[List[str]] = ["chassisSerial", "id", "interfaces", "ip", "slotNumber"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,10 +80,25 @@ class NodeInterfaces(BaseModel):
                 if _item_interfaces:
                     _items.append(_item_interfaces.to_dict())
             _dict['interfaces'] = _items
+        # set to None if chassis_serial (nullable) is None
+        # and model_fields_set contains the field
+        if self.chassis_serial is None and "chassis_serial" in self.model_fields_set:
+            _dict['chassisSerial'] = None
+
         # set to None if id (nullable) is None
         # and model_fields_set contains the field
         if self.id is None and "id" in self.model_fields_set:
             _dict['id'] = None
+
+        # set to None if ip (nullable) is None
+        # and model_fields_set contains the field
+        if self.ip is None and "ip" in self.model_fields_set:
+            _dict['ip'] = None
+
+        # set to None if slot_number (nullable) is None
+        # and model_fields_set contains the field
+        if self.slot_number is None and "slot_number" in self.model_fields_set:
+            _dict['slotNumber'] = None
 
         return _dict
 
@@ -94,8 +112,11 @@ class NodeInterfaces(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "chassisSerial": obj.get("chassisSerial"),
             "id": obj.get("id"),
-            "interfaces": [NetworkInterface.from_dict(_item) for _item in obj["interfaces"]] if obj.get("interfaces") is not None else None
+            "interfaces": [NetworkInterface.from_dict(_item) for _item in obj["interfaces"]] if obj.get("interfaces") is not None else None,
+            "ip": obj.get("ip"),
+            "slotNumber": obj.get("slotNumber")
         })
         return _obj
 

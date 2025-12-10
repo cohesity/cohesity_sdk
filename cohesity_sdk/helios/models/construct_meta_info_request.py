@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.construct_meta_info_kubernetes_params import ConstructMetaInfoKubernetesParams
 from cohesity_sdk.helios.models.construct_meta_info_sfdc_params import ConstructMetaInfoSfdcParams
 from cohesity_sdk.helios.models.construct_restore_meta_info_oracle_params import ConstructRestoreMetaInfoOracleParams
 from typing import Set
@@ -29,9 +30,20 @@ class ConstructMetaInfoRequest(BaseModel):
     Params to construct meta info
     """ # noqa: E501
     environment: Optional[StrictStr] = Field(description="Specifies the environment type of the Protection group")
+    kubernetes_params: Optional[ConstructMetaInfoKubernetesParams] = Field(default=None, description="Specifies object params for kubernetes object", alias="kubernetesParams")
     oracle_params: Optional[ConstructRestoreMetaInfoOracleParams] = Field(default=None, description="Oracle Params to construct meta info for alternate restore or clone.", alias="oracleParams")
     sfdc_params: Optional[ConstructMetaInfoSfdcParams] = Field(default=None, description="Specifies params to construct list of dependent objects.", alias="sfdcParams")
-    __properties: ClassVar[List[str]] = ["environment", "oracleParams", "sfdcParams"]
+    __properties: ClassVar[List[str]] = ["environment", "kubernetesParams", "oracleParams", "sfdcParams"]
+
+    @field_validator('environment')
+    def environment_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['kVMware', 'kHyperV', 'kVCD', 'kSQL', 'kView', 'kRemoteAdapter', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kAzure', 'kNetapp', 'kGenericNas', 'kAcropolis', 'kIsilon', 'kKVM', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAwsDynamoDB', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureSnapshotManager', 'kExchange', 'kOracle', 'kGCP', 'kGCPBigQuery', 'kFlashBlade', 'kO365', 'kHyperFlex', 'kAD', 'kGPFS', 'kKubernetes', 'kNimble', 'kElastifile', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kS3Compatible', 'kSAPHANA', 'kO365Sharepoint', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kEwsExchange', 'kServiceNow', 'kSalesforce']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kVCD', 'kSQL', 'kView', 'kRemoteAdapter', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kAzure', 'kNetapp', 'kGenericNas', 'kAcropolis', 'kIsilon', 'kKVM', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAwsDynamoDB', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureSnapshotManager', 'kExchange', 'kOracle', 'kGCP', 'kGCPBigQuery', 'kFlashBlade', 'kO365', 'kHyperFlex', 'kAD', 'kGPFS', 'kKubernetes', 'kNimble', 'kElastifile', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kS3Compatible', 'kSAPHANA', 'kO365Sharepoint', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kEwsExchange', 'kServiceNow', 'kSalesforce')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,6 +84,9 @@ class ConstructMetaInfoRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of kubernetes_params
+        if self.kubernetes_params:
+            _dict['kubernetesParams'] = self.kubernetes_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of oracle_params
         if self.oracle_params:
             _dict['oracleParams'] = self.oracle_params.to_dict()
@@ -96,6 +111,7 @@ class ConstructMetaInfoRequest(BaseModel):
 
         _obj = cls.model_validate({
             "environment": obj.get("environment"),
+            "kubernetesParams": ConstructMetaInfoKubernetesParams.from_dict(obj["kubernetesParams"]) if obj.get("kubernetesParams") is not None else None,
             "oracleParams": ConstructRestoreMetaInfoOracleParams.from_dict(obj["oracleParams"]) if obj.get("oracleParams") is not None else None,
             "sfdcParams": ConstructMetaInfoSfdcParams.from_dict(obj["sfdcParams"]) if obj.get("sfdcParams") is not None else None
         })

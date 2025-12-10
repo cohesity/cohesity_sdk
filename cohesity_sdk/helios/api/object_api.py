@@ -33,12 +33,15 @@ from cohesity_sdk.helios.models.get_object_runs_response_body import GetObjectRu
 from cohesity_sdk.helios.models.get_object_snapshots_response_body import GetObjectSnapshotsResponseBody
 from cohesity_sdk.helios.models.get_pit_ranges_protected_object_response_body import GetPITRangesProtectedObjectResponseBody
 from cohesity_sdk.helios.models.get_protected_objects_response import GetProtectedObjectsResponse
+from cohesity_sdk.helios.models.get_protected_objects_result import GetProtectedObjectsResult
 from cohesity_sdk.helios.models.mcm_object_activity import McmObjectActivity
 from cohesity_sdk.helios.models.mcm_object_last_run_activities import McmObjectLastRunActivities
 from cohesity_sdk.helios.models.mcm_object_summary_result import McmObjectSummaryResult
 from cohesity_sdk.helios.models.mcm_objects_activity import McmObjectsActivity
 from cohesity_sdk.helios.models.mcm_tenant_object_ids import McmTenantObjectIds
 from cohesity_sdk.helios.models.mcm_tenant_object_ids_params import McmTenantObjectIdsParams
+from cohesity_sdk.helios.models.modify_source_hierarchy_objects_request import ModifySourceHierarchyObjectsRequest
+from cohesity_sdk.helios.models.modify_source_hierarchy_objects_result import ModifySourceHierarchyObjectsResult
 from cohesity_sdk.helios.models.object_action_request import ObjectActionRequest
 from cohesity_sdk.helios.models.object_archival_run_stats import ObjectArchivalRunStats
 from cohesity_sdk.helios.models.object_browse_request import ObjectBrowseRequest
@@ -54,6 +57,8 @@ from cohesity_sdk.helios.models.snapshot_diff_params import SnapshotDiffParams
 from cohesity_sdk.helios.models.snapshot_diff_result import SnapshotDiffResult
 from cohesity_sdk.helios.models.source_hierarchy_object_summaries import SourceHierarchyObjectSummaries
 from cohesity_sdk.helios.models.update_object_snapshot_request import UpdateObjectSnapshotRequest
+from cohesity_sdk.helios.models.update_objects_runs_metadata_params import UpdateObjectsRunsMetadataParams
+from cohesity_sdk.helios.models.update_objects_runs_metadata_response import UpdateObjectsRunsMetadataResponse
 
 from cohesity_sdk.helios.api_client import ApiClient, RequestSerialized
 from cohesity_sdk.helios.api_response import ApiResponse
@@ -77,8 +82,8 @@ class ObjectApi:
     def associate_entity_metadata(
         self,
         body: Annotated[AssociateEntityMetadataRequest, Field(description="Specifies the parameters to associate metadata with entities in the entity hierarchy.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -98,9 +103,9 @@ class ObjectApi:
 
         :param body: Specifies the parameters to associate metadata with entities in the entity hierarchy. (required)
         :type body: AssociateEntityMetadataRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -152,8 +157,8 @@ class ObjectApi:
     def associate_entity_metadata_with_http_info(
         self,
         body: Annotated[AssociateEntityMetadataRequest, Field(description="Specifies the parameters to associate metadata with entities in the entity hierarchy.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -173,9 +178,9 @@ class ObjectApi:
 
         :param body: Specifies the parameters to associate metadata with entities in the entity hierarchy. (required)
         :type body: AssociateEntityMetadataRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -227,8 +232,8 @@ class ObjectApi:
     def associate_entity_metadata_without_preload_content(
         self,
         body: Annotated[AssociateEntityMetadataRequest, Field(description="Specifies the parameters to associate metadata with entities in the entity hierarchy.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -248,9 +253,9 @@ class ObjectApi:
 
         :param body: Specifies the parameters to associate metadata with entities in the entity hierarchy. (required)
         :type body: AssociateEntityMetadataRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -382,8 +387,8 @@ class ObjectApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
         body: Annotated[ObjectBrowseRequest, Field(description="Specifies the parameters to fetch contents of an object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -405,9 +410,9 @@ class ObjectApi:
         :type id: int
         :param body: Specifies the parameters to fetch contents of an object. (required)
         :type body: ObjectBrowseRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -461,8 +466,8 @@ class ObjectApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
         body: Annotated[ObjectBrowseRequest, Field(description="Specifies the parameters to fetch contents of an object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -484,9 +489,9 @@ class ObjectApi:
         :type id: int
         :param body: Specifies the parameters to fetch contents of an object. (required)
         :type body: ObjectBrowseRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -540,8 +545,8 @@ class ObjectApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
         body: Annotated[ObjectBrowseRequest, Field(description="Specifies the parameters to fetch contents of an object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -563,9 +568,9 @@ class ObjectApi:
         :type id: int
         :param body: Specifies the parameters to fetch contents of an object. (required)
         :type body: ObjectBrowseRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -700,8 +705,8 @@ class ObjectApi:
     def cancel_object_runs(
         self,
         body: Annotated[CancelObjectRunsRequest, Field(description="Specifies the parameters to cancel object runs.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -721,9 +726,9 @@ class ObjectApi:
 
         :param body: Specifies the parameters to cancel object runs. (required)
         :type body: CancelObjectRunsRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -775,8 +780,8 @@ class ObjectApi:
     def cancel_object_runs_with_http_info(
         self,
         body: Annotated[CancelObjectRunsRequest, Field(description="Specifies the parameters to cancel object runs.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -796,9 +801,9 @@ class ObjectApi:
 
         :param body: Specifies the parameters to cancel object runs. (required)
         :type body: CancelObjectRunsRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -850,8 +855,8 @@ class ObjectApi:
     def cancel_object_runs_without_preload_content(
         self,
         body: Annotated[CancelObjectRunsRequest, Field(description="Specifies the parameters to cancel object runs.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -871,9 +876,9 @@ class ObjectApi:
 
         :param body: Specifies the parameters to cancel object runs. (required)
         :type body: CancelObjectRunsRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1005,8 +1010,8 @@ class ObjectApi:
         self,
         snapshot_id: Annotated[StrictStr, Field(description="Specifies the snapshot id.")],
         body: Annotated[ConstructMetaInfoRequest, Field(description="Specifies the parameters to construct meta info for desired workflow.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1028,9 +1033,9 @@ class ObjectApi:
         :type snapshot_id: str
         :param body: Specifies the parameters to construct meta info for desired workflow. (required)
         :type body: ConstructMetaInfoRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1084,8 +1089,8 @@ class ObjectApi:
         self,
         snapshot_id: Annotated[StrictStr, Field(description="Specifies the snapshot id.")],
         body: Annotated[ConstructMetaInfoRequest, Field(description="Specifies the parameters to construct meta info for desired workflow.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1107,9 +1112,9 @@ class ObjectApi:
         :type snapshot_id: str
         :param body: Specifies the parameters to construct meta info for desired workflow. (required)
         :type body: ConstructMetaInfoRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1163,8 +1168,8 @@ class ObjectApi:
         self,
         snapshot_id: Annotated[StrictStr, Field(description="Specifies the snapshot id.")],
         body: Annotated[ConstructMetaInfoRequest, Field(description="Specifies the parameters to construct meta info for desired workflow.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1186,9 +1191,9 @@ class ObjectApi:
         :type snapshot_id: str
         :param body: Specifies the parameters to construct meta info for desired workflow. (required)
         :type body: ConstructMetaInfoRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1320,11 +1325,336 @@ class ObjectApi:
 
 
     @validate_call
+    def delete_entity_metadata(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies a unique id of the Entity.")],
+        metadata_type: Annotated[Optional[StrictStr], Field(description="Specifies the metadata type to be deleted. This is a required field currently and the API will error out if this field is not provided.")] = None,
+        environment_type: Annotated[Optional[StrictStr], Field(description="Specifies the environment type for the Credentials metadata to be deleted. This will be only set when the metadata type is Credentials.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete Metadata with Entity
+
+        Deletes entity metadata for the given entity Id. Currently only supported for RDS and Aurora Postgres Credential metadata.
+
+        :param id: Specifies a unique id of the Entity. (required)
+        :type id: int
+        :param metadata_type: Specifies the metadata type to be deleted. This is a required field currently and the API will error out if this field is not provided.
+        :type metadata_type: str
+        :param environment_type: Specifies the environment type for the Credentials metadata to be deleted. This will be only set when the metadata type is Credentials.
+        :type environment_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_entity_metadata_serialize(
+            id=id,
+            metadata_type=metadata_type,
+            environment_type=environment_type,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def delete_entity_metadata_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies a unique id of the Entity.")],
+        metadata_type: Annotated[Optional[StrictStr], Field(description="Specifies the metadata type to be deleted. This is a required field currently and the API will error out if this field is not provided.")] = None,
+        environment_type: Annotated[Optional[StrictStr], Field(description="Specifies the environment type for the Credentials metadata to be deleted. This will be only set when the metadata type is Credentials.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete Metadata with Entity
+
+        Deletes entity metadata for the given entity Id. Currently only supported for RDS and Aurora Postgres Credential metadata.
+
+        :param id: Specifies a unique id of the Entity. (required)
+        :type id: int
+        :param metadata_type: Specifies the metadata type to be deleted. This is a required field currently and the API will error out if this field is not provided.
+        :type metadata_type: str
+        :param environment_type: Specifies the environment type for the Credentials metadata to be deleted. This will be only set when the metadata type is Credentials.
+        :type environment_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_entity_metadata_serialize(
+            id=id,
+            metadata_type=metadata_type,
+            environment_type=environment_type,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def delete_entity_metadata_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies a unique id of the Entity.")],
+        metadata_type: Annotated[Optional[StrictStr], Field(description="Specifies the metadata type to be deleted. This is a required field currently and the API will error out if this field is not provided.")] = None,
+        environment_type: Annotated[Optional[StrictStr], Field(description="Specifies the environment type for the Credentials metadata to be deleted. This will be only set when the metadata type is Credentials.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete Metadata with Entity
+
+        Deletes entity metadata for the given entity Id. Currently only supported for RDS and Aurora Postgres Credential metadata.
+
+        :param id: Specifies a unique id of the Entity. (required)
+        :type id: int
+        :param metadata_type: Specifies the metadata type to be deleted. This is a required field currently and the API will error out if this field is not provided.
+        :type metadata_type: str
+        :param environment_type: Specifies the environment type for the Credentials metadata to be deleted. This will be only set when the metadata type is Credentials.
+        :type environment_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_entity_metadata_serialize(
+            id=id,
+            metadata_type=metadata_type,
+            environment_type=environment_type,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _delete_entity_metadata_serialize(
+        self,
+        id,
+        metadata_type,
+        environment_type,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        if metadata_type is not None:
+            
+            _query_params.append(('metadataType', metadata_type))
+            
+        if environment_type is not None:
+            
+            _query_params.append(('environmentType', environment_type))
+            
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/data-protect/objects/metadata/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def filter_objects(
         self,
         body: Annotated[FilterObjectsRequest, Field(description="Specifies the parameters to filter objects.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1344,9 +1674,9 @@ class ObjectApi:
 
         :param body: Specifies the parameters to filter objects. (required)
         :type body: FilterObjectsRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1398,8 +1728,8 @@ class ObjectApi:
     def filter_objects_with_http_info(
         self,
         body: Annotated[FilterObjectsRequest, Field(description="Specifies the parameters to filter objects.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1419,9 +1749,9 @@ class ObjectApi:
 
         :param body: Specifies the parameters to filter objects. (required)
         :type body: FilterObjectsRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1473,8 +1803,8 @@ class ObjectApi:
     def filter_objects_without_preload_content(
         self,
         body: Annotated[FilterObjectsRequest, Field(description="Specifies the parameters to filter objects.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1494,9 +1824,9 @@ class ObjectApi:
 
         :param body: Specifies the parameters to filter objects. (required)
         :type body: FilterObjectsRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1628,8 +1958,6 @@ class ObjectApi:
         self,
         object_id: Annotated[StrictInt, Field(description="Specifies the object id.")],
         indexed_object_name: Annotated[StrictStr, Field(description="Specifies the indexed object name.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         protection_group_id: Annotated[Optional[StrictStr], Field(description="Specifies the protection group id.")] = None,
         include_indexed_snapshots_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to only return snapshots which are indexed. In an indexed snapshot files are guaranteed to exist, while in a non-indexed snapshot files may not exist.")] = None,
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken after this value.")] = None,
@@ -1637,6 +1965,9 @@ class ObjectApi:
         run_types: Annotated[Optional[List[StrictStr]], Field(description="Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         object_action_key: Annotated[Optional[StrictStr], Field(description="Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.")] = None,
+        filename: Annotated[Optional[StrictStr], Field(description="Specifies the name of the file or folder to find in the snapshots.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1658,10 +1989,6 @@ class ObjectApi:
         :type object_id: int
         :param indexed_object_name: Specifies the indexed object name. (required)
         :type indexed_object_name: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param protection_group_id: Specifies the protection group id.
         :type protection_group_id: str
         :param include_indexed_snapshots_only: Specifies whether to only return snapshots which are indexed. In an indexed snapshot files are guaranteed to exist, while in a non-indexed snapshot files may not exist.
@@ -1676,6 +2003,12 @@ class ObjectApi:
         :type use_cached_data: bool
         :param object_action_key: Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.
         :type object_action_key: str
+        :param filename: Specifies the name of the file or folder to find in the snapshots.
+        :type filename: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1701,8 +2034,6 @@ class ObjectApi:
         _param = self._get_all_indexed_object_snapshots_serialize(
             object_id=object_id,
             indexed_object_name=indexed_object_name,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             protection_group_id=protection_group_id,
             include_indexed_snapshots_only=include_indexed_snapshots_only,
             from_time_usecs=from_time_usecs,
@@ -1710,6 +2041,9 @@ class ObjectApi:
             run_types=run_types,
             use_cached_data=use_cached_data,
             object_action_key=object_action_key,
+            filename=filename,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1735,8 +2069,6 @@ class ObjectApi:
         self,
         object_id: Annotated[StrictInt, Field(description="Specifies the object id.")],
         indexed_object_name: Annotated[StrictStr, Field(description="Specifies the indexed object name.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         protection_group_id: Annotated[Optional[StrictStr], Field(description="Specifies the protection group id.")] = None,
         include_indexed_snapshots_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to only return snapshots which are indexed. In an indexed snapshot files are guaranteed to exist, while in a non-indexed snapshot files may not exist.")] = None,
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken after this value.")] = None,
@@ -1744,6 +2076,9 @@ class ObjectApi:
         run_types: Annotated[Optional[List[StrictStr]], Field(description="Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         object_action_key: Annotated[Optional[StrictStr], Field(description="Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.")] = None,
+        filename: Annotated[Optional[StrictStr], Field(description="Specifies the name of the file or folder to find in the snapshots.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1765,10 +2100,6 @@ class ObjectApi:
         :type object_id: int
         :param indexed_object_name: Specifies the indexed object name. (required)
         :type indexed_object_name: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param protection_group_id: Specifies the protection group id.
         :type protection_group_id: str
         :param include_indexed_snapshots_only: Specifies whether to only return snapshots which are indexed. In an indexed snapshot files are guaranteed to exist, while in a non-indexed snapshot files may not exist.
@@ -1783,6 +2114,12 @@ class ObjectApi:
         :type use_cached_data: bool
         :param object_action_key: Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.
         :type object_action_key: str
+        :param filename: Specifies the name of the file or folder to find in the snapshots.
+        :type filename: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1808,8 +2145,6 @@ class ObjectApi:
         _param = self._get_all_indexed_object_snapshots_serialize(
             object_id=object_id,
             indexed_object_name=indexed_object_name,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             protection_group_id=protection_group_id,
             include_indexed_snapshots_only=include_indexed_snapshots_only,
             from_time_usecs=from_time_usecs,
@@ -1817,6 +2152,9 @@ class ObjectApi:
             run_types=run_types,
             use_cached_data=use_cached_data,
             object_action_key=object_action_key,
+            filename=filename,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1842,8 +2180,6 @@ class ObjectApi:
         self,
         object_id: Annotated[StrictInt, Field(description="Specifies the object id.")],
         indexed_object_name: Annotated[StrictStr, Field(description="Specifies the indexed object name.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         protection_group_id: Annotated[Optional[StrictStr], Field(description="Specifies the protection group id.")] = None,
         include_indexed_snapshots_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to only return snapshots which are indexed. In an indexed snapshot files are guaranteed to exist, while in a non-indexed snapshot files may not exist.")] = None,
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken after this value.")] = None,
@@ -1851,6 +2187,9 @@ class ObjectApi:
         run_types: Annotated[Optional[List[StrictStr]], Field(description="Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         object_action_key: Annotated[Optional[StrictStr], Field(description="Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.")] = None,
+        filename: Annotated[Optional[StrictStr], Field(description="Specifies the name of the file or folder to find in the snapshots.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1872,10 +2211,6 @@ class ObjectApi:
         :type object_id: int
         :param indexed_object_name: Specifies the indexed object name. (required)
         :type indexed_object_name: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param protection_group_id: Specifies the protection group id.
         :type protection_group_id: str
         :param include_indexed_snapshots_only: Specifies whether to only return snapshots which are indexed. In an indexed snapshot files are guaranteed to exist, while in a non-indexed snapshot files may not exist.
@@ -1890,6 +2225,12 @@ class ObjectApi:
         :type use_cached_data: bool
         :param object_action_key: Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.
         :type object_action_key: str
+        :param filename: Specifies the name of the file or folder to find in the snapshots.
+        :type filename: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1915,8 +2256,6 @@ class ObjectApi:
         _param = self._get_all_indexed_object_snapshots_serialize(
             object_id=object_id,
             indexed_object_name=indexed_object_name,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             protection_group_id=protection_group_id,
             include_indexed_snapshots_only=include_indexed_snapshots_only,
             from_time_usecs=from_time_usecs,
@@ -1924,6 +2263,9 @@ class ObjectApi:
             run_types=run_types,
             use_cached_data=use_cached_data,
             object_action_key=object_action_key,
+            filename=filename,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1944,8 +2286,6 @@ class ObjectApi:
         self,
         object_id,
         indexed_object_name,
-        access_cluster_id,
-        region_id,
         protection_group_id,
         include_indexed_snapshots_only,
         from_time_usecs,
@@ -1953,6 +2293,9 @@ class ObjectApi:
         run_types,
         use_cached_data,
         object_action_key,
+        filename,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2010,6 +2353,10 @@ class ObjectApi:
             
             _query_params.append(('objectActionKey', object_action_key))
             
+        if filename is not None:
+            
+            _query_params.append(('filename', filename))
+            
         # process the header parameters
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
@@ -2055,9 +2402,9 @@ class ObjectApi:
     def get_entity_metadata(
         self,
         source_id: Annotated[StrictInt, Field(description="Specifies the source ID for which objects should be returned.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         entity_ids: Annotated[Optional[List[StrictInt]], Field(description="EntityIds contains ids of the entities for which objects are to be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2077,12 +2424,12 @@ class ObjectApi:
 
         :param source_id: Specifies the source ID for which objects should be returned. (required)
         :type source_id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param entity_ids: EntityIds contains ids of the entities for which objects are to be returned.
         :type entity_ids: List[int]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2107,9 +2454,9 @@ class ObjectApi:
 
         _param = self._get_entity_metadata_serialize(
             source_id=source_id,
+            entity_ids=entity_ids,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            entity_ids=entity_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2134,9 +2481,9 @@ class ObjectApi:
     def get_entity_metadata_with_http_info(
         self,
         source_id: Annotated[StrictInt, Field(description="Specifies the source ID for which objects should be returned.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         entity_ids: Annotated[Optional[List[StrictInt]], Field(description="EntityIds contains ids of the entities for which objects are to be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2156,12 +2503,12 @@ class ObjectApi:
 
         :param source_id: Specifies the source ID for which objects should be returned. (required)
         :type source_id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param entity_ids: EntityIds contains ids of the entities for which objects are to be returned.
         :type entity_ids: List[int]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2186,9 +2533,9 @@ class ObjectApi:
 
         _param = self._get_entity_metadata_serialize(
             source_id=source_id,
+            entity_ids=entity_ids,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            entity_ids=entity_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2213,9 +2560,9 @@ class ObjectApi:
     def get_entity_metadata_without_preload_content(
         self,
         source_id: Annotated[StrictInt, Field(description="Specifies the source ID for which objects should be returned.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         entity_ids: Annotated[Optional[List[StrictInt]], Field(description="EntityIds contains ids of the entities for which objects are to be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2235,12 +2582,12 @@ class ObjectApi:
 
         :param source_id: Specifies the source ID for which objects should be returned. (required)
         :type source_id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param entity_ids: EntityIds contains ids of the entities for which objects are to be returned.
         :type entity_ids: List[int]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2265,9 +2612,9 @@ class ObjectApi:
 
         _param = self._get_entity_metadata_serialize(
             source_id=source_id,
+            entity_ids=entity_ids,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            entity_ids=entity_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2287,9 +2634,9 @@ class ObjectApi:
     def _get_entity_metadata_serialize(
         self,
         source_id,
+        entity_ids,
         access_cluster_id,
         region_id,
-        entity_ids,
         _request_auth,
         _content_type,
         _headers,
@@ -2366,14 +2713,16 @@ class ObjectApi:
         protection_group_id: Annotated[StrictStr, Field(description="Specifies the protection group id.")],
         object_id: Annotated[StrictInt, Field(description="Specifies the object id.")],
         indexed_object_name: Annotated[StrictStr, Field(description="Specifies the indexed object name.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         include_indexed_snapshots_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to only return snapshots which are indexed. In an indexed snapshots file are guaranteed to exist, while in a non-indexed snapshots file may not exist.")] = None,
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken after this value.")] = None,
         to_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken before this value.")] = None,
         run_types: Annotated[Optional[List[StrictStr]], Field(description="Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         object_action_key: Annotated[Optional[StrictStr], Field(description="Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.")] = None,
+        from_file_mtime_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime after and equal to this value. If not specified and toFileMtimeUsecs is specified, then the fromFileMtimeUsecs will be set to 7 days before toFileMtimeUsecs.")] = None,
+        to_file_mtime_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime before and equal to this value. If not specified and fromFileMtimeUsecs is specified, then the toFileMtimeUsecs will be set to current time.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2397,10 +2746,6 @@ class ObjectApi:
         :type object_id: int
         :param indexed_object_name: Specifies the indexed object name. (required)
         :type indexed_object_name: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param include_indexed_snapshots_only: Specifies whether to only return snapshots which are indexed. In an indexed snapshots file are guaranteed to exist, while in a non-indexed snapshots file may not exist.
         :type include_indexed_snapshots_only: bool
         :param from_time_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken after this value.
@@ -2413,6 +2758,14 @@ class ObjectApi:
         :type use_cached_data: bool
         :param object_action_key: Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.
         :type object_action_key: str
+        :param from_file_mtime_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime after and equal to this value. If not specified and toFileMtimeUsecs is specified, then the fromFileMtimeUsecs will be set to 7 days before toFileMtimeUsecs.
+        :type from_file_mtime_usecs: int
+        :param to_file_mtime_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime before and equal to this value. If not specified and fromFileMtimeUsecs is specified, then the toFileMtimeUsecs will be set to current time.
+        :type to_file_mtime_usecs: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2439,14 +2792,16 @@ class ObjectApi:
             protection_group_id=protection_group_id,
             object_id=object_id,
             indexed_object_name=indexed_object_name,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             include_indexed_snapshots_only=include_indexed_snapshots_only,
             from_time_usecs=from_time_usecs,
             to_time_usecs=to_time_usecs,
             run_types=run_types,
             use_cached_data=use_cached_data,
             object_action_key=object_action_key,
+            from_file_mtime_usecs=from_file_mtime_usecs,
+            to_file_mtime_usecs=to_file_mtime_usecs,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2473,14 +2828,16 @@ class ObjectApi:
         protection_group_id: Annotated[StrictStr, Field(description="Specifies the protection group id.")],
         object_id: Annotated[StrictInt, Field(description="Specifies the object id.")],
         indexed_object_name: Annotated[StrictStr, Field(description="Specifies the indexed object name.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         include_indexed_snapshots_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to only return snapshots which are indexed. In an indexed snapshots file are guaranteed to exist, while in a non-indexed snapshots file may not exist.")] = None,
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken after this value.")] = None,
         to_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken before this value.")] = None,
         run_types: Annotated[Optional[List[StrictStr]], Field(description="Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         object_action_key: Annotated[Optional[StrictStr], Field(description="Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.")] = None,
+        from_file_mtime_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime after and equal to this value. If not specified and toFileMtimeUsecs is specified, then the fromFileMtimeUsecs will be set to 7 days before toFileMtimeUsecs.")] = None,
+        to_file_mtime_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime before and equal to this value. If not specified and fromFileMtimeUsecs is specified, then the toFileMtimeUsecs will be set to current time.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2504,10 +2861,6 @@ class ObjectApi:
         :type object_id: int
         :param indexed_object_name: Specifies the indexed object name. (required)
         :type indexed_object_name: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param include_indexed_snapshots_only: Specifies whether to only return snapshots which are indexed. In an indexed snapshots file are guaranteed to exist, while in a non-indexed snapshots file may not exist.
         :type include_indexed_snapshots_only: bool
         :param from_time_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken after this value.
@@ -2520,6 +2873,14 @@ class ObjectApi:
         :type use_cached_data: bool
         :param object_action_key: Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.
         :type object_action_key: str
+        :param from_file_mtime_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime after and equal to this value. If not specified and toFileMtimeUsecs is specified, then the fromFileMtimeUsecs will be set to 7 days before toFileMtimeUsecs.
+        :type from_file_mtime_usecs: int
+        :param to_file_mtime_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime before and equal to this value. If not specified and fromFileMtimeUsecs is specified, then the toFileMtimeUsecs will be set to current time.
+        :type to_file_mtime_usecs: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2546,14 +2907,16 @@ class ObjectApi:
             protection_group_id=protection_group_id,
             object_id=object_id,
             indexed_object_name=indexed_object_name,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             include_indexed_snapshots_only=include_indexed_snapshots_only,
             from_time_usecs=from_time_usecs,
             to_time_usecs=to_time_usecs,
             run_types=run_types,
             use_cached_data=use_cached_data,
             object_action_key=object_action_key,
+            from_file_mtime_usecs=from_file_mtime_usecs,
+            to_file_mtime_usecs=to_file_mtime_usecs,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2580,14 +2943,16 @@ class ObjectApi:
         protection_group_id: Annotated[StrictStr, Field(description="Specifies the protection group id.")],
         object_id: Annotated[StrictInt, Field(description="Specifies the object id.")],
         indexed_object_name: Annotated[StrictStr, Field(description="Specifies the indexed object name.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         include_indexed_snapshots_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to only return snapshots which are indexed. In an indexed snapshots file are guaranteed to exist, while in a non-indexed snapshots file may not exist.")] = None,
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken after this value.")] = None,
         to_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken before this value.")] = None,
         run_types: Annotated[Optional[List[StrictStr]], Field(description="Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         object_action_key: Annotated[Optional[StrictStr], Field(description="Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.")] = None,
+        from_file_mtime_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime after and equal to this value. If not specified and toFileMtimeUsecs is specified, then the fromFileMtimeUsecs will be set to 7 days before toFileMtimeUsecs.")] = None,
+        to_file_mtime_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime before and equal to this value. If not specified and fromFileMtimeUsecs is specified, then the toFileMtimeUsecs will be set to current time.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2611,10 +2976,6 @@ class ObjectApi:
         :type object_id: int
         :param indexed_object_name: Specifies the indexed object name. (required)
         :type indexed_object_name: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param include_indexed_snapshots_only: Specifies whether to only return snapshots which are indexed. In an indexed snapshots file are guaranteed to exist, while in a non-indexed snapshots file may not exist.
         :type include_indexed_snapshots_only: bool
         :param from_time_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken after this value.
@@ -2627,6 +2988,14 @@ class ObjectApi:
         :type use_cached_data: bool
         :param object_action_key: Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.
         :type object_action_key: str
+        :param from_file_mtime_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime after and equal to this value. If not specified and toFileMtimeUsecs is specified, then the fromFileMtimeUsecs will be set to 7 days before toFileMtimeUsecs.
+        :type from_file_mtime_usecs: int
+        :param to_file_mtime_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime before and equal to this value. If not specified and fromFileMtimeUsecs is specified, then the toFileMtimeUsecs will be set to current time.
+        :type to_file_mtime_usecs: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2653,14 +3022,16 @@ class ObjectApi:
             protection_group_id=protection_group_id,
             object_id=object_id,
             indexed_object_name=indexed_object_name,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             include_indexed_snapshots_only=include_indexed_snapshots_only,
             from_time_usecs=from_time_usecs,
             to_time_usecs=to_time_usecs,
             run_types=run_types,
             use_cached_data=use_cached_data,
             object_action_key=object_action_key,
+            from_file_mtime_usecs=from_file_mtime_usecs,
+            to_file_mtime_usecs=to_file_mtime_usecs,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2682,14 +3053,16 @@ class ObjectApi:
         protection_group_id,
         object_id,
         indexed_object_name,
-        access_cluster_id,
-        region_id,
         include_indexed_snapshots_only,
         from_time_usecs,
         to_time_usecs,
         run_types,
         use_cached_data,
         object_action_key,
+        from_file_mtime_usecs,
+        to_file_mtime_usecs,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2745,6 +3118,14 @@ class ObjectApi:
             
             _query_params.append(('objectActionKey', object_action_key))
             
+        if from_file_mtime_usecs is not None:
+            
+            _query_params.append(('fromFileMtimeUsecs', from_file_mtime_usecs))
+            
+        if to_file_mtime_usecs is not None:
+            
+            _query_params.append(('toFileMtimeUsecs', to_file_mtime_usecs))
+            
         # process the header parameters
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
@@ -2790,10 +3171,10 @@ class ObjectApi:
     def get_mcm_object_snapshots(
         self,
         global_id: Annotated[StrictStr, Field(description="Specifies the global id of the Object.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         uuid: Annotated[Optional[StrictStr], Field(description="Specifies the uuid of the Object. This field is deprecated.")] = None,
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which are taken after this value.")] = None,
         to_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which are taken before this value.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2813,14 +3194,14 @@ class ObjectApi:
 
         :param global_id: Specifies the global id of the Object. (required)
         :type global_id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param uuid: Specifies the uuid of the Object. This field is deprecated.
         :type uuid: str
         :param from_time_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which are taken after this value.
         :type from_time_usecs: int
         :param to_time_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which are taken before this value.
         :type to_time_usecs: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2845,10 +3226,10 @@ class ObjectApi:
 
         _param = self._get_mcm_object_snapshots_serialize(
             global_id=global_id,
-            region_id=region_id,
             uuid=uuid,
             from_time_usecs=from_time_usecs,
             to_time_usecs=to_time_usecs,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2873,10 +3254,10 @@ class ObjectApi:
     def get_mcm_object_snapshots_with_http_info(
         self,
         global_id: Annotated[StrictStr, Field(description="Specifies the global id of the Object.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         uuid: Annotated[Optional[StrictStr], Field(description="Specifies the uuid of the Object. This field is deprecated.")] = None,
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which are taken after this value.")] = None,
         to_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which are taken before this value.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2896,14 +3277,14 @@ class ObjectApi:
 
         :param global_id: Specifies the global id of the Object. (required)
         :type global_id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param uuid: Specifies the uuid of the Object. This field is deprecated.
         :type uuid: str
         :param from_time_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which are taken after this value.
         :type from_time_usecs: int
         :param to_time_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which are taken before this value.
         :type to_time_usecs: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2928,10 +3309,10 @@ class ObjectApi:
 
         _param = self._get_mcm_object_snapshots_serialize(
             global_id=global_id,
-            region_id=region_id,
             uuid=uuid,
             from_time_usecs=from_time_usecs,
             to_time_usecs=to_time_usecs,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2956,10 +3337,10 @@ class ObjectApi:
     def get_mcm_object_snapshots_without_preload_content(
         self,
         global_id: Annotated[StrictStr, Field(description="Specifies the global id of the Object.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         uuid: Annotated[Optional[StrictStr], Field(description="Specifies the uuid of the Object. This field is deprecated.")] = None,
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which are taken after this value.")] = None,
         to_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which are taken before this value.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2979,14 +3360,14 @@ class ObjectApi:
 
         :param global_id: Specifies the global id of the Object. (required)
         :type global_id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param uuid: Specifies the uuid of the Object. This field is deprecated.
         :type uuid: str
         :param from_time_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which are taken after this value.
         :type from_time_usecs: int
         :param to_time_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which are taken before this value.
         :type to_time_usecs: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3011,10 +3392,10 @@ class ObjectApi:
 
         _param = self._get_mcm_object_snapshots_serialize(
             global_id=global_id,
-            region_id=region_id,
             uuid=uuid,
             from_time_usecs=from_time_usecs,
             to_time_usecs=to_time_usecs,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3034,10 +3415,10 @@ class ObjectApi:
     def _get_mcm_object_snapshots_serialize(
         self,
         global_id,
-        region_id,
         uuid,
         from_time_usecs,
         to_time_usecs,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -3119,10 +3500,12 @@ class ObjectApi:
     def get_mcm_object_stats(
         self,
         global_id: Annotated[StrictStr, Field(description="Specifies the global id of the Object. This field is required because we only fetches snapshots stats for one object.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         entity_hash: Annotated[Optional[StrictStr], Field(description="Specifies the entity hash global id of the Object. This field is deprecated.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of region ids. Only records from clusters having these region ids will be returned.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.")] = None,
+        from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the time in Unix timestamp epoch in microsecond which filters all the archivals, backups, recoveries started after this value. The default value is 90 days ago from now.")] = None,
+        to_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the time in Unix timestamp epoch in microsecond which filters all the archivals, backups, recoveries started before this value. The default value is the current time.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3142,14 +3525,18 @@ class ObjectApi:
 
         :param global_id: Specifies the global id of the Object. This field is required because we only fetches snapshots stats for one object. (required)
         :type global_id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param entity_hash: Specifies the entity hash global id of the Object. This field is deprecated.
         :type entity_hash: str
         :param region_ids: Specifies a list of region ids. Only records from clusters having these region ids will be returned.
         :type region_ids: List[str]
         :param cluster_identifiers: Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.
         :type cluster_identifiers: List[str]
+        :param from_time_usecs: Specifies the time in Unix timestamp epoch in microsecond which filters all the archivals, backups, recoveries started after this value. The default value is 90 days ago from now.
+        :type from_time_usecs: int
+        :param to_time_usecs: Specifies the time in Unix timestamp epoch in microsecond which filters all the archivals, backups, recoveries started before this value. The default value is the current time.
+        :type to_time_usecs: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3174,10 +3561,12 @@ class ObjectApi:
 
         _param = self._get_mcm_object_stats_serialize(
             global_id=global_id,
-            region_id=region_id,
             entity_hash=entity_hash,
             region_ids=region_ids,
             cluster_identifiers=cluster_identifiers,
+            from_time_usecs=from_time_usecs,
+            to_time_usecs=to_time_usecs,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3202,10 +3591,12 @@ class ObjectApi:
     def get_mcm_object_stats_with_http_info(
         self,
         global_id: Annotated[StrictStr, Field(description="Specifies the global id of the Object. This field is required because we only fetches snapshots stats for one object.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         entity_hash: Annotated[Optional[StrictStr], Field(description="Specifies the entity hash global id of the Object. This field is deprecated.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of region ids. Only records from clusters having these region ids will be returned.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.")] = None,
+        from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the time in Unix timestamp epoch in microsecond which filters all the archivals, backups, recoveries started after this value. The default value is 90 days ago from now.")] = None,
+        to_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the time in Unix timestamp epoch in microsecond which filters all the archivals, backups, recoveries started before this value. The default value is the current time.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3225,14 +3616,18 @@ class ObjectApi:
 
         :param global_id: Specifies the global id of the Object. This field is required because we only fetches snapshots stats for one object. (required)
         :type global_id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param entity_hash: Specifies the entity hash global id of the Object. This field is deprecated.
         :type entity_hash: str
         :param region_ids: Specifies a list of region ids. Only records from clusters having these region ids will be returned.
         :type region_ids: List[str]
         :param cluster_identifiers: Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.
         :type cluster_identifiers: List[str]
+        :param from_time_usecs: Specifies the time in Unix timestamp epoch in microsecond which filters all the archivals, backups, recoveries started after this value. The default value is 90 days ago from now.
+        :type from_time_usecs: int
+        :param to_time_usecs: Specifies the time in Unix timestamp epoch in microsecond which filters all the archivals, backups, recoveries started before this value. The default value is the current time.
+        :type to_time_usecs: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3257,10 +3652,12 @@ class ObjectApi:
 
         _param = self._get_mcm_object_stats_serialize(
             global_id=global_id,
-            region_id=region_id,
             entity_hash=entity_hash,
             region_ids=region_ids,
             cluster_identifiers=cluster_identifiers,
+            from_time_usecs=from_time_usecs,
+            to_time_usecs=to_time_usecs,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3285,10 +3682,12 @@ class ObjectApi:
     def get_mcm_object_stats_without_preload_content(
         self,
         global_id: Annotated[StrictStr, Field(description="Specifies the global id of the Object. This field is required because we only fetches snapshots stats for one object.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         entity_hash: Annotated[Optional[StrictStr], Field(description="Specifies the entity hash global id of the Object. This field is deprecated.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of region ids. Only records from clusters having these region ids will be returned.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.")] = None,
+        from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the time in Unix timestamp epoch in microsecond which filters all the archivals, backups, recoveries started after this value. The default value is 90 days ago from now.")] = None,
+        to_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the time in Unix timestamp epoch in microsecond which filters all the archivals, backups, recoveries started before this value. The default value is the current time.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3308,14 +3707,18 @@ class ObjectApi:
 
         :param global_id: Specifies the global id of the Object. This field is required because we only fetches snapshots stats for one object. (required)
         :type global_id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param entity_hash: Specifies the entity hash global id of the Object. This field is deprecated.
         :type entity_hash: str
         :param region_ids: Specifies a list of region ids. Only records from clusters having these region ids will be returned.
         :type region_ids: List[str]
         :param cluster_identifiers: Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.
         :type cluster_identifiers: List[str]
+        :param from_time_usecs: Specifies the time in Unix timestamp epoch in microsecond which filters all the archivals, backups, recoveries started after this value. The default value is 90 days ago from now.
+        :type from_time_usecs: int
+        :param to_time_usecs: Specifies the time in Unix timestamp epoch in microsecond which filters all the archivals, backups, recoveries started before this value. The default value is the current time.
+        :type to_time_usecs: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3340,10 +3743,12 @@ class ObjectApi:
 
         _param = self._get_mcm_object_stats_serialize(
             global_id=global_id,
-            region_id=region_id,
             entity_hash=entity_hash,
             region_ids=region_ids,
             cluster_identifiers=cluster_identifiers,
+            from_time_usecs=from_time_usecs,
+            to_time_usecs=to_time_usecs,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3363,10 +3768,12 @@ class ObjectApi:
     def _get_mcm_object_stats_serialize(
         self,
         global_id,
-        region_id,
         entity_hash,
         region_ids,
         cluster_identifiers,
+        from_time_usecs,
+        to_time_usecs,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -3406,6 +3813,14 @@ class ObjectApi:
         if cluster_identifiers is not None:
             
             _query_params.append(('clusterIdentifiers', cluster_identifiers))
+            
+        if from_time_usecs is not None:
+            
+            _query_params.append(('fromTimeUsecs', from_time_usecs))
+            
+        if to_time_usecs is not None:
+            
+            _query_params.append(('toTimeUsecs', to_time_usecs))
             
         # process the header parameters
         if region_id is not None:
@@ -3449,9 +3864,9 @@ class ObjectApi:
     @validate_call
     def get_mcm_object_summary(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.")] = None,
         environments: Annotated[Optional[List[StrictStr]], Field(description="Filter by environment types such as 'kVMware', 'kView', etc. Only Protected objects protecting the specified environment types are returned.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3469,12 +3884,12 @@ class ObjectApi:
 
         Get the objects summary across clusters.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param cluster_identifiers: Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.
         :type cluster_identifiers: List[str]
         :param environments: Filter by environment types such as 'kVMware', 'kView', etc. Only Protected objects protecting the specified environment types are returned.
         :type environments: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3498,9 +3913,9 @@ class ObjectApi:
         """ # noqa: E501
 
         _param = self._get_mcm_object_summary_serialize(
-            region_id=region_id,
             cluster_identifiers=cluster_identifiers,
             environments=environments,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3524,9 +3939,9 @@ class ObjectApi:
     @validate_call
     def get_mcm_object_summary_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.")] = None,
         environments: Annotated[Optional[List[StrictStr]], Field(description="Filter by environment types such as 'kVMware', 'kView', etc. Only Protected objects protecting the specified environment types are returned.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3544,12 +3959,12 @@ class ObjectApi:
 
         Get the objects summary across clusters.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param cluster_identifiers: Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.
         :type cluster_identifiers: List[str]
         :param environments: Filter by environment types such as 'kVMware', 'kView', etc. Only Protected objects protecting the specified environment types are returned.
         :type environments: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3573,9 +3988,9 @@ class ObjectApi:
         """ # noqa: E501
 
         _param = self._get_mcm_object_summary_serialize(
-            region_id=region_id,
             cluster_identifiers=cluster_identifiers,
             environments=environments,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3599,9 +4014,9 @@ class ObjectApi:
     @validate_call
     def get_mcm_object_summary_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.")] = None,
         environments: Annotated[Optional[List[StrictStr]], Field(description="Filter by environment types such as 'kVMware', 'kView', etc. Only Protected objects protecting the specified environment types are returned.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3619,12 +4034,12 @@ class ObjectApi:
 
         Get the objects summary across clusters.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param cluster_identifiers: Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.
         :type cluster_identifiers: List[str]
         :param environments: Filter by environment types such as 'kVMware', 'kView', etc. Only Protected objects protecting the specified environment types are returned.
         :type environments: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3648,9 +4063,9 @@ class ObjectApi:
         """ # noqa: E501
 
         _param = self._get_mcm_object_summary_serialize(
-            region_id=region_id,
             cluster_identifiers=cluster_identifiers,
             environments=environments,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3669,9 +4084,9 @@ class ObjectApi:
 
     def _get_mcm_object_summary_serialize(
         self,
-        region_id,
         cluster_identifiers,
         environments,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -3746,8 +4161,8 @@ class ObjectApi:
     @validate_call
     def get_mcm_objects_activity(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[GetMcmObjectsActivityReqParams], Field(description="Request parameters to filter object activity.")] = None,
         _request_timeout: Union[
             None,
@@ -3766,10 +4181,10 @@ class ObjectApi:
 
         Get object activity on Helios. Activity includes Protection Group Runs and Recoveries.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Filter by a list of region ids.
         :type region_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param body: Request parameters to filter object activity.
         :type body: GetMcmObjectsActivityReqParams
         :param _request_timeout: timeout setting for this request. If one
@@ -3795,8 +4210,8 @@ class ObjectApi:
         """ # noqa: E501
 
         _param = self._get_mcm_objects_activity_serialize(
-            region_id=region_id,
             region_ids=region_ids,
+            region_id=region_id,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -3821,8 +4236,8 @@ class ObjectApi:
     @validate_call
     def get_mcm_objects_activity_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[GetMcmObjectsActivityReqParams], Field(description="Request parameters to filter object activity.")] = None,
         _request_timeout: Union[
             None,
@@ -3841,10 +4256,10 @@ class ObjectApi:
 
         Get object activity on Helios. Activity includes Protection Group Runs and Recoveries.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Filter by a list of region ids.
         :type region_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param body: Request parameters to filter object activity.
         :type body: GetMcmObjectsActivityReqParams
         :param _request_timeout: timeout setting for this request. If one
@@ -3870,8 +4285,8 @@ class ObjectApi:
         """ # noqa: E501
 
         _param = self._get_mcm_objects_activity_serialize(
-            region_id=region_id,
             region_ids=region_ids,
+            region_id=region_id,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -3896,8 +4311,8 @@ class ObjectApi:
     @validate_call
     def get_mcm_objects_activity_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[GetMcmObjectsActivityReqParams], Field(description="Request parameters to filter object activity.")] = None,
         _request_timeout: Union[
             None,
@@ -3916,10 +4331,10 @@ class ObjectApi:
 
         Get object activity on Helios. Activity includes Protection Group Runs and Recoveries.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Filter by a list of region ids.
         :type region_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param body: Request parameters to filter object activity.
         :type body: GetMcmObjectsActivityReqParams
         :param _request_timeout: timeout setting for this request. If one
@@ -3945,8 +4360,8 @@ class ObjectApi:
         """ # noqa: E501
 
         _param = self._get_mcm_objects_activity_serialize(
-            region_id=region_id,
             region_ids=region_ids,
+            region_id=region_id,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -3966,8 +4381,8 @@ class ObjectApi:
 
     def _get_mcm_objects_activity_serialize(
         self,
-        region_id,
         region_ids,
+        region_id,
         body,
         _request_auth,
         _content_type,
@@ -4054,7 +4469,7 @@ class ObjectApi:
     def get_mcm_objects_activity_by_id(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the Activity.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4074,7 +4489,7 @@ class ObjectApi:
 
         :param id: Specifies the id of the Activity. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4125,7 +4540,7 @@ class ObjectApi:
     def get_mcm_objects_activity_by_id_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the Activity.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4145,7 +4560,7 @@ class ObjectApi:
 
         :param id: Specifies the id of the Activity. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4196,7 +4611,7 @@ class ObjectApi:
     def get_mcm_objects_activity_by_id_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the Activity.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4216,7 +4631,7 @@ class ObjectApi:
 
         :param id: Specifies the id of the Activity. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4329,9 +4744,9 @@ class ObjectApi:
     @validate_call
     def get_mcm_objects_last_run_activity(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of region ids. Only records from clusters having these region ids will be returned.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[GetMcmObjectsLastRunReqParams], Field(description="Request parameters to filter object last runs.")] = None,
         _request_timeout: Union[
             None,
@@ -4350,12 +4765,12 @@ class ObjectApi:
 
         Get last protection run activity of objects.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Specifies a list of region ids. Only records from clusters having these region ids will be returned.
         :type region_ids: List[str]
         :param cluster_identifiers: Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.
         :type cluster_identifiers: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param body: Request parameters to filter object last runs.
         :type body: GetMcmObjectsLastRunReqParams
         :param _request_timeout: timeout setting for this request. If one
@@ -4381,9 +4796,9 @@ class ObjectApi:
         """ # noqa: E501
 
         _param = self._get_mcm_objects_last_run_activity_serialize(
-            region_id=region_id,
             region_ids=region_ids,
             cluster_identifiers=cluster_identifiers,
+            region_id=region_id,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -4408,9 +4823,9 @@ class ObjectApi:
     @validate_call
     def get_mcm_objects_last_run_activity_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of region ids. Only records from clusters having these region ids will be returned.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[GetMcmObjectsLastRunReqParams], Field(description="Request parameters to filter object last runs.")] = None,
         _request_timeout: Union[
             None,
@@ -4429,12 +4844,12 @@ class ObjectApi:
 
         Get last protection run activity of objects.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Specifies a list of region ids. Only records from clusters having these region ids will be returned.
         :type region_ids: List[str]
         :param cluster_identifiers: Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.
         :type cluster_identifiers: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param body: Request parameters to filter object last runs.
         :type body: GetMcmObjectsLastRunReqParams
         :param _request_timeout: timeout setting for this request. If one
@@ -4460,9 +4875,9 @@ class ObjectApi:
         """ # noqa: E501
 
         _param = self._get_mcm_objects_last_run_activity_serialize(
-            region_id=region_id,
             region_ids=region_ids,
             cluster_identifiers=cluster_identifiers,
+            region_id=region_id,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -4487,9 +4902,9 @@ class ObjectApi:
     @validate_call
     def get_mcm_objects_last_run_activity_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of region ids. Only records from clusters having these region ids will be returned.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[GetMcmObjectsLastRunReqParams], Field(description="Request parameters to filter object last runs.")] = None,
         _request_timeout: Union[
             None,
@@ -4508,12 +4923,12 @@ class ObjectApi:
 
         Get last protection run activity of objects.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Specifies a list of region ids. Only records from clusters having these region ids will be returned.
         :type region_ids: List[str]
         :param cluster_identifiers: Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.
         :type cluster_identifiers: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param body: Request parameters to filter object last runs.
         :type body: GetMcmObjectsLastRunReqParams
         :param _request_timeout: timeout setting for this request. If one
@@ -4539,9 +4954,9 @@ class ObjectApi:
         """ # noqa: E501
 
         _param = self._get_mcm_objects_last_run_activity_serialize(
-            region_id=region_id,
             region_ids=region_ids,
             cluster_identifiers=cluster_identifiers,
+            region_id=region_id,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -4561,9 +4976,9 @@ class ObjectApi:
 
     def _get_mcm_objects_last_run_activity_serialize(
         self,
-        region_id,
         region_ids,
         cluster_identifiers,
+        region_id,
         body,
         _request_auth,
         _content_type,
@@ -4654,7 +5069,6 @@ class ObjectApi:
     @validate_call
     def get_object_archival_run_stats(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
         rpaas_region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids. This is used for Rpaas only.")] = None,
         rpaas_global_vault_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of FortKnox global vault ids. This is used for FortKnox only. When rpaasGlobalVaultIds is specified, rpaasRegionIds will be ignored.")] = None,
@@ -4662,6 +5076,7 @@ class ObjectApi:
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the time in Unix timestamp epoch in microsecond which filters all the recoveries started after this value. The default value is 7 days ago from now.")] = None,
         to_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the time in Unix timestamp epoch in microsecond which filters all the recoveries started before this value. The default value is the current time.")] = None,
         rpaas_only: Annotated[Optional[StrictBool], Field(description="Specifies whether the archival runs are only for RPaaS.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4679,8 +5094,6 @@ class ObjectApi:
 
         Get the stats for objects in archival runs.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Filter by a list of region ids.
         :type region_ids: List[str]
         :param rpaas_region_ids: Filter by a list of region ids. This is used for Rpaas only.
@@ -4695,6 +5108,8 @@ class ObjectApi:
         :type to_time_usecs: int
         :param rpaas_only: Specifies whether the archival runs are only for RPaaS.
         :type rpaas_only: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4718,7 +5133,6 @@ class ObjectApi:
         """ # noqa: E501
 
         _param = self._get_object_archival_run_stats_serialize(
-            region_id=region_id,
             region_ids=region_ids,
             rpaas_region_ids=rpaas_region_ids,
             rpaas_global_vault_ids=rpaas_global_vault_ids,
@@ -4726,6 +5140,7 @@ class ObjectApi:
             from_time_usecs=from_time_usecs,
             to_time_usecs=to_time_usecs,
             rpaas_only=rpaas_only,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4749,7 +5164,6 @@ class ObjectApi:
     @validate_call
     def get_object_archival_run_stats_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
         rpaas_region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids. This is used for Rpaas only.")] = None,
         rpaas_global_vault_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of FortKnox global vault ids. This is used for FortKnox only. When rpaasGlobalVaultIds is specified, rpaasRegionIds will be ignored.")] = None,
@@ -4757,6 +5171,7 @@ class ObjectApi:
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the time in Unix timestamp epoch in microsecond which filters all the recoveries started after this value. The default value is 7 days ago from now.")] = None,
         to_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the time in Unix timestamp epoch in microsecond which filters all the recoveries started before this value. The default value is the current time.")] = None,
         rpaas_only: Annotated[Optional[StrictBool], Field(description="Specifies whether the archival runs are only for RPaaS.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4774,8 +5189,6 @@ class ObjectApi:
 
         Get the stats for objects in archival runs.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Filter by a list of region ids.
         :type region_ids: List[str]
         :param rpaas_region_ids: Filter by a list of region ids. This is used for Rpaas only.
@@ -4790,6 +5203,8 @@ class ObjectApi:
         :type to_time_usecs: int
         :param rpaas_only: Specifies whether the archival runs are only for RPaaS.
         :type rpaas_only: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4813,7 +5228,6 @@ class ObjectApi:
         """ # noqa: E501
 
         _param = self._get_object_archival_run_stats_serialize(
-            region_id=region_id,
             region_ids=region_ids,
             rpaas_region_ids=rpaas_region_ids,
             rpaas_global_vault_ids=rpaas_global_vault_ids,
@@ -4821,6 +5235,7 @@ class ObjectApi:
             from_time_usecs=from_time_usecs,
             to_time_usecs=to_time_usecs,
             rpaas_only=rpaas_only,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4844,7 +5259,6 @@ class ObjectApi:
     @validate_call
     def get_object_archival_run_stats_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
         rpaas_region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids. This is used for Rpaas only.")] = None,
         rpaas_global_vault_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of FortKnox global vault ids. This is used for FortKnox only. When rpaasGlobalVaultIds is specified, rpaasRegionIds will be ignored.")] = None,
@@ -4852,6 +5266,7 @@ class ObjectApi:
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the time in Unix timestamp epoch in microsecond which filters all the recoveries started after this value. The default value is 7 days ago from now.")] = None,
         to_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the time in Unix timestamp epoch in microsecond which filters all the recoveries started before this value. The default value is the current time.")] = None,
         rpaas_only: Annotated[Optional[StrictBool], Field(description="Specifies whether the archival runs are only for RPaaS.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4869,8 +5284,6 @@ class ObjectApi:
 
         Get the stats for objects in archival runs.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Filter by a list of region ids.
         :type region_ids: List[str]
         :param rpaas_region_ids: Filter by a list of region ids. This is used for Rpaas only.
@@ -4885,6 +5298,8 @@ class ObjectApi:
         :type to_time_usecs: int
         :param rpaas_only: Specifies whether the archival runs are only for RPaaS.
         :type rpaas_only: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4908,7 +5323,6 @@ class ObjectApi:
         """ # noqa: E501
 
         _param = self._get_object_archival_run_stats_serialize(
-            region_id=region_id,
             region_ids=region_ids,
             rpaas_region_ids=rpaas_region_ids,
             rpaas_global_vault_ids=rpaas_global_vault_ids,
@@ -4916,6 +5330,7 @@ class ObjectApi:
             from_time_usecs=from_time_usecs,
             to_time_usecs=to_time_usecs,
             rpaas_only=rpaas_only,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4934,7 +5349,6 @@ class ObjectApi:
 
     def _get_object_archival_run_stats_serialize(
         self,
-        region_id,
         region_ids,
         rpaas_region_ids,
         rpaas_global_vault_ids,
@@ -4942,6 +5356,7 @@ class ObjectApi:
         from_time_usecs,
         to_time_usecs,
         rpaas_only,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -5040,8 +5455,8 @@ class ObjectApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the object.")],
         run_id: Annotated[StrictStr, Field(description="Specifies the id of the run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5063,9 +5478,9 @@ class ObjectApi:
         :type id: int
         :param run_id: Specifies the id of the run. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5119,8 +5534,8 @@ class ObjectApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the object.")],
         run_id: Annotated[StrictStr, Field(description="Specifies the id of the run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5142,9 +5557,9 @@ class ObjectApi:
         :type id: int
         :param run_id: Specifies the id of the run. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5198,8 +5613,8 @@ class ObjectApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the object.")],
         run_id: Annotated[StrictStr, Field(description="Specifies the id of the run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5221,9 +5636,9 @@ class ObjectApi:
         :type id: int
         :param run_id: Specifies the id of the run. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5342,11 +5757,672 @@ class ObjectApi:
 
 
     @validate_call
+    def get_object_run_messages_report(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the object.")],
+        run_id: Annotated[StrictStr, Field(description="Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>.")],
+        object_action_key: Annotated[Optional[StrictStr], Field(description="Specifies the backup type for the run.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> bytearray:
+        """Get the CSV of various Messages for a given run.
+
+        Get an CSV report for given run id and object id. Each row in CSV report contains all errors and warnings during run. File format: error_<objectId>_<runStartTime>.csv
+
+        :param id: Specifies the id of the object. (required)
+        :type id: int
+        :param run_id: Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>. (required)
+        :type run_id: str
+        :param object_action_key: Specifies the backup type for the run.
+        :type object_action_key: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_object_run_messages_report_serialize(
+            id=id,
+            run_id=run_id,
+            object_action_key=object_action_key,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "bytearray",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_object_run_messages_report_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the object.")],
+        run_id: Annotated[StrictStr, Field(description="Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>.")],
+        object_action_key: Annotated[Optional[StrictStr], Field(description="Specifies the backup type for the run.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[bytearray]:
+        """Get the CSV of various Messages for a given run.
+
+        Get an CSV report for given run id and object id. Each row in CSV report contains all errors and warnings during run. File format: error_<objectId>_<runStartTime>.csv
+
+        :param id: Specifies the id of the object. (required)
+        :type id: int
+        :param run_id: Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>. (required)
+        :type run_id: str
+        :param object_action_key: Specifies the backup type for the run.
+        :type object_action_key: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_object_run_messages_report_serialize(
+            id=id,
+            run_id=run_id,
+            object_action_key=object_action_key,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "bytearray",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_object_run_messages_report_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the object.")],
+        run_id: Annotated[StrictStr, Field(description="Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>.")],
+        object_action_key: Annotated[Optional[StrictStr], Field(description="Specifies the backup type for the run.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get the CSV of various Messages for a given run.
+
+        Get an CSV report for given run id and object id. Each row in CSV report contains all errors and warnings during run. File format: error_<objectId>_<runStartTime>.csv
+
+        :param id: Specifies the id of the object. (required)
+        :type id: int
+        :param run_id: Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>. (required)
+        :type run_id: str
+        :param object_action_key: Specifies the backup type for the run.
+        :type object_action_key: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_object_run_messages_report_serialize(
+            id=id,
+            run_id=run_id,
+            object_action_key=object_action_key,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "bytearray",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_object_run_messages_report_serialize(
+        self,
+        id,
+        run_id,
+        object_action_key,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        if run_id is not None:
+            _path_params['runId'] = run_id
+        # process the query parameters
+        if object_action_key is not None:
+            
+            _query_params.append(('objectActionKey', object_action_key))
+            
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/octet-stream'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/data-protect/objects/{id}/runs/{runId}/messages',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_object_run_success_files(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the object.")],
+        run_id: Annotated[StrictStr, Field(description="Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>.")],
+        name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the source being backed up")] = None,
+        file_type: Annotated[Optional[StrictStr], Field(description="Specifies the downloaded type, i.e: success_files_list, default: success_files_list")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Get the CSV of errors/warnings for a given run and an object.
+
+        Get an CSV report for given objectId and run id. Report will depend on the query parameter fileType, default will be: success_files_list where each row contains the name of file backedup successfully.
+
+        :param id: Specifies the id of the object. (required)
+        :type id: int
+        :param run_id: Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>. (required)
+        :type run_id: str
+        :param name: Specifies the name of the source being backed up
+        :type name: str
+        :param file_type: Specifies the downloaded type, i.e: success_files_list, default: success_files_list
+        :type file_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_object_run_success_files_serialize(
+            id=id,
+            run_id=run_id,
+            name=name,
+            file_type=file_type,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_object_run_success_files_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the object.")],
+        run_id: Annotated[StrictStr, Field(description="Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>.")],
+        name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the source being backed up")] = None,
+        file_type: Annotated[Optional[StrictStr], Field(description="Specifies the downloaded type, i.e: success_files_list, default: success_files_list")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Get the CSV of errors/warnings for a given run and an object.
+
+        Get an CSV report for given objectId and run id. Report will depend on the query parameter fileType, default will be: success_files_list where each row contains the name of file backedup successfully.
+
+        :param id: Specifies the id of the object. (required)
+        :type id: int
+        :param run_id: Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>. (required)
+        :type run_id: str
+        :param name: Specifies the name of the source being backed up
+        :type name: str
+        :param file_type: Specifies the downloaded type, i.e: success_files_list, default: success_files_list
+        :type file_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_object_run_success_files_serialize(
+            id=id,
+            run_id=run_id,
+            name=name,
+            file_type=file_type,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_object_run_success_files_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the object.")],
+        run_id: Annotated[StrictStr, Field(description="Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>.")],
+        name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the source being backed up")] = None,
+        file_type: Annotated[Optional[StrictStr], Field(description="Specifies the downloaded type, i.e: success_files_list, default: success_files_list")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get the CSV of errors/warnings for a given run and an object.
+
+        Get an CSV report for given objectId and run id. Report will depend on the query parameter fileType, default will be: success_files_list where each row contains the name of file backedup successfully.
+
+        :param id: Specifies the id of the object. (required)
+        :type id: int
+        :param run_id: Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>. (required)
+        :type run_id: str
+        :param name: Specifies the name of the source being backed up
+        :type name: str
+        :param file_type: Specifies the downloaded type, i.e: success_files_list, default: success_files_list
+        :type file_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_object_run_success_files_serialize(
+            id=id,
+            run_id=run_id,
+            name=name,
+            file_type=file_type,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_object_run_success_files_serialize(
+        self,
+        id,
+        run_id,
+        name,
+        file_type,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        if run_id is not None:
+            _path_params['runId'] = run_id
+        # process the query parameters
+        if name is not None:
+            
+            _query_params.append(('name', name))
+            
+        if file_type is not None:
+            
+            _query_params.append(('fileType', file_type))
+            
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/octet-stream'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/data-protect/objects/{id}/runs/{runId}/downloadFiles',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_object_runs(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         run_id: Annotated[Optional[StrictStr], Field(description="Specifies a unique id of the run.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a start time when the run starts. Specify the start time as a Unix epoch Timestamp (in microseconds).")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a end time when the run starts. Specify the start time as a Unix epoch Timestamp (in microseconds).")] = None,
@@ -5360,6 +6436,8 @@ class ObjectApi:
         num_runs: Annotated[Optional[StrictInt], Field(description="Specifies the max number of runs. If not specified, at most 100 runs will be returned.")] = None,
         pagination_cookie: Annotated[Optional[StrictStr], Field(description="Specifies the pagination cookie with which subsequent parts of the response can be fetched. Users can use this to get next runs")] = None,
         exclude_non_restorable_runs: Annotated[Optional[StrictBool], Field(description="Specifies whether to exclude non restorable runs. Run is treated restorable only if there is at least one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5379,10 +6457,6 @@ class ObjectApi:
 
         :param id: Specifies a unique id of the object. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param run_id: Specifies a unique id of the run.
         :type run_id: str
         :param start_time_usecs: Filter by a start time when the run starts. Specify the start time as a Unix epoch Timestamp (in microseconds).
@@ -5409,6 +6483,10 @@ class ObjectApi:
         :type pagination_cookie: str
         :param exclude_non_restorable_runs: Specifies whether to exclude non restorable runs. Run is treated restorable only if there is at least one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false.
         :type exclude_non_restorable_runs: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5433,8 +6511,6 @@ class ObjectApi:
 
         _param = self._get_object_runs_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             run_id=run_id,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
@@ -5448,6 +6524,8 @@ class ObjectApi:
             num_runs=num_runs,
             pagination_cookie=pagination_cookie,
             exclude_non_restorable_runs=exclude_non_restorable_runs,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5472,8 +6550,6 @@ class ObjectApi:
     def get_object_runs_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         run_id: Annotated[Optional[StrictStr], Field(description="Specifies a unique id of the run.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a start time when the run starts. Specify the start time as a Unix epoch Timestamp (in microseconds).")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a end time when the run starts. Specify the start time as a Unix epoch Timestamp (in microseconds).")] = None,
@@ -5487,6 +6563,8 @@ class ObjectApi:
         num_runs: Annotated[Optional[StrictInt], Field(description="Specifies the max number of runs. If not specified, at most 100 runs will be returned.")] = None,
         pagination_cookie: Annotated[Optional[StrictStr], Field(description="Specifies the pagination cookie with which subsequent parts of the response can be fetched. Users can use this to get next runs")] = None,
         exclude_non_restorable_runs: Annotated[Optional[StrictBool], Field(description="Specifies whether to exclude non restorable runs. Run is treated restorable only if there is at least one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5506,10 +6584,6 @@ class ObjectApi:
 
         :param id: Specifies a unique id of the object. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param run_id: Specifies a unique id of the run.
         :type run_id: str
         :param start_time_usecs: Filter by a start time when the run starts. Specify the start time as a Unix epoch Timestamp (in microseconds).
@@ -5536,6 +6610,10 @@ class ObjectApi:
         :type pagination_cookie: str
         :param exclude_non_restorable_runs: Specifies whether to exclude non restorable runs. Run is treated restorable only if there is at least one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false.
         :type exclude_non_restorable_runs: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5560,8 +6638,6 @@ class ObjectApi:
 
         _param = self._get_object_runs_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             run_id=run_id,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
@@ -5575,6 +6651,8 @@ class ObjectApi:
             num_runs=num_runs,
             pagination_cookie=pagination_cookie,
             exclude_non_restorable_runs=exclude_non_restorable_runs,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5599,8 +6677,6 @@ class ObjectApi:
     def get_object_runs_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         run_id: Annotated[Optional[StrictStr], Field(description="Specifies a unique id of the run.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a start time when the run starts. Specify the start time as a Unix epoch Timestamp (in microseconds).")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a end time when the run starts. Specify the start time as a Unix epoch Timestamp (in microseconds).")] = None,
@@ -5614,6 +6690,8 @@ class ObjectApi:
         num_runs: Annotated[Optional[StrictInt], Field(description="Specifies the max number of runs. If not specified, at most 100 runs will be returned.")] = None,
         pagination_cookie: Annotated[Optional[StrictStr], Field(description="Specifies the pagination cookie with which subsequent parts of the response can be fetched. Users can use this to get next runs")] = None,
         exclude_non_restorable_runs: Annotated[Optional[StrictBool], Field(description="Specifies whether to exclude non restorable runs. Run is treated restorable only if there is at least one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5633,10 +6711,6 @@ class ObjectApi:
 
         :param id: Specifies a unique id of the object. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param run_id: Specifies a unique id of the run.
         :type run_id: str
         :param start_time_usecs: Filter by a start time when the run starts. Specify the start time as a Unix epoch Timestamp (in microseconds).
@@ -5663,6 +6737,10 @@ class ObjectApi:
         :type pagination_cookie: str
         :param exclude_non_restorable_runs: Specifies whether to exclude non restorable runs. Run is treated restorable only if there is at least one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false.
         :type exclude_non_restorable_runs: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5687,8 +6765,6 @@ class ObjectApi:
 
         _param = self._get_object_runs_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             run_id=run_id,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
@@ -5702,6 +6778,8 @@ class ObjectApi:
             num_runs=num_runs,
             pagination_cookie=pagination_cookie,
             exclude_non_restorable_runs=exclude_non_restorable_runs,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5721,8 +6799,6 @@ class ObjectApi:
     def _get_object_runs_serialize(
         self,
         id,
-        access_cluster_id,
-        region_id,
         run_id,
         start_time_usecs,
         end_time_usecs,
@@ -5736,6 +6812,8 @@ class ObjectApi:
         num_runs,
         pagination_cookie,
         exclude_non_restorable_runs,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -5863,8 +6941,8 @@ class ObjectApi:
     def get_object_snapshot_info(
         self,
         snapshot_id: Annotated[StrictStr, Field(description="Specifies the snapshot id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5884,9 +6962,9 @@ class ObjectApi:
 
         :param snapshot_id: Specifies the snapshot id. (required)
         :type snapshot_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5938,8 +7016,8 @@ class ObjectApi:
     def get_object_snapshot_info_with_http_info(
         self,
         snapshot_id: Annotated[StrictStr, Field(description="Specifies the snapshot id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5959,9 +7037,9 @@ class ObjectApi:
 
         :param snapshot_id: Specifies the snapshot id. (required)
         :type snapshot_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6013,8 +7091,8 @@ class ObjectApi:
     def get_object_snapshot_info_without_preload_content(
         self,
         snapshot_id: Annotated[StrictStr, Field(description="Specifies the snapshot id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6034,9 +7112,9 @@ class ObjectApi:
 
         :param snapshot_id: Specifies the snapshot id. (required)
         :type snapshot_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6154,11 +7232,11 @@ class ObjectApi:
     def get_object_snapshot_volume_info(
         self,
         snapshot_id: Annotated[StrictStr, Field(description="Specifies the snapshot id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         include_supported_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to only return supported volumes.")] = None,
         point_in_time_usecs: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Specifies the point-in-time timestamp (in usecs from epoch) between snapshots for which the volume info is to be returned.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6178,16 +7256,16 @@ class ObjectApi:
 
         :param snapshot_id: Specifies the snapshot id. (required)
         :type snapshot_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param include_supported_only: Specifies whether to only return supported volumes.
         :type include_supported_only: bool
         :param point_in_time_usecs: Specifies the point-in-time timestamp (in usecs from epoch) between snapshots for which the volume info is to be returned.
         :type point_in_time_usecs: float
         :param use_cached_data: Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
         :type use_cached_data: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6212,11 +7290,11 @@ class ObjectApi:
 
         _param = self._get_object_snapshot_volume_info_serialize(
             snapshot_id=snapshot_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             include_supported_only=include_supported_only,
             point_in_time_usecs=point_in_time_usecs,
             use_cached_data=use_cached_data,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6241,11 +7319,11 @@ class ObjectApi:
     def get_object_snapshot_volume_info_with_http_info(
         self,
         snapshot_id: Annotated[StrictStr, Field(description="Specifies the snapshot id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         include_supported_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to only return supported volumes.")] = None,
         point_in_time_usecs: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Specifies the point-in-time timestamp (in usecs from epoch) between snapshots for which the volume info is to be returned.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6265,16 +7343,16 @@ class ObjectApi:
 
         :param snapshot_id: Specifies the snapshot id. (required)
         :type snapshot_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param include_supported_only: Specifies whether to only return supported volumes.
         :type include_supported_only: bool
         :param point_in_time_usecs: Specifies the point-in-time timestamp (in usecs from epoch) between snapshots for which the volume info is to be returned.
         :type point_in_time_usecs: float
         :param use_cached_data: Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
         :type use_cached_data: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6299,11 +7377,11 @@ class ObjectApi:
 
         _param = self._get_object_snapshot_volume_info_serialize(
             snapshot_id=snapshot_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             include_supported_only=include_supported_only,
             point_in_time_usecs=point_in_time_usecs,
             use_cached_data=use_cached_data,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6328,11 +7406,11 @@ class ObjectApi:
     def get_object_snapshot_volume_info_without_preload_content(
         self,
         snapshot_id: Annotated[StrictStr, Field(description="Specifies the snapshot id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         include_supported_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to only return supported volumes.")] = None,
         point_in_time_usecs: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Specifies the point-in-time timestamp (in usecs from epoch) between snapshots for which the volume info is to be returned.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6352,16 +7430,16 @@ class ObjectApi:
 
         :param snapshot_id: Specifies the snapshot id. (required)
         :type snapshot_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param include_supported_only: Specifies whether to only return supported volumes.
         :type include_supported_only: bool
         :param point_in_time_usecs: Specifies the point-in-time timestamp (in usecs from epoch) between snapshots for which the volume info is to be returned.
         :type point_in_time_usecs: float
         :param use_cached_data: Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
         :type use_cached_data: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6386,11 +7464,11 @@ class ObjectApi:
 
         _param = self._get_object_snapshot_volume_info_serialize(
             snapshot_id=snapshot_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             include_supported_only=include_supported_only,
             point_in_time_usecs=point_in_time_usecs,
             use_cached_data=use_cached_data,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6410,11 +7488,11 @@ class ObjectApi:
     def _get_object_snapshot_volume_info_serialize(
         self,
         snapshot_id,
-        access_cluster_id,
-        region_id,
         include_supported_only,
         point_in_time_usecs,
         use_cached_data,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -6496,8 +7574,6 @@ class ObjectApi:
     def get_object_snapshots(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken after this value.")] = None,
         to_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken before this value.")] = None,
         run_start_from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were run after this value.")] = None,
@@ -6508,6 +7584,9 @@ class ObjectApi:
         run_instance_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list run instance ids. If specified, only snapshots created by these protection runs will be returned.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
         object_action_keys: Annotated[Optional[List[StrictStr]], Field(description="Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, only snapshots matching given action keys are returned for corresponding object.")] = None,
+        fetch_fast_restore_points_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to fetch only fast restore points. This is applicable only for M365 CSM Restore.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6527,10 +7606,6 @@ class ObjectApi:
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param from_time_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken after this value.
         :type from_time_usecs: int
         :param to_time_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken before this value.
@@ -6551,6 +7626,12 @@ class ObjectApi:
         :type region_ids: List[str]
         :param object_action_keys: Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, only snapshots matching given action keys are returned for corresponding object.
         :type object_action_keys: List[str]
+        :param fetch_fast_restore_points_only: Specifies whether to fetch only fast restore points. This is applicable only for M365 CSM Restore.
+        :type fetch_fast_restore_points_only: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6575,8 +7656,6 @@ class ObjectApi:
 
         _param = self._get_object_snapshots_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             from_time_usecs=from_time_usecs,
             to_time_usecs=to_time_usecs,
             run_start_from_time_usecs=run_start_from_time_usecs,
@@ -6587,6 +7666,9 @@ class ObjectApi:
             run_instance_ids=run_instance_ids,
             region_ids=region_ids,
             object_action_keys=object_action_keys,
+            fetch_fast_restore_points_only=fetch_fast_restore_points_only,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6611,8 +7693,6 @@ class ObjectApi:
     def get_object_snapshots_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken after this value.")] = None,
         to_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken before this value.")] = None,
         run_start_from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were run after this value.")] = None,
@@ -6623,6 +7703,9 @@ class ObjectApi:
         run_instance_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list run instance ids. If specified, only snapshots created by these protection runs will be returned.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
         object_action_keys: Annotated[Optional[List[StrictStr]], Field(description="Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, only snapshots matching given action keys are returned for corresponding object.")] = None,
+        fetch_fast_restore_points_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to fetch only fast restore points. This is applicable only for M365 CSM Restore.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6642,10 +7725,6 @@ class ObjectApi:
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param from_time_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken after this value.
         :type from_time_usecs: int
         :param to_time_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken before this value.
@@ -6666,6 +7745,12 @@ class ObjectApi:
         :type region_ids: List[str]
         :param object_action_keys: Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, only snapshots matching given action keys are returned for corresponding object.
         :type object_action_keys: List[str]
+        :param fetch_fast_restore_points_only: Specifies whether to fetch only fast restore points. This is applicable only for M365 CSM Restore.
+        :type fetch_fast_restore_points_only: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6690,8 +7775,6 @@ class ObjectApi:
 
         _param = self._get_object_snapshots_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             from_time_usecs=from_time_usecs,
             to_time_usecs=to_time_usecs,
             run_start_from_time_usecs=run_start_from_time_usecs,
@@ -6702,6 +7785,9 @@ class ObjectApi:
             run_instance_ids=run_instance_ids,
             region_ids=region_ids,
             object_action_keys=object_action_keys,
+            fetch_fast_restore_points_only=fetch_fast_restore_points_only,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6726,8 +7812,6 @@ class ObjectApi:
     def get_object_snapshots_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken after this value.")] = None,
         to_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken before this value.")] = None,
         run_start_from_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were run after this value.")] = None,
@@ -6738,6 +7822,9 @@ class ObjectApi:
         run_instance_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list run instance ids. If specified, only snapshots created by these protection runs will be returned.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
         object_action_keys: Annotated[Optional[List[StrictStr]], Field(description="Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, only snapshots matching given action keys are returned for corresponding object.")] = None,
+        fetch_fast_restore_points_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to fetch only fast restore points. This is applicable only for M365 CSM Restore.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6757,10 +7844,6 @@ class ObjectApi:
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param from_time_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken after this value.
         :type from_time_usecs: int
         :param to_time_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken before this value.
@@ -6781,6 +7864,12 @@ class ObjectApi:
         :type region_ids: List[str]
         :param object_action_keys: Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, only snapshots matching given action keys are returned for corresponding object.
         :type object_action_keys: List[str]
+        :param fetch_fast_restore_points_only: Specifies whether to fetch only fast restore points. This is applicable only for M365 CSM Restore.
+        :type fetch_fast_restore_points_only: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6805,8 +7894,6 @@ class ObjectApi:
 
         _param = self._get_object_snapshots_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             from_time_usecs=from_time_usecs,
             to_time_usecs=to_time_usecs,
             run_start_from_time_usecs=run_start_from_time_usecs,
@@ -6817,6 +7904,9 @@ class ObjectApi:
             run_instance_ids=run_instance_ids,
             region_ids=region_ids,
             object_action_keys=object_action_keys,
+            fetch_fast_restore_points_only=fetch_fast_restore_points_only,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6836,8 +7926,6 @@ class ObjectApi:
     def _get_object_snapshots_serialize(
         self,
         id,
-        access_cluster_id,
-        region_id,
         from_time_usecs,
         to_time_usecs,
         run_start_from_time_usecs,
@@ -6848,6 +7936,9 @@ class ObjectApi:
         run_instance_ids,
         region_ids,
         object_action_keys,
+        fetch_fast_restore_points_only,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -6918,6 +8009,10 @@ class ObjectApi:
             
             _query_params.append(('objectActionKeys', object_action_keys))
             
+        if fetch_fast_restore_points_only is not None:
+            
+            _query_params.append(('fetchFastRestorePointsOnly', fetch_fast_restore_points_only))
+            
         # process the header parameters
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
@@ -6963,9 +8058,9 @@ class ObjectApi:
     def get_object_stats(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6985,12 +8080,12 @@ class ObjectApi:
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Filter by a list of region ids.
         :type region_ids: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7015,9 +8110,9 @@ class ObjectApi:
 
         _param = self._get_object_stats_serialize(
             id=id,
+            region_ids=region_ids,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            region_ids=region_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7042,9 +8137,9 @@ class ObjectApi:
     def get_object_stats_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7064,12 +8159,12 @@ class ObjectApi:
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Filter by a list of region ids.
         :type region_ids: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7094,9 +8189,9 @@ class ObjectApi:
 
         _param = self._get_object_stats_serialize(
             id=id,
+            region_ids=region_ids,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            region_ids=region_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7121,9 +8216,9 @@ class ObjectApi:
     def get_object_stats_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7143,12 +8238,12 @@ class ObjectApi:
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Filter by a list of region ids.
         :type region_ids: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7173,9 +8268,9 @@ class ObjectApi:
 
         _param = self._get_object_stats_serialize(
             id=id,
+            region_ids=region_ids,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            region_ids=region_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7195,9 +8290,9 @@ class ObjectApi:
     def _get_object_stats_serialize(
         self,
         id,
+        region_ids,
         access_cluster_id,
         region_id,
-        region_ids,
         _request_auth,
         _content_type,
         _headers,
@@ -7272,8 +8367,8 @@ class ObjectApi:
     def get_object_tree(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7293,9 +8388,9 @@ class ObjectApi:
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7347,8 +8442,8 @@ class ObjectApi:
     def get_object_tree_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7368,9 +8463,9 @@ class ObjectApi:
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7422,8 +8517,8 @@ class ObjectApi:
     def get_object_tree_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7443,9 +8538,9 @@ class ObjectApi:
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7562,13 +8657,13 @@ class ObjectApi:
     @validate_call
     def get_objects_last_run(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of object ids, only last runs for these objects will be returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Objects which belongs to all tenants which the current user has permission to see.")] = None,
         pagination_cookie: Annotated[Optional[StrictStr], Field(description="Specifies the pagination cookie with which subsequent parts of the response can be fetched.")] = None,
         count: Annotated[Optional[StrictInt], Field(description="Specifies the number of objects to be fetched for the specified pagination cookie.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7586,10 +8681,6 @@ class ObjectApi:
 
         Get last protection run of objects.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Specifies a list of object ids, only last runs for these objects will be returned.
         :type ids: List[int]
         :param tenant_ids: TenantIds contains ids of the tenants for which objects are to be returned.
@@ -7600,6 +8691,10 @@ class ObjectApi:
         :type pagination_cookie: str
         :param count: Specifies the number of objects to be fetched for the specified pagination cookie.
         :type count: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7623,13 +8718,13 @@ class ObjectApi:
         """ # noqa: E501
 
         _param = self._get_objects_last_run_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
             pagination_cookie=pagination_cookie,
             count=count,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7653,13 +8748,13 @@ class ObjectApi:
     @validate_call
     def get_objects_last_run_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of object ids, only last runs for these objects will be returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Objects which belongs to all tenants which the current user has permission to see.")] = None,
         pagination_cookie: Annotated[Optional[StrictStr], Field(description="Specifies the pagination cookie with which subsequent parts of the response can be fetched.")] = None,
         count: Annotated[Optional[StrictInt], Field(description="Specifies the number of objects to be fetched for the specified pagination cookie.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7677,10 +8772,6 @@ class ObjectApi:
 
         Get last protection run of objects.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Specifies a list of object ids, only last runs for these objects will be returned.
         :type ids: List[int]
         :param tenant_ids: TenantIds contains ids of the tenants for which objects are to be returned.
@@ -7691,6 +8782,10 @@ class ObjectApi:
         :type pagination_cookie: str
         :param count: Specifies the number of objects to be fetched for the specified pagination cookie.
         :type count: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7714,13 +8809,13 @@ class ObjectApi:
         """ # noqa: E501
 
         _param = self._get_objects_last_run_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
             pagination_cookie=pagination_cookie,
             count=count,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7744,13 +8839,13 @@ class ObjectApi:
     @validate_call
     def get_objects_last_run_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of object ids, only last runs for these objects will be returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Objects which belongs to all tenants which the current user has permission to see.")] = None,
         pagination_cookie: Annotated[Optional[StrictStr], Field(description="Specifies the pagination cookie with which subsequent parts of the response can be fetched.")] = None,
         count: Annotated[Optional[StrictInt], Field(description="Specifies the number of objects to be fetched for the specified pagination cookie.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7768,10 +8863,6 @@ class ObjectApi:
 
         Get last protection run of objects.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Specifies a list of object ids, only last runs for these objects will be returned.
         :type ids: List[int]
         :param tenant_ids: TenantIds contains ids of the tenants for which objects are to be returned.
@@ -7782,6 +8873,10 @@ class ObjectApi:
         :type pagination_cookie: str
         :param count: Specifies the number of objects to be fetched for the specified pagination cookie.
         :type count: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7805,13 +8900,13 @@ class ObjectApi:
         """ # noqa: E501
 
         _param = self._get_objects_last_run_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
             pagination_cookie=pagination_cookie,
             count=count,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7830,13 +8925,13 @@ class ObjectApi:
 
     def _get_objects_last_run_serialize(
         self,
-        access_cluster_id,
-        region_id,
         ids,
         tenant_ids,
         include_tenants,
         pagination_cookie,
         count,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -7926,11 +9021,11 @@ class ObjectApi:
     def get_pit_ranges_for_protected_object(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the ID of the protected object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="If specified, return the restore ranges that lie after this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.")] = None,
         to_time_usecs: Annotated[Optional[StrictInt], Field(description="If specified, return the restore ranges that lie before this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.")] = None,
         protection_group_ids: Annotated[Optional[List[StrictStr]], Field(description="If specified, return only the points in time corresponding to these protection group IDs.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7950,16 +9045,16 @@ class ObjectApi:
 
         :param id: Specifies the ID of the protected object. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param from_time_usecs: If specified, return the restore ranges that lie after this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.
         :type from_time_usecs: int
         :param to_time_usecs: If specified, return the restore ranges that lie before this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.
         :type to_time_usecs: int
         :param protection_group_ids: If specified, return only the points in time corresponding to these protection group IDs.
         :type protection_group_ids: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7984,11 +9079,11 @@ class ObjectApi:
 
         _param = self._get_pit_ranges_for_protected_object_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             from_time_usecs=from_time_usecs,
             to_time_usecs=to_time_usecs,
             protection_group_ids=protection_group_ids,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8013,11 +9108,11 @@ class ObjectApi:
     def get_pit_ranges_for_protected_object_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the ID of the protected object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="If specified, return the restore ranges that lie after this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.")] = None,
         to_time_usecs: Annotated[Optional[StrictInt], Field(description="If specified, return the restore ranges that lie before this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.")] = None,
         protection_group_ids: Annotated[Optional[List[StrictStr]], Field(description="If specified, return only the points in time corresponding to these protection group IDs.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8037,16 +9132,16 @@ class ObjectApi:
 
         :param id: Specifies the ID of the protected object. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param from_time_usecs: If specified, return the restore ranges that lie after this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.
         :type from_time_usecs: int
         :param to_time_usecs: If specified, return the restore ranges that lie before this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.
         :type to_time_usecs: int
         :param protection_group_ids: If specified, return only the points in time corresponding to these protection group IDs.
         :type protection_group_ids: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8071,11 +9166,11 @@ class ObjectApi:
 
         _param = self._get_pit_ranges_for_protected_object_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             from_time_usecs=from_time_usecs,
             to_time_usecs=to_time_usecs,
             protection_group_ids=protection_group_ids,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8100,11 +9195,11 @@ class ObjectApi:
     def get_pit_ranges_for_protected_object_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the ID of the protected object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="If specified, return the restore ranges that lie after this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.")] = None,
         to_time_usecs: Annotated[Optional[StrictInt], Field(description="If specified, return the restore ranges that lie before this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.")] = None,
         protection_group_ids: Annotated[Optional[List[StrictStr]], Field(description="If specified, return only the points in time corresponding to these protection group IDs.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8124,16 +9219,16 @@ class ObjectApi:
 
         :param id: Specifies the ID of the protected object. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param from_time_usecs: If specified, return the restore ranges that lie after this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.
         :type from_time_usecs: int
         :param to_time_usecs: If specified, return the restore ranges that lie before this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.
         :type to_time_usecs: int
         :param protection_group_ids: If specified, return only the points in time corresponding to these protection group IDs.
         :type protection_group_ids: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8158,11 +9253,11 @@ class ObjectApi:
 
         _param = self._get_pit_ranges_for_protected_object_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             from_time_usecs=from_time_usecs,
             to_time_usecs=to_time_usecs,
             protection_group_ids=protection_group_ids,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8182,11 +9277,11 @@ class ObjectApi:
     def _get_pit_ranges_for_protected_object_serialize(
         self,
         id,
-        access_cluster_id,
-        region_id,
         from_time_usecs,
         to_time_usecs,
         protection_group_ids,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -8269,8 +9364,6 @@ class ObjectApi:
     def get_protected_object_of_any_type_by_id(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         object_action_key: Annotated[Optional[List[StrictStr]], Field(description="Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id and this vec's size needs to be same as 'id'.")] = None,
         only_protected_objects: Annotated[Optional[StrictBool], Field(description="If true, the response will include only objects which have been protected.")] = None,
@@ -8281,6 +9374,8 @@ class ObjectApi:
         include_last_run_info: Annotated[Optional[StrictBool], Field(description="If true, the response will include information about the last protection run on this object.")] = None,
         only_auto_protected_objects: Annotated[Optional[StrictBool], Field(description="If true, the response will include only the auto protected objects.")] = None,
         only_leaf_objects: Annotated[Optional[StrictBool], Field(description="If true, the response will include only the leaf level objects.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8300,10 +9395,6 @@ class ObjectApi:
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param object_action_key: Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id and this vec's size needs to be same as 'id'.
@@ -8324,6 +9415,10 @@ class ObjectApi:
         :type only_auto_protected_objects: bool
         :param only_leaf_objects: If true, the response will include only the leaf level objects.
         :type only_leaf_objects: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8348,8 +9443,6 @@ class ObjectApi:
 
         _param = self._get_protected_object_of_any_type_by_id_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             object_action_key=object_action_key,
             only_protected_objects=only_protected_objects,
@@ -8360,6 +9453,8 @@ class ObjectApi:
             include_last_run_info=include_last_run_info,
             only_auto_protected_objects=only_auto_protected_objects,
             only_leaf_objects=only_leaf_objects,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8384,8 +9479,6 @@ class ObjectApi:
     def get_protected_object_of_any_type_by_id_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         object_action_key: Annotated[Optional[List[StrictStr]], Field(description="Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id and this vec's size needs to be same as 'id'.")] = None,
         only_protected_objects: Annotated[Optional[StrictBool], Field(description="If true, the response will include only objects which have been protected.")] = None,
@@ -8396,6 +9489,8 @@ class ObjectApi:
         include_last_run_info: Annotated[Optional[StrictBool], Field(description="If true, the response will include information about the last protection run on this object.")] = None,
         only_auto_protected_objects: Annotated[Optional[StrictBool], Field(description="If true, the response will include only the auto protected objects.")] = None,
         only_leaf_objects: Annotated[Optional[StrictBool], Field(description="If true, the response will include only the leaf level objects.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8415,10 +9510,6 @@ class ObjectApi:
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param object_action_key: Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id and this vec's size needs to be same as 'id'.
@@ -8439,6 +9530,10 @@ class ObjectApi:
         :type only_auto_protected_objects: bool
         :param only_leaf_objects: If true, the response will include only the leaf level objects.
         :type only_leaf_objects: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8463,8 +9558,6 @@ class ObjectApi:
 
         _param = self._get_protected_object_of_any_type_by_id_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             object_action_key=object_action_key,
             only_protected_objects=only_protected_objects,
@@ -8475,6 +9568,8 @@ class ObjectApi:
             include_last_run_info=include_last_run_info,
             only_auto_protected_objects=only_auto_protected_objects,
             only_leaf_objects=only_leaf_objects,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8499,8 +9594,6 @@ class ObjectApi:
     def get_protected_object_of_any_type_by_id_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         object_action_key: Annotated[Optional[List[StrictStr]], Field(description="Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id and this vec's size needs to be same as 'id'.")] = None,
         only_protected_objects: Annotated[Optional[StrictBool], Field(description="If true, the response will include only objects which have been protected.")] = None,
@@ -8511,6 +9604,8 @@ class ObjectApi:
         include_last_run_info: Annotated[Optional[StrictBool], Field(description="If true, the response will include information about the last protection run on this object.")] = None,
         only_auto_protected_objects: Annotated[Optional[StrictBool], Field(description="If true, the response will include only the auto protected objects.")] = None,
         only_leaf_objects: Annotated[Optional[StrictBool], Field(description="If true, the response will include only the leaf level objects.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8530,10 +9625,6 @@ class ObjectApi:
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param object_action_key: Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id and this vec's size needs to be same as 'id'.
@@ -8554,6 +9645,10 @@ class ObjectApi:
         :type only_auto_protected_objects: bool
         :param only_leaf_objects: If true, the response will include only the leaf level objects.
         :type only_leaf_objects: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8578,8 +9673,6 @@ class ObjectApi:
 
         _param = self._get_protected_object_of_any_type_by_id_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             object_action_key=object_action_key,
             only_protected_objects=only_protected_objects,
@@ -8590,6 +9683,8 @@ class ObjectApi:
             include_last_run_info=include_last_run_info,
             only_auto_protected_objects=only_auto_protected_objects,
             only_leaf_objects=only_leaf_objects,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8609,8 +9704,6 @@ class ObjectApi:
     def _get_protected_object_of_any_type_by_id_serialize(
         self,
         id,
-        access_cluster_id,
-        region_id,
         request_initiator_type,
         object_action_key,
         only_protected_objects,
@@ -8621,6 +9714,8 @@ class ObjectApi:
         include_last_run_info,
         only_auto_protected_objects,
         only_leaf_objects,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -8685,12 +9780,12 @@ class ObjectApi:
             _query_params.append(('onlyLeafObjects', only_leaf_objects))
             
         # process the header parameters
+        if request_initiator_type is not None:
+            _header_params['requestInitiatorType'] = request_initiator_type
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
         if region_id is not None:
             _header_params['regionId'] = region_id
-        if request_initiator_type is not None:
-            _header_params['requestInitiatorType'] = request_initiator_type
         # process the form parameters
         # process the body parameter
 
@@ -8728,12 +9823,322 @@ class ObjectApi:
 
 
     @validate_call
+    def get_protected_objects(
+        self,
+        only_deleted_objects: Annotated[Optional[StrictBool], Field(description="If true, returns only the list of protected objects that have been deleted or decommissioned from the registered source. If not set, only those protected objects are returned which still exists on the source.")] = None,
+        source_id: Annotated[Optional[StrictInt], Field(description="Specifies the registered source id. All the protected object that exist within this source will be returned.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="Specifies the region id where this source belongs to.")] = None,
+        include_intermediate_objects: Annotated[Optional[StrictBool], Field(description="If true, also include intermediate objects in the list. For a VCenter source, these could be Tags, Datacenter, Hosts etc, which can be protected directly and VMs, which are leaf level objects, mapped to these objects will get protected automatically. If not specified, the response will only return leaf-level objects which are active on the source and being protected.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetProtectedObjectsResult:
+        """Get the list of Protected Objects
+
+        Lists objects that are being protected. Default behavior is to exclude objects which haven been decommissioned or deleted from the registered source. To only show the deleted/decommissioned objects instead the parameter, onlyDeletedObjects needs to set with value set to True.
+
+        :param only_deleted_objects: If true, returns only the list of protected objects that have been deleted or decommissioned from the registered source. If not set, only those protected objects are returned which still exists on the source.
+        :type only_deleted_objects: bool
+        :param source_id: Specifies the registered source id. All the protected object that exist within this source will be returned.
+        :type source_id: int
+        :param region_id: Specifies the region id where this source belongs to.
+        :type region_id: str
+        :param include_intermediate_objects: If true, also include intermediate objects in the list. For a VCenter source, these could be Tags, Datacenter, Hosts etc, which can be protected directly and VMs, which are leaf level objects, mapped to these objects will get protected automatically. If not specified, the response will only return leaf-level objects which are active on the source and being protected.
+        :type include_intermediate_objects: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_protected_objects_serialize(
+            only_deleted_objects=only_deleted_objects,
+            source_id=source_id,
+            region_id=region_id,
+            include_intermediate_objects=include_intermediate_objects,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetProtectedObjectsResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_protected_objects_with_http_info(
+        self,
+        only_deleted_objects: Annotated[Optional[StrictBool], Field(description="If true, returns only the list of protected objects that have been deleted or decommissioned from the registered source. If not set, only those protected objects are returned which still exists on the source.")] = None,
+        source_id: Annotated[Optional[StrictInt], Field(description="Specifies the registered source id. All the protected object that exist within this source will be returned.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="Specifies the region id where this source belongs to.")] = None,
+        include_intermediate_objects: Annotated[Optional[StrictBool], Field(description="If true, also include intermediate objects in the list. For a VCenter source, these could be Tags, Datacenter, Hosts etc, which can be protected directly and VMs, which are leaf level objects, mapped to these objects will get protected automatically. If not specified, the response will only return leaf-level objects which are active on the source and being protected.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetProtectedObjectsResult]:
+        """Get the list of Protected Objects
+
+        Lists objects that are being protected. Default behavior is to exclude objects which haven been decommissioned or deleted from the registered source. To only show the deleted/decommissioned objects instead the parameter, onlyDeletedObjects needs to set with value set to True.
+
+        :param only_deleted_objects: If true, returns only the list of protected objects that have been deleted or decommissioned from the registered source. If not set, only those protected objects are returned which still exists on the source.
+        :type only_deleted_objects: bool
+        :param source_id: Specifies the registered source id. All the protected object that exist within this source will be returned.
+        :type source_id: int
+        :param region_id: Specifies the region id where this source belongs to.
+        :type region_id: str
+        :param include_intermediate_objects: If true, also include intermediate objects in the list. For a VCenter source, these could be Tags, Datacenter, Hosts etc, which can be protected directly and VMs, which are leaf level objects, mapped to these objects will get protected automatically. If not specified, the response will only return leaf-level objects which are active on the source and being protected.
+        :type include_intermediate_objects: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_protected_objects_serialize(
+            only_deleted_objects=only_deleted_objects,
+            source_id=source_id,
+            region_id=region_id,
+            include_intermediate_objects=include_intermediate_objects,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetProtectedObjectsResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_protected_objects_without_preload_content(
+        self,
+        only_deleted_objects: Annotated[Optional[StrictBool], Field(description="If true, returns only the list of protected objects that have been deleted or decommissioned from the registered source. If not set, only those protected objects are returned which still exists on the source.")] = None,
+        source_id: Annotated[Optional[StrictInt], Field(description="Specifies the registered source id. All the protected object that exist within this source will be returned.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="Specifies the region id where this source belongs to.")] = None,
+        include_intermediate_objects: Annotated[Optional[StrictBool], Field(description="If true, also include intermediate objects in the list. For a VCenter source, these could be Tags, Datacenter, Hosts etc, which can be protected directly and VMs, which are leaf level objects, mapped to these objects will get protected automatically. If not specified, the response will only return leaf-level objects which are active on the source and being protected.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get the list of Protected Objects
+
+        Lists objects that are being protected. Default behavior is to exclude objects which haven been decommissioned or deleted from the registered source. To only show the deleted/decommissioned objects instead the parameter, onlyDeletedObjects needs to set with value set to True.
+
+        :param only_deleted_objects: If true, returns only the list of protected objects that have been deleted or decommissioned from the registered source. If not set, only those protected objects are returned which still exists on the source.
+        :type only_deleted_objects: bool
+        :param source_id: Specifies the registered source id. All the protected object that exist within this source will be returned.
+        :type source_id: int
+        :param region_id: Specifies the region id where this source belongs to.
+        :type region_id: str
+        :param include_intermediate_objects: If true, also include intermediate objects in the list. For a VCenter source, these could be Tags, Datacenter, Hosts etc, which can be protected directly and VMs, which are leaf level objects, mapped to these objects will get protected automatically. If not specified, the response will only return leaf-level objects which are active on the source and being protected.
+        :type include_intermediate_objects: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_protected_objects_serialize(
+            only_deleted_objects=only_deleted_objects,
+            source_id=source_id,
+            region_id=region_id,
+            include_intermediate_objects=include_intermediate_objects,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetProtectedObjectsResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_protected_objects_serialize(
+        self,
+        only_deleted_objects,
+        source_id,
+        region_id,
+        include_intermediate_objects,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if only_deleted_objects is not None:
+            
+            _query_params.append(('onlyDeletedObjects', only_deleted_objects))
+            
+        if source_id is not None:
+            
+            _query_params.append(('sourceId', source_id))
+            
+        if include_intermediate_objects is not None:
+            
+            _query_params.append(('includeIntermediateObjects', include_intermediate_objects))
+            
+        # process the header parameters
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/mcm/data-protect/protected-objects',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_protected_objects_of_any_type(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
-        ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Object ids.")] = None,
+        ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Object ids. Only one of ids or globalHashes should be used.")] = None,
         object_action_keys: Annotated[Optional[List[StrictStr]], Field(description="Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id. The vec's size needs to be of either length one or same as the length of 'ids'. If the length of objectActionKey is one, it will be repeated as many number of times equal to the length of objectIds, as mandated by backend validation. If the length of objectActionKey and object ids are same then it will be passed as it is.")] = None,
         policy_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by Policy ids that are associated with Protected Objects.")] = None,
         parent_id: Annotated[Optional[StrictInt], Field(description="Filter by Parent Id. Parent id is a unique object Id which may contain protected objects underneath in the source tree.")] = None,
@@ -8741,6 +10146,8 @@ class ObjectApi:
         storage_domain_id: Annotated[Optional[StrictInt], Field(description="Filter by Storage Domain id. Only Objects protected to this Storage Domain will be returned.")] = None,
         environments: Annotated[Optional[List[StrictStr]], Field(description="Filter by environment types such as 'kVMware', 'kView', etc. Only Protected objects protecting the specified environment types are returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
+        global_ids: Annotated[Optional[List[StrictStr]], Field(description="Unique id to uniquely identify an object across clusters, if the same object is present on multiple clusters. For example, in case of a replication workflow, the object could be present on both local and remote cluster. In such scenarios, using the globalId, information about the object can be collected across the clusters. This is also applicable when object gets mapped to another cluster during tenant migration. Only one of ids or globalIds should be used.")] = None,
+        global_hashes: Annotated[Optional[List[StrictStr]], Field(description="Unique id to identify an object across clusters, using hash of the object")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Objects which were protected by all tenants which the current user has permission to see. If false, then only objects protected by the current user will be returned.")] = None,
         include_last_run_info: Annotated[Optional[StrictBool], Field(description="If true, the response will include information about the last protection run on this object.")] = None,
         only_auto_protected_objects: Annotated[Optional[StrictBool], Field(description="If true, the response will include only the auto protected objects.")] = None,
@@ -8748,6 +10155,8 @@ class ObjectApi:
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies the max number of objects to return.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the pagination cookie.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8765,13 +10174,9 @@ class ObjectApi:
 
         Get Objects Configurations.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
-        :param ids: Filter by a list of Object ids.
+        :param ids: Filter by a list of Object ids. Only one of ids or globalHashes should be used.
         :type ids: List[int]
         :param object_action_keys: Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id. The vec's size needs to be of either length one or same as the length of 'ids'. If the length of objectActionKey is one, it will be repeated as many number of times equal to the length of objectIds, as mandated by backend validation. If the length of objectActionKey and object ids are same then it will be passed as it is.
         :type object_action_keys: List[str]
@@ -8787,6 +10192,10 @@ class ObjectApi:
         :type environments: List[str]
         :param tenant_ids: TenantIds contains ids of the tenants for which objects are to be returned.
         :type tenant_ids: List[str]
+        :param global_ids: Unique id to uniquely identify an object across clusters, if the same object is present on multiple clusters. For example, in case of a replication workflow, the object could be present on both local and remote cluster. In such scenarios, using the globalId, information about the object can be collected across the clusters. This is also applicable when object gets mapped to another cluster during tenant migration. Only one of ids or globalIds should be used.
+        :type global_ids: List[str]
+        :param global_hashes: Unique id to identify an object across clusters, using hash of the object
+        :type global_hashes: List[str]
         :param include_tenants: If true, the response will include Objects which were protected by all tenants which the current user has permission to see. If false, then only objects protected by the current user will be returned.
         :type include_tenants: bool
         :param include_last_run_info: If true, the response will include information about the last protection run on this object.
@@ -8801,6 +10210,10 @@ class ObjectApi:
         :type max_count: int
         :param cookie: Specifies the pagination cookie.
         :type cookie: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8824,8 +10237,6 @@ class ObjectApi:
         """ # noqa: E501
 
         _param = self._get_protected_objects_of_any_type_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             ids=ids,
             object_action_keys=object_action_keys,
@@ -8835,6 +10246,8 @@ class ObjectApi:
             storage_domain_id=storage_domain_id,
             environments=environments,
             tenant_ids=tenant_ids,
+            global_ids=global_ids,
+            global_hashes=global_hashes,
             include_tenants=include_tenants,
             include_last_run_info=include_last_run_info,
             only_auto_protected_objects=only_auto_protected_objects,
@@ -8842,6 +10255,8 @@ class ObjectApi:
             region_ids=region_ids,
             max_count=max_count,
             cookie=cookie,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8865,10 +10280,8 @@ class ObjectApi:
     @validate_call
     def get_protected_objects_of_any_type_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
-        ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Object ids.")] = None,
+        ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Object ids. Only one of ids or globalHashes should be used.")] = None,
         object_action_keys: Annotated[Optional[List[StrictStr]], Field(description="Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id. The vec's size needs to be of either length one or same as the length of 'ids'. If the length of objectActionKey is one, it will be repeated as many number of times equal to the length of objectIds, as mandated by backend validation. If the length of objectActionKey and object ids are same then it will be passed as it is.")] = None,
         policy_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by Policy ids that are associated with Protected Objects.")] = None,
         parent_id: Annotated[Optional[StrictInt], Field(description="Filter by Parent Id. Parent id is a unique object Id which may contain protected objects underneath in the source tree.")] = None,
@@ -8876,6 +10289,8 @@ class ObjectApi:
         storage_domain_id: Annotated[Optional[StrictInt], Field(description="Filter by Storage Domain id. Only Objects protected to this Storage Domain will be returned.")] = None,
         environments: Annotated[Optional[List[StrictStr]], Field(description="Filter by environment types such as 'kVMware', 'kView', etc. Only Protected objects protecting the specified environment types are returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
+        global_ids: Annotated[Optional[List[StrictStr]], Field(description="Unique id to uniquely identify an object across clusters, if the same object is present on multiple clusters. For example, in case of a replication workflow, the object could be present on both local and remote cluster. In such scenarios, using the globalId, information about the object can be collected across the clusters. This is also applicable when object gets mapped to another cluster during tenant migration. Only one of ids or globalIds should be used.")] = None,
+        global_hashes: Annotated[Optional[List[StrictStr]], Field(description="Unique id to identify an object across clusters, using hash of the object")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Objects which were protected by all tenants which the current user has permission to see. If false, then only objects protected by the current user will be returned.")] = None,
         include_last_run_info: Annotated[Optional[StrictBool], Field(description="If true, the response will include information about the last protection run on this object.")] = None,
         only_auto_protected_objects: Annotated[Optional[StrictBool], Field(description="If true, the response will include only the auto protected objects.")] = None,
@@ -8883,6 +10298,8 @@ class ObjectApi:
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies the max number of objects to return.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the pagination cookie.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8900,13 +10317,9 @@ class ObjectApi:
 
         Get Objects Configurations.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
-        :param ids: Filter by a list of Object ids.
+        :param ids: Filter by a list of Object ids. Only one of ids or globalHashes should be used.
         :type ids: List[int]
         :param object_action_keys: Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id. The vec's size needs to be of either length one or same as the length of 'ids'. If the length of objectActionKey is one, it will be repeated as many number of times equal to the length of objectIds, as mandated by backend validation. If the length of objectActionKey and object ids are same then it will be passed as it is.
         :type object_action_keys: List[str]
@@ -8922,6 +10335,10 @@ class ObjectApi:
         :type environments: List[str]
         :param tenant_ids: TenantIds contains ids of the tenants for which objects are to be returned.
         :type tenant_ids: List[str]
+        :param global_ids: Unique id to uniquely identify an object across clusters, if the same object is present on multiple clusters. For example, in case of a replication workflow, the object could be present on both local and remote cluster. In such scenarios, using the globalId, information about the object can be collected across the clusters. This is also applicable when object gets mapped to another cluster during tenant migration. Only one of ids or globalIds should be used.
+        :type global_ids: List[str]
+        :param global_hashes: Unique id to identify an object across clusters, using hash of the object
+        :type global_hashes: List[str]
         :param include_tenants: If true, the response will include Objects which were protected by all tenants which the current user has permission to see. If false, then only objects protected by the current user will be returned.
         :type include_tenants: bool
         :param include_last_run_info: If true, the response will include information about the last protection run on this object.
@@ -8936,6 +10353,10 @@ class ObjectApi:
         :type max_count: int
         :param cookie: Specifies the pagination cookie.
         :type cookie: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8959,8 +10380,6 @@ class ObjectApi:
         """ # noqa: E501
 
         _param = self._get_protected_objects_of_any_type_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             ids=ids,
             object_action_keys=object_action_keys,
@@ -8970,6 +10389,8 @@ class ObjectApi:
             storage_domain_id=storage_domain_id,
             environments=environments,
             tenant_ids=tenant_ids,
+            global_ids=global_ids,
+            global_hashes=global_hashes,
             include_tenants=include_tenants,
             include_last_run_info=include_last_run_info,
             only_auto_protected_objects=only_auto_protected_objects,
@@ -8977,6 +10398,8 @@ class ObjectApi:
             region_ids=region_ids,
             max_count=max_count,
             cookie=cookie,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -9000,10 +10423,8 @@ class ObjectApi:
     @validate_call
     def get_protected_objects_of_any_type_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
-        ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Object ids.")] = None,
+        ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Object ids. Only one of ids or globalHashes should be used.")] = None,
         object_action_keys: Annotated[Optional[List[StrictStr]], Field(description="Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id. The vec's size needs to be of either length one or same as the length of 'ids'. If the length of objectActionKey is one, it will be repeated as many number of times equal to the length of objectIds, as mandated by backend validation. If the length of objectActionKey and object ids are same then it will be passed as it is.")] = None,
         policy_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by Policy ids that are associated with Protected Objects.")] = None,
         parent_id: Annotated[Optional[StrictInt], Field(description="Filter by Parent Id. Parent id is a unique object Id which may contain protected objects underneath in the source tree.")] = None,
@@ -9011,6 +10432,8 @@ class ObjectApi:
         storage_domain_id: Annotated[Optional[StrictInt], Field(description="Filter by Storage Domain id. Only Objects protected to this Storage Domain will be returned.")] = None,
         environments: Annotated[Optional[List[StrictStr]], Field(description="Filter by environment types such as 'kVMware', 'kView', etc. Only Protected objects protecting the specified environment types are returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
+        global_ids: Annotated[Optional[List[StrictStr]], Field(description="Unique id to uniquely identify an object across clusters, if the same object is present on multiple clusters. For example, in case of a replication workflow, the object could be present on both local and remote cluster. In such scenarios, using the globalId, information about the object can be collected across the clusters. This is also applicable when object gets mapped to another cluster during tenant migration. Only one of ids or globalIds should be used.")] = None,
+        global_hashes: Annotated[Optional[List[StrictStr]], Field(description="Unique id to identify an object across clusters, using hash of the object")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Objects which were protected by all tenants which the current user has permission to see. If false, then only objects protected by the current user will be returned.")] = None,
         include_last_run_info: Annotated[Optional[StrictBool], Field(description="If true, the response will include information about the last protection run on this object.")] = None,
         only_auto_protected_objects: Annotated[Optional[StrictBool], Field(description="If true, the response will include only the auto protected objects.")] = None,
@@ -9018,6 +10441,8 @@ class ObjectApi:
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies the max number of objects to return.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the pagination cookie.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9035,13 +10460,9 @@ class ObjectApi:
 
         Get Objects Configurations.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
-        :param ids: Filter by a list of Object ids.
+        :param ids: Filter by a list of Object ids. Only one of ids or globalHashes should be used.
         :type ids: List[int]
         :param object_action_keys: Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id. The vec's size needs to be of either length one or same as the length of 'ids'. If the length of objectActionKey is one, it will be repeated as many number of times equal to the length of objectIds, as mandated by backend validation. If the length of objectActionKey and object ids are same then it will be passed as it is.
         :type object_action_keys: List[str]
@@ -9057,6 +10478,10 @@ class ObjectApi:
         :type environments: List[str]
         :param tenant_ids: TenantIds contains ids of the tenants for which objects are to be returned.
         :type tenant_ids: List[str]
+        :param global_ids: Unique id to uniquely identify an object across clusters, if the same object is present on multiple clusters. For example, in case of a replication workflow, the object could be present on both local and remote cluster. In such scenarios, using the globalId, information about the object can be collected across the clusters. This is also applicable when object gets mapped to another cluster during tenant migration. Only one of ids or globalIds should be used.
+        :type global_ids: List[str]
+        :param global_hashes: Unique id to identify an object across clusters, using hash of the object
+        :type global_hashes: List[str]
         :param include_tenants: If true, the response will include Objects which were protected by all tenants which the current user has permission to see. If false, then only objects protected by the current user will be returned.
         :type include_tenants: bool
         :param include_last_run_info: If true, the response will include information about the last protection run on this object.
@@ -9071,6 +10496,10 @@ class ObjectApi:
         :type max_count: int
         :param cookie: Specifies the pagination cookie.
         :type cookie: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9094,8 +10523,6 @@ class ObjectApi:
         """ # noqa: E501
 
         _param = self._get_protected_objects_of_any_type_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             ids=ids,
             object_action_keys=object_action_keys,
@@ -9105,6 +10532,8 @@ class ObjectApi:
             storage_domain_id=storage_domain_id,
             environments=environments,
             tenant_ids=tenant_ids,
+            global_ids=global_ids,
+            global_hashes=global_hashes,
             include_tenants=include_tenants,
             include_last_run_info=include_last_run_info,
             only_auto_protected_objects=only_auto_protected_objects,
@@ -9112,6 +10541,8 @@ class ObjectApi:
             region_ids=region_ids,
             max_count=max_count,
             cookie=cookie,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -9130,8 +10561,6 @@ class ObjectApi:
 
     def _get_protected_objects_of_any_type_serialize(
         self,
-        access_cluster_id,
-        region_id,
         request_initiator_type,
         ids,
         object_action_keys,
@@ -9141,6 +10570,8 @@ class ObjectApi:
         storage_domain_id,
         environments,
         tenant_ids,
+        global_ids,
+        global_hashes,
         include_tenants,
         include_last_run_info,
         only_auto_protected_objects,
@@ -9148,6 +10579,8 @@ class ObjectApi:
         region_ids,
         max_count,
         cookie,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -9162,6 +10595,8 @@ class ObjectApi:
             'policyIds': 'csv',
             'environments': 'csv',
             'tenantIds': 'csv',
+            'globalIds': 'csv',
+            'globalHashes': 'csv',
             'regionIds': 'csv',
         }
 
@@ -9208,6 +10643,14 @@ class ObjectApi:
             
             _query_params.append(('tenantIds', tenant_ids))
             
+        if global_ids is not None:
+            
+            _query_params.append(('globalIds', global_ids))
+            
+        if global_hashes is not None:
+            
+            _query_params.append(('globalHashes', global_hashes))
+            
         if include_tenants is not None:
             
             _query_params.append(('includeTenants', include_tenants))
@@ -9237,12 +10680,12 @@ class ObjectApi:
             _query_params.append(('cookie', cookie))
             
         # process the header parameters
+        if request_initiator_type is not None:
+            _header_params['requestInitiatorType'] = request_initiator_type
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
         if region_id is not None:
             _header_params['regionId'] = region_id
-        if request_initiator_type is not None:
-            _header_params['requestInitiatorType'] = request_initiator_type
         # process the form parameters
         # process the body parameter
 
@@ -9284,8 +10727,8 @@ class ObjectApi:
         self,
         id: StrictInt,
         body: SnapshotDiffParams,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9307,9 +10750,9 @@ class ObjectApi:
         :type id: int
         :param body: (required)
         :type body: SnapshotDiffParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9363,8 +10806,8 @@ class ObjectApi:
         self,
         id: StrictInt,
         body: SnapshotDiffParams,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9386,9 +10829,9 @@ class ObjectApi:
         :type id: int
         :param body: (required)
         :type body: SnapshotDiffParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9442,8 +10885,8 @@ class ObjectApi:
         self,
         id: StrictInt,
         body: SnapshotDiffParams,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9465,9 +10908,9 @@ class ObjectApi:
         :type id: int
         :param body: (required)
         :type body: SnapshotDiffParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9602,8 +11045,6 @@ class ObjectApi:
     def get_source_hierarchy_objects(
         self,
         source_id: Annotated[StrictInt, Field(description="Specifies the source ID for which objects should be returned.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         parent_id: Annotated[Optional[StrictInt], Field(description="Specifies the parent ID under which objects should be returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Objects which belongs to all tenants which the current user has permission to see.")] = None,
@@ -9635,7 +11076,10 @@ class ObjectApi:
         ad_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the AD object types to filter objects.")] = None,
         mssql_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the MSSQL object types to filter objects.")] = None,
         oracle_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Oracle object types to filter objects.")] = None,
+        google_workspace_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the object types to filter objects on. Only applicable if the environment is kGoogleWorkspace.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9655,10 +11099,6 @@ class ObjectApi:
 
         :param source_id: Specifies the source ID for which objects should be returned. (required)
         :type source_id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param parent_id: Specifies the parent ID under which objects should be returned.
         :type parent_id: int
         :param tenant_ids: TenantIds contains ids of the tenants for which objects are to be returned.
@@ -9721,8 +11161,14 @@ class ObjectApi:
         :type mssql_object_types: List[str]
         :param oracle_object_types: Specifies the Oracle object types to filter objects.
         :type oracle_object_types: List[str]
+        :param google_workspace_object_types: Specifies the object types to filter objects on. Only applicable if the environment is kGoogleWorkspace.
+        :type google_workspace_object_types: List[str]
         :param use_cached_data: Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
         :type use_cached_data: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9747,8 +11193,6 @@ class ObjectApi:
 
         _param = self._get_source_hierarchy_objects_serialize(
             source_id=source_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             parent_id=parent_id,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
@@ -9780,7 +11224,10 @@ class ObjectApi:
             ad_object_types=ad_object_types,
             mssql_object_types=mssql_object_types,
             oracle_object_types=oracle_object_types,
+            google_workspace_object_types=google_workspace_object_types,
             use_cached_data=use_cached_data,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -9805,8 +11252,6 @@ class ObjectApi:
     def get_source_hierarchy_objects_with_http_info(
         self,
         source_id: Annotated[StrictInt, Field(description="Specifies the source ID for which objects should be returned.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         parent_id: Annotated[Optional[StrictInt], Field(description="Specifies the parent ID under which objects should be returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Objects which belongs to all tenants which the current user has permission to see.")] = None,
@@ -9838,7 +11283,10 @@ class ObjectApi:
         ad_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the AD object types to filter objects.")] = None,
         mssql_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the MSSQL object types to filter objects.")] = None,
         oracle_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Oracle object types to filter objects.")] = None,
+        google_workspace_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the object types to filter objects on. Only applicable if the environment is kGoogleWorkspace.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9858,10 +11306,6 @@ class ObjectApi:
 
         :param source_id: Specifies the source ID for which objects should be returned. (required)
         :type source_id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param parent_id: Specifies the parent ID under which objects should be returned.
         :type parent_id: int
         :param tenant_ids: TenantIds contains ids of the tenants for which objects are to be returned.
@@ -9924,8 +11368,14 @@ class ObjectApi:
         :type mssql_object_types: List[str]
         :param oracle_object_types: Specifies the Oracle object types to filter objects.
         :type oracle_object_types: List[str]
+        :param google_workspace_object_types: Specifies the object types to filter objects on. Only applicable if the environment is kGoogleWorkspace.
+        :type google_workspace_object_types: List[str]
         :param use_cached_data: Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
         :type use_cached_data: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9950,8 +11400,6 @@ class ObjectApi:
 
         _param = self._get_source_hierarchy_objects_serialize(
             source_id=source_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             parent_id=parent_id,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
@@ -9983,7 +11431,10 @@ class ObjectApi:
             ad_object_types=ad_object_types,
             mssql_object_types=mssql_object_types,
             oracle_object_types=oracle_object_types,
+            google_workspace_object_types=google_workspace_object_types,
             use_cached_data=use_cached_data,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10008,8 +11459,6 @@ class ObjectApi:
     def get_source_hierarchy_objects_without_preload_content(
         self,
         source_id: Annotated[StrictInt, Field(description="Specifies the source ID for which objects should be returned.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         parent_id: Annotated[Optional[StrictInt], Field(description="Specifies the parent ID under which objects should be returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Objects which belongs to all tenants which the current user has permission to see.")] = None,
@@ -10041,7 +11490,10 @@ class ObjectApi:
         ad_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the AD object types to filter objects.")] = None,
         mssql_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the MSSQL object types to filter objects.")] = None,
         oracle_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Oracle object types to filter objects.")] = None,
+        google_workspace_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the object types to filter objects on. Only applicable if the environment is kGoogleWorkspace.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10061,10 +11513,6 @@ class ObjectApi:
 
         :param source_id: Specifies the source ID for which objects should be returned. (required)
         :type source_id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param parent_id: Specifies the parent ID under which objects should be returned.
         :type parent_id: int
         :param tenant_ids: TenantIds contains ids of the tenants for which objects are to be returned.
@@ -10127,8 +11575,14 @@ class ObjectApi:
         :type mssql_object_types: List[str]
         :param oracle_object_types: Specifies the Oracle object types to filter objects.
         :type oracle_object_types: List[str]
+        :param google_workspace_object_types: Specifies the object types to filter objects on. Only applicable if the environment is kGoogleWorkspace.
+        :type google_workspace_object_types: List[str]
         :param use_cached_data: Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
         :type use_cached_data: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10153,8 +11607,6 @@ class ObjectApi:
 
         _param = self._get_source_hierarchy_objects_serialize(
             source_id=source_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             parent_id=parent_id,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
@@ -10186,7 +11638,10 @@ class ObjectApi:
             ad_object_types=ad_object_types,
             mssql_object_types=mssql_object_types,
             oracle_object_types=oracle_object_types,
+            google_workspace_object_types=google_workspace_object_types,
             use_cached_data=use_cached_data,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10206,8 +11661,6 @@ class ObjectApi:
     def _get_source_hierarchy_objects_serialize(
         self,
         source_id,
-        access_cluster_id,
-        region_id,
         parent_id,
         tenant_ids,
         include_tenants,
@@ -10239,7 +11692,10 @@ class ObjectApi:
         ad_object_types,
         mssql_object_types,
         oracle_object_types,
+        google_workspace_object_types,
         use_cached_data,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -10278,6 +11734,7 @@ class ObjectApi:
             'adObjectTypes': 'csv',
             'mssqlObjectTypes': 'csv',
             'oracleObjectTypes': 'csv',
+            'googleWorkspaceObjectTypes': 'csv',
         }
 
         _path_params: Dict[str, str] = {}
@@ -10417,6 +11874,10 @@ class ObjectApi:
             
             _query_params.append(('oracleObjectTypes', oracle_object_types))
             
+        if google_workspace_object_types is not None:
+            
+            _query_params.append(('googleWorkspaceObjectTypes', google_workspace_object_types))
+            
         if use_cached_data is not None:
             
             _query_params.append(('useCachedData', use_cached_data))
@@ -10463,10 +11924,299 @@ class ObjectApi:
 
 
     @validate_call
+    def mcm_associate_entity_metadata(
+        self,
+        body: Annotated[AssociateEntityMetadataRequest, Field(description="Specifies the parameters to associate metadata with entities in the entity hierarchy.")],
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AssociateEntityMetadataResult:
+        """Associate Metadata with Entity
+
+        Associates metadata with entities in the entity hierarchy. This metadata can be of various types (eg. Credentials). Returns a list of entity id and corresponding errors encountered (if any) while associating metadata with that entity. Note that a partial success response is possible where we succeed in associating metadata with some of the entities but fail for others. The API also expects the entities being updated belong to same source.
+
+        :param body: Specifies the parameters to associate metadata with entities in the entity hierarchy. (required)
+        :type body: AssociateEntityMetadataRequest
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._mcm_associate_entity_metadata_serialize(
+            body=body,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '207': "AssociateEntityMetadataResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def mcm_associate_entity_metadata_with_http_info(
+        self,
+        body: Annotated[AssociateEntityMetadataRequest, Field(description="Specifies the parameters to associate metadata with entities in the entity hierarchy.")],
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AssociateEntityMetadataResult]:
+        """Associate Metadata with Entity
+
+        Associates metadata with entities in the entity hierarchy. This metadata can be of various types (eg. Credentials). Returns a list of entity id and corresponding errors encountered (if any) while associating metadata with that entity. Note that a partial success response is possible where we succeed in associating metadata with some of the entities but fail for others. The API also expects the entities being updated belong to same source.
+
+        :param body: Specifies the parameters to associate metadata with entities in the entity hierarchy. (required)
+        :type body: AssociateEntityMetadataRequest
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._mcm_associate_entity_metadata_serialize(
+            body=body,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '207': "AssociateEntityMetadataResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def mcm_associate_entity_metadata_without_preload_content(
+        self,
+        body: Annotated[AssociateEntityMetadataRequest, Field(description="Specifies the parameters to associate metadata with entities in the entity hierarchy.")],
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Associate Metadata with Entity
+
+        Associates metadata with entities in the entity hierarchy. This metadata can be of various types (eg. Credentials). Returns a list of entity id and corresponding errors encountered (if any) while associating metadata with that entity. Note that a partial success response is possible where we succeed in associating metadata with some of the entities but fail for others. The API also expects the entities being updated belong to same source.
+
+        :param body: Specifies the parameters to associate metadata with entities in the entity hierarchy. (required)
+        :type body: AssociateEntityMetadataRequest
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._mcm_associate_entity_metadata_serialize(
+            body=body,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '207': "AssociateEntityMetadataResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _mcm_associate_entity_metadata_serialize(
+        self,
+        body,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/mcm/data-protect/objects/metadata',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def mcm_get_tenant_object_ids(
         self,
         body: Annotated[McmTenantObjectIdsParams, Field(description="Specifies the parameters to fetch object IDs.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10486,7 +12236,7 @@ class ObjectApi:
 
         :param body: Specifies the parameters to fetch object IDs. (required)
         :type body: McmTenantObjectIdsParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10537,7 +12287,7 @@ class ObjectApi:
     def mcm_get_tenant_object_ids_with_http_info(
         self,
         body: Annotated[McmTenantObjectIdsParams, Field(description="Specifies the parameters to fetch object IDs.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10557,7 +12307,7 @@ class ObjectApi:
 
         :param body: Specifies the parameters to fetch object IDs. (required)
         :type body: McmTenantObjectIdsParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10608,7 +12358,7 @@ class ObjectApi:
     def mcm_get_tenant_object_ids_without_preload_content(
         self,
         body: Annotated[McmTenantObjectIdsParams, Field(description="Specifies the parameters to fetch object IDs.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10628,7 +12378,7 @@ class ObjectApi:
 
         :param body: Specifies the parameters to fetch object IDs. (required)
         :type body: McmTenantObjectIdsParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10752,11 +12502,345 @@ class ObjectApi:
 
 
     @validate_call
+    def modify_source_hierarchy_objects(
+        self,
+        source_id: Annotated[StrictInt, Field(description="Specifies the source ID where objects are to be modified.")],
+        body: Annotated[ModifySourceHierarchyObjectsRequest, Field(description="Specifies the parameters to add/update objects in entity hierarchy.")],
+        request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ModifySourceHierarchyObjectsResult:
+        """Modify objects in source hierarchy.
+
+        Add/Update objects to/from an entity hierarchy for a given source.
+
+        :param source_id: Specifies the source ID where objects are to be modified. (required)
+        :type source_id: int
+        :param body: Specifies the parameters to add/update objects in entity hierarchy. (required)
+        :type body: ModifySourceHierarchyObjectsRequest
+        :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
+        :type request_initiator_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._modify_source_hierarchy_objects_serialize(
+            source_id=source_id,
+            body=body,
+            request_initiator_type=request_initiator_type,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '207': "ModifySourceHierarchyObjectsResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def modify_source_hierarchy_objects_with_http_info(
+        self,
+        source_id: Annotated[StrictInt, Field(description="Specifies the source ID where objects are to be modified.")],
+        body: Annotated[ModifySourceHierarchyObjectsRequest, Field(description="Specifies the parameters to add/update objects in entity hierarchy.")],
+        request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ModifySourceHierarchyObjectsResult]:
+        """Modify objects in source hierarchy.
+
+        Add/Update objects to/from an entity hierarchy for a given source.
+
+        :param source_id: Specifies the source ID where objects are to be modified. (required)
+        :type source_id: int
+        :param body: Specifies the parameters to add/update objects in entity hierarchy. (required)
+        :type body: ModifySourceHierarchyObjectsRequest
+        :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
+        :type request_initiator_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._modify_source_hierarchy_objects_serialize(
+            source_id=source_id,
+            body=body,
+            request_initiator_type=request_initiator_type,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '207': "ModifySourceHierarchyObjectsResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def modify_source_hierarchy_objects_without_preload_content(
+        self,
+        source_id: Annotated[StrictInt, Field(description="Specifies the source ID where objects are to be modified.")],
+        body: Annotated[ModifySourceHierarchyObjectsRequest, Field(description="Specifies the parameters to add/update objects in entity hierarchy.")],
+        request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Modify objects in source hierarchy.
+
+        Add/Update objects to/from an entity hierarchy for a given source.
+
+        :param source_id: Specifies the source ID where objects are to be modified. (required)
+        :type source_id: int
+        :param body: Specifies the parameters to add/update objects in entity hierarchy. (required)
+        :type body: ModifySourceHierarchyObjectsRequest
+        :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
+        :type request_initiator_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._modify_source_hierarchy_objects_serialize(
+            source_id=source_id,
+            body=body,
+            request_initiator_type=request_initiator_type,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '207': "ModifySourceHierarchyObjectsResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _modify_source_hierarchy_objects_serialize(
+        self,
+        source_id,
+        body,
+        request_initiator_type,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if source_id is not None:
+            _path_params['sourceId'] = source_id
+        # process the query parameters
+        # process the header parameters
+        if request_initiator_type is not None:
+            _header_params['requestInitiatorType'] = request_initiator_type
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/data-protect/sources/{sourceId}/objects',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def objects_actions(
         self,
         body: Annotated[ObjectsActionRequest, Field(description="Specifies the parameters to execute actions on given list of objects.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10776,9 +12860,9 @@ class ObjectApi:
 
         :param body: Specifies the parameters to execute actions on given list of objects. (required)
         :type body: ObjectsActionRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10830,8 +12914,8 @@ class ObjectApi:
     def objects_actions_with_http_info(
         self,
         body: Annotated[ObjectsActionRequest, Field(description="Specifies the parameters to execute actions on given list of objects.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10851,9 +12935,9 @@ class ObjectApi:
 
         :param body: Specifies the parameters to execute actions on given list of objects. (required)
         :type body: ObjectsActionRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10905,8 +12989,8 @@ class ObjectApi:
     def objects_actions_without_preload_content(
         self,
         body: Annotated[ObjectsActionRequest, Field(description="Specifies the parameters to execute actions on given list of objects.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10926,9 +13010,9 @@ class ObjectApi:
 
         :param body: Specifies the parameters to execute actions on given list of objects. (required)
         :type body: ObjectsActionRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -11060,8 +13144,8 @@ class ObjectApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
         body: Annotated[ObjectActionRequest, Field(description="Specifies the parameters to perform an action on an object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11083,9 +13167,9 @@ class ObjectApi:
         :type id: int
         :param body: Specifies the parameters to perform an action on an object. (required)
         :type body: ObjectActionRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -11139,8 +13223,8 @@ class ObjectApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
         body: Annotated[ObjectActionRequest, Field(description="Specifies the parameters to perform an action on an object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11162,9 +13246,9 @@ class ObjectApi:
         :type id: int
         :param body: Specifies the parameters to perform an action on an object. (required)
         :type body: ObjectActionRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -11218,8 +13302,8 @@ class ObjectApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
         body: Annotated[ObjectActionRequest, Field(description="Specifies the parameters to perform an action on an object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11241,9 +13325,9 @@ class ObjectApi:
         :type id: int
         :param body: Specifies the parameters to perform an action on an object. (required)
         :type body: ObjectActionRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -11380,8 +13464,8 @@ class ObjectApi:
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
         snapshot_id: Annotated[StrictStr, Field(description="Specifies the id of the snapshot.<br> Note: 1. If the snapshotid of one of the apps is specified, it applies for all the databases in the Protection Run.<br> 2. In case of volume based jobs, please specify the snapshotid of the source not the database. if source snapshot is specified, applied to source snapshot. if database snapshotid is specified in case of volume based jobs, then it is applicable for host's snapshot.")],
         body: Annotated[UpdateObjectSnapshotRequest, Field(description="Specifies the parameters update an object snapshot.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11405,9 +13489,9 @@ class ObjectApi:
         :type snapshot_id: str
         :param body: Specifies the parameters update an object snapshot. (required)
         :type body: UpdateObjectSnapshotRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -11463,8 +13547,8 @@ class ObjectApi:
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
         snapshot_id: Annotated[StrictStr, Field(description="Specifies the id of the snapshot.<br> Note: 1. If the snapshotid of one of the apps is specified, it applies for all the databases in the Protection Run.<br> 2. In case of volume based jobs, please specify the snapshotid of the source not the database. if source snapshot is specified, applied to source snapshot. if database snapshotid is specified in case of volume based jobs, then it is applicable for host's snapshot.")],
         body: Annotated[UpdateObjectSnapshotRequest, Field(description="Specifies the parameters update an object snapshot.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11488,9 +13572,9 @@ class ObjectApi:
         :type snapshot_id: str
         :param body: Specifies the parameters update an object snapshot. (required)
         :type body: UpdateObjectSnapshotRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -11546,8 +13630,8 @@ class ObjectApi:
         id: Annotated[StrictInt, Field(description="Specifies the id of the Object.")],
         snapshot_id: Annotated[StrictStr, Field(description="Specifies the id of the snapshot.<br> Note: 1. If the snapshotid of one of the apps is specified, it applies for all the databases in the Protection Run.<br> 2. In case of volume based jobs, please specify the snapshotid of the source not the database. if source snapshot is specified, applied to source snapshot. if database snapshotid is specified in case of volume based jobs, then it is applicable for host's snapshot.")],
         body: Annotated[UpdateObjectSnapshotRequest, Field(description="Specifies the parameters update an object snapshot.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11571,9 +13655,9 @@ class ObjectApi:
         :type snapshot_id: str
         :param body: Specifies the parameters update an object snapshot. (required)
         :type body: UpdateObjectSnapshotRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -11693,6 +13777,295 @@ class ObjectApi:
         return self.api_client.param_serialize(
             method='PUT',
             resource_path='/data-protect/objects/{id}/snapshots/{snapshotId}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_objects_runs_metadata_helios(
+        self,
+        body: Annotated[UpdateObjectsRunsMetadataParams, Field(description="Specifies the parameters to update the legal hold and other (future) parameters of one or more runs of one or more objects.")],
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UpdateObjectsRunsMetadataResponse:
+        """Update multiple runs of one or more objects.
+
+        Update metadata of multiple runs of one or more objects. Currently we support enabling the legal hold on the runs as the action in this put request.
+
+        :param body: Specifies the parameters to update the legal hold and other (future) parameters of one or more runs of one or more objects. (required)
+        :type body: UpdateObjectsRunsMetadataParams
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_objects_runs_metadata_helios_serialize(
+            body=body,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UpdateObjectsRunsMetadataResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_objects_runs_metadata_helios_with_http_info(
+        self,
+        body: Annotated[UpdateObjectsRunsMetadataParams, Field(description="Specifies the parameters to update the legal hold and other (future) parameters of one or more runs of one or more objects.")],
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UpdateObjectsRunsMetadataResponse]:
+        """Update multiple runs of one or more objects.
+
+        Update metadata of multiple runs of one or more objects. Currently we support enabling the legal hold on the runs as the action in this put request.
+
+        :param body: Specifies the parameters to update the legal hold and other (future) parameters of one or more runs of one or more objects. (required)
+        :type body: UpdateObjectsRunsMetadataParams
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_objects_runs_metadata_helios_serialize(
+            body=body,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UpdateObjectsRunsMetadataResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_objects_runs_metadata_helios_without_preload_content(
+        self,
+        body: Annotated[UpdateObjectsRunsMetadataParams, Field(description="Specifies the parameters to update the legal hold and other (future) parameters of one or more runs of one or more objects.")],
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update multiple runs of one or more objects.
+
+        Update metadata of multiple runs of one or more objects. Currently we support enabling the legal hold on the runs as the action in this put request.
+
+        :param body: Specifies the parameters to update the legal hold and other (future) parameters of one or more runs of one or more objects. (required)
+        :type body: UpdateObjectsRunsMetadataParams
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_objects_runs_metadata_helios_serialize(
+            body=body,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UpdateObjectsRunsMetadataResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_objects_runs_metadata_helios_serialize(
+        self,
+        body,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/mcm/data-protect/objects/runs/metadata',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

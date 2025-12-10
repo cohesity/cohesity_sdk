@@ -18,16 +18,16 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from cohesity_sdk.helios.models.node_free_disks import NodeFreeDisks
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ClusterFreeDisks(BaseModel):
     """
     Sepcifies the free disks of cluster.
     """ # noqa: E501
-    node_free_disks: Optional[List[NodeFreeDisks]] = Field(description="Specifies list of free disks of cluster.", alias="nodeFreeDisks")
+    node_free_disks: List[NodeFreeDisks] = Field(description="Specifies list of free disks of cluster.", alias="nodeFreeDisks")
     __properties: ClassVar[List[str]] = ["nodeFreeDisks"]
 
     model_config = ConfigDict(
@@ -76,11 +76,6 @@ class ClusterFreeDisks(BaseModel):
                 if _item_node_free_disks:
                     _items.append(_item_node_free_disks.to_dict())
             _dict['nodeFreeDisks'] = _items
-        # set to None if node_free_disks (nullable) is None
-        # and model_fields_set contains the field
-        if self.node_free_disks is None and "node_free_disks" in self.model_fields_set:
-            _dict['nodeFreeDisks'] = None
-
         return _dict
 
     @classmethod

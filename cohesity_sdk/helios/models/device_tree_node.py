@@ -100,6 +100,7 @@ class DeviceTreeNode(BaseModel):
         })
         return _obj
 
-from cohesity_sdk.helios.models.device_tree_non_leaf_node import DeviceTreeNonLeafNode # noqa: E402
+from cohesity_sdk.helios.models.device_tree_non_leaf_node import DeviceTreeNonLeafNode  # noqa: E402
 # TODO: Rewrite to not use raise_errors
 DeviceTreeNode.model_rebuild(raise_errors=False)
+

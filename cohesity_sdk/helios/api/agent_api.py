@@ -16,6 +16,8 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictBool
+from cohesity_sdk.helios.models.agent_download_request_params import AgentDownloadRequestParams
+from cohesity_sdk.helios.models.agent_download_response_body import AgentDownloadResponseBody
 from cohesity_sdk.helios.models.agent_upgrade_task_action_object import AgentUpgradeTaskActionObject
 from cohesity_sdk.helios.models.agent_upgrade_task_action_request import AgentUpgradeTaskActionRequest
 from cohesity_sdk.helios.models.agent_upgrade_task_state import AgentUpgradeTaskState
@@ -43,11 +45,300 @@ class AgentApi:
 
 
     @validate_call
+    def agent_download(
+        self,
+        body: Annotated[AgentDownloadRequestParams, Field(description="Specifies agent download details.")],
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AgentDownloadResponseBody:
+        """Download agent
+
+        Download Cohesity agent for different hosts.
+
+        :param body: Specifies agent download details. (required)
+        :type body: AgentDownloadRequestParams
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._agent_download_serialize(
+            body=body,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentDownloadResponseBody",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def agent_download_with_http_info(
+        self,
+        body: Annotated[AgentDownloadRequestParams, Field(description="Specifies agent download details.")],
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AgentDownloadResponseBody]:
+        """Download agent
+
+        Download Cohesity agent for different hosts.
+
+        :param body: Specifies agent download details. (required)
+        :type body: AgentDownloadRequestParams
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._agent_download_serialize(
+            body=body,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentDownloadResponseBody",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def agent_download_without_preload_content(
+        self,
+        body: Annotated[AgentDownloadRequestParams, Field(description="Specifies agent download details.")],
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Download agent
+
+        Download Cohesity agent for different hosts.
+
+        :param body: Specifies agent download details. (required)
+        :type body: AgentDownloadRequestParams
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._agent_download_serialize(
+            body=body,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AgentDownloadResponseBody",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _agent_download_serialize(
+        self,
+        body,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/mcm/data-protect/agents/download',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def create_upgrade_task(
         self,
         body: Annotated[CreateUpgradeTaskRequest, Field(description="Specifies parameters to create a schedule based agent upgrade task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -67,9 +358,9 @@ class AgentApi:
 
         :param body: Specifies parameters to create a schedule based agent upgrade task. (required)
         :type body: CreateUpgradeTaskRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -121,8 +412,8 @@ class AgentApi:
     def create_upgrade_task_with_http_info(
         self,
         body: Annotated[CreateUpgradeTaskRequest, Field(description="Specifies parameters to create a schedule based agent upgrade task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -142,9 +433,9 @@ class AgentApi:
 
         :param body: Specifies parameters to create a schedule based agent upgrade task. (required)
         :type body: CreateUpgradeTaskRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -196,8 +487,8 @@ class AgentApi:
     def create_upgrade_task_without_preload_content(
         self,
         body: Annotated[CreateUpgradeTaskRequest, Field(description="Specifies parameters to create a schedule based agent upgrade task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -217,9 +508,9 @@ class AgentApi:
 
         :param body: Specifies parameters to create a schedule based agent upgrade task. (required)
         :type body: CreateUpgradeTaskRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -350,8 +641,8 @@ class AgentApi:
     def download_agent(
         self,
         body: Annotated[DownloadAgentRequestParams, Field(description="Specifies agent details.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -371,9 +662,9 @@ class AgentApi:
 
         :param body: Specifies agent details. (required)
         :type body: DownloadAgentRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -425,8 +716,8 @@ class AgentApi:
     def download_agent_with_http_info(
         self,
         body: Annotated[DownloadAgentRequestParams, Field(description="Specifies agent details.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -446,9 +737,9 @@ class AgentApi:
 
         :param body: Specifies agent details. (required)
         :type body: DownloadAgentRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -500,8 +791,8 @@ class AgentApi:
     def download_agent_without_preload_content(
         self,
         body: Annotated[DownloadAgentRequestParams, Field(description="Specifies agent details.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -521,9 +812,9 @@ class AgentApi:
 
         :param body: Specifies agent details. (required)
         :type body: DownloadAgentRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -653,11 +944,11 @@ class AgentApi:
     @validate_call
     def get_upgrade_tasks(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies IDs of tasks to be fetched.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include upgrade tasks which were created by all tenants which the current user has permission to see. If false, then only upgrade tasks created by the current user will be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -675,16 +966,16 @@ class AgentApi:
 
         Get the list of agent upgrade tasks.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Specifies IDs of tasks to be fetched.
         :type ids: List[int]
         :param tenant_ids: TenantIds contains ids of the tenants for which objects are to be returned.
         :type tenant_ids: List[str]
         :param include_tenants: If true, the response will include upgrade tasks which were created by all tenants which the current user has permission to see. If false, then only upgrade tasks created by the current user will be returned.
         :type include_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -708,11 +999,11 @@ class AgentApi:
         """ # noqa: E501
 
         _param = self._get_upgrade_tasks_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -736,11 +1027,11 @@ class AgentApi:
     @validate_call
     def get_upgrade_tasks_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies IDs of tasks to be fetched.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include upgrade tasks which were created by all tenants which the current user has permission to see. If false, then only upgrade tasks created by the current user will be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -758,16 +1049,16 @@ class AgentApi:
 
         Get the list of agent upgrade tasks.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Specifies IDs of tasks to be fetched.
         :type ids: List[int]
         :param tenant_ids: TenantIds contains ids of the tenants for which objects are to be returned.
         :type tenant_ids: List[str]
         :param include_tenants: If true, the response will include upgrade tasks which were created by all tenants which the current user has permission to see. If false, then only upgrade tasks created by the current user will be returned.
         :type include_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -791,11 +1082,11 @@ class AgentApi:
         """ # noqa: E501
 
         _param = self._get_upgrade_tasks_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -819,11 +1110,11 @@ class AgentApi:
     @validate_call
     def get_upgrade_tasks_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies IDs of tasks to be fetched.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include upgrade tasks which were created by all tenants which the current user has permission to see. If false, then only upgrade tasks created by the current user will be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -841,16 +1132,16 @@ class AgentApi:
 
         Get the list of agent upgrade tasks.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Specifies IDs of tasks to be fetched.
         :type ids: List[int]
         :param tenant_ids: TenantIds contains ids of the tenants for which objects are to be returned.
         :type tenant_ids: List[str]
         :param include_tenants: If true, the response will include upgrade tasks which were created by all tenants which the current user has permission to see. If false, then only upgrade tasks created by the current user will be returned.
         :type include_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -874,11 +1165,11 @@ class AgentApi:
         """ # noqa: E501
 
         _param = self._get_upgrade_tasks_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -897,11 +1188,11 @@ class AgentApi:
 
     def _get_upgrade_tasks_serialize(
         self,
-        access_cluster_id,
-        region_id,
         ids,
         tenant_ids,
         include_tenants,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -982,9 +1273,10 @@ class AgentApi:
     @validate_call
     def mcm_get_agent_image_details(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         platform: Annotated[Optional[StrictStr], Field(description="Specifies a platform for which agent information need to be fetched.")] = None,
         package_type: Annotated[Optional[StrictStr], Field(description="Specifies a package type for which agent information need to be fetched.")] = None,
+        agent_type: Annotated[Optional[StrictStr], Field(description="Specifies an agent type for which information need to be fetched.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1002,12 +1294,14 @@ class AgentApi:
 
         Get agent information on Helios.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param platform: Specifies a platform for which agent information need to be fetched.
         :type platform: str
         :param package_type: Specifies a package type for which agent information need to be fetched.
         :type package_type: str
+        :param agent_type: Specifies an agent type for which information need to be fetched.
+        :type agent_type: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1031,9 +1325,10 @@ class AgentApi:
         """ # noqa: E501
 
         _param = self._mcm_get_agent_image_details_serialize(
-            region_id=region_id,
             platform=platform,
             package_type=package_type,
+            agent_type=agent_type,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1057,9 +1352,10 @@ class AgentApi:
     @validate_call
     def mcm_get_agent_image_details_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         platform: Annotated[Optional[StrictStr], Field(description="Specifies a platform for which agent information need to be fetched.")] = None,
         package_type: Annotated[Optional[StrictStr], Field(description="Specifies a package type for which agent information need to be fetched.")] = None,
+        agent_type: Annotated[Optional[StrictStr], Field(description="Specifies an agent type for which information need to be fetched.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1077,12 +1373,14 @@ class AgentApi:
 
         Get agent information on Helios.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param platform: Specifies a platform for which agent information need to be fetched.
         :type platform: str
         :param package_type: Specifies a package type for which agent information need to be fetched.
         :type package_type: str
+        :param agent_type: Specifies an agent type for which information need to be fetched.
+        :type agent_type: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1106,9 +1404,10 @@ class AgentApi:
         """ # noqa: E501
 
         _param = self._mcm_get_agent_image_details_serialize(
-            region_id=region_id,
             platform=platform,
             package_type=package_type,
+            agent_type=agent_type,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1132,9 +1431,10 @@ class AgentApi:
     @validate_call
     def mcm_get_agent_image_details_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         platform: Annotated[Optional[StrictStr], Field(description="Specifies a platform for which agent information need to be fetched.")] = None,
         package_type: Annotated[Optional[StrictStr], Field(description="Specifies a package type for which agent information need to be fetched.")] = None,
+        agent_type: Annotated[Optional[StrictStr], Field(description="Specifies an agent type for which information need to be fetched.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1152,12 +1452,14 @@ class AgentApi:
 
         Get agent information on Helios.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param platform: Specifies a platform for which agent information need to be fetched.
         :type platform: str
         :param package_type: Specifies a package type for which agent information need to be fetched.
         :type package_type: str
+        :param agent_type: Specifies an agent type for which information need to be fetched.
+        :type agent_type: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1181,9 +1483,10 @@ class AgentApi:
         """ # noqa: E501
 
         _param = self._mcm_get_agent_image_details_serialize(
-            region_id=region_id,
             platform=platform,
             package_type=package_type,
+            agent_type=agent_type,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1202,9 +1505,10 @@ class AgentApi:
 
     def _mcm_get_agent_image_details_serialize(
         self,
-        region_id,
         platform,
         package_type,
+        agent_type,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1234,6 +1538,10 @@ class AgentApi:
         if package_type is not None:
             
             _query_params.append(('packageType', package_type))
+            
+        if agent_type is not None:
+            
+            _query_params.append(('agentType', agent_type))
             
         # process the header parameters
         if region_id is not None:
@@ -1278,8 +1586,8 @@ class AgentApi:
     def perform_action_on_agent_upgrade_task(
         self,
         body: Annotated[AgentUpgradeTaskActionRequest, Field(description="Specifies the parameters to perform an action on an agent upgrade task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1299,9 +1607,9 @@ class AgentApi:
 
         :param body: Specifies the parameters to perform an action on an agent upgrade task. (required)
         :type body: AgentUpgradeTaskActionRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1353,8 +1661,8 @@ class AgentApi:
     def perform_action_on_agent_upgrade_task_with_http_info(
         self,
         body: Annotated[AgentUpgradeTaskActionRequest, Field(description="Specifies the parameters to perform an action on an agent upgrade task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1374,9 +1682,9 @@ class AgentApi:
 
         :param body: Specifies the parameters to perform an action on an agent upgrade task. (required)
         :type body: AgentUpgradeTaskActionRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1428,8 +1736,8 @@ class AgentApi:
     def perform_action_on_agent_upgrade_task_without_preload_content(
         self,
         body: Annotated[AgentUpgradeTaskActionRequest, Field(description="Specifies the parameters to perform an action on an agent upgrade task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1449,9 +1757,9 @@ class AgentApi:
 
         :param body: Specifies the parameters to perform an action on an agent upgrade task. (required)
         :type body: AgentUpgradeTaskActionRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

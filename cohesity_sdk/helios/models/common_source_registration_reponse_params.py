@@ -33,15 +33,16 @@ class CommonSourceRegistrationReponseParams(BaseModel):
     last_refreshed_time_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the time when the source was last refreshed in milliseconds.", alias="lastRefreshedTimeMsecs")
     registration_time_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the time when the source was registered in milliseconds", alias="registrationTimeMsecs")
     advanced_configs: Optional[List[KeyValuePair]] = Field(default=None, description="Specifies the advanced configuration for a protection source.", alias="advancedConfigs")
-    connection_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user. This field will be depricated in future. Use connections field.", alias="connectionId")
-    connections: Optional[List[ConnectionConfig]] = Field(default=None, description="Specfies the list of connections for the source.")
+    connection_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user. This field will be deprecated in future. Use connections field.", alias="connectionId")
+    connections: Optional[List[ConnectionConfig]] = Field(default=None, description="Specifies the list of connections for the source.")
     connector_group_id: Optional[StrictInt] = Field(default=None, description="Specifies the connector group id of connector groups.", alias="connectorGroupId")
+    data_source_connection_id: Optional[StrictStr] = Field(default=None, description="Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user. Also, this is the 'string' of connectionId. This property was added to accommodate for ID values that exceed 2^53 - 1, which is the max value for which JS maintains precision.", alias="dataSourceConnectionId")
     environment: Optional[StrictStr] = Field(default=None, description="Specifies the environment type of the Protection Source.")
     id: Optional[StrictInt] = Field(default=None, description="Source Registration ID. This can be used to retrieve, edit or delete the source registration.")
     name: Optional[StrictStr] = Field(default=None, description="The user specified name for this source.")
     source_id: Optional[StrictInt] = Field(default=None, description="ID of top level source object discovered after the registration.", alias="sourceId")
     source_info: Optional[Object] = Field(default=None, alias="sourceInfo")
-    __properties: ClassVar[List[str]] = ["authenticationStatus", "lastRefreshedTimeMsecs", "registrationTimeMsecs", "advancedConfigs", "connectionId", "connections", "connectorGroupId", "environment", "id", "name", "sourceId", "sourceInfo"]
+    __properties: ClassVar[List[str]] = ["authenticationStatus", "lastRefreshedTimeMsecs", "registrationTimeMsecs", "advancedConfigs", "connectionId", "connections", "connectorGroupId", "dataSourceConnectionId", "environment", "id", "name", "sourceId", "sourceInfo"]
 
     @field_validator('authentication_status')
     def authentication_status_validate_enum(cls, value):
@@ -59,8 +60,8 @@ class CommonSourceRegistrationReponseParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kVMware', 'kHyperV', 'kAcropolis', 'kKVM', 'kAWS', 'kGCP', 'kAzure', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kGPFS', 'kElastifile', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSQL', 'kOracle', 'kSfdc']):
-            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAcropolis', 'kKVM', 'kAWS', 'kGCP', 'kAzure', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kGPFS', 'kElastifile', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSQL', 'kOracle', 'kSfdc')")
+        if value not in set(['kVMware', 'kHyperV', 'kAcropolis', 'kKVM', 'kAWS', 'kGCP', 'kAzure', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kGPFS', 'kElastifile', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kSQL', 'kOracle', 'kS3Compatible', 'kSfdc', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kEwsExchange', 'kServiceNow', 'kSalesforce']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAcropolis', 'kKVM', 'kAWS', 'kGCP', 'kAzure', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kGPFS', 'kElastifile', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kSQL', 'kOracle', 'kS3Compatible', 'kSfdc', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kEwsExchange', 'kServiceNow', 'kSalesforce')")
         return value
 
     model_config = ConfigDict(
@@ -164,6 +165,11 @@ class CommonSourceRegistrationReponseParams(BaseModel):
         if self.connector_group_id is None and "connector_group_id" in self.model_fields_set:
             _dict['connectorGroupId'] = None
 
+        # set to None if data_source_connection_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.data_source_connection_id is None and "data_source_connection_id" in self.model_fields_set:
+            _dict['dataSourceConnectionId'] = None
+
         # set to None if environment (nullable) is None
         # and model_fields_set contains the field
         if self.environment is None and "environment" in self.model_fields_set:
@@ -203,6 +209,7 @@ class CommonSourceRegistrationReponseParams(BaseModel):
             "connectionId": obj.get("connectionId"),
             "connections": [ConnectionConfig.from_dict(_item) for _item in obj["connections"]] if obj.get("connections") is not None else None,
             "connectorGroupId": obj.get("connectorGroupId"),
+            "dataSourceConnectionId": obj.get("dataSourceConnectionId"),
             "environment": obj.get("environment"),
             "id": obj.get("id"),
             "name": obj.get("name"),

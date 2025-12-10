@@ -27,8 +27,8 @@ class HostEntry(BaseModel):
     Specifies the parameters of a host entry that can be stored in the cluster's /etc/hosts file.
     """ # noqa: E501
     description: Optional[StrictStr] = Field(default=None, description="Description the host entry.")
-    domain_names: Optional[List[StrictStr]] = Field(description="Specifies the domain names of the host.", alias="domainNames")
-    ip: Optional[StrictStr] = Field(description="Specifies the IP address of the host.")
+    domain_names: List[StrictStr] = Field(description="Specifies the domain names of the host.", alias="domainNames")
+    ip: StrictStr = Field(description="Specifies the IP address of the host.")
     __properties: ClassVar[List[str]] = ["description", "domainNames", "ip"]
 
     model_config = ConfigDict(
@@ -74,16 +74,6 @@ class HostEntry(BaseModel):
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
             _dict['description'] = None
-
-        # set to None if domain_names (nullable) is None
-        # and model_fields_set contains the field
-        if self.domain_names is None and "domain_names" in self.model_fields_set:
-            _dict['domainNames'] = None
-
-        # set to None if ip (nullable) is None
-        # and model_fields_set contains the field
-        if self.ip is None and "ip" in self.model_fields_set:
-            _dict['ip'] = None
 
         return _dict
 

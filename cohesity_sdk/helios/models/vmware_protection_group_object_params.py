@@ -28,6 +28,7 @@ class VmwareProtectionGroupObjectParams(BaseModel):
     Specifies the input for a protection object in the VMware environment.
     """ # noqa: E501
     exclude_disks: Optional[List[DiskInfo]] = Field(default=None, description="Specifies a list of disks to exclude from being protected. This is only applicable to VM objects.", alias="excludeDisks")
+    include_disks: Optional[List[DiskInfo]] = Field(default=None, description="Specifies a list of disks to be protected. This is only applicable to VM objects.", alias="includeDisks")
     truncate_exchange_logs: Optional[StrictBool] = Field(default=None, description="Specifies whether or not to truncate MS Exchange logs while taking an app consistent snapshot of this object. This is only applicable to objects which have a registered MS Exchange app.", alias="truncateExchangeLogs")
     cdp_info: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the CDP related information for a given object. This field will only be populated when protection group is configured with policy having CDP retnetion settings.", alias="cdpInfo")
     id: Optional[StrictInt] = Field(description="Specifies the id of the object being protected. This can be a leaf level or non leaf level object.")
@@ -35,7 +36,7 @@ class VmwareProtectionGroupObjectParams(BaseModel):
     name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the virtual machine.")
     standby_info: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the standby related information for a given object. This field will only be populated when standby is configured in backup job settings.", alias="standbyInfo")
     type: Optional[StrictStr] = Field(default=None, description="Specifies the type of the VMware object.")
-    __properties: ClassVar[List[str]] = ["excludeDisks", "truncateExchangeLogs", "cdpInfo", "id", "isAutoprotected", "name", "standbyInfo", "type"]
+    __properties: ClassVar[List[str]] = ["excludeDisks", "includeDisks", "truncateExchangeLogs", "cdpInfo", "id", "isAutoprotected", "name", "standbyInfo", "type"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -95,6 +96,13 @@ class VmwareProtectionGroupObjectParams(BaseModel):
                 if _item_exclude_disks:
                     _items.append(_item_exclude_disks.to_dict())
             _dict['excludeDisks'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in include_disks (list)
+        _items = []
+        if self.include_disks:
+            for _item_include_disks in self.include_disks:
+                if _item_include_disks:
+                    _items.append(_item_include_disks.to_dict())
+            _dict['includeDisks'] = _items
         # set to None if truncate_exchange_logs (nullable) is None
         # and model_fields_set contains the field
         if self.truncate_exchange_logs is None and "truncate_exchange_logs" in self.model_fields_set:
@@ -133,6 +141,7 @@ class VmwareProtectionGroupObjectParams(BaseModel):
 
         _obj = cls.model_validate({
             "excludeDisks": [DiskInfo.from_dict(_item) for _item in obj["excludeDisks"]] if obj.get("excludeDisks") is not None else None,
+            "includeDisks": [DiskInfo.from_dict(_item) for _item in obj["includeDisks"]] if obj.get("includeDisks") is not None else None,
             "truncateExchangeLogs": obj.get("truncateExchangeLogs"),
             "cdpInfo": obj.get("cdpInfo"),
             "id": obj.get("id"),

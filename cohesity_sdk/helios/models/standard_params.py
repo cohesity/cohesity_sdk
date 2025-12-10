@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.aws_fleet_params import AwsFleetParams
 from cohesity_sdk.helios.models.iam_role_aws_credentials import IamRoleAwsCredentials
 from cohesity_sdk.helios.models.iam_user_aws_credentials import IamUserAwsCredentials
 from typing import Set
@@ -29,9 +30,10 @@ class StandardParams(BaseModel):
     Specifies the parameters to register a commercial AWS
     """ # noqa: E501
     auth_method_type: Optional[StrictStr] = Field(description="Specifies the Authentication method(IamArn/IamRole) used by api", alias="authMethodType")
+    fleet_params: Optional[AwsFleetParams] = Field(default=None, alias="fleetParams")
     iam_role_aws_credentials: Optional[IamRoleAwsCredentials] = Field(default=None, alias="iamRoleAwsCredentials")
     iam_user_aws_credentials: Optional[IamUserAwsCredentials] = Field(default=None, alias="iamUserAwsCredentials")
-    __properties: ClassVar[List[str]] = ["authMethodType", "iamRoleAwsCredentials", "iamUserAwsCredentials"]
+    __properties: ClassVar[List[str]] = ["authMethodType", "fleetParams", "iamRoleAwsCredentials", "iamUserAwsCredentials"]
 
     @field_validator('auth_method_type')
     def auth_method_type_validate_enum(cls, value):
@@ -39,8 +41,8 @@ class StandardParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kUseIAMUser', 'kUseIAMRole']):
-            raise ValueError("must be one of enum values ('kUseIAMUser', 'kUseIAMRole')")
+        if value not in set(['kUseIAMUser', 'kUseIAMRole', 'kUseInstanceProfile', 'kStandardCredentials', 'kKerberos']):
+            raise ValueError("must be one of enum values ('kUseIAMUser', 'kUseIAMRole', 'kUseInstanceProfile', 'kStandardCredentials', 'kKerberos')")
         return value
 
     model_config = ConfigDict(
@@ -82,6 +84,9 @@ class StandardParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of fleet_params
+        if self.fleet_params:
+            _dict['fleetParams'] = self.fleet_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of iam_role_aws_credentials
         if self.iam_role_aws_credentials:
             _dict['iamRoleAwsCredentials'] = self.iam_role_aws_credentials.to_dict()
@@ -106,6 +111,7 @@ class StandardParams(BaseModel):
 
         _obj = cls.model_validate({
             "authMethodType": obj.get("authMethodType"),
+            "fleetParams": AwsFleetParams.from_dict(obj["fleetParams"]) if obj.get("fleetParams") is not None else None,
             "iamRoleAwsCredentials": IamRoleAwsCredentials.from_dict(obj["iamRoleAwsCredentials"]) if obj.get("iamRoleAwsCredentials") is not None else None,
             "iamUserAwsCredentials": IamUserAwsCredentials.from_dict(obj["iamUserAwsCredentials"]) if obj.get("iamUserAwsCredentials") is not None else None
         })

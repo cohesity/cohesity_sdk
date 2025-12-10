@@ -61,6 +61,16 @@ class HeliosPublicFolderItemsInner(BaseModel):
             raise ValueError(r"must validate the regular expression /^([0-9]+:[0-9]+)$/")
         return value
 
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['Calendar', 'Contact', 'Post', 'Folder', 'Task', 'Journal', 'Note']):
+            raise ValueError("must be one of enum values ('Calendar', 'Contact', 'Post', 'Folder', 'Task', 'Journal', 'Note')")
+        return value
+
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,

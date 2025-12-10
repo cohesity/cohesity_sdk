@@ -51,8 +51,8 @@ class MsGroupItem(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Email', 'EmailFolder', 'SiteFile', 'SiteFolder']):
-            raise ValueError("must be one of enum values ('Email', 'EmailFolder', 'SiteFile', 'SiteFolder')")
+        if value not in set(['Email', 'EmailFolder', 'SiteFile', 'SiteFolder', 'Calendar', 'Contact', 'Note', 'Task', 'CalendarFolder', 'ContactFolder', 'TaskFolder', 'SearchFolder']):
+            raise ValueError("must be one of enum values ('Email', 'EmailFolder', 'SiteFile', 'SiteFolder', 'Calendar', 'Contact', 'Note', 'Task', 'CalendarFolder', 'ContactFolder', 'TaskFolder', 'SearchFolder')")
         return value
 
     model_config = ConfigDict(

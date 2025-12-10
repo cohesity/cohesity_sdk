@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Set
 from typing_extensions import Self
@@ -32,6 +32,16 @@ class ArchivalTarget(BaseModel):
     target_type: Optional[StrictStr] = Field(default=None, description="Specifies the type of the archival target.", alias="targetType")
     uuid: Optional[StrictStr] = Field(default=None, description="Specifies the unique Id of the archival target.")
     __properties: ClassVar[List[str]] = ["isCloudTier", "name", "targetId", "targetType", "uuid"]
+
+    @field_validator('target_type')
+    def target_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['Tape', 'Cloud', 'Nas']):
+            raise ValueError("must be one of enum values ('Tape', 'Cloud', 'Nas')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

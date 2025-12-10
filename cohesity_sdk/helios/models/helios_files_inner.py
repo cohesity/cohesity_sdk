@@ -31,6 +31,8 @@ class HeliosFilesInner(BaseModel):
     """ # noqa: E501
     cluster_identifier: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="List of Clusters Identifiers to filter from. The format is clusterId:clusterIncarnationId.", alias="clusterIdentifier")
     region_id: Optional[StrictStr] = Field(default=None, description="Specifies the region id of the cluster. Only valid for DMaaS clusters.", alias="regionId")
+    hash: Optional[StrictStr] = Field(default=None, description="Specifies hash value for this file.")
+    modified_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies modification time for this file in usecs.", alias="modifiedTimeUsecs")
     name: Optional[StrictStr] = Field(default=None, description="Specifies the file name.")
     path: Optional[StrictStr] = Field(default=None, description="Specifies the path to this file.")
     policy_id: Optional[StrictStr] = Field(default=None, description="Specifies the protection policy id for this file.", alias="policyId")
@@ -42,7 +44,7 @@ class HeliosFilesInner(BaseModel):
     type: Optional[StrictStr] = Field(default=None, description="Specifies the file type.")
     snapshot_tags: Optional[List[SnapshotTagInfo]] = Field(default=None, description="Specifies snapshot tags applied to the object.", alias="snapshotTags")
     tags: Optional[List[TagInfo]] = Field(default=None, description="Specifies tag applied to the object.")
-    __properties: ClassVar[List[str]] = ["clusterIdentifier", "regionId", "name", "path", "policyId", "policyName", "protectionGroupId", "protectionGroupName", "sourceInfo", "storageDomainId", "type", "snapshotTags", "tags"]
+    __properties: ClassVar[List[str]] = ["clusterIdentifier", "regionId", "hash", "modifiedTimeUsecs", "name", "path", "policyId", "policyName", "protectionGroupId", "protectionGroupName", "sourceInfo", "storageDomainId", "type", "snapshotTags", "tags"]
 
     @field_validator('cluster_identifier')
     def cluster_identifier_validate_regular_expression(cls, value):
@@ -127,6 +129,16 @@ class HeliosFilesInner(BaseModel):
         if self.region_id is None and "region_id" in self.model_fields_set:
             _dict['regionId'] = None
 
+        # set to None if hash (nullable) is None
+        # and model_fields_set contains the field
+        if self.hash is None and "hash" in self.model_fields_set:
+            _dict['hash'] = None
+
+        # set to None if modified_time_usecs (nullable) is None
+        # and model_fields_set contains the field
+        if self.modified_time_usecs is None and "modified_time_usecs" in self.model_fields_set:
+            _dict['modifiedTimeUsecs'] = None
+
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
@@ -191,6 +203,8 @@ class HeliosFilesInner(BaseModel):
         _obj = cls.model_validate({
             "clusterIdentifier": obj.get("clusterIdentifier"),
             "regionId": obj.get("regionId"),
+            "hash": obj.get("hash"),
+            "modifiedTimeUsecs": obj.get("modifiedTimeUsecs"),
             "name": obj.get("name"),
             "path": obj.get("path"),
             "policyId": obj.get("policyId"),

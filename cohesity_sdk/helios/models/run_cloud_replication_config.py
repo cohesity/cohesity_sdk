@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.aws_target_config import AWSTargetConfig
 from cohesity_sdk.helios.models.azure_target_config import AzureTargetConfig
@@ -31,9 +31,10 @@ class RunCloudReplicationConfig(BaseModel):
     """ # noqa: E501
     aws_target: Optional[AWSTargetConfig] = Field(default=None, alias="awsTarget")
     azure_target: Optional[AzureTargetConfig] = Field(default=None, alias="azureTarget")
+    on_legal_hold: Optional[StrictBool] = Field(default=None, description="Specifies if the Run is on legal hold.", alias="onLegalHold")
     retention: Optional[Retention] = None
     target_type: StrictStr = Field(description="Specifies the type of target to which replication need to be performed.", alias="targetType")
-    __properties: ClassVar[List[str]] = ["awsTarget", "azureTarget", "retention", "targetType"]
+    __properties: ClassVar[List[str]] = ["awsTarget", "azureTarget", "onLegalHold", "retention", "targetType"]
 
     @field_validator('target_type')
     def target_type_validate_enum(cls, value):
@@ -90,6 +91,11 @@ class RunCloudReplicationConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of retention
         if self.retention:
             _dict['retention'] = self.retention.to_dict()
+        # set to None if on_legal_hold (nullable) is None
+        # and model_fields_set contains the field
+        if self.on_legal_hold is None and "on_legal_hold" in self.model_fields_set:
+            _dict['onLegalHold'] = None
+
         return _dict
 
     @classmethod
@@ -104,6 +110,7 @@ class RunCloudReplicationConfig(BaseModel):
         _obj = cls.model_validate({
             "awsTarget": AWSTargetConfig.from_dict(obj["awsTarget"]) if obj.get("awsTarget") is not None else None,
             "azureTarget": AzureTargetConfig.from_dict(obj["azureTarget"]) if obj.get("azureTarget") is not None else None,
+            "onLegalHold": obj.get("onLegalHold"),
             "retention": Retention.from_dict(obj["retention"]) if obj.get("retention") is not None else None,
             "targetType": obj.get("targetType")
         })

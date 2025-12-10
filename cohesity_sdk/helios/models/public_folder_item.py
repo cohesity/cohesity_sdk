@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.snapshot_tag_info import SnapshotTagInfo
 from cohesity_sdk.helios.models.tag_info import TagInfo
@@ -47,6 +47,16 @@ class PublicFolderItem(BaseModel):
     subject: Optional[StrictStr] = Field(default=None, description="Specifies the subject of the indexed item.")
     type: Optional[StrictStr] = Field(default=None, description="Specifies the Public folder item type.")
     __properties: ClassVar[List[str]] = ["name", "path", "policyId", "policyName", "protectionGroupId", "protectionGroupName", "sourceInfo", "storageDomainId", "snapshotTags", "tags", "hasAttachments", "id", "itemClass", "itemSize", "parentFolderId", "receivedTimeSecs", "subject", "type"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['Calendar', 'Contact', 'Post', 'Folder', 'Task', 'Journal', 'Note']):
+            raise ValueError("must be one of enum values ('Calendar', 'Contact', 'Post', 'Folder', 'Task', 'Journal', 'Note')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -24,15 +24,16 @@ from typing_extensions import Self
 
 class ObjectProtectionStatsSummary(BaseModel):
     """
-    Specifies the count and size of protected and unprotected objects for a given environment.
+    Specifies the count and size of protected and unprotected objects for a given source environment/protection environment type.
     """ # noqa: E501
     deleted_protected_count: Optional[StrictInt] = Field(default=None, description="Specifies the count of protected leaf objects which were deleted from the source after being protected.", alias="deletedProtectedCount")
-    environment: Optional[StrictStr] = Field(default=None, description="Specifies the environment of the object.")
+    environment: Optional[StrictStr] = Field(default=None, description="Specifies the source environment of the object.")
     protected_count: Optional[StrictInt] = Field(default=None, description="Specifies the count of the protected leaf objects.", alias="protectedCount")
     protected_size_bytes: Optional[StrictInt] = Field(default=None, description="Specifies the protected logical size in bytes.", alias="protectedSizeBytes")
+    protection_env_type: Optional[StrictStr] = Field(default=None, description="Specifies the protection environment type.", alias="protectionEnvType")
     unprotected_count: Optional[StrictInt] = Field(default=None, description="Specifies the count of the unprotected leaf objects.", alias="unprotectedCount")
     unprotected_size_bytes: Optional[StrictInt] = Field(default=None, description="Specifies the unprotected logical size in bytes.", alias="unprotectedSizeBytes")
-    __properties: ClassVar[List[str]] = ["deletedProtectedCount", "environment", "protectedCount", "protectedSizeBytes", "unprotectedCount", "unprotectedSizeBytes"]
+    __properties: ClassVar[List[str]] = ["deletedProtectedCount", "environment", "protectedCount", "protectedSizeBytes", "protectionEnvType", "unprotectedCount", "unprotectedSizeBytes"]
 
     @field_validator('environment')
     def environment_validate_enum(cls, value):
@@ -40,8 +41,18 @@ class ObjectProtectionStatsSummary(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAzureSQL', 'kAcropolis', 'kGCP', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc']):
-            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAzureSQL', 'kAcropolis', 'kGCP', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc')")
+        if value not in set(['kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAcropolis', 'kGCP', 'kGCPBigQuery', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kS3Compatible', 'kSAPHANA', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kAzureEntraID', 'kAzureMySQL', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kSalesforce']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAcropolis', 'kGCP', 'kGCPBigQuery', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kS3Compatible', 'kSAPHANA', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kAzureEntraID', 'kAzureMySQL', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kSalesforce')")
+        return value
+
+    @field_validator('protection_env_type')
+    def protection_env_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kGCPBigQuery', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAwsDynamoDB', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kS3Compatible', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kServiceNow', 'kSalesforce']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kGCPBigQuery', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAwsDynamoDB', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kS3Compatible', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kServiceNow', 'kSalesforce')")
         return value
 
     model_config = ConfigDict(
@@ -103,6 +114,11 @@ class ObjectProtectionStatsSummary(BaseModel):
         if self.protected_size_bytes is None and "protected_size_bytes" in self.model_fields_set:
             _dict['protectedSizeBytes'] = None
 
+        # set to None if protection_env_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.protection_env_type is None and "protection_env_type" in self.model_fields_set:
+            _dict['protectionEnvType'] = None
+
         # set to None if unprotected_count (nullable) is None
         # and model_fields_set contains the field
         if self.unprotected_count is None and "unprotected_count" in self.model_fields_set:
@@ -129,6 +145,7 @@ class ObjectProtectionStatsSummary(BaseModel):
             "environment": obj.get("environment"),
             "protectedCount": obj.get("protectedCount"),
             "protectedSizeBytes": obj.get("protectedSizeBytes"),
+            "protectionEnvType": obj.get("protectionEnvType"),
             "unprotectedCount": obj.get("unprotectedCount"),
             "unprotectedSizeBytes": obj.get("unprotectedSizeBytes")
         })

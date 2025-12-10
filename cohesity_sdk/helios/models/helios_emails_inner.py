@@ -40,6 +40,7 @@ class HeliosEmailsInner(BaseModel):
     email_subject: Optional[StrictStr] = Field(default=None, description="Specifies the subject of this email.", alias="emailSubject")
     first_name: Optional[StrictStr] = Field(default=None, description="Specifies the contact's first name.", alias="firstName")
     folder_name: Optional[StrictStr] = Field(default=None, description="Specify the name of the email folder.", alias="folderName")
+    folder_root_type: Optional[StrictStr] = Field(default=None, description="Specifies which folder root the email belongs to.", alias="folderRootType")
     has_attachment: Optional[StrictBool] = Field(default=None, description="Specifies whether email has an attachment.", alias="hasAttachment")
     id: Optional[StrictStr] = Field(default=None, description="Specifies the id of the email object.")
     last_modification_name: Optional[StrictStr] = Field(default=None, description="\"Specifies the name of the person who modified this item.\"", alias="lastModificationName")
@@ -65,7 +66,7 @@ class HeliosEmailsInner(BaseModel):
     user_object_info: Optional[ObjectSummary] = Field(default=None, alias="userObjectInfo")
     snapshot_tags: Optional[List[SnapshotTagInfo]] = Field(default=None, description="Specifies snapshot tags applied to the object.", alias="snapshotTags")
     tags: Optional[List[TagInfo]] = Field(default=None, description="Specifies tag applied to the object.")
-    __properties: ClassVar[List[str]] = ["clusterIdentifier", "regionId", "bccRecipientAddresses", "ccRecipientAddresses", "createdTimeSecs", "directoryPath", "emailAddresses", "emailSubject", "firstName", "folderName", "hasAttachment", "id", "lastModificationName", "lastModificationTimeSecs", "lastName", "optionalAttendeesAddresses", "organizerAddress", "parentFolderId", "path", "protectionGroupId", "protectionGroupName", "receivedTimeSecs", "recipientAddresses", "requiredAttendeesAddresses", "senderAddress", "sentTimeSecs", "storageDomainId", "taskCompletionDateTimeSecs", "taskDueDateTimeSecs", "taskStatus", "tenantId", "type", "userObjectInfo", "snapshotTags", "tags"]
+    __properties: ClassVar[List[str]] = ["clusterIdentifier", "regionId", "bccRecipientAddresses", "ccRecipientAddresses", "createdTimeSecs", "directoryPath", "emailAddresses", "emailSubject", "firstName", "folderName", "folderRootType", "hasAttachment", "id", "lastModificationName", "lastModificationTimeSecs", "lastName", "optionalAttendeesAddresses", "organizerAddress", "parentFolderId", "path", "protectionGroupId", "protectionGroupName", "receivedTimeSecs", "recipientAddresses", "requiredAttendeesAddresses", "senderAddress", "sentTimeSecs", "storageDomainId", "taskCompletionDateTimeSecs", "taskDueDateTimeSecs", "taskStatus", "tenantId", "type", "userObjectInfo", "snapshotTags", "tags"]
 
     @field_validator('cluster_identifier')
     def cluster_identifier_validate_regular_expression(cls, value):
@@ -75,6 +76,16 @@ class HeliosEmailsInner(BaseModel):
 
         if not re.match(r"^([0-9]+:[0-9]+)$", value):
             raise ValueError(r"must validate the regular expression /^([0-9]+:[0-9]+)$/")
+        return value
+
+    @field_validator('folder_root_type')
+    def folder_root_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['MsgFolderRoot', 'ArchiveMsgFolderRoot', 'RecoverableItemsFolderRoot', 'ArchiveRecoverableItemsFolderRoot']):
+            raise ValueError("must be one of enum values ('MsgFolderRoot', 'ArchiveMsgFolderRoot', 'RecoverableItemsFolderRoot', 'ArchiveRecoverableItemsFolderRoot')")
         return value
 
     @field_validator('task_status')
@@ -93,8 +104,8 @@ class HeliosEmailsInner(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Email', 'Folder', 'Calendar', 'Contact', 'Task', 'Note']):
-            raise ValueError("must be one of enum values ('Email', 'Folder', 'Calendar', 'Contact', 'Task', 'Note')")
+        if value not in set(['Email', 'Folder', 'Calendar', 'Contact', 'Task', 'Note', 'CalendarFolder', 'ContactFolder', 'TaskFolder', 'SearchFolder']):
+            raise ValueError("must be one of enum values ('Email', 'Folder', 'Calendar', 'Contact', 'Task', 'Note', 'CalendarFolder', 'ContactFolder', 'TaskFolder', 'SearchFolder')")
         return value
 
     model_config = ConfigDict(
@@ -202,6 +213,11 @@ class HeliosEmailsInner(BaseModel):
         # and model_fields_set contains the field
         if self.folder_name is None and "folder_name" in self.model_fields_set:
             _dict['folderName'] = None
+
+        # set to None if folder_root_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.folder_root_type is None and "folder_root_type" in self.model_fields_set:
+            _dict['folderRootType'] = None
 
         # set to None if has_attachment (nullable) is None
         # and model_fields_set contains the field
@@ -345,6 +361,7 @@ class HeliosEmailsInner(BaseModel):
             "emailSubject": obj.get("emailSubject"),
             "firstName": obj.get("firstName"),
             "folderName": obj.get("folderName"),
+            "folderRootType": obj.get("folderRootType"),
             "hasAttachment": obj.get("hasAttachment"),
             "id": obj.get("id"),
             "lastModificationName": obj.get("lastModificationName"),

@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.alert_document import AlertDocument
+from cohesity_sdk.helios.models.label import Label
 from cohesity_sdk.helios.models.vault import Vault
 from typing import Set
 from typing_extensions import Self
@@ -34,16 +35,20 @@ class Alert(BaseModel):
     alert_state: Optional[StrictStr] = Field(default=None, description="Specifies the alert state.", alias="alertState")
     alert_type: Optional[StrictInt] = Field(default=None, description="Specifies the alert type.", alias="alertType")
     alert_type_bucket: Optional[StrictStr] = Field(default=None, description="Specifies the Alert type bucket.", alias="alertTypeBucket")
+    cluster_id: Optional[StrictInt] = Field(default=None, description="Id of the cluster which the alert is associated", alias="clusterId")
     cluster_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of cluster which alert is raised from.", alias="clusterName")
     dedup_count: Optional[StrictInt] = Field(default=None, description="Specifies the dedup count of alert.", alias="dedupCount")
     dedup_timestamps: Optional[List[StrictInt]] = Field(default=None, description="Specifies Unix epoch Timestamps (in microseconds) for the last 25 occurrences of duplicated Alerts that are stored with the original/primary Alert. Alerts are grouped into one Alert if the Alerts are the same type, are reporting on the same Object and occur within one hour. 'dedupCount' always reports the total count of duplicated Alerts even if there are more than 25 occurrences. For example, if there are 100 occurrences of this Alert, dedupTimestamps stores the timestamps of the last 25 occurrences and dedupCount equals 100.", alias="dedupTimestamps")
     first_timestamp_usecs: Optional[StrictInt] = Field(default=None, description="SpeSpecifies Unix epoch Timestamp (in microseconds) of the first occurrence of the Alert.", alias="firstTimestampUsecs")
     id: Optional[StrictStr] = Field(default=None, description="Specifies unique id of the alert.")
     latest_timestamp_usecs: Optional[StrictInt] = Field(default=None, description="SpeSpecifies Unix epoch Timestamp (in microseconds) of the most recent occurrence of the Alert.", alias="latestTimestampUsecs")
+    property_list: Optional[List[Label]] = Field(default=None, description="List of property key and values associated with alert", alias="propertyList")
     region_id: Optional[StrictStr] = Field(default=None, description="Specifies the region id of the alert.", alias="regionId")
+    resolution_id_string: Optional[StrictStr] = Field(default=None, description="Specifies the resolution id of the alert if its resolved.", alias="resolutionIdString")
+    service_instance_id: Optional[StrictStr] = Field(default=None, description="Id of the serrvice instance which the alert is associated", alias="serviceInstanceId")
     severity: Optional[StrictStr] = Field(default=None, description="Specifies the alert severity.")
     vaults: Optional[List[Vault]] = Field(default=None, description="Specifies information about vaults where source object associated with alert is vaulted. This could be empty if alert is not related to any source object or it is not vaulted.")
-    __properties: ClassVar[List[str]] = ["alertCategory", "alertCode", "alertDocument", "alertState", "alertType", "alertTypeBucket", "clusterName", "dedupCount", "dedupTimestamps", "firstTimestampUsecs", "id", "latestTimestampUsecs", "regionId", "severity", "vaults"]
+    __properties: ClassVar[List[str]] = ["alertCategory", "alertCode", "alertDocument", "alertState", "alertType", "alertTypeBucket", "clusterId", "clusterName", "dedupCount", "dedupTimestamps", "firstTimestampUsecs", "id", "latestTimestampUsecs", "propertyList", "regionId", "resolutionIdString", "serviceInstanceId", "severity", "vaults"]
 
     @field_validator('alert_category')
     def alert_category_validate_enum(cls, value):
@@ -51,8 +56,8 @@ class Alert(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kDisk', 'kNode', 'kCluster', 'kChassis', 'kPowerSupply', 'kCPU', 'kMemory', 'kTemperature', 'kFan', 'kNIC', 'kFirmware', 'kNodeHealth', 'kOperatingSystem', 'kDataPath', 'kMetadata', 'kIndexing', 'kHelios', 'kAppMarketPlace', 'kSystemService', 'kLicense', 'kSecurity', 'kUpgrade', 'kClusterManagement', 'kAuditLog', 'kNetworking', 'kConfiguration', 'kStorageUsage', 'kFaultTolerance', 'kBackupRestore', 'kArchivalRestore', 'kRemoteReplication', 'kQuota', 'kCDP', 'kViewFailover', 'kDisasterRecovery']):
-            raise ValueError("must be one of enum values ('kDisk', 'kNode', 'kCluster', 'kChassis', 'kPowerSupply', 'kCPU', 'kMemory', 'kTemperature', 'kFan', 'kNIC', 'kFirmware', 'kNodeHealth', 'kOperatingSystem', 'kDataPath', 'kMetadata', 'kIndexing', 'kHelios', 'kAppMarketPlace', 'kSystemService', 'kLicense', 'kSecurity', 'kUpgrade', 'kClusterManagement', 'kAuditLog', 'kNetworking', 'kConfiguration', 'kStorageUsage', 'kFaultTolerance', 'kBackupRestore', 'kArchivalRestore', 'kRemoteReplication', 'kQuota', 'kCDP', 'kViewFailover', 'kDisasterRecovery')")
+        if value not in set(['kDisk', 'kNode', 'kCluster', 'kChassis', 'kPowerSupply', 'kCPU', 'kMemory', 'kTemperature', 'kFan', 'kNIC', 'kFirmware', 'kNodeHealth', 'kOperatingSystem', 'kDataPath', 'kDataSourceConnector', 'kMetadata', 'kIndexing', 'kHelios', 'kAppMarketPlace', 'kSystemService', 'kLicense', 'kSecurity', 'kUpgrade', 'kClusterManagement', 'kAuditLog', 'kNetworking', 'kConfiguration', 'kStorageUsage', 'kFaultTolerance', 'kBackupRestore', 'kArchivalRestore', 'kRemoteReplication', 'kQuota', 'kCDP', 'kViewFailover', 'kDisasterRecovery', 'kStorageDevice', 'kStoragePool', 'kGeneralSoftwareFailure', 'kAgent', 'kNetBackup']):
+            raise ValueError("must be one of enum values ('kDisk', 'kNode', 'kCluster', 'kChassis', 'kPowerSupply', 'kCPU', 'kMemory', 'kTemperature', 'kFan', 'kNIC', 'kFirmware', 'kNodeHealth', 'kOperatingSystem', 'kDataPath', 'kDataSourceConnector', 'kMetadata', 'kIndexing', 'kHelios', 'kAppMarketPlace', 'kSystemService', 'kLicense', 'kSecurity', 'kUpgrade', 'kClusterManagement', 'kAuditLog', 'kNetworking', 'kConfiguration', 'kStorageUsage', 'kFaultTolerance', 'kBackupRestore', 'kArchivalRestore', 'kRemoteReplication', 'kQuota', 'kCDP', 'kViewFailover', 'kDisasterRecovery', 'kStorageDevice', 'kStoragePool', 'kGeneralSoftwareFailure', 'kAgent', 'kNetBackup')")
         return value
 
     @field_validator('alert_state')
@@ -127,6 +132,13 @@ class Alert(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of alert_document
         if self.alert_document:
             _dict['alertDocument'] = self.alert_document.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in property_list (list)
+        _items = []
+        if self.property_list:
+            for _item_property_list in self.property_list:
+                if _item_property_list:
+                    _items.append(_item_property_list.to_dict())
+            _dict['propertyList'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in vaults (list)
         _items = []
         if self.vaults:
@@ -158,6 +170,11 @@ class Alert(BaseModel):
         # and model_fields_set contains the field
         if self.alert_type_bucket is None and "alert_type_bucket" in self.model_fields_set:
             _dict['alertTypeBucket'] = None
+
+        # set to None if cluster_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.cluster_id is None and "cluster_id" in self.model_fields_set:
+            _dict['clusterId'] = None
 
         # set to None if cluster_name (nullable) is None
         # and model_fields_set contains the field
@@ -194,6 +211,16 @@ class Alert(BaseModel):
         if self.region_id is None and "region_id" in self.model_fields_set:
             _dict['regionId'] = None
 
+        # set to None if resolution_id_string (nullable) is None
+        # and model_fields_set contains the field
+        if self.resolution_id_string is None and "resolution_id_string" in self.model_fields_set:
+            _dict['resolutionIdString'] = None
+
+        # set to None if service_instance_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.service_instance_id is None and "service_instance_id" in self.model_fields_set:
+            _dict['serviceInstanceId'] = None
+
         # set to None if severity (nullable) is None
         # and model_fields_set contains the field
         if self.severity is None and "severity" in self.model_fields_set:
@@ -222,13 +249,17 @@ class Alert(BaseModel):
             "alertState": obj.get("alertState"),
             "alertType": obj.get("alertType"),
             "alertTypeBucket": obj.get("alertTypeBucket"),
+            "clusterId": obj.get("clusterId"),
             "clusterName": obj.get("clusterName"),
             "dedupCount": obj.get("dedupCount"),
             "dedupTimestamps": obj.get("dedupTimestamps"),
             "firstTimestampUsecs": obj.get("firstTimestampUsecs"),
             "id": obj.get("id"),
             "latestTimestampUsecs": obj.get("latestTimestampUsecs"),
+            "propertyList": [Label.from_dict(_item) for _item in obj["propertyList"]] if obj.get("propertyList") is not None else None,
             "regionId": obj.get("regionId"),
+            "resolutionIdString": obj.get("resolutionIdString"),
+            "serviceInstanceId": obj.get("serviceInstanceId"),
             "severity": obj.get("severity"),
             "vaults": [Vault.from_dict(_item) for _item in obj["vaults"]] if obj.get("vaults") is not None else None
         })

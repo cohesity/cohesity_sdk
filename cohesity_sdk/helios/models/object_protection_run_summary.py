@@ -34,6 +34,7 @@ class ObjectProtectionRunSummary(BaseModel):
     """
     Specifies the response body of the get object runs request.
     """ # noqa: E501
+    aux_entity_id: Optional[StrictInt] = Field(default=None, description="Specifies the auxiliary object id.", alias="auxEntityId")
     entity_id: Optional[ObjectStringIdentifier] = Field(default=None, alias="entityId")
     environment: Optional[StrictStr] = Field(default=None, description="Specifies the environment of the object.")
     id: Optional[StrictInt] = Field(default=None, description="Specifies object id.")
@@ -63,7 +64,7 @@ class ObjectProtectionRunSummary(BaseModel):
     run_label: Optional[StrictStr] = Field(default=None, description="Specifies a label with which this run is created. Only applicable for user triggered protect now action.", alias="runLabel")
     run_type: Optional[StrictStr] = Field(default=None, description="Type of Protection run. 'kRegular' indicates an incremental (CBT) backup. Incremental backups utilizing CBT (if supported) are captured of the target protection objects. The first run of a kRegular schedule captures all the blocks. 'kFull' indicates a full (no CBT) backup. A complete backup (all blocks) of the target protection objects are always captured and Change Block Tracking (CBT) is not utilized. 'kLog' indicates a Database Log backup. Capture the database transaction logs to allow rolling back to a specific point in time. 'kSystem' indicates system volume backup. It produces an image for bare metal recovery.", alias="runType")
     storage_domain_id: Optional[StrictInt] = Field(default=None, description="Specifies the Storage Domain (View Box) ID where this Protection Run writes data.", alias="storageDomainId")
-    __properties: ClassVar[List[str]] = ["entityId", "environment", "id", "name", "sourceId", "sourceName", "archivalInfo", "cloudSpinInfo", "dataLock", "isCloudArchivalDirect", "isLocalSnapshotsDeleted", "isReplicationRun", "isSlaViolated", "localSnapshotInfo", "onLegalHold", "onPremDeployInfo", "originClusterIdentifier", "originProtectionGroupId", "originalBackupInfo", "permissions", "policyId", "policyName", "protectionGroupId", "protectionGroupName", "replicationInfo", "runId", "runLabel", "runType", "storageDomainId"]
+    __properties: ClassVar[List[str]] = ["auxEntityId", "entityId", "environment", "id", "name", "sourceId", "sourceName", "archivalInfo", "cloudSpinInfo", "dataLock", "isCloudArchivalDirect", "isLocalSnapshotsDeleted", "isReplicationRun", "isSlaViolated", "localSnapshotInfo", "onLegalHold", "onPremDeployInfo", "originClusterIdentifier", "originProtectionGroupId", "originalBackupInfo", "permissions", "policyId", "policyName", "protectionGroupId", "protectionGroupName", "replicationInfo", "runId", "runLabel", "runType", "storageDomainId"]
 
     @field_validator('environment')
     def environment_validate_enum(cls, value):
@@ -71,8 +72,8 @@ class ObjectProtectionRunSummary(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAzureSQL', 'kAcropolis', 'kGCP', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc']):
-            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAzureSQL', 'kAcropolis', 'kGCP', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc')")
+        if value not in set(['kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAcropolis', 'kGCP', 'kGCPBigQuery', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kS3Compatible', 'kSAPHANA', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kAzureEntraID', 'kAzureMySQL', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kSalesforce']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAcropolis', 'kGCP', 'kGCPBigQuery', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kS3Compatible', 'kSAPHANA', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kAzureEntraID', 'kAzureMySQL', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kSalesforce')")
         return value
 
     @field_validator('data_lock')
@@ -165,6 +166,11 @@ class ObjectProtectionRunSummary(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of replication_info
         if self.replication_info:
             _dict['replicationInfo'] = self.replication_info.to_dict()
+        # set to None if aux_entity_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.aux_entity_id is None and "aux_entity_id" in self.model_fields_set:
+            _dict['auxEntityId'] = None
+
         # set to None if environment (nullable) is None
         # and model_fields_set contains the field
         if self.environment is None and "environment" in self.model_fields_set:
@@ -282,6 +288,7 @@ class ObjectProtectionRunSummary(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "auxEntityId": obj.get("auxEntityId"),
             "entityId": ObjectStringIdentifier.from_dict(obj["entityId"]) if obj.get("entityId") is not None else None,
             "environment": obj.get("environment"),
             "id": obj.get("id"),

@@ -11,16 +11,19 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from pydantic import StrictBool
 from cohesity_sdk.helios.models.cluster_storage_stats import ClusterStorageStats
 from cohesity_sdk.helios.models.fetch_throttling_stats_response_body import FetchThrottlingStatsResponseBody
 from cohesity_sdk.helios.models.files_stats import FilesStats
 from cohesity_sdk.helios.models.get_protection_runs_status_response_body import GetProtectionRunsStatusResponseBody
 from cohesity_sdk.helios.models.mcm_get_policy_last_run_stats_response_body import McmGetPolicyLastRunStatsResponseBody
 from cohesity_sdk.helios.models.mcm_get_protection_last_run_stats_response_body import McmGetProtectionLastRunStatsResponseBody
+from cohesity_sdk.helios.models.restore_stats import RestoreStats
 from cohesity_sdk.helios.models.time_series_stats import TimeSeriesStats
 from cohesity_sdk.helios.models.view_clients_stats import ViewClientsStats
 from cohesity_sdk.helios.models.views_stats import ViewsStats
@@ -49,11 +52,11 @@ class StatsApi:
         self,
         registration_id: Annotated[Optional[StrictStr], Field(description="Specifies the registration id of the protected source. It is of the format {clusterID}:{IncarnationId}:{EntityId}.")],
         source_id: Annotated[Optional[StrictStr], Field(description="Specifies the source name for which throttling stats are needed. In case of Office365, it is the domain name which is unique.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time.")] = None,
         workload_type: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of workload types within the source for which throttling stats are needed.")] = None,
         api_type: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of api type within the source for which throttling stats are needed.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -75,8 +78,6 @@ class StatsApi:
         :type registration_id: str
         :param source_id: Specifies the source name for which throttling stats are needed. In case of Office365, it is the domain name which is unique. (required)
         :type source_id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param start_time_usecs: Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.
         :type start_time_usecs: int
         :param end_time_usecs: Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time.
@@ -85,6 +86,8 @@ class StatsApi:
         :type workload_type: List[str]
         :param api_type: Specifies the list of api type within the source for which throttling stats are needed.
         :type api_type: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -110,11 +113,11 @@ class StatsApi:
         _param = self._fetch_throttling_stats_serialize(
             registration_id=registration_id,
             source_id=source_id,
-            region_id=region_id,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             workload_type=workload_type,
             api_type=api_type,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -140,11 +143,11 @@ class StatsApi:
         self,
         registration_id: Annotated[Optional[StrictStr], Field(description="Specifies the registration id of the protected source. It is of the format {clusterID}:{IncarnationId}:{EntityId}.")],
         source_id: Annotated[Optional[StrictStr], Field(description="Specifies the source name for which throttling stats are needed. In case of Office365, it is the domain name which is unique.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time.")] = None,
         workload_type: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of workload types within the source for which throttling stats are needed.")] = None,
         api_type: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of api type within the source for which throttling stats are needed.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -166,8 +169,6 @@ class StatsApi:
         :type registration_id: str
         :param source_id: Specifies the source name for which throttling stats are needed. In case of Office365, it is the domain name which is unique. (required)
         :type source_id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param start_time_usecs: Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.
         :type start_time_usecs: int
         :param end_time_usecs: Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time.
@@ -176,6 +177,8 @@ class StatsApi:
         :type workload_type: List[str]
         :param api_type: Specifies the list of api type within the source for which throttling stats are needed.
         :type api_type: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -201,11 +204,11 @@ class StatsApi:
         _param = self._fetch_throttling_stats_serialize(
             registration_id=registration_id,
             source_id=source_id,
-            region_id=region_id,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             workload_type=workload_type,
             api_type=api_type,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -231,11 +234,11 @@ class StatsApi:
         self,
         registration_id: Annotated[Optional[StrictStr], Field(description="Specifies the registration id of the protected source. It is of the format {clusterID}:{IncarnationId}:{EntityId}.")],
         source_id: Annotated[Optional[StrictStr], Field(description="Specifies the source name for which throttling stats are needed. In case of Office365, it is the domain name which is unique.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time.")] = None,
         workload_type: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of workload types within the source for which throttling stats are needed.")] = None,
         api_type: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of api type within the source for which throttling stats are needed.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -257,8 +260,6 @@ class StatsApi:
         :type registration_id: str
         :param source_id: Specifies the source name for which throttling stats are needed. In case of Office365, it is the domain name which is unique. (required)
         :type source_id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param start_time_usecs: Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.
         :type start_time_usecs: int
         :param end_time_usecs: Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time.
@@ -267,6 +268,8 @@ class StatsApi:
         :type workload_type: List[str]
         :param api_type: Specifies the list of api type within the source for which throttling stats are needed.
         :type api_type: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -292,11 +295,11 @@ class StatsApi:
         _param = self._fetch_throttling_stats_serialize(
             registration_id=registration_id,
             source_id=source_id,
-            region_id=region_id,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             workload_type=workload_type,
             api_type=api_type,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -317,11 +320,11 @@ class StatsApi:
         self,
         registration_id,
         source_id,
-        region_id,
         start_time_usecs,
         end_time_usecs,
         workload_type,
         api_type,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -410,8 +413,8 @@ class StatsApi:
     @validate_call
     def get_cluster_storage_stats(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -429,9 +432,9 @@ class StatsApi:
 
         Get Cluster Storage Stats.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -481,8 +484,8 @@ class StatsApi:
     @validate_call
     def get_cluster_storage_stats_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -500,9 +503,9 @@ class StatsApi:
 
         Get Cluster Storage Stats.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -552,8 +555,8 @@ class StatsApi:
     @validate_call
     def get_cluster_storage_stats_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -571,9 +574,9 @@ class StatsApi:
 
         Get Cluster Storage Stats.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -686,9 +689,9 @@ class StatsApi:
     @validate_call
     def get_files_stats(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         entity_type: Annotated[Optional[StrictStr], Field(description="Specifies the entity type based on which the files stats are calculated. By default stats are calculated based on Cluster")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -706,12 +709,12 @@ class StatsApi:
 
         Get Stats of files.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param entity_type: Specifies the entity type based on which the files stats are calculated. By default stats are calculated based on Cluster
         :type entity_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -735,9 +738,9 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._get_files_stats_serialize(
+            entity_type=entity_type,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            entity_type=entity_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -761,9 +764,9 @@ class StatsApi:
     @validate_call
     def get_files_stats_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         entity_type: Annotated[Optional[StrictStr], Field(description="Specifies the entity type based on which the files stats are calculated. By default stats are calculated based on Cluster")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -781,12 +784,12 @@ class StatsApi:
 
         Get Stats of files.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param entity_type: Specifies the entity type based on which the files stats are calculated. By default stats are calculated based on Cluster
         :type entity_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -810,9 +813,9 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._get_files_stats_serialize(
+            entity_type=entity_type,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            entity_type=entity_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -836,9 +839,9 @@ class StatsApi:
     @validate_call
     def get_files_stats_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         entity_type: Annotated[Optional[StrictStr], Field(description="Specifies the entity type based on which the files stats are calculated. By default stats are calculated based on Cluster")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -856,12 +859,12 @@ class StatsApi:
 
         Get Stats of files.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param entity_type: Specifies the entity type based on which the files stats are calculated. By default stats are calculated based on Cluster
         :type entity_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -885,9 +888,9 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._get_files_stats_serialize(
+            entity_type=entity_type,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            entity_type=entity_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -906,9 +909,9 @@ class StatsApi:
 
     def _get_files_stats_serialize(
         self,
+        entity_type,
         access_cluster_id,
         region_id,
-        entity_type,
         _request_auth,
         _content_type,
         _headers,
@@ -979,11 +982,11 @@ class StatsApi:
     @validate_call
     def get_protection_runs_stats(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be counted. By default it is current time minus a day.")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be counted. By default it is current time.")] = None,
         run_status: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of status, runs matching the status will be returned. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Failed' indicates that the run has failed. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1001,16 +1004,16 @@ class StatsApi:
 
         Get statistics of protection runs.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param start_time_usecs: Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be counted. By default it is current time minus a day.
         :type start_time_usecs: int
         :param end_time_usecs: Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be counted. By default it is current time.
         :type end_time_usecs: int
         :param run_status: Specifies a list of status, runs matching the status will be returned. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Failed' indicates that the run has failed. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.
         :type run_status: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1034,11 +1037,11 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._get_protection_runs_stats_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             run_status=run_status,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1062,11 +1065,11 @@ class StatsApi:
     @validate_call
     def get_protection_runs_stats_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be counted. By default it is current time minus a day.")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be counted. By default it is current time.")] = None,
         run_status: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of status, runs matching the status will be returned. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Failed' indicates that the run has failed. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1084,16 +1087,16 @@ class StatsApi:
 
         Get statistics of protection runs.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param start_time_usecs: Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be counted. By default it is current time minus a day.
         :type start_time_usecs: int
         :param end_time_usecs: Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be counted. By default it is current time.
         :type end_time_usecs: int
         :param run_status: Specifies a list of status, runs matching the status will be returned. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Failed' indicates that the run has failed. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.
         :type run_status: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1117,11 +1120,11 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._get_protection_runs_stats_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             run_status=run_status,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1145,11 +1148,11 @@ class StatsApi:
     @validate_call
     def get_protection_runs_stats_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be counted. By default it is current time minus a day.")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be counted. By default it is current time.")] = None,
         run_status: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of status, runs matching the status will be returned. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Failed' indicates that the run has failed. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1167,16 +1170,16 @@ class StatsApi:
 
         Get statistics of protection runs.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param start_time_usecs: Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be counted. By default it is current time minus a day.
         :type start_time_usecs: int
         :param end_time_usecs: Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be counted. By default it is current time.
         :type end_time_usecs: int
         :param run_status: Specifies a list of status, runs matching the status will be returned. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Failed' indicates that the run has failed. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.
         :type run_status: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1200,11 +1203,11 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._get_protection_runs_stats_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             run_status=run_status,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1223,11 +1226,11 @@ class StatsApi:
 
     def _get_protection_runs_stats_serialize(
         self,
-        access_cluster_id,
-        region_id,
         start_time_usecs,
         end_time_usecs,
         run_status,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1305,17 +1308,330 @@ class StatsApi:
 
 
     @validate_call
+    def get_restore_stats(
+        self,
+        start_time_usecs: Annotated[StrictInt, Field(description="Specifies the start time Unix time epoch in microseconds from which the restore stats are computed.")],
+        end_time_usecs: Annotated[StrictInt, Field(description="Specifies the end time Unix time epoch in microseconds to which the restore stats are computed.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RestoreStats:
+        """Compute the statistics on the Restore tasks on the cluster.
+
+        Compute the statistics on the Restore tasks on the cluster based on the provided time interval.
+
+        :param start_time_usecs: Specifies the start time Unix time epoch in microseconds from which the restore stats are computed. (required)
+        :type start_time_usecs: int
+        :param end_time_usecs: Specifies the end time Unix time epoch in microseconds to which the restore stats are computed. (required)
+        :type end_time_usecs: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_restore_stats_serialize(
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "RestoreStats",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_restore_stats_with_http_info(
+        self,
+        start_time_usecs: Annotated[StrictInt, Field(description="Specifies the start time Unix time epoch in microseconds from which the restore stats are computed.")],
+        end_time_usecs: Annotated[StrictInt, Field(description="Specifies the end time Unix time epoch in microseconds to which the restore stats are computed.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[RestoreStats]:
+        """Compute the statistics on the Restore tasks on the cluster.
+
+        Compute the statistics on the Restore tasks on the cluster based on the provided time interval.
+
+        :param start_time_usecs: Specifies the start time Unix time epoch in microseconds from which the restore stats are computed. (required)
+        :type start_time_usecs: int
+        :param end_time_usecs: Specifies the end time Unix time epoch in microseconds to which the restore stats are computed. (required)
+        :type end_time_usecs: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_restore_stats_serialize(
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "RestoreStats",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_restore_stats_without_preload_content(
+        self,
+        start_time_usecs: Annotated[StrictInt, Field(description="Specifies the start time Unix time epoch in microseconds from which the restore stats are computed.")],
+        end_time_usecs: Annotated[StrictInt, Field(description="Specifies the end time Unix time epoch in microseconds to which the restore stats are computed.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Compute the statistics on the Restore tasks on the cluster.
+
+        Compute the statistics on the Restore tasks on the cluster based on the provided time interval.
+
+        :param start_time_usecs: Specifies the start time Unix time epoch in microseconds from which the restore stats are computed. (required)
+        :type start_time_usecs: int
+        :param end_time_usecs: Specifies the end time Unix time epoch in microseconds to which the restore stats are computed. (required)
+        :type end_time_usecs: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_restore_stats_serialize(
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "RestoreStats",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_restore_stats_serialize(
+        self,
+        start_time_usecs,
+        end_time_usecs,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if start_time_usecs is not None:
+            
+            _query_params.append(('startTimeUsecs', start_time_usecs))
+            
+        if end_time_usecs is not None:
+            
+            _query_params.append(('endTimeUsecs', end_time_usecs))
+            
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/stats/recoveries',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_time_series_stats(
         self,
         schema_name: Annotated[StrictStr, Field(description="Specifies the schema name.")],
         metric_names: Annotated[List[StrictStr], Field(min_length=1, description="Specifies a list of metric names.")],
-        entity_id: Annotated[StrictStr, Field(description="Specifies the entity id.")],
         start_time_msecs: Annotated[StrictInt, Field(description="Specifies the start time of series stats.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        entity_id: Annotated[Optional[StrictStr], Field(description="Specifies the entity id.")] = None,
+        entity_id_list: Annotated[Optional[Annotated[List[StrictStr], Field(min_length=1)]], Field(description="Specifies an entity id list represented as a string. The stats result will be the sum over all these entities. Duplicate id's will be ignored. If both EntityIdList and EntityId are specified, EntityId will be ignored.")] = None,
+        prorate_data_points: Annotated[Optional[StrictBool], Field(description="Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. This should be used only when rollup function is provided.")] = None,
+        include_growth_change: Annotated[Optional[StrictBool], Field(description="Specifies if the response should return the difference of a data point with the previous datapoint. Used for determining the change in growth rate. Datapoint could be +x, 0, -x showing the growth is up, no change or down respectively.")] = None,
         end_time_msecs: Annotated[Optional[StrictInt], Field(description="Specifies the end time of series stats, by default it is current time.")] = None,
         rollup_function: Annotated[Optional[StrictStr], Field(description="Specifies the rollup function to apply to the data points for the time interval specified by rollupInternalSecs.")] = None,
         rollup_interval_secs: Annotated[Optional[StrictInt], Field(description="Specifies the time interval granularity for the specified rollup function.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1337,20 +1653,26 @@ class StatsApi:
         :type schema_name: str
         :param metric_names: Specifies a list of metric names. (required)
         :type metric_names: List[str]
-        :param entity_id: Specifies the entity id. (required)
-        :type entity_id: str
         :param start_time_msecs: Specifies the start time of series stats. (required)
         :type start_time_msecs: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
+        :param entity_id: Specifies the entity id.
+        :type entity_id: str
+        :param entity_id_list: Specifies an entity id list represented as a string. The stats result will be the sum over all these entities. Duplicate id's will be ignored. If both EntityIdList and EntityId are specified, EntityId will be ignored.
+        :type entity_id_list: List[str]
+        :param prorate_data_points: Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. This should be used only when rollup function is provided.
+        :type prorate_data_points: bool
+        :param include_growth_change: Specifies if the response should return the difference of a data point with the previous datapoint. Used for determining the change in growth rate. Datapoint could be +x, 0, -x showing the growth is up, no change or down respectively.
+        :type include_growth_change: bool
         :param end_time_msecs: Specifies the end time of series stats, by default it is current time.
         :type end_time_msecs: int
         :param rollup_function: Specifies the rollup function to apply to the data points for the time interval specified by rollupInternalSecs.
         :type rollup_function: str
         :param rollup_interval_secs: Specifies the time interval granularity for the specified rollup function.
         :type rollup_interval_secs: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1376,13 +1698,16 @@ class StatsApi:
         _param = self._get_time_series_stats_serialize(
             schema_name=schema_name,
             metric_names=metric_names,
-            entity_id=entity_id,
             start_time_msecs=start_time_msecs,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
+            entity_id=entity_id,
+            entity_id_list=entity_id_list,
+            prorate_data_points=prorate_data_points,
+            include_growth_change=include_growth_change,
             end_time_msecs=end_time_msecs,
             rollup_function=rollup_function,
             rollup_interval_secs=rollup_interval_secs,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1408,13 +1733,16 @@ class StatsApi:
         self,
         schema_name: Annotated[StrictStr, Field(description="Specifies the schema name.")],
         metric_names: Annotated[List[StrictStr], Field(min_length=1, description="Specifies a list of metric names.")],
-        entity_id: Annotated[StrictStr, Field(description="Specifies the entity id.")],
         start_time_msecs: Annotated[StrictInt, Field(description="Specifies the start time of series stats.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        entity_id: Annotated[Optional[StrictStr], Field(description="Specifies the entity id.")] = None,
+        entity_id_list: Annotated[Optional[Annotated[List[StrictStr], Field(min_length=1)]], Field(description="Specifies an entity id list represented as a string. The stats result will be the sum over all these entities. Duplicate id's will be ignored. If both EntityIdList and EntityId are specified, EntityId will be ignored.")] = None,
+        prorate_data_points: Annotated[Optional[StrictBool], Field(description="Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. This should be used only when rollup function is provided.")] = None,
+        include_growth_change: Annotated[Optional[StrictBool], Field(description="Specifies if the response should return the difference of a data point with the previous datapoint. Used for determining the change in growth rate. Datapoint could be +x, 0, -x showing the growth is up, no change or down respectively.")] = None,
         end_time_msecs: Annotated[Optional[StrictInt], Field(description="Specifies the end time of series stats, by default it is current time.")] = None,
         rollup_function: Annotated[Optional[StrictStr], Field(description="Specifies the rollup function to apply to the data points for the time interval specified by rollupInternalSecs.")] = None,
         rollup_interval_secs: Annotated[Optional[StrictInt], Field(description="Specifies the time interval granularity for the specified rollup function.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1436,20 +1764,26 @@ class StatsApi:
         :type schema_name: str
         :param metric_names: Specifies a list of metric names. (required)
         :type metric_names: List[str]
-        :param entity_id: Specifies the entity id. (required)
-        :type entity_id: str
         :param start_time_msecs: Specifies the start time of series stats. (required)
         :type start_time_msecs: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
+        :param entity_id: Specifies the entity id.
+        :type entity_id: str
+        :param entity_id_list: Specifies an entity id list represented as a string. The stats result will be the sum over all these entities. Duplicate id's will be ignored. If both EntityIdList and EntityId are specified, EntityId will be ignored.
+        :type entity_id_list: List[str]
+        :param prorate_data_points: Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. This should be used only when rollup function is provided.
+        :type prorate_data_points: bool
+        :param include_growth_change: Specifies if the response should return the difference of a data point with the previous datapoint. Used for determining the change in growth rate. Datapoint could be +x, 0, -x showing the growth is up, no change or down respectively.
+        :type include_growth_change: bool
         :param end_time_msecs: Specifies the end time of series stats, by default it is current time.
         :type end_time_msecs: int
         :param rollup_function: Specifies the rollup function to apply to the data points for the time interval specified by rollupInternalSecs.
         :type rollup_function: str
         :param rollup_interval_secs: Specifies the time interval granularity for the specified rollup function.
         :type rollup_interval_secs: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1475,13 +1809,16 @@ class StatsApi:
         _param = self._get_time_series_stats_serialize(
             schema_name=schema_name,
             metric_names=metric_names,
-            entity_id=entity_id,
             start_time_msecs=start_time_msecs,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
+            entity_id=entity_id,
+            entity_id_list=entity_id_list,
+            prorate_data_points=prorate_data_points,
+            include_growth_change=include_growth_change,
             end_time_msecs=end_time_msecs,
             rollup_function=rollup_function,
             rollup_interval_secs=rollup_interval_secs,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1507,13 +1844,16 @@ class StatsApi:
         self,
         schema_name: Annotated[StrictStr, Field(description="Specifies the schema name.")],
         metric_names: Annotated[List[StrictStr], Field(min_length=1, description="Specifies a list of metric names.")],
-        entity_id: Annotated[StrictStr, Field(description="Specifies the entity id.")],
         start_time_msecs: Annotated[StrictInt, Field(description="Specifies the start time of series stats.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        entity_id: Annotated[Optional[StrictStr], Field(description="Specifies the entity id.")] = None,
+        entity_id_list: Annotated[Optional[Annotated[List[StrictStr], Field(min_length=1)]], Field(description="Specifies an entity id list represented as a string. The stats result will be the sum over all these entities. Duplicate id's will be ignored. If both EntityIdList and EntityId are specified, EntityId will be ignored.")] = None,
+        prorate_data_points: Annotated[Optional[StrictBool], Field(description="Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. This should be used only when rollup function is provided.")] = None,
+        include_growth_change: Annotated[Optional[StrictBool], Field(description="Specifies if the response should return the difference of a data point with the previous datapoint. Used for determining the change in growth rate. Datapoint could be +x, 0, -x showing the growth is up, no change or down respectively.")] = None,
         end_time_msecs: Annotated[Optional[StrictInt], Field(description="Specifies the end time of series stats, by default it is current time.")] = None,
         rollup_function: Annotated[Optional[StrictStr], Field(description="Specifies the rollup function to apply to the data points for the time interval specified by rollupInternalSecs.")] = None,
         rollup_interval_secs: Annotated[Optional[StrictInt], Field(description="Specifies the time interval granularity for the specified rollup function.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1535,20 +1875,26 @@ class StatsApi:
         :type schema_name: str
         :param metric_names: Specifies a list of metric names. (required)
         :type metric_names: List[str]
-        :param entity_id: Specifies the entity id. (required)
-        :type entity_id: str
         :param start_time_msecs: Specifies the start time of series stats. (required)
         :type start_time_msecs: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
+        :param entity_id: Specifies the entity id.
+        :type entity_id: str
+        :param entity_id_list: Specifies an entity id list represented as a string. The stats result will be the sum over all these entities. Duplicate id's will be ignored. If both EntityIdList and EntityId are specified, EntityId will be ignored.
+        :type entity_id_list: List[str]
+        :param prorate_data_points: Specifies to create pro rated data point for every rollup interval instead of returning the actual raw data points. This should be used only when rollup function is provided.
+        :type prorate_data_points: bool
+        :param include_growth_change: Specifies if the response should return the difference of a data point with the previous datapoint. Used for determining the change in growth rate. Datapoint could be +x, 0, -x showing the growth is up, no change or down respectively.
+        :type include_growth_change: bool
         :param end_time_msecs: Specifies the end time of series stats, by default it is current time.
         :type end_time_msecs: int
         :param rollup_function: Specifies the rollup function to apply to the data points for the time interval specified by rollupInternalSecs.
         :type rollup_function: str
         :param rollup_interval_secs: Specifies the time interval granularity for the specified rollup function.
         :type rollup_interval_secs: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1574,13 +1920,16 @@ class StatsApi:
         _param = self._get_time_series_stats_serialize(
             schema_name=schema_name,
             metric_names=metric_names,
-            entity_id=entity_id,
             start_time_msecs=start_time_msecs,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
+            entity_id=entity_id,
+            entity_id_list=entity_id_list,
+            prorate_data_points=prorate_data_points,
+            include_growth_change=include_growth_change,
             end_time_msecs=end_time_msecs,
             rollup_function=rollup_function,
             rollup_interval_secs=rollup_interval_secs,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1601,13 +1950,16 @@ class StatsApi:
         self,
         schema_name,
         metric_names,
-        entity_id,
         start_time_msecs,
-        access_cluster_id,
-        region_id,
+        entity_id,
+        entity_id_list,
+        prorate_data_points,
+        include_growth_change,
         end_time_msecs,
         rollup_function,
         rollup_interval_secs,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1618,6 +1970,7 @@ class StatsApi:
 
         _collection_formats: Dict[str, str] = {
             'metricNames': 'csv',
+            'entityIdList': 'csv',
         }
 
         _path_params: Dict[str, str] = {}
@@ -1642,6 +1995,18 @@ class StatsApi:
         if entity_id is not None:
             
             _query_params.append(('entityId', entity_id))
+            
+        if entity_id_list is not None:
+            
+            _query_params.append(('entityIdList', entity_id_list))
+            
+        if prorate_data_points is not None:
+            
+            _query_params.append(('prorateDataPoints', prorate_data_points))
+            
+        if include_growth_change is not None:
+            
+            _query_params.append(('includeGrowthChange', include_growth_change))
             
         if start_time_msecs is not None:
             
@@ -1701,13 +2066,357 @@ class StatsApi:
 
 
     @validate_call
+    def get_top_views_stats(
+        self,
+        metric: Annotated[Optional[StrictStr], Field(description="Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead.")] = None,
+        protocol: Annotated[Optional[StrictStr], Field(description="Specifies the protocol to sort. Defaults to kAny.")] = None,
+        num_top_views: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the 'metric' param. Minimum value has to be 1. Defaults to 100.")] = None,
+        last_hours: Annotated[Optional[StrictInt], Field(description="Specifies the last hours of stats to sort. Defaults to 24.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ViewsStats:
+        """Get stats for the top views, which are the views with largest value of 'stats.valueInLastHours' for a given combination of 'metric', 'protocol' & 'lastHours' params. The API uses suitable defaults if any of the parameters are not specified.
+
+        Get stats for the top views, which are the views with largest value of 'stats.valueInLastHours' for a given combination of 'metric', 'protocol' & 'lastHours' params. The API uses suitable defaults if any of the parameters are not specified.
+
+        :param metric: Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead.
+        :type metric: str
+        :param protocol: Specifies the protocol to sort. Defaults to kAny.
+        :type protocol: str
+        :param num_top_views: Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the 'metric' param. Minimum value has to be 1. Defaults to 100.
+        :type num_top_views: int
+        :param last_hours: Specifies the last hours of stats to sort. Defaults to 24.
+        :type last_hours: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_top_views_stats_serialize(
+            metric=metric,
+            protocol=protocol,
+            num_top_views=num_top_views,
+            last_hours=last_hours,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ViewsStats",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_top_views_stats_with_http_info(
+        self,
+        metric: Annotated[Optional[StrictStr], Field(description="Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead.")] = None,
+        protocol: Annotated[Optional[StrictStr], Field(description="Specifies the protocol to sort. Defaults to kAny.")] = None,
+        num_top_views: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the 'metric' param. Minimum value has to be 1. Defaults to 100.")] = None,
+        last_hours: Annotated[Optional[StrictInt], Field(description="Specifies the last hours of stats to sort. Defaults to 24.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ViewsStats]:
+        """Get stats for the top views, which are the views with largest value of 'stats.valueInLastHours' for a given combination of 'metric', 'protocol' & 'lastHours' params. The API uses suitable defaults if any of the parameters are not specified.
+
+        Get stats for the top views, which are the views with largest value of 'stats.valueInLastHours' for a given combination of 'metric', 'protocol' & 'lastHours' params. The API uses suitable defaults if any of the parameters are not specified.
+
+        :param metric: Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead.
+        :type metric: str
+        :param protocol: Specifies the protocol to sort. Defaults to kAny.
+        :type protocol: str
+        :param num_top_views: Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the 'metric' param. Minimum value has to be 1. Defaults to 100.
+        :type num_top_views: int
+        :param last_hours: Specifies the last hours of stats to sort. Defaults to 24.
+        :type last_hours: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_top_views_stats_serialize(
+            metric=metric,
+            protocol=protocol,
+            num_top_views=num_top_views,
+            last_hours=last_hours,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ViewsStats",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_top_views_stats_without_preload_content(
+        self,
+        metric: Annotated[Optional[StrictStr], Field(description="Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead.")] = None,
+        protocol: Annotated[Optional[StrictStr], Field(description="Specifies the protocol to sort. Defaults to kAny.")] = None,
+        num_top_views: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the 'metric' param. Minimum value has to be 1. Defaults to 100.")] = None,
+        last_hours: Annotated[Optional[StrictInt], Field(description="Specifies the last hours of stats to sort. Defaults to 24.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get stats for the top views, which are the views with largest value of 'stats.valueInLastHours' for a given combination of 'metric', 'protocol' & 'lastHours' params. The API uses suitable defaults if any of the parameters are not specified.
+
+        Get stats for the top views, which are the views with largest value of 'stats.valueInLastHours' for a given combination of 'metric', 'protocol' & 'lastHours' params. The API uses suitable defaults if any of the parameters are not specified.
+
+        :param metric: Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead.
+        :type metric: str
+        :param protocol: Specifies the protocol to sort. Defaults to kAny.
+        :type protocol: str
+        :param num_top_views: Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the 'metric' param. Minimum value has to be 1. Defaults to 100.
+        :type num_top_views: int
+        :param last_hours: Specifies the last hours of stats to sort. Defaults to 24.
+        :type last_hours: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_top_views_stats_serialize(
+            metric=metric,
+            protocol=protocol,
+            num_top_views=num_top_views,
+            last_hours=last_hours,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ViewsStats",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_top_views_stats_serialize(
+        self,
+        metric,
+        protocol,
+        num_top_views,
+        last_hours,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if metric is not None:
+            
+            _query_params.append(('metric', metric))
+            
+        if protocol is not None:
+            
+            _query_params.append(('protocol', protocol))
+            
+        if num_top_views is not None:
+            
+            _query_params.append(('numTopViews', num_top_views))
+            
+        if last_hours is not None:
+            
+            _query_params.append(('lastHours', last_hours))
+            
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/stats/top-views',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_view_client_stats(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         metric: Annotated[Optional[StrictStr], Field(description="Specifies the metric to which stats has to be sorted.")] = None,
         num_top_view_clients: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Specifies the number of view clients for which stats has to be computed. Specifying this field will return the Views sorted in the descending order on the metric specified. If specified, minimum value is 1. If not specified, all view clients will be returned. If metric is not specified, this parameter must also not be specified.")] = None,
         last_hours: Annotated[Optional[StrictInt], Field(description="Specifies the last hours of stats to sort.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1725,16 +2434,16 @@ class StatsApi:
 
         Get Stats of View Clients.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param metric: Specifies the metric to which stats has to be sorted.
         :type metric: str
         :param num_top_view_clients: Specifies the number of view clients for which stats has to be computed. Specifying this field will return the Views sorted in the descending order on the metric specified. If specified, minimum value is 1. If not specified, all view clients will be returned. If metric is not specified, this parameter must also not be specified.
         :type num_top_view_clients: int
         :param last_hours: Specifies the last hours of stats to sort.
         :type last_hours: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1758,11 +2467,11 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._get_view_client_stats_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             metric=metric,
             num_top_view_clients=num_top_view_clients,
             last_hours=last_hours,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1786,11 +2495,11 @@ class StatsApi:
     @validate_call
     def get_view_client_stats_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         metric: Annotated[Optional[StrictStr], Field(description="Specifies the metric to which stats has to be sorted.")] = None,
         num_top_view_clients: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Specifies the number of view clients for which stats has to be computed. Specifying this field will return the Views sorted in the descending order on the metric specified. If specified, minimum value is 1. If not specified, all view clients will be returned. If metric is not specified, this parameter must also not be specified.")] = None,
         last_hours: Annotated[Optional[StrictInt], Field(description="Specifies the last hours of stats to sort.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1808,16 +2517,16 @@ class StatsApi:
 
         Get Stats of View Clients.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param metric: Specifies the metric to which stats has to be sorted.
         :type metric: str
         :param num_top_view_clients: Specifies the number of view clients for which stats has to be computed. Specifying this field will return the Views sorted in the descending order on the metric specified. If specified, minimum value is 1. If not specified, all view clients will be returned. If metric is not specified, this parameter must also not be specified.
         :type num_top_view_clients: int
         :param last_hours: Specifies the last hours of stats to sort.
         :type last_hours: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1841,11 +2550,11 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._get_view_client_stats_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             metric=metric,
             num_top_view_clients=num_top_view_clients,
             last_hours=last_hours,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1869,11 +2578,11 @@ class StatsApi:
     @validate_call
     def get_view_client_stats_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         metric: Annotated[Optional[StrictStr], Field(description="Specifies the metric to which stats has to be sorted.")] = None,
         num_top_view_clients: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Specifies the number of view clients for which stats has to be computed. Specifying this field will return the Views sorted in the descending order on the metric specified. If specified, minimum value is 1. If not specified, all view clients will be returned. If metric is not specified, this parameter must also not be specified.")] = None,
         last_hours: Annotated[Optional[StrictInt], Field(description="Specifies the last hours of stats to sort.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1891,16 +2600,16 @@ class StatsApi:
 
         Get Stats of View Clients.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param metric: Specifies the metric to which stats has to be sorted.
         :type metric: str
         :param num_top_view_clients: Specifies the number of view clients for which stats has to be computed. Specifying this field will return the Views sorted in the descending order on the metric specified. If specified, minimum value is 1. If not specified, all view clients will be returned. If metric is not specified, this parameter must also not be specified.
         :type num_top_view_clients: int
         :param last_hours: Specifies the last hours of stats to sort.
         :type last_hours: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1924,11 +2633,11 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._get_view_client_stats_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             metric=metric,
             num_top_view_clients=num_top_view_clients,
             last_hours=last_hours,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1947,11 +2656,11 @@ class StatsApi:
 
     def _get_view_client_stats_serialize(
         self,
-        access_cluster_id,
-        region_id,
         metric,
         num_top_view_clients,
         last_hours,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2030,12 +2739,12 @@ class StatsApi:
     @validate_call
     def get_views_stats(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
-        metric: Annotated[Optional[StrictStr], Field(description="Specifies the metric to which stats has to be sorted.")] = None,
-        protocol: Annotated[Optional[StrictStr], Field(description="Specifies the protocol to sort.")] = None,
-        num_top_views: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Specifies the number of view for which stats has to be computed. Specifying this field will return the Views sorted in the descending order on the metric specified. If specified, minimum value is 1. If not specified, all view will be returned. If metric is not specified, this parameter must also not be specified.")] = None,
-        last_hours: Annotated[Optional[StrictInt], Field(description="Specifies the last hours of stats to sort.")] = None,
+        metric: Annotated[Optional[StrictStr], Field(description="Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead.")] = None,
+        protocol: Annotated[Optional[StrictStr], Field(description="Specifies the protocol to sort. Defaults to kAny.")] = None,
+        num_top_views: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the 'metric' param. Minimum value has to be 1. Defaults to 100.")] = None,
+        last_hours: Annotated[Optional[StrictInt], Field(description="Specifies the last hours of stats to sort. Defaults to 24.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2049,22 +2758,22 @@ class StatsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ViewsStats:
-        """Get Views Stats.
+        """(Deprecated) Get stats for the top views, which are the views with largest value of 'stats.valueInLastHours' for a given combination of 'metric', 'protocol' & 'lastHours' params. The API uses suitable defaults if any of the parameters are not specified.
 
-        Get Views Stats.
+        This api will be deprecated. Use the API '/stats/top-views' instead.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
-        :param metric: Specifies the metric to which stats has to be sorted.
+        :param metric: Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead.
         :type metric: str
-        :param protocol: Specifies the protocol to sort.
+        :param protocol: Specifies the protocol to sort. Defaults to kAny.
         :type protocol: str
-        :param num_top_views: Specifies the number of view for which stats has to be computed. Specifying this field will return the Views sorted in the descending order on the metric specified. If specified, minimum value is 1. If not specified, all view will be returned. If metric is not specified, this parameter must also not be specified.
+        :param num_top_views: Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the 'metric' param. Minimum value has to be 1. Defaults to 100.
         :type num_top_views: int
-        :param last_hours: Specifies the last hours of stats to sort.
+        :param last_hours: Specifies the last hours of stats to sort. Defaults to 24.
         :type last_hours: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2086,14 +2795,15 @@ class StatsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /stats/views is deprecated.", DeprecationWarning)
 
         _param = self._get_views_stats_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             metric=metric,
             protocol=protocol,
             num_top_views=num_top_views,
             last_hours=last_hours,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2117,12 +2827,12 @@ class StatsApi:
     @validate_call
     def get_views_stats_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
-        metric: Annotated[Optional[StrictStr], Field(description="Specifies the metric to which stats has to be sorted.")] = None,
-        protocol: Annotated[Optional[StrictStr], Field(description="Specifies the protocol to sort.")] = None,
-        num_top_views: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Specifies the number of view for which stats has to be computed. Specifying this field will return the Views sorted in the descending order on the metric specified. If specified, minimum value is 1. If not specified, all view will be returned. If metric is not specified, this parameter must also not be specified.")] = None,
-        last_hours: Annotated[Optional[StrictInt], Field(description="Specifies the last hours of stats to sort.")] = None,
+        metric: Annotated[Optional[StrictStr], Field(description="Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead.")] = None,
+        protocol: Annotated[Optional[StrictStr], Field(description="Specifies the protocol to sort. Defaults to kAny.")] = None,
+        num_top_views: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the 'metric' param. Minimum value has to be 1. Defaults to 100.")] = None,
+        last_hours: Annotated[Optional[StrictInt], Field(description="Specifies the last hours of stats to sort. Defaults to 24.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2136,22 +2846,22 @@ class StatsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ViewsStats]:
-        """Get Views Stats.
+        """(Deprecated) Get stats for the top views, which are the views with largest value of 'stats.valueInLastHours' for a given combination of 'metric', 'protocol' & 'lastHours' params. The API uses suitable defaults if any of the parameters are not specified.
 
-        Get Views Stats.
+        This api will be deprecated. Use the API '/stats/top-views' instead.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
-        :param metric: Specifies the metric to which stats has to be sorted.
+        :param metric: Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead.
         :type metric: str
-        :param protocol: Specifies the protocol to sort.
+        :param protocol: Specifies the protocol to sort. Defaults to kAny.
         :type protocol: str
-        :param num_top_views: Specifies the number of view for which stats has to be computed. Specifying this field will return the Views sorted in the descending order on the metric specified. If specified, minimum value is 1. If not specified, all view will be returned. If metric is not specified, this parameter must also not be specified.
+        :param num_top_views: Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the 'metric' param. Minimum value has to be 1. Defaults to 100.
         :type num_top_views: int
-        :param last_hours: Specifies the last hours of stats to sort.
+        :param last_hours: Specifies the last hours of stats to sort. Defaults to 24.
         :type last_hours: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2173,14 +2883,15 @@ class StatsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /stats/views is deprecated.", DeprecationWarning)
 
         _param = self._get_views_stats_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             metric=metric,
             protocol=protocol,
             num_top_views=num_top_views,
             last_hours=last_hours,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2204,12 +2915,12 @@ class StatsApi:
     @validate_call
     def get_views_stats_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
-        metric: Annotated[Optional[StrictStr], Field(description="Specifies the metric to which stats has to be sorted.")] = None,
-        protocol: Annotated[Optional[StrictStr], Field(description="Specifies the protocol to sort.")] = None,
-        num_top_views: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Specifies the number of view for which stats has to be computed. Specifying this field will return the Views sorted in the descending order on the metric specified. If specified, minimum value is 1. If not specified, all view will be returned. If metric is not specified, this parameter must also not be specified.")] = None,
-        last_hours: Annotated[Optional[StrictInt], Field(description="Specifies the last hours of stats to sort.")] = None,
+        metric: Annotated[Optional[StrictStr], Field(description="Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead.")] = None,
+        protocol: Annotated[Optional[StrictStr], Field(description="Specifies the protocol to sort. Defaults to kAny.")] = None,
+        num_top_views: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the 'metric' param. Minimum value has to be 1. Defaults to 100.")] = None,
+        last_hours: Annotated[Optional[StrictInt], Field(description="Specifies the last hours of stats to sort. Defaults to 24.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2223,22 +2934,22 @@ class StatsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get Views Stats.
+        """(Deprecated) Get stats for the top views, which are the views with largest value of 'stats.valueInLastHours' for a given combination of 'metric', 'protocol' & 'lastHours' params. The API uses suitable defaults if any of the parameters are not specified.
 
-        Get Views Stats.
+        This api will be deprecated. Use the API '/stats/top-views' instead.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
-        :param metric: Specifies the metric to which stats has to be sorted.
+        :param metric: Specifies the metric to which stats has to be sorted. Defaults to kNumBytesRead.
         :type metric: str
-        :param protocol: Specifies the protocol to sort.
+        :param protocol: Specifies the protocol to sort. Defaults to kAny.
         :type protocol: str
-        :param num_top_views: Specifies the number of view for which stats has to be computed. Specifying this field will return the Views sorted in the descending order on the metric specified. If specified, minimum value is 1. If not specified, all view will be returned. If metric is not specified, this parameter must also not be specified.
+        :param num_top_views: Specifies the number of view for which stats has to be computed. Returned Views will be sorted in descending order based on the 'metric' param. Minimum value has to be 1. Defaults to 100.
         :type num_top_views: int
-        :param last_hours: Specifies the last hours of stats to sort.
+        :param last_hours: Specifies the last hours of stats to sort. Defaults to 24.
         :type last_hours: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2260,14 +2971,15 @@ class StatsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /stats/views is deprecated.", DeprecationWarning)
 
         _param = self._get_views_stats_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             metric=metric,
             protocol=protocol,
             num_top_views=num_top_views,
             last_hours=last_hours,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2286,12 +2998,12 @@ class StatsApi:
 
     def _get_views_stats_serialize(
         self,
-        access_cluster_id,
-        region_id,
         metric,
         protocol,
         num_top_views,
         last_hours,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2374,8 +3086,8 @@ class StatsApi:
     @validate_call
     def get_workload_stats(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2393,9 +3105,9 @@ class StatsApi:
 
         Get Workload Stats Schema. API will provide the high level information about different Workloads on Cohesity cluster along with their Entity Ids.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2445,8 +3157,8 @@ class StatsApi:
     @validate_call
     def get_workload_stats_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2464,9 +3176,9 @@ class StatsApi:
 
         Get Workload Stats Schema. API will provide the high level information about different Workloads on Cohesity cluster along with their Entity Ids.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2516,8 +3228,8 @@ class StatsApi:
     @validate_call
     def get_workload_stats_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2535,9 +3247,9 @@ class StatsApi:
 
         Get Workload Stats Schema. API will provide the high level information about different Workloads on Cohesity cluster along with their Entity Ids.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2650,8 +3362,8 @@ class StatsApi:
     @validate_call
     def mcm_get_policy_last_run_stats(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2669,10 +3381,10 @@ class StatsApi:
 
         Compute stats of last Protection Run of Protection Policies.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Filter by a list of region ids.
         :type region_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2696,8 +3408,8 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._mcm_get_policy_last_run_stats_serialize(
-            region_id=region_id,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2721,8 +3433,8 @@ class StatsApi:
     @validate_call
     def mcm_get_policy_last_run_stats_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2740,10 +3452,10 @@ class StatsApi:
 
         Compute stats of last Protection Run of Protection Policies.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Filter by a list of region ids.
         :type region_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2767,8 +3479,8 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._mcm_get_policy_last_run_stats_serialize(
-            region_id=region_id,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2792,8 +3504,8 @@ class StatsApi:
     @validate_call
     def mcm_get_policy_last_run_stats_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2811,10 +3523,10 @@ class StatsApi:
 
         Compute stats of last Protection Run of Protection Policies.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Filter by a list of region ids.
         :type region_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2838,8 +3550,8 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._mcm_get_policy_last_run_stats_serialize(
-            region_id=region_id,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2858,8 +3570,8 @@ class StatsApi:
 
     def _mcm_get_policy_last_run_stats_serialize(
         self,
-        region_id,
         region_ids,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2929,8 +3641,8 @@ class StatsApi:
     @validate_call
     def mcm_get_protection_run_last_run_stats(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2948,10 +3660,10 @@ class StatsApi:
 
         Compute stats of last Protection Run across all objects.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Filter by a list of region ids.
         :type region_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2975,8 +3687,8 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._mcm_get_protection_run_last_run_stats_serialize(
-            region_id=region_id,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3000,8 +3712,8 @@ class StatsApi:
     @validate_call
     def mcm_get_protection_run_last_run_stats_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3019,10 +3731,10 @@ class StatsApi:
 
         Compute stats of last Protection Run across all objects.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Filter by a list of region ids.
         :type region_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3046,8 +3758,8 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._mcm_get_protection_run_last_run_stats_serialize(
-            region_id=region_id,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3071,8 +3783,8 @@ class StatsApi:
     @validate_call
     def mcm_get_protection_run_last_run_stats_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3090,10 +3802,10 @@ class StatsApi:
 
         Compute stats of last Protection Run across all objects.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Filter by a list of region ids.
         :type region_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3117,8 +3829,8 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._mcm_get_protection_run_last_run_stats_serialize(
-            region_id=region_id,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3137,8 +3849,8 @@ class StatsApi:
 
     def _mcm_get_protection_run_last_run_stats_serialize(
         self,
-        region_id,
         region_ids,
+        region_id,
         _request_auth,
         _content_type,
         _headers,

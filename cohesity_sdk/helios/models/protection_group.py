@@ -24,11 +24,14 @@ from cohesity_sdk.helios.models.ad_protection_group_params import ADProtectionGr
 from cohesity_sdk.helios.models.aws_protection_group_params import AwsProtectionGroupParams
 from cohesity_sdk.helios.models.azure_protection_group_params import AzureProtectionGroupParams
 from cohesity_sdk.helios.models.cassandra_protection_group_params import CassandraProtectionGroupParams
+from cohesity_sdk.helios.models.db2_protection_group_params import DB2ProtectionGroupParams
 from cohesity_sdk.helios.models.elastifile_protection_group_params import ElastifileProtectionGroupParams
 from cohesity_sdk.helios.models.exchange_protection_group_params import ExchangeProtectionGroupParams
+from cohesity_sdk.helios.models.experimental_adapter_protection_group_params import ExperimentalAdapterProtectionGroupParams
 from cohesity_sdk.helios.models.flashblade_protection_group_params import FlashbladeProtectionGroupParams
 from cohesity_sdk.helios.models.gcp_protection_group_params import GcpProtectionGroupParams
 from cohesity_sdk.helios.models.generic_nas_protection_group_params import GenericNasProtectionGroupParams
+from cohesity_sdk.helios.models.google_workspace_protection_group_params import GoogleWorkspaceProtectionGroupParams
 from cohesity_sdk.helios.models.gpfs_protection_group_params import GpfsProtectionGroupParams
 from cohesity_sdk.helios.models.hdfs_protection_group_params import HdfsProtectionGroupParams
 from cohesity_sdk.helios.models.hyper_v_protection_group_params import HyperVProtectionGroupParams
@@ -38,6 +41,7 @@ from cohesity_sdk.helios.models.key_value_pair import KeyValuePair
 from cohesity_sdk.helios.models.kubernetes_protection_group_params import KubernetesProtectionGroupParams
 from cohesity_sdk.helios.models.kvm_protection_group_params import KvmProtectionGroupParams
 from cohesity_sdk.helios.models.missing_entity_params import MissingEntityParams
+from cohesity_sdk.helios.models.mongo_db_ops_manager_protection_group_params import MongoDBOpsManagerProtectionGroupParams
 from cohesity_sdk.helios.models.mongo_db_protection_group_params import MongoDBProtectionGroupParams
 from cohesity_sdk.helios.models.mssql_protection_group_params import MSSQLProtectionGroupParams
 from cohesity_sdk.helios.models.netapp_protection_group_params import NetappProtectionGroupParams
@@ -45,11 +49,14 @@ from cohesity_sdk.helios.models.nimble_protection_group_params import NimbleProt
 from cohesity_sdk.helios.models.no_sql_protection_group_params import NoSqlProtectionGroupParams
 from cohesity_sdk.helios.models.office365_protection_group_params import Office365ProtectionGroupParams
 from cohesity_sdk.helios.models.oracle_protection_group_params import OracleProtectionGroupParams
+from cohesity_sdk.helios.models.pause_metadata import PauseMetadata
 from cohesity_sdk.helios.models.physical_protection_group_params import PhysicalProtectionGroupParams
 from cohesity_sdk.helios.models.protection_group_alerting_policy import ProtectionGroupAlertingPolicy
 from cohesity_sdk.helios.models.protection_group_run import ProtectionGroupRun
 from cohesity_sdk.helios.models.pure_protection_group_params import PureProtectionGroupParams
 from cohesity_sdk.helios.models.remote_adapter_protection_group_params import RemoteAdapterProtectionGroupParams
+from cohesity_sdk.helios.models.s3_compatible_protection_group_params import S3CompatibleProtectionGroupParams
+from cohesity_sdk.helios.models.sap_hana_protection_group_params import SapHanaProtectionGroupParams
 from cohesity_sdk.helios.models.sfdc_protection_group_params import SfdcProtectionGroupParams
 from cohesity_sdk.helios.models.sla_rule import SlaRule
 from cohesity_sdk.helios.models.tenant import Tenant
@@ -68,6 +75,7 @@ class ProtectionGroup(BaseModel):
     advanced_configs: Optional[List[KeyValuePair]] = Field(default=None, description="Specifies the advanced configuration for a protection job.", alias="advancedConfigs")
     alert_policy: Optional[ProtectionGroupAlertingPolicy] = Field(default=None, alias="alertPolicy")
     cluster_id: Optional[StrictStr] = Field(default=None, description="Specifies the cluster ID.", alias="clusterId")
+    creation_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the time in micro seconds when this protection group was created.", alias="creationTimeUsecs")
     description: Optional[StrictStr] = Field(default=None, description="Specifies a description of the Protection Group.")
     end_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.", alias="endTimeUsecs")
     environment: Optional[StrictStr] = Field(default=None, description="Specifies the environment of the Protection Group.")
@@ -83,6 +91,7 @@ class ProtectionGroup(BaseModel):
     name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the Protection Group.")
     num_protected_objects: Optional[StrictInt] = Field(default=None, description="Specifies the number of protected objects of the Protection Group.", alias="numProtectedObjects")
     pause_in_blackouts: Optional[StrictBool] = Field(default=None, description="Specifies whether currently executing jobs should be paused if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if 'abortInBlackouts' is sent as true.", alias="pauseInBlackouts")
+    pause_metadata: Optional[PauseMetadata] = Field(default=None, alias="pauseMetadata")
     permissions: Optional[List[Tenant]] = Field(default=None, description="Specifies the list of tenants that have permissions for this protection group.")
     policy_id: Optional[StrictStr] = Field(default=None, description="Specifies the unique id of the Protection Policy associated with the Protection Group. The Policy provides retry settings Protection Schedules, Priority, SLA, etc.", alias="policyId")
     priority: Optional[StrictStr] = Field(default=None, description="Specifies the priority of the Protection Group.")
@@ -97,11 +106,14 @@ class ProtectionGroup(BaseModel):
     azure_params: Optional[AzureProtectionGroupParams] = Field(default=None, alias="azureParams")
     cassandra_params: Optional[CassandraProtectionGroupParams] = Field(default=None, alias="cassandraParams")
     couchbase_params: Optional[NoSqlProtectionGroupParams] = Field(default=None, alias="couchbaseParams")
+    db2_params: Optional[DB2ProtectionGroupParams] = Field(default=None, alias="db2Params")
     elastifile_params: Optional[ElastifileProtectionGroupParams] = Field(default=None, alias="elastifileParams")
     exchange_params: Optional[ExchangeProtectionGroupParams] = Field(default=None, alias="exchangeParams")
+    experimental_adapter_params: Optional[ExperimentalAdapterProtectionGroupParams] = Field(default=None, alias="experimentalAdapterParams")
     flashblade_params: Optional[FlashbladeProtectionGroupParams] = Field(default=None, alias="flashbladeParams")
     gcp_params: Optional[GcpProtectionGroupParams] = Field(default=None, alias="gcpParams")
     generic_nas_params: Optional[GenericNasProtectionGroupParams] = Field(default=None, alias="genericNasParams")
+    google_workspace_params: Optional[GoogleWorkspaceProtectionGroupParams] = Field(default=None, alias="googleWorkspaceParams")
     gpfs_params: Optional[GpfsProtectionGroupParams] = Field(default=None, alias="gpfsParams")
     hbase_params: Optional[NoSqlProtectionGroupParams] = Field(default=None, alias="hbaseParams")
     hdfs_params: Optional[HdfsProtectionGroupParams] = Field(default=None, alias="hdfsParams")
@@ -111,6 +123,7 @@ class ProtectionGroup(BaseModel):
     isilon_params: Optional[IsilonProtectionGroupParams] = Field(default=None, alias="isilonParams")
     kubernetes_params: Optional[KubernetesProtectionGroupParams] = Field(default=None, alias="kubernetesParams")
     kvm_params: Optional[KvmProtectionGroupParams] = Field(default=None, alias="kvmParams")
+    mongodb_ops_params: Optional[MongoDBOpsManagerProtectionGroupParams] = Field(default=None, alias="mongodbOpsParams")
     mongodb_params: Optional[MongoDBProtectionGroupParams] = Field(default=None, alias="mongodbParams")
     mssql_params: Optional[MSSQLProtectionGroupParams] = Field(default=None, alias="mssqlParams")
     netapp_params: Optional[NetappProtectionGroupParams] = Field(default=None, alias="netappParams")
@@ -120,11 +133,13 @@ class ProtectionGroup(BaseModel):
     physical_params: Optional[PhysicalProtectionGroupParams] = Field(default=None, alias="physicalParams")
     pure_params: Optional[PureProtectionGroupParams] = Field(default=None, alias="pureParams")
     remote_adapter_params: Optional[RemoteAdapterProtectionGroupParams] = Field(default=None, alias="remoteAdapterParams")
+    s3_compatible_params: Optional[S3CompatibleProtectionGroupParams] = Field(default=None, alias="s3CompatibleParams")
+    sap_hana_params: Optional[SapHanaProtectionGroupParams] = Field(default=None, alias="sapHanaParams")
     sfdc_params: Optional[SfdcProtectionGroupParams] = Field(default=None, alias="sfdcParams")
     uda_params: Optional[UdaProtectionGroupParams] = Field(default=None, alias="udaParams")
     view_params: Optional[ViewProtectionGroupParams] = Field(default=None, alias="viewParams")
     vmware_params: Optional[VmwareProtectionGroupParams] = Field(default=None, alias="vmwareParams")
-    __properties: ClassVar[List[str]] = ["abortInBlackouts", "advancedConfigs", "alertPolicy", "clusterId", "description", "endTimeUsecs", "environment", "id", "invalidEntities", "isActive", "isDeleted", "isPaused", "isProtectOnce", "lastModifiedTimestampUsecs", "lastRun", "missingEntities", "name", "numProtectedObjects", "pauseInBlackouts", "permissions", "policyId", "priority", "qosPolicy", "regionId", "sla", "startTime", "storageDomainId", "acropolisParams", "adParams", "awsParams", "azureParams", "cassandraParams", "couchbaseParams", "elastifileParams", "exchangeParams", "flashbladeParams", "gcpParams", "genericNasParams", "gpfsParams", "hbaseParams", "hdfsParams", "hiveParams", "hypervParams", "ibmFlashSystemParams", "isilonParams", "kubernetesParams", "kvmParams", "mongodbParams", "mssqlParams", "netappParams", "nimbleParams", "office365Params", "oracleParams", "physicalParams", "pureParams", "remoteAdapterParams", "sfdcParams", "udaParams", "viewParams", "vmwareParams"]
+    __properties: ClassVar[List[str]] = ["abortInBlackouts", "advancedConfigs", "alertPolicy", "clusterId", "creationTimeUsecs", "description", "endTimeUsecs", "environment", "id", "invalidEntities", "isActive", "isDeleted", "isPaused", "isProtectOnce", "lastModifiedTimestampUsecs", "lastRun", "missingEntities", "name", "numProtectedObjects", "pauseInBlackouts", "pauseMetadata", "permissions", "policyId", "priority", "qosPolicy", "regionId", "sla", "startTime", "storageDomainId", "acropolisParams", "adParams", "awsParams", "azureParams", "cassandraParams", "couchbaseParams", "db2Params", "elastifileParams", "exchangeParams", "experimentalAdapterParams", "flashbladeParams", "gcpParams", "genericNasParams", "googleWorkspaceParams", "gpfsParams", "hbaseParams", "hdfsParams", "hiveParams", "hypervParams", "ibmFlashSystemParams", "isilonParams", "kubernetesParams", "kvmParams", "mongodbOpsParams", "mongodbParams", "mssqlParams", "netappParams", "nimbleParams", "office365Params", "oracleParams", "physicalParams", "pureParams", "remoteAdapterParams", "s3CompatibleParams", "sapHanaParams", "sfdcParams", "udaParams", "viewParams", "vmwareParams"]
 
     @field_validator('environment')
     def environment_validate_enum(cls, value):
@@ -132,8 +147,8 @@ class ProtectionGroup(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAzureNative', 'kAzureSQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc']):
-            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAzureNative', 'kAzureSQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc')")
+        if value not in set(['kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kGCPBigQuery', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAwsDynamoDB', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kS3Compatible', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kServiceNow', 'kSalesforce']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kGCPBigQuery', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAwsDynamoDB', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kS3Compatible', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kServiceNow', 'kSalesforce')")
         return value
 
     @field_validator('priority')
@@ -222,6 +237,9 @@ class ProtectionGroup(BaseModel):
                 if _item_missing_entities:
                     _items.append(_item_missing_entities.to_dict())
             _dict['missingEntities'] = _items
+        # override the default output from pydantic by calling `to_dict()` of pause_metadata
+        if self.pause_metadata:
+            _dict['pauseMetadata'] = self.pause_metadata.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in permissions (list)
         _items = []
         if self.permissions:
@@ -257,12 +275,18 @@ class ProtectionGroup(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of couchbase_params
         if self.couchbase_params:
             _dict['couchbaseParams'] = self.couchbase_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of db2_params
+        if self.db2_params:
+            _dict['db2Params'] = self.db2_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of elastifile_params
         if self.elastifile_params:
             _dict['elastifileParams'] = self.elastifile_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of exchange_params
         if self.exchange_params:
             _dict['exchangeParams'] = self.exchange_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of experimental_adapter_params
+        if self.experimental_adapter_params:
+            _dict['experimentalAdapterParams'] = self.experimental_adapter_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of flashblade_params
         if self.flashblade_params:
             _dict['flashbladeParams'] = self.flashblade_params.to_dict()
@@ -272,6 +296,9 @@ class ProtectionGroup(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of generic_nas_params
         if self.generic_nas_params:
             _dict['genericNasParams'] = self.generic_nas_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of google_workspace_params
+        if self.google_workspace_params:
+            _dict['googleWorkspaceParams'] = self.google_workspace_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of gpfs_params
         if self.gpfs_params:
             _dict['gpfsParams'] = self.gpfs_params.to_dict()
@@ -299,6 +326,9 @@ class ProtectionGroup(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of kvm_params
         if self.kvm_params:
             _dict['kvmParams'] = self.kvm_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of mongodb_ops_params
+        if self.mongodb_ops_params:
+            _dict['mongodbOpsParams'] = self.mongodb_ops_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of mongodb_params
         if self.mongodb_params:
             _dict['mongodbParams'] = self.mongodb_params.to_dict()
@@ -326,6 +356,12 @@ class ProtectionGroup(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of remote_adapter_params
         if self.remote_adapter_params:
             _dict['remoteAdapterParams'] = self.remote_adapter_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of s3_compatible_params
+        if self.s3_compatible_params:
+            _dict['s3CompatibleParams'] = self.s3_compatible_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of sap_hana_params
+        if self.sap_hana_params:
+            _dict['sapHanaParams'] = self.sap_hana_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of sfdc_params
         if self.sfdc_params:
             _dict['sfdcParams'] = self.sfdc_params.to_dict()
@@ -352,6 +388,11 @@ class ProtectionGroup(BaseModel):
         # and model_fields_set contains the field
         if self.cluster_id is None and "cluster_id" in self.model_fields_set:
             _dict['clusterId'] = None
+
+        # set to None if creation_time_usecs (nullable) is None
+        # and model_fields_set contains the field
+        if self.creation_time_usecs is None and "creation_time_usecs" in self.model_fields_set:
+            _dict['creationTimeUsecs'] = None
 
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
@@ -529,6 +570,7 @@ class ProtectionGroup(BaseModel):
             "advancedConfigs": [KeyValuePair.from_dict(_item) for _item in obj["advancedConfigs"]] if obj.get("advancedConfigs") is not None else None,
             "alertPolicy": ProtectionGroupAlertingPolicy.from_dict(obj["alertPolicy"]) if obj.get("alertPolicy") is not None else None,
             "clusterId": obj.get("clusterId"),
+            "creationTimeUsecs": obj.get("creationTimeUsecs"),
             "description": obj.get("description"),
             "endTimeUsecs": obj.get("endTimeUsecs"),
             "environment": obj.get("environment"),
@@ -544,6 +586,7 @@ class ProtectionGroup(BaseModel):
             "name": obj.get("name"),
             "numProtectedObjects": obj.get("numProtectedObjects"),
             "pauseInBlackouts": obj.get("pauseInBlackouts"),
+            "pauseMetadata": PauseMetadata.from_dict(obj["pauseMetadata"]) if obj.get("pauseMetadata") is not None else None,
             "permissions": [Tenant.from_dict(_item) for _item in obj["permissions"]] if obj.get("permissions") is not None else None,
             "policyId": obj.get("policyId"),
             "priority": obj.get("priority"),
@@ -558,11 +601,14 @@ class ProtectionGroup(BaseModel):
             "azureParams": AzureProtectionGroupParams.from_dict(obj["azureParams"]) if obj.get("azureParams") is not None else None,
             "cassandraParams": CassandraProtectionGroupParams.from_dict(obj["cassandraParams"]) if obj.get("cassandraParams") is not None else None,
             "couchbaseParams": NoSqlProtectionGroupParams.from_dict(obj["couchbaseParams"]) if obj.get("couchbaseParams") is not None else None,
+            "db2Params": DB2ProtectionGroupParams.from_dict(obj["db2Params"]) if obj.get("db2Params") is not None else None,
             "elastifileParams": ElastifileProtectionGroupParams.from_dict(obj["elastifileParams"]) if obj.get("elastifileParams") is not None else None,
             "exchangeParams": ExchangeProtectionGroupParams.from_dict(obj["exchangeParams"]) if obj.get("exchangeParams") is not None else None,
+            "experimentalAdapterParams": ExperimentalAdapterProtectionGroupParams.from_dict(obj["experimentalAdapterParams"]) if obj.get("experimentalAdapterParams") is not None else None,
             "flashbladeParams": FlashbladeProtectionGroupParams.from_dict(obj["flashbladeParams"]) if obj.get("flashbladeParams") is not None else None,
             "gcpParams": GcpProtectionGroupParams.from_dict(obj["gcpParams"]) if obj.get("gcpParams") is not None else None,
             "genericNasParams": GenericNasProtectionGroupParams.from_dict(obj["genericNasParams"]) if obj.get("genericNasParams") is not None else None,
+            "googleWorkspaceParams": GoogleWorkspaceProtectionGroupParams.from_dict(obj["googleWorkspaceParams"]) if obj.get("googleWorkspaceParams") is not None else None,
             "gpfsParams": GpfsProtectionGroupParams.from_dict(obj["gpfsParams"]) if obj.get("gpfsParams") is not None else None,
             "hbaseParams": NoSqlProtectionGroupParams.from_dict(obj["hbaseParams"]) if obj.get("hbaseParams") is not None else None,
             "hdfsParams": HdfsProtectionGroupParams.from_dict(obj["hdfsParams"]) if obj.get("hdfsParams") is not None else None,
@@ -572,6 +618,7 @@ class ProtectionGroup(BaseModel):
             "isilonParams": IsilonProtectionGroupParams.from_dict(obj["isilonParams"]) if obj.get("isilonParams") is not None else None,
             "kubernetesParams": KubernetesProtectionGroupParams.from_dict(obj["kubernetesParams"]) if obj.get("kubernetesParams") is not None else None,
             "kvmParams": KvmProtectionGroupParams.from_dict(obj["kvmParams"]) if obj.get("kvmParams") is not None else None,
+            "mongodbOpsParams": MongoDBOpsManagerProtectionGroupParams.from_dict(obj["mongodbOpsParams"]) if obj.get("mongodbOpsParams") is not None else None,
             "mongodbParams": MongoDBProtectionGroupParams.from_dict(obj["mongodbParams"]) if obj.get("mongodbParams") is not None else None,
             "mssqlParams": MSSQLProtectionGroupParams.from_dict(obj["mssqlParams"]) if obj.get("mssqlParams") is not None else None,
             "netappParams": NetappProtectionGroupParams.from_dict(obj["netappParams"]) if obj.get("netappParams") is not None else None,
@@ -581,6 +628,8 @@ class ProtectionGroup(BaseModel):
             "physicalParams": PhysicalProtectionGroupParams.from_dict(obj["physicalParams"]) if obj.get("physicalParams") is not None else None,
             "pureParams": PureProtectionGroupParams.from_dict(obj["pureParams"]) if obj.get("pureParams") is not None else None,
             "remoteAdapterParams": RemoteAdapterProtectionGroupParams.from_dict(obj["remoteAdapterParams"]) if obj.get("remoteAdapterParams") is not None else None,
+            "s3CompatibleParams": S3CompatibleProtectionGroupParams.from_dict(obj["s3CompatibleParams"]) if obj.get("s3CompatibleParams") is not None else None,
+            "sapHanaParams": SapHanaProtectionGroupParams.from_dict(obj["sapHanaParams"]) if obj.get("sapHanaParams") is not None else None,
             "sfdcParams": SfdcProtectionGroupParams.from_dict(obj["sfdcParams"]) if obj.get("sfdcParams") is not None else None,
             "udaParams": UdaProtectionGroupParams.from_dict(obj["udaParams"]) if obj.get("udaParams") is not None else None,
             "viewParams": ViewProtectionGroupParams.from_dict(obj["viewParams"]) if obj.get("viewParams") is not None else None,

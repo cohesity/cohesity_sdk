@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.indexing_policy import IndexingPolicy
@@ -33,7 +33,19 @@ class Office365TeamsObjectProtectionParams(BaseModel):
     objects: Annotated[List[Office365ObjectProtectionObjectParams], Field(min_length=1)] = Field(description="Specifies the objects to be included in the Object Protection.")
     source_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the parent of the objects.", alias="sourceId")
     source_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the parent of the objects.", alias="sourceName")
-    __properties: ClassVar[List[str]] = ["indexingPolicy", "objects", "sourceId", "sourceName"]
+    exclusion_types: Optional[List[StrictStr]] = Field(default=None, description="Specifies the types of exclusions to apply for Teams backup. For now, only 'MeetingRecordings' is supported, which excludes Microsoft Teams meeting recordings stored in default locations from backup.", alias="exclusionTypes")
+    __properties: ClassVar[List[str]] = ["indexingPolicy", "objects", "sourceId", "sourceName", "exclusionTypes"]
+
+    @field_validator('exclusion_types')
+    def exclusion_types_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        for i in value:
+            if i not in set(['MeetingRecordings']):
+                raise ValueError("each list item must be one of ('MeetingRecordings')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -98,6 +110,11 @@ class Office365TeamsObjectProtectionParams(BaseModel):
         if self.source_name is None and "source_name" in self.model_fields_set:
             _dict['sourceName'] = None
 
+        # set to None if exclusion_types (nullable) is None
+        # and model_fields_set contains the field
+        if self.exclusion_types is None and "exclusion_types" in self.model_fields_set:
+            _dict['exclusionTypes'] = None
+
         return _dict
 
     @classmethod
@@ -113,7 +130,8 @@ class Office365TeamsObjectProtectionParams(BaseModel):
             "indexingPolicy": IndexingPolicy.from_dict(obj["indexingPolicy"]) if obj.get("indexingPolicy") is not None else None,
             "objects": [Office365ObjectProtectionObjectParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None,
             "sourceId": obj.get("sourceId"),
-            "sourceName": obj.get("sourceName")
+            "sourceName": obj.get("sourceName"),
+            "exclusionTypes": obj.get("exclusionTypes")
         })
         return _obj
 

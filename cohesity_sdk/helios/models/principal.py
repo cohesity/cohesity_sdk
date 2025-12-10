@@ -32,13 +32,14 @@ class Principal(BaseModel):
     created_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp in microseconds since the epoch when this Principal was created.", alias="createdTimeUsecs")
     description: Optional[StrictStr] = Field(default=None, description="Specifies the desciption of the principal.")
     effective_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the starting timestamp in microseconds since the epoch when this principal will be able to log in.", alias="effectiveTimeUsecs")
+    email: Optional[StrictStr] = Field(default=None, description="Specifies the email address of the principal.")
     last_updated_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp in microseconds since the epoch when this Principal was updated.", alias="lastUpdatedTimeUsecs")
     name: StrictStr = Field(description="Specifies the name of the principal which is being added.")
     object_class: StrictStr = Field(description="Specifies the type of principal, a user or a group", alias="objectClass")
     principal_type: Optional[StrictStr] = Field(default=None, description="Specifies the type of principal, a local, an sso or an active directory.", alias="principalType")
     roles: Optional[List[StrictStr]] = Field(default=None, description="Specifies the role assigned to the principal.")
     sid: Optional[StrictStr] = Field(default=None, description="Specifies the unique SID of the principal.")
-    __properties: ClassVar[List[str]] = ["activeDirectoryParams", "clusters", "createdTimeUsecs", "description", "effectiveTimeUsecs", "lastUpdatedTimeUsecs", "name", "objectClass", "principalType", "roles", "sid"]
+    __properties: ClassVar[List[str]] = ["activeDirectoryParams", "clusters", "createdTimeUsecs", "description", "effectiveTimeUsecs", "email", "lastUpdatedTimeUsecs", "name", "objectClass", "principalType", "roles", "sid"]
 
     @field_validator('object_class')
     def object_class_validate_enum(cls, value):
@@ -119,6 +120,11 @@ class Principal(BaseModel):
         if self.effective_time_usecs is None and "effective_time_usecs" in self.model_fields_set:
             _dict['effectiveTimeUsecs'] = None
 
+        # set to None if email (nullable) is None
+        # and model_fields_set contains the field
+        if self.email is None and "email" in self.model_fields_set:
+            _dict['email'] = None
+
         # set to None if last_updated_time_usecs (nullable) is None
         # and model_fields_set contains the field
         if self.last_updated_time_usecs is None and "last_updated_time_usecs" in self.model_fields_set:
@@ -146,6 +152,7 @@ class Principal(BaseModel):
             "createdTimeUsecs": obj.get("createdTimeUsecs"),
             "description": obj.get("description"),
             "effectiveTimeUsecs": obj.get("effectiveTimeUsecs"),
+            "email": obj.get("email"),
             "lastUpdatedTimeUsecs": obj.get("lastUpdatedTimeUsecs"),
             "name": obj.get("name"),
             "objectClass": obj.get("objectClass"),

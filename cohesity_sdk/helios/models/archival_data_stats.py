@@ -32,9 +32,12 @@ class ArchivalDataStats(BaseModel):
     file_walk_done: Optional[StrictBool] = Field(default=None, description="Specifies whether the file system walk is done. Only applicable to file based backups.", alias="fileWalkDone")
     logical_bytes_transferred: Optional[StrictInt] = Field(default=None, description="Specifies the logical bytes transferred.", alias="logicalBytesTransferred")
     logical_size_bytes: Optional[StrictInt] = Field(default=None, description="Specifies the logicalSizeBytes.", alias="logicalSizeBytes")
+    num_changed_granular_objects: Optional[StrictInt] = Field(default=None, description="Number of granular objects added/deleted/modified since the last backup.", alias="numChangedGranularObjects")
+    num_protected_granular_objects: Optional[StrictInt] = Field(default=None, description="Specifies total number of granular objects protected in this backup.", alias="numProtectedGranularObjects")
+    num_successful_backed_granular_objects: Optional[StrictInt] = Field(default=None, description="Specifies number of changed granular objects which were backed up succesfully.", alias="numSuccessfulBackedGranularObjects")
     physical_bytes_transferred: Optional[StrictInt] = Field(default=None, description="Specifies the physical bytes transferred.", alias="physicalBytesTransferred")
     total_file_count: Optional[StrictInt] = Field(default=None, description="Specifies the total number of file and directory entities visited in this backup. Only applicable to file based backups.", alias="totalFileCount")
-    __properties: ClassVar[List[str]] = ["avgLogicalTransferRateBps", "backupFileCount", "bytesRead", "fileWalkDone", "logicalBytesTransferred", "logicalSizeBytes", "physicalBytesTransferred", "totalFileCount"]
+    __properties: ClassVar[List[str]] = ["avgLogicalTransferRateBps", "backupFileCount", "bytesRead", "fileWalkDone", "logicalBytesTransferred", "logicalSizeBytes", "numChangedGranularObjects", "numProtectedGranularObjects", "numSuccessfulBackedGranularObjects", "physicalBytesTransferred", "totalFileCount"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -105,6 +108,21 @@ class ArchivalDataStats(BaseModel):
         if self.logical_size_bytes is None and "logical_size_bytes" in self.model_fields_set:
             _dict['logicalSizeBytes'] = None
 
+        # set to None if num_changed_granular_objects (nullable) is None
+        # and model_fields_set contains the field
+        if self.num_changed_granular_objects is None and "num_changed_granular_objects" in self.model_fields_set:
+            _dict['numChangedGranularObjects'] = None
+
+        # set to None if num_protected_granular_objects (nullable) is None
+        # and model_fields_set contains the field
+        if self.num_protected_granular_objects is None and "num_protected_granular_objects" in self.model_fields_set:
+            _dict['numProtectedGranularObjects'] = None
+
+        # set to None if num_successful_backed_granular_objects (nullable) is None
+        # and model_fields_set contains the field
+        if self.num_successful_backed_granular_objects is None and "num_successful_backed_granular_objects" in self.model_fields_set:
+            _dict['numSuccessfulBackedGranularObjects'] = None
+
         # set to None if physical_bytes_transferred (nullable) is None
         # and model_fields_set contains the field
         if self.physical_bytes_transferred is None and "physical_bytes_transferred" in self.model_fields_set:
@@ -133,6 +151,9 @@ class ArchivalDataStats(BaseModel):
             "fileWalkDone": obj.get("fileWalkDone"),
             "logicalBytesTransferred": obj.get("logicalBytesTransferred"),
             "logicalSizeBytes": obj.get("logicalSizeBytes"),
+            "numChangedGranularObjects": obj.get("numChangedGranularObjects"),
+            "numProtectedGranularObjects": obj.get("numProtectedGranularObjects"),
+            "numSuccessfulBackedGranularObjects": obj.get("numSuccessfulBackedGranularObjects"),
             "physicalBytesTransferred": obj.get("physicalBytesTransferred"),
             "totalFileCount": obj.get("totalFileCount")
         })

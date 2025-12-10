@@ -16,12 +16,11 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictBool
-from cohesity_sdk.helios.models.register_remote_cluster_params import RegisterRemoteClusterParams
+from cohesity_sdk.helios.models.register_remote_cluster_parameters import RegisterRemoteClusterParameters
 from cohesity_sdk.helios.models.remote_cluster import RemoteCluster
 from cohesity_sdk.helios.models.remote_cluster_params import RemoteClusterParams
 from cohesity_sdk.helios.models.remote_clusters import RemoteClusters
-from cohesity_sdk.helios.models.update_remote_cluster_params import UpdateRemoteClusterParams
-from cohesity_sdk.helios.models.validate_remote_cluster_connection_param import ValidateRemoteClusterConnectionParam
+from cohesity_sdk.helios.models.validate_remote_cluster_connection_params import ValidateRemoteClusterConnectionParams
 
 from cohesity_sdk.helios.api_client import ApiClient, RequestSerialized
 from cohesity_sdk.helios.api_response import ApiResponse
@@ -45,8 +44,8 @@ class RemoteClustersApi:
     def delete_remote_cluster(
         self,
         cluster_id: Annotated[StrictInt, Field(description="Specifies the cluster id of the Remote Cluster to unregister.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -66,9 +65,9 @@ class RemoteClustersApi:
 
         :param cluster_id: Specifies the cluster id of the Remote Cluster to unregister. (required)
         :type cluster_id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -120,8 +119,8 @@ class RemoteClustersApi:
     def delete_remote_cluster_with_http_info(
         self,
         cluster_id: Annotated[StrictInt, Field(description="Specifies the cluster id of the Remote Cluster to unregister.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -141,9 +140,9 @@ class RemoteClustersApi:
 
         :param cluster_id: Specifies the cluster id of the Remote Cluster to unregister. (required)
         :type cluster_id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -195,8 +194,8 @@ class RemoteClustersApi:
     def delete_remote_cluster_without_preload_content(
         self,
         cluster_id: Annotated[StrictInt, Field(description="Specifies the cluster id of the Remote Cluster to unregister.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -216,9 +215,9 @@ class RemoteClustersApi:
 
         :param cluster_id: Specifies the cluster id of the Remote Cluster to unregister. (required)
         :type cluster_id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -336,8 +335,8 @@ class RemoteClustersApi:
     def get_remote_cluster_by_id(
         self,
         cluster_id: Annotated[StrictInt, Field(description="Specifies the cluster id of Remote Cluster to fetch.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -357,9 +356,9 @@ class RemoteClustersApi:
 
         :param cluster_id: Specifies the cluster id of Remote Cluster to fetch. (required)
         :type cluster_id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -411,8 +410,8 @@ class RemoteClustersApi:
     def get_remote_cluster_by_id_with_http_info(
         self,
         cluster_id: Annotated[StrictInt, Field(description="Specifies the cluster id of Remote Cluster to fetch.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -432,9 +431,9 @@ class RemoteClustersApi:
 
         :param cluster_id: Specifies the cluster id of Remote Cluster to fetch. (required)
         :type cluster_id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -486,8 +485,8 @@ class RemoteClustersApi:
     def get_remote_cluster_by_id_without_preload_content(
         self,
         cluster_id: Annotated[StrictInt, Field(description="Specifies the cluster id of Remote Cluster to fetch.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -507,9 +506,9 @@ class RemoteClustersApi:
 
         :param cluster_id: Specifies the cluster id of Remote Cluster to fetch. (required)
         :type cluster_id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -626,13 +625,14 @@ class RemoteClustersApi:
     @validate_call
     def get_remote_clusters(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         cluster_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of Remote Cluster ids to filter.")] = None,
         cluster_names: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of Remote Cluster names to filter.")] = None,
         node_addresses: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of Remote Cluster IPs to filter.")] = None,
         purpose: Annotated[Optional[List[StrictStr]], Field(description="Specifies the purpose for which the remote cluster is being registered.")] = None,
         include_encrypted_credentials: Annotated[Optional[StrictBool], Field(description="If true, the response will include encrypted password.")] = None,
+        include_onprem_vault: Annotated[Optional[StrictBool], Field(description="If true, the response will include onprem vault. Onprem vault will not be included by default.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -650,10 +650,6 @@ class RemoteClustersApi:
 
         List the Remote Clusters that are registered on this local Cluster and that matches the filter criteria specified using parameters.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param cluster_ids: Specifies a list of Remote Cluster ids to filter.
         :type cluster_ids: List[int]
         :param cluster_names: Specifies a list of Remote Cluster names to filter.
@@ -664,6 +660,12 @@ class RemoteClustersApi:
         :type purpose: List[str]
         :param include_encrypted_credentials: If true, the response will include encrypted password.
         :type include_encrypted_credentials: bool
+        :param include_onprem_vault: If true, the response will include onprem vault. Onprem vault will not be included by default.
+        :type include_onprem_vault: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -687,13 +689,14 @@ class RemoteClustersApi:
         """ # noqa: E501
 
         _param = self._get_remote_clusters_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             cluster_ids=cluster_ids,
             cluster_names=cluster_names,
             node_addresses=node_addresses,
             purpose=purpose,
             include_encrypted_credentials=include_encrypted_credentials,
+            include_onprem_vault=include_onprem_vault,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -717,13 +720,14 @@ class RemoteClustersApi:
     @validate_call
     def get_remote_clusters_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         cluster_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of Remote Cluster ids to filter.")] = None,
         cluster_names: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of Remote Cluster names to filter.")] = None,
         node_addresses: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of Remote Cluster IPs to filter.")] = None,
         purpose: Annotated[Optional[List[StrictStr]], Field(description="Specifies the purpose for which the remote cluster is being registered.")] = None,
         include_encrypted_credentials: Annotated[Optional[StrictBool], Field(description="If true, the response will include encrypted password.")] = None,
+        include_onprem_vault: Annotated[Optional[StrictBool], Field(description="If true, the response will include onprem vault. Onprem vault will not be included by default.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -741,10 +745,6 @@ class RemoteClustersApi:
 
         List the Remote Clusters that are registered on this local Cluster and that matches the filter criteria specified using parameters.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param cluster_ids: Specifies a list of Remote Cluster ids to filter.
         :type cluster_ids: List[int]
         :param cluster_names: Specifies a list of Remote Cluster names to filter.
@@ -755,6 +755,12 @@ class RemoteClustersApi:
         :type purpose: List[str]
         :param include_encrypted_credentials: If true, the response will include encrypted password.
         :type include_encrypted_credentials: bool
+        :param include_onprem_vault: If true, the response will include onprem vault. Onprem vault will not be included by default.
+        :type include_onprem_vault: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -778,13 +784,14 @@ class RemoteClustersApi:
         """ # noqa: E501
 
         _param = self._get_remote_clusters_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             cluster_ids=cluster_ids,
             cluster_names=cluster_names,
             node_addresses=node_addresses,
             purpose=purpose,
             include_encrypted_credentials=include_encrypted_credentials,
+            include_onprem_vault=include_onprem_vault,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -808,13 +815,14 @@ class RemoteClustersApi:
     @validate_call
     def get_remote_clusters_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         cluster_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of Remote Cluster ids to filter.")] = None,
         cluster_names: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of Remote Cluster names to filter.")] = None,
         node_addresses: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of Remote Cluster IPs to filter.")] = None,
         purpose: Annotated[Optional[List[StrictStr]], Field(description="Specifies the purpose for which the remote cluster is being registered.")] = None,
         include_encrypted_credentials: Annotated[Optional[StrictBool], Field(description="If true, the response will include encrypted password.")] = None,
+        include_onprem_vault: Annotated[Optional[StrictBool], Field(description="If true, the response will include onprem vault. Onprem vault will not be included by default.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -832,10 +840,6 @@ class RemoteClustersApi:
 
         List the Remote Clusters that are registered on this local Cluster and that matches the filter criteria specified using parameters.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param cluster_ids: Specifies a list of Remote Cluster ids to filter.
         :type cluster_ids: List[int]
         :param cluster_names: Specifies a list of Remote Cluster names to filter.
@@ -846,6 +850,12 @@ class RemoteClustersApi:
         :type purpose: List[str]
         :param include_encrypted_credentials: If true, the response will include encrypted password.
         :type include_encrypted_credentials: bool
+        :param include_onprem_vault: If true, the response will include onprem vault. Onprem vault will not be included by default.
+        :type include_onprem_vault: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -869,13 +879,14 @@ class RemoteClustersApi:
         """ # noqa: E501
 
         _param = self._get_remote_clusters_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             cluster_ids=cluster_ids,
             cluster_names=cluster_names,
             node_addresses=node_addresses,
             purpose=purpose,
             include_encrypted_credentials=include_encrypted_credentials,
+            include_onprem_vault=include_onprem_vault,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -894,13 +905,14 @@ class RemoteClustersApi:
 
     def _get_remote_clusters_serialize(
         self,
-        access_cluster_id,
-        region_id,
         cluster_ids,
         cluster_names,
         node_addresses,
         purpose,
         include_encrypted_credentials,
+        include_onprem_vault,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -947,6 +959,10 @@ class RemoteClustersApi:
             
             _query_params.append(('includeEncryptedCredentials', include_encrypted_credentials))
             
+        if include_onprem_vault is not None:
+            
+            _query_params.append(('includeOnpremVault', include_onprem_vault))
+            
         # process the header parameters
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
@@ -991,9 +1007,9 @@ class RemoteClustersApi:
     @validate_call
     def register_remote_cluster(
         self,
-        body: Annotated[RegisterRemoteClusterParams, Field(description="Specifies the request to register Remote Cluster.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        body: Annotated[RegisterRemoteClusterParameters, Field(description="Specifies the request to register Remote Cluster.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1012,10 +1028,10 @@ class RemoteClustersApi:
         Register a Remote Cluster on this local cluster for remote access and/or replication.
 
         :param body: Specifies the request to register Remote Cluster. (required)
-        :type body: RegisterRemoteClusterParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :type body: RegisterRemoteClusterParameters
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1066,9 +1082,9 @@ class RemoteClustersApi:
     @validate_call
     def register_remote_cluster_with_http_info(
         self,
-        body: Annotated[RegisterRemoteClusterParams, Field(description="Specifies the request to register Remote Cluster.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        body: Annotated[RegisterRemoteClusterParameters, Field(description="Specifies the request to register Remote Cluster.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1087,10 +1103,10 @@ class RemoteClustersApi:
         Register a Remote Cluster on this local cluster for remote access and/or replication.
 
         :param body: Specifies the request to register Remote Cluster. (required)
-        :type body: RegisterRemoteClusterParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :type body: RegisterRemoteClusterParameters
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1141,9 +1157,9 @@ class RemoteClustersApi:
     @validate_call
     def register_remote_cluster_without_preload_content(
         self,
-        body: Annotated[RegisterRemoteClusterParams, Field(description="Specifies the request to register Remote Cluster.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        body: Annotated[RegisterRemoteClusterParameters, Field(description="Specifies the request to register Remote Cluster.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1162,10 +1178,10 @@ class RemoteClustersApi:
         Register a Remote Cluster on this local cluster for remote access and/or replication.
 
         :param body: Specifies the request to register Remote Cluster. (required)
-        :type body: RegisterRemoteClusterParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :type body: RegisterRemoteClusterParameters
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1296,9 +1312,9 @@ class RemoteClustersApi:
     def update_remote_cluster(
         self,
         cluster_id: Annotated[StrictInt, Field(description="Specifies the cluster id of the Remote Cluster to update.")],
-        body: Annotated[UpdateRemoteClusterParams, Field(description="Specifies the request to update Remote Cluster config.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        body: Annotated[RemoteCluster, Field(description="Specifies the request to update Remote Cluster config.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1319,10 +1335,10 @@ class RemoteClustersApi:
         :param cluster_id: Specifies the cluster id of the Remote Cluster to update. (required)
         :type cluster_id: int
         :param body: Specifies the request to update Remote Cluster config. (required)
-        :type body: UpdateRemoteClusterParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :type body: RemoteCluster
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1375,9 +1391,9 @@ class RemoteClustersApi:
     def update_remote_cluster_with_http_info(
         self,
         cluster_id: Annotated[StrictInt, Field(description="Specifies the cluster id of the Remote Cluster to update.")],
-        body: Annotated[UpdateRemoteClusterParams, Field(description="Specifies the request to update Remote Cluster config.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        body: Annotated[RemoteCluster, Field(description="Specifies the request to update Remote Cluster config.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1398,10 +1414,10 @@ class RemoteClustersApi:
         :param cluster_id: Specifies the cluster id of the Remote Cluster to update. (required)
         :type cluster_id: int
         :param body: Specifies the request to update Remote Cluster config. (required)
-        :type body: UpdateRemoteClusterParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :type body: RemoteCluster
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1454,9 +1470,9 @@ class RemoteClustersApi:
     def update_remote_cluster_without_preload_content(
         self,
         cluster_id: Annotated[StrictInt, Field(description="Specifies the cluster id of the Remote Cluster to update.")],
-        body: Annotated[UpdateRemoteClusterParams, Field(description="Specifies the request to update Remote Cluster config.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        body: Annotated[RemoteCluster, Field(description="Specifies the request to update Remote Cluster config.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1477,10 +1493,10 @@ class RemoteClustersApi:
         :param cluster_id: Specifies the cluster id of the Remote Cluster to update. (required)
         :type cluster_id: int
         :param body: Specifies the request to update Remote Cluster config. (required)
-        :type body: UpdateRemoteClusterParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :type body: RemoteCluster
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1614,10 +1630,10 @@ class RemoteClustersApi:
     @validate_call
     def validate_remote_cluster(
         self,
-        body: Annotated[ValidateRemoteClusterConnectionParam, Field(description="Specifies the request to validate Remote Cluster.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        body: Annotated[ValidateRemoteClusterConnectionParams, Field(description="Specifies the request to validate Remote Cluster.")],
         include_metadata: Annotated[Optional[StrictBool], Field(description="Specifies if Remote Cluster metadata should be included in the response.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1636,13 +1652,13 @@ class RemoteClustersApi:
         Validate a Remote Cluster credentials. If includeRemoteClusterMetadata is true, response will include the remote cluster metadata.
 
         :param body: Specifies the request to validate Remote Cluster. (required)
-        :type body: ValidateRemoteClusterConnectionParam
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
+        :type body: ValidateRemoteClusterConnectionParams
         :param include_metadata: Specifies if Remote Cluster metadata should be included in the response.
         :type include_metadata: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1667,9 +1683,9 @@ class RemoteClustersApi:
 
         _param = self._validate_remote_cluster_serialize(
             body=body,
+            include_metadata=include_metadata,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            include_metadata=include_metadata,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1694,10 +1710,10 @@ class RemoteClustersApi:
     @validate_call
     def validate_remote_cluster_with_http_info(
         self,
-        body: Annotated[ValidateRemoteClusterConnectionParam, Field(description="Specifies the request to validate Remote Cluster.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        body: Annotated[ValidateRemoteClusterConnectionParams, Field(description="Specifies the request to validate Remote Cluster.")],
         include_metadata: Annotated[Optional[StrictBool], Field(description="Specifies if Remote Cluster metadata should be included in the response.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1716,13 +1732,13 @@ class RemoteClustersApi:
         Validate a Remote Cluster credentials. If includeRemoteClusterMetadata is true, response will include the remote cluster metadata.
 
         :param body: Specifies the request to validate Remote Cluster. (required)
-        :type body: ValidateRemoteClusterConnectionParam
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
+        :type body: ValidateRemoteClusterConnectionParams
         :param include_metadata: Specifies if Remote Cluster metadata should be included in the response.
         :type include_metadata: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1747,9 +1763,9 @@ class RemoteClustersApi:
 
         _param = self._validate_remote_cluster_serialize(
             body=body,
+            include_metadata=include_metadata,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            include_metadata=include_metadata,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1774,10 +1790,10 @@ class RemoteClustersApi:
     @validate_call
     def validate_remote_cluster_without_preload_content(
         self,
-        body: Annotated[ValidateRemoteClusterConnectionParam, Field(description="Specifies the request to validate Remote Cluster.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        body: Annotated[ValidateRemoteClusterConnectionParams, Field(description="Specifies the request to validate Remote Cluster.")],
         include_metadata: Annotated[Optional[StrictBool], Field(description="Specifies if Remote Cluster metadata should be included in the response.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1796,13 +1812,13 @@ class RemoteClustersApi:
         Validate a Remote Cluster credentials. If includeRemoteClusterMetadata is true, response will include the remote cluster metadata.
 
         :param body: Specifies the request to validate Remote Cluster. (required)
-        :type body: ValidateRemoteClusterConnectionParam
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
+        :type body: ValidateRemoteClusterConnectionParams
         :param include_metadata: Specifies if Remote Cluster metadata should be included in the response.
         :type include_metadata: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1827,9 +1843,9 @@ class RemoteClustersApi:
 
         _param = self._validate_remote_cluster_serialize(
             body=body,
+            include_metadata=include_metadata,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            include_metadata=include_metadata,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1850,9 +1866,9 @@ class RemoteClustersApi:
     def _validate_remote_cluster_serialize(
         self,
         body,
+        include_metadata,
         access_cluster_id,
         region_id,
-        include_metadata,
         _request_auth,
         _content_type,
         _headers,

@@ -29,7 +29,7 @@ class RecoverOracleParams(BaseModel):
     Specifies the recovery options specific to oracle environment.
     """ # noqa: E501
     objects: Optional[List[RecoverOracleDbSnapshotParams]] = Field(description="Specifies the list of parameters for list of objects to be recovered.")
-    recover_app_params: Optional[RecoverOracleAppParams] = Field(default=None, description="Specifies the parameters to recover Oracle databases.", alias="recoverAppParams")
+    recover_app_params: Optional[RecoverOracleAppParams] = Field(default=None, alias="recoverAppParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recover action to be performed.", alias="recoveryAction")
     __properties: ClassVar[List[str]] = ["objects", "recoverAppParams", "recoveryAction"]
 
@@ -93,11 +93,6 @@ class RecoverOracleParams(BaseModel):
         # and model_fields_set contains the field
         if self.objects is None and "objects" in self.model_fields_set:
             _dict['objects'] = None
-
-        # set to None if recover_app_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.recover_app_params is None and "recover_app_params" in self.model_fields_set:
-            _dict['recoverAppParams'] = None
 
         return _dict
 

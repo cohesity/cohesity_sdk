@@ -32,7 +32,9 @@ class Attachment(BaseModel):
     interfaces: Optional[List[StrictStr]] = Field(default=None, description="Specifies the network interfaces")
     ipset_names: Optional[List[StrictStr]] = Field(default=None, description="Specifies the ip sets.", alias="ipsetNames")
     is_implicit: Optional[StrictBool] = Field(default=None, alias="isImplicit")
-    __properties: ClassVar[List[str]] = ["action", "description", "interfaceGroups", "interfaces", "ipsetNames", "isImplicit"]
+    profile: Optional[StrictStr] = Field(default=None, description="Specifies the firewall profile.")
+    subnets: Optional[List[StrictStr]] = Field(default=None, description="Specifies the subnets.")
+    __properties: ClassVar[List[str]] = ["action", "description", "interfaceGroups", "interfaces", "ipsetNames", "isImplicit", "profile", "subnets"]
 
     @field_validator('action')
     def action_validate_enum(cls, value):
@@ -100,6 +102,11 @@ class Attachment(BaseModel):
         if self.is_implicit is None and "is_implicit" in self.model_fields_set:
             _dict['isImplicit'] = None
 
+        # set to None if profile (nullable) is None
+        # and model_fields_set contains the field
+        if self.profile is None and "profile" in self.model_fields_set:
+            _dict['profile'] = None
+
         return _dict
 
     @classmethod
@@ -117,7 +124,9 @@ class Attachment(BaseModel):
             "interfaceGroups": obj.get("interfaceGroups"),
             "interfaces": obj.get("interfaces"),
             "ipsetNames": obj.get("ipsetNames"),
-            "isImplicit": obj.get("isImplicit")
+            "isImplicit": obj.get("isImplicit"),
+            "profile": obj.get("profile"),
+            "subnets": obj.get("subnets")
         })
         return _obj
 

@@ -27,11 +27,12 @@ class RemoveNode(BaseModel):
     """
     Specifies details of node removal response.
     """ # noqa: E501
+    cleared_pre_check_result: Optional[StrictBool] = Field(default=False, description="If true, pre check results have been cleared.", alias="clearedPreCheckResult")
     id: Optional[StrictInt] = Field(default=None, description="Specifies id of the node.")
     marked_for_removal: Optional[StrictBool] = Field(default=None, description="If true, Node is marked for removal.", alias="markedForRemoval")
     timestamp_secs: Optional[StrictInt] = Field(default=None, description="Specifies the last run time of the pre-checks execution in Unix epoch timestamp (in seconds).", alias="timestampSecs")
     validation_checks: Optional[List[PreCheckValidation]] = Field(default=None, description="Specifies the pre-check validations results.", alias="validationChecks")
-    __properties: ClassVar[List[str]] = ["id", "markedForRemoval", "timestampSecs", "validationChecks"]
+    __properties: ClassVar[List[str]] = ["clearedPreCheckResult", "id", "markedForRemoval", "timestampSecs", "validationChecks"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,6 +80,11 @@ class RemoveNode(BaseModel):
                 if _item_validation_checks:
                     _items.append(_item_validation_checks.to_dict())
             _dict['validationChecks'] = _items
+        # set to None if cleared_pre_check_result (nullable) is None
+        # and model_fields_set contains the field
+        if self.cleared_pre_check_result is None and "cleared_pre_check_result" in self.model_fields_set:
+            _dict['clearedPreCheckResult'] = None
+
         # set to None if id (nullable) is None
         # and model_fields_set contains the field
         if self.id is None and "id" in self.model_fields_set:
@@ -111,6 +117,7 @@ class RemoveNode(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "clearedPreCheckResult": obj.get("clearedPreCheckResult") if obj.get("clearedPreCheckResult") is not None else False,
             "id": obj.get("id"),
             "markedForRemoval": obj.get("markedForRemoval"),
             "timestampSecs": obj.get("timestampSecs"),

@@ -20,6 +20,7 @@ from cohesity_sdk.helios.models.active_directories import ActiveDirectories
 from cohesity_sdk.helios.models.active_directory import ActiveDirectory
 from cohesity_sdk.helios.models.active_directory_principal_list import ActiveDirectoryPrincipalList
 from cohesity_sdk.helios.models.active_directory_principals import ActiveDirectoryPrincipals
+from cohesity_sdk.helios.models.active_directory_topology import ActiveDirectoryTopology
 from cohesity_sdk.helios.models.add_active_directory_principals_parameters import AddActiveDirectoryPrincipalsParameters
 from cohesity_sdk.helios.models.added_active_directory_principal import AddedActiveDirectoryPrincipal
 from cohesity_sdk.helios.models.centrify_zones import CentrifyZones
@@ -56,8 +57,8 @@ class ActiveDirectoryApi:
     def add_active_directory_principals(
         self,
         body: List[AddActiveDirectoryPrincipalsParameters],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -77,9 +78,9 @@ class ActiveDirectoryApi:
 
         :param body: (required)
         :type body: List[AddActiveDirectoryPrincipalsParameters]
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -131,8 +132,8 @@ class ActiveDirectoryApi:
     def add_active_directory_principals_with_http_info(
         self,
         body: List[AddActiveDirectoryPrincipalsParameters],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -152,9 +153,9 @@ class ActiveDirectoryApi:
 
         :param body: (required)
         :type body: List[AddActiveDirectoryPrincipalsParameters]
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -206,8 +207,8 @@ class ActiveDirectoryApi:
     def add_active_directory_principals_without_preload_content(
         self,
         body: List[AddActiveDirectoryPrincipalsParameters],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -227,9 +228,9 @@ class ActiveDirectoryApi:
 
         :param body: (required)
         :type body: List[AddActiveDirectoryPrincipalsParameters]
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -361,8 +362,8 @@ class ActiveDirectoryApi:
     def create_active_directory(
         self,
         body: Annotated[CreateActiveDirectoryRequest, Field(description="Specifies the parameters to create an Active Directory.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -382,9 +383,9 @@ class ActiveDirectoryApi:
 
         :param body: Specifies the parameters to create an Active Directory. (required)
         :type body: CreateActiveDirectoryRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -436,8 +437,8 @@ class ActiveDirectoryApi:
     def create_active_directory_with_http_info(
         self,
         body: Annotated[CreateActiveDirectoryRequest, Field(description="Specifies the parameters to create an Active Directory.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -457,9 +458,9 @@ class ActiveDirectoryApi:
 
         :param body: Specifies the parameters to create an Active Directory. (required)
         :type body: CreateActiveDirectoryRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -511,8 +512,8 @@ class ActiveDirectoryApi:
     def create_active_directory_without_preload_content(
         self,
         body: Annotated[CreateActiveDirectoryRequest, Field(description="Specifies the parameters to create an Active Directory.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -532,9 +533,9 @@ class ActiveDirectoryApi:
 
         :param body: Specifies the parameters to create an Active Directory. (required)
         :type body: CreateActiveDirectoryRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -665,7 +666,7 @@ class ActiveDirectoryApi:
     def create_helios_active_directory(
         self,
         body: Annotated[CreateOrUpdateActiveDirectoryRequest, Field(description="Specifies the parameters to create an Active Directory.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -685,7 +686,7 @@ class ActiveDirectoryApi:
 
         :param body: Specifies the parameters to create an Active Directory. (required)
         :type body: CreateOrUpdateActiveDirectoryRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -736,7 +737,7 @@ class ActiveDirectoryApi:
     def create_helios_active_directory_with_http_info(
         self,
         body: Annotated[CreateOrUpdateActiveDirectoryRequest, Field(description="Specifies the parameters to create an Active Directory.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -756,7 +757,7 @@ class ActiveDirectoryApi:
 
         :param body: Specifies the parameters to create an Active Directory. (required)
         :type body: CreateOrUpdateActiveDirectoryRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -807,7 +808,7 @@ class ActiveDirectoryApi:
     def create_helios_active_directory_without_preload_content(
         self,
         body: Annotated[CreateOrUpdateActiveDirectoryRequest, Field(description="Specifies the parameters to create an Active Directory.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -827,7 +828,7 @@ class ActiveDirectoryApi:
 
         :param body: Specifies the parameters to create an Active Directory. (required)
         :type body: CreateOrUpdateActiveDirectoryRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -956,9 +957,9 @@ class ActiveDirectoryApi:
         id: Annotated[StrictInt, Field(description="Specifies id of an Active Directory.")],
         active_directory_admin_username: Annotated[StrictStr, Field(description="Specifies the username of the Active Directory Admin.")],
         active_directory_admin_password: Annotated[StrictStr, Field(description="Specifies the password of the Active Directory Admin.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         force_remove: Annotated[Optional[StrictBool], Field(description="To force delete the Active directory from cluster. This will skip all the checks that prevents cluster from leaving an AD domain.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -982,12 +983,12 @@ class ActiveDirectoryApi:
         :type active_directory_admin_username: str
         :param active_directory_admin_password: Specifies the password of the Active Directory Admin. (required)
         :type active_directory_admin_password: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param force_remove: To force delete the Active directory from cluster. This will skip all the checks that prevents cluster from leaving an AD domain.
         :type force_remove: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1014,9 +1015,9 @@ class ActiveDirectoryApi:
             id=id,
             active_directory_admin_username=active_directory_admin_username,
             active_directory_admin_password=active_directory_admin_password,
+            force_remove=force_remove,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            force_remove=force_remove,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1043,9 +1044,9 @@ class ActiveDirectoryApi:
         id: Annotated[StrictInt, Field(description="Specifies id of an Active Directory.")],
         active_directory_admin_username: Annotated[StrictStr, Field(description="Specifies the username of the Active Directory Admin.")],
         active_directory_admin_password: Annotated[StrictStr, Field(description="Specifies the password of the Active Directory Admin.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         force_remove: Annotated[Optional[StrictBool], Field(description="To force delete the Active directory from cluster. This will skip all the checks that prevents cluster from leaving an AD domain.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1069,12 +1070,12 @@ class ActiveDirectoryApi:
         :type active_directory_admin_username: str
         :param active_directory_admin_password: Specifies the password of the Active Directory Admin. (required)
         :type active_directory_admin_password: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param force_remove: To force delete the Active directory from cluster. This will skip all the checks that prevents cluster from leaving an AD domain.
         :type force_remove: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1101,9 +1102,9 @@ class ActiveDirectoryApi:
             id=id,
             active_directory_admin_username=active_directory_admin_username,
             active_directory_admin_password=active_directory_admin_password,
+            force_remove=force_remove,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            force_remove=force_remove,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1130,9 +1131,9 @@ class ActiveDirectoryApi:
         id: Annotated[StrictInt, Field(description="Specifies id of an Active Directory.")],
         active_directory_admin_username: Annotated[StrictStr, Field(description="Specifies the username of the Active Directory Admin.")],
         active_directory_admin_password: Annotated[StrictStr, Field(description="Specifies the password of the Active Directory Admin.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         force_remove: Annotated[Optional[StrictBool], Field(description="To force delete the Active directory from cluster. This will skip all the checks that prevents cluster from leaving an AD domain.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1156,12 +1157,12 @@ class ActiveDirectoryApi:
         :type active_directory_admin_username: str
         :param active_directory_admin_password: Specifies the password of the Active Directory Admin. (required)
         :type active_directory_admin_password: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param force_remove: To force delete the Active directory from cluster. This will skip all the checks that prevents cluster from leaving an AD domain.
         :type force_remove: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1188,9 +1189,9 @@ class ActiveDirectoryApi:
             id=id,
             active_directory_admin_username=active_directory_admin_username,
             active_directory_admin_password=active_directory_admin_password,
+            force_remove=force_remove,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            force_remove=force_remove,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1212,9 +1213,9 @@ class ActiveDirectoryApi:
         id,
         active_directory_admin_username,
         active_directory_admin_password,
+        force_remove,
         access_cluster_id,
         region_id,
-        force_remove,
         _request_auth,
         _content_type,
         _headers,
@@ -1244,14 +1245,14 @@ class ActiveDirectoryApi:
             _query_params.append(('forceRemove', force_remove))
             
         # process the header parameters
-        if access_cluster_id is not None:
-            _header_params['accessClusterId'] = access_cluster_id
-        if region_id is not None:
-            _header_params['regionId'] = region_id
         if active_directory_admin_username is not None:
             _header_params['activeDirectoryAdminUsername'] = active_directory_admin_username
         if active_directory_admin_password is not None:
             _header_params['activeDirectoryAdminPassword'] = active_directory_admin_password
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
         # process the form parameters
         # process the body parameter
 
@@ -1293,7 +1294,7 @@ class ActiveDirectoryApi:
         self,
         domain_name: Annotated[str, Field(strict=True, description="Domain name of the active directory to delete.")],
         body: Annotated[DeleteMcmActiveDirectoryParams, Field(description="Specifies the parameters to delete an Active Directory.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1315,7 +1316,7 @@ class ActiveDirectoryApi:
         :type domain_name: str
         :param body: Specifies the parameters to delete an Active Directory. (required)
         :type body: DeleteMcmActiveDirectoryParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1368,7 +1369,7 @@ class ActiveDirectoryApi:
         self,
         domain_name: Annotated[str, Field(strict=True, description="Domain name of the active directory to delete.")],
         body: Annotated[DeleteMcmActiveDirectoryParams, Field(description="Specifies the parameters to delete an Active Directory.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1390,7 +1391,7 @@ class ActiveDirectoryApi:
         :type domain_name: str
         :param body: Specifies the parameters to delete an Active Directory. (required)
         :type body: DeleteMcmActiveDirectoryParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1443,7 +1444,7 @@ class ActiveDirectoryApi:
         self,
         domain_name: Annotated[str, Field(strict=True, description="Domain name of the active directory to delete.")],
         body: Annotated[DeleteMcmActiveDirectoryParams, Field(description="Specifies the parameters to delete an Active Directory.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1465,7 +1466,7 @@ class ActiveDirectoryApi:
         :type domain_name: str
         :param body: Specifies the parameters to delete an Active Directory. (required)
         :type body: DeleteMcmActiveDirectoryParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1595,12 +1596,12 @@ class ActiveDirectoryApi:
     @validate_call
     def get_active_directory(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         domain_names: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Filter by a list of Active Directory domain names.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Active Directory Ids.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which Active Directories are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Active Directories which were created by all tenants which the current user has permission to see. If false, then only Active Directories created by the current user will be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1618,10 +1619,6 @@ class ActiveDirectoryApi:
 
         Get the list of Active Directories.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param domain_names: Filter by a list of Active Directory domain names.
         :type domain_names: List[str]
         :param ids: Filter by a list of Active Directory Ids.
@@ -1630,6 +1627,10 @@ class ActiveDirectoryApi:
         :type tenant_ids: List[str]
         :param include_tenants: If true, the response will include Active Directories which were created by all tenants which the current user has permission to see. If false, then only Active Directories created by the current user will be returned.
         :type include_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1653,12 +1654,12 @@ class ActiveDirectoryApi:
         """ # noqa: E501
 
         _param = self._get_active_directory_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             domain_names=domain_names,
             ids=ids,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1682,12 +1683,12 @@ class ActiveDirectoryApi:
     @validate_call
     def get_active_directory_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         domain_names: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Filter by a list of Active Directory domain names.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Active Directory Ids.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which Active Directories are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Active Directories which were created by all tenants which the current user has permission to see. If false, then only Active Directories created by the current user will be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1705,10 +1706,6 @@ class ActiveDirectoryApi:
 
         Get the list of Active Directories.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param domain_names: Filter by a list of Active Directory domain names.
         :type domain_names: List[str]
         :param ids: Filter by a list of Active Directory Ids.
@@ -1717,6 +1714,10 @@ class ActiveDirectoryApi:
         :type tenant_ids: List[str]
         :param include_tenants: If true, the response will include Active Directories which were created by all tenants which the current user has permission to see. If false, then only Active Directories created by the current user will be returned.
         :type include_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1740,12 +1741,12 @@ class ActiveDirectoryApi:
         """ # noqa: E501
 
         _param = self._get_active_directory_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             domain_names=domain_names,
             ids=ids,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1769,12 +1770,12 @@ class ActiveDirectoryApi:
     @validate_call
     def get_active_directory_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         domain_names: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Filter by a list of Active Directory domain names.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Active Directory Ids.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which Active Directories are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Active Directories which were created by all tenants which the current user has permission to see. If false, then only Active Directories created by the current user will be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1792,10 +1793,6 @@ class ActiveDirectoryApi:
 
         Get the list of Active Directories.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param domain_names: Filter by a list of Active Directory domain names.
         :type domain_names: List[str]
         :param ids: Filter by a list of Active Directory Ids.
@@ -1804,6 +1801,10 @@ class ActiveDirectoryApi:
         :type tenant_ids: List[str]
         :param include_tenants: If true, the response will include Active Directories which were created by all tenants which the current user has permission to see. If false, then only Active Directories created by the current user will be returned.
         :type include_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1827,12 +1828,12 @@ class ActiveDirectoryApi:
         """ # noqa: E501
 
         _param = self._get_active_directory_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             domain_names=domain_names,
             ids=ids,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1851,12 +1852,12 @@ class ActiveDirectoryApi:
 
     def _get_active_directory_serialize(
         self,
-        access_cluster_id,
-        region_id,
         domain_names,
         ids,
         tenant_ids,
         include_tenants,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1943,13 +1944,13 @@ class ActiveDirectoryApi:
     def get_active_directory_by_id(
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of an Active Directory.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         include_centrify_zones: Annotated[Optional[StrictBool], Field(description="Specifies whether to include Centrify Zones of the Active Directory in response.")] = None,
         include_domain_controllers: Annotated[Optional[StrictBool], Field(description="Specifies whether to include Domain Controllers of the Active Directory in response.")] = None,
         include_security_principals: Annotated[Optional[StrictBool], Field(description="Specifies whether to include Security Principals of the Active Directory in response.")] = None,
         prefix: Annotated[Optional[StrictStr], Field(description="Specifies a prefix, only security principals with name or sAMAccountName having this prefix (ignoring cases) will be returned. This field is appliciable and mandatory if 'includeSecurityPrincipals' is set to true.")] = None,
         object_class: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of object classes, only security principals with object class in this list will be returned. This field is appliciable if 'includeSecurityPrincipals' is set to true.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1969,10 +1970,6 @@ class ActiveDirectoryApi:
 
         :param id: Specifies id of an Active Directory. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param include_centrify_zones: Specifies whether to include Centrify Zones of the Active Directory in response.
         :type include_centrify_zones: bool
         :param include_domain_controllers: Specifies whether to include Domain Controllers of the Active Directory in response.
@@ -1983,6 +1980,10 @@ class ActiveDirectoryApi:
         :type prefix: str
         :param object_class: Specifies a list of object classes, only security principals with object class in this list will be returned. This field is appliciable if 'includeSecurityPrincipals' is set to true.
         :type object_class: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2007,13 +2008,13 @@ class ActiveDirectoryApi:
 
         _param = self._get_active_directory_by_id_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             include_centrify_zones=include_centrify_zones,
             include_domain_controllers=include_domain_controllers,
             include_security_principals=include_security_principals,
             prefix=prefix,
             object_class=object_class,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2038,13 +2039,13 @@ class ActiveDirectoryApi:
     def get_active_directory_by_id_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of an Active Directory.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         include_centrify_zones: Annotated[Optional[StrictBool], Field(description="Specifies whether to include Centrify Zones of the Active Directory in response.")] = None,
         include_domain_controllers: Annotated[Optional[StrictBool], Field(description="Specifies whether to include Domain Controllers of the Active Directory in response.")] = None,
         include_security_principals: Annotated[Optional[StrictBool], Field(description="Specifies whether to include Security Principals of the Active Directory in response.")] = None,
         prefix: Annotated[Optional[StrictStr], Field(description="Specifies a prefix, only security principals with name or sAMAccountName having this prefix (ignoring cases) will be returned. This field is appliciable and mandatory if 'includeSecurityPrincipals' is set to true.")] = None,
         object_class: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of object classes, only security principals with object class in this list will be returned. This field is appliciable if 'includeSecurityPrincipals' is set to true.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2064,10 +2065,6 @@ class ActiveDirectoryApi:
 
         :param id: Specifies id of an Active Directory. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param include_centrify_zones: Specifies whether to include Centrify Zones of the Active Directory in response.
         :type include_centrify_zones: bool
         :param include_domain_controllers: Specifies whether to include Domain Controllers of the Active Directory in response.
@@ -2078,6 +2075,10 @@ class ActiveDirectoryApi:
         :type prefix: str
         :param object_class: Specifies a list of object classes, only security principals with object class in this list will be returned. This field is appliciable if 'includeSecurityPrincipals' is set to true.
         :type object_class: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2102,13 +2103,13 @@ class ActiveDirectoryApi:
 
         _param = self._get_active_directory_by_id_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             include_centrify_zones=include_centrify_zones,
             include_domain_controllers=include_domain_controllers,
             include_security_principals=include_security_principals,
             prefix=prefix,
             object_class=object_class,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2133,13 +2134,13 @@ class ActiveDirectoryApi:
     def get_active_directory_by_id_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of an Active Directory.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         include_centrify_zones: Annotated[Optional[StrictBool], Field(description="Specifies whether to include Centrify Zones of the Active Directory in response.")] = None,
         include_domain_controllers: Annotated[Optional[StrictBool], Field(description="Specifies whether to include Domain Controllers of the Active Directory in response.")] = None,
         include_security_principals: Annotated[Optional[StrictBool], Field(description="Specifies whether to include Security Principals of the Active Directory in response.")] = None,
         prefix: Annotated[Optional[StrictStr], Field(description="Specifies a prefix, only security principals with name or sAMAccountName having this prefix (ignoring cases) will be returned. This field is appliciable and mandatory if 'includeSecurityPrincipals' is set to true.")] = None,
         object_class: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of object classes, only security principals with object class in this list will be returned. This field is appliciable if 'includeSecurityPrincipals' is set to true.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2159,10 +2160,6 @@ class ActiveDirectoryApi:
 
         :param id: Specifies id of an Active Directory. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param include_centrify_zones: Specifies whether to include Centrify Zones of the Active Directory in response.
         :type include_centrify_zones: bool
         :param include_domain_controllers: Specifies whether to include Domain Controllers of the Active Directory in response.
@@ -2173,6 +2170,10 @@ class ActiveDirectoryApi:
         :type prefix: str
         :param object_class: Specifies a list of object classes, only security principals with object class in this list will be returned. This field is appliciable if 'includeSecurityPrincipals' is set to true.
         :type object_class: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2197,13 +2198,13 @@ class ActiveDirectoryApi:
 
         _param = self._get_active_directory_by_id_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             include_centrify_zones=include_centrify_zones,
             include_domain_controllers=include_domain_controllers,
             include_security_principals=include_security_principals,
             prefix=prefix,
             object_class=object_class,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2223,13 +2224,13 @@ class ActiveDirectoryApi:
     def _get_active_directory_by_id_serialize(
         self,
         id,
-        access_cluster_id,
-        region_id,
         include_centrify_zones,
         include_domain_controllers,
         include_security_principals,
         prefix,
         object_class,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2319,14 +2320,14 @@ class ActiveDirectoryApi:
     @validate_call
     def get_active_directory_principals(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         domain_name: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Specifies the domain name of the principals to search. If specified the principals in that domain are searched. Domain could be an Active Directory domain joined by the Cluster or any one of the trusted domains of the Active Directory domain or the LOCAL domain. If not specified, all the domains are searched.")] = None,
         sids: Annotated[Optional[List[StrictStr]], Field(description="Optionally filter by a list of security identifiers (SIDs) found in the specified domain. Only principals matching the specified SIDs are returned. If specified, a 'searchTerm' parameter should not be specified. Note: Duplicate SIDs will be ignored.")] = None,
         search_term: Annotated[Optional[StrictStr], Field(description="Optionally filter by matching a substring. Only principals with a name or sAMAccountName that matches part or all of the specified substring are returned. If specified, a 'sids' parameter should not be specified")] = None,
         include_computers: Annotated[Optional[StrictBool], Field(description="Specifies if Computer/GMSA accounts need to be included in this search.")] = None,
         include_service_accounts: Annotated[Optional[StrictBool], Field(description="Specifies if service accounts should be included in the search result.")] = None,
         object_class: Annotated[Optional[StrictStr], Field(description="Specifies the type of principal, a user or a group.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2344,10 +2345,6 @@ class ActiveDirectoryApi:
 
         Get the list of user and group principals from the Active Directory that match the specified filter criteria.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param domain_name: Specifies the domain name of the principals to search. If specified the principals in that domain are searched. Domain could be an Active Directory domain joined by the Cluster or any one of the trusted domains of the Active Directory domain or the LOCAL domain. If not specified, all the domains are searched.
         :type domain_name: str
         :param sids: Optionally filter by a list of security identifiers (SIDs) found in the specified domain. Only principals matching the specified SIDs are returned. If specified, a 'searchTerm' parameter should not be specified. Note: Duplicate SIDs will be ignored.
@@ -2360,6 +2357,10 @@ class ActiveDirectoryApi:
         :type include_service_accounts: bool
         :param object_class: Specifies the type of principal, a user or a group.
         :type object_class: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2383,14 +2384,14 @@ class ActiveDirectoryApi:
         """ # noqa: E501
 
         _param = self._get_active_directory_principals_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             domain_name=domain_name,
             sids=sids,
             search_term=search_term,
             include_computers=include_computers,
             include_service_accounts=include_service_accounts,
             object_class=object_class,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2414,14 +2415,14 @@ class ActiveDirectoryApi:
     @validate_call
     def get_active_directory_principals_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         domain_name: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Specifies the domain name of the principals to search. If specified the principals in that domain are searched. Domain could be an Active Directory domain joined by the Cluster or any one of the trusted domains of the Active Directory domain or the LOCAL domain. If not specified, all the domains are searched.")] = None,
         sids: Annotated[Optional[List[StrictStr]], Field(description="Optionally filter by a list of security identifiers (SIDs) found in the specified domain. Only principals matching the specified SIDs are returned. If specified, a 'searchTerm' parameter should not be specified. Note: Duplicate SIDs will be ignored.")] = None,
         search_term: Annotated[Optional[StrictStr], Field(description="Optionally filter by matching a substring. Only principals with a name or sAMAccountName that matches part or all of the specified substring are returned. If specified, a 'sids' parameter should not be specified")] = None,
         include_computers: Annotated[Optional[StrictBool], Field(description="Specifies if Computer/GMSA accounts need to be included in this search.")] = None,
         include_service_accounts: Annotated[Optional[StrictBool], Field(description="Specifies if service accounts should be included in the search result.")] = None,
         object_class: Annotated[Optional[StrictStr], Field(description="Specifies the type of principal, a user or a group.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2439,10 +2440,6 @@ class ActiveDirectoryApi:
 
         Get the list of user and group principals from the Active Directory that match the specified filter criteria.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param domain_name: Specifies the domain name of the principals to search. If specified the principals in that domain are searched. Domain could be an Active Directory domain joined by the Cluster or any one of the trusted domains of the Active Directory domain or the LOCAL domain. If not specified, all the domains are searched.
         :type domain_name: str
         :param sids: Optionally filter by a list of security identifiers (SIDs) found in the specified domain. Only principals matching the specified SIDs are returned. If specified, a 'searchTerm' parameter should not be specified. Note: Duplicate SIDs will be ignored.
@@ -2455,6 +2452,10 @@ class ActiveDirectoryApi:
         :type include_service_accounts: bool
         :param object_class: Specifies the type of principal, a user or a group.
         :type object_class: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2478,14 +2479,14 @@ class ActiveDirectoryApi:
         """ # noqa: E501
 
         _param = self._get_active_directory_principals_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             domain_name=domain_name,
             sids=sids,
             search_term=search_term,
             include_computers=include_computers,
             include_service_accounts=include_service_accounts,
             object_class=object_class,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2509,14 +2510,14 @@ class ActiveDirectoryApi:
     @validate_call
     def get_active_directory_principals_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         domain_name: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Specifies the domain name of the principals to search. If specified the principals in that domain are searched. Domain could be an Active Directory domain joined by the Cluster or any one of the trusted domains of the Active Directory domain or the LOCAL domain. If not specified, all the domains are searched.")] = None,
         sids: Annotated[Optional[List[StrictStr]], Field(description="Optionally filter by a list of security identifiers (SIDs) found in the specified domain. Only principals matching the specified SIDs are returned. If specified, a 'searchTerm' parameter should not be specified. Note: Duplicate SIDs will be ignored.")] = None,
         search_term: Annotated[Optional[StrictStr], Field(description="Optionally filter by matching a substring. Only principals with a name or sAMAccountName that matches part or all of the specified substring are returned. If specified, a 'sids' parameter should not be specified")] = None,
         include_computers: Annotated[Optional[StrictBool], Field(description="Specifies if Computer/GMSA accounts need to be included in this search.")] = None,
         include_service_accounts: Annotated[Optional[StrictBool], Field(description="Specifies if service accounts should be included in the search result.")] = None,
         object_class: Annotated[Optional[StrictStr], Field(description="Specifies the type of principal, a user or a group.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2534,10 +2535,6 @@ class ActiveDirectoryApi:
 
         Get the list of user and group principals from the Active Directory that match the specified filter criteria.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param domain_name: Specifies the domain name of the principals to search. If specified the principals in that domain are searched. Domain could be an Active Directory domain joined by the Cluster or any one of the trusted domains of the Active Directory domain or the LOCAL domain. If not specified, all the domains are searched.
         :type domain_name: str
         :param sids: Optionally filter by a list of security identifiers (SIDs) found in the specified domain. Only principals matching the specified SIDs are returned. If specified, a 'searchTerm' parameter should not be specified. Note: Duplicate SIDs will be ignored.
@@ -2550,6 +2547,10 @@ class ActiveDirectoryApi:
         :type include_service_accounts: bool
         :param object_class: Specifies the type of principal, a user or a group.
         :type object_class: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2573,14 +2574,14 @@ class ActiveDirectoryApi:
         """ # noqa: E501
 
         _param = self._get_active_directory_principals_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             domain_name=domain_name,
             sids=sids,
             search_term=search_term,
             include_computers=include_computers,
             include_service_accounts=include_service_accounts,
             object_class=object_class,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2599,14 +2600,14 @@ class ActiveDirectoryApi:
 
     def _get_active_directory_principals_serialize(
         self,
-        access_cluster_id,
-        region_id,
         domain_name,
         sids,
         search_term,
         include_computers,
         include_service_accounts,
         object_class,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2696,11 +2697,287 @@ class ActiveDirectoryApi:
 
 
     @validate_call
+    def get_active_directory_topology(
+        self,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ActiveDirectoryTopology:
+        """Get Active Directory Topology
+
+        Get the Active Directory topology for the cluster. The topology includes trust relationships between the Active Directories registered on the cluster and their neighboring domains.
+
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_active_directory_topology_serialize(
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ActiveDirectoryTopology",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_active_directory_topology_with_http_info(
+        self,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ActiveDirectoryTopology]:
+        """Get Active Directory Topology
+
+        Get the Active Directory topology for the cluster. The topology includes trust relationships between the Active Directories registered on the cluster and their neighboring domains.
+
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_active_directory_topology_serialize(
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ActiveDirectoryTopology",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_active_directory_topology_without_preload_content(
+        self,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Active Directory Topology
+
+        Get the Active Directory topology for the cluster. The topology includes trust relationships between the Active Directories registered on the cluster and their neighboring domains.
+
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_active_directory_topology_serialize(
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ActiveDirectoryTopology",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_active_directory_topology_serialize(
+        self,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/active-directory-topology',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_centrify_zones(
         self,
         domain_name: Annotated[str, Field(strict=True, description="Specifies the FQDN of the domain name.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2720,9 +2997,9 @@ class ActiveDirectoryApi:
 
         :param domain_name: Specifies the FQDN of the domain name. (required)
         :type domain_name: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2774,8 +3051,8 @@ class ActiveDirectoryApi:
     def get_centrify_zones_with_http_info(
         self,
         domain_name: Annotated[str, Field(strict=True, description="Specifies the FQDN of the domain name.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2795,9 +3072,9 @@ class ActiveDirectoryApi:
 
         :param domain_name: Specifies the FQDN of the domain name. (required)
         :type domain_name: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2849,8 +3126,8 @@ class ActiveDirectoryApi:
     def get_centrify_zones_without_preload_content(
         self,
         domain_name: Annotated[str, Field(strict=True, description="Specifies the FQDN of the domain name.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2870,9 +3147,9 @@ class ActiveDirectoryApi:
 
         :param domain_name: Specifies the FQDN of the domain name. (required)
         :type domain_name: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2992,9 +3269,9 @@ class ActiveDirectoryApi:
     def get_domain_controllers(
         self,
         domain_names: Annotated[List[Annotated[str, Field(strict=True)]], Field(min_length=1, description="Specifies a list of domain names.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         connection_id: Annotated[Optional[StrictInt], Field(description="Specifies the Id of the connection which the connector belongs to.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3014,12 +3291,12 @@ class ActiveDirectoryApi:
 
         :param domain_names: Specifies a list of domain names. (required)
         :type domain_names: List[str]
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param connection_id: Specifies the Id of the connection which the connector belongs to.
         :type connection_id: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3044,9 +3321,9 @@ class ActiveDirectoryApi:
 
         _param = self._get_domain_controllers_serialize(
             domain_names=domain_names,
+            connection_id=connection_id,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            connection_id=connection_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3071,9 +3348,9 @@ class ActiveDirectoryApi:
     def get_domain_controllers_with_http_info(
         self,
         domain_names: Annotated[List[Annotated[str, Field(strict=True)]], Field(min_length=1, description="Specifies a list of domain names.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         connection_id: Annotated[Optional[StrictInt], Field(description="Specifies the Id of the connection which the connector belongs to.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3093,12 +3370,12 @@ class ActiveDirectoryApi:
 
         :param domain_names: Specifies a list of domain names. (required)
         :type domain_names: List[str]
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param connection_id: Specifies the Id of the connection which the connector belongs to.
         :type connection_id: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3123,9 +3400,9 @@ class ActiveDirectoryApi:
 
         _param = self._get_domain_controllers_serialize(
             domain_names=domain_names,
+            connection_id=connection_id,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            connection_id=connection_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3150,9 +3427,9 @@ class ActiveDirectoryApi:
     def get_domain_controllers_without_preload_content(
         self,
         domain_names: Annotated[List[Annotated[str, Field(strict=True)]], Field(min_length=1, description="Specifies a list of domain names.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         connection_id: Annotated[Optional[StrictInt], Field(description="Specifies the Id of the connection which the connector belongs to.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3172,12 +3449,12 @@ class ActiveDirectoryApi:
 
         :param domain_names: Specifies a list of domain names. (required)
         :type domain_names: List[str]
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param connection_id: Specifies the Id of the connection which the connector belongs to.
         :type connection_id: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3202,9 +3479,9 @@ class ActiveDirectoryApi:
 
         _param = self._get_domain_controllers_serialize(
             domain_names=domain_names,
+            connection_id=connection_id,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            connection_id=connection_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3224,9 +3501,9 @@ class ActiveDirectoryApi:
     def _get_domain_controllers_serialize(
         self,
         domain_names,
+        connection_id,
         access_cluster_id,
         region_id,
-        connection_id,
         _request_auth,
         _content_type,
         _headers,
@@ -3300,11 +3577,11 @@ class ActiveDirectoryApi:
 
 
     @validate_call
-    def get_domain_controllers_mixin1(
+    def get_domain_controllers_mixin0(
         self,
         domain_names: Annotated[List[Annotated[str, Field(strict=True)]], Field(min_length=1, description="Specifies a list of domain names.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         connection_id: Annotated[Optional[StrictInt], Field(description="Specifies the Id of the connection which the connector belongs to.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3324,10 +3601,10 @@ class ActiveDirectoryApi:
 
         :param domain_names: Specifies a list of domain names. (required)
         :type domain_names: List[str]
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param connection_id: Specifies the Id of the connection which the connector belongs to.
         :type connection_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3350,10 +3627,10 @@ class ActiveDirectoryApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_domain_controllers_mixin1_serialize(
+        _param = self._get_domain_controllers_mixin0_serialize(
             domain_names=domain_names,
-            region_id=region_id,
             connection_id=connection_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3375,11 +3652,11 @@ class ActiveDirectoryApi:
 
 
     @validate_call
-    def get_domain_controllers_mixin1_with_http_info(
+    def get_domain_controllers_mixin0_with_http_info(
         self,
         domain_names: Annotated[List[Annotated[str, Field(strict=True)]], Field(min_length=1, description="Specifies a list of domain names.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         connection_id: Annotated[Optional[StrictInt], Field(description="Specifies the Id of the connection which the connector belongs to.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3399,10 +3676,10 @@ class ActiveDirectoryApi:
 
         :param domain_names: Specifies a list of domain names. (required)
         :type domain_names: List[str]
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param connection_id: Specifies the Id of the connection which the connector belongs to.
         :type connection_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3425,10 +3702,10 @@ class ActiveDirectoryApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_domain_controllers_mixin1_serialize(
+        _param = self._get_domain_controllers_mixin0_serialize(
             domain_names=domain_names,
-            region_id=region_id,
             connection_id=connection_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3450,11 +3727,11 @@ class ActiveDirectoryApi:
 
 
     @validate_call
-    def get_domain_controllers_mixin1_without_preload_content(
+    def get_domain_controllers_mixin0_without_preload_content(
         self,
         domain_names: Annotated[List[Annotated[str, Field(strict=True)]], Field(min_length=1, description="Specifies a list of domain names.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         connection_id: Annotated[Optional[StrictInt], Field(description="Specifies the Id of the connection which the connector belongs to.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3474,10 +3751,10 @@ class ActiveDirectoryApi:
 
         :param domain_names: Specifies a list of domain names. (required)
         :type domain_names: List[str]
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param connection_id: Specifies the Id of the connection which the connector belongs to.
         :type connection_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3500,10 +3777,10 @@ class ActiveDirectoryApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_domain_controllers_mixin1_serialize(
+        _param = self._get_domain_controllers_mixin0_serialize(
             domain_names=domain_names,
-            region_id=region_id,
             connection_id=connection_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3520,11 +3797,11 @@ class ActiveDirectoryApi:
         return response_data.response
 
 
-    def _get_domain_controllers_mixin1_serialize(
+    def _get_domain_controllers_mixin0_serialize(
         self,
         domain_names,
-        region_id,
         connection_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -3598,8 +3875,8 @@ class ActiveDirectoryApi:
     @validate_call
     def get_helios_active_directory(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         domain_names: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Filter by a list of Active Directory domain names.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3617,10 +3894,10 @@ class ActiveDirectoryApi:
 
         Get the list of Active Directories for MCM. Note: This api is only supported in Multi-Cluster Manager (MCM).
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param domain_names: Filter by a list of Active Directory domain names.
         :type domain_names: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3644,8 +3921,8 @@ class ActiveDirectoryApi:
         """ # noqa: E501
 
         _param = self._get_helios_active_directory_serialize(
-            region_id=region_id,
             domain_names=domain_names,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3669,8 +3946,8 @@ class ActiveDirectoryApi:
     @validate_call
     def get_helios_active_directory_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         domain_names: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Filter by a list of Active Directory domain names.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3688,10 +3965,10 @@ class ActiveDirectoryApi:
 
         Get the list of Active Directories for MCM. Note: This api is only supported in Multi-Cluster Manager (MCM).
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param domain_names: Filter by a list of Active Directory domain names.
         :type domain_names: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3715,8 +3992,8 @@ class ActiveDirectoryApi:
         """ # noqa: E501
 
         _param = self._get_helios_active_directory_serialize(
-            region_id=region_id,
             domain_names=domain_names,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3740,8 +4017,8 @@ class ActiveDirectoryApi:
     @validate_call
     def get_helios_active_directory_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         domain_names: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Filter by a list of Active Directory domain names.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3759,10 +4036,10 @@ class ActiveDirectoryApi:
 
         Get the list of Active Directories for MCM. Note: This api is only supported in Multi-Cluster Manager (MCM).
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param domain_names: Filter by a list of Active Directory domain names.
         :type domain_names: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3786,8 +4063,8 @@ class ActiveDirectoryApi:
         """ # noqa: E501
 
         _param = self._get_helios_active_directory_serialize(
-            region_id=region_id,
             domain_names=domain_names,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3806,8 +4083,8 @@ class ActiveDirectoryApi:
 
     def _get_helios_active_directory_serialize(
         self,
-        region_id,
         domain_names,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -3878,8 +4155,8 @@ class ActiveDirectoryApi:
     def get_trusted_domains(
         self,
         domain_name: Annotated[StrictStr, Field(description="Specifies the FQDN of an Active directory domain.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3899,9 +4176,9 @@ class ActiveDirectoryApi:
 
         :param domain_name: Specifies the FQDN of an Active directory domain. (required)
         :type domain_name: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3953,8 +4230,8 @@ class ActiveDirectoryApi:
     def get_trusted_domains_with_http_info(
         self,
         domain_name: Annotated[StrictStr, Field(description="Specifies the FQDN of an Active directory domain.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3974,9 +4251,9 @@ class ActiveDirectoryApi:
 
         :param domain_name: Specifies the FQDN of an Active directory domain. (required)
         :type domain_name: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4028,8 +4305,8 @@ class ActiveDirectoryApi:
     def get_trusted_domains_without_preload_content(
         self,
         domain_name: Annotated[StrictStr, Field(description="Specifies the FQDN of an Active directory domain.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4049,9 +4326,9 @@ class ActiveDirectoryApi:
 
         :param domain_name: Specifies the FQDN of an Active directory domain. (required)
         :type domain_name: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4170,8 +4447,8 @@ class ActiveDirectoryApi:
     @validate_call
     def refresh_trusted_domains(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         domain_name: Annotated[Optional[StrictStr], Field(description="Specifies the domain name of AD config")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4189,10 +4466,10 @@ class ActiveDirectoryApi:
 
         Refresh trusted domains of AD config. Note: This api is only supported in Multi-Cluster Manager (MCM).
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param domain_name: Specifies the domain name of AD config
         :type domain_name: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4216,8 +4493,8 @@ class ActiveDirectoryApi:
         """ # noqa: E501
 
         _param = self._refresh_trusted_domains_serialize(
-            region_id=region_id,
             domain_name=domain_name,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4241,8 +4518,8 @@ class ActiveDirectoryApi:
     @validate_call
     def refresh_trusted_domains_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         domain_name: Annotated[Optional[StrictStr], Field(description="Specifies the domain name of AD config")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4260,10 +4537,10 @@ class ActiveDirectoryApi:
 
         Refresh trusted domains of AD config. Note: This api is only supported in Multi-Cluster Manager (MCM).
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param domain_name: Specifies the domain name of AD config
         :type domain_name: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4287,8 +4564,8 @@ class ActiveDirectoryApi:
         """ # noqa: E501
 
         _param = self._refresh_trusted_domains_serialize(
-            region_id=region_id,
             domain_name=domain_name,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4312,8 +4589,8 @@ class ActiveDirectoryApi:
     @validate_call
     def refresh_trusted_domains_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         domain_name: Annotated[Optional[StrictStr], Field(description="Specifies the domain name of AD config")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4331,10 +4608,10 @@ class ActiveDirectoryApi:
 
         Refresh trusted domains of AD config. Note: This api is only supported in Multi-Cluster Manager (MCM).
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param domain_name: Specifies the domain name of AD config
         :type domain_name: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4358,8 +4635,8 @@ class ActiveDirectoryApi:
         """ # noqa: E501
 
         _param = self._refresh_trusted_domains_serialize(
-            region_id=region_id,
             domain_name=domain_name,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4378,8 +4655,8 @@ class ActiveDirectoryApi:
 
     def _refresh_trusted_domains_serialize(
         self,
-        region_id,
         domain_name,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -4448,7 +4725,7 @@ class ActiveDirectoryApi:
     @validate_call
     def search_active_directory_principals(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[SearchActiveDirectoryPrincipalsParams], Field(description="Request body params to create a principal")] = None,
         _request_timeout: Union[
             None,
@@ -4467,7 +4744,7 @@ class ActiveDirectoryApi:
 
         Searches for the principals with the passed search key. Note: This api is only supported in Multi-Cluster Manager (MCM).
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Request body params to create a principal
         :type body: SearchActiveDirectoryPrincipalsParams
@@ -4519,7 +4796,7 @@ class ActiveDirectoryApi:
     @validate_call
     def search_active_directory_principals_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[SearchActiveDirectoryPrincipalsParams], Field(description="Request body params to create a principal")] = None,
         _request_timeout: Union[
             None,
@@ -4538,7 +4815,7 @@ class ActiveDirectoryApi:
 
         Searches for the principals with the passed search key. Note: This api is only supported in Multi-Cluster Manager (MCM).
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Request body params to create a principal
         :type body: SearchActiveDirectoryPrincipalsParams
@@ -4590,7 +4867,7 @@ class ActiveDirectoryApi:
     @validate_call
     def search_active_directory_principals_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[SearchActiveDirectoryPrincipalsParams], Field(description="Request body params to create a principal")] = None,
         _request_timeout: Union[
             None,
@@ -4609,7 +4886,7 @@ class ActiveDirectoryApi:
 
         Searches for the principals with the passed search key. Note: This api is only supported in Multi-Cluster Manager (MCM).
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Request body params to create a principal
         :type body: SearchActiveDirectoryPrincipalsParams
@@ -4739,8 +5016,8 @@ class ActiveDirectoryApi:
         self,
         domain_name: Annotated[StrictStr, Field(description="Specifies the FQDN of an Active directory domain.")],
         rediscover: Annotated[StrictBool, Field(description="Specifies if trusted domains should be rediscovered.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4762,9 +5039,9 @@ class ActiveDirectoryApi:
         :type domain_name: str
         :param rediscover: Specifies if trusted domains should be rediscovered. (required)
         :type rediscover: bool
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4818,8 +5095,8 @@ class ActiveDirectoryApi:
         self,
         domain_name: Annotated[StrictStr, Field(description="Specifies the FQDN of an Active directory domain.")],
         rediscover: Annotated[StrictBool, Field(description="Specifies if trusted domains should be rediscovered.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4841,9 +5118,9 @@ class ActiveDirectoryApi:
         :type domain_name: str
         :param rediscover: Specifies if trusted domains should be rediscovered. (required)
         :type rediscover: bool
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4897,8 +5174,8 @@ class ActiveDirectoryApi:
         self,
         domain_name: Annotated[StrictStr, Field(description="Specifies the FQDN of an Active directory domain.")],
         rediscover: Annotated[StrictBool, Field(description="Specifies if trusted domains should be rediscovered.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4920,9 +5197,9 @@ class ActiveDirectoryApi:
         :type domain_name: str
         :param rediscover: Specifies if trusted domains should be rediscovered. (required)
         :type rediscover: bool
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5049,8 +5326,8 @@ class ActiveDirectoryApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of an Active Directory.")],
         body: Annotated[UpdateActiveDirectoryRequest, Field(description="Request to update an Active Directory.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5072,9 +5349,9 @@ class ActiveDirectoryApi:
         :type id: int
         :param body: Request to update an Active Directory. (required)
         :type body: UpdateActiveDirectoryRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5128,8 +5405,8 @@ class ActiveDirectoryApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of an Active Directory.")],
         body: Annotated[UpdateActiveDirectoryRequest, Field(description="Request to update an Active Directory.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5151,9 +5428,9 @@ class ActiveDirectoryApi:
         :type id: int
         :param body: Request to update an Active Directory. (required)
         :type body: UpdateActiveDirectoryRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5207,8 +5484,8 @@ class ActiveDirectoryApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of an Active Directory.")],
         body: Annotated[UpdateActiveDirectoryRequest, Field(description="Request to update an Active Directory.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5230,9 +5507,9 @@ class ActiveDirectoryApi:
         :type id: int
         :param body: Request to update an Active Directory. (required)
         :type body: UpdateActiveDirectoryRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5368,7 +5645,7 @@ class ActiveDirectoryApi:
         self,
         domain_name: Annotated[str, Field(strict=True, description="Domain name of the active directory to update.")],
         body: Annotated[CreateOrUpdateActiveDirectoryRequest, Field(description="Specifies the parameters to update an Active Directory.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5390,7 +5667,7 @@ class ActiveDirectoryApi:
         :type domain_name: str
         :param body: Specifies the parameters to update an Active Directory. (required)
         :type body: CreateOrUpdateActiveDirectoryRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5443,7 +5720,7 @@ class ActiveDirectoryApi:
         self,
         domain_name: Annotated[str, Field(strict=True, description="Domain name of the active directory to update.")],
         body: Annotated[CreateOrUpdateActiveDirectoryRequest, Field(description="Specifies the parameters to update an Active Directory.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5465,7 +5742,7 @@ class ActiveDirectoryApi:
         :type domain_name: str
         :param body: Specifies the parameters to update an Active Directory. (required)
         :type body: CreateOrUpdateActiveDirectoryRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5518,7 +5795,7 @@ class ActiveDirectoryApi:
         self,
         domain_name: Annotated[str, Field(strict=True, description="Domain name of the active directory to update.")],
         body: Annotated[CreateOrUpdateActiveDirectoryRequest, Field(description="Specifies the parameters to update an Active Directory.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5540,7 +5817,7 @@ class ActiveDirectoryApi:
         :type domain_name: str
         :param body: Specifies the parameters to update an Active Directory. (required)
         :type body: CreateOrUpdateActiveDirectoryRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5672,8 +5949,8 @@ class ActiveDirectoryApi:
         self,
         domain_name: Annotated[Optional[StrictStr], Field(description="Specifies the FQDN of an Active directory domain.")],
         body: Annotated[TrustedDomainParams, Field(description="Specifies the trusted domains params.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5695,9 +5972,9 @@ class ActiveDirectoryApi:
         :type domain_name: str
         :param body: Specifies the trusted domains params. (required)
         :type body: TrustedDomainParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5751,8 +6028,8 @@ class ActiveDirectoryApi:
         self,
         domain_name: Annotated[Optional[StrictStr], Field(description="Specifies the FQDN of an Active directory domain.")],
         body: Annotated[TrustedDomainParams, Field(description="Specifies the trusted domains params.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5774,9 +6051,9 @@ class ActiveDirectoryApi:
         :type domain_name: str
         :param body: Specifies the trusted domains params. (required)
         :type body: TrustedDomainParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5830,8 +6107,8 @@ class ActiveDirectoryApi:
         self,
         domain_name: Annotated[Optional[StrictStr], Field(description="Specifies the FQDN of an Active directory domain.")],
         body: Annotated[TrustedDomainParams, Field(description="Specifies the trusted domains params.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5853,9 +6130,9 @@ class ActiveDirectoryApi:
         :type domain_name: str
         :param body: Specifies the trusted domains params. (required)
         :type body: TrustedDomainParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

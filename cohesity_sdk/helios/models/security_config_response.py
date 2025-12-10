@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.security_config_account_lockout import SecurityConfigAccountLockout
 from cohesity_sdk.helios.models.security_config_certificate_based_auth import SecurityConfigCertificateBasedAuth
@@ -44,7 +44,8 @@ class SecurityConfigResponse(BaseModel):
     password_strength: Optional[SecurityConfigPasswordStrength] = Field(default=None, alias="passwordStrength")
     session_configuration: Optional[SecurityConfigSessionConfiguration] = Field(default=None, alias="sessionConfiguration")
     ssh_configuration: Optional[SecurityConfigSshConfiguration] = Field(default=None, alias="sshConfiguration")
-    __properties: ClassVar[List[str]] = ["accountLockout", "authTokenTimeoutMinutes", "certificateBasedAuth", "dataClassification", "inactivityTimeoutMSecs", "passwordLifetime", "passwordReuse", "passwordStrength", "sessionConfiguration", "sshConfiguration"]
+    session_management_enabled: Optional[StrictBool] = Field(default=None, description="Specifies whether session management is enabled.  When true, sessionConfiguration from SecurityConfig will be used for for managing user sessions.", alias="sessionManagementEnabled")
+    __properties: ClassVar[List[str]] = ["accountLockout", "authTokenTimeoutMinutes", "certificateBasedAuth", "dataClassification", "inactivityTimeoutMSecs", "passwordLifetime", "passwordReuse", "passwordStrength", "sessionConfiguration", "sshConfiguration", "sessionManagementEnabled"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,8 +77,10 @@ class SecurityConfigResponse(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
+            "session_management_enabled",
         ])
 
         _dict = self.model_dump(
@@ -119,6 +122,11 @@ class SecurityConfigResponse(BaseModel):
         if self.inactivity_timeout_m_secs is None and "inactivity_timeout_m_secs" in self.model_fields_set:
             _dict['inactivityTimeoutMSecs'] = None
 
+        # set to None if session_management_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.session_management_enabled is None and "session_management_enabled" in self.model_fields_set:
+            _dict['sessionManagementEnabled'] = None
+
         return _dict
 
     @classmethod
@@ -140,7 +148,8 @@ class SecurityConfigResponse(BaseModel):
             "passwordReuse": SecurityConfigPasswordReuse.from_dict(obj["passwordReuse"]) if obj.get("passwordReuse") is not None else None,
             "passwordStrength": SecurityConfigPasswordStrength.from_dict(obj["passwordStrength"]) if obj.get("passwordStrength") is not None else None,
             "sessionConfiguration": SecurityConfigSessionConfiguration.from_dict(obj["sessionConfiguration"]) if obj.get("sessionConfiguration") is not None else None,
-            "sshConfiguration": SecurityConfigSshConfiguration.from_dict(obj["sshConfiguration"]) if obj.get("sshConfiguration") is not None else None
+            "sshConfiguration": SecurityConfigSshConfiguration.from_dict(obj["sshConfiguration"]) if obj.get("sshConfiguration") is not None else None,
+            "sessionManagementEnabled": obj.get("sessionManagementEnabled")
         })
         return _obj
 

@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.additional_document_info import AdditionalDocumentInfo
 from typing import Set
 from typing_extensions import Self
 
@@ -27,8 +28,9 @@ class FilesAndFoldersObject(BaseModel):
     Specifies a file or folder to download.
     """ # noqa: E501
     absolute_path: Optional[StrictStr] = Field(description="Specifies the absolute path of the file or folder.", alias="absolutePath")
+    document_params: Optional[AdditionalDocumentInfo] = Field(default=None, alias="documentParams")
     is_directory: Optional[StrictBool] = Field(default=None, description="Specifies whether the file or folder object is a directory.", alias="isDirectory")
-    __properties: ClassVar[List[str]] = ["absolutePath", "isDirectory"]
+    __properties: ClassVar[List[str]] = ["absolutePath", "documentParams", "isDirectory"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,6 +71,9 @@ class FilesAndFoldersObject(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of document_params
+        if self.document_params:
+            _dict['documentParams'] = self.document_params.to_dict()
         # set to None if absolute_path (nullable) is None
         # and model_fields_set contains the field
         if self.absolute_path is None and "absolute_path" in self.model_fields_set:
@@ -92,6 +97,7 @@ class FilesAndFoldersObject(BaseModel):
 
         _obj = cls.model_validate({
             "absolutePath": obj.get("absolutePath"),
+            "documentParams": AdditionalDocumentInfo.from_dict(obj["documentParams"]) if obj.get("documentParams") is not None else None,
             "isDirectory": obj.get("isDirectory")
         })
         return _obj

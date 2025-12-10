@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
 from cohesity_sdk.helios.models.mailbox_param import MailboxParam
-from cohesity_sdk.helios.models.one_drive_param import OneDriveParam
+from cohesity_sdk.helios.models.site_restore_param import SiteRestoreParam
 from typing import Set
 from typing_extensions import Self
 
@@ -33,7 +33,7 @@ class MsGroupParam(BaseModel):
     mailbox_restore_type: Optional[StrictStr] = Field(default=None, description="Specifies whether mailbox restore is full or granular.", alias="mailboxRestoreType")
     recover_entire_group: Optional[StrictBool] = Field(default=None, description="Specifies if the entire Group (mailbox + site) is to be restored.", alias="recoverEntireGroup")
     recover_object: CommonRecoverObjectSnapshotParams = Field(description="Specifies the MS group recover Object info.", alias="recoverObject")
-    site_restore_params: Optional[List[OneDriveParam]] = Field(default=None, description="Specifies the parameters to recover a MSGroup site document.", alias="siteRestoreParams")
+    site_restore_params: Optional[SiteRestoreParam] = Field(default=None, description="Specifies the parameters to recover a MSGroup site document.", alias="siteRestoreParams")
     site_restore_type: Optional[StrictStr] = Field(default=None, description="Specifies whether site restore is full or granular.", alias="siteRestoreType")
     __properties: ClassVar[List[str]] = ["mailboxRestoreParams", "mailboxRestoreType", "recoverEntireGroup", "recoverObject", "siteRestoreParams", "siteRestoreType"]
 
@@ -102,13 +102,9 @@ class MsGroupParam(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of recover_object
         if self.recover_object:
             _dict['recoverObject'] = self.recover_object.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in site_restore_params (list)
-        _items = []
+        # override the default output from pydantic by calling `to_dict()` of site_restore_params
         if self.site_restore_params:
-            for _item_site_restore_params in self.site_restore_params:
-                if _item_site_restore_params:
-                    _items.append(_item_site_restore_params.to_dict())
-            _dict['siteRestoreParams'] = _items
+            _dict['siteRestoreParams'] = self.site_restore_params.to_dict()
         # set to None if mailbox_restore_type (nullable) is None
         # and model_fields_set contains the field
         if self.mailbox_restore_type is None and "mailbox_restore_type" in self.model_fields_set:
@@ -118,11 +114,6 @@ class MsGroupParam(BaseModel):
         # and model_fields_set contains the field
         if self.recover_entire_group is None and "recover_entire_group" in self.model_fields_set:
             _dict['recoverEntireGroup'] = None
-
-        # set to None if site_restore_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.site_restore_params is None and "site_restore_params" in self.model_fields_set:
-            _dict['siteRestoreParams'] = None
 
         # set to None if site_restore_type (nullable) is None
         # and model_fields_set contains the field
@@ -145,7 +136,7 @@ class MsGroupParam(BaseModel):
             "mailboxRestoreType": obj.get("mailboxRestoreType"),
             "recoverEntireGroup": obj.get("recoverEntireGroup"),
             "recoverObject": CommonRecoverObjectSnapshotParams.from_dict(obj["recoverObject"]) if obj.get("recoverObject") is not None else None,
-            "siteRestoreParams": [OneDriveParam.from_dict(_item) for _item in obj["siteRestoreParams"]] if obj.get("siteRestoreParams") is not None else None,
+            "siteRestoreParams": SiteRestoreParam.from_dict(obj["siteRestoreParams"]) if obj.get("siteRestoreParams") is not None else None,
             "siteRestoreType": obj.get("siteRestoreType")
         })
         return _obj

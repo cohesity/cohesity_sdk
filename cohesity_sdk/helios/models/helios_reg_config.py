@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.cohesion_registration_config import CohesionRegistrationConfig
 from cohesity_sdk.helios.models.rigel_reg_config import RigelRegConfig
 from typing import Set
 from typing_extensions import Self
@@ -27,9 +28,10 @@ class HeliosRegConfig(BaseModel):
     """
     Specifies the Helios Registration Config.
     """ # noqa: E501
+    cohesion_reg_config: Optional[CohesionRegistrationConfig] = Field(default=None, alias="cohesionRegConfig")
     entity_type: Optional[StrictStr] = Field(default=None, description="Specifies the type of entity that is registered on Helios.", alias="entityType")
     rigel_reg_config: Optional[RigelRegConfig] = Field(default=None, alias="rigelRegConfig")
-    __properties: ClassVar[List[str]] = ["entityType", "rigelRegConfig"]
+    __properties: ClassVar[List[str]] = ["cohesionRegConfig", "entityType", "rigelRegConfig"]
 
     @field_validator('entity_type')
     def entity_type_validate_enum(cls, value):
@@ -80,6 +82,9 @@ class HeliosRegConfig(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of cohesion_reg_config
+        if self.cohesion_reg_config:
+            _dict['cohesionRegConfig'] = self.cohesion_reg_config.to_dict()
         # override the default output from pydantic by calling `to_dict()` of rigel_reg_config
         if self.rigel_reg_config:
             _dict['rigelRegConfig'] = self.rigel_reg_config.to_dict()
@@ -100,6 +105,7 @@ class HeliosRegConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "cohesionRegConfig": CohesionRegistrationConfig.from_dict(obj["cohesionRegConfig"]) if obj.get("cohesionRegConfig") is not None else None,
             "entityType": obj.get("entityType"),
             "rigelRegConfig": RigelRegConfig.from_dict(obj["rigelRegConfig"]) if obj.get("rigelRegConfig") is not None else None
         })

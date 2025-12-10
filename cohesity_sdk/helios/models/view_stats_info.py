@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.view_stats_info_details import ViewStatsInfoDetails
 from typing import Set
@@ -32,6 +32,17 @@ class ViewStatsInfo(BaseModel):
     view_id: Optional[StrictInt] = Field(default=None, description="Specifies the view Id.", alias="viewId")
     view_name: Optional[StrictStr] = Field(default=None, description="Specifies the view name.", alias="viewName")
     __properties: ClassVar[List[str]] = ["protocols", "stats", "viewId", "viewName"]
+
+    @field_validator('protocols')
+    def protocols_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        for i in value:
+            if i not in set(['kNfs', 'kSmb', 'kS3', 'kIscsi']):
+                raise ValueError("each list item must be one of ('kNfs', 'kSmb', 'kS3', 'kIscsi')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

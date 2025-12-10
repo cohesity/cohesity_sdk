@@ -31,14 +31,15 @@ class HyperVTargetParamsForRecoverVm(BaseModel):
     """ # noqa: E501
     continue_on_error: Optional[StrictBool] = Field(default=None, description="Specifies whether to continue recovering other vms if one of vms failed to recover. Default value is false.", alias="continueOnError")
     instant_recovery: Optional[StrictBool] = Field(default=None, description="Specifies whether to perform an instant recovery. By instant recovery, the recovered VM is available before files are completely copied to the recovered VM. Default is true.", alias="instantRecovery")
+    overwrite_existing_vms: Optional[StrictBool] = Field(default=None, description="Specifies whether to overwrite existing VMs while performing recovery of a VM. Default value is false.", alias="overwriteExistingVms")
     power_on_vms: Optional[StrictBool] = Field(default=None, description="Specifies whether to power on vms after recovery. If not specified, or false, recovered vms will be in powered off state.", alias="powerOnVms")
     preserve_uuids: Optional[StrictBool] = Field(default=None, description="Specifies whether to preserve uuids of recovered VMs. Default is false.", alias="preserveUuids")
     recover_excluded_disk: Optional[StrictBool] = Field(default=None, description="Specifies whether to recover excluded disk while performing recovery of a VM by creating empty disks for them. Default value is false.", alias="recoverExcludedDisk")
     recovery_target_config: Optional[HyperVVmRecoveryTargetConfig] = Field(default=None, description="Specifies the recovery target configuration if recovery has to be done to a different location which is different from original source or to original Source with different configuration. If not specified, then the recovery of the vms will be performed to original location with all configuration parameters retained.", alias="recoveryTargetConfig")
     rename_recovered_vms_params: Optional[RecoveredOrClonedVmsRenameConfig] = Field(default=None, description="Specifies params to rename the VMs that are recovered. If not specified, the original names of the VMs are preserved.", alias="renameRecoveredVmsParams")
-    use_smb_service: Optional[StrictBool] = Field(default=None, description="Specifies if the HyperV recovery is using the SMB service to perform the restore. On-prem, this is the case by default. However, as of today, DMaaS does not support SMB, and HyperV VM VM restores will employ an alternative restore method in this case.", alias="useSmbService")
+    use_smb_service: Optional[StrictBool] = Field(default=None, description="Specifies if the HyperV recovery is using the SMB service to perform the restore. It is false for copy-recovery if nothing is specified. For instant-recovery it is true by default. Since DMaaS does not support SMB, only stream copy recovery is supported.", alias="useSmbService")
     vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, description="Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery.", alias="vlanConfig")
-    __properties: ClassVar[List[str]] = ["continueOnError", "instantRecovery", "powerOnVms", "preserveUuids", "recoverExcludedDisk", "recoveryTargetConfig", "renameRecoveredVmsParams", "useSmbService", "vlanConfig"]
+    __properties: ClassVar[List[str]] = ["continueOnError", "instantRecovery", "overwriteExistingVms", "powerOnVms", "preserveUuids", "recoverExcludedDisk", "recoveryTargetConfig", "renameRecoveredVmsParams", "useSmbService", "vlanConfig"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -98,6 +99,11 @@ class HyperVTargetParamsForRecoverVm(BaseModel):
         if self.instant_recovery is None and "instant_recovery" in self.model_fields_set:
             _dict['instantRecovery'] = None
 
+        # set to None if overwrite_existing_vms (nullable) is None
+        # and model_fields_set contains the field
+        if self.overwrite_existing_vms is None and "overwrite_existing_vms" in self.model_fields_set:
+            _dict['overwriteExistingVms'] = None
+
         # set to None if power_on_vms (nullable) is None
         # and model_fields_set contains the field
         if self.power_on_vms is None and "power_on_vms" in self.model_fields_set:
@@ -147,6 +153,7 @@ class HyperVTargetParamsForRecoverVm(BaseModel):
         _obj = cls.model_validate({
             "continueOnError": obj.get("continueOnError"),
             "instantRecovery": obj.get("instantRecovery"),
+            "overwriteExistingVms": obj.get("overwriteExistingVms"),
             "powerOnVms": obj.get("powerOnVms"),
             "preserveUuids": obj.get("preserveUuids"),
             "recoverExcludedDisk": obj.get("recoverExcludedDisk"),

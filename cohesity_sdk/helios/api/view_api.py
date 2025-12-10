@@ -26,6 +26,8 @@ from cohesity_sdk.helios.models.get_nlm_locks_result import GetNlmLocksResult
 from cohesity_sdk.helios.models.get_view_templates_result import GetViewTemplatesResult
 from cohesity_sdk.helios.models.get_views_result import GetViewsResult
 from cohesity_sdk.helios.models.lock_file_params import LockFileParams
+from cohesity_sdk.helios.models.migrate_s3_views import MigrateS3Views
+from cohesity_sdk.helios.models.multiple_views_update_success_failure_ids import MultipleViewsUpdateSuccessFailureIds
 from cohesity_sdk.helios.models.overwrite_view_params import OverwriteViewParams
 from cohesity_sdk.helios.models.qos_policies_result import QosPoliciesResult
 from cohesity_sdk.helios.models.quota_policy import QuotaPolicy
@@ -69,8 +71,8 @@ class ViewApi:
         self,
         view_id: Annotated[StrictInt, Field(description="Specifies the id of a view.")],
         body: Annotated[UserQuotaOverrides, Field(description="Specifies the parameters to override the default user quota on the view.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -92,9 +94,9 @@ class ViewApi:
         :type view_id: int
         :param body: Specifies the parameters to override the default user quota on the view. (required)
         :type body: UserQuotaOverrides
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -148,8 +150,8 @@ class ViewApi:
         self,
         view_id: Annotated[StrictInt, Field(description="Specifies the id of a view.")],
         body: Annotated[UserQuotaOverrides, Field(description="Specifies the parameters to override the default user quota on the view.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -171,9 +173,9 @@ class ViewApi:
         :type view_id: int
         :param body: Specifies the parameters to override the default user quota on the view. (required)
         :type body: UserQuotaOverrides
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -227,8 +229,8 @@ class ViewApi:
         self,
         view_id: Annotated[StrictInt, Field(description="Specifies the id of a view.")],
         body: Annotated[UserQuotaOverrides, Field(description="Specifies the parameters to override the default user quota on the view.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -250,9 +252,9 @@ class ViewApi:
         :type view_id: int
         :param body: Specifies the parameters to override the default user quota on the view. (required)
         :type body: UserQuotaOverrides
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -387,8 +389,8 @@ class ViewApi:
     def clear_nlm_locks(
         self,
         body: Annotated[ClearNlmLockRequest, Field(description="Request to clear NLM lock.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -408,9 +410,9 @@ class ViewApi:
 
         :param body: Request to clear NLM lock. (required)
         :type body: ClearNlmLockRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -462,8 +464,8 @@ class ViewApi:
     def clear_nlm_locks_with_http_info(
         self,
         body: Annotated[ClearNlmLockRequest, Field(description="Request to clear NLM lock.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -483,9 +485,9 @@ class ViewApi:
 
         :param body: Request to clear NLM lock. (required)
         :type body: ClearNlmLockRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -537,8 +539,8 @@ class ViewApi:
     def clear_nlm_locks_without_preload_content(
         self,
         body: Annotated[ClearNlmLockRequest, Field(description="Request to clear NLM lock.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -558,9 +560,9 @@ class ViewApi:
 
         :param body: Request to clear NLM lock. (required)
         :type body: ClearNlmLockRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -692,8 +694,8 @@ class ViewApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the View id to clone.")],
         body: Annotated[CloneViewParams, Field(description="Specifies the request to clone the View.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -715,9 +717,9 @@ class ViewApi:
         :type id: int
         :param body: Specifies the request to clone the View. (required)
         :type body: CloneViewParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -771,8 +773,8 @@ class ViewApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the View id to clone.")],
         body: Annotated[CloneViewParams, Field(description="Specifies the request to clone the View.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -794,9 +796,9 @@ class ViewApi:
         :type id: int
         :param body: Specifies the request to clone the View. (required)
         :type body: CloneViewParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -850,8 +852,8 @@ class ViewApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the View id to clone.")],
         body: Annotated[CloneViewParams, Field(description="Specifies the request to clone the View.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -873,9 +875,9 @@ class ViewApi:
         :type id: int
         :param body: Specifies the request to clone the View. (required)
         :type body: CloneViewParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1010,8 +1012,8 @@ class ViewApi:
     def clone_view_directory(
         self,
         body: Annotated[CloneViewDirectoryParams, Field(description="Specifies the request to clone View directory.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1031,9 +1033,9 @@ class ViewApi:
 
         :param body: Specifies the request to clone View directory. (required)
         :type body: CloneViewDirectoryParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1085,8 +1087,8 @@ class ViewApi:
     def clone_view_directory_with_http_info(
         self,
         body: Annotated[CloneViewDirectoryParams, Field(description="Specifies the request to clone View directory.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1106,9 +1108,9 @@ class ViewApi:
 
         :param body: Specifies the request to clone View directory. (required)
         :type body: CloneViewDirectoryParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1160,8 +1162,8 @@ class ViewApi:
     def clone_view_directory_without_preload_content(
         self,
         body: Annotated[CloneViewDirectoryParams, Field(description="Specifies the request to clone View directory.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1181,9 +1183,9 @@ class ViewApi:
 
         :param body: Specifies the request to clone View directory. (required)
         :type body: CloneViewDirectoryParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1313,8 +1315,8 @@ class ViewApi:
     @validate_call
     def close_smb_file_open(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[CloseSmbFileOpenParams], Field(description="Specifies parameters to close active  SMB file open.")] = None,
         _request_timeout: Union[
             None,
@@ -1333,9 +1335,9 @@ class ViewApi:
 
         Close an active SMB file open.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Specifies parameters to close active  SMB file open.
         :type body: CloseSmbFileOpenParams
@@ -1388,8 +1390,8 @@ class ViewApi:
     @validate_call
     def close_smb_file_open_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[CloseSmbFileOpenParams], Field(description="Specifies parameters to close active  SMB file open.")] = None,
         _request_timeout: Union[
             None,
@@ -1408,9 +1410,9 @@ class ViewApi:
 
         Close an active SMB file open.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Specifies parameters to close active  SMB file open.
         :type body: CloseSmbFileOpenParams
@@ -1463,8 +1465,8 @@ class ViewApi:
     @validate_call
     def close_smb_file_open_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[CloseSmbFileOpenParams], Field(description="Specifies parameters to close active  SMB file open.")] = None,
         _request_timeout: Union[
             None,
@@ -1483,9 +1485,9 @@ class ViewApi:
 
         Close an active SMB file open.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Specifies parameters to close active  SMB file open.
         :type body: CloseSmbFileOpenParams
@@ -1618,8 +1620,8 @@ class ViewApi:
     def create_share(
         self,
         body: Annotated[Share, Field(description="Specifies the request to create a Share.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1639,9 +1641,9 @@ class ViewApi:
 
         :param body: Specifies the request to create a Share. (required)
         :type body: Share
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1693,8 +1695,8 @@ class ViewApi:
     def create_share_with_http_info(
         self,
         body: Annotated[Share, Field(description="Specifies the request to create a Share.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1714,9 +1716,9 @@ class ViewApi:
 
         :param body: Specifies the request to create a Share. (required)
         :type body: Share
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1768,8 +1770,8 @@ class ViewApi:
     def create_share_without_preload_content(
         self,
         body: Annotated[Share, Field(description="Specifies the request to create a Share.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1789,9 +1791,9 @@ class ViewApi:
 
         :param body: Specifies the request to create a Share. (required)
         :type body: Share
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1922,8 +1924,8 @@ class ViewApi:
     def create_view(
         self,
         body: Annotated[CreateViewRequest, Field(description="Request to create a View.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1943,9 +1945,9 @@ class ViewApi:
 
         :param body: Request to create a View. (required)
         :type body: CreateViewRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1997,8 +1999,8 @@ class ViewApi:
     def create_view_with_http_info(
         self,
         body: Annotated[CreateViewRequest, Field(description="Request to create a View.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2018,9 +2020,9 @@ class ViewApi:
 
         :param body: Request to create a View. (required)
         :type body: CreateViewRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2072,8 +2074,8 @@ class ViewApi:
     def create_view_without_preload_content(
         self,
         body: Annotated[CreateViewRequest, Field(description="Request to create a View.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2093,9 +2095,9 @@ class ViewApi:
 
         :param body: Request to create a View. (required)
         :type body: CreateViewRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2226,8 +2228,8 @@ class ViewApi:
     def create_view_template(
         self,
         body: Annotated[Template, Field(description="Request to create a view template.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2247,9 +2249,9 @@ class ViewApi:
 
         :param body: Request to create a view template. (required)
         :type body: Template
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2301,8 +2303,8 @@ class ViewApi:
     def create_view_template_with_http_info(
         self,
         body: Annotated[Template, Field(description="Request to create a view template.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2322,9 +2324,9 @@ class ViewApi:
 
         :param body: Request to create a view template. (required)
         :type body: Template
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2376,8 +2378,8 @@ class ViewApi:
     def create_view_template_without_preload_content(
         self,
         body: Annotated[Template, Field(description="Request to create a view template.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2397,9 +2399,9 @@ class ViewApi:
 
         :param body: Request to create a view template. (required)
         :type body: Template
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2530,8 +2532,8 @@ class ViewApi:
     def delete_share(
         self,
         name: Annotated[StrictStr, Field(description="Specifies the Share name to delete.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2551,9 +2553,9 @@ class ViewApi:
 
         :param name: Specifies the Share name to delete. (required)
         :type name: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2605,8 +2607,8 @@ class ViewApi:
     def delete_share_with_http_info(
         self,
         name: Annotated[StrictStr, Field(description="Specifies the Share name to delete.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2626,9 +2628,9 @@ class ViewApi:
 
         :param name: Specifies the Share name to delete. (required)
         :type name: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2680,8 +2682,8 @@ class ViewApi:
     def delete_share_without_preload_content(
         self,
         name: Annotated[StrictStr, Field(description="Specifies the Share name to delete.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2701,9 +2703,9 @@ class ViewApi:
 
         :param name: Specifies the Share name to delete. (required)
         :type name: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2821,8 +2823,8 @@ class ViewApi:
     def delete_view(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the View to delete.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2842,9 +2844,9 @@ class ViewApi:
 
         :param id: Specifies a unique id of the View to delete. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2896,8 +2898,8 @@ class ViewApi:
     def delete_view_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the View to delete.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2917,9 +2919,9 @@ class ViewApi:
 
         :param id: Specifies a unique id of the View to delete. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2971,8 +2973,8 @@ class ViewApi:
     def delete_view_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the View to delete.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2992,9 +2994,9 @@ class ViewApi:
 
         :param id: Specifies a unique id of the View to delete. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3112,10 +3114,10 @@ class ViewApi:
     def delete_view_directory_quota(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the View id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         directory_path: Annotated[Optional[StrictStr], Field(description="Specifies the directory path to delete. Exactly one of 'directoryPath' and 'deleteAllDirectoryQuotas' should be provided.")] = None,
         delete_all_directory_quotas: Annotated[Optional[StrictBool], Field(description="Specifies whether to delete all directory quotas for this view. Exactly one of 'directoryPath' and 'deleteAllDirectoryQuotas' should be provided.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3135,14 +3137,14 @@ class ViewApi:
 
         :param id: Specifies the View id. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param directory_path: Specifies the directory path to delete. Exactly one of 'directoryPath' and 'deleteAllDirectoryQuotas' should be provided.
         :type directory_path: str
         :param delete_all_directory_quotas: Specifies whether to delete all directory quotas for this view. Exactly one of 'directoryPath' and 'deleteAllDirectoryQuotas' should be provided.
         :type delete_all_directory_quotas: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3167,10 +3169,10 @@ class ViewApi:
 
         _param = self._delete_view_directory_quota_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             directory_path=directory_path,
             delete_all_directory_quotas=delete_all_directory_quotas,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3195,10 +3197,10 @@ class ViewApi:
     def delete_view_directory_quota_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the View id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         directory_path: Annotated[Optional[StrictStr], Field(description="Specifies the directory path to delete. Exactly one of 'directoryPath' and 'deleteAllDirectoryQuotas' should be provided.")] = None,
         delete_all_directory_quotas: Annotated[Optional[StrictBool], Field(description="Specifies whether to delete all directory quotas for this view. Exactly one of 'directoryPath' and 'deleteAllDirectoryQuotas' should be provided.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3218,14 +3220,14 @@ class ViewApi:
 
         :param id: Specifies the View id. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param directory_path: Specifies the directory path to delete. Exactly one of 'directoryPath' and 'deleteAllDirectoryQuotas' should be provided.
         :type directory_path: str
         :param delete_all_directory_quotas: Specifies whether to delete all directory quotas for this view. Exactly one of 'directoryPath' and 'deleteAllDirectoryQuotas' should be provided.
         :type delete_all_directory_quotas: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3250,10 +3252,10 @@ class ViewApi:
 
         _param = self._delete_view_directory_quota_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             directory_path=directory_path,
             delete_all_directory_quotas=delete_all_directory_quotas,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3278,10 +3280,10 @@ class ViewApi:
     def delete_view_directory_quota_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the View id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         directory_path: Annotated[Optional[StrictStr], Field(description="Specifies the directory path to delete. Exactly one of 'directoryPath' and 'deleteAllDirectoryQuotas' should be provided.")] = None,
         delete_all_directory_quotas: Annotated[Optional[StrictBool], Field(description="Specifies whether to delete all directory quotas for this view. Exactly one of 'directoryPath' and 'deleteAllDirectoryQuotas' should be provided.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3301,14 +3303,14 @@ class ViewApi:
 
         :param id: Specifies the View id. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param directory_path: Specifies the directory path to delete. Exactly one of 'directoryPath' and 'deleteAllDirectoryQuotas' should be provided.
         :type directory_path: str
         :param delete_all_directory_quotas: Specifies whether to delete all directory quotas for this view. Exactly one of 'directoryPath' and 'deleteAllDirectoryQuotas' should be provided.
         :type delete_all_directory_quotas: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3333,10 +3335,10 @@ class ViewApi:
 
         _param = self._delete_view_directory_quota_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             directory_path=directory_path,
             delete_all_directory_quotas=delete_all_directory_quotas,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3356,10 +3358,10 @@ class ViewApi:
     def _delete_view_directory_quota_serialize(
         self,
         id,
-        access_cluster_id,
-        region_id,
         directory_path,
         delete_all_directory_quotas,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -3437,8 +3439,8 @@ class ViewApi:
     def delete_view_template(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the view template to delete.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3458,9 +3460,9 @@ class ViewApi:
 
         :param id: Specifies a unique id of the view template to delete. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3512,8 +3514,8 @@ class ViewApi:
     def delete_view_template_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the view template to delete.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3533,9 +3535,9 @@ class ViewApi:
 
         :param id: Specifies a unique id of the view template to delete. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3587,8 +3589,8 @@ class ViewApi:
     def delete_view_template_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the view template to delete.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3608,9 +3610,9 @@ class ViewApi:
 
         :param id: Specifies a unique id of the view template to delete. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3729,8 +3731,8 @@ class ViewApi:
         self,
         view_id: Annotated[StrictInt, Field(description="Specifies the id of a view.")],
         body: Annotated[UserQuotaDeleteParams, Field(description="Specifies parameters to delete user quotas.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3752,9 +3754,9 @@ class ViewApi:
         :type view_id: int
         :param body: Specifies parameters to delete user quotas. (required)
         :type body: UserQuotaDeleteParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3808,8 +3810,8 @@ class ViewApi:
         self,
         view_id: Annotated[StrictInt, Field(description="Specifies the id of a view.")],
         body: Annotated[UserQuotaDeleteParams, Field(description="Specifies parameters to delete user quotas.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3831,9 +3833,9 @@ class ViewApi:
         :type view_id: int
         :param body: Specifies parameters to delete user quotas. (required)
         :type body: UserQuotaDeleteParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3887,8 +3889,8 @@ class ViewApi:
         self,
         view_id: Annotated[StrictInt, Field(description="Specifies the id of a view.")],
         body: Annotated[UserQuotaDeleteParams, Field(description="Specifies parameters to delete user quotas.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3910,9 +3912,9 @@ class ViewApi:
         :type view_id: int
         :param body: Specifies parameters to delete user quotas. (required)
         :type body: UserQuotaDeleteParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4047,9 +4049,9 @@ class ViewApi:
     def get_file_lock_status(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of a view.")],
-        path: Annotated[StrictStr, Field(description="Specifies the request file path in a view.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        path: Annotated[StrictStr, Field(description="Specifies the file path relative to root of the view.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4069,11 +4071,11 @@ class ViewApi:
 
         :param id: Specifies the id of a view. (required)
         :type id: int
-        :param path: Specifies the request file path in a view. (required)
+        :param path: Specifies the file path relative to root of the view. (required)
         :type path: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4126,9 +4128,9 @@ class ViewApi:
     def get_file_lock_status_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of a view.")],
-        path: Annotated[StrictStr, Field(description="Specifies the request file path in a view.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        path: Annotated[StrictStr, Field(description="Specifies the file path relative to root of the view.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4148,11 +4150,11 @@ class ViewApi:
 
         :param id: Specifies the id of a view. (required)
         :type id: int
-        :param path: Specifies the request file path in a view. (required)
+        :param path: Specifies the file path relative to root of the view. (required)
         :type path: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4205,9 +4207,9 @@ class ViewApi:
     def get_file_lock_status_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of a view.")],
-        path: Annotated[StrictStr, Field(description="Specifies the request file path in a view.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        path: Annotated[StrictStr, Field(description="Specifies the file path relative to root of the view.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4227,11 +4229,11 @@ class ViewApi:
 
         :param id: Specifies the id of a view. (required)
         :type id: int
-        :param path: Specifies the request file path in a view. (required)
+        :param path: Specifies the file path relative to root of the view. (required)
         :type path: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4354,12 +4356,12 @@ class ViewApi:
     @validate_call
     def get_nlm_locks(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         file_path: Annotated[Optional[StrictStr], Field(description="Specifies the filepath in the view relative to the root filesystem. If this field is specified, viewName field must also be specified.")] = None,
         view_name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the View in which to search. If a view name is not specified, all the views in the Cluster is searched. This field is mandatory if filePath field is specified.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of NLM locks to return in the response. By default, maxCount is set to 1000. At any given instance, maxCount value cannot be set to more than 1000.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the pagination cookie. If this is set, next set of locks just after the previous response are returned. If this is not set, first set of NLM locks are returned.\"")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4377,10 +4379,6 @@ class ViewApi:
 
         Get the list of NLM locks in the views.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param file_path: Specifies the filepath in the view relative to the root filesystem. If this field is specified, viewName field must also be specified.
         :type file_path: str
         :param view_name: Specifies the name of the View in which to search. If a view name is not specified, all the views in the Cluster is searched. This field is mandatory if filePath field is specified.
@@ -4389,6 +4387,10 @@ class ViewApi:
         :type max_count: int
         :param cookie: Specifies the pagination cookie. If this is set, next set of locks just after the previous response are returned. If this is not set, first set of NLM locks are returned.\"
         :type cookie: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4412,12 +4414,12 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._get_nlm_locks_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             file_path=file_path,
             view_name=view_name,
             max_count=max_count,
             cookie=cookie,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4441,12 +4443,12 @@ class ViewApi:
     @validate_call
     def get_nlm_locks_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         file_path: Annotated[Optional[StrictStr], Field(description="Specifies the filepath in the view relative to the root filesystem. If this field is specified, viewName field must also be specified.")] = None,
         view_name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the View in which to search. If a view name is not specified, all the views in the Cluster is searched. This field is mandatory if filePath field is specified.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of NLM locks to return in the response. By default, maxCount is set to 1000. At any given instance, maxCount value cannot be set to more than 1000.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the pagination cookie. If this is set, next set of locks just after the previous response are returned. If this is not set, first set of NLM locks are returned.\"")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4464,10 +4466,6 @@ class ViewApi:
 
         Get the list of NLM locks in the views.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param file_path: Specifies the filepath in the view relative to the root filesystem. If this field is specified, viewName field must also be specified.
         :type file_path: str
         :param view_name: Specifies the name of the View in which to search. If a view name is not specified, all the views in the Cluster is searched. This field is mandatory if filePath field is specified.
@@ -4476,6 +4474,10 @@ class ViewApi:
         :type max_count: int
         :param cookie: Specifies the pagination cookie. If this is set, next set of locks just after the previous response are returned. If this is not set, first set of NLM locks are returned.\"
         :type cookie: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4499,12 +4501,12 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._get_nlm_locks_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             file_path=file_path,
             view_name=view_name,
             max_count=max_count,
             cookie=cookie,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4528,12 +4530,12 @@ class ViewApi:
     @validate_call
     def get_nlm_locks_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         file_path: Annotated[Optional[StrictStr], Field(description="Specifies the filepath in the view relative to the root filesystem. If this field is specified, viewName field must also be specified.")] = None,
         view_name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the View in which to search. If a view name is not specified, all the views in the Cluster is searched. This field is mandatory if filePath field is specified.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of NLM locks to return in the response. By default, maxCount is set to 1000. At any given instance, maxCount value cannot be set to more than 1000.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the pagination cookie. If this is set, next set of locks just after the previous response are returned. If this is not set, first set of NLM locks are returned.\"")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4551,10 +4553,6 @@ class ViewApi:
 
         Get the list of NLM locks in the views.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param file_path: Specifies the filepath in the view relative to the root filesystem. If this field is specified, viewName field must also be specified.
         :type file_path: str
         :param view_name: Specifies the name of the View in which to search. If a view name is not specified, all the views in the Cluster is searched. This field is mandatory if filePath field is specified.
@@ -4563,6 +4561,10 @@ class ViewApi:
         :type max_count: int
         :param cookie: Specifies the pagination cookie. If this is set, next set of locks just after the previous response are returned. If this is not set, first set of NLM locks are returned.\"
         :type cookie: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4586,12 +4588,12 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._get_nlm_locks_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             file_path=file_path,
             view_name=view_name,
             max_count=max_count,
             cookie=cookie,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4610,12 +4612,12 @@ class ViewApi:
 
     def _get_nlm_locks_serialize(
         self,
-        access_cluster_id,
-        region_id,
         file_path,
         view_name,
         max_count,
         cookie,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -4698,8 +4700,8 @@ class ViewApi:
     @validate_call
     def get_qos_policies(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4717,9 +4719,9 @@ class ViewApi:
 
         Get the list of QoS policies on the Cohesity cluster.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4769,8 +4771,8 @@ class ViewApi:
     @validate_call
     def get_qos_policies_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4788,9 +4790,9 @@ class ViewApi:
 
         Get the list of QoS policies on the Cohesity cluster.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4840,8 +4842,8 @@ class ViewApi:
     @validate_call
     def get_qos_policies_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4859,9 +4861,9 @@ class ViewApi:
 
         Get the list of QoS policies on the Cohesity cluster.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4974,14 +4976,15 @@ class ViewApi:
     @validate_call
     def get_shares(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Specifies the Share name.")] = None,
+        is_read_only_view: Annotated[Optional[StrictBool], Field(description="If true, only shares of Views that are Read-Only will be returned.")] = None,
         match_partial_name: Annotated[Optional[StrictBool], Field(description="If true, the share name is matched by any partial rather than exactly matched.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of Shares returned. If maxCount is not specified, the first 2000 Shares.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the pagination cookie. Expected to be empty in the first call to the API. To get the next set of results, set this value to the pagination cookie value returned in the response of the previous call.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4999,12 +5002,10 @@ class ViewApi:
 
         If no parameters are specified, all shares on the Cohesity Cluster are returned. Specifying share name/prefix filters the results that are returned. NOTE: If maxCount is set and the number of Shares returned exceeds the maxCount, there are more Share to return. To get the next set of Views, send another request and specify the pagination cookie from the previous response. If maxCount is not specified, the first 2000 Shares.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param name: Specifies the Share name.
         :type name: str
+        :param is_read_only_view: If true, only shares of Views that are Read-Only will be returned.
+        :type is_read_only_view: bool
         :param match_partial_name: If true, the share name is matched by any partial rather than exactly matched.
         :type match_partial_name: bool
         :param max_count: Specifies a limit on the number of Shares returned. If maxCount is not specified, the first 2000 Shares.
@@ -5015,6 +5016,10 @@ class ViewApi:
         :type tenant_ids: List[str]
         :param include_tenants: IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned.
         :type include_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5038,14 +5043,15 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._get_shares_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             name=name,
+            is_read_only_view=is_read_only_view,
             match_partial_name=match_partial_name,
             max_count=max_count,
             cookie=cookie,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5069,14 +5075,15 @@ class ViewApi:
     @validate_call
     def get_shares_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Specifies the Share name.")] = None,
+        is_read_only_view: Annotated[Optional[StrictBool], Field(description="If true, only shares of Views that are Read-Only will be returned.")] = None,
         match_partial_name: Annotated[Optional[StrictBool], Field(description="If true, the share name is matched by any partial rather than exactly matched.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of Shares returned. If maxCount is not specified, the first 2000 Shares.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the pagination cookie. Expected to be empty in the first call to the API. To get the next set of results, set this value to the pagination cookie value returned in the response of the previous call.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5094,12 +5101,10 @@ class ViewApi:
 
         If no parameters are specified, all shares on the Cohesity Cluster are returned. Specifying share name/prefix filters the results that are returned. NOTE: If maxCount is set and the number of Shares returned exceeds the maxCount, there are more Share to return. To get the next set of Views, send another request and specify the pagination cookie from the previous response. If maxCount is not specified, the first 2000 Shares.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param name: Specifies the Share name.
         :type name: str
+        :param is_read_only_view: If true, only shares of Views that are Read-Only will be returned.
+        :type is_read_only_view: bool
         :param match_partial_name: If true, the share name is matched by any partial rather than exactly matched.
         :type match_partial_name: bool
         :param max_count: Specifies a limit on the number of Shares returned. If maxCount is not specified, the first 2000 Shares.
@@ -5110,6 +5115,10 @@ class ViewApi:
         :type tenant_ids: List[str]
         :param include_tenants: IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned.
         :type include_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5133,14 +5142,15 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._get_shares_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             name=name,
+            is_read_only_view=is_read_only_view,
             match_partial_name=match_partial_name,
             max_count=max_count,
             cookie=cookie,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5164,14 +5174,15 @@ class ViewApi:
     @validate_call
     def get_shares_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Specifies the Share name.")] = None,
+        is_read_only_view: Annotated[Optional[StrictBool], Field(description="If true, only shares of Views that are Read-Only will be returned.")] = None,
         match_partial_name: Annotated[Optional[StrictBool], Field(description="If true, the share name is matched by any partial rather than exactly matched.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of Shares returned. If maxCount is not specified, the first 2000 Shares.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the pagination cookie. Expected to be empty in the first call to the API. To get the next set of results, set this value to the pagination cookie value returned in the response of the previous call.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5189,12 +5200,10 @@ class ViewApi:
 
         If no parameters are specified, all shares on the Cohesity Cluster are returned. Specifying share name/prefix filters the results that are returned. NOTE: If maxCount is set and the number of Shares returned exceeds the maxCount, there are more Share to return. To get the next set of Views, send another request and specify the pagination cookie from the previous response. If maxCount is not specified, the first 2000 Shares.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param name: Specifies the Share name.
         :type name: str
+        :param is_read_only_view: If true, only shares of Views that are Read-Only will be returned.
+        :type is_read_only_view: bool
         :param match_partial_name: If true, the share name is matched by any partial rather than exactly matched.
         :type match_partial_name: bool
         :param max_count: Specifies a limit on the number of Shares returned. If maxCount is not specified, the first 2000 Shares.
@@ -5205,6 +5214,10 @@ class ViewApi:
         :type tenant_ids: List[str]
         :param include_tenants: IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned.
         :type include_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5228,14 +5241,15 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._get_shares_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             name=name,
+            is_read_only_view=is_read_only_view,
             match_partial_name=match_partial_name,
             max_count=max_count,
             cookie=cookie,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5254,14 +5268,15 @@ class ViewApi:
 
     def _get_shares_serialize(
         self,
-        access_cluster_id,
-        region_id,
         name,
+        is_read_only_view,
         match_partial_name,
         max_count,
         cookie,
         tenant_ids,
         include_tenants,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -5288,6 +5303,10 @@ class ViewApi:
         if name is not None:
             
             _query_params.append(('name', name))
+            
+        if is_read_only_view is not None:
+            
+            _query_params.append(('isReadOnlyView', is_read_only_view))
             
         if match_partial_name is not None:
             
@@ -5354,8 +5373,8 @@ class ViewApi:
     def get_view_by_id(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the View to fetch.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5375,9 +5394,9 @@ class ViewApi:
 
         :param id: Specifies a unique id of the View to fetch. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5429,8 +5448,8 @@ class ViewApi:
     def get_view_by_id_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the View to fetch.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5450,9 +5469,9 @@ class ViewApi:
 
         :param id: Specifies a unique id of the View to fetch. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5504,8 +5523,8 @@ class ViewApi:
     def get_view_by_id_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the View to fetch.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5525,9 +5544,9 @@ class ViewApi:
 
         :param id: Specifies a unique id of the View to fetch. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5644,12 +5663,13 @@ class ViewApi:
     @validate_call
     def get_view_clients(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         protocols: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of protocols to filter the clients.")] = None,
         view_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of View ids. Only clients connected to these Views will be returned.")] = None,
         node_ip: Annotated[Optional[StrictStr], Field(description="Specifies a node ip. Only clients connected to this node will be returned.")] = None,
-        max_count: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of connections to return for SMB and NFS protocols respectively.")] = None,
+        max_count: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of connections to return for SMB and NFS protocols respectively. It will be ignored if parameter 'includeSummary' is set to true.")] = None,
+        include_summary: Annotated[Optional[StrictBool], Field(description="Set this to include response summary. Parameter 'maxCount' will be ignored if this is set to true.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5667,18 +5687,20 @@ class ViewApi:
 
         Get View Clients.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param protocols: Specifies a list of protocols to filter the clients.
         :type protocols: List[str]
         :param view_ids: Specifies a list of View ids. Only clients connected to these Views will be returned.
         :type view_ids: List[int]
         :param node_ip: Specifies a node ip. Only clients connected to this node will be returned.
         :type node_ip: str
-        :param max_count: Specifies the maximum number of connections to return for SMB and NFS protocols respectively.
+        :param max_count: Specifies the maximum number of connections to return for SMB and NFS protocols respectively. It will be ignored if parameter 'includeSummary' is set to true.
         :type max_count: int
+        :param include_summary: Set this to include response summary. Parameter 'maxCount' will be ignored if this is set to true.
+        :type include_summary: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5702,12 +5724,13 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._get_view_clients_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             protocols=protocols,
             view_ids=view_ids,
             node_ip=node_ip,
             max_count=max_count,
+            include_summary=include_summary,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5731,12 +5754,13 @@ class ViewApi:
     @validate_call
     def get_view_clients_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         protocols: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of protocols to filter the clients.")] = None,
         view_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of View ids. Only clients connected to these Views will be returned.")] = None,
         node_ip: Annotated[Optional[StrictStr], Field(description="Specifies a node ip. Only clients connected to this node will be returned.")] = None,
-        max_count: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of connections to return for SMB and NFS protocols respectively.")] = None,
+        max_count: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of connections to return for SMB and NFS protocols respectively. It will be ignored if parameter 'includeSummary' is set to true.")] = None,
+        include_summary: Annotated[Optional[StrictBool], Field(description="Set this to include response summary. Parameter 'maxCount' will be ignored if this is set to true.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5754,18 +5778,20 @@ class ViewApi:
 
         Get View Clients.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param protocols: Specifies a list of protocols to filter the clients.
         :type protocols: List[str]
         :param view_ids: Specifies a list of View ids. Only clients connected to these Views will be returned.
         :type view_ids: List[int]
         :param node_ip: Specifies a node ip. Only clients connected to this node will be returned.
         :type node_ip: str
-        :param max_count: Specifies the maximum number of connections to return for SMB and NFS protocols respectively.
+        :param max_count: Specifies the maximum number of connections to return for SMB and NFS protocols respectively. It will be ignored if parameter 'includeSummary' is set to true.
         :type max_count: int
+        :param include_summary: Set this to include response summary. Parameter 'maxCount' will be ignored if this is set to true.
+        :type include_summary: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5789,12 +5815,13 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._get_view_clients_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             protocols=protocols,
             view_ids=view_ids,
             node_ip=node_ip,
             max_count=max_count,
+            include_summary=include_summary,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5818,12 +5845,13 @@ class ViewApi:
     @validate_call
     def get_view_clients_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         protocols: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of protocols to filter the clients.")] = None,
         view_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of View ids. Only clients connected to these Views will be returned.")] = None,
         node_ip: Annotated[Optional[StrictStr], Field(description="Specifies a node ip. Only clients connected to this node will be returned.")] = None,
-        max_count: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of connections to return for SMB and NFS protocols respectively.")] = None,
+        max_count: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of connections to return for SMB and NFS protocols respectively. It will be ignored if parameter 'includeSummary' is set to true.")] = None,
+        include_summary: Annotated[Optional[StrictBool], Field(description="Set this to include response summary. Parameter 'maxCount' will be ignored if this is set to true.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5841,18 +5869,20 @@ class ViewApi:
 
         Get View Clients.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param protocols: Specifies a list of protocols to filter the clients.
         :type protocols: List[str]
         :param view_ids: Specifies a list of View ids. Only clients connected to these Views will be returned.
         :type view_ids: List[int]
         :param node_ip: Specifies a node ip. Only clients connected to this node will be returned.
         :type node_ip: str
-        :param max_count: Specifies the maximum number of connections to return for SMB and NFS protocols respectively.
+        :param max_count: Specifies the maximum number of connections to return for SMB and NFS protocols respectively. It will be ignored if parameter 'includeSummary' is set to true.
         :type max_count: int
+        :param include_summary: Set this to include response summary. Parameter 'maxCount' will be ignored if this is set to true.
+        :type include_summary: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5876,12 +5906,13 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._get_view_clients_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             protocols=protocols,
             view_ids=view_ids,
             node_ip=node_ip,
             max_count=max_count,
+            include_summary=include_summary,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5900,12 +5931,13 @@ class ViewApi:
 
     def _get_view_clients_serialize(
         self,
-        access_cluster_id,
-        region_id,
         protocols,
         view_ids,
         node_ip,
         max_count,
+        include_summary,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -5945,6 +5977,10 @@ class ViewApi:
         if max_count is not None:
             
             _query_params.append(('maxCount', max_count))
+            
+        if include_summary is not None:
+            
+            _query_params.append(('includeSummary', include_summary))
             
         # process the header parameters
         if access_cluster_id is not None:
@@ -5990,9 +6026,9 @@ class ViewApi:
     @validate_call
     def get_view_clients_summary(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         view_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of View ids. Only clients connected to these Views will be included in the summary.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6010,12 +6046,12 @@ class ViewApi:
 
         Get View Clients Summary.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param view_ids: Specifies a list of View ids. Only clients connected to these Views will be included in the summary.
         :type view_ids: List[int]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6039,9 +6075,9 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._get_view_clients_summary_serialize(
+            view_ids=view_ids,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            view_ids=view_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6065,9 +6101,9 @@ class ViewApi:
     @validate_call
     def get_view_clients_summary_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         view_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of View ids. Only clients connected to these Views will be included in the summary.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6085,12 +6121,12 @@ class ViewApi:
 
         Get View Clients Summary.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param view_ids: Specifies a list of View ids. Only clients connected to these Views will be included in the summary.
         :type view_ids: List[int]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6114,9 +6150,9 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._get_view_clients_summary_serialize(
+            view_ids=view_ids,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            view_ids=view_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6140,9 +6176,9 @@ class ViewApi:
     @validate_call
     def get_view_clients_summary_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         view_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of View ids. Only clients connected to these Views will be included in the summary.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6160,12 +6196,12 @@ class ViewApi:
 
         Get View Clients Summary.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param view_ids: Specifies a list of View ids. Only clients connected to these Views will be included in the summary.
         :type view_ids: List[int]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6189,9 +6225,9 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._get_view_clients_summary_serialize(
+            view_ids=view_ids,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            view_ids=view_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6210,9 +6246,9 @@ class ViewApi:
 
     def _get_view_clients_summary_serialize(
         self,
+        view_ids,
         access_cluster_id,
         region_id,
-        view_ids,
         _request_auth,
         _content_type,
         _headers,
@@ -6285,10 +6321,10 @@ class ViewApi:
     def get_view_directory_quotas(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the View id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of quotas returned.")] = None,
         cookie: Annotated[Optional[StrictInt], Field(description="Specifies the cookie.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6308,14 +6344,14 @@ class ViewApi:
 
         :param id: Specifies the View id. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param max_count: Specifies a limit on the number of quotas returned.
         :type max_count: int
         :param cookie: Specifies the cookie.
         :type cookie: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6340,10 +6376,10 @@ class ViewApi:
 
         _param = self._get_view_directory_quotas_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             max_count=max_count,
             cookie=cookie,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6368,10 +6404,10 @@ class ViewApi:
     def get_view_directory_quotas_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the View id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of quotas returned.")] = None,
         cookie: Annotated[Optional[StrictInt], Field(description="Specifies the cookie.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6391,14 +6427,14 @@ class ViewApi:
 
         :param id: Specifies the View id. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param max_count: Specifies a limit on the number of quotas returned.
         :type max_count: int
         :param cookie: Specifies the cookie.
         :type cookie: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6423,10 +6459,10 @@ class ViewApi:
 
         _param = self._get_view_directory_quotas_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             max_count=max_count,
             cookie=cookie,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6451,10 +6487,10 @@ class ViewApi:
     def get_view_directory_quotas_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the View id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of quotas returned.")] = None,
         cookie: Annotated[Optional[StrictInt], Field(description="Specifies the cookie.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6474,14 +6510,14 @@ class ViewApi:
 
         :param id: Specifies the View id. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param max_count: Specifies a limit on the number of quotas returned.
         :type max_count: int
         :param cookie: Specifies the cookie.
         :type cookie: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6506,10 +6542,10 @@ class ViewApi:
 
         _param = self._get_view_directory_quotas_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             max_count=max_count,
             cookie=cookie,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6529,10 +6565,10 @@ class ViewApi:
     def _get_view_directory_quotas_serialize(
         self,
         id,
-        access_cluster_id,
-        region_id,
         max_count,
         cookie,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -6610,12 +6646,18 @@ class ViewApi:
     def get_view_user_quotas(
         self,
         view_id: Annotated[StrictInt, Field(description="Specifies the View id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
-        max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results.")] = None,
+        include_usage: Annotated[Optional[StrictBool], Field(description="If set to true, the logical usage info is included only for users with quota overrides. By default, it is set to false")] = None,
+        include_user_with_quota_overrides_only: Annotated[Optional[StrictBool], Field(description="If set to true, the result will only contain user with user quota override enabled. By default, this field is set to false, and it's only in effect when 'SummaryOnly' is set to false.")] = None,
+        exclude_users_within_alert_threshold: Annotated[Optional[StrictBool], Field(description="This field can be set only when includeUsage is set to true. By default, all the users with logical usage > 0 will be returned in the result. If this field is set to true, only the list of users who has exceeded the alert threshold will be returned.")] = None,
+        summary_only: Annotated[Optional[StrictBool], Field(description="Specifies a flag to just return a summary. If set to true, it returns the summary of users for a view. By default, it is set to false.")] = None,
+        output_format: Annotated[Optional[StrictStr], Field(description="OutputFormat is the Output format for the output. If it is not specified, default is json.")] = None,
+        top_quotas: Annotated[Optional[StrictInt], Field(description="TopQuotas is the quotas sorted by quota usage in descending order. This parameter defines number of results to be returned. No pagination cookie is returned if this parameter is set.")] = None,
+        max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results. This parameter will be ignored if 'topQuotas' is set.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the cookie. If there are more results than maxCount, response will include a cookie with has to be set as part of the next GET request.")] = None,
         unix_uid: Annotated[Optional[StrictInt], Field(description="Specifies the user identifier of an Unix user. If a valid unix-id to SID mappings are available (i.e., when mixed mode is enabled) the server will perform the necessary id mapping and return the correct usage irrespective of whether the unix id / SID is provided.")] = None,
         sid: Annotated[Optional[StrictStr], Field(description="Specifies the user identifier of a SMB user. If a valid unix-id to SID mappings are available (i.e., when mixed mode is enabled) the server will perform the necessary id mapping and return the correct usage irrespective of whether the unix id / SID is provided.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6635,11 +6677,19 @@ class ViewApi:
 
         :param view_id: Specifies the View id. (required)
         :type view_id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
-        :param max_count: Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results.
+        :param include_usage: If set to true, the logical usage info is included only for users with quota overrides. By default, it is set to false
+        :type include_usage: bool
+        :param include_user_with_quota_overrides_only: If set to true, the result will only contain user with user quota override enabled. By default, this field is set to false, and it's only in effect when 'SummaryOnly' is set to false.
+        :type include_user_with_quota_overrides_only: bool
+        :param exclude_users_within_alert_threshold: This field can be set only when includeUsage is set to true. By default, all the users with logical usage > 0 will be returned in the result. If this field is set to true, only the list of users who has exceeded the alert threshold will be returned.
+        :type exclude_users_within_alert_threshold: bool
+        :param summary_only: Specifies a flag to just return a summary. If set to true, it returns the summary of users for a view. By default, it is set to false.
+        :type summary_only: bool
+        :param output_format: OutputFormat is the Output format for the output. If it is not specified, default is json.
+        :type output_format: str
+        :param top_quotas: TopQuotas is the quotas sorted by quota usage in descending order. This parameter defines number of results to be returned. No pagination cookie is returned if this parameter is set.
+        :type top_quotas: int
+        :param max_count: Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results. This parameter will be ignored if 'topQuotas' is set.
         :type max_count: int
         :param cookie: Specifies the cookie. If there are more results than maxCount, response will include a cookie with has to be set as part of the next GET request.
         :type cookie: str
@@ -6647,6 +6697,10 @@ class ViewApi:
         :type unix_uid: int
         :param sid: Specifies the user identifier of a SMB user. If a valid unix-id to SID mappings are available (i.e., when mixed mode is enabled) the server will perform the necessary id mapping and return the correct usage irrespective of whether the unix id / SID is provided.
         :type sid: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6671,12 +6725,18 @@ class ViewApi:
 
         _param = self._get_view_user_quotas_serialize(
             view_id=view_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
+            include_usage=include_usage,
+            include_user_with_quota_overrides_only=include_user_with_quota_overrides_only,
+            exclude_users_within_alert_threshold=exclude_users_within_alert_threshold,
+            summary_only=summary_only,
+            output_format=output_format,
+            top_quotas=top_quotas,
             max_count=max_count,
             cookie=cookie,
             unix_uid=unix_uid,
             sid=sid,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6701,12 +6761,18 @@ class ViewApi:
     def get_view_user_quotas_with_http_info(
         self,
         view_id: Annotated[StrictInt, Field(description="Specifies the View id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
-        max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results.")] = None,
+        include_usage: Annotated[Optional[StrictBool], Field(description="If set to true, the logical usage info is included only for users with quota overrides. By default, it is set to false")] = None,
+        include_user_with_quota_overrides_only: Annotated[Optional[StrictBool], Field(description="If set to true, the result will only contain user with user quota override enabled. By default, this field is set to false, and it's only in effect when 'SummaryOnly' is set to false.")] = None,
+        exclude_users_within_alert_threshold: Annotated[Optional[StrictBool], Field(description="This field can be set only when includeUsage is set to true. By default, all the users with logical usage > 0 will be returned in the result. If this field is set to true, only the list of users who has exceeded the alert threshold will be returned.")] = None,
+        summary_only: Annotated[Optional[StrictBool], Field(description="Specifies a flag to just return a summary. If set to true, it returns the summary of users for a view. By default, it is set to false.")] = None,
+        output_format: Annotated[Optional[StrictStr], Field(description="OutputFormat is the Output format for the output. If it is not specified, default is json.")] = None,
+        top_quotas: Annotated[Optional[StrictInt], Field(description="TopQuotas is the quotas sorted by quota usage in descending order. This parameter defines number of results to be returned. No pagination cookie is returned if this parameter is set.")] = None,
+        max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results. This parameter will be ignored if 'topQuotas' is set.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the cookie. If there are more results than maxCount, response will include a cookie with has to be set as part of the next GET request.")] = None,
         unix_uid: Annotated[Optional[StrictInt], Field(description="Specifies the user identifier of an Unix user. If a valid unix-id to SID mappings are available (i.e., when mixed mode is enabled) the server will perform the necessary id mapping and return the correct usage irrespective of whether the unix id / SID is provided.")] = None,
         sid: Annotated[Optional[StrictStr], Field(description="Specifies the user identifier of a SMB user. If a valid unix-id to SID mappings are available (i.e., when mixed mode is enabled) the server will perform the necessary id mapping and return the correct usage irrespective of whether the unix id / SID is provided.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6726,11 +6792,19 @@ class ViewApi:
 
         :param view_id: Specifies the View id. (required)
         :type view_id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
-        :param max_count: Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results.
+        :param include_usage: If set to true, the logical usage info is included only for users with quota overrides. By default, it is set to false
+        :type include_usage: bool
+        :param include_user_with_quota_overrides_only: If set to true, the result will only contain user with user quota override enabled. By default, this field is set to false, and it's only in effect when 'SummaryOnly' is set to false.
+        :type include_user_with_quota_overrides_only: bool
+        :param exclude_users_within_alert_threshold: This field can be set only when includeUsage is set to true. By default, all the users with logical usage > 0 will be returned in the result. If this field is set to true, only the list of users who has exceeded the alert threshold will be returned.
+        :type exclude_users_within_alert_threshold: bool
+        :param summary_only: Specifies a flag to just return a summary. If set to true, it returns the summary of users for a view. By default, it is set to false.
+        :type summary_only: bool
+        :param output_format: OutputFormat is the Output format for the output. If it is not specified, default is json.
+        :type output_format: str
+        :param top_quotas: TopQuotas is the quotas sorted by quota usage in descending order. This parameter defines number of results to be returned. No pagination cookie is returned if this parameter is set.
+        :type top_quotas: int
+        :param max_count: Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results. This parameter will be ignored if 'topQuotas' is set.
         :type max_count: int
         :param cookie: Specifies the cookie. If there are more results than maxCount, response will include a cookie with has to be set as part of the next GET request.
         :type cookie: str
@@ -6738,6 +6812,10 @@ class ViewApi:
         :type unix_uid: int
         :param sid: Specifies the user identifier of a SMB user. If a valid unix-id to SID mappings are available (i.e., when mixed mode is enabled) the server will perform the necessary id mapping and return the correct usage irrespective of whether the unix id / SID is provided.
         :type sid: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6762,12 +6840,18 @@ class ViewApi:
 
         _param = self._get_view_user_quotas_serialize(
             view_id=view_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
+            include_usage=include_usage,
+            include_user_with_quota_overrides_only=include_user_with_quota_overrides_only,
+            exclude_users_within_alert_threshold=exclude_users_within_alert_threshold,
+            summary_only=summary_only,
+            output_format=output_format,
+            top_quotas=top_quotas,
             max_count=max_count,
             cookie=cookie,
             unix_uid=unix_uid,
             sid=sid,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6792,12 +6876,18 @@ class ViewApi:
     def get_view_user_quotas_without_preload_content(
         self,
         view_id: Annotated[StrictInt, Field(description="Specifies the View id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
-        max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results.")] = None,
+        include_usage: Annotated[Optional[StrictBool], Field(description="If set to true, the logical usage info is included only for users with quota overrides. By default, it is set to false")] = None,
+        include_user_with_quota_overrides_only: Annotated[Optional[StrictBool], Field(description="If set to true, the result will only contain user with user quota override enabled. By default, this field is set to false, and it's only in effect when 'SummaryOnly' is set to false.")] = None,
+        exclude_users_within_alert_threshold: Annotated[Optional[StrictBool], Field(description="This field can be set only when includeUsage is set to true. By default, all the users with logical usage > 0 will be returned in the result. If this field is set to true, only the list of users who has exceeded the alert threshold will be returned.")] = None,
+        summary_only: Annotated[Optional[StrictBool], Field(description="Specifies a flag to just return a summary. If set to true, it returns the summary of users for a view. By default, it is set to false.")] = None,
+        output_format: Annotated[Optional[StrictStr], Field(description="OutputFormat is the Output format for the output. If it is not specified, default is json.")] = None,
+        top_quotas: Annotated[Optional[StrictInt], Field(description="TopQuotas is the quotas sorted by quota usage in descending order. This parameter defines number of results to be returned. No pagination cookie is returned if this parameter is set.")] = None,
+        max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results. This parameter will be ignored if 'topQuotas' is set.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the cookie. If there are more results than maxCount, response will include a cookie with has to be set as part of the next GET request.")] = None,
         unix_uid: Annotated[Optional[StrictInt], Field(description="Specifies the user identifier of an Unix user. If a valid unix-id to SID mappings are available (i.e., when mixed mode is enabled) the server will perform the necessary id mapping and return the correct usage irrespective of whether the unix id / SID is provided.")] = None,
         sid: Annotated[Optional[StrictStr], Field(description="Specifies the user identifier of a SMB user. If a valid unix-id to SID mappings are available (i.e., when mixed mode is enabled) the server will perform the necessary id mapping and return the correct usage irrespective of whether the unix id / SID is provided.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6817,11 +6907,19 @@ class ViewApi:
 
         :param view_id: Specifies the View id. (required)
         :type view_id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
-        :param max_count: Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results.
+        :param include_usage: If set to true, the logical usage info is included only for users with quota overrides. By default, it is set to false
+        :type include_usage: bool
+        :param include_user_with_quota_overrides_only: If set to true, the result will only contain user with user quota override enabled. By default, this field is set to false, and it's only in effect when 'SummaryOnly' is set to false.
+        :type include_user_with_quota_overrides_only: bool
+        :param exclude_users_within_alert_threshold: This field can be set only when includeUsage is set to true. By default, all the users with logical usage > 0 will be returned in the result. If this field is set to true, only the list of users who has exceeded the alert threshold will be returned.
+        :type exclude_users_within_alert_threshold: bool
+        :param summary_only: Specifies a flag to just return a summary. If set to true, it returns the summary of users for a view. By default, it is set to false.
+        :type summary_only: bool
+        :param output_format: OutputFormat is the Output format for the output. If it is not specified, default is json.
+        :type output_format: str
+        :param top_quotas: TopQuotas is the quotas sorted by quota usage in descending order. This parameter defines number of results to be returned. No pagination cookie is returned if this parameter is set.
+        :type top_quotas: int
+        :param max_count: Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results. This parameter will be ignored if 'topQuotas' is set.
         :type max_count: int
         :param cookie: Specifies the cookie. If there are more results than maxCount, response will include a cookie with has to be set as part of the next GET request.
         :type cookie: str
@@ -6829,6 +6927,10 @@ class ViewApi:
         :type unix_uid: int
         :param sid: Specifies the user identifier of a SMB user. If a valid unix-id to SID mappings are available (i.e., when mixed mode is enabled) the server will perform the necessary id mapping and return the correct usage irrespective of whether the unix id / SID is provided.
         :type sid: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6853,12 +6955,18 @@ class ViewApi:
 
         _param = self._get_view_user_quotas_serialize(
             view_id=view_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
+            include_usage=include_usage,
+            include_user_with_quota_overrides_only=include_user_with_quota_overrides_only,
+            exclude_users_within_alert_threshold=exclude_users_within_alert_threshold,
+            summary_only=summary_only,
+            output_format=output_format,
+            top_quotas=top_quotas,
             max_count=max_count,
             cookie=cookie,
             unix_uid=unix_uid,
             sid=sid,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6878,12 +6986,18 @@ class ViewApi:
     def _get_view_user_quotas_serialize(
         self,
         view_id,
-        access_cluster_id,
-        region_id,
+        include_usage,
+        include_user_with_quota_overrides_only,
+        exclude_users_within_alert_threshold,
+        summary_only,
+        output_format,
+        top_quotas,
         max_count,
         cookie,
         unix_uid,
         sid,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -6908,6 +7022,30 @@ class ViewApi:
         if view_id is not None:
             _path_params['viewId'] = view_id
         # process the query parameters
+        if include_usage is not None:
+            
+            _query_params.append(('includeUsage', include_usage))
+            
+        if include_user_with_quota_overrides_only is not None:
+            
+            _query_params.append(('includeUserWithQuotaOverridesOnly', include_user_with_quota_overrides_only))
+            
+        if exclude_users_within_alert_threshold is not None:
+            
+            _query_params.append(('excludeUsersWithinAlertThreshold', exclude_users_within_alert_threshold))
+            
+        if summary_only is not None:
+            
+            _query_params.append(('summaryOnly', summary_only))
+            
+        if output_format is not None:
+            
+            _query_params.append(('outputFormat', output_format))
+            
+        if top_quotas is not None:
+            
+            _query_params.append(('topQuotas', top_quotas))
+            
         if max_count is not None:
             
             _query_params.append(('maxCount', max_count))
@@ -6968,8 +7106,6 @@ class ViewApi:
     @validate_call
     def get_views(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         view_names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of View names.")] = None,
         view_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of View ids.")] = None,
         storage_domain_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Storage Domains (View Boxes) specified by id.")] = None,
@@ -7002,9 +7138,15 @@ class ViewApi:
         last_run_replication_statuses: Annotated[Optional[List[StrictStr]], Field(description="Filter by last remote replication run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.")] = None,
         last_run_archival_statuses: Annotated[Optional[List[StrictStr]], Field(description="Filter by last cloud archival run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.")] = None,
         is_protected: Annotated[Optional[StrictBool], Field(description="Specifies the protection status of Views. If set to true, only protected Views will be returned. If set to false, only unprotected Views will be returned.")] = None,
-        qos_principal_ids: Annotated[Optional[List[StrictInt]], Field(description="qosPrincipalIds contains ids of the QoS principal for which views are to be returned.")] = None,
+        qos_principal_ids: Annotated[Optional[List[StrictInt]], Field(description="qosPrincipalIds contains ids of the QoS principal for which views are to be returned. This field is deprecated.")] = None,
+        qos_policies: Annotated[Optional[List[StrictStr]], Field(description="Specifies a filter for Views based on the qosPolicies. This param will be prioritized if qosPrincipalIds is also specified.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         include_deleted_protection_groups: Annotated[Optional[StrictBool], Field(description="Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.")] = None,
+        return_all_views: Annotated[Optional[StrictBool], Field(description="Specifies if all the Views should be returned as part of the response.")] = None,
+        include_s3_migration_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to return only views which have a s3 migration state.")] = None,
+        s3_migration_state: Annotated[Optional[StrictStr], Field(description="Filter the list of Views by S3 Migration Statuses. Supported filter values are [Enabled, UnderMigration, Paused, Completed, Eligible].\" If `s3MigrationState` is specified then `includeS3MigrationOnly` param should also be set to true.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7022,10 +7164,6 @@ class ViewApi:
 
         If no parameters are specified, all Views on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned. NOTE: If maxCount is set and the number of Views returned exceeds the maxCount, there are more Views to return. To get the next set of Views, send another request and specify the id of the last View returned in viewList from the previous response.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param view_names: Filter by a list of View names.
         :type view_names: List[str]
         :param view_ids: Filter by a list of View ids.
@@ -7090,12 +7228,24 @@ class ViewApi:
         :type last_run_archival_statuses: List[str]
         :param is_protected: Specifies the protection status of Views. If set to true, only protected Views will be returned. If set to false, only unprotected Views will be returned.
         :type is_protected: bool
-        :param qos_principal_ids: qosPrincipalIds contains ids of the QoS principal for which views are to be returned.
+        :param qos_principal_ids: qosPrincipalIds contains ids of the QoS principal for which views are to be returned. This field is deprecated.
         :type qos_principal_ids: List[int]
+        :param qos_policies: Specifies a filter for Views based on the qosPolicies. This param will be prioritized if qosPrincipalIds is also specified.
+        :type qos_policies: List[str]
         :param use_cached_data: Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
         :type use_cached_data: bool
         :param include_deleted_protection_groups: Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.
         :type include_deleted_protection_groups: bool
+        :param return_all_views: Specifies if all the Views should be returned as part of the response.
+        :type return_all_views: bool
+        :param include_s3_migration_only: Specifies whether to return only views which have a s3 migration state.
+        :type include_s3_migration_only: bool
+        :param s3_migration_state: Filter the list of Views by S3 Migration Statuses. Supported filter values are [Enabled, UnderMigration, Paused, Completed, Eligible].\" If `s3MigrationState` is specified then `includeS3MigrationOnly` param should also be set to true.
+        :type s3_migration_state: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7119,8 +7269,6 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._get_views_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             view_names=view_names,
             view_ids=view_ids,
             storage_domain_ids=storage_domain_ids,
@@ -7154,8 +7302,14 @@ class ViewApi:
             last_run_archival_statuses=last_run_archival_statuses,
             is_protected=is_protected,
             qos_principal_ids=qos_principal_ids,
+            qos_policies=qos_policies,
             use_cached_data=use_cached_data,
             include_deleted_protection_groups=include_deleted_protection_groups,
+            return_all_views=return_all_views,
+            include_s3_migration_only=include_s3_migration_only,
+            s3_migration_state=s3_migration_state,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7179,8 +7333,6 @@ class ViewApi:
     @validate_call
     def get_views_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         view_names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of View names.")] = None,
         view_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of View ids.")] = None,
         storage_domain_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Storage Domains (View Boxes) specified by id.")] = None,
@@ -7213,9 +7365,15 @@ class ViewApi:
         last_run_replication_statuses: Annotated[Optional[List[StrictStr]], Field(description="Filter by last remote replication run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.")] = None,
         last_run_archival_statuses: Annotated[Optional[List[StrictStr]], Field(description="Filter by last cloud archival run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.")] = None,
         is_protected: Annotated[Optional[StrictBool], Field(description="Specifies the protection status of Views. If set to true, only protected Views will be returned. If set to false, only unprotected Views will be returned.")] = None,
-        qos_principal_ids: Annotated[Optional[List[StrictInt]], Field(description="qosPrincipalIds contains ids of the QoS principal for which views are to be returned.")] = None,
+        qos_principal_ids: Annotated[Optional[List[StrictInt]], Field(description="qosPrincipalIds contains ids of the QoS principal for which views are to be returned. This field is deprecated.")] = None,
+        qos_policies: Annotated[Optional[List[StrictStr]], Field(description="Specifies a filter for Views based on the qosPolicies. This param will be prioritized if qosPrincipalIds is also specified.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         include_deleted_protection_groups: Annotated[Optional[StrictBool], Field(description="Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.")] = None,
+        return_all_views: Annotated[Optional[StrictBool], Field(description="Specifies if all the Views should be returned as part of the response.")] = None,
+        include_s3_migration_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to return only views which have a s3 migration state.")] = None,
+        s3_migration_state: Annotated[Optional[StrictStr], Field(description="Filter the list of Views by S3 Migration Statuses. Supported filter values are [Enabled, UnderMigration, Paused, Completed, Eligible].\" If `s3MigrationState` is specified then `includeS3MigrationOnly` param should also be set to true.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7233,10 +7391,6 @@ class ViewApi:
 
         If no parameters are specified, all Views on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned. NOTE: If maxCount is set and the number of Views returned exceeds the maxCount, there are more Views to return. To get the next set of Views, send another request and specify the id of the last View returned in viewList from the previous response.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param view_names: Filter by a list of View names.
         :type view_names: List[str]
         :param view_ids: Filter by a list of View ids.
@@ -7301,12 +7455,24 @@ class ViewApi:
         :type last_run_archival_statuses: List[str]
         :param is_protected: Specifies the protection status of Views. If set to true, only protected Views will be returned. If set to false, only unprotected Views will be returned.
         :type is_protected: bool
-        :param qos_principal_ids: qosPrincipalIds contains ids of the QoS principal for which views are to be returned.
+        :param qos_principal_ids: qosPrincipalIds contains ids of the QoS principal for which views are to be returned. This field is deprecated.
         :type qos_principal_ids: List[int]
+        :param qos_policies: Specifies a filter for Views based on the qosPolicies. This param will be prioritized if qosPrincipalIds is also specified.
+        :type qos_policies: List[str]
         :param use_cached_data: Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
         :type use_cached_data: bool
         :param include_deleted_protection_groups: Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.
         :type include_deleted_protection_groups: bool
+        :param return_all_views: Specifies if all the Views should be returned as part of the response.
+        :type return_all_views: bool
+        :param include_s3_migration_only: Specifies whether to return only views which have a s3 migration state.
+        :type include_s3_migration_only: bool
+        :param s3_migration_state: Filter the list of Views by S3 Migration Statuses. Supported filter values are [Enabled, UnderMigration, Paused, Completed, Eligible].\" If `s3MigrationState` is specified then `includeS3MigrationOnly` param should also be set to true.
+        :type s3_migration_state: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7330,8 +7496,6 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._get_views_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             view_names=view_names,
             view_ids=view_ids,
             storage_domain_ids=storage_domain_ids,
@@ -7365,8 +7529,14 @@ class ViewApi:
             last_run_archival_statuses=last_run_archival_statuses,
             is_protected=is_protected,
             qos_principal_ids=qos_principal_ids,
+            qos_policies=qos_policies,
             use_cached_data=use_cached_data,
             include_deleted_protection_groups=include_deleted_protection_groups,
+            return_all_views=return_all_views,
+            include_s3_migration_only=include_s3_migration_only,
+            s3_migration_state=s3_migration_state,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7390,8 +7560,6 @@ class ViewApi:
     @validate_call
     def get_views_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         view_names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of View names.")] = None,
         view_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of View ids.")] = None,
         storage_domain_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Storage Domains (View Boxes) specified by id.")] = None,
@@ -7424,9 +7592,15 @@ class ViewApi:
         last_run_replication_statuses: Annotated[Optional[List[StrictStr]], Field(description="Filter by last remote replication run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.")] = None,
         last_run_archival_statuses: Annotated[Optional[List[StrictStr]], Field(description="Filter by last cloud archival run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.")] = None,
         is_protected: Annotated[Optional[StrictBool], Field(description="Specifies the protection status of Views. If set to true, only protected Views will be returned. If set to false, only unprotected Views will be returned.")] = None,
-        qos_principal_ids: Annotated[Optional[List[StrictInt]], Field(description="qosPrincipalIds contains ids of the QoS principal for which views are to be returned.")] = None,
+        qos_principal_ids: Annotated[Optional[List[StrictInt]], Field(description="qosPrincipalIds contains ids of the QoS principal for which views are to be returned. This field is deprecated.")] = None,
+        qos_policies: Annotated[Optional[List[StrictStr]], Field(description="Specifies a filter for Views based on the qosPolicies. This param will be prioritized if qosPrincipalIds is also specified.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         include_deleted_protection_groups: Annotated[Optional[StrictBool], Field(description="Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.")] = None,
+        return_all_views: Annotated[Optional[StrictBool], Field(description="Specifies if all the Views should be returned as part of the response.")] = None,
+        include_s3_migration_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to return only views which have a s3 migration state.")] = None,
+        s3_migration_state: Annotated[Optional[StrictStr], Field(description="Filter the list of Views by S3 Migration Statuses. Supported filter values are [Enabled, UnderMigration, Paused, Completed, Eligible].\" If `s3MigrationState` is specified then `includeS3MigrationOnly` param should also be set to true.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7444,10 +7618,6 @@ class ViewApi:
 
         If no parameters are specified, all Views on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned. NOTE: If maxCount is set and the number of Views returned exceeds the maxCount, there are more Views to return. To get the next set of Views, send another request and specify the id of the last View returned in viewList from the previous response.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param view_names: Filter by a list of View names.
         :type view_names: List[str]
         :param view_ids: Filter by a list of View ids.
@@ -7512,12 +7682,24 @@ class ViewApi:
         :type last_run_archival_statuses: List[str]
         :param is_protected: Specifies the protection status of Views. If set to true, only protected Views will be returned. If set to false, only unprotected Views will be returned.
         :type is_protected: bool
-        :param qos_principal_ids: qosPrincipalIds contains ids of the QoS principal for which views are to be returned.
+        :param qos_principal_ids: qosPrincipalIds contains ids of the QoS principal for which views are to be returned. This field is deprecated.
         :type qos_principal_ids: List[int]
+        :param qos_policies: Specifies a filter for Views based on the qosPolicies. This param will be prioritized if qosPrincipalIds is also specified.
+        :type qos_policies: List[str]
         :param use_cached_data: Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
         :type use_cached_data: bool
         :param include_deleted_protection_groups: Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.
         :type include_deleted_protection_groups: bool
+        :param return_all_views: Specifies if all the Views should be returned as part of the response.
+        :type return_all_views: bool
+        :param include_s3_migration_only: Specifies whether to return only views which have a s3 migration state.
+        :type include_s3_migration_only: bool
+        :param s3_migration_state: Filter the list of Views by S3 Migration Statuses. Supported filter values are [Enabled, UnderMigration, Paused, Completed, Eligible].\" If `s3MigrationState` is specified then `includeS3MigrationOnly` param should also be set to true.
+        :type s3_migration_state: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7541,8 +7723,6 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._get_views_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             view_names=view_names,
             view_ids=view_ids,
             storage_domain_ids=storage_domain_ids,
@@ -7576,8 +7756,14 @@ class ViewApi:
             last_run_archival_statuses=last_run_archival_statuses,
             is_protected=is_protected,
             qos_principal_ids=qos_principal_ids,
+            qos_policies=qos_policies,
             use_cached_data=use_cached_data,
             include_deleted_protection_groups=include_deleted_protection_groups,
+            return_all_views=return_all_views,
+            include_s3_migration_only=include_s3_migration_only,
+            s3_migration_state=s3_migration_state,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7596,8 +7782,6 @@ class ViewApi:
 
     def _get_views_serialize(
         self,
-        access_cluster_id,
-        region_id,
         view_names,
         view_ids,
         storage_domain_ids,
@@ -7631,8 +7815,14 @@ class ViewApi:
         last_run_archival_statuses,
         is_protected,
         qos_principal_ids,
+        qos_policies,
         use_cached_data,
         include_deleted_protection_groups,
+        return_all_views,
+        include_s3_migration_only,
+        s3_migration_state,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -7658,6 +7848,7 @@ class ViewApi:
             'lastRunReplicationStatuses': 'csv',
             'lastRunArchivalStatuses': 'csv',
             'qosPrincipalIds': 'csv',
+            'qosPolicies': 'csv',
         }
 
         _path_params: Dict[str, str] = {}
@@ -7803,6 +7994,10 @@ class ViewApi:
             
             _query_params.append(('qosPrincipalIds', qos_principal_ids))
             
+        if qos_policies is not None:
+            
+            _query_params.append(('qosPolicies', qos_policies))
+            
         if use_cached_data is not None:
             
             _query_params.append(('useCachedData', use_cached_data))
@@ -7810,6 +8005,18 @@ class ViewApi:
         if include_deleted_protection_groups is not None:
             
             _query_params.append(('includeDeletedProtectionGroups', include_deleted_protection_groups))
+            
+        if return_all_views is not None:
+            
+            _query_params.append(('returnAllViews', return_all_views))
+            
+        if include_s3_migration_only is not None:
+            
+            _query_params.append(('includeS3MigrationOnly', include_s3_migration_only))
+            
+        if s3_migration_state is not None:
+            
+            _query_params.append(('s3MigrationState', s3_migration_state))
             
         # process the header parameters
         if access_cluster_id is not None:
@@ -7855,14 +8062,14 @@ class ViewApi:
     @validate_call
     def get_views_summary(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         msecs_before_current_time_to_compare: Annotated[Optional[StrictInt], Field(description="Specifies the time in msecs before current time to compare with.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         include_internal_views: Annotated[Optional[StrictBool], Field(description="Specifies if internal Views created by the Cohesity Cluster are also returned. In addition, regular Views are returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned.")] = None,
         include_deleted_protection_groups: Annotated[Optional[StrictBool], Field(description="Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7880,10 +8087,6 @@ class ViewApi:
 
         Get Views summary.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param msecs_before_current_time_to_compare: Specifies the time in msecs before current time to compare with.
         :type msecs_before_current_time_to_compare: int
         :param use_cached_data: Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
@@ -7896,6 +8099,10 @@ class ViewApi:
         :type include_tenants: bool
         :param include_deleted_protection_groups: Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.
         :type include_deleted_protection_groups: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7919,14 +8126,14 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._get_views_summary_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             msecs_before_current_time_to_compare=msecs_before_current_time_to_compare,
             use_cached_data=use_cached_data,
             include_internal_views=include_internal_views,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
             include_deleted_protection_groups=include_deleted_protection_groups,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7950,14 +8157,14 @@ class ViewApi:
     @validate_call
     def get_views_summary_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         msecs_before_current_time_to_compare: Annotated[Optional[StrictInt], Field(description="Specifies the time in msecs before current time to compare with.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         include_internal_views: Annotated[Optional[StrictBool], Field(description="Specifies if internal Views created by the Cohesity Cluster are also returned. In addition, regular Views are returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned.")] = None,
         include_deleted_protection_groups: Annotated[Optional[StrictBool], Field(description="Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7975,10 +8182,6 @@ class ViewApi:
 
         Get Views summary.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param msecs_before_current_time_to_compare: Specifies the time in msecs before current time to compare with.
         :type msecs_before_current_time_to_compare: int
         :param use_cached_data: Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
@@ -7991,6 +8194,10 @@ class ViewApi:
         :type include_tenants: bool
         :param include_deleted_protection_groups: Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.
         :type include_deleted_protection_groups: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8014,14 +8221,14 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._get_views_summary_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             msecs_before_current_time_to_compare=msecs_before_current_time_to_compare,
             use_cached_data=use_cached_data,
             include_internal_views=include_internal_views,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
             include_deleted_protection_groups=include_deleted_protection_groups,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8045,14 +8252,14 @@ class ViewApi:
     @validate_call
     def get_views_summary_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         msecs_before_current_time_to_compare: Annotated[Optional[StrictInt], Field(description="Specifies the time in msecs before current time to compare with.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         include_internal_views: Annotated[Optional[StrictBool], Field(description="Specifies if internal Views created by the Cohesity Cluster are also returned. In addition, regular Views are returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned.")] = None,
         include_deleted_protection_groups: Annotated[Optional[StrictBool], Field(description="Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8070,10 +8277,6 @@ class ViewApi:
 
         Get Views summary.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param msecs_before_current_time_to_compare: Specifies the time in msecs before current time to compare with.
         :type msecs_before_current_time_to_compare: int
         :param use_cached_data: Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
@@ -8086,6 +8289,10 @@ class ViewApi:
         :type include_tenants: bool
         :param include_deleted_protection_groups: Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.
         :type include_deleted_protection_groups: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8109,14 +8316,14 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._get_views_summary_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             msecs_before_current_time_to_compare=msecs_before_current_time_to_compare,
             use_cached_data=use_cached_data,
             include_internal_views=include_internal_views,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
             include_deleted_protection_groups=include_deleted_protection_groups,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8135,14 +8342,14 @@ class ViewApi:
 
     def _get_views_summary_serialize(
         self,
-        access_cluster_id,
-        region_id,
         msecs_before_current_time_to_compare,
         use_cached_data,
         include_internal_views,
         tenant_ids,
         include_tenants,
         include_deleted_protection_groups,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -8234,12 +8441,12 @@ class ViewApi:
     @validate_call
     def list_smb_file_opens(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         file_path: Annotated[Optional[StrictStr], Field(description="Specifies the filepath in the Cohesity View relative to the root filesystem. If this field is specified, viewName field must also be specified.")] = None,
         view_name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the Cohesity View in which to search. If a view name is not specified, all the views in the Cluster are searched. This field is mandatory if filePath field is specified.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of active file opens to return in the response. This field cannot be set above 1000. If this is not set, maximum of 1000 entries are returned.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the Pagination Cookie returned in the previous response.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8257,10 +8464,6 @@ class ViewApi:
 
         Get SMB active file opens on a Cohesity View.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param file_path: Specifies the filepath in the Cohesity View relative to the root filesystem. If this field is specified, viewName field must also be specified.
         :type file_path: str
         :param view_name: Specifies the name of the Cohesity View in which to search. If a view name is not specified, all the views in the Cluster are searched. This field is mandatory if filePath field is specified.
@@ -8269,6 +8472,10 @@ class ViewApi:
         :type max_count: int
         :param cookie: Specifies the Pagination Cookie returned in the previous response.
         :type cookie: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8292,12 +8499,12 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._list_smb_file_opens_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             file_path=file_path,
             view_name=view_name,
             max_count=max_count,
             cookie=cookie,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8321,12 +8528,12 @@ class ViewApi:
     @validate_call
     def list_smb_file_opens_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         file_path: Annotated[Optional[StrictStr], Field(description="Specifies the filepath in the Cohesity View relative to the root filesystem. If this field is specified, viewName field must also be specified.")] = None,
         view_name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the Cohesity View in which to search. If a view name is not specified, all the views in the Cluster are searched. This field is mandatory if filePath field is specified.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of active file opens to return in the response. This field cannot be set above 1000. If this is not set, maximum of 1000 entries are returned.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the Pagination Cookie returned in the previous response.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8344,10 +8551,6 @@ class ViewApi:
 
         Get SMB active file opens on a Cohesity View.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param file_path: Specifies the filepath in the Cohesity View relative to the root filesystem. If this field is specified, viewName field must also be specified.
         :type file_path: str
         :param view_name: Specifies the name of the Cohesity View in which to search. If a view name is not specified, all the views in the Cluster are searched. This field is mandatory if filePath field is specified.
@@ -8356,6 +8559,10 @@ class ViewApi:
         :type max_count: int
         :param cookie: Specifies the Pagination Cookie returned in the previous response.
         :type cookie: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8379,12 +8586,12 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._list_smb_file_opens_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             file_path=file_path,
             view_name=view_name,
             max_count=max_count,
             cookie=cookie,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8408,12 +8615,12 @@ class ViewApi:
     @validate_call
     def list_smb_file_opens_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         file_path: Annotated[Optional[StrictStr], Field(description="Specifies the filepath in the Cohesity View relative to the root filesystem. If this field is specified, viewName field must also be specified.")] = None,
         view_name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the Cohesity View in which to search. If a view name is not specified, all the views in the Cluster are searched. This field is mandatory if filePath field is specified.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of active file opens to return in the response. This field cannot be set above 1000. If this is not set, maximum of 1000 entries are returned.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the Pagination Cookie returned in the previous response.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8431,10 +8638,6 @@ class ViewApi:
 
         Get SMB active file opens on a Cohesity View.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param file_path: Specifies the filepath in the Cohesity View relative to the root filesystem. If this field is specified, viewName field must also be specified.
         :type file_path: str
         :param view_name: Specifies the name of the Cohesity View in which to search. If a view name is not specified, all the views in the Cluster are searched. This field is mandatory if filePath field is specified.
@@ -8443,6 +8646,10 @@ class ViewApi:
         :type max_count: int
         :param cookie: Specifies the Pagination Cookie returned in the previous response.
         :type cookie: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8466,12 +8673,12 @@ class ViewApi:
         """ # noqa: E501
 
         _param = self._list_smb_file_opens_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             file_path=file_path,
             view_name=view_name,
             max_count=max_count,
             cookie=cookie,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8490,12 +8697,12 @@ class ViewApi:
 
     def _list_smb_file_opens_serialize(
         self,
-        access_cluster_id,
-        region_id,
         file_path,
         view_name,
         max_count,
         cookie,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -8580,8 +8787,8 @@ class ViewApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of a view.")],
         body: Annotated[LockFileParams, Field(description="Specifies the request params to lock a file")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8603,9 +8810,9 @@ class ViewApi:
         :type id: int
         :param body: Specifies the request params to lock a file (required)
         :type body: LockFileParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8659,8 +8866,8 @@ class ViewApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of a view.")],
         body: Annotated[LockFileParams, Field(description="Specifies the request params to lock a file")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8682,9 +8889,9 @@ class ViewApi:
         :type id: int
         :param body: Specifies the request params to lock a file (required)
         :type body: LockFileParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8738,8 +8945,8 @@ class ViewApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of a view.")],
         body: Annotated[LockFileParams, Field(description="Specifies the request params to lock a file")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8761,9 +8968,9 @@ class ViewApi:
         :type id: int
         :param body: Specifies the request params to lock a file (required)
         :type body: LockFileParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8895,12 +9102,316 @@ class ViewApi:
 
 
     @validate_call
+    def migrate_s3_views(
+        self,
+        body: Annotated[MigrateS3Views, Field(description="Specifies the request body to Migrate S3 Views.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> MultipleViewsUpdateSuccessFailureIds:
+        """Migrate S3 Views.
+
+        Migrate S3 Views from S3 1.0 to 2.0.
+
+        :param body: Specifies the request body to Migrate S3 Views. (required)
+        :type body: MigrateS3Views
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._migrate_s3_views_serialize(
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '207': "MultipleViewsUpdateSuccessFailureIds",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def migrate_s3_views_with_http_info(
+        self,
+        body: Annotated[MigrateS3Views, Field(description="Specifies the request body to Migrate S3 Views.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[MultipleViewsUpdateSuccessFailureIds]:
+        """Migrate S3 Views.
+
+        Migrate S3 Views from S3 1.0 to 2.0.
+
+        :param body: Specifies the request body to Migrate S3 Views. (required)
+        :type body: MigrateS3Views
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._migrate_s3_views_serialize(
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '207': "MultipleViewsUpdateSuccessFailureIds",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def migrate_s3_views_without_preload_content(
+        self,
+        body: Annotated[MigrateS3Views, Field(description="Specifies the request body to Migrate S3 Views.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Migrate S3 Views.
+
+        Migrate S3 Views from S3 1.0 to 2.0.
+
+        :param body: Specifies the request body to Migrate S3 Views. (required)
+        :type body: MigrateS3Views
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._migrate_s3_views_serialize(
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '207': "MultipleViewsUpdateSuccessFailureIds",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _migrate_s3_views_serialize(
+        self,
+        body,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/file-services/migrate-s3-views',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def overwrite_view(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the View id to be overwritten.")],
         body: Annotated[OverwriteViewParams, Field(description="Specifies the request to overwrite the View.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8922,9 +9433,9 @@ class ViewApi:
         :type id: int
         :param body: Specifies the request to overwrite the View. (required)
         :type body: OverwriteViewParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8978,8 +9489,8 @@ class ViewApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the View id to be overwritten.")],
         body: Annotated[OverwriteViewParams, Field(description="Specifies the request to overwrite the View.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9001,9 +9512,9 @@ class ViewApi:
         :type id: int
         :param body: Specifies the request to overwrite the View. (required)
         :type body: OverwriteViewParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9057,8 +9568,8 @@ class ViewApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the View id to be overwritten.")],
         body: Annotated[OverwriteViewParams, Field(description="Specifies the request to overwrite the View.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9080,9 +9591,9 @@ class ViewApi:
         :type id: int
         :param body: Specifies the request to overwrite the View. (required)
         :type body: OverwriteViewParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9217,8 +9728,8 @@ class ViewApi:
     def read_view_template_by_id(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the view template.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9238,9 +9749,9 @@ class ViewApi:
 
         :param id: Specifies a unique id of the view template. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9292,8 +9803,8 @@ class ViewApi:
     def read_view_template_by_id_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the view template.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9313,9 +9824,9 @@ class ViewApi:
 
         :param id: Specifies a unique id of the view template. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9367,8 +9878,8 @@ class ViewApi:
     def read_view_template_by_id_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the view template.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9388,9 +9899,9 @@ class ViewApi:
 
         :param id: Specifies a unique id of the view template. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9507,8 +10018,8 @@ class ViewApi:
     @validate_call
     def read_view_templates(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9526,9 +10037,9 @@ class ViewApi:
 
         All view templates on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9578,8 +10089,8 @@ class ViewApi:
     @validate_call
     def read_view_templates_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9597,9 +10108,9 @@ class ViewApi:
 
         All view templates on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9649,8 +10160,8 @@ class ViewApi:
     @validate_call
     def read_view_templates_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9668,9 +10179,9 @@ class ViewApi:
 
         All view templates on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9785,8 +10296,8 @@ class ViewApi:
         self,
         name: Annotated[StrictStr, Field(description="Specifies the Share name to update.")],
         body: Annotated[UpdateShareParam, Field(description="Specifies the request to update a Share.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9808,9 +10319,9 @@ class ViewApi:
         :type name: str
         :param body: Specifies the request to update a Share. (required)
         :type body: UpdateShareParam
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9864,8 +10375,8 @@ class ViewApi:
         self,
         name: Annotated[StrictStr, Field(description="Specifies the Share name to update.")],
         body: Annotated[UpdateShareParam, Field(description="Specifies the request to update a Share.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9887,9 +10398,9 @@ class ViewApi:
         :type name: str
         :param body: Specifies the request to update a Share. (required)
         :type body: UpdateShareParam
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9943,8 +10454,8 @@ class ViewApi:
         self,
         name: Annotated[StrictStr, Field(description="Specifies the Share name to update.")],
         body: Annotated[UpdateShareParam, Field(description="Specifies the request to update a Share.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9966,9 +10477,9 @@ class ViewApi:
         :type name: str
         :param body: Specifies the request to update a Share. (required)
         :type body: UpdateShareParam
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10104,8 +10615,8 @@ class ViewApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the View to update.")],
         body: Annotated[View, Field(description="Request to update a view.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10127,9 +10638,9 @@ class ViewApi:
         :type id: int
         :param body: Request to update a view. (required)
         :type body: View
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10183,8 +10694,8 @@ class ViewApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the View to update.")],
         body: Annotated[View, Field(description="Request to update a view.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10206,9 +10717,9 @@ class ViewApi:
         :type id: int
         :param body: Request to update a view. (required)
         :type body: View
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10262,8 +10773,8 @@ class ViewApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the View to update.")],
         body: Annotated[View, Field(description="Request to update a view.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10285,9 +10796,9 @@ class ViewApi:
         :type id: int
         :param body: Request to update a view. (required)
         :type body: View
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10423,8 +10934,8 @@ class ViewApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the View id.")],
         body: Annotated[ViewDirectoryQuota, Field(description="Specifies the request to update directory quota.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10446,9 +10957,9 @@ class ViewApi:
         :type id: int
         :param body: Specifies the request to update directory quota. (required)
         :type body: ViewDirectoryQuota
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10502,8 +11013,8 @@ class ViewApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the View id.")],
         body: Annotated[ViewDirectoryQuota, Field(description="Specifies the request to update directory quota.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10525,9 +11036,9 @@ class ViewApi:
         :type id: int
         :param body: Specifies the request to update directory quota. (required)
         :type body: ViewDirectoryQuota
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10581,8 +11092,8 @@ class ViewApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the View id.")],
         body: Annotated[ViewDirectoryQuota, Field(description="Specifies the request to update directory quota.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10604,9 +11115,9 @@ class ViewApi:
         :type id: int
         :param body: Specifies the request to update directory quota. (required)
         :type body: ViewDirectoryQuota
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10742,8 +11253,8 @@ class ViewApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the view template.")],
         body: Annotated[Template, Field(description="Request to update a view template.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10765,9 +11276,9 @@ class ViewApi:
         :type id: int
         :param body: Request to update a view template. (required)
         :type body: Template
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10821,8 +11332,8 @@ class ViewApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the view template.")],
         body: Annotated[Template, Field(description="Request to update a view template.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10844,9 +11355,9 @@ class ViewApi:
         :type id: int
         :param body: Request to update a view template. (required)
         :type body: Template
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10900,8 +11411,8 @@ class ViewApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the view template.")],
         body: Annotated[Template, Field(description="Request to update a view template.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10923,9 +11434,9 @@ class ViewApi:
         :type id: int
         :param body: Request to update a view template. (required)
         :type body: Template
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -11062,8 +11573,8 @@ class ViewApi:
         view_id: Annotated[StrictInt, Field(description="Specifies the View id.")],
         user_id: Annotated[StrictStr, Field(description="Specifies the unixUid or sid or an user.")],
         body: Annotated[QuotaPolicy, Field(description="Specifies the user quota policy of the user.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11087,9 +11598,9 @@ class ViewApi:
         :type user_id: str
         :param body: Specifies the user quota policy of the user. (required)
         :type body: QuotaPolicy
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -11145,8 +11656,8 @@ class ViewApi:
         view_id: Annotated[StrictInt, Field(description="Specifies the View id.")],
         user_id: Annotated[StrictStr, Field(description="Specifies the unixUid or sid or an user.")],
         body: Annotated[QuotaPolicy, Field(description="Specifies the user quota policy of the user.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11170,9 +11681,9 @@ class ViewApi:
         :type user_id: str
         :param body: Specifies the user quota policy of the user. (required)
         :type body: QuotaPolicy
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -11228,8 +11739,8 @@ class ViewApi:
         view_id: Annotated[StrictInt, Field(description="Specifies the View id.")],
         user_id: Annotated[StrictStr, Field(description="Specifies the unixUid or sid or an user.")],
         body: Annotated[QuotaPolicy, Field(description="Specifies the user quota policy of the user.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11253,9 +11764,9 @@ class ViewApi:
         :type user_id: str
         :param body: Specifies the user quota policy of the user. (required)
         :type body: QuotaPolicy
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -11395,8 +11906,8 @@ class ViewApi:
         self,
         view_id: Annotated[StrictInt, Field(description="Specifies the View id.")],
         body: Annotated[ViewUserQuotaSettings, Field(description="Specifies the parameters to enable/disable or update the default quota config on the view.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11418,9 +11929,9 @@ class ViewApi:
         :type view_id: int
         :param body: Specifies the parameters to enable/disable or update the default quota config on the view. (required)
         :type body: ViewUserQuotaSettings
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -11474,8 +11985,8 @@ class ViewApi:
         self,
         view_id: Annotated[StrictInt, Field(description="Specifies the View id.")],
         body: Annotated[ViewUserQuotaSettings, Field(description="Specifies the parameters to enable/disable or update the default quota config on the view.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11497,9 +12008,9 @@ class ViewApi:
         :type view_id: int
         :param body: Specifies the parameters to enable/disable or update the default quota config on the view. (required)
         :type body: ViewUserQuotaSettings
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -11553,8 +12064,8 @@ class ViewApi:
         self,
         view_id: Annotated[StrictInt, Field(description="Specifies the View id.")],
         body: Annotated[ViewUserQuotaSettings, Field(description="Specifies the parameters to enable/disable or update the default quota config on the view.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11576,9 +12087,9 @@ class ViewApi:
         :type view_id: int
         :param body: Specifies the parameters to enable/disable or update the default quota config on the view. (required)
         :type body: ViewUserQuotaSettings
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -11705,3 +12216,5 @@ class ViewApi:
             _host=_host,
             _request_auth=_request_auth
         )
+
+

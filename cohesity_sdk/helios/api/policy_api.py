@@ -19,6 +19,7 @@ from pydantic import StrictBool
 from cohesity_sdk.helios.models.helios_policies_response_with_pagination import HeliosPoliciesResponseWithPagination
 from cohesity_sdk.helios.models.helios_policy_request import HeliosPolicyRequest
 from cohesity_sdk.helios.models.helios_policy_response import HeliosPolicyResponse
+from cohesity_sdk.helios.models.policy_summary_response import PolicySummaryResponse
 from cohesity_sdk.helios.models.policy_template_response import PolicyTemplateResponse
 from cohesity_sdk.helios.models.policy_templates_response_with_pagination import PolicyTemplatesResponseWithPagination
 from cohesity_sdk.helios.models.protection_policy_request import ProtectionPolicyRequest
@@ -47,7 +48,7 @@ class PolicyApi:
     def create_helios_policy(
         self,
         body: Annotated[HeliosPolicyRequest, Field(description="Request to create a Helios Policy.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -67,7 +68,7 @@ class PolicyApi:
 
         :param body: Request to create a Helios Policy. (required)
         :type body: HeliosPolicyRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -118,7 +119,7 @@ class PolicyApi:
     def create_helios_policy_with_http_info(
         self,
         body: Annotated[HeliosPolicyRequest, Field(description="Request to create a Helios Policy.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -138,7 +139,7 @@ class PolicyApi:
 
         :param body: Request to create a Helios Policy. (required)
         :type body: HeliosPolicyRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -189,7 +190,7 @@ class PolicyApi:
     def create_helios_policy_without_preload_content(
         self,
         body: Annotated[HeliosPolicyRequest, Field(description="Request to create a Helios Policy.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -209,7 +210,7 @@ class PolicyApi:
 
         :param body: Request to create a Helios Policy. (required)
         :type body: HeliosPolicyRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -336,8 +337,8 @@ class PolicyApi:
     def create_protection_policy(
         self,
         body: Annotated[ProtectionPolicyRequest, Field(description="Request to create a Protection Policy.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -357,9 +358,9 @@ class PolicyApi:
 
         :param body: Request to create a Protection Policy. (required)
         :type body: ProtectionPolicyRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -411,8 +412,8 @@ class PolicyApi:
     def create_protection_policy_with_http_info(
         self,
         body: Annotated[ProtectionPolicyRequest, Field(description="Request to create a Protection Policy.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -432,9 +433,9 @@ class PolicyApi:
 
         :param body: Request to create a Protection Policy. (required)
         :type body: ProtectionPolicyRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -486,8 +487,8 @@ class PolicyApi:
     def create_protection_policy_without_preload_content(
         self,
         body: Annotated[ProtectionPolicyRequest, Field(description="Request to create a Protection Policy.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -507,9 +508,9 @@ class PolicyApi:
 
         :param body: Request to create a Protection Policy. (required)
         :type body: ProtectionPolicyRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -640,7 +641,7 @@ class PolicyApi:
     def delete_helios_policy(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Policy to delete.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -660,7 +661,7 @@ class PolicyApi:
 
         :param id: Specifies a unique id of the Policy to delete. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -711,7 +712,7 @@ class PolicyApi:
     def delete_helios_policy_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Policy to delete.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -731,7 +732,7 @@ class PolicyApi:
 
         :param id: Specifies a unique id of the Policy to delete. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -782,7 +783,7 @@ class PolicyApi:
     def delete_helios_policy_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Policy to delete.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -802,7 +803,7 @@ class PolicyApi:
 
         :param id: Specifies a unique id of the Policy to delete. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -916,8 +917,8 @@ class PolicyApi:
     def delete_protection_policy(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Policy to delete.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -937,9 +938,9 @@ class PolicyApi:
 
         :param id: Specifies a unique id of the Protection Policy to delete. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -991,8 +992,8 @@ class PolicyApi:
     def delete_protection_policy_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Policy to delete.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1012,9 +1013,9 @@ class PolicyApi:
 
         :param id: Specifies a unique id of the Protection Policy to delete. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1066,8 +1067,8 @@ class PolicyApi:
     def delete_protection_policy_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Policy to delete.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1087,9 +1088,9 @@ class PolicyApi:
 
         :param id: Specifies a unique id of the Protection Policy to delete. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1206,12 +1207,13 @@ class PolicyApi:
     @validate_call
     def get_helios_policies(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter policies by a list of policy ids.")] = None,
         policy_names: Annotated[Optional[List[StrictStr]], Field(description="Filter policies by a list of policy names.")] = None,
         types: Annotated[Optional[List[StrictStr]], Field(description="Type specifies the policy type of policies to be returned. If not specified, all types of policies are fetched.")] = None,
         cluster_identifiers: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies the list of cluster identifiers. This is applicable only for type OnPremPolicy. The format is clusterId:clusterIncarnationId.")] = None,
         tenant_ids: Annotated[Optional[List[Optional[Annotated[str, Field(min_length=2, strict=True)]]]], Field(description="List of Tenant Ids to filter from. This is applicable only for type OnPremPolicy.")] = None,
+        include_replicated_policies: Annotated[Optional[StrictBool], Field(description="If includeReplicatedPolicies is set to true, then response will also contain replicated policies. By default, replication policies are not included in the response.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1229,8 +1231,6 @@ class PolicyApi:
 
         Lists policies based on filtering query parameters.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter policies by a list of policy ids.
         :type ids: List[str]
         :param policy_names: Filter policies by a list of policy names.
@@ -1241,6 +1241,10 @@ class PolicyApi:
         :type cluster_identifiers: List[str]
         :param tenant_ids: List of Tenant Ids to filter from. This is applicable only for type OnPremPolicy.
         :type tenant_ids: List[Optional[str]]
+        :param include_replicated_policies: If includeReplicatedPolicies is set to true, then response will also contain replicated policies. By default, replication policies are not included in the response.
+        :type include_replicated_policies: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1264,12 +1268,13 @@ class PolicyApi:
         """ # noqa: E501
 
         _param = self._get_helios_policies_serialize(
-            region_id=region_id,
             ids=ids,
             policy_names=policy_names,
             types=types,
             cluster_identifiers=cluster_identifiers,
             tenant_ids=tenant_ids,
+            include_replicated_policies=include_replicated_policies,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1293,12 +1298,13 @@ class PolicyApi:
     @validate_call
     def get_helios_policies_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter policies by a list of policy ids.")] = None,
         policy_names: Annotated[Optional[List[StrictStr]], Field(description="Filter policies by a list of policy names.")] = None,
         types: Annotated[Optional[List[StrictStr]], Field(description="Type specifies the policy type of policies to be returned. If not specified, all types of policies are fetched.")] = None,
         cluster_identifiers: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies the list of cluster identifiers. This is applicable only for type OnPremPolicy. The format is clusterId:clusterIncarnationId.")] = None,
         tenant_ids: Annotated[Optional[List[Optional[Annotated[str, Field(min_length=2, strict=True)]]]], Field(description="List of Tenant Ids to filter from. This is applicable only for type OnPremPolicy.")] = None,
+        include_replicated_policies: Annotated[Optional[StrictBool], Field(description="If includeReplicatedPolicies is set to true, then response will also contain replicated policies. By default, replication policies are not included in the response.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1316,8 +1322,6 @@ class PolicyApi:
 
         Lists policies based on filtering query parameters.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter policies by a list of policy ids.
         :type ids: List[str]
         :param policy_names: Filter policies by a list of policy names.
@@ -1328,6 +1332,10 @@ class PolicyApi:
         :type cluster_identifiers: List[str]
         :param tenant_ids: List of Tenant Ids to filter from. This is applicable only for type OnPremPolicy.
         :type tenant_ids: List[Optional[str]]
+        :param include_replicated_policies: If includeReplicatedPolicies is set to true, then response will also contain replicated policies. By default, replication policies are not included in the response.
+        :type include_replicated_policies: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1351,12 +1359,13 @@ class PolicyApi:
         """ # noqa: E501
 
         _param = self._get_helios_policies_serialize(
-            region_id=region_id,
             ids=ids,
             policy_names=policy_names,
             types=types,
             cluster_identifiers=cluster_identifiers,
             tenant_ids=tenant_ids,
+            include_replicated_policies=include_replicated_policies,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1380,12 +1389,13 @@ class PolicyApi:
     @validate_call
     def get_helios_policies_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter policies by a list of policy ids.")] = None,
         policy_names: Annotated[Optional[List[StrictStr]], Field(description="Filter policies by a list of policy names.")] = None,
         types: Annotated[Optional[List[StrictStr]], Field(description="Type specifies the policy type of policies to be returned. If not specified, all types of policies are fetched.")] = None,
         cluster_identifiers: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies the list of cluster identifiers. This is applicable only for type OnPremPolicy. The format is clusterId:clusterIncarnationId.")] = None,
         tenant_ids: Annotated[Optional[List[Optional[Annotated[str, Field(min_length=2, strict=True)]]]], Field(description="List of Tenant Ids to filter from. This is applicable only for type OnPremPolicy.")] = None,
+        include_replicated_policies: Annotated[Optional[StrictBool], Field(description="If includeReplicatedPolicies is set to true, then response will also contain replicated policies. By default, replication policies are not included in the response.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1403,8 +1413,6 @@ class PolicyApi:
 
         Lists policies based on filtering query parameters.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter policies by a list of policy ids.
         :type ids: List[str]
         :param policy_names: Filter policies by a list of policy names.
@@ -1415,6 +1423,10 @@ class PolicyApi:
         :type cluster_identifiers: List[str]
         :param tenant_ids: List of Tenant Ids to filter from. This is applicable only for type OnPremPolicy.
         :type tenant_ids: List[Optional[str]]
+        :param include_replicated_policies: If includeReplicatedPolicies is set to true, then response will also contain replicated policies. By default, replication policies are not included in the response.
+        :type include_replicated_policies: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1438,12 +1450,13 @@ class PolicyApi:
         """ # noqa: E501
 
         _param = self._get_helios_policies_serialize(
-            region_id=region_id,
             ids=ids,
             policy_names=policy_names,
             types=types,
             cluster_identifiers=cluster_identifiers,
             tenant_ids=tenant_ids,
+            include_replicated_policies=include_replicated_policies,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1462,12 +1475,13 @@ class PolicyApi:
 
     def _get_helios_policies_serialize(
         self,
-        region_id,
         ids,
         policy_names,
         types,
         cluster_identifiers,
         tenant_ids,
+        include_replicated_policies,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1515,6 +1529,10 @@ class PolicyApi:
             
             _query_params.append(('tenantIds', tenant_ids))
             
+        if include_replicated_policies is not None:
+            
+            _query_params.append(('includeReplicatedPolicies', include_replicated_policies))
+            
         # process the header parameters
         if region_id is not None:
             _header_params['regionId'] = region_id
@@ -1558,7 +1576,7 @@ class PolicyApi:
     def get_helios_policy_by_id(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Policy to return.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1578,7 +1596,7 @@ class PolicyApi:
 
         :param id: Specifies a unique id of the Protection Policy to return. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1629,7 +1647,7 @@ class PolicyApi:
     def get_helios_policy_by_id_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Policy to return.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1649,7 +1667,7 @@ class PolicyApi:
 
         :param id: Specifies a unique id of the Protection Policy to return. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1700,7 +1718,7 @@ class PolicyApi:
     def get_helios_policy_by_id_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Policy to return.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1720,7 +1738,7 @@ class PolicyApi:
 
         :param id: Specifies a unique id of the Protection Policy to return. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1831,11 +1849,419 @@ class PolicyApi:
 
 
     @validate_call
+    def get_policy_summary(
+        self,
+        id: Annotated[StrictStr, Field(description="Specifies the id of the policy whose summary should be retrieved. If this is not set, the API will return error.")],
+        request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        include_aggregated_last_run_summary: Annotated[Optional[StrictBool], Field(description="Specifies whether to include summary of the last Protection Run of each Protection Source")] = None,
+        include_aggregated_runs_summary: Annotated[Optional[StrictBool], Field(description="Specifies whether to include summary of all Protection Runs of the Protection Source or Protection Jobs. If this is set to true, then only the Protection Runs from the provided 'startTimeUsecs' and 'endTimeUsecs' are processed.")] = None,
+        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a start time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that started after the specified time are included in the aggregated runs summary result.")] = None,
+        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a end time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that completed before the specified time are included in the aggregated runs summary result.")] = None,
+        page_count: Annotated[Optional[StrictInt], Field(description="Specifies the limit of the number of Protection Sources or Protection Jobs to be returned as a part of the Protection Policy Summary.")] = None,
+        pagination_cookie: Annotated[Optional[StrictStr], Field(description="If set, i.e. there are more results to display, use this value to get the next set of results, by using this value in paginationCookie param for the next request to GetProtectionPolicySummary.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PolicySummaryResponse:
+        """Get the protection policy summary
+
+        Fetch the summary for a given protection policy.
+
+        :param id: Specifies the id of the policy whose summary should be retrieved. If this is not set, the API will return error. (required)
+        :type id: str
+        :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
+        :type request_initiator_type: str
+        :param include_aggregated_last_run_summary: Specifies whether to include summary of the last Protection Run of each Protection Source
+        :type include_aggregated_last_run_summary: bool
+        :param include_aggregated_runs_summary: Specifies whether to include summary of all Protection Runs of the Protection Source or Protection Jobs. If this is set to true, then only the Protection Runs from the provided 'startTimeUsecs' and 'endTimeUsecs' are processed.
+        :type include_aggregated_runs_summary: bool
+        :param start_time_usecs: Filter by a start time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that started after the specified time are included in the aggregated runs summary result.
+        :type start_time_usecs: int
+        :param end_time_usecs: Filter by a end time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that completed before the specified time are included in the aggregated runs summary result.
+        :type end_time_usecs: int
+        :param page_count: Specifies the limit of the number of Protection Sources or Protection Jobs to be returned as a part of the Protection Policy Summary.
+        :type page_count: int
+        :param pagination_cookie: If set, i.e. there are more results to display, use this value to get the next set of results, by using this value in paginationCookie param for the next request to GetProtectionPolicySummary.
+        :type pagination_cookie: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_policy_summary_serialize(
+            id=id,
+            request_initiator_type=request_initiator_type,
+            include_aggregated_last_run_summary=include_aggregated_last_run_summary,
+            include_aggregated_runs_summary=include_aggregated_runs_summary,
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            page_count=page_count,
+            pagination_cookie=pagination_cookie,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PolicySummaryResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_policy_summary_with_http_info(
+        self,
+        id: Annotated[StrictStr, Field(description="Specifies the id of the policy whose summary should be retrieved. If this is not set, the API will return error.")],
+        request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        include_aggregated_last_run_summary: Annotated[Optional[StrictBool], Field(description="Specifies whether to include summary of the last Protection Run of each Protection Source")] = None,
+        include_aggregated_runs_summary: Annotated[Optional[StrictBool], Field(description="Specifies whether to include summary of all Protection Runs of the Protection Source or Protection Jobs. If this is set to true, then only the Protection Runs from the provided 'startTimeUsecs' and 'endTimeUsecs' are processed.")] = None,
+        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a start time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that started after the specified time are included in the aggregated runs summary result.")] = None,
+        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a end time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that completed before the specified time are included in the aggregated runs summary result.")] = None,
+        page_count: Annotated[Optional[StrictInt], Field(description="Specifies the limit of the number of Protection Sources or Protection Jobs to be returned as a part of the Protection Policy Summary.")] = None,
+        pagination_cookie: Annotated[Optional[StrictStr], Field(description="If set, i.e. there are more results to display, use this value to get the next set of results, by using this value in paginationCookie param for the next request to GetProtectionPolicySummary.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PolicySummaryResponse]:
+        """Get the protection policy summary
+
+        Fetch the summary for a given protection policy.
+
+        :param id: Specifies the id of the policy whose summary should be retrieved. If this is not set, the API will return error. (required)
+        :type id: str
+        :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
+        :type request_initiator_type: str
+        :param include_aggregated_last_run_summary: Specifies whether to include summary of the last Protection Run of each Protection Source
+        :type include_aggregated_last_run_summary: bool
+        :param include_aggregated_runs_summary: Specifies whether to include summary of all Protection Runs of the Protection Source or Protection Jobs. If this is set to true, then only the Protection Runs from the provided 'startTimeUsecs' and 'endTimeUsecs' are processed.
+        :type include_aggregated_runs_summary: bool
+        :param start_time_usecs: Filter by a start time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that started after the specified time are included in the aggregated runs summary result.
+        :type start_time_usecs: int
+        :param end_time_usecs: Filter by a end time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that completed before the specified time are included in the aggregated runs summary result.
+        :type end_time_usecs: int
+        :param page_count: Specifies the limit of the number of Protection Sources or Protection Jobs to be returned as a part of the Protection Policy Summary.
+        :type page_count: int
+        :param pagination_cookie: If set, i.e. there are more results to display, use this value to get the next set of results, by using this value in paginationCookie param for the next request to GetProtectionPolicySummary.
+        :type pagination_cookie: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_policy_summary_serialize(
+            id=id,
+            request_initiator_type=request_initiator_type,
+            include_aggregated_last_run_summary=include_aggregated_last_run_summary,
+            include_aggregated_runs_summary=include_aggregated_runs_summary,
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            page_count=page_count,
+            pagination_cookie=pagination_cookie,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PolicySummaryResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_policy_summary_without_preload_content(
+        self,
+        id: Annotated[StrictStr, Field(description="Specifies the id of the policy whose summary should be retrieved. If this is not set, the API will return error.")],
+        request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        include_aggregated_last_run_summary: Annotated[Optional[StrictBool], Field(description="Specifies whether to include summary of the last Protection Run of each Protection Source")] = None,
+        include_aggregated_runs_summary: Annotated[Optional[StrictBool], Field(description="Specifies whether to include summary of all Protection Runs of the Protection Source or Protection Jobs. If this is set to true, then only the Protection Runs from the provided 'startTimeUsecs' and 'endTimeUsecs' are processed.")] = None,
+        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a start time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that started after the specified time are included in the aggregated runs summary result.")] = None,
+        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a end time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that completed before the specified time are included in the aggregated runs summary result.")] = None,
+        page_count: Annotated[Optional[StrictInt], Field(description="Specifies the limit of the number of Protection Sources or Protection Jobs to be returned as a part of the Protection Policy Summary.")] = None,
+        pagination_cookie: Annotated[Optional[StrictStr], Field(description="If set, i.e. there are more results to display, use this value to get the next set of results, by using this value in paginationCookie param for the next request to GetProtectionPolicySummary.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get the protection policy summary
+
+        Fetch the summary for a given protection policy.
+
+        :param id: Specifies the id of the policy whose summary should be retrieved. If this is not set, the API will return error. (required)
+        :type id: str
+        :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
+        :type request_initiator_type: str
+        :param include_aggregated_last_run_summary: Specifies whether to include summary of the last Protection Run of each Protection Source
+        :type include_aggregated_last_run_summary: bool
+        :param include_aggregated_runs_summary: Specifies whether to include summary of all Protection Runs of the Protection Source or Protection Jobs. If this is set to true, then only the Protection Runs from the provided 'startTimeUsecs' and 'endTimeUsecs' are processed.
+        :type include_aggregated_runs_summary: bool
+        :param start_time_usecs: Filter by a start time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that started after the specified time are included in the aggregated runs summary result.
+        :type start_time_usecs: int
+        :param end_time_usecs: Filter by a end time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that completed before the specified time are included in the aggregated runs summary result.
+        :type end_time_usecs: int
+        :param page_count: Specifies the limit of the number of Protection Sources or Protection Jobs to be returned as a part of the Protection Policy Summary.
+        :type page_count: int
+        :param pagination_cookie: If set, i.e. there are more results to display, use this value to get the next set of results, by using this value in paginationCookie param for the next request to GetProtectionPolicySummary.
+        :type pagination_cookie: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_policy_summary_serialize(
+            id=id,
+            request_initiator_type=request_initiator_type,
+            include_aggregated_last_run_summary=include_aggregated_last_run_summary,
+            include_aggregated_runs_summary=include_aggregated_runs_summary,
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            page_count=page_count,
+            pagination_cookie=pagination_cookie,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PolicySummaryResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_policy_summary_serialize(
+        self,
+        id,
+        request_initiator_type,
+        include_aggregated_last_run_summary,
+        include_aggregated_runs_summary,
+        start_time_usecs,
+        end_time_usecs,
+        page_count,
+        pagination_cookie,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        if include_aggregated_last_run_summary is not None:
+            
+            _query_params.append(('includeAggregatedLastRunSummary', include_aggregated_last_run_summary))
+            
+        if include_aggregated_runs_summary is not None:
+            
+            _query_params.append(('includeAggregatedRunsSummary', include_aggregated_runs_summary))
+            
+        if start_time_usecs is not None:
+            
+            _query_params.append(('startTimeUsecs', start_time_usecs))
+            
+        if end_time_usecs is not None:
+            
+            _query_params.append(('endTimeUsecs', end_time_usecs))
+            
+        if page_count is not None:
+            
+            _query_params.append(('pageCount', page_count))
+            
+        if pagination_cookie is not None:
+            
+            _query_params.append(('paginationCookie', pagination_cookie))
+            
+        # process the header parameters
+        if request_initiator_type is not None:
+            _header_params['requestInitiatorType'] = request_initiator_type
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/data-protect/policies/{id}/summary',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_policy_template_by_id(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Policy Template to return.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1855,9 +2281,9 @@ class PolicyApi:
 
         :param id: Specifies a unique id of the Policy Template to return. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1909,8 +2335,8 @@ class PolicyApi:
     def get_policy_template_by_id_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Policy Template to return.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1930,9 +2356,9 @@ class PolicyApi:
 
         :param id: Specifies a unique id of the Policy Template to return. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1984,8 +2410,8 @@ class PolicyApi:
     def get_policy_template_by_id_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Policy Template to return.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2005,9 +2431,9 @@ class PolicyApi:
 
         :param id: Specifies a unique id of the Policy Template to return. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2124,13 +2550,13 @@ class PolicyApi:
     @validate_call
     def get_policy_templates(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter policies by a list of policy template ids.")] = None,
         policy_names: Annotated[Optional[List[StrictStr]], Field(description="Filter policies by a list of policy names.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the organizations for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="IncludeTenantPolicies specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2148,10 +2574,6 @@ class PolicyApi:
 
         Returns the policy templates based on the filtering parameters. If no parameters are specified, then all the policy templates are returned.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param ids: Filter policies by a list of policy template ids.
@@ -2162,6 +2584,10 @@ class PolicyApi:
         :type tenant_ids: List[str]
         :param include_tenants: IncludeTenantPolicies specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.
         :type include_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2185,13 +2611,13 @@ class PolicyApi:
         """ # noqa: E501
 
         _param = self._get_policy_templates_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             ids=ids,
             policy_names=policy_names,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2215,13 +2641,13 @@ class PolicyApi:
     @validate_call
     def get_policy_templates_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter policies by a list of policy template ids.")] = None,
         policy_names: Annotated[Optional[List[StrictStr]], Field(description="Filter policies by a list of policy names.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the organizations for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="IncludeTenantPolicies specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2239,10 +2665,6 @@ class PolicyApi:
 
         Returns the policy templates based on the filtering parameters. If no parameters are specified, then all the policy templates are returned.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param ids: Filter policies by a list of policy template ids.
@@ -2253,6 +2675,10 @@ class PolicyApi:
         :type tenant_ids: List[str]
         :param include_tenants: IncludeTenantPolicies specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.
         :type include_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2276,13 +2702,13 @@ class PolicyApi:
         """ # noqa: E501
 
         _param = self._get_policy_templates_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             ids=ids,
             policy_names=policy_names,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2306,13 +2732,13 @@ class PolicyApi:
     @validate_call
     def get_policy_templates_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter policies by a list of policy template ids.")] = None,
         policy_names: Annotated[Optional[List[StrictStr]], Field(description="Filter policies by a list of policy names.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the organizations for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="IncludeTenantPolicies specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2330,10 +2756,6 @@ class PolicyApi:
 
         Returns the policy templates based on the filtering parameters. If no parameters are specified, then all the policy templates are returned.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param ids: Filter policies by a list of policy template ids.
@@ -2344,6 +2766,10 @@ class PolicyApi:
         :type tenant_ids: List[str]
         :param include_tenants: IncludeTenantPolicies specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.
         :type include_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2367,13 +2793,13 @@ class PolicyApi:
         """ # noqa: E501
 
         _param = self._get_policy_templates_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             ids=ids,
             policy_names=policy_names,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2392,13 +2818,13 @@ class PolicyApi:
 
     def _get_policy_templates_serialize(
         self,
-        access_cluster_id,
-        region_id,
         request_initiator_type,
         ids,
         policy_names,
         tenant_ids,
         include_tenants,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2441,12 +2867,12 @@ class PolicyApi:
             _query_params.append(('includeTenants', include_tenants))
             
         # process the header parameters
+        if request_initiator_type is not None:
+            _header_params['requestInitiatorType'] = request_initiator_type
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
         if region_id is not None:
             _header_params['regionId'] = region_id
-        if request_initiator_type is not None:
-            _header_params['requestInitiatorType'] = request_initiator_type
         # process the form parameters
         # process the body parameter
 
@@ -2486,8 +2912,6 @@ class PolicyApi:
     @validate_call
     def get_protection_policies(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter policies by a list of policy ids.")] = None,
         policy_names: Annotated[Optional[List[StrictStr]], Field(description="Filter policies by a list of policy names.")] = None,
@@ -2497,6 +2921,9 @@ class PolicyApi:
         exclude_linked_policies: Annotated[Optional[StrictBool], Field(description="If excludeLinkedPolicies is set to true then only local policies created on cluster will be returned. The result will exclude all linked policies created from policy templates.")] = None,
         include_replicated_policies: Annotated[Optional[StrictBool], Field(description="If includeReplicatedPolicies is set to true, then response will also contain replicated policies. By default, replication policies are not included in the response.")] = None,
         include_stats: Annotated[Optional[StrictBool], Field(description="If includeStats is set to true, then response will return number of protection groups and objects. By default, the protection stats are not included in the response.")] = None,
+        vault_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Vault ids. Policies archiving to any of the specified vaults will be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2514,10 +2941,6 @@ class PolicyApi:
 
         Lists protection policies based on filtering query parameters.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param ids: Filter policies by a list of policy ids.
@@ -2536,6 +2959,12 @@ class PolicyApi:
         :type include_replicated_policies: bool
         :param include_stats: If includeStats is set to true, then response will return number of protection groups and objects. By default, the protection stats are not included in the response.
         :type include_stats: bool
+        :param vault_ids: Filter by a list of Vault ids. Policies archiving to any of the specified vaults will be returned.
+        :type vault_ids: List[int]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2559,8 +2988,6 @@ class PolicyApi:
         """ # noqa: E501
 
         _param = self._get_protection_policies_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             ids=ids,
             policy_names=policy_names,
@@ -2570,6 +2997,9 @@ class PolicyApi:
             exclude_linked_policies=exclude_linked_policies,
             include_replicated_policies=include_replicated_policies,
             include_stats=include_stats,
+            vault_ids=vault_ids,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2593,8 +3023,6 @@ class PolicyApi:
     @validate_call
     def get_protection_policies_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter policies by a list of policy ids.")] = None,
         policy_names: Annotated[Optional[List[StrictStr]], Field(description="Filter policies by a list of policy names.")] = None,
@@ -2604,6 +3032,9 @@ class PolicyApi:
         exclude_linked_policies: Annotated[Optional[StrictBool], Field(description="If excludeLinkedPolicies is set to true then only local policies created on cluster will be returned. The result will exclude all linked policies created from policy templates.")] = None,
         include_replicated_policies: Annotated[Optional[StrictBool], Field(description="If includeReplicatedPolicies is set to true, then response will also contain replicated policies. By default, replication policies are not included in the response.")] = None,
         include_stats: Annotated[Optional[StrictBool], Field(description="If includeStats is set to true, then response will return number of protection groups and objects. By default, the protection stats are not included in the response.")] = None,
+        vault_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Vault ids. Policies archiving to any of the specified vaults will be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2621,10 +3052,6 @@ class PolicyApi:
 
         Lists protection policies based on filtering query parameters.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param ids: Filter policies by a list of policy ids.
@@ -2643,6 +3070,12 @@ class PolicyApi:
         :type include_replicated_policies: bool
         :param include_stats: If includeStats is set to true, then response will return number of protection groups and objects. By default, the protection stats are not included in the response.
         :type include_stats: bool
+        :param vault_ids: Filter by a list of Vault ids. Policies archiving to any of the specified vaults will be returned.
+        :type vault_ids: List[int]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2666,8 +3099,6 @@ class PolicyApi:
         """ # noqa: E501
 
         _param = self._get_protection_policies_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             ids=ids,
             policy_names=policy_names,
@@ -2677,6 +3108,9 @@ class PolicyApi:
             exclude_linked_policies=exclude_linked_policies,
             include_replicated_policies=include_replicated_policies,
             include_stats=include_stats,
+            vault_ids=vault_ids,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2700,8 +3134,6 @@ class PolicyApi:
     @validate_call
     def get_protection_policies_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter policies by a list of policy ids.")] = None,
         policy_names: Annotated[Optional[List[StrictStr]], Field(description="Filter policies by a list of policy names.")] = None,
@@ -2711,6 +3143,9 @@ class PolicyApi:
         exclude_linked_policies: Annotated[Optional[StrictBool], Field(description="If excludeLinkedPolicies is set to true then only local policies created on cluster will be returned. The result will exclude all linked policies created from policy templates.")] = None,
         include_replicated_policies: Annotated[Optional[StrictBool], Field(description="If includeReplicatedPolicies is set to true, then response will also contain replicated policies. By default, replication policies are not included in the response.")] = None,
         include_stats: Annotated[Optional[StrictBool], Field(description="If includeStats is set to true, then response will return number of protection groups and objects. By default, the protection stats are not included in the response.")] = None,
+        vault_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Vault ids. Policies archiving to any of the specified vaults will be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2728,10 +3163,6 @@ class PolicyApi:
 
         Lists protection policies based on filtering query parameters.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param ids: Filter policies by a list of policy ids.
@@ -2750,6 +3181,12 @@ class PolicyApi:
         :type include_replicated_policies: bool
         :param include_stats: If includeStats is set to true, then response will return number of protection groups and objects. By default, the protection stats are not included in the response.
         :type include_stats: bool
+        :param vault_ids: Filter by a list of Vault ids. Policies archiving to any of the specified vaults will be returned.
+        :type vault_ids: List[int]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2773,8 +3210,6 @@ class PolicyApi:
         """ # noqa: E501
 
         _param = self._get_protection_policies_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             ids=ids,
             policy_names=policy_names,
@@ -2784,6 +3219,9 @@ class PolicyApi:
             exclude_linked_policies=exclude_linked_policies,
             include_replicated_policies=include_replicated_policies,
             include_stats=include_stats,
+            vault_ids=vault_ids,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2802,8 +3240,6 @@ class PolicyApi:
 
     def _get_protection_policies_serialize(
         self,
-        access_cluster_id,
-        region_id,
         request_initiator_type,
         ids,
         policy_names,
@@ -2813,6 +3249,9 @@ class PolicyApi:
         exclude_linked_policies,
         include_replicated_policies,
         include_stats,
+        vault_ids,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2826,6 +3265,7 @@ class PolicyApi:
             'policyNames': 'csv',
             'tenantIds': 'csv',
             'types': 'csv',
+            'vaultIds': 'csv',
         }
 
         _path_params: Dict[str, str] = {}
@@ -2871,13 +3311,17 @@ class PolicyApi:
             
             _query_params.append(('includeStats', include_stats))
             
+        if vault_ids is not None:
+            
+            _query_params.append(('vaultIds', vault_ids))
+            
         # process the header parameters
+        if request_initiator_type is not None:
+            _header_params['requestInitiatorType'] = request_initiator_type
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
         if region_id is not None:
             _header_params['regionId'] = region_id
-        if request_initiator_type is not None:
-            _header_params['requestInitiatorType'] = request_initiator_type
         # process the form parameters
         # process the body parameter
 
@@ -2918,9 +3362,9 @@ class PolicyApi:
     def get_protection_policy_by_id(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Policy to return.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2940,12 +3384,12 @@ class PolicyApi:
 
         :param id: Specifies a unique id of the Protection Policy to return. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2970,9 +3414,9 @@ class PolicyApi:
 
         _param = self._get_protection_policy_by_id_serialize(
             id=id,
+            request_initiator_type=request_initiator_type,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            request_initiator_type=request_initiator_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2997,9 +3441,9 @@ class PolicyApi:
     def get_protection_policy_by_id_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Policy to return.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3019,12 +3463,12 @@ class PolicyApi:
 
         :param id: Specifies a unique id of the Protection Policy to return. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3049,9 +3493,9 @@ class PolicyApi:
 
         _param = self._get_protection_policy_by_id_serialize(
             id=id,
+            request_initiator_type=request_initiator_type,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            request_initiator_type=request_initiator_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3076,9 +3520,9 @@ class PolicyApi:
     def get_protection_policy_by_id_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Policy to return.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3098,12 +3542,12 @@ class PolicyApi:
 
         :param id: Specifies a unique id of the Protection Policy to return. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3128,9 +3572,9 @@ class PolicyApi:
 
         _param = self._get_protection_policy_by_id_serialize(
             id=id,
+            request_initiator_type=request_initiator_type,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            request_initiator_type=request_initiator_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3150,9 +3594,9 @@ class PolicyApi:
     def _get_protection_policy_by_id_serialize(
         self,
         id,
+        request_initiator_type,
         access_cluster_id,
         region_id,
-        request_initiator_type,
         _request_auth,
         _content_type,
         _headers,
@@ -3178,12 +3622,12 @@ class PolicyApi:
             _path_params['id'] = id
         # process the query parameters
         # process the header parameters
+        if request_initiator_type is not None:
+            _header_params['requestInitiatorType'] = request_initiator_type
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
         if region_id is not None:
             _header_params['regionId'] = region_id
-        if request_initiator_type is not None:
-            _header_params['requestInitiatorType'] = request_initiator_type
         # process the form parameters
         # process the body parameter
 
@@ -3225,7 +3669,7 @@ class PolicyApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Policy to update.")],
         body: Annotated[HeliosPolicyRequest, Field(description="Request to update a Protection Policy.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3247,7 +3691,7 @@ class PolicyApi:
         :type id: str
         :param body: Request to update a Protection Policy. (required)
         :type body: HeliosPolicyRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3300,7 +3744,7 @@ class PolicyApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Policy to update.")],
         body: Annotated[HeliosPolicyRequest, Field(description="Request to update a Protection Policy.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3322,7 +3766,7 @@ class PolicyApi:
         :type id: str
         :param body: Request to update a Protection Policy. (required)
         :type body: HeliosPolicyRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3375,7 +3819,7 @@ class PolicyApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Policy to update.")],
         body: Annotated[HeliosPolicyRequest, Field(description="Request to update a Protection Policy.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3397,7 +3841,7 @@ class PolicyApi:
         :type id: str
         :param body: Request to update a Protection Policy. (required)
         :type body: HeliosPolicyRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3529,8 +3973,8 @@ class PolicyApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Policy to update.")],
         body: Annotated[ProtectionPolicyRequest, Field(description="Request to update a Protection Policy.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3552,9 +3996,9 @@ class PolicyApi:
         :type id: str
         :param body: Request to update a Protection Policy. (required)
         :type body: ProtectionPolicyRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3608,8 +4052,8 @@ class PolicyApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Policy to update.")],
         body: Annotated[ProtectionPolicyRequest, Field(description="Request to update a Protection Policy.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3631,9 +4075,9 @@ class PolicyApi:
         :type id: str
         :param body: Request to update a Protection Policy. (required)
         :type body: ProtectionPolicyRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3687,8 +4131,8 @@ class PolicyApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Policy to update.")],
         body: Annotated[ProtectionPolicyRequest, Field(description="Request to update a Protection Policy.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3710,9 +4154,9 @@ class PolicyApi:
         :type id: str
         :param body: Request to update a Protection Policy. (required)
         :type body: ProtectionPolicyRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

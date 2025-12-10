@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_acropolis_vm_original_source_network_config import RecoverAcropolisVmOriginalSourceNetworkConfig
 from typing import Set
@@ -27,8 +27,10 @@ class RecoverAcropolisVmOriginalSourceConfig(BaseModel):
     """
     Specifies the Source configuration if VM's are being recovered to Original Source.
     """ # noqa: E501
+    include_categories: Optional[StrictBool] = Field(default=False, description="Specifies the category configuration to be applied to the recovered VMs.", alias="includeCategories")
+    include_project_owners: Optional[StrictBool] = Field(default=False, description="Specifies the project owners configuration to be applied to the recovered VMs.", alias="includeProjectOwners")
     network_config: Optional[RecoverAcropolisVmOriginalSourceNetworkConfig] = Field(default=None, description="Specifies the networking configuration to be applied to the recovered VMs.", alias="networkConfig")
-    __properties: ClassVar[List[str]] = ["networkConfig"]
+    __properties: ClassVar[List[str]] = ["includeCategories", "includeProjectOwners", "networkConfig"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,6 +74,16 @@ class RecoverAcropolisVmOriginalSourceConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of network_config
         if self.network_config:
             _dict['networkConfig'] = self.network_config.to_dict()
+        # set to None if include_categories (nullable) is None
+        # and model_fields_set contains the field
+        if self.include_categories is None and "include_categories" in self.model_fields_set:
+            _dict['includeCategories'] = None
+
+        # set to None if include_project_owners (nullable) is None
+        # and model_fields_set contains the field
+        if self.include_project_owners is None and "include_project_owners" in self.model_fields_set:
+            _dict['includeProjectOwners'] = None
+
         # set to None if network_config (nullable) is None
         # and model_fields_set contains the field
         if self.network_config is None and "network_config" in self.model_fields_set:
@@ -89,6 +101,8 @@ class RecoverAcropolisVmOriginalSourceConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "includeCategories": obj.get("includeCategories") if obj.get("includeCategories") is not None else False,
+            "includeProjectOwners": obj.get("includeProjectOwners") if obj.get("includeProjectOwners") is not None else False,
             "networkConfig": RecoverAcropolisVmOriginalSourceNetworkConfig.from_dict(obj["networkConfig"]) if obj.get("networkConfig") is not None else None
         })
         return _obj

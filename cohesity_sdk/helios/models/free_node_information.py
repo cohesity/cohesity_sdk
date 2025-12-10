@@ -26,18 +26,24 @@ class FreeNodeInformation(BaseModel):
     """
     Specifies the Metadata of a free Node on the network
     """ # noqa: E501
-    can_connect: Optional[StrictBool] = Field(default=None, description="Specifies if Node can be connected.", alias="canConnect")
+    can_connect: Optional[StrictBool] = Field(default=None, description="Deprecated - This field is deprecated, use connectedTo field.", alias="canConnect")
+    chassis_model: Optional[StrictStr] = Field(default=None, description="Specifies the model number of the Chassis the Node is installed in.", alias="chassisModel")
     chassis_serial: Optional[StrictStr] = Field(default=None, description="Specifies the serial number of the Chassis the Node is installed in.", alias="chassisSerial")
+    connected_to: Optional[StrictBool] = Field(default=None, description="Specifies if this is the node from where this API response was received.", alias="connectedTo")
+    hostname: Optional[StrictStr] = Field(default=None, description="Specifies the host name of the node.")
     id: Optional[StrictInt] = Field(default=None, description="Specifies the ID of the node.")
     ipmi_ip: Optional[StrictStr] = Field(default=None, description="Specifies the IPMI IP of the Node.", alias="ipmiIp")
     ips: Optional[List[StrictStr]] = Field(default=None, description="List of discovered ipv4/ipv6 addresses of the node. Ip field returns ips as comma separated single string which is incorrect.")
+    node_model: Optional[StrictStr] = Field(default=None, description="Specifies the node model.", alias="nodeModel")
     node_serial: Optional[StrictStr] = Field(default=None, description="Specifies the serial number of the Node.", alias="nodeSerial")
     node_ui_slot: Optional[StrictStr] = Field(default=None, description="Specifies the position for the UI to display the Node in the Cluster creation page.", alias="nodeUiSlot")
     num_slots_in_chassis: Optional[StrictInt] = Field(default=None, description="Specifies the number of Node slots present in the Chassis where this Node is installed.", alias="numSlotsInChassis")
+    primary_ipv4_address: Optional[StrictStr] = Field(default=None, description="IPv4 addresses in primary interface's LAN.", alias="primaryIPv4Address")
+    primary_ipv6_address: Optional[StrictStr] = Field(default=None, description="IPv6 addresses in primary interface's LAN.", alias="primaryIPv6Address")
     product_model: Optional[StrictStr] = Field(default=None, description="Specifies the product model of the node.", alias="productModel")
     slot_number: Optional[StrictStr] = Field(default=None, description="Specifies the number of the slot the Node is installed in.", alias="slotNumber")
     software_version: Optional[StrictStr] = Field(default=None, description="Specifies the version of the software installed on the Node.", alias="softwareVersion")
-    __properties: ClassVar[List[str]] = ["canConnect", "chassisSerial", "id", "ipmiIp", "ips", "nodeSerial", "nodeUiSlot", "numSlotsInChassis", "productModel", "slotNumber", "softwareVersion"]
+    __properties: ClassVar[List[str]] = ["canConnect", "chassisModel", "chassisSerial", "connectedTo", "hostname", "id", "ipmiIp", "ips", "nodeModel", "nodeSerial", "nodeUiSlot", "numSlotsInChassis", "primaryIPv4Address", "primaryIPv6Address", "productModel", "slotNumber", "softwareVersion"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,10 +89,25 @@ class FreeNodeInformation(BaseModel):
         if self.can_connect is None and "can_connect" in self.model_fields_set:
             _dict['canConnect'] = None
 
+        # set to None if chassis_model (nullable) is None
+        # and model_fields_set contains the field
+        if self.chassis_model is None and "chassis_model" in self.model_fields_set:
+            _dict['chassisModel'] = None
+
         # set to None if chassis_serial (nullable) is None
         # and model_fields_set contains the field
         if self.chassis_serial is None and "chassis_serial" in self.model_fields_set:
             _dict['chassisSerial'] = None
+
+        # set to None if connected_to (nullable) is None
+        # and model_fields_set contains the field
+        if self.connected_to is None and "connected_to" in self.model_fields_set:
+            _dict['connectedTo'] = None
+
+        # set to None if hostname (nullable) is None
+        # and model_fields_set contains the field
+        if self.hostname is None and "hostname" in self.model_fields_set:
+            _dict['hostname'] = None
 
         # set to None if id (nullable) is None
         # and model_fields_set contains the field
@@ -103,6 +124,11 @@ class FreeNodeInformation(BaseModel):
         if self.ips is None and "ips" in self.model_fields_set:
             _dict['ips'] = None
 
+        # set to None if node_model (nullable) is None
+        # and model_fields_set contains the field
+        if self.node_model is None and "node_model" in self.model_fields_set:
+            _dict['nodeModel'] = None
+
         # set to None if node_serial (nullable) is None
         # and model_fields_set contains the field
         if self.node_serial is None and "node_serial" in self.model_fields_set:
@@ -117,6 +143,16 @@ class FreeNodeInformation(BaseModel):
         # and model_fields_set contains the field
         if self.num_slots_in_chassis is None and "num_slots_in_chassis" in self.model_fields_set:
             _dict['numSlotsInChassis'] = None
+
+        # set to None if primary_ipv4_address (nullable) is None
+        # and model_fields_set contains the field
+        if self.primary_ipv4_address is None and "primary_ipv4_address" in self.model_fields_set:
+            _dict['primaryIPv4Address'] = None
+
+        # set to None if primary_ipv6_address (nullable) is None
+        # and model_fields_set contains the field
+        if self.primary_ipv6_address is None and "primary_ipv6_address" in self.model_fields_set:
+            _dict['primaryIPv6Address'] = None
 
         # set to None if product_model (nullable) is None
         # and model_fields_set contains the field
@@ -146,13 +182,19 @@ class FreeNodeInformation(BaseModel):
 
         _obj = cls.model_validate({
             "canConnect": obj.get("canConnect"),
+            "chassisModel": obj.get("chassisModel"),
             "chassisSerial": obj.get("chassisSerial"),
+            "connectedTo": obj.get("connectedTo"),
+            "hostname": obj.get("hostname"),
             "id": obj.get("id"),
             "ipmiIp": obj.get("ipmiIp"),
             "ips": obj.get("ips"),
+            "nodeModel": obj.get("nodeModel"),
             "nodeSerial": obj.get("nodeSerial"),
             "nodeUiSlot": obj.get("nodeUiSlot"),
             "numSlotsInChassis": obj.get("numSlotsInChassis"),
+            "primaryIPv4Address": obj.get("primaryIPv4Address"),
+            "primaryIPv6Address": obj.get("primaryIPv6Address"),
             "productModel": obj.get("productModel"),
             "slotNumber": obj.get("slotNumber"),
             "softwareVersion": obj.get("softwareVersion")

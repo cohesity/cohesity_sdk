@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Set
 from typing_extensions import Self
@@ -28,6 +28,16 @@ class CreateAuthenticatorKeyBaseParams(BaseModel):
     """ # noqa: E501
     authenticator_type: Optional[StrictStr] = Field(description="Type of Auth mechanism to use for sending MFA OTP.")
     __properties: ClassVar[List[str]] = ["authenticator_type"]
+
+    @field_validator('authenticator_type')
+    def authenticator_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['email', 'totp', 'salesforce']):
+            raise ValueError("must be one of enum values ('email', 'totp', 'salesforce')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -22,10 +22,12 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.archival_aws_external_target_params import ArchivalAwsExternalTargetParams
 from cohesity_sdk.helios.models.archival_azure_external_target_params import ArchivalAzureExternalTargetParams
 from cohesity_sdk.helios.models.archival_gcp_external_target_params import ArchivalGcpExternalTargetParams
+from cohesity_sdk.helios.models.archival_ibm_external_target_params import ArchivalIBMExternalTargetParams
 from cohesity_sdk.helios.models.archival_nas_external_target_params import ArchivalNasExternalTargetParams
 from cohesity_sdk.helios.models.archival_oracle_external_target_params import ArchivalOracleExternalTargetParams
 from cohesity_sdk.helios.models.archival_qstar_tape_external_target_params import ArchivalQstarTapeExternalTargetParams
 from cohesity_sdk.helios.models.archival_s3_comp_external_target_params import ArchivalS3CompExternalTargetParams
+from cohesity_sdk.helios.models.cloud_archival_direct_config import CloudArchivalDirectConfig
 from cohesity_sdk.helios.models.encryption_settings import EncryptionSettings
 from cohesity_sdk.helios.models.target_bandwidth_throttlings import TargetBandwidthThrottlings
 from typing import Set
@@ -35,17 +37,19 @@ class ArchivalExternalTargetParams(BaseModel):
     """
     Specifies the parameters which are specific to Archival purpose type External Targets.
     """ # noqa: E501
+    cad_config: Optional[CloudArchivalDirectConfig] = Field(default=None, alias="cadConfig")
     encryption: EncryptionSettings
     storage_type: Optional[StrictStr] = Field(description="Specifies the Storage type of the External Target. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead.", alias="storageType")
     target_bandwidth_throttlings: Optional[TargetBandwidthThrottlings] = Field(default=None, alias="targetBandwidthThrottlings")
     aws_params: Optional[ArchivalAwsExternalTargetParams] = Field(default=None, alias="awsParams")
     azure_params: Optional[ArchivalAzureExternalTargetParams] = Field(default=None, alias="azureParams")
     gcp_params: Optional[ArchivalGcpExternalTargetParams] = Field(default=None, alias="gcpParams")
+    ibm_params: Optional[ArchivalIBMExternalTargetParams] = Field(default=None, alias="ibmParams")
     nas_params: Optional[ArchivalNasExternalTargetParams] = Field(default=None, alias="nasParams")
     oracle_params: Optional[ArchivalOracleExternalTargetParams] = Field(default=None, alias="oracleParams")
     qstar_tape_params: Optional[ArchivalQstarTapeExternalTargetParams] = Field(default=None, alias="qstarTapeParams")
     s3_comp_params: Optional[ArchivalS3CompExternalTargetParams] = Field(default=None, alias="s3CompParams")
-    __properties: ClassVar[List[str]] = ["encryption", "storageType", "targetBandwidthThrottlings", "awsParams", "azureParams", "gcpParams", "nasParams", "oracleParams", "qstarTapeParams", "s3CompParams"]
+    __properties: ClassVar[List[str]] = ["cadConfig", "encryption", "storageType", "targetBandwidthThrottlings", "awsParams", "azureParams", "gcpParams", "ibmParams", "nasParams", "oracleParams", "qstarTapeParams", "s3CompParams"]
 
     @field_validator('storage_type')
     def storage_type_validate_enum(cls, value):
@@ -53,8 +57,8 @@ class ArchivalExternalTargetParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Azure', 'Google', 'AWS', 'Oracle', 'Nas', 'NAS', 'QStarTape', 'S3Compatible']):
-            raise ValueError("must be one of enum values ('Azure', 'Google', 'AWS', 'Oracle', 'Nas', 'NAS', 'QStarTape', 'S3Compatible')")
+        if value not in set(['Azure', 'Google', 'AWS', 'Oracle', 'Nas', 'NAS', 'QStarTape', 'S3Compatible', 'IBM']):
+            raise ValueError("must be one of enum values ('Azure', 'Google', 'AWS', 'Oracle', 'Nas', 'NAS', 'QStarTape', 'S3Compatible', 'IBM')")
         return value
 
     model_config = ConfigDict(
@@ -96,6 +100,9 @@ class ArchivalExternalTargetParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of cad_config
+        if self.cad_config:
+            _dict['cadConfig'] = self.cad_config.to_dict()
         # override the default output from pydantic by calling `to_dict()` of encryption
         if self.encryption:
             _dict['encryption'] = self.encryption.to_dict()
@@ -111,6 +118,9 @@ class ArchivalExternalTargetParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of gcp_params
         if self.gcp_params:
             _dict['gcpParams'] = self.gcp_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ibm_params
+        if self.ibm_params:
+            _dict['ibmParams'] = self.ibm_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of nas_params
         if self.nas_params:
             _dict['nasParams'] = self.nas_params.to_dict()
@@ -140,12 +150,14 @@ class ArchivalExternalTargetParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "cadConfig": CloudArchivalDirectConfig.from_dict(obj["cadConfig"]) if obj.get("cadConfig") is not None else None,
             "encryption": EncryptionSettings.from_dict(obj["encryption"]) if obj.get("encryption") is not None else None,
             "storageType": obj.get("storageType"),
             "targetBandwidthThrottlings": TargetBandwidthThrottlings.from_dict(obj["targetBandwidthThrottlings"]) if obj.get("targetBandwidthThrottlings") is not None else None,
             "awsParams": ArchivalAwsExternalTargetParams.from_dict(obj["awsParams"]) if obj.get("awsParams") is not None else None,
             "azureParams": ArchivalAzureExternalTargetParams.from_dict(obj["azureParams"]) if obj.get("azureParams") is not None else None,
             "gcpParams": ArchivalGcpExternalTargetParams.from_dict(obj["gcpParams"]) if obj.get("gcpParams") is not None else None,
+            "ibmParams": ArchivalIBMExternalTargetParams.from_dict(obj["ibmParams"]) if obj.get("ibmParams") is not None else None,
             "nasParams": ArchivalNasExternalTargetParams.from_dict(obj["nasParams"]) if obj.get("nasParams") is not None else None,
             "oracleParams": ArchivalOracleExternalTargetParams.from_dict(obj["oracleParams"]) if obj.get("oracleParams") is not None else None,
             "qstarTapeParams": ArchivalQstarTapeExternalTargetParams.from_dict(obj["qstarTapeParams"]) if obj.get("qstarTapeParams") is not None else None,

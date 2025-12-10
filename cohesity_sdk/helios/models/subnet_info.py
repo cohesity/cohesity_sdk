@@ -29,7 +29,8 @@ class SubnetInfo(BaseModel):
     gateway: Optional[StrictStr] = Field(default=None, description="Gateway.")
     netmask_bits: Optional[StrictInt] = Field(default=None, description="Subnet netmask bits.", alias="netmaskBits")
     subnet_ip: Optional[StrictStr] = Field(default=None, description="Subnet IP.", alias="subnetIp")
-    __properties: ClassVar[List[str]] = ["gateway", "netmaskBits", "subnetIp"]
+    subnet_ipv4_mask: Optional[StrictStr] = Field(default=None, description="Subnet ipv4 mask. This is used only for V4 subnet", alias="subnetIpv4Mask")
+    __properties: ClassVar[List[str]] = ["gateway", "netmaskBits", "subnetIp", "subnetIpv4Mask"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,6 +86,11 @@ class SubnetInfo(BaseModel):
         if self.subnet_ip is None and "subnet_ip" in self.model_fields_set:
             _dict['subnetIp'] = None
 
+        # set to None if subnet_ipv4_mask (nullable) is None
+        # and model_fields_set contains the field
+        if self.subnet_ipv4_mask is None and "subnet_ipv4_mask" in self.model_fields_set:
+            _dict['subnetIpv4Mask'] = None
+
         return _dict
 
     @classmethod
@@ -99,7 +105,8 @@ class SubnetInfo(BaseModel):
         _obj = cls.model_validate({
             "gateway": obj.get("gateway"),
             "netmaskBits": obj.get("netmaskBits"),
-            "subnetIp": obj.get("subnetIp")
+            "subnetIp": obj.get("subnetIp"),
+            "subnetIpv4Mask": obj.get("subnetIpv4Mask")
         })
         return _obj
 

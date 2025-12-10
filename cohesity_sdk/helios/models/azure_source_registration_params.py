@@ -31,11 +31,13 @@ class AzureSourceRegistrationParams(BaseModel):
     """ # noqa: E501
     application_credentials: Optional[List[AzureApplicationCredentials]] = Field(default=None, description="Specifies the credentials for a list of applications from azure active directory.", alias="applicationCredentials")
     azure_tenant_id: Optional[StrictStr] = Field(default=None, description="Specifies Tenant Id of the active directory of Azure account. Accpets both Azure tanant Id and tenant domain name.", alias="azureTenantId")
+    graph_access_token: Optional[StrictStr] = Field(default=None, description="Specifies the graph access token for using Azure graph API's.", alias="graphAccessToken")
+    management_access_token: Optional[StrictStr] = Field(default=None, description="Specifies the management access token for using Azure management API's.", alias="managementAccessToken")
     registration_level: Optional[StrictStr] = Field(description="Specifies whether the registration is at tenant level or subscription level.", alias="registrationLevel")
     registration_workflow: Optional[StrictStr] = Field(description="Specifies whether the type of registration is express or manual.", alias="registrationWorkflow")
-    subscription_details: Optional[Annotated[List[AzureSubscription], Field(min_length=1)]] = Field(default=None, description="Specifies the list subscription ids to be registered.", alias="subscriptionDetails")
+    subscription_details: Optional[List[AzureSubscription]] = Field(default=None, description="Specifies the list subscription ids to be registered.", alias="subscriptionDetails")
     use_cases: Optional[Annotated[List[StrictStr], Field(min_length=1)]] = Field(default=None, description="The use cases for which the source is to be registered.", alias="useCases")
-    __properties: ClassVar[List[str]] = ["applicationCredentials", "azureTenantId", "registrationLevel", "registrationWorkflow", "subscriptionDetails", "useCases"]
+    __properties: ClassVar[List[str]] = ["applicationCredentials", "azureTenantId", "graphAccessToken", "managementAccessToken", "registrationLevel", "registrationWorkflow", "subscriptionDetails", "useCases"]
 
     @field_validator('registration_level')
     def registration_level_validate_enum(cls, value):
@@ -64,8 +66,8 @@ class AzureSourceRegistrationParams(BaseModel):
             return value
 
         for i in value:
-            if i not in set(['kVirtualMachine', 'kSQL']):
-                raise ValueError("each list item must be one of ('kVirtualMachine', 'kSQL')")
+            if i not in set(['kVirtualMachine', 'kSQL', 'kEntraID', 'kFileShare', 'kKubernetes', 'kMySQL', 'kMySQLFlexibleServer']):
+                raise ValueError("each list item must be one of ('kVirtualMachine', 'kSQL', 'kEntraID', 'kFileShare', 'kKubernetes', 'kMySQL', 'kMySQLFlexibleServer')")
         return value
 
     model_config = ConfigDict(
@@ -126,6 +128,16 @@ class AzureSourceRegistrationParams(BaseModel):
         if self.azure_tenant_id is None and "azure_tenant_id" in self.model_fields_set:
             _dict['azureTenantId'] = None
 
+        # set to None if graph_access_token (nullable) is None
+        # and model_fields_set contains the field
+        if self.graph_access_token is None and "graph_access_token" in self.model_fields_set:
+            _dict['graphAccessToken'] = None
+
+        # set to None if management_access_token (nullable) is None
+        # and model_fields_set contains the field
+        if self.management_access_token is None and "management_access_token" in self.model_fields_set:
+            _dict['managementAccessToken'] = None
+
         # set to None if registration_level (nullable) is None
         # and model_fields_set contains the field
         if self.registration_level is None and "registration_level" in self.model_fields_set:
@@ -155,6 +167,8 @@ class AzureSourceRegistrationParams(BaseModel):
         _obj = cls.model_validate({
             "applicationCredentials": [AzureApplicationCredentials.from_dict(_item) for _item in obj["applicationCredentials"]] if obj.get("applicationCredentials") is not None else None,
             "azureTenantId": obj.get("azureTenantId"),
+            "graphAccessToken": obj.get("graphAccessToken"),
+            "managementAccessToken": obj.get("managementAccessToken"),
             "registrationLevel": obj.get("registrationLevel"),
             "registrationWorkflow": obj.get("registrationWorkflow"),
             "subscriptionDetails": [AzureSubscription.from_dict(_item) for _item in obj["subscriptionDetails"]] if obj.get("subscriptionDetails") is not None else None,

@@ -52,8 +52,8 @@ class GetMcmObjectsLastRunReqParams(BaseModel):
             return value
 
         for i in value:
-            if i not in set(['BackupRun', 'Restore', 'ArchivalRun']):
-                raise ValueError("each list item must be one of ('BackupRun', 'Restore', 'ArchivalRun')")
+            if i not in set(['BackupRun', 'Restore', 'ArchivalRun', 'Browse']):
+                raise ValueError("each list item must be one of ('BackupRun', 'Restore', 'ArchivalRun', 'Browse')")
         return value
 
     @field_validator('environments')
@@ -63,8 +63,8 @@ class GetMcmObjectsLastRunReqParams(BaseModel):
             return value
 
         for i in value:
-            if i not in set(['kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAzureSQL', 'kAcropolis', 'kGCP', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc']):
-                raise ValueError("each list item must be one of ('kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAzureSQL', 'kAcropolis', 'kGCP', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc')")
+            if i not in set(['kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAcropolis', 'kGCP', 'kGCPBigQuery', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kS3Compatible', 'kSAPHANA', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kAzureEntraID', 'kAzureMySQL', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kSalesforce']):
+                raise ValueError("each list item must be one of ('kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAcropolis', 'kGCP', 'kGCPBigQuery', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kS3Compatible', 'kSAPHANA', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kAzureEntraID', 'kAzureMySQL', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kSalesforce')")
         return value
 
     @field_validator('statuses')
@@ -74,8 +74,8 @@ class GetMcmObjectsLastRunReqParams(BaseModel):
             return value
 
         for i in value:
-            if i not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped']):
-                raise ValueError("each list item must be one of ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped')")
+            if i not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold']):
+                raise ValueError("each list item must be one of ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold')")
         return value
 
     model_config = ConfigDict(

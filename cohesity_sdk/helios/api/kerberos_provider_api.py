@@ -44,8 +44,8 @@ class KerberosProviderApi:
     def get_kerberos_provider_by_id(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -65,9 +65,9 @@ class KerberosProviderApi:
 
         :param id: Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -119,8 +119,8 @@ class KerberosProviderApi:
     def get_kerberos_provider_by_id_with_http_info(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -140,9 +140,9 @@ class KerberosProviderApi:
 
         :param id: Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -194,8 +194,8 @@ class KerberosProviderApi:
     def get_kerberos_provider_by_id_without_preload_content(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -215,9 +215,9 @@ class KerberosProviderApi:
 
         :param id: Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -334,12 +334,12 @@ class KerberosProviderApi:
     @validate_call
     def get_kerberos_providers(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         realm_names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of realm names.")] = None,
         has_ldap: Annotated[Optional[StrictBool], Field(description="Filter by whether LDAP is associated with the provider.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Kerberos Provider Ids.")] = None,
         kdc_servers: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of KDC servers.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -357,10 +357,6 @@ class KerberosProviderApi:
 
         Get the list of Kerberos Authentication Providers.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param realm_names: Filter by a list of realm names.
         :type realm_names: List[str]
         :param has_ldap: Filter by whether LDAP is associated with the provider.
@@ -369,6 +365,10 @@ class KerberosProviderApi:
         :type ids: List[int]
         :param kdc_servers: Filter by a list of KDC servers.
         :type kdc_servers: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -392,12 +392,12 @@ class KerberosProviderApi:
         """ # noqa: E501
 
         _param = self._get_kerberos_providers_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             realm_names=realm_names,
             has_ldap=has_ldap,
             ids=ids,
             kdc_servers=kdc_servers,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -421,12 +421,12 @@ class KerberosProviderApi:
     @validate_call
     def get_kerberos_providers_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         realm_names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of realm names.")] = None,
         has_ldap: Annotated[Optional[StrictBool], Field(description="Filter by whether LDAP is associated with the provider.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Kerberos Provider Ids.")] = None,
         kdc_servers: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of KDC servers.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -444,10 +444,6 @@ class KerberosProviderApi:
 
         Get the list of Kerberos Authentication Providers.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param realm_names: Filter by a list of realm names.
         :type realm_names: List[str]
         :param has_ldap: Filter by whether LDAP is associated with the provider.
@@ -456,6 +452,10 @@ class KerberosProviderApi:
         :type ids: List[int]
         :param kdc_servers: Filter by a list of KDC servers.
         :type kdc_servers: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -479,12 +479,12 @@ class KerberosProviderApi:
         """ # noqa: E501
 
         _param = self._get_kerberos_providers_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             realm_names=realm_names,
             has_ldap=has_ldap,
             ids=ids,
             kdc_servers=kdc_servers,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -508,12 +508,12 @@ class KerberosProviderApi:
     @validate_call
     def get_kerberos_providers_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         realm_names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of realm names.")] = None,
         has_ldap: Annotated[Optional[StrictBool], Field(description="Filter by whether LDAP is associated with the provider.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Kerberos Provider Ids.")] = None,
         kdc_servers: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of KDC servers.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -531,10 +531,6 @@ class KerberosProviderApi:
 
         Get the list of Kerberos Authentication Providers.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param realm_names: Filter by a list of realm names.
         :type realm_names: List[str]
         :param has_ldap: Filter by whether LDAP is associated with the provider.
@@ -543,6 +539,10 @@ class KerberosProviderApi:
         :type ids: List[int]
         :param kdc_servers: Filter by a list of KDC servers.
         :type kdc_servers: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -566,12 +566,12 @@ class KerberosProviderApi:
         """ # noqa: E501
 
         _param = self._get_kerberos_providers_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             realm_names=realm_names,
             has_ldap=has_ldap,
             ids=ids,
             kdc_servers=kdc_servers,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -590,12 +590,12 @@ class KerberosProviderApi:
 
     def _get_kerberos_providers_serialize(
         self,
-        access_cluster_id,
-        region_id,
         realm_names,
         has_ldap,
         ids,
         kdc_servers,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -682,8 +682,8 @@ class KerberosProviderApi:
     def register_kerberos_provider(
         self,
         body: Annotated[RegisterOrUpdateKerberosProviderRequest, Field(description="Specifies the parameters to Register a Kerberos Provider.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -703,9 +703,9 @@ class KerberosProviderApi:
 
         :param body: Specifies the parameters to Register a Kerberos Provider. (required)
         :type body: RegisterOrUpdateKerberosProviderRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -757,8 +757,8 @@ class KerberosProviderApi:
     def register_kerberos_provider_with_http_info(
         self,
         body: Annotated[RegisterOrUpdateKerberosProviderRequest, Field(description="Specifies the parameters to Register a Kerberos Provider.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -778,9 +778,9 @@ class KerberosProviderApi:
 
         :param body: Specifies the parameters to Register a Kerberos Provider. (required)
         :type body: RegisterOrUpdateKerberosProviderRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -832,8 +832,8 @@ class KerberosProviderApi:
     def register_kerberos_provider_without_preload_content(
         self,
         body: Annotated[RegisterOrUpdateKerberosProviderRequest, Field(description="Specifies the parameters to Register a Kerberos Provider.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -853,9 +853,9 @@ class KerberosProviderApi:
 
         :param body: Specifies the parameters to Register a Kerberos Provider. (required)
         :type body: RegisterOrUpdateKerberosProviderRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -987,8 +987,8 @@ class KerberosProviderApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id.")],
         body: Annotated[UnregisterKerberosRequest, Field(description="Request to unregister a Kerberos Provider.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1010,9 +1010,9 @@ class KerberosProviderApi:
         :type id: str
         :param body: Request to unregister a Kerberos Provider. (required)
         :type body: UnregisterKerberosRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1066,8 +1066,8 @@ class KerberosProviderApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id.")],
         body: Annotated[UnregisterKerberosRequest, Field(description="Request to unregister a Kerberos Provider.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1089,9 +1089,9 @@ class KerberosProviderApi:
         :type id: str
         :param body: Request to unregister a Kerberos Provider. (required)
         :type body: UnregisterKerberosRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1145,8 +1145,8 @@ class KerberosProviderApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id.")],
         body: Annotated[UnregisterKerberosRequest, Field(description="Request to unregister a Kerberos Provider.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1168,9 +1168,9 @@ class KerberosProviderApi:
         :type id: str
         :param body: Request to unregister a Kerberos Provider. (required)
         :type body: UnregisterKerberosRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1306,8 +1306,8 @@ class KerberosProviderApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id.")],
         body: Annotated[RegisterOrUpdateKerberosProviderRequest, Field(description="Request to update a Kerberos Provider.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1329,9 +1329,9 @@ class KerberosProviderApi:
         :type id: str
         :param body: Request to update a Kerberos Provider. (required)
         :type body: RegisterOrUpdateKerberosProviderRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1385,8 +1385,8 @@ class KerberosProviderApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id.")],
         body: Annotated[RegisterOrUpdateKerberosProviderRequest, Field(description="Request to update a Kerberos Provider.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1408,9 +1408,9 @@ class KerberosProviderApi:
         :type id: str
         :param body: Request to update a Kerberos Provider. (required)
         :type body: RegisterOrUpdateKerberosProviderRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1464,8 +1464,8 @@ class KerberosProviderApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id.")],
         body: Annotated[RegisterOrUpdateKerberosProviderRequest, Field(description="Request to update a Kerberos Provider.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1487,9 +1487,9 @@ class KerberosProviderApi:
         :type id: str
         :param body: Request to update a Kerberos Provider. (required)
         :type body: RegisterOrUpdateKerberosProviderRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

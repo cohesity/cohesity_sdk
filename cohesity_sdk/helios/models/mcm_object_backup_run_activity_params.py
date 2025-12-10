@@ -35,6 +35,10 @@ class McmObjectBackupRunActivityParams(BaseModel):
     logical_size_bytes: Optional[StrictInt] = Field(default=None, description="Specifies total logical size of the object in bytes.", alias="logicalSizeBytes")
     message_code: Optional[StrictStr] = Field(default=None, description="Specifies a short message describing the type of error which occurred.", alias="messageCode")
     message_guid: Optional[StrictStr] = Field(default=None, description="Specifies the identifier of the error code.", alias="messageGuid")
+    num_changed_granular_objects: Optional[StrictInt] = Field(default=None, description="Number of granular objects added/deleted/modified since the last backup.", alias="numChangedGranularObjects")
+    num_protected_granular_objects: Optional[StrictInt] = Field(default=None, description="Specifies total number of granular objects protected in this backup.", alias="numProtectedGranularObjects")
+    num_successful_backed_granular_objects: Optional[StrictInt] = Field(default=None, description="Specifies number of changed granular objects which were backed up succesfully.", alias="numSuccessfulBackedGranularObjects")
+    on_legal_hold: Optional[StrictBool] = Field(default=None, description="Specifies if the object protection run is on legal hold.", alias="onLegalHold")
     policy_id: Optional[StrictStr] = Field(default=None, description="Specifies the Protection Policy Id.", alias="policyId")
     policy_name: Optional[StrictStr] = Field(default=None, description="Specifies the Protection Policy Name.", alias="policyName")
     progress_task_id: Optional[StrictStr] = Field(default=None, description="Progress monitor task id for the Run.", alias="progressTaskId")
@@ -42,10 +46,11 @@ class McmObjectBackupRunActivityParams(BaseModel):
     protection_group_id: Optional[StrictStr] = Field(default=None, description="Specifies the Protection Group Id.", alias="protectionGroupId")
     protection_group_name: Optional[StrictStr] = Field(default=None, description="Specifies the Protection Group name.", alias="protectionGroupName")
     run_id: Optional[StrictStr] = Field(default=None, description="Specifies the ID of the Protection Run.", alias="runId")
+    run_start_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the time in Unix timestamp epoch in microsecond which specifies when the protection run was submitted. For example, as a part of that run if 10 objects are being backed up all the objects will have this same runStartTimeUsecs. However when compared to startTimeUsecs, it denotes when the backup of that particular object run starts", alias="runStartTimeUsecs")
     snapshot_id: Optional[StrictStr] = Field(default=None, description="Specifies the id of the object snapshot that is created as a part of this Run. This field is only populated for runs which are successful.", alias="snapshotId")
     start_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the start time of Run in Unix epoch Timestamp(in microseconds).", alias="startTimeUsecs")
     status: Optional[StrictStr] = Field(default=None, description="Status of the Run. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. 'Skipped' indicates that the run was skipped.")
-    __properties: ClassVar[List[str]] = ["bytesRead", "bytesWritten", "endTimeUsecs", "errorMessage", "isSlaViolated", "isStubbedRun", "logicalSizeBytes", "messageCode", "messageGuid", "policyId", "policyName", "progressTaskId", "protectionEnvironmentType", "protectionGroupId", "protectionGroupName", "runId", "snapshotId", "startTimeUsecs", "status"]
+    __properties: ClassVar[List[str]] = ["bytesRead", "bytesWritten", "endTimeUsecs", "errorMessage", "isSlaViolated", "isStubbedRun", "logicalSizeBytes", "messageCode", "messageGuid", "numChangedGranularObjects", "numProtectedGranularObjects", "numSuccessfulBackedGranularObjects", "onLegalHold", "policyId", "policyName", "progressTaskId", "protectionEnvironmentType", "protectionGroupId", "protectionGroupName", "runId", "runStartTimeUsecs", "snapshotId", "startTimeUsecs", "status"]
 
     @field_validator('protection_environment_type')
     def protection_environment_type_validate_enum(cls, value):
@@ -53,8 +58,8 @@ class McmObjectBackupRunActivityParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAzureNative', 'kAzureSQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc']):
-            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAzureNative', 'kAzureSQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc')")
+        if value not in set(['kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kGCPBigQuery', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAwsDynamoDB', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kS3Compatible', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kServiceNow', 'kSalesforce']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kGCPBigQuery', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAwsDynamoDB', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kS3Compatible', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kServiceNow', 'kSalesforce')")
         return value
 
     @field_validator('status')
@@ -63,8 +68,8 @@ class McmObjectBackupRunActivityParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped']):
-            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped')")
+        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold']):
+            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold')")
         return value
 
     model_config = ConfigDict(
@@ -151,6 +156,26 @@ class McmObjectBackupRunActivityParams(BaseModel):
         if self.message_guid is None and "message_guid" in self.model_fields_set:
             _dict['messageGuid'] = None
 
+        # set to None if num_changed_granular_objects (nullable) is None
+        # and model_fields_set contains the field
+        if self.num_changed_granular_objects is None and "num_changed_granular_objects" in self.model_fields_set:
+            _dict['numChangedGranularObjects'] = None
+
+        # set to None if num_protected_granular_objects (nullable) is None
+        # and model_fields_set contains the field
+        if self.num_protected_granular_objects is None and "num_protected_granular_objects" in self.model_fields_set:
+            _dict['numProtectedGranularObjects'] = None
+
+        # set to None if num_successful_backed_granular_objects (nullable) is None
+        # and model_fields_set contains the field
+        if self.num_successful_backed_granular_objects is None and "num_successful_backed_granular_objects" in self.model_fields_set:
+            _dict['numSuccessfulBackedGranularObjects'] = None
+
+        # set to None if on_legal_hold (nullable) is None
+        # and model_fields_set contains the field
+        if self.on_legal_hold is None and "on_legal_hold" in self.model_fields_set:
+            _dict['onLegalHold'] = None
+
         # set to None if policy_id (nullable) is None
         # and model_fields_set contains the field
         if self.policy_id is None and "policy_id" in self.model_fields_set:
@@ -185,6 +210,11 @@ class McmObjectBackupRunActivityParams(BaseModel):
         # and model_fields_set contains the field
         if self.run_id is None and "run_id" in self.model_fields_set:
             _dict['runId'] = None
+
+        # set to None if run_start_time_usecs (nullable) is None
+        # and model_fields_set contains the field
+        if self.run_start_time_usecs is None and "run_start_time_usecs" in self.model_fields_set:
+            _dict['runStartTimeUsecs'] = None
 
         # set to None if snapshot_id (nullable) is None
         # and model_fields_set contains the field
@@ -222,6 +252,10 @@ class McmObjectBackupRunActivityParams(BaseModel):
             "logicalSizeBytes": obj.get("logicalSizeBytes"),
             "messageCode": obj.get("messageCode"),
             "messageGuid": obj.get("messageGuid"),
+            "numChangedGranularObjects": obj.get("numChangedGranularObjects"),
+            "numProtectedGranularObjects": obj.get("numProtectedGranularObjects"),
+            "numSuccessfulBackedGranularObjects": obj.get("numSuccessfulBackedGranularObjects"),
+            "onLegalHold": obj.get("onLegalHold"),
             "policyId": obj.get("policyId"),
             "policyName": obj.get("policyName"),
             "progressTaskId": obj.get("progressTaskId"),
@@ -229,6 +263,7 @@ class McmObjectBackupRunActivityParams(BaseModel):
             "protectionGroupId": obj.get("protectionGroupId"),
             "protectionGroupName": obj.get("protectionGroupName"),
             "runId": obj.get("runId"),
+            "runStartTimeUsecs": obj.get("runStartTimeUsecs"),
             "snapshotId": obj.get("snapshotId"),
             "startTimeUsecs": obj.get("startTimeUsecs"),
             "status": obj.get("status")

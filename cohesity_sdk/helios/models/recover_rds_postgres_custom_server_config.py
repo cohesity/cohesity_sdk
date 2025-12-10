@@ -26,13 +26,14 @@ from typing_extensions import Self
 
 class RecoverRDSPostgresCustomServerConfig(BaseModel):
     """
-    Specifies the configuration for recovering RDS Postgres instance to the known target.
+    Specifies the configuration for recovering RDS Objects to the custom target.
     """ # noqa: E501
-    ip: StrictStr = Field(description="Specifies the Ip in which to deploy the Rds instance.")
+    ip: StrictStr = Field(description="Specifies the Ip in which to deploy the Rds objects.")
     port: Optional[StrictInt] = Field(description="Specifies the port to use to connect to the server.")
-    region: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the region in which to deploy the Rds instance.")
+    region: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the region in which to deploy the Rds objects.")
+    source: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the parent source ID in which to recover RDS Objects.")
     standard_credentials: Credentials = Field(alias="standardCredentials")
-    __properties: ClassVar[List[str]] = ["ip", "port", "region", "standardCredentials"]
+    __properties: ClassVar[List[str]] = ["ip", "port", "region", "source", "standardCredentials"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,6 +77,9 @@ class RecoverRDSPostgresCustomServerConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of region
         if self.region:
             _dict['region'] = self.region.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of source
+        if self.source:
+            _dict['source'] = self.source.to_dict()
         # override the default output from pydantic by calling `to_dict()` of standard_credentials
         if self.standard_credentials:
             _dict['standardCredentials'] = self.standard_credentials.to_dict()
@@ -88,6 +92,11 @@ class RecoverRDSPostgresCustomServerConfig(BaseModel):
         # and model_fields_set contains the field
         if self.region is None and "region" in self.model_fields_set:
             _dict['region'] = None
+
+        # set to None if source (nullable) is None
+        # and model_fields_set contains the field
+        if self.source is None and "source" in self.model_fields_set:
+            _dict['source'] = None
 
         return _dict
 
@@ -104,6 +113,7 @@ class RecoverRDSPostgresCustomServerConfig(BaseModel):
             "ip": obj.get("ip"),
             "port": obj.get("port"),
             "region": RecoveryObjectIdentifier.from_dict(obj["region"]) if obj.get("region") is not None else None,
+            "source": RecoveryObjectIdentifier.from_dict(obj["source"]) if obj.get("source") is not None else None,
             "standardCredentials": Credentials.from_dict(obj["standardCredentials"]) if obj.get("standardCredentials") is not None else None
         })
         return _obj

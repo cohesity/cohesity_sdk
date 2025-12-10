@@ -27,8 +27,9 @@ class VerifyTotpResult(BaseModel):
     Result of verifying totp code for support user.
     """ # noqa: E501
     message: Optional[StrictStr] = Field(default=None, description="Specifies message of otp verification result.")
+    reference_id: Optional[StrictStr] = Field(default=None, description="Specifies the reference id of the otp verification request. Generated when TOTP is verified for disabling MFA.", alias="referenceId")
     success: Optional[StrictBool] = Field(default=False, description="Specifies whether or not verification of totp code is success.")
-    __properties: ClassVar[List[str]] = ["message", "success"]
+    __properties: ClassVar[List[str]] = ["message", "referenceId", "success"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -74,6 +75,11 @@ class VerifyTotpResult(BaseModel):
         if self.message is None and "message" in self.model_fields_set:
             _dict['message'] = None
 
+        # set to None if reference_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.reference_id is None and "reference_id" in self.model_fields_set:
+            _dict['referenceId'] = None
+
         return _dict
 
     @classmethod
@@ -87,6 +93,7 @@ class VerifyTotpResult(BaseModel):
 
         _obj = cls.model_validate({
             "message": obj.get("message"),
+            "referenceId": obj.get("referenceId"),
             "success": obj.get("success") if obj.get("success") is not None else False
         })
         return _obj

@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.azure_disk_exclusion_params import AzureDiskExclusionParams
 from typing import Set
 from typing_extensions import Self
 
@@ -26,8 +27,10 @@ class AzureObjectLevelParams(BaseModel):
     """
     Specifies the Azure object level settings for object protection.
     """ # noqa: E501
+    disk_exclusion_params: Optional[AzureDiskExclusionParams] = Field(default=None, alias="diskExclusionParams")
+    exclude_object_ids: Optional[List[Optional[StrictInt]]] = Field(default=None, description="Specifies the list of IDs of the objects not to be protected in this backup. This field only applies if provided object id is non leaf entity such as Tag. This can be used to ignore specific objects (can include tags) under a parent object which has been included for protection.", alias="excludeObjectIds")
     id: Optional[StrictInt] = Field(description="Specifies the id of the object being protected. This can be a leaf level or non leaf level object.")
-    __properties: ClassVar[List[str]] = ["id"]
+    __properties: ClassVar[List[str]] = ["diskExclusionParams", "excludeObjectIds", "id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -68,6 +71,9 @@ class AzureObjectLevelParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of disk_exclusion_params
+        if self.disk_exclusion_params:
+            _dict['diskExclusionParams'] = self.disk_exclusion_params.to_dict()
         # set to None if id (nullable) is None
         # and model_fields_set contains the field
         if self.id is None and "id" in self.model_fields_set:
@@ -85,6 +91,8 @@ class AzureObjectLevelParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "diskExclusionParams": AzureDiskExclusionParams.from_dict(obj["diskExclusionParams"]) if obj.get("diskExclusionParams") is not None else None,
+            "excludeObjectIds": obj.get("excludeObjectIds"),
             "id": obj.get("id")
         })
         return _obj

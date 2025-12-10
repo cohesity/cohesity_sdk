@@ -40,7 +40,7 @@ class TaggingServiceApi:
     def add_snapshots_tags(
         self,
         body: Annotated[List[SnapshotTags], Field(description="SnapshotTagsList specifies list of snapshots and tags to add to each of those. Only the tags to be added are specified. Existing tags will remain added. Response  will contain all tags associated with snapshots after addition.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -60,7 +60,7 @@ class TaggingServiceApi:
 
         :param body: SnapshotTagsList specifies list of snapshots and tags to add to each of those. Only the tags to be added are specified. Existing tags will remain added. Response  will contain all tags associated with snapshots after addition. (required)
         :type body: List[SnapshotTags]
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -111,7 +111,7 @@ class TaggingServiceApi:
     def add_snapshots_tags_with_http_info(
         self,
         body: Annotated[List[SnapshotTags], Field(description="SnapshotTagsList specifies list of snapshots and tags to add to each of those. Only the tags to be added are specified. Existing tags will remain added. Response  will contain all tags associated with snapshots after addition.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -131,7 +131,7 @@ class TaggingServiceApi:
 
         :param body: SnapshotTagsList specifies list of snapshots and tags to add to each of those. Only the tags to be added are specified. Existing tags will remain added. Response  will contain all tags associated with snapshots after addition. (required)
         :type body: List[SnapshotTags]
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -182,7 +182,7 @@ class TaggingServiceApi:
     def add_snapshots_tags_without_preload_content(
         self,
         body: Annotated[List[SnapshotTags], Field(description="SnapshotTagsList specifies list of snapshots and tags to add to each of those. Only the tags to be added are specified. Existing tags will remain added. Response  will contain all tags associated with snapshots after addition.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -202,7 +202,7 @@ class TaggingServiceApi:
 
         :param body: SnapshotTagsList specifies list of snapshots and tags to add to each of those. Only the tags to be added are specified. Existing tags will remain added. Response  will contain all tags associated with snapshots after addition. (required)
         :type body: List[SnapshotTags]
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -330,7 +330,7 @@ class TaggingServiceApi:
     def get_snapshots_tags(
         self,
         body: Annotated[List[Snapshot], Field(description="SnapshotsList represents list of snapshots identified by various parameters like clusterId, protectionGroupId, objectId etc.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -350,7 +350,7 @@ class TaggingServiceApi:
 
         :param body: SnapshotsList represents list of snapshots identified by various parameters like clusterId, protectionGroupId, objectId etc. (required)
         :type body: List[Snapshot]
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -401,7 +401,7 @@ class TaggingServiceApi:
     def get_snapshots_tags_with_http_info(
         self,
         body: Annotated[List[Snapshot], Field(description="SnapshotsList represents list of snapshots identified by various parameters like clusterId, protectionGroupId, objectId etc.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -421,7 +421,7 @@ class TaggingServiceApi:
 
         :param body: SnapshotsList represents list of snapshots identified by various parameters like clusterId, protectionGroupId, objectId etc. (required)
         :type body: List[Snapshot]
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -472,7 +472,7 @@ class TaggingServiceApi:
     def get_snapshots_tags_without_preload_content(
         self,
         body: Annotated[List[Snapshot], Field(description="SnapshotsList represents list of snapshots identified by various parameters like clusterId, protectionGroupId, objectId etc.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -492,7 +492,7 @@ class TaggingServiceApi:
 
         :param body: SnapshotsList represents list of snapshots identified by various parameters like clusterId, protectionGroupId, objectId etc. (required)
         :type body: List[Snapshot]
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -620,7 +620,7 @@ class TaggingServiceApi:
     def remove_snapshots_tags(
         self,
         body: Annotated[List[SnapshotTags], Field(description="SnapshotTagsList specifies list of snapshots and associated tags to remove from each of those. Only the tags to be removed are specified. Other existing tags will remain added. Response will contain tags associated with snapshots after removing specified tags.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -640,7 +640,7 @@ class TaggingServiceApi:
 
         :param body: SnapshotTagsList specifies list of snapshots and associated tags to remove from each of those. Only the tags to be removed are specified. Other existing tags will remain added. Response will contain tags associated with snapshots after removing specified tags. (required)
         :type body: List[SnapshotTags]
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -691,7 +691,7 @@ class TaggingServiceApi:
     def remove_snapshots_tags_with_http_info(
         self,
         body: Annotated[List[SnapshotTags], Field(description="SnapshotTagsList specifies list of snapshots and associated tags to remove from each of those. Only the tags to be removed are specified. Other existing tags will remain added. Response will contain tags associated with snapshots after removing specified tags.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -711,7 +711,7 @@ class TaggingServiceApi:
 
         :param body: SnapshotTagsList specifies list of snapshots and associated tags to remove from each of those. Only the tags to be removed are specified. Other existing tags will remain added. Response will contain tags associated with snapshots after removing specified tags. (required)
         :type body: List[SnapshotTags]
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -762,7 +762,7 @@ class TaggingServiceApi:
     def remove_snapshots_tags_without_preload_content(
         self,
         body: Annotated[List[SnapshotTags], Field(description="SnapshotTagsList specifies list of snapshots and associated tags to remove from each of those. Only the tags to be removed are specified. Other existing tags will remain added. Response will contain tags associated with snapshots after removing specified tags.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -782,7 +782,7 @@ class TaggingServiceApi:
 
         :param body: SnapshotTagsList specifies list of snapshots and associated tags to remove from each of those. Only the tags to be removed are specified. Other existing tags will remain added. Response will contain tags associated with snapshots after removing specified tags. (required)
         :type body: List[SnapshotTags]
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

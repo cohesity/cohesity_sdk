@@ -30,7 +30,8 @@ class AlertDocument(BaseModel):
     alert_description: Optional[StrictStr] = Field(default=None, description="Specifies the description of alert.", alias="alertDescription")
     alert_help_text: Optional[StrictStr] = Field(default=None, description="Specifies the help text for alert.", alias="alertHelpText")
     alert_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of alert.", alias="alertName")
-    __properties: ClassVar[List[str]] = ["alertCause", "alertDescription", "alertHelpText", "alertName"]
+    alert_summary: Optional[StrictStr] = Field(default=None, description="Short description for the alert.", alias="alertSummary")
+    __properties: ClassVar[List[str]] = ["alertCause", "alertDescription", "alertHelpText", "alertName", "alertSummary"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,6 +92,11 @@ class AlertDocument(BaseModel):
         if self.alert_name is None and "alert_name" in self.model_fields_set:
             _dict['alertName'] = None
 
+        # set to None if alert_summary (nullable) is None
+        # and model_fields_set contains the field
+        if self.alert_summary is None and "alert_summary" in self.model_fields_set:
+            _dict['alertSummary'] = None
+
         return _dict
 
     @classmethod
@@ -106,7 +112,8 @@ class AlertDocument(BaseModel):
             "alertCause": obj.get("alertCause"),
             "alertDescription": obj.get("alertDescription"),
             "alertHelpText": obj.get("alertHelpText"),
-            "alertName": obj.get("alertName")
+            "alertName": obj.get("alertName"),
+            "alertSummary": obj.get("alertSummary")
         })
         return _obj
 

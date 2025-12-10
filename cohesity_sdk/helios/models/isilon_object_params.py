@@ -36,8 +36,8 @@ class IsilonObjectParams(BaseModel):
             return value
 
         for i in value:
-            if i not in set(['kNfs', 'kSmb']):
-                raise ValueError("each list item must be one of ('kNfs', 'kSmb')")
+            if i not in set(['kNfs', 'kSmb', 'kNfs4_1']):
+                raise ValueError("each list item must be one of ('kNfs', 'kSmb', 'kNfs4_1')")
         return value
 
     model_config = ConfigDict(

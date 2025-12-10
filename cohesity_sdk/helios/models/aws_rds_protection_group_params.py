@@ -28,9 +28,9 @@ class AwsRdsProtectionGroupParams(BaseModel):
     Specifies the parameters which are specific to AWS RDS related Protection Groups.
     """ # noqa: E501
     exclude_object_ids: Optional[List[StrictInt]] = Field(default=None, description="Specifies the objects to be excluded in the Protection Group.", alias="excludeObjectIds")
-    exclude_rds_tag_ids: Optional[List[List[StrictInt]]] = Field(default=None, description="Array of arrays of RDS Tag Ids that Specify db instaces to Exclude.", alias="excludeRdsTagIds")
+    exclude_rds_tag_ids: Optional[List[List[StrictInt]]] = Field(default=None, description="Array of arrays of RDS Tag Ids that Specify db instances to Exclude.", alias="excludeRdsTagIds")
     objects: Optional[List[AwsRdsProtectionGroupObjectParams]] = Field(default=None, description="Specifies the objects to be included in the Protection Group.")
-    rds_tag_ids: Optional[List[List[StrictInt]]] = Field(default=None, description="Array of arrays of RDS Tag Ids that Specify db instaces to Protect.", alias="rdsTagIds")
+    rds_tag_ids: Optional[List[List[StrictInt]]] = Field(default=None, description="Array of arrays of RDS Tag Ids that Specify db instances to Protect.", alias="rdsTagIds")
     source_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the parent of the objects.", alias="sourceId")
     source_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the parent of the objects.", alias="sourceName")
     __properties: ClassVar[List[str]] = ["excludeObjectIds", "excludeRdsTagIds", "objects", "rdsTagIds", "sourceId", "sourceName"]

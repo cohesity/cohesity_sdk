@@ -29,17 +29,21 @@ class KubernetesProtectionGroupParams(BaseModel):
     """
     Specifies the parameters which are related to Kubernetes Protection Groups.
     """ # noqa: E501
+    enable_indexing: Optional[StrictBool] = Field(default=None, description="Specifies if indexing of files and folders is allowed or not while backing up namespace. If allowed files and folder can be recovered.", alias="enableIndexing")
     exclude_label_ids: Optional[List[List[StrictInt]]] = Field(default=None, description="Array of arrays of label IDs that specify labels to exclude. Optionally specify a list of labels to exclude from protecting by listing protection source ids of labels in this two dimensional array. Using this two dimensional array of label IDs, the Cluster generates a list of namespaces to exclude from protecting, which are derived from intersections of the inner arrays and union of the outer array.", alias="excludeLabelIds")
     exclude_object_ids: Optional[List[StrictInt]] = Field(default=None, description="Specifies the objects to be excluded in the Protection Group.", alias="excludeObjectIds")
     exclude_params: Optional[KubernetesFilterParams] = Field(default=None, alias="excludeParams")
     include_params: Optional[KubernetesFilterParams] = Field(default=None, alias="includeParams")
     label_ids: Optional[List[List[StrictInt]]] = Field(default=None, description="Array of array of label IDs that specify labels to protect. Optionally specify a list of labels to protect by listing protection source ids of labels in this two dimensional array. Using this two dimensional array of label IDs, the cluster generates a list of namespaces to protect, which are derived from intersections of the inner arrays and union of the outer array.", alias="labelIds")
     leverage_csi_snapshot: Optional[StrictBool] = Field(default=None, description="Specifies if CSI snapshots should be used for backup of namespaces.", alias="leverageCSISnapshot")
+    non_snapshot_backup: Optional[StrictBool] = Field(default=None, description="Specifies if snapshot backup fails, non-snapshot backup will be proceeded.", alias="nonSnapshotBackup")
     objects: Optional[List[KubernetesProtectionGroupObjectParams]] = Field(default=None, description="Specifies the objects included in the Protection Group.")
+    perform_source_side_deduplication: Optional[StrictBool] = Field(default=None, description="Specifies whether or not to perform source side deduplication on this Protection Group.", alias="performSourceSideDeduplication")
     source_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the parent of the objects.", alias="sourceId")
     source_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the parent of the objects.", alias="sourceName")
     vlan_params: Optional[VlanParams] = Field(default=None, alias="vlanParams")
-    __properties: ClassVar[List[str]] = ["excludeLabelIds", "excludeObjectIds", "excludeParams", "includeParams", "labelIds", "leverageCSISnapshot", "objects", "sourceId", "sourceName", "vlanParams"]
+    volume_backup_failure: Optional[StrictBool] = Field(default=None, description="Specifies whether to process with backup if volumes backup fails.", alias="volumeBackupFailure")
+    __properties: ClassVar[List[str]] = ["enableIndexing", "excludeLabelIds", "excludeObjectIds", "excludeParams", "includeParams", "labelIds", "leverageCSISnapshot", "nonSnapshotBackup", "objects", "performSourceSideDeduplication", "sourceId", "sourceName", "vlanParams", "volumeBackupFailure"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -100,6 +104,11 @@ class KubernetesProtectionGroupParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of vlan_params
         if self.vlan_params:
             _dict['vlanParams'] = self.vlan_params.to_dict()
+        # set to None if enable_indexing (nullable) is None
+        # and model_fields_set contains the field
+        if self.enable_indexing is None and "enable_indexing" in self.model_fields_set:
+            _dict['enableIndexing'] = None
+
         # set to None if exclude_params (nullable) is None
         # and model_fields_set contains the field
         if self.exclude_params is None and "exclude_params" in self.model_fields_set:
@@ -120,6 +129,16 @@ class KubernetesProtectionGroupParams(BaseModel):
         if self.leverage_csi_snapshot is None and "leverage_csi_snapshot" in self.model_fields_set:
             _dict['leverageCSISnapshot'] = None
 
+        # set to None if non_snapshot_backup (nullable) is None
+        # and model_fields_set contains the field
+        if self.non_snapshot_backup is None and "non_snapshot_backup" in self.model_fields_set:
+            _dict['nonSnapshotBackup'] = None
+
+        # set to None if perform_source_side_deduplication (nullable) is None
+        # and model_fields_set contains the field
+        if self.perform_source_side_deduplication is None and "perform_source_side_deduplication" in self.model_fields_set:
+            _dict['performSourceSideDeduplication'] = None
+
         # set to None if source_id (nullable) is None
         # and model_fields_set contains the field
         if self.source_id is None and "source_id" in self.model_fields_set:
@@ -129,6 +148,11 @@ class KubernetesProtectionGroupParams(BaseModel):
         # and model_fields_set contains the field
         if self.source_name is None and "source_name" in self.model_fields_set:
             _dict['sourceName'] = None
+
+        # set to None if volume_backup_failure (nullable) is None
+        # and model_fields_set contains the field
+        if self.volume_backup_failure is None and "volume_backup_failure" in self.model_fields_set:
+            _dict['volumeBackupFailure'] = None
 
         return _dict
 
@@ -142,16 +166,20 @@ class KubernetesProtectionGroupParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "enableIndexing": obj.get("enableIndexing"),
             "excludeLabelIds": obj.get("excludeLabelIds"),
             "excludeObjectIds": obj.get("excludeObjectIds"),
             "excludeParams": KubernetesFilterParams.from_dict(obj["excludeParams"]) if obj.get("excludeParams") is not None else None,
             "includeParams": KubernetesFilterParams.from_dict(obj["includeParams"]) if obj.get("includeParams") is not None else None,
             "labelIds": obj.get("labelIds"),
             "leverageCSISnapshot": obj.get("leverageCSISnapshot"),
+            "nonSnapshotBackup": obj.get("nonSnapshotBackup"),
             "objects": [KubernetesProtectionGroupObjectParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None,
+            "performSourceSideDeduplication": obj.get("performSourceSideDeduplication"),
             "sourceId": obj.get("sourceId"),
             "sourceName": obj.get("sourceName"),
-            "vlanParams": VlanParams.from_dict(obj["vlanParams"]) if obj.get("vlanParams") is not None else None
+            "vlanParams": VlanParams.from_dict(obj["vlanParams"]) if obj.get("vlanParams") is not None else None,
+            "volumeBackupFailure": obj.get("volumeBackupFailure")
         })
         return _obj
 

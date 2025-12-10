@@ -24,6 +24,7 @@ from cohesity_sdk.helios.models.blackout_window import BlackoutWindow
 from cohesity_sdk.helios.models.cascaded_target_configuration import CascadedTargetConfiguration
 from cohesity_sdk.helios.models.extended_retention_policy import ExtendedRetentionPolicy
 from cohesity_sdk.helios.models.retry_options import RetryOptions
+from cohesity_sdk.helios.models.rpo_policy_settings import RpoPolicySettings
 from cohesity_sdk.helios.models.targets_configuration import TargetsConfiguration
 from typing import Set
 from typing_extensions import Self
@@ -44,6 +45,8 @@ class ProtectionPolicyResponse(BaseModel):
     name: Optional[StrictStr] = Field(description="Specifies the name of the Protection Policy.")
     remote_target_policy: Optional[TargetsConfiguration] = Field(default=None, alias="remoteTargetPolicy")
     retry_options: Optional[RetryOptions] = Field(default=None, alias="retryOptions")
+    rpo_policy_settings: Optional[RpoPolicySettings] = Field(default=None, alias="rpoPolicySettings")
+    skip_interval_mins: Optional[StrictInt] = Field(default=None, description="Specifies the period of time before skipping the execution of new group Runs if an existing queued group Run of the same Protection group has not started. For example if this field is set to 30 minutes and a group Run is scheduled to start at 5:00 AM every day but does not start due to conflicts (such as too many groups are running). If the new group Run does not start by 5:30AM, the Cohesity Cluster will skip the new group Run. If the original group Run completes before 5:30AM the next day, a new group Run is created and starts executing. This field is optional.", alias="skipIntervalMins")
     version: Optional[StrictInt] = Field(default=None, description="Specifies the current policy verison. Policy version is incremented for optionally supporting new features and differentialting across releases.")
     id: Optional[StrictStr] = Field(default=None, description="Specifies a unique Policy id assigned by the Cohesity Cluster.")
     is_replicated: Optional[StrictBool] = Field(default=None, description="This field is set to true when policy is the replicated policy.", alias="isReplicated")
@@ -51,7 +54,7 @@ class ProtectionPolicyResponse(BaseModel):
     num_protected_objects: Optional[StrictInt] = Field(default=None, description="Specifies the number of protected objects using the protection policy.", alias="numProtectedObjects")
     num_protection_groups: Optional[StrictInt] = Field(default=None, description="Specifies the number of protection groups using the protection policy.", alias="numProtectionGroups")
     template_id: Optional[StrictStr] = Field(default=None, description="Specifies the parent policy template id to which the policy is linked to. This field is set only when policy is created from template.", alias="templateId")
-    __properties: ClassVar[List[str]] = ["backupPolicy", "blackoutWindow", "cascadedTargetsConfig", "dataLock", "description", "enableSmartLocalRetentionAdjustment", "extendedRetention", "isCBSEnabled", "lastModificationTimeUsecs", "name", "remoteTargetPolicy", "retryOptions", "version", "id", "isReplicated", "isUsable", "numProtectedObjects", "numProtectionGroups", "templateId"]
+    __properties: ClassVar[List[str]] = ["backupPolicy", "blackoutWindow", "cascadedTargetsConfig", "dataLock", "description", "enableSmartLocalRetentionAdjustment", "extendedRetention", "isCBSEnabled", "lastModificationTimeUsecs", "name", "remoteTargetPolicy", "retryOptions", "rpoPolicySettings", "skipIntervalMins", "version", "id", "isReplicated", "isUsable", "numProtectedObjects", "numProtectionGroups", "templateId"]
 
     @field_validator('data_lock')
     def data_lock_validate_enum(cls, value):
@@ -132,6 +135,9 @@ class ProtectionPolicyResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of retry_options
         if self.retry_options:
             _dict['retryOptions'] = self.retry_options.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of rpo_policy_settings
+        if self.rpo_policy_settings:
+            _dict['rpoPolicySettings'] = self.rpo_policy_settings.to_dict()
         # set to None if blackout_window (nullable) is None
         # and model_fields_set contains the field
         if self.blackout_window is None and "blackout_window" in self.model_fields_set:
@@ -171,6 +177,11 @@ class ProtectionPolicyResponse(BaseModel):
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
+
+        # set to None if skip_interval_mins (nullable) is None
+        # and model_fields_set contains the field
+        if self.skip_interval_mins is None and "skip_interval_mins" in self.model_fields_set:
+            _dict['skipIntervalMins'] = None
 
         # set to None if version (nullable) is None
         # and model_fields_set contains the field
@@ -231,6 +242,8 @@ class ProtectionPolicyResponse(BaseModel):
             "name": obj.get("name"),
             "remoteTargetPolicy": TargetsConfiguration.from_dict(obj["remoteTargetPolicy"]) if obj.get("remoteTargetPolicy") is not None else None,
             "retryOptions": RetryOptions.from_dict(obj["retryOptions"]) if obj.get("retryOptions") is not None else None,
+            "rpoPolicySettings": RpoPolicySettings.from_dict(obj["rpoPolicySettings"]) if obj.get("rpoPolicySettings") is not None else None,
+            "skipIntervalMins": obj.get("skipIntervalMins"),
             "version": obj.get("version"),
             "id": obj.get("id"),
             "isReplicated": obj.get("isReplicated"),

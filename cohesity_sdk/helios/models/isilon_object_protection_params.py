@@ -28,9 +28,20 @@ class IsilonObjectProtectionParams(BaseModel):
     Specifies the parameters which are specific to Isilon object protection.
     """ # noqa: E501
     continuous_snapshots: Optional[ContinuousSnapshotParams] = Field(default=None, alias="continuousSnapshots")
+    nfs_version_preference: Optional[StrictStr] = Field(default=None, description="Specifies the preference of NFS version to be used for backing up Isilon.", alias="nfsVersionPreference")
     protocol: Optional[StrictStr] = Field(default=None, description="Specifies the protocol of the NAS device being backed up.")
     use_changelist: Optional[StrictBool] = Field(default=None, description="Specify whether to use the Isilon Changelist API to directly discover changed files/directories for faster incremental backup. Cohesity will keep an extra snapshot which will be deleted by the next successful backup.", alias="useChangelist")
-    __properties: ClassVar[List[str]] = ["continuousSnapshots", "protocol", "useChangelist"]
+    __properties: ClassVar[List[str]] = ["continuousSnapshots", "nfsVersionPreference", "protocol", "useChangelist"]
+
+    @field_validator('nfs_version_preference')
+    def nfs_version_preference_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['kNfs3', 'kNfs4_1']):
+            raise ValueError("must be one of enum values ('kNfs3', 'kNfs4_1')")
+        return value
 
     @field_validator('protocol')
     def protocol_validate_enum(cls, value):
@@ -84,6 +95,11 @@ class IsilonObjectProtectionParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of continuous_snapshots
         if self.continuous_snapshots:
             _dict['continuousSnapshots'] = self.continuous_snapshots.to_dict()
+        # set to None if nfs_version_preference (nullable) is None
+        # and model_fields_set contains the field
+        if self.nfs_version_preference is None and "nfs_version_preference" in self.model_fields_set:
+            _dict['nfsVersionPreference'] = None
+
         # set to None if protocol (nullable) is None
         # and model_fields_set contains the field
         if self.protocol is None and "protocol" in self.model_fields_set:
@@ -107,6 +123,7 @@ class IsilonObjectProtectionParams(BaseModel):
 
         _obj = cls.model_validate({
             "continuousSnapshots": ContinuousSnapshotParams.from_dict(obj["continuousSnapshots"]) if obj.get("continuousSnapshots") is not None else None,
+            "nfsVersionPreference": obj.get("nfsVersionPreference"),
             "protocol": obj.get("protocol"),
             "useChangelist": obj.get("useChangelist")
         })

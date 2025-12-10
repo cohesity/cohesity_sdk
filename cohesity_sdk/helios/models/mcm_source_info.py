@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.maintenance_mode_config import MaintenanceModeConfig
 from cohesity_sdk.helios.models.mcm_physical_source_info import McmPhysicalSourceInfo
 from cohesity_sdk.helios.models.mcm_source_registration_info import McmSourceRegistrationInfo
 from cohesity_sdk.helios.models.object_protection_stats_summary import ObjectProtectionStatsSummary
@@ -32,13 +33,14 @@ class McmSourceInfo(BaseModel):
     applications: Optional[List[StrictStr]] = Field(default=None, description="Specifies the list of applications registered with current Source.")
     cluster_id: Optional[StrictInt] = Field(default=None, description="Specifies the cluster id.", alias="clusterId")
     cluster_incarnation_id: Optional[StrictInt] = Field(default=None, description="Specifies the cluster incarnation id.", alias="clusterIncarnationId")
+    maintenance_mode_config: Optional[MaintenanceModeConfig] = Field(default=None, alias="maintenanceModeConfig")
     physical_source_info: Optional[McmPhysicalSourceInfo] = Field(default=None, alias="physicalSourceInfo")
     protection_stats: Optional[List[ObjectProtectionStatsSummary]] = Field(default=None, description="Specifies the protection statistics of the Source.", alias="protectionStats")
     region_id: Optional[StrictStr] = Field(default=None, description="Specifies the region id.", alias="regionId")
     registration_details: Optional[McmSourceRegistrationInfo] = Field(default=None, alias="registrationDetails")
     registration_id: Optional[StrictStr] = Field(default=None, description="Specifies the registration id of the Protection Source.", alias="registrationId")
     source_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the Protection Source.", alias="sourceId")
-    __properties: ClassVar[List[str]] = ["applications", "clusterId", "clusterIncarnationId", "physicalSourceInfo", "protectionStats", "regionId", "registrationDetails", "registrationId", "sourceId"]
+    __properties: ClassVar[List[str]] = ["applications", "clusterId", "clusterIncarnationId", "maintenanceModeConfig", "physicalSourceInfo", "protectionStats", "regionId", "registrationDetails", "registrationId", "sourceId"]
 
     @field_validator('applications')
     def applications_validate_enum(cls, value):
@@ -90,6 +92,9 @@ class McmSourceInfo(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of maintenance_mode_config
+        if self.maintenance_mode_config:
+            _dict['maintenanceModeConfig'] = self.maintenance_mode_config.to_dict()
         # override the default output from pydantic by calling `to_dict()` of physical_source_info
         if self.physical_source_info:
             _dict['physicalSourceInfo'] = self.physical_source_info.to_dict()
@@ -153,6 +158,7 @@ class McmSourceInfo(BaseModel):
             "applications": obj.get("applications"),
             "clusterId": obj.get("clusterId"),
             "clusterIncarnationId": obj.get("clusterIncarnationId"),
+            "maintenanceModeConfig": MaintenanceModeConfig.from_dict(obj["maintenanceModeConfig"]) if obj.get("maintenanceModeConfig") is not None else None,
             "physicalSourceInfo": McmPhysicalSourceInfo.from_dict(obj["physicalSourceInfo"]) if obj.get("physicalSourceInfo") is not None else None,
             "protectionStats": [ObjectProtectionStatsSummary.from_dict(_item) for _item in obj["protectionStats"]] if obj.get("protectionStats") is not None else None,
             "regionId": obj.get("regionId"),

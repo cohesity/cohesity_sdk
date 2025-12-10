@@ -35,8 +35,8 @@ class FortknoxAzureVaultRespParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['AzureCoolBlob', 'AzureArchiveBlob']):
-            raise ValueError("must be one of enum values ('AzureCoolBlob', 'AzureArchiveBlob')")
+        if value not in set(['AzureCoolBlob', 'AzureArchiveBlob', 'AzureColdBlob', 'AzureColdBlobLRS', 'AzureArchiveBlobLRS']):
+            raise ValueError("must be one of enum values ('AzureCoolBlob', 'AzureArchiveBlob', 'AzureColdBlob', 'AzureColdBlobLRS', 'AzureArchiveBlobLRS')")
         return value
 
     model_config = ConfigDict(

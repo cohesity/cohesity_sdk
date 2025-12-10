@@ -27,8 +27,9 @@ class CommonSourceConnectionRequestParams(BaseModel):
     Specifies the common set of parameters to test connectivity with a source.
     """ # noqa: E501
     connection_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user.", alias="connectionId")
+    data_source_connection_id: Optional[StrictStr] = Field(default=None, description="Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user. This is connectionId in string format to help UI preserve the precision for int values larger than 2^53 - 1", alias="dataSourceConnectionId")
     environment: Optional[StrictStr] = Field(description="Specifies the environment type of the Protection Source.")
-    __properties: ClassVar[List[str]] = ["connectionId", "environment"]
+    __properties: ClassVar[List[str]] = ["connectionId", "dataSourceConnectionId", "environment"]
 
     @field_validator('environment')
     def environment_validate_enum(cls, value):
@@ -84,6 +85,11 @@ class CommonSourceConnectionRequestParams(BaseModel):
         if self.connection_id is None and "connection_id" in self.model_fields_set:
             _dict['connectionId'] = None
 
+        # set to None if data_source_connection_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.data_source_connection_id is None and "data_source_connection_id" in self.model_fields_set:
+            _dict['dataSourceConnectionId'] = None
+
         # set to None if environment (nullable) is None
         # and model_fields_set contains the field
         if self.environment is None and "environment" in self.model_fields_set:
@@ -102,6 +108,7 @@ class CommonSourceConnectionRequestParams(BaseModel):
 
         _obj = cls.model_validate({
             "connectionId": obj.get("connectionId"),
+            "dataSourceConnectionId": obj.get("dataSourceConnectionId"),
             "environment": obj.get("environment")
         })
         return _obj

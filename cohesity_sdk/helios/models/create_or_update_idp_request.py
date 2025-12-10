@@ -26,19 +26,20 @@ class CreateOrUpdateIdpRequest(BaseModel):
     """
     Specifies the request to create or update an Identity Provider Configuration.
     """ # noqa: E501
-    certificate: Optional[StrictStr] = Field(description="Specifies the certificate generated for the app by the IdP service when the Helios is registered as an app. This is required to verify the SAML response.")
-    default_clusters: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of default clusterIds assigned to an IdP user if clustersSamlAttributeName is not given. 'All' must be specified to give access to all clusters.", alias="defaultClusters")
-    default_regions: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of default regionIds assigned to an IdP user if regionsSamlAttributeName is not given. 'All' must be specified to give access to all DataProtect as a Service regions.", alias="defaultRegions")
-    default_roles: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of default roles assigned to an IdP user if rolesSamlAttributeName is not given.", alias="defaultRoles")
-    domain: Optional[StrictStr] = Field(description="Specifies a unique name for this IdP configuration.")
-    is_enabled: Optional[StrictBool] = Field(default=None, description="Specifies a flag to enable or disable this IdP service. When it is set to true, IdP service is enabled. When it is set to false, IdP service is disabled. Default value is true.", alias="isEnabled")
-    issuer_id: Optional[StrictStr] = Field(description="Specifies the IdP provided Issuer ID for the app. For example, exkh1aov1nhHrgFhN0h7.", alias="issuerId")
+    certificate: Optional[StrictStr] = Field(description="Specifies the certificate generated for the app by the IDP service when the Helios is registered as an app. This is required to verify the SAML response.")
+    default_clusters: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of default clusterIds assigned to an IDP user if clustersSamlAttributeName is not given. 'All' must be specified to give access to all clusters.", alias="defaultClusters")
+    default_regions: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of default regionIds assigned to an IDP user if regionsSamlAttributeName is not given. 'All' must be specified to give access to all DataProtect as a Service regions.", alias="defaultRegions")
+    default_roles: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of default roles assigned to an IDP user if rolesSamlAttributeName is not given.", alias="defaultRoles")
+    domain: Optional[StrictStr] = Field(description="Specifies a unique name for this IDP configuration.")
+    is_enabled: Optional[StrictBool] = Field(default=None, description="Specifies a flag to enable or disable this IDP service. When it is set to true, IDP service is enabled. When it is set to false, IDP service is disabled. Default value is true.", alias="isEnabled")
+    issuer_id: Optional[StrictStr] = Field(description="Specifies the IDP provided Issuer ID for the app. For example, exkh1aov1nhHrgFhN0h7.", alias="issuerId")
     name: Optional[StrictStr] = Field(description="Specifies the name of the vendor providing IDP service.")
-    sf_account_id: Optional[StrictStr] = Field(default=None, description="Specifies the salesforce account ID linked to this IDP. Either of TenantId or SfAccountId would be set for IdP.", alias="sfAccountId")
-    sign_request: Optional[StrictBool] = Field(default=None, description="Specifies whether to sign the SAML request or not. When it is set to true, SAML request will be signed. When it is set to false, SAML request is not signed. Default is false. Set this flag to true if the IdP site is configured to expect the SAML request from Helios signed. If this is set to true, users must get the Helios certificate and upload it on the IdP site.", alias="signRequest")
-    sso_url: Optional[StrictStr] = Field(description="Specifies the SSO URL of the IdP service for the customer. This is the URL given by IdP when the customer created an account. For example, dev-332534.oktapreview.com.", alias="ssoUrl")
-    tenant_id: Optional[StrictStr] = Field(default=None, description="Specifies the Tenant Id if the IdP is configured for a Tenant. Either of TenantId or SfAccountId would be set for IdP.", alias="tenantId")
-    __properties: ClassVar[List[str]] = ["certificate", "defaultClusters", "defaultRegions", "defaultRoles", "domain", "isEnabled", "issuerId", "name", "sfAccountId", "signRequest", "ssoUrl", "tenantId"]
+    send_unique_acs_url: Optional[StrictBool] = Field(default=None, description="Specifies whether or not a unique ACS URL should be sent. If this is set to true, then in the AuthNReq, we will send 'https://helios.cohesity.com/v2/mcm/idp/:id/authenticate', instead of 'https://helios.cohesity.com/v2/mcm/idp/authenticate'. ':id' denotes an integer identifier which is assigned to your IdP configuration in Helios.", alias="sendUniqueAcsUrl")
+    sf_account_id: Optional[StrictStr] = Field(default=None, description="Specifies the salesforce account ID linked to this IDP. Either of TenantId or SfAccountId would be set for IDP.", alias="sfAccountId")
+    sign_request: Optional[StrictBool] = Field(default=None, description="Specifies whether to sign the SAML request or not. When it is set to true, SAML request will be signed. When it is set to false, SAML request is not signed. Default is false. Set this flag to true if the IDP site is configured to expect the SAML request from Helios signed. If this is set to true, users must get the Helios certificate and upload it on the IDP site.", alias="signRequest")
+    sso_url: Optional[StrictStr] = Field(description="Specifies the SSO URL of the IDP service for the customer. This is the URL given by IDP when the customer created an account. For example, dev-332534.oktapreview.com.", alias="ssoUrl")
+    tenant_id: Optional[StrictStr] = Field(default=None, description="Specifies the Tenant Id if the IDP is configured for a Tenant. Either of TenantId or SfAccountId would be set for IDP.", alias="tenantId")
+    __properties: ClassVar[List[str]] = ["certificate", "defaultClusters", "defaultRegions", "defaultRoles", "domain", "isEnabled", "issuerId", "name", "sendUniqueAcsUrl", "sfAccountId", "signRequest", "ssoUrl", "tenantId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -123,6 +124,11 @@ class CreateOrUpdateIdpRequest(BaseModel):
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
 
+        # set to None if send_unique_acs_url (nullable) is None
+        # and model_fields_set contains the field
+        if self.send_unique_acs_url is None and "send_unique_acs_url" in self.model_fields_set:
+            _dict['sendUniqueAcsUrl'] = None
+
         # set to None if sf_account_id (nullable) is None
         # and model_fields_set contains the field
         if self.sf_account_id is None and "sf_account_id" in self.model_fields_set:
@@ -163,6 +169,7 @@ class CreateOrUpdateIdpRequest(BaseModel):
             "isEnabled": obj.get("isEnabled"),
             "issuerId": obj.get("issuerId"),
             "name": obj.get("name"),
+            "sendUniqueAcsUrl": obj.get("sendUniqueAcsUrl"),
             "sfAccountId": obj.get("sfAccountId"),
             "signRequest": obj.get("signRequest"),
             "ssoUrl": obj.get("ssoUrl"),

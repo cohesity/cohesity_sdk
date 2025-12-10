@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from cohesity_sdk.helios.models.recover_sql_app_files_params import RecoverSqlAppFilesParams
 from cohesity_sdk.helios.models.recover_sql_app_params import RecoverSqlAppParams
 from cohesity_sdk.helios.models.recovery_vlan_config import RecoveryVlanConfig
 from typing import Set
@@ -29,16 +30,17 @@ class RecoverSqlParams(BaseModel):
     """
     Specifies the recovery options specific to Sql environment.
     """ # noqa: E501
+    recover_app_files_params: Optional[Annotated[List[RecoverSqlAppFilesParams], Field(min_length=1)]] = Field(default=None, description="Specifies parameters for recovering SQL databases as flat files. Includes options to set the destination path and control whether existing files should be overwritten.", alias="recoverAppFilesParams")
     recover_app_params: Optional[Annotated[List[RecoverSqlAppParams], Field(min_length=1)]] = Field(default=None, description="Specifies the parameters to recover Sql databases.", alias="recoverAppParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recover action to be performed.", alias="recoveryAction")
     vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, description="Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery.", alias="vlanConfig")
-    __properties: ClassVar[List[str]] = ["recoverAppParams", "recoveryAction", "vlanConfig"]
+    __properties: ClassVar[List[str]] = ["recoverAppFilesParams", "recoverAppParams", "recoveryAction", "vlanConfig"]
 
     @field_validator('recovery_action')
     def recovery_action_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['RecoverApps', 'CloneApps']):
-            raise ValueError("must be one of enum values ('RecoverApps', 'CloneApps')")
+        if value not in set(['RecoverApps', 'CloneApps', 'RecoverAppFiles']):
+            raise ValueError("must be one of enum values ('RecoverApps', 'CloneApps', 'RecoverAppFiles')")
         return value
 
     model_config = ConfigDict(
@@ -80,6 +82,13 @@ class RecoverSqlParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in recover_app_files_params (list)
+        _items = []
+        if self.recover_app_files_params:
+            for _item_recover_app_files_params in self.recover_app_files_params:
+                if _item_recover_app_files_params:
+                    _items.append(_item_recover_app_files_params.to_dict())
+            _dict['recoverAppFilesParams'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in recover_app_params (list)
         _items = []
         if self.recover_app_params:
@@ -90,6 +99,11 @@ class RecoverSqlParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of vlan_config
         if self.vlan_config:
             _dict['vlanConfig'] = self.vlan_config.to_dict()
+        # set to None if recover_app_files_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_app_files_params is None and "recover_app_files_params" in self.model_fields_set:
+            _dict['recoverAppFilesParams'] = None
+
         # set to None if recover_app_params (nullable) is None
         # and model_fields_set contains the field
         if self.recover_app_params is None and "recover_app_params" in self.model_fields_set:
@@ -112,6 +126,7 @@ class RecoverSqlParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "recoverAppFilesParams": [RecoverSqlAppFilesParams.from_dict(_item) for _item in obj["recoverAppFilesParams"]] if obj.get("recoverAppFilesParams") is not None else None,
             "recoverAppParams": [RecoverSqlAppParams.from_dict(_item) for _item in obj["recoverAppParams"]] if obj.get("recoverAppParams") is not None else None,
             "recoveryAction": obj.get("recoveryAction"),
             "vlanConfig": RecoveryVlanConfig.from_dict(obj["vlanConfig"]) if obj.get("vlanConfig") is not None else None

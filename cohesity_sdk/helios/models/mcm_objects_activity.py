@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.cursor_pagination_params import CursorPaginationParams
 from cohesity_sdk.helios.models.mcm_object_activity import McmObjectActivity
 from cohesity_sdk.helios.models.mcm_object_activity_stats import McmObjectActivityStats
 from typing import Set
@@ -30,8 +31,9 @@ class McmObjectsActivity(BaseModel):
     """ # noqa: E501
     activity: Optional[List[McmObjectActivity]] = Field(default=None, description="Specifies the activity list per object.")
     is_refresh_task_active: Optional[StrictBool] = Field(default=None, description="Specifies if there is at least one active refresh task for refreshing activity data. The refresh tasks are triggered internally based on user actions such as protect now, pause backup, recovery, etc. The refresh tasks updates the activity details at a faster frequency. API consumers can choose to poll list activities API based on the status of this field to fetch the latest activity details.", alias="isRefreshTaskActive")
+    pagination: Optional[CursorPaginationParams] = None
     stats: Optional[List[McmObjectActivityStats]] = Field(default=None, description="Specifies the stats of object activity.")
-    __properties: ClassVar[List[str]] = ["activity", "isRefreshTaskActive", "stats"]
+    __properties: ClassVar[List[str]] = ["activity", "isRefreshTaskActive", "pagination", "stats"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,6 +81,9 @@ class McmObjectsActivity(BaseModel):
                 if _item_activity:
                     _items.append(_item_activity.to_dict())
             _dict['activity'] = _items
+        # override the default output from pydantic by calling `to_dict()` of pagination
+        if self.pagination:
+            _dict['pagination'] = self.pagination.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in stats (list)
         _items = []
         if self.stats:
@@ -115,6 +120,7 @@ class McmObjectsActivity(BaseModel):
         _obj = cls.model_validate({
             "activity": [McmObjectActivity.from_dict(_item) for _item in obj["activity"]] if obj.get("activity") is not None else None,
             "isRefreshTaskActive": obj.get("isRefreshTaskActive"),
+            "pagination": CursorPaginationParams.from_dict(obj["pagination"]) if obj.get("pagination") is not None else None,
             "stats": [McmObjectActivityStats.from_dict(_item) for _item in obj["stats"]] if obj.get("stats") is not None else None
         })
         return _obj

@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.oracle_archive_log_info import OracleArchiveLogInfo
 from cohesity_sdk.helios.models.oracle_db_channel import OracleDbChannel
@@ -34,15 +34,26 @@ class RecoverOracleNewTargetViewConfig(BaseModel):
     """ # noqa: E501
     view_mount_path: Optional[StrictStr] = Field(default=None, description="Specifies the directory where cohesity view for app recovery will be mounted.", alias="viewMountPath")
     db_channels: Optional[List[OracleDbChannel]] = Field(default=None, description="Specifies the Oracle database node channels info. If not specified, the default values assigned by the server are applied to all the databases.", alias="dbChannels")
-    granular_restore_info: Optional[RecoverOracleGranularRestoreInfo] = Field(default=None, description="Specifies information about list of objects (PDBs) to restore.", alias="granularRestoreInfo")
-    oracle_archive_log_info: Optional[OracleArchiveLogInfo] = Field(default=None, description="Specifies Range in Time, Scn or Sequence to restore archive logs of a DB.", alias="oracleArchiveLogInfo")
-    oracle_recovery_validation_info: Optional[OracleRecoveryValidationInfo] = Field(default=None, description="Specifies parameters related to Oracle Recovery Validation.", alias="oracleRecoveryValidationInfo")
+    granular_restore_info: Optional[RecoverOracleGranularRestoreInfo] = Field(default=None, alias="granularRestoreInfo")
+    nfs_protocol: Optional[StrictStr] = Field(default=None, description="Specifies the preferred protocol to use if this device supports multiple protocols.", alias="nfsProtocol")
+    oracle_archive_log_info: Optional[OracleArchiveLogInfo] = Field(default=None, alias="oracleArchiveLogInfo")
+    oracle_recovery_validation_info: Optional[OracleRecoveryValidationInfo] = Field(default=None, alias="oracleRecoveryValidationInfo")
     recovery_mode: Optional[StrictBool] = Field(default=None, description="Specifies if database should be left in recovery mode.", alias="recoveryMode")
-    restore_spfile_or_pfile_info: Optional[RestoreSpfileOrPfileInfo] = Field(default=None, description="Specifies parameters related to spfile/pfile restore.", alias="restoreSpfileOrPfileInfo")
+    restore_spfile_or_pfile_info: Optional[RestoreSpfileOrPfileInfo] = Field(default=None, alias="restoreSpfileOrPfileInfo")
     restore_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the time in the past to which the Oracle db needs to be restored. This allows for granular recovery of Oracle databases. If this is not set, the Oracle db will be restored from the full/incremental snapshot.", alias="restoreTimeUsecs")
     shell_evironment_vars: Optional[List[ShellKeyValuePair]] = Field(default=None, description="Specifies key value pairs of shell variables which defines the restore shell environment.", alias="shellEvironmentVars")
     use_scn_for_restore: Optional[StrictBool] = Field(default=None, description="Specifies whether database recovery performed should use scn value or not.", alias="useScnForRestore")
-    __properties: ClassVar[List[str]] = ["dbChannels", "granularRestoreInfo", "oracleArchiveLogInfo", "oracleRecoveryValidationInfo", "recoveryMode", "restoreSpfileOrPfileInfo", "restoreTimeUsecs", "shellEvironmentVars", "useScnForRestore"]
+    __properties: ClassVar[List[str]] = ["dbChannels", "granularRestoreInfo", "nfsProtocol", "oracleArchiveLogInfo", "oracleRecoveryValidationInfo", "recoveryMode", "restoreSpfileOrPfileInfo", "restoreTimeUsecs", "shellEvironmentVars", "useScnForRestore"]
+
+    @field_validator('nfs_protocol')
+    def nfs_protocol_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['kNoProtocol', 'kNfs3', 'kNfs4_1', 'kCifs1', 'kCifs2', 'kCifs3']):
+            raise ValueError("must be one of enum values ('kNoProtocol', 'kNfs3', 'kNfs4_1', 'kCifs1', 'kCifs2', 'kCifs3')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -114,6 +125,11 @@ class RecoverOracleNewTargetViewConfig(BaseModel):
         if self.db_channels is None and "db_channels" in self.model_fields_set:
             _dict['dbChannels'] = None
 
+        # set to None if nfs_protocol (nullable) is None
+        # and model_fields_set contains the field
+        if self.nfs_protocol is None and "nfs_protocol" in self.model_fields_set:
+            _dict['nfsProtocol'] = None
+
         # set to None if recovery_mode (nullable) is None
         # and model_fields_set contains the field
         if self.recovery_mode is None and "recovery_mode" in self.model_fields_set:
@@ -148,6 +164,7 @@ class RecoverOracleNewTargetViewConfig(BaseModel):
         _obj = cls.model_validate({
             "dbChannels": [OracleDbChannel.from_dict(_item) for _item in obj["dbChannels"]] if obj.get("dbChannels") is not None else None,
             "granularRestoreInfo": RecoverOracleGranularRestoreInfo.from_dict(obj["granularRestoreInfo"]) if obj.get("granularRestoreInfo") is not None else None,
+            "nfsProtocol": obj.get("nfsProtocol"),
             "oracleArchiveLogInfo": OracleArchiveLogInfo.from_dict(obj["oracleArchiveLogInfo"]) if obj.get("oracleArchiveLogInfo") is not None else None,
             "oracleRecoveryValidationInfo": OracleRecoveryValidationInfo.from_dict(obj["oracleRecoveryValidationInfo"]) if obj.get("oracleRecoveryValidationInfo") is not None else None,
             "recoveryMode": obj.get("recoveryMode"),

@@ -33,6 +33,7 @@ class IdpPrincipal(BaseModel):
     effective_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the starting timestamp in microseconds since the epoch when this principal will be able to log in.", alias="effectiveTimeUsecs")
     expired_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp in microseconds since the epoch when this principal will no longer be able to log in.", alias="expiredTimeUsecs")
     idp_id: Optional[StrictInt] = Field(description="Specifies the IDP of the IDP with which this principal is associated.", alias="idpId")
+    idp_type: Optional[StrictStr] = Field(default=None, description="Specifies the type of this Idp. It can be 'SAML' or 'OIDC'. In case if this field is not specified then idpType 'SAML' is assumed.", alias="idpType")
     is_active: Optional[StrictBool] = Field(default=None, description="Specifies whether or not this principal is currently active.", alias="isActive")
     last_updated_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp in microseconds since the epoch when this Principal was updated.", alias="lastUpdatedTimeUsecs")
     name: Optional[StrictStr] = Field(description="Specifies the name of the Principal.")
@@ -41,7 +42,17 @@ class IdpPrincipal(BaseModel):
     roles: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of roles associated with this Principal.")
     sid: Optional[StrictStr] = Field(default=None, description="Specifies the unique SID of the principal.")
     tenant_accesses: Optional[List[TenantAccess]] = Field(default=None, description="Specifies the list of tenant access associated to this principal.", alias="tenantAccesses")
-    __properties: ClassVar[List[str]] = ["clusters", "createdTimeUsecs", "effectiveTimeUsecs", "expiredTimeUsecs", "idpId", "isActive", "lastUpdatedTimeUsecs", "name", "principalType", "profiles", "roles", "sid", "tenantAccesses"]
+    __properties: ClassVar[List[str]] = ["clusters", "createdTimeUsecs", "effectiveTimeUsecs", "expiredTimeUsecs", "idpId", "idpType", "isActive", "lastUpdatedTimeUsecs", "name", "principalType", "profiles", "roles", "sid", "tenantAccesses"]
+
+    @field_validator('idp_type')
+    def idp_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['OpenIdConnect', 'SAML']):
+            raise ValueError("must be one of enum values ('OpenIdConnect', 'SAML')")
+        return value
 
     @field_validator('principal_type')
     def principal_type_validate_enum(cls, value):
@@ -132,6 +143,11 @@ class IdpPrincipal(BaseModel):
         if self.idp_id is None and "idp_id" in self.model_fields_set:
             _dict['idpId'] = None
 
+        # set to None if idp_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.idp_type is None and "idp_type" in self.model_fields_set:
+            _dict['idpType'] = None
+
         # set to None if is_active (nullable) is None
         # and model_fields_set contains the field
         if self.is_active is None and "is_active" in self.model_fields_set:
@@ -174,6 +190,7 @@ class IdpPrincipal(BaseModel):
             "effectiveTimeUsecs": obj.get("effectiveTimeUsecs"),
             "expiredTimeUsecs": obj.get("expiredTimeUsecs"),
             "idpId": obj.get("idpId"),
+            "idpType": obj.get("idpType"),
             "isActive": obj.get("isActive"),
             "lastUpdatedTimeUsecs": obj.get("lastUpdatedTimeUsecs"),
             "name": obj.get("name"),

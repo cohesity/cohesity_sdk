@@ -27,7 +27,7 @@ class CapacityByTier(BaseModel):
     CapacityByTier provides the physical capacity in bytes of each storage tier.
     """ # noqa: E501
     max_physical_capacity_bytes_tier: Optional[StrictInt] = Field(default=None, description="maxPhysicalCapacityBytesTier is the maximum physical capacity in bytes of the storage tier.", alias="maxPhysicalCapacityBytesTier")
-    storage_tier: Optional[StrictStr] = Field(default=None, description="StorageTier is the type of StorageTier. StorageTierType represents the various values for the Storage Tier. 'kPCIeSSD' indicates storage tier type of Pci Solid State Drive. 'kSATAHDD' indicates storage tier type of SATA Solid State Drive. 'kSATAHDD' indicates storage tier type of SATA Hard Disk Drive. 'kCLOUD' indicates storage tier type of Cloud.", alias="storageTier")
+    storage_tier: Optional[StrictStr] = Field(default=None, description="StorageTier is the type of StorageTier. StorageTierType represents the various values for the Storage Tier. 'PCIeSSD' indicates storage tier type of Pci Solid State Drive. 'SATASSD' indicates storage tier type of SATA Solid State Drive. 'SATAHDD' indicates storage tier type of SATA Hard Disk Drive. 'CLOUD' indicates storage tier type of Cloud.", alias="storageTier")
     __properties: ClassVar[List[str]] = ["maxPhysicalCapacityBytesTier", "storageTier"]
 
     @field_validator('storage_tier')

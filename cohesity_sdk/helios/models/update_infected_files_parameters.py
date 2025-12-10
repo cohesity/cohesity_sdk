@@ -26,10 +26,10 @@ from typing_extensions import Self
 
 class UpdateInfectedFilesParameters(BaseModel):
     """
-    Specifies the parameters of infected files to be updated.
+    Specifies the parameters of infected entities to be updated.
     """ # noqa: E501
-    infected_files: Optional[Annotated[List[InfectedFile], Field(min_length=1)]] = Field(description="Specifies a list of infected files to be updated.", alias="infectedFiles")
-    state: Optional[StrictStr] = Field(default=None, description="Specifies the state[Quarantined, Unquarantined] of the infected file.")
+    infected_files: Optional[Annotated[List[InfectedFile], Field(min_length=1)]] = Field(description="Specifies a list of infected entities to be updated.", alias="infectedFiles")
+    state: Optional[StrictStr] = Field(default=None, description="Specifies the state[Quarantined, Unquarantined] of the infected entity.")
     __properties: ClassVar[List[str]] = ["infectedFiles", "state"]
 
     @field_validator('state')

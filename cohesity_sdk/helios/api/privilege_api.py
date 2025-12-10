@@ -38,9 +38,9 @@ class PrivilegeApi:
     @validate_call
     def get_privileges(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Privilege names.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -58,12 +58,12 @@ class PrivilegeApi:
 
         Get Privileges.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param names: Filter by a list of Privilege names.
         :type names: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -87,9 +87,9 @@ class PrivilegeApi:
         """ # noqa: E501
 
         _param = self._get_privileges_serialize(
+            names=names,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            names=names,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -113,9 +113,9 @@ class PrivilegeApi:
     @validate_call
     def get_privileges_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Privilege names.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -133,12 +133,12 @@ class PrivilegeApi:
 
         Get Privileges.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param names: Filter by a list of Privilege names.
         :type names: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -162,9 +162,9 @@ class PrivilegeApi:
         """ # noqa: E501
 
         _param = self._get_privileges_serialize(
+            names=names,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            names=names,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -188,9 +188,9 @@ class PrivilegeApi:
     @validate_call
     def get_privileges_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Privilege names.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -208,12 +208,12 @@ class PrivilegeApi:
 
         Get Privileges.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param names: Filter by a list of Privilege names.
         :type names: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -237,9 +237,9 @@ class PrivilegeApi:
         """ # noqa: E501
 
         _param = self._get_privileges_serialize(
+            names=names,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            names=names,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -258,9 +258,9 @@ class PrivilegeApi:
 
     def _get_privileges_serialize(
         self,
+        names,
         access_cluster_id,
         region_id,
-        names,
         _request_auth,
         _content_type,
         _headers,

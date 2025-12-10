@@ -29,13 +29,24 @@ class Release(BaseModel):
     """ # noqa: E501
     download_urls: Optional[List[ReleaseDownloadUrls]] = Field(default=None, description="Specifies the release download urls.", alias="downloadUrls")
     from_versions: Optional[List[StrictStr]] = Field(default=None, description="Specifies the list of version this release is compatible.", alias="fromVersions")
+    package_type: Optional[StrictStr] = Field(default='InstallOrUpgrade', description="Package type e.g, InstallOrUpgrade and Patch.", alias="packageType")
     release_notes: Optional[StrictStr] = Field(default=None, description="Release's notes or description like what features this release has.", alias="releaseNotes")
     release_series: Optional[StrictStr] = Field(default=None, description="Release's version in series", alias="releaseSeries")
-    release_type: Optional[StrictStr] = Field(default='Feature', description="Release's type e.g, GA, Feature.", alias="releaseType")
+    release_type: Optional[StrictStr] = Field(default='Cluster', description="Release's type e.g, MCM, Cluster, HeliosSM.", alias="releaseType")
     release_version: Optional[StrictStr] = Field(default=None, description="Release's version", alias="releaseVersion")
     stage: Optional[StrictStr] = Field(default=None, description="Specifies the stage of a release.")
     status: Optional[StrictStr] = Field(default=None, description="Specifies the status of a release.")
-    __properties: ClassVar[List[str]] = ["downloadUrls", "fromVersions", "releaseNotes", "releaseSeries", "releaseType", "releaseVersion", "stage", "status"]
+    __properties: ClassVar[List[str]] = ["downloadUrls", "fromVersions", "packageType", "releaseNotes", "releaseSeries", "releaseType", "releaseVersion", "stage", "status"]
+
+    @field_validator('package_type')
+    def package_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['InstallOrUpgrade', 'Patch']):
+            raise ValueError("must be one of enum values ('InstallOrUpgrade', 'Patch')")
+        return value
 
     @field_validator('release_type')
     def release_type_validate_enum(cls, value):
@@ -43,8 +54,8 @@ class Release(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['GA', 'Feature']):
-            raise ValueError("must be one of enum values ('GA', 'Feature')")
+        if value not in set(['Cluster', 'MCM', 'HeliosSM']):
+            raise ValueError("must be one of enum values ('Cluster', 'MCM', 'HeliosSM')")
         return value
 
     @field_validator('stage')
@@ -142,9 +153,10 @@ class Release(BaseModel):
         _obj = cls.model_validate({
             "downloadUrls": [ReleaseDownloadUrls.from_dict(_item) for _item in obj["downloadUrls"]] if obj.get("downloadUrls") is not None else None,
             "fromVersions": obj.get("fromVersions"),
+            "packageType": obj.get("packageType") if obj.get("packageType") is not None else 'InstallOrUpgrade',
             "releaseNotes": obj.get("releaseNotes"),
             "releaseSeries": obj.get("releaseSeries"),
-            "releaseType": obj.get("releaseType") if obj.get("releaseType") is not None else 'Feature',
+            "releaseType": obj.get("releaseType") if obj.get("releaseType") is not None else 'Cluster',
             "releaseVersion": obj.get("releaseVersion"),
             "stage": obj.get("stage"),
             "status": obj.get("status")

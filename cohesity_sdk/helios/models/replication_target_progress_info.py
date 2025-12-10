@@ -36,6 +36,10 @@ class ReplicationTargetProgressInfo(BaseModel):
     cluster_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the cluster.", alias="clusterName")
     aws_target_config: Optional[AWSTargetConfig] = Field(default=None, alias="awsTargetConfig")
     azure_target_config: Optional[AzureTargetConfig] = Field(default=None, alias="azureTargetConfig")
+    logical_size_bytes: Optional[StrictInt] = Field(default=None, description="Specifies the logical size of this snapshot in bytes.", alias="logicalSizeBytes")
+    object_ids: Optional[List[StrictStr]] = Field(default=None, description="Specifies the list of object ids for which this replication run was performed.", alias="objectIds")
+    ownership_context: Optional[StrictStr] = Field(default=None, description="Specifies the ownership context for the replication. This will only be populated when the replication target is a remote cluster.", alias="ownershipContext")
+    snapshot_id: Optional[StrictStr] = Field(default=None, description="Specifies the id of the replication snapshot for the object.", alias="snapshotId")
     end_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the end time of the progress task in Unix epoch Timestamp(in microseconds).", alias="endTimeUsecs")
     events: Optional[List[ProgressTaskEvent]] = Field(default=None, description="Specifies the event log created for progress Task.")
     expected_remaining_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the expected remaining time of the progress task in Unix epoch Timestamp(in microseconds).", alias="expectedRemainingTimeUsecs")
@@ -44,7 +48,17 @@ class ReplicationTargetProgressInfo(BaseModel):
     stats: Optional[ProgressStats] = None
     status: Optional[StrictStr] = Field(default=None, description="Specifies the current status of the progress task.")
     objects: Optional[List[ObjectProgressInfo]] = Field(default=None, description="Specifies progress for objects.")
-    __properties: ClassVar[List[str]] = ["clusterId", "clusterIncarnationId", "clusterName", "awsTargetConfig", "azureTargetConfig", "endTimeUsecs", "events", "expectedRemainingTimeUsecs", "percentageCompleted", "startTimeUsecs", "stats", "status", "objects"]
+    __properties: ClassVar[List[str]] = ["clusterId", "clusterIncarnationId", "clusterName", "awsTargetConfig", "azureTargetConfig", "logicalSizeBytes", "objectIds", "ownershipContext", "snapshotId", "endTimeUsecs", "events", "expectedRemainingTimeUsecs", "percentageCompleted", "startTimeUsecs", "stats", "status", "objects"]
+
+    @field_validator('ownership_context')
+    def ownership_context_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['Local', 'FortKnox', 'FortKnoxOnprem']):
+            raise ValueError("must be one of enum values ('Local', 'FortKnox', 'FortKnoxOnprem')")
+        return value
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -135,6 +149,26 @@ class ReplicationTargetProgressInfo(BaseModel):
         if self.cluster_name is None and "cluster_name" in self.model_fields_set:
             _dict['clusterName'] = None
 
+        # set to None if logical_size_bytes (nullable) is None
+        # and model_fields_set contains the field
+        if self.logical_size_bytes is None and "logical_size_bytes" in self.model_fields_set:
+            _dict['logicalSizeBytes'] = None
+
+        # set to None if object_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.object_ids is None and "object_ids" in self.model_fields_set:
+            _dict['objectIds'] = None
+
+        # set to None if ownership_context (nullable) is None
+        # and model_fields_set contains the field
+        if self.ownership_context is None and "ownership_context" in self.model_fields_set:
+            _dict['ownershipContext'] = None
+
+        # set to None if snapshot_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.snapshot_id is None and "snapshot_id" in self.model_fields_set:
+            _dict['snapshotId'] = None
+
         # set to None if end_time_usecs (nullable) is None
         # and model_fields_set contains the field
         if self.end_time_usecs is None and "end_time_usecs" in self.model_fields_set:
@@ -182,6 +216,10 @@ class ReplicationTargetProgressInfo(BaseModel):
             "clusterName": obj.get("clusterName"),
             "awsTargetConfig": AWSTargetConfig.from_dict(obj["awsTargetConfig"]) if obj.get("awsTargetConfig") is not None else None,
             "azureTargetConfig": AzureTargetConfig.from_dict(obj["azureTargetConfig"]) if obj.get("azureTargetConfig") is not None else None,
+            "logicalSizeBytes": obj.get("logicalSizeBytes"),
+            "objectIds": obj.get("objectIds"),
+            "ownershipContext": obj.get("ownershipContext"),
+            "snapshotId": obj.get("snapshotId"),
             "endTimeUsecs": obj.get("endTimeUsecs"),
             "events": [ProgressTaskEvent.from_dict(_item) for _item in obj["events"]] if obj.get("events") is not None else None,
             "expectedRemainingTimeUsecs": obj.get("expectedRemainingTimeUsecs"),

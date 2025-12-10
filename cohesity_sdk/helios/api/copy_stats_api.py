@@ -40,7 +40,7 @@ class CopyStatsApi:
     def get_copy_stats(
         self,
         body: Annotated[GetCopyStatParams, Field(description="Copy stats filter parameters.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -60,7 +60,7 @@ class CopyStatsApi:
 
         :param body: Copy stats filter parameters. (required)
         :type body: GetCopyStatParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -111,7 +111,7 @@ class CopyStatsApi:
     def get_copy_stats_with_http_info(
         self,
         body: Annotated[GetCopyStatParams, Field(description="Copy stats filter parameters.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -131,7 +131,7 @@ class CopyStatsApi:
 
         :param body: Copy stats filter parameters. (required)
         :type body: GetCopyStatParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -182,7 +182,7 @@ class CopyStatsApi:
     def get_copy_stats_without_preload_content(
         self,
         body: Annotated[GetCopyStatParams, Field(description="Copy stats filter parameters.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -202,7 +202,7 @@ class CopyStatsApi:
 
         :param body: Copy stats filter parameters. (required)
         :type body: GetCopyStatParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

@@ -17,8 +17,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.auth_header_for_cluster_upgrade import AuthHeaderForClusterUpgrade
+from cohesity_sdk.helios.models.patch_upgrade_params import PatchUpgradeParams
 from cohesity_sdk.helios.models.upgrade import Upgrade
 from typing import Set
 from typing_extensions import Self
@@ -27,12 +29,25 @@ class Upgrades(BaseModel):
     """
     Specifies clusters upgrade request like clusterId, release upgrade URL, time stamp to upgrade at, intervals for rolling upgrade in hours.
     """ # noqa: E501
+    auth_headers: Optional[List[AuthHeaderForClusterUpgrade]] = Field(default=None, description="Specifies the optional headers for upgrade request.", alias="authHeaders")
     clusters: Optional[List[Upgrade]] = Field(default=None, description="Array for clusters to be upgraded.")
     interval_for_rolling_upgrade_in_hours: Optional[StrictInt] = Field(default=None, description="Specifies the difference of time between two cluster's upgrade.", alias="intervalForRollingUpgradeInHours")
     package_url: Optional[StrictStr] = Field(default=None, description="Specifies URL from which package can be downloaded. Note: This option is only supported in Multi-Cluster Manager (MCM)", alias="packageUrl")
+    patch_upgrade_params: Optional[PatchUpgradeParams] = Field(default=None, alias="patchUpgradeParams")
     target_version: Optional[StrictStr] = Field(default=None, description="Specifies target version to which clusters are to be upgraded.", alias="targetVersion")
     time_stamp_to_upgrade_at_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the time in msecs at which the cluster has to be upgraded.", alias="timeStampToUpgradeAtMsecs")
-    __properties: ClassVar[List[str]] = ["clusters", "intervalForRollingUpgradeInHours", "packageUrl", "targetVersion", "timeStampToUpgradeAtMsecs"]
+    type: Optional[StrictStr] = Field(default='Upgrade', description="Specifies the type of upgrade to be performed on a cluster.")
+    __properties: ClassVar[List[str]] = ["authHeaders", "clusters", "intervalForRollingUpgradeInHours", "packageUrl", "patchUpgradeParams", "targetVersion", "timeStampToUpgradeAtMsecs", "type"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['Upgrade', 'Patch', 'UpgradePatch']):
+            raise ValueError("must be one of enum values ('Upgrade', 'Patch', 'UpgradePatch')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,6 +88,13 @@ class Upgrades(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in auth_headers (list)
+        _items = []
+        if self.auth_headers:
+            for _item_auth_headers in self.auth_headers:
+                if _item_auth_headers:
+                    _items.append(_item_auth_headers.to_dict())
+            _dict['authHeaders'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in clusters (list)
         _items = []
         if self.clusters:
@@ -80,6 +102,14 @@ class Upgrades(BaseModel):
                 if _item_clusters:
                     _items.append(_item_clusters.to_dict())
             _dict['clusters'] = _items
+        # override the default output from pydantic by calling `to_dict()` of patch_upgrade_params
+        if self.patch_upgrade_params:
+            _dict['patchUpgradeParams'] = self.patch_upgrade_params.to_dict()
+        # set to None if auth_headers (nullable) is None
+        # and model_fields_set contains the field
+        if self.auth_headers is None and "auth_headers" in self.model_fields_set:
+            _dict['authHeaders'] = None
+
         # set to None if clusters (nullable) is None
         # and model_fields_set contains the field
         if self.clusters is None and "clusters" in self.model_fields_set:
@@ -112,11 +142,14 @@ class Upgrades(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "authHeaders": [AuthHeaderForClusterUpgrade.from_dict(_item) for _item in obj["authHeaders"]] if obj.get("authHeaders") is not None else None,
             "clusters": [Upgrade.from_dict(_item) for _item in obj["clusters"]] if obj.get("clusters") is not None else None,
             "intervalForRollingUpgradeInHours": obj.get("intervalForRollingUpgradeInHours"),
             "packageUrl": obj.get("packageUrl"),
+            "patchUpgradeParams": PatchUpgradeParams.from_dict(obj["patchUpgradeParams"]) if obj.get("patchUpgradeParams") is not None else None,
             "targetVersion": obj.get("targetVersion"),
-            "timeStampToUpgradeAtMsecs": obj.get("timeStampToUpgradeAtMsecs")
+            "timeStampToUpgradeAtMsecs": obj.get("timeStampToUpgradeAtMsecs"),
+            "type": obj.get("type") if obj.get("type") is not None else 'Upgrade'
         })
         return _obj
 

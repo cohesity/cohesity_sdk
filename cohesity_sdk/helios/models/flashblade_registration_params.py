@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.filter_ip_config import FilterIpConfig
 from cohesity_sdk.helios.models.nas_throttling_config import NasThrottlingConfig
 from cohesity_sdk.helios.models.smb_mount_credentials import SmbMountCredentials
 from typing import Set
@@ -31,9 +32,10 @@ class FlashbladeRegistrationParams(BaseModel):
     api_token: Optional[StrictStr] = Field(description="Specifies the API Token of the Flashblade Source", alias="apiToken")
     back_up_smb_volumes: Optional[StrictBool] = Field(default=None, description="Specifies whether or not to back up SMB Volumes.", alias="backUpSMBVolumes")
     endpoint: Optional[StrictStr] = Field(description="Specifies the Hostname or IP Address Endpoint for the Flashblade Source.")
+    filter_ip_config: Optional[FilterIpConfig] = Field(default=None, alias="filterIpConfig")
     smb_credentials: Optional[SmbMountCredentials] = Field(default=None, alias="smbCredentials")
     throttling_config: Optional[NasThrottlingConfig] = Field(default=None, alias="throttlingConfig")
-    __properties: ClassVar[List[str]] = ["apiToken", "backUpSMBVolumes", "endpoint", "smbCredentials", "throttlingConfig"]
+    __properties: ClassVar[List[str]] = ["apiToken", "backUpSMBVolumes", "endpoint", "filterIpConfig", "smbCredentials", "throttlingConfig"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -74,6 +76,9 @@ class FlashbladeRegistrationParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of filter_ip_config
+        if self.filter_ip_config:
+            _dict['filterIpConfig'] = self.filter_ip_config.to_dict()
         # override the default output from pydantic by calling `to_dict()` of smb_credentials
         if self.smb_credentials:
             _dict['smbCredentials'] = self.smb_credentials.to_dict()
@@ -110,6 +115,7 @@ class FlashbladeRegistrationParams(BaseModel):
             "apiToken": obj.get("apiToken"),
             "backUpSMBVolumes": obj.get("backUpSMBVolumes"),
             "endpoint": obj.get("endpoint"),
+            "filterIpConfig": FilterIpConfig.from_dict(obj["filterIpConfig"]) if obj.get("filterIpConfig") is not None else None,
             "smbCredentials": SmbMountCredentials.from_dict(obj["smbCredentials"]) if obj.get("smbCredentials") is not None else None,
             "throttlingConfig": NasThrottlingConfig.from_dict(obj["throttlingConfig"]) if obj.get("throttlingConfig") is not None else None
         })

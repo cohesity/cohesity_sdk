@@ -32,6 +32,7 @@ class Share(BaseModel):
     enable_filer_audit_logging: Optional[StrictBool] = Field(default=None, description="This field is currently deprecated. Specifies if Filer Audit Logging is enabled for this Share.", alias="enableFilerAuditLogging")
     file_audit_logging_state: Optional[StrictStr] = Field(default=None, description="Specifies the state of File Audit logging for this Share. Inherited: Audit log setting is inherited from the  View. Enabled: Audit log is enabled for this Share. Disabled: Audit log is disabled for this Share.", alias="fileAuditLoggingState")
     smb_config: Optional[AliasSmbConfig] = Field(default=None, description="SMB config for the alias (share).", alias="smbConfig")
+    is_read_only_view: Optional[StrictBool] = Field(default=None, description="Specifies the view this share belongs to is a read only view.", alias="isReadOnlyView")
     name: Optional[StrictStr] = Field(description="Specifies the Share name.")
     nfs_mount_paths: Optional[List[StrictStr]] = Field(default=None, description="Specifies the path for mounting this Share as an NFS share. If Kerberos Provider has multiple hostaliases, each host alias has its own path.", alias="nfsMountPaths")
     s3_access_path: Optional[StrictStr] = Field(default=None, description="Specifies the path to access this Share as an S3 share.", alias="s3AccessPath")
@@ -40,7 +41,7 @@ class Share(BaseModel):
     view_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the View.", alias="viewId")
     view_name: Optional[StrictStr] = Field(description="Specifies the View name of this Share.", alias="viewName")
     view_path: Optional[StrictStr] = Field(description="Specifies the View path of this Share.", alias="viewPath")
-    __properties: ClassVar[List[str]] = ["clientSubnetWhitelist", "enableFilerAuditLogging", "fileAuditLoggingState", "smbConfig", "name", "nfsMountPaths", "s3AccessPath", "smbMountPaths", "tenantId", "viewId", "viewName", "viewPath"]
+    __properties: ClassVar[List[str]] = ["clientSubnetWhitelist", "enableFilerAuditLogging", "fileAuditLoggingState", "smbConfig", "isReadOnlyView", "name", "nfsMountPaths", "s3AccessPath", "smbMountPaths", "tenantId", "viewId", "viewName", "viewPath"]
 
     @field_validator('file_audit_logging_state')
     def file_audit_logging_state_validate_enum(cls, value):
@@ -87,8 +88,10 @@ class Share(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
+            "is_read_only_view",
             "nfs_mount_paths",
             "s3_access_path",
             "smb_mount_paths",
@@ -125,6 +128,11 @@ class Share(BaseModel):
         # and model_fields_set contains the field
         if self.file_audit_logging_state is None and "file_audit_logging_state" in self.model_fields_set:
             _dict['fileAuditLoggingState'] = None
+
+        # set to None if is_read_only_view (nullable) is None
+        # and model_fields_set contains the field
+        if self.is_read_only_view is None and "is_read_only_view" in self.model_fields_set:
+            _dict['isReadOnlyView'] = None
 
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
@@ -177,6 +185,7 @@ class Share(BaseModel):
             "enableFilerAuditLogging": obj.get("enableFilerAuditLogging"),
             "fileAuditLoggingState": obj.get("fileAuditLoggingState"),
             "smbConfig": AliasSmbConfig.from_dict(obj["smbConfig"]) if obj.get("smbConfig") is not None else None,
+            "isReadOnlyView": obj.get("isReadOnlyView"),
             "name": obj.get("name"),
             "nfsMountPaths": obj.get("nfsMountPaths"),
             "s3AccessPath": obj.get("s3AccessPath"),

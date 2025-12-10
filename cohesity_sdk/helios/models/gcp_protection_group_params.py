@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.big_query_protection_group_params import BigQueryProtectionGroupParams
 from cohesity_sdk.helios.models.gcp_native_protection_group_params import GcpNativeProtectionGroupParams
 from typing import Set
 from typing_extensions import Self
@@ -27,15 +28,16 @@ class GcpProtectionGroupParams(BaseModel):
     """
     Specifies the parameters which are specific to GCP related Protection Groups.
     """ # noqa: E501
+    big_query_protection_type_params: Optional[BigQueryProtectionGroupParams] = Field(default=None, alias="bigQueryProtectionTypeParams")
     native_protection_type_params: Optional[GcpNativeProtectionGroupParams] = Field(default=None, alias="nativeProtectionTypeParams")
     protection_type: StrictStr = Field(description="Specifies the GCP Protection Group type.", alias="protectionType")
-    __properties: ClassVar[List[str]] = ["nativeProtectionTypeParams", "protectionType"]
+    __properties: ClassVar[List[str]] = ["bigQueryProtectionTypeParams", "nativeProtectionTypeParams", "protectionType"]
 
     @field_validator('protection_type')
     def protection_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['kNative']):
-            raise ValueError("must be one of enum values ('kNative')")
+        if value not in set(['kNative', 'kGCPBigQuery']):
+            raise ValueError("must be one of enum values ('kNative', 'kGCPBigQuery')")
         return value
 
     model_config = ConfigDict(
@@ -77,6 +79,9 @@ class GcpProtectionGroupParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of big_query_protection_type_params
+        if self.big_query_protection_type_params:
+            _dict['bigQueryProtectionTypeParams'] = self.big_query_protection_type_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of native_protection_type_params
         if self.native_protection_type_params:
             _dict['nativeProtectionTypeParams'] = self.native_protection_type_params.to_dict()
@@ -92,6 +97,7 @@ class GcpProtectionGroupParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "bigQueryProtectionTypeParams": BigQueryProtectionGroupParams.from_dict(obj["bigQueryProtectionTypeParams"]) if obj.get("bigQueryProtectionTypeParams") is not None else None,
             "nativeProtectionTypeParams": GcpNativeProtectionGroupParams.from_dict(obj["nativeProtectionTypeParams"]) if obj.get("nativeProtectionTypeParams") is not None else None,
             "protectionType": obj.get("protectionType")
         })

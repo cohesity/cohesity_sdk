@@ -36,7 +36,7 @@ class CreateCsrRequest(BaseModel):
     key_type: Optional[StrictStr] = Field(default='rsa', description="Specifies the algorithm to be used to generate the key pair. RSA is the default value.", alias="keyType")
     organization: Optional[StrictStr] = Field(description="Specifies the organization attribute, which is part of the distinguished name definition. It is used to specify the name of the company.")
     organization_unit: Optional[StrictStr] = Field(description="Specifies the organization unit attribute, which is part of the distinguished name definition. It is used to identify the specific department or business unit in the company that is owning the Cluster.", alias="organizationUnit")
-    service_name: Optional[StrictStr] = Field(default='iris', description="Specifies the Cohesity service name for which the CSR is generated. Default service name is iris.", alias="serviceName")
+    service_name: Optional[StrictStr] = Field(default='iris', description="Specifies the Cohesity service name for which the CSR is generated. Default service name is iris. ", alias="serviceName")
     state: Optional[StrictStr] = Field(description="Specifies the state attribute, which is part of the distinguished name definition. It is used to identify the state where the city is located.")
     __properties: ClassVar[List[str]] = ["city", "commonName", "countryCode", "dnsNames", "emailAddress", "hostIps", "keySizeBits", "keyType", "organization", "organizationUnit", "serviceName", "state"]
 
@@ -56,8 +56,8 @@ class CreateCsrRequest(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['iris']):
-            raise ValueError("must be one of enum values ('iris')")
+        if value not in set(['iris', 'helios_ui_helios_self_managed']):
+            raise ValueError("must be one of enum values ('iris', 'helios_ui_helios_self_managed')")
         return value
 
     model_config = ConfigDict(

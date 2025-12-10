@@ -34,12 +34,13 @@ class SyslogServer(BaseModel):
     is_tls_enabled: Optional[StrictBool] = Field(default=None, description="Specify whether to enable tls support.", alias="isTlsEnabled")
     msg_pattern_list: Optional[List[StrictStr]] = Field(default=None, description="Send logs including the msg patterns to logging server.", alias="msgPatternList")
     name: Optional[StrictStr] = Field(default=None, description="Specifies a unique name for the syslog server on the Cluster.")
+    permitted_peer: Optional[StrictStr] = Field(default=None, description="Syslog server certificate common name.", alias="permittedPeer")
     port: Optional[StrictInt] = Field(default=None, description="Specifies the port where the syslog server listens.")
     program_name_list: Optional[List[StrictStr]] = Field(default=None, description="Send programes related logs to logging server.", alias="programNameList")
     protocol: Optional[StrictStr] = Field(default=None, description="Specifies the protocol used to send the logs.")
     raw_msg_pattern_list: Optional[List[StrictStr]] = Field(default=None, description="Send logs including the msg patterns to logging server.", alias="rawMsgPatternList")
     token_id: Optional[StrictStr] = Field(default=None, description="TokenId used for filtering messages on a relay or collector", alias="tokenId")
-    __properties: ClassVar[List[str]] = ["caCertificate", "enabled", "facilityList", "id", "ip", "isTlsEnabled", "msgPatternList", "name", "port", "programNameList", "protocol", "rawMsgPatternList", "tokenId"]
+    __properties: ClassVar[List[str]] = ["caCertificate", "enabled", "facilityList", "id", "ip", "isTlsEnabled", "msgPatternList", "name", "permittedPeer", "port", "programNameList", "protocol", "rawMsgPatternList", "tokenId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -110,6 +111,11 @@ class SyslogServer(BaseModel):
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
 
+        # set to None if permitted_peer (nullable) is None
+        # and model_fields_set contains the field
+        if self.permitted_peer is None and "permitted_peer" in self.model_fields_set:
+            _dict['permittedPeer'] = None
+
         # set to None if port (nullable) is None
         # and model_fields_set contains the field
         if self.port is None and "port" in self.model_fields_set:
@@ -145,6 +151,7 @@ class SyslogServer(BaseModel):
             "isTlsEnabled": obj.get("isTlsEnabled"),
             "msgPatternList": obj.get("msgPatternList"),
             "name": obj.get("name"),
+            "permittedPeer": obj.get("permittedPeer"),
             "port": obj.get("port"),
             "programNameList": obj.get("programNameList"),
             "protocol": obj.get("protocol"),

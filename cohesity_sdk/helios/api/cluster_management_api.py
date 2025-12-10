@@ -19,7 +19,6 @@ from cohesity_sdk.helios.models.cluster_details import ClusterDetails
 from cohesity_sdk.helios.models.compatible_cluster import CompatibleCluster
 from cohesity_sdk.helios.models.releases import Releases
 from cohesity_sdk.helios.models.upgrade_cancel_response import UpgradeCancelResponse
-from cohesity_sdk.helios.models.upgrade_detail import UpgradeDetail
 from cohesity_sdk.helios.models.upgrade_info import UpgradeInfo
 from cohesity_sdk.helios.models.upgrade_response import UpgradeResponse
 from cohesity_sdk.helios.models.upgrades import Upgrades
@@ -45,8 +44,8 @@ class ClusterManagementApi:
     @validate_call
     def clusters_upgrades_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Fetch upgrade progress details for a list of cluster identifiers in format clusterId:clusterIncarnationId.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -64,10 +63,10 @@ class ClusterManagementApi:
 
         Get progress details and logs for a cluster upgrade. Logs will in json string format.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param cluster_identifiers: Fetch upgrade progress details for a list of cluster identifiers in format clusterId:clusterIncarnationId.
         :type cluster_identifiers: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -91,8 +90,8 @@ class ClusterManagementApi:
         """ # noqa: E501
 
         _param = self._clusters_upgrades_info_serialize(
-            region_id=region_id,
             cluster_identifiers=cluster_identifiers,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -116,8 +115,8 @@ class ClusterManagementApi:
     @validate_call
     def clusters_upgrades_info_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Fetch upgrade progress details for a list of cluster identifiers in format clusterId:clusterIncarnationId.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -135,10 +134,10 @@ class ClusterManagementApi:
 
         Get progress details and logs for a cluster upgrade. Logs will in json string format.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param cluster_identifiers: Fetch upgrade progress details for a list of cluster identifiers in format clusterId:clusterIncarnationId.
         :type cluster_identifiers: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -162,8 +161,8 @@ class ClusterManagementApi:
         """ # noqa: E501
 
         _param = self._clusters_upgrades_info_serialize(
-            region_id=region_id,
             cluster_identifiers=cluster_identifiers,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -187,8 +186,8 @@ class ClusterManagementApi:
     @validate_call
     def clusters_upgrades_info_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Fetch upgrade progress details for a list of cluster identifiers in format clusterId:clusterIncarnationId.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -206,10 +205,10 @@ class ClusterManagementApi:
 
         Get progress details and logs for a cluster upgrade. Logs will in json string format.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param cluster_identifiers: Fetch upgrade progress details for a list of cluster identifiers in format clusterId:clusterIncarnationId.
         :type cluster_identifiers: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -233,8 +232,8 @@ class ClusterManagementApi:
         """ # noqa: E501
 
         _param = self._clusters_upgrades_info_serialize(
-            region_id=region_id,
             cluster_identifiers=cluster_identifiers,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -253,8 +252,8 @@ class ClusterManagementApi:
 
     def _clusters_upgrades_info_serialize(
         self,
-        region_id,
         cluster_identifiers,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -324,8 +323,8 @@ class ClusterManagementApi:
     @validate_call
     def compatible_clusters_for_release(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         release_version: Optional[StrictStr] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -343,10 +342,10 @@ class ClusterManagementApi:
 
         Get list of clusters that are compatible for an upgrade to the specified release version.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param release_version:
         :type release_version: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -370,8 +369,8 @@ class ClusterManagementApi:
         """ # noqa: E501
 
         _param = self._compatible_clusters_for_release_serialize(
-            region_id=region_id,
             release_version=release_version,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -395,8 +394,8 @@ class ClusterManagementApi:
     @validate_call
     def compatible_clusters_for_release_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         release_version: Optional[StrictStr] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -414,10 +413,10 @@ class ClusterManagementApi:
 
         Get list of clusters that are compatible for an upgrade to the specified release version.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param release_version:
         :type release_version: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -441,8 +440,8 @@ class ClusterManagementApi:
         """ # noqa: E501
 
         _param = self._compatible_clusters_for_release_serialize(
-            region_id=region_id,
             release_version=release_version,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -466,8 +465,8 @@ class ClusterManagementApi:
     @validate_call
     def compatible_clusters_for_release_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         release_version: Optional[StrictStr] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -485,10 +484,10 @@ class ClusterManagementApi:
 
         Get list of clusters that are compatible for an upgrade to the specified release version.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param release_version:
         :type release_version: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -512,8 +511,8 @@ class ClusterManagementApi:
         """ # noqa: E501
 
         _param = self._compatible_clusters_for_release_serialize(
-            region_id=region_id,
             release_version=release_version,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -532,8 +531,8 @@ class ClusterManagementApi:
 
     def _compatible_clusters_for_release_serialize(
         self,
-        region_id,
         release_version,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -602,7 +601,7 @@ class ClusterManagementApi:
     @validate_call
     def create_clusters_upgrades(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[Upgrades], Field(description="Request body params in order to start an upgrade")] = None,
         _request_timeout: Union[
             None,
@@ -621,7 +620,7 @@ class ClusterManagementApi:
 
         Initiates instant and scheduled cluster upgrade.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Request body params in order to start an upgrade
         :type body: Upgrades
@@ -673,7 +672,7 @@ class ClusterManagementApi:
     @validate_call
     def create_clusters_upgrades_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[Upgrades], Field(description="Request body params in order to start an upgrade")] = None,
         _request_timeout: Union[
             None,
@@ -692,7 +691,7 @@ class ClusterManagementApi:
 
         Initiates instant and scheduled cluster upgrade.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Request body params in order to start an upgrade
         :type body: Upgrades
@@ -744,7 +743,7 @@ class ClusterManagementApi:
     @validate_call
     def create_clusters_upgrades_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[Upgrades], Field(description="Request body params in order to start an upgrade")] = None,
         _request_timeout: Union[
             None,
@@ -763,7 +762,7 @@ class ClusterManagementApi:
 
         Initiates instant and scheduled cluster upgrade.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Request body params in order to start an upgrade
         :type body: Upgrades
@@ -891,8 +890,8 @@ class ClusterManagementApi:
     @validate_call
     def delete_clusters_upgrades(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         cluster_identifiers: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies the list of cluster identifiers. The format is clusterId:clusterIncarnationId.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -910,10 +909,10 @@ class ClusterManagementApi:
 
         Cancels scheduled cluster upgrades.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param cluster_identifiers: Specifies the list of cluster identifiers. The format is clusterId:clusterIncarnationId.
         :type cluster_identifiers: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -937,8 +936,8 @@ class ClusterManagementApi:
         """ # noqa: E501
 
         _param = self._delete_clusters_upgrades_serialize(
-            region_id=region_id,
             cluster_identifiers=cluster_identifiers,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -962,8 +961,8 @@ class ClusterManagementApi:
     @validate_call
     def delete_clusters_upgrades_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         cluster_identifiers: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies the list of cluster identifiers. The format is clusterId:clusterIncarnationId.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -981,10 +980,10 @@ class ClusterManagementApi:
 
         Cancels scheduled cluster upgrades.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param cluster_identifiers: Specifies the list of cluster identifiers. The format is clusterId:clusterIncarnationId.
         :type cluster_identifiers: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1008,8 +1007,8 @@ class ClusterManagementApi:
         """ # noqa: E501
 
         _param = self._delete_clusters_upgrades_serialize(
-            region_id=region_id,
             cluster_identifiers=cluster_identifiers,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1033,8 +1032,8 @@ class ClusterManagementApi:
     @validate_call
     def delete_clusters_upgrades_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         cluster_identifiers: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies the list of cluster identifiers. The format is clusterId:clusterIncarnationId.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1052,10 +1051,10 @@ class ClusterManagementApi:
 
         Cancels scheduled cluster upgrades.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param cluster_identifiers: Specifies the list of cluster identifiers. The format is clusterId:clusterIncarnationId.
         :type cluster_identifiers: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1079,8 +1078,8 @@ class ClusterManagementApi:
         """ # noqa: E501
 
         _param = self._delete_clusters_upgrades_serialize(
-            region_id=region_id,
             cluster_identifiers=cluster_identifiers,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1099,8 +1098,8 @@ class ClusterManagementApi:
 
     def _delete_clusters_upgrades_serialize(
         self,
-        region_id,
         cluster_identifiers,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1168,288 +1167,9 @@ class ClusterManagementApi:
 
 
     @validate_call
-    def fetch_clusters_upgrades(
-        self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
-        cluster_ids: Optional[List[StrictStr]] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[UpgradeDetail]:
-        """Fetch the cluster upgrade details.
-
-        Fetch the cluster upgrade details.
-
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
-        :param cluster_ids:
-        :type cluster_ids: List[str]
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._fetch_clusters_upgrades_serialize(
-            region_id=region_id,
-            cluster_ids=cluster_ids,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[UpgradeDetail]",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def fetch_clusters_upgrades_with_http_info(
-        self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
-        cluster_ids: Optional[List[StrictStr]] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[UpgradeDetail]]:
-        """Fetch the cluster upgrade details.
-
-        Fetch the cluster upgrade details.
-
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
-        :param cluster_ids:
-        :type cluster_ids: List[str]
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._fetch_clusters_upgrades_serialize(
-            region_id=region_id,
-            cluster_ids=cluster_ids,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[UpgradeDetail]",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def fetch_clusters_upgrades_without_preload_content(
-        self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
-        cluster_ids: Optional[List[StrictStr]] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Fetch the cluster upgrade details.
-
-        Fetch the cluster upgrade details.
-
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
-        :param cluster_ids:
-        :type cluster_ids: List[str]
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._fetch_clusters_upgrades_serialize(
-            region_id=region_id,
-            cluster_ids=cluster_ids,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[UpgradeDetail]",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _fetch_clusters_upgrades_serialize(
-        self,
-        region_id,
-        cluster_ids,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-            'clusterIds': 'csv',
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        if cluster_ids is not None:
-            
-            _query_params.append(('clusterIds', cluster_ids))
-            
-        # process the header parameters
-        if region_id is not None:
-            _header_params['regionId'] = region_id
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'APIKeyHeader'
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/mcm/cluster-mgmt/upgrades',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
     def get_clusters_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1467,7 +1187,7 @@ class ClusterManagementApi:
 
         Get clusters information and their upgrade details.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1516,7 +1236,7 @@ class ClusterManagementApi:
     @validate_call
     def get_clusters_info_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1534,7 +1254,7 @@ class ClusterManagementApi:
 
         Get clusters information and their upgrade details.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1583,7 +1303,7 @@ class ClusterManagementApi:
     @validate_call
     def get_clusters_info_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1601,7 +1321,7 @@ class ClusterManagementApi:
 
         Get clusters information and their upgrade details.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1710,7 +1430,8 @@ class ClusterManagementApi:
     @validate_call
     def get_releases(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        release_type: Optional[StrictStr] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1724,11 +1445,13 @@ class ClusterManagementApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Releases:
-        """Get all releases present in the db.
+        """Get all releases present in the db by release type.
 
-        Get all releases present in the db.
+        Get all releases present in the db by release type.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param release_type:
+        :type release_type: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1753,6 +1476,7 @@ class ClusterManagementApi:
         """ # noqa: E501
 
         _param = self._get_releases_serialize(
+            release_type=release_type,
             region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1777,7 +1501,8 @@ class ClusterManagementApi:
     @validate_call
     def get_releases_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        release_type: Optional[StrictStr] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1791,11 +1516,13 @@ class ClusterManagementApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[Releases]:
-        """Get all releases present in the db.
+        """Get all releases present in the db by release type.
 
-        Get all releases present in the db.
+        Get all releases present in the db by release type.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param release_type:
+        :type release_type: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1820,6 +1547,7 @@ class ClusterManagementApi:
         """ # noqa: E501
 
         _param = self._get_releases_serialize(
+            release_type=release_type,
             region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1844,7 +1572,8 @@ class ClusterManagementApi:
     @validate_call
     def get_releases_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        release_type: Optional[StrictStr] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1858,11 +1587,13 @@ class ClusterManagementApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get all releases present in the db.
+        """Get all releases present in the db by release type.
 
-        Get all releases present in the db.
+        Get all releases present in the db by release type.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param release_type:
+        :type release_type: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1887,6 +1618,7 @@ class ClusterManagementApi:
         """ # noqa: E501
 
         _param = self._get_releases_serialize(
+            release_type=release_type,
             region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1906,6 +1638,7 @@ class ClusterManagementApi:
 
     def _get_releases_serialize(
         self,
+        release_type,
         region_id,
         _request_auth,
         _content_type,
@@ -1929,6 +1662,10 @@ class ClusterManagementApi:
 
         # process the path parameters
         # process the query parameters
+        if release_type is not None:
+            
+            _query_params.append(('releaseType', release_type))
+            
         # process the header parameters
         if region_id is not None:
             _header_params['regionId'] = region_id
@@ -1952,7 +1689,7 @@ class ClusterManagementApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/mcm/cluster-mgmt/releases',
+            resource_path='/mcm/software-mgmt/releases',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1971,7 +1708,7 @@ class ClusterManagementApi:
     @validate_call
     def update_clusters_upgrades(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[Upgrades], Field(description="Request body params in order to start an upgrade")] = None,
         _request_timeout: Union[
             None,
@@ -1990,7 +1727,7 @@ class ClusterManagementApi:
 
         Updates scheduled cluster upgrades.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Request body params in order to start an upgrade
         :type body: Upgrades
@@ -2042,7 +1779,7 @@ class ClusterManagementApi:
     @validate_call
     def update_clusters_upgrades_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[Upgrades], Field(description="Request body params in order to start an upgrade")] = None,
         _request_timeout: Union[
             None,
@@ -2061,7 +1798,7 @@ class ClusterManagementApi:
 
         Updates scheduled cluster upgrades.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Request body params in order to start an upgrade
         :type body: Upgrades
@@ -2113,7 +1850,7 @@ class ClusterManagementApi:
     @validate_call
     def update_clusters_upgrades_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[Upgrades], Field(description="Request body params in order to start an upgrade")] = None,
         _request_timeout: Union[
             None,
@@ -2132,7 +1869,7 @@ class ClusterManagementApi:
 
         Updates scheduled cluster upgrades.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Request body params in order to start an upgrade
         :type body: Upgrades

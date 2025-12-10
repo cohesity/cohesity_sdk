@@ -16,15 +16,23 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictBool
+from cohesity_sdk.helios.models.application_servers_registration_request_params import ApplicationServersRegistrationRequestParams
+from cohesity_sdk.helios.models.common_application_servers_registration_params import CommonApplicationServersRegistrationParams
 from cohesity_sdk.helios.models.create_azure_application_request_params import CreateAzureApplicationRequestParams
 from cohesity_sdk.helios.models.create_azure_application_response_params import CreateAzureApplicationResponseParams
+from cohesity_sdk.helios.models.create_m365_self_service_config_request_params import CreateM365SelfServiceConfigRequestParams
+from cohesity_sdk.helios.models.delete_azure_application_request_params import DeleteAzureApplicationRequestParams
 from cohesity_sdk.helios.models.generate_m365_device_access_token_request_params import GenerateM365DeviceAccessTokenRequestParams
 from cohesity_sdk.helios.models.generate_m365_device_access_token_response_params import GenerateM365DeviceAccessTokenResponseParams
 from cohesity_sdk.helios.models.generate_m365_device_code_request_params import GenerateM365DeviceCodeRequestParams
 from cohesity_sdk.helios.models.generate_m365_device_code_response_params import GenerateM365DeviceCodeResponseParams
+from cohesity_sdk.helios.models.get_m365_backup_controller_response_params import GetM365BackupControllerResponseParams
+from cohesity_sdk.helios.models.list_app_servers_response import ListAppServersResponse
+from cohesity_sdk.helios.models.m365_backup_controller_billing_response_params import M365BackupControllerBillingResponseParams
 from cohesity_sdk.helios.models.mcm_source_registration import McmSourceRegistration
 from cohesity_sdk.helios.models.mcm_source_registration_request_params import McmSourceRegistrationRequestParams
 from cohesity_sdk.helios.models.mcm_source_registration_update_request_params import McmSourceRegistrationUpdateRequestParams
+from cohesity_sdk.helios.models.mcm_source_un_register_request_params import McmSourceUnRegisterRequestParams
 from cohesity_sdk.helios.models.mcm_sources import McmSources
 from cohesity_sdk.helios.models.source import Source
 from cohesity_sdk.helios.models.source_attribute_filters_response_params import SourceAttributeFiltersResponseParams
@@ -35,7 +43,9 @@ from cohesity_sdk.helios.models.source_registration_patch_request_params import 
 from cohesity_sdk.helios.models.source_registration_request_params import SourceRegistrationRequestParams
 from cohesity_sdk.helios.models.source_registration_update_request_params import SourceRegistrationUpdateRequestParams
 from cohesity_sdk.helios.models.source_registrations import SourceRegistrations
+from cohesity_sdk.helios.models.source_un_register_request_params import SourceUnRegisterRequestParams
 from cohesity_sdk.helios.models.sources import Sources
+from cohesity_sdk.helios.models.un_register_application_servers_params import UnRegisterApplicationServersParams
 from cohesity_sdk.helios.models.vdc_object import VdcObject
 
 from cohesity_sdk.helios.api_client import ApiClient, RequestSerialized
@@ -60,8 +70,8 @@ class SourceApi:
     def create_azure_applications(
         self,
         body: Annotated[CreateAzureApplicationRequestParams, Field(description="Specifies the parameters to create Azure applications within a given Microsoft365 source.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -81,9 +91,9 @@ class SourceApi:
 
         :param body: Specifies the parameters to create Azure applications within a given Microsoft365 source. (required)
         :type body: CreateAzureApplicationRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -135,8 +145,8 @@ class SourceApi:
     def create_azure_applications_with_http_info(
         self,
         body: Annotated[CreateAzureApplicationRequestParams, Field(description="Specifies the parameters to create Azure applications within a given Microsoft365 source.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -156,9 +166,9 @@ class SourceApi:
 
         :param body: Specifies the parameters to create Azure applications within a given Microsoft365 source. (required)
         :type body: CreateAzureApplicationRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -210,8 +220,8 @@ class SourceApi:
     def create_azure_applications_without_preload_content(
         self,
         body: Annotated[CreateAzureApplicationRequestParams, Field(description="Specifies the parameters to create Azure applications within a given Microsoft365 source.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -231,9 +241,9 @@ class SourceApi:
 
         :param body: Specifies the parameters to create Azure applications within a given Microsoft365 source. (required)
         :type body: CreateAzureApplicationRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -364,8 +374,8 @@ class SourceApi:
     def create_or_update_azure_applications(
         self,
         body: Annotated[CreateAzureApplicationRequestParams, Field(description="Specifies the parameters to create/update Azure applications within a given Microsoft365 source.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -385,9 +395,9 @@ class SourceApi:
 
         :param body: Specifies the parameters to create/update Azure applications within a given Microsoft365 source. (required)
         :type body: CreateAzureApplicationRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -439,8 +449,8 @@ class SourceApi:
     def create_or_update_azure_applications_with_http_info(
         self,
         body: Annotated[CreateAzureApplicationRequestParams, Field(description="Specifies the parameters to create/update Azure applications within a given Microsoft365 source.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -460,9 +470,9 @@ class SourceApi:
 
         :param body: Specifies the parameters to create/update Azure applications within a given Microsoft365 source. (required)
         :type body: CreateAzureApplicationRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -514,8 +524,8 @@ class SourceApi:
     def create_or_update_azure_applications_without_preload_content(
         self,
         body: Annotated[CreateAzureApplicationRequestParams, Field(description="Specifies the parameters to create/update Azure applications within a given Microsoft365 source.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -535,9 +545,9 @@ class SourceApi:
 
         :param body: Specifies the parameters to create/update Azure applications within a given Microsoft365 source. (required)
         :type body: CreateAzureApplicationRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -665,11 +675,12 @@ class SourceApi:
 
 
     @validate_call
-    def delete_protection_source_registration(
+    def delete_application_servers_registration(
         self,
-        id: Annotated[StrictInt, Field(description="Specifies the ID of the Protection Source Registration.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the Application Server.")],
+        body: Annotated[UnRegisterApplicationServersParams, Field(description="Specifies the request to unregister a an application server.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -683,15 +694,17 @@ class SourceApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> None:
-        """Delete Protection Source Registration.
+        """Delete an application server registration.
 
-        Delete Protection Source Registration.
+        Delete an application server registration.
 
-        :param id: Specifies the ID of the Protection Source Registration. (required)
+        :param id: Specifies the id of the Application Server. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param body: Specifies the request to unregister a an application server. (required)
+        :type body: UnRegisterApplicationServersParams
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -715,8 +728,9 @@ class SourceApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_protection_source_registration_serialize(
+        _param = self._delete_application_servers_registration_serialize(
             id=id,
+            body=body,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
             _request_auth=_request_auth,
@@ -740,11 +754,12 @@ class SourceApi:
 
 
     @validate_call
-    def delete_protection_source_registration_with_http_info(
+    def delete_application_servers_registration_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="Specifies the ID of the Protection Source Registration.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the Application Server.")],
+        body: Annotated[UnRegisterApplicationServersParams, Field(description="Specifies the request to unregister a an application server.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -758,15 +773,17 @@ class SourceApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[None]:
-        """Delete Protection Source Registration.
+        """Delete an application server registration.
 
-        Delete Protection Source Registration.
+        Delete an application server registration.
 
-        :param id: Specifies the ID of the Protection Source Registration. (required)
+        :param id: Specifies the id of the Application Server. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param body: Specifies the request to unregister a an application server. (required)
+        :type body: UnRegisterApplicationServersParams
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -790,8 +807,9 @@ class SourceApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_protection_source_registration_serialize(
+        _param = self._delete_application_servers_registration_serialize(
             id=id,
+            body=body,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
             _request_auth=_request_auth,
@@ -815,11 +833,12 @@ class SourceApi:
 
 
     @validate_call
-    def delete_protection_source_registration_without_preload_content(
+    def delete_application_servers_registration_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="Specifies the ID of the Protection Source Registration.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the Application Server.")],
+        body: Annotated[UnRegisterApplicationServersParams, Field(description="Specifies the request to unregister a an application server.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -833,15 +852,17 @@ class SourceApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Delete Protection Source Registration.
+        """Delete an application server registration.
 
-        Delete Protection Source Registration.
+        Delete an application server registration.
 
-        :param id: Specifies the ID of the Protection Source Registration. (required)
+        :param id: Specifies the id of the Application Server. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param body: Specifies the request to unregister a an application server. (required)
+        :type body: UnRegisterApplicationServersParams
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -865,8 +886,9 @@ class SourceApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_protection_source_registration_serialize(
+        _param = self._delete_application_servers_registration_serialize(
             id=id,
+            body=body,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
             _request_auth=_request_auth,
@@ -885,9 +907,10 @@ class SourceApi:
         return response_data.response
 
 
-    def _delete_protection_source_registration_serialize(
+    def _delete_application_servers_registration_serialize(
         self,
         id,
+        body,
         access_cluster_id,
         region_id,
         _request_auth,
@@ -921,6 +944,8 @@ class SourceApi:
             _header_params['regionId'] = region_id
         # process the form parameters
         # process the body parameter
+        if body is not None:
+            _body_params = body
 
 
         # set the HTTP header `Accept`
@@ -931,6 +956,933 @@ class SourceApi:
                 ]
             )
 
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/data-protect/sources/application-servers/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def delete_azure_applications(
+        self,
+        body: Annotated[DeleteAzureApplicationRequestParams, Field(description="Specifies the parameters to delete Azure applications")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Deletes Azure Applications
+
+        Deletes Azure Applications
+
+        :param body: Specifies the parameters to delete Azure applications (required)
+        :type body: DeleteAzureApplicationRequestParams
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_azure_applications_serialize(
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def delete_azure_applications_with_http_info(
+        self,
+        body: Annotated[DeleteAzureApplicationRequestParams, Field(description="Specifies the parameters to delete Azure applications")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Deletes Azure Applications
+
+        Deletes Azure Applications
+
+        :param body: Specifies the parameters to delete Azure applications (required)
+        :type body: DeleteAzureApplicationRequestParams
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_azure_applications_serialize(
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def delete_azure_applications_without_preload_content(
+        self,
+        body: Annotated[DeleteAzureApplicationRequestParams, Field(description="Specifies the parameters to delete Azure applications")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Deletes Azure Applications
+
+        Deletes Azure Applications
+
+        :param body: Specifies the parameters to delete Azure applications (required)
+        :type body: DeleteAzureApplicationRequestParams
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_azure_applications_serialize(
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _delete_azure_applications_serialize(
+        self,
+        body,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/data-protect/sources/microsoft365/azure-applications',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def delete_m365_self_service_config(
+        self,
+        uuid: Annotated[StrictStr, Field(description="Specifies the UUID of the Microsoft365 Source.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Deletes the Self-Service configuration for a Microsoft365 source.
+
+        Delete the configuration for Self-Service for a Microsoft365 source. This includes deletion of both Mailbox & OneDrive workload configuration.
+
+        :param uuid: Specifies the UUID of the Microsoft365 Source. (required)
+        :type uuid: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_m365_self_service_config_serialize(
+            uuid=uuid,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def delete_m365_self_service_config_with_http_info(
+        self,
+        uuid: Annotated[StrictStr, Field(description="Specifies the UUID of the Microsoft365 Source.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Deletes the Self-Service configuration for a Microsoft365 source.
+
+        Delete the configuration for Self-Service for a Microsoft365 source. This includes deletion of both Mailbox & OneDrive workload configuration.
+
+        :param uuid: Specifies the UUID of the Microsoft365 Source. (required)
+        :type uuid: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_m365_self_service_config_serialize(
+            uuid=uuid,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def delete_m365_self_service_config_without_preload_content(
+        self,
+        uuid: Annotated[StrictStr, Field(description="Specifies the UUID of the Microsoft365 Source.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Deletes the Self-Service configuration for a Microsoft365 source.
+
+        Delete the configuration for Self-Service for a Microsoft365 source. This includes deletion of both Mailbox & OneDrive workload configuration.
+
+        :param uuid: Specifies the UUID of the Microsoft365 Source. (required)
+        :type uuid: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_m365_self_service_config_serialize(
+            uuid=uuid,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _delete_m365_self_service_config_serialize(
+        self,
+        uuid,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if uuid is not None:
+            _path_params['uuid'] = uuid
+        # process the query parameters
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/data-protect/sources/microsoft365/self-service-config/{uuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def delete_protection_source_registration(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the ID of the Protection Source Registration.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        body: Annotated[Optional[SourceUnRegisterRequestParams], Field(description="Specifies the request to unregister a source.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete Protection Source Registration.
+
+        Delete Protection Source Registration.
+
+        :param id: Specifies the ID of the Protection Source Registration. (required)
+        :type id: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param body: Specifies the request to unregister a source.
+        :type body: SourceUnRegisterRequestParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_protection_source_registration_serialize(
+            id=id,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def delete_protection_source_registration_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the ID of the Protection Source Registration.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        body: Annotated[Optional[SourceUnRegisterRequestParams], Field(description="Specifies the request to unregister a source.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete Protection Source Registration.
+
+        Delete Protection Source Registration.
+
+        :param id: Specifies the ID of the Protection Source Registration. (required)
+        :type id: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param body: Specifies the request to unregister a source.
+        :type body: SourceUnRegisterRequestParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_protection_source_registration_serialize(
+            id=id,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def delete_protection_source_registration_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the ID of the Protection Source Registration.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        body: Annotated[Optional[SourceUnRegisterRequestParams], Field(description="Specifies the request to unregister a source.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete Protection Source Registration.
+
+        Delete Protection Source Registration.
+
+        :param id: Specifies the ID of the Protection Source Registration. (required)
+        :type id: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param body: Specifies the request to unregister a source.
+        :type body: SourceUnRegisterRequestParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_protection_source_registration_serialize(
+            id=id,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _delete_protection_source_registration_serialize(
+        self,
+        id,
+        access_cluster_id,
+        region_id,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = [
@@ -956,11 +1908,302 @@ class SourceApi:
 
 
     @validate_call
+    def enable_mbs_billing_profile(
+        self,
+        azure_token: StrictStr,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> M365BackupControllerBillingResponseParams:
+        """Enables billing profile for the MBS service for the tenant.
+
+        Enables the M365 Backup Storage(MBS) service for the tenant.
+
+        :param azure_token: (required)
+        :type azure_token: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._enable_mbs_billing_profile_serialize(
+            azure_token=azure_token,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "M365BackupControllerBillingResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def enable_mbs_billing_profile_with_http_info(
+        self,
+        azure_token: StrictStr,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[M365BackupControllerBillingResponseParams]:
+        """Enables billing profile for the MBS service for the tenant.
+
+        Enables the M365 Backup Storage(MBS) service for the tenant.
+
+        :param azure_token: (required)
+        :type azure_token: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._enable_mbs_billing_profile_serialize(
+            azure_token=azure_token,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "M365BackupControllerBillingResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def enable_mbs_billing_profile_without_preload_content(
+        self,
+        azure_token: StrictStr,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Enables billing profile for the MBS service for the tenant.
+
+        Enables the M365 Backup Storage(MBS) service for the tenant.
+
+        :param azure_token: (required)
+        :type azure_token: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._enable_mbs_billing_profile_serialize(
+            azure_token=azure_token,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "M365BackupControllerBillingResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _enable_mbs_billing_profile_serialize(
+        self,
+        azure_token,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if azure_token is not None:
+            _header_params['azureToken'] = azure_token
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/data-protect/sources/microsoft365/backup-controllers/billing',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def generate_m365_device_access_token(
         self,
         body: Annotated[GenerateM365DeviceAccessTokenRequestParams, Field(description="Specifies the parameters to validate and generate access token for authorizing the client within Microsoft365.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -980,9 +2223,9 @@ class SourceApi:
 
         :param body: Specifies the parameters to validate and generate access token for authorizing the client within Microsoft365. (required)
         :type body: GenerateM365DeviceAccessTokenRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1034,8 +2277,8 @@ class SourceApi:
     def generate_m365_device_access_token_with_http_info(
         self,
         body: Annotated[GenerateM365DeviceAccessTokenRequestParams, Field(description="Specifies the parameters to validate and generate access token for authorizing the client within Microsoft365.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1055,9 +2298,9 @@ class SourceApi:
 
         :param body: Specifies the parameters to validate and generate access token for authorizing the client within Microsoft365. (required)
         :type body: GenerateM365DeviceAccessTokenRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1109,8 +2352,8 @@ class SourceApi:
     def generate_m365_device_access_token_without_preload_content(
         self,
         body: Annotated[GenerateM365DeviceAccessTokenRequestParams, Field(description="Specifies the parameters to validate and generate access token for authorizing the client within Microsoft365.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1130,9 +2373,9 @@ class SourceApi:
 
         :param body: Specifies the parameters to validate and generate access token for authorizing the client within Microsoft365. (required)
         :type body: GenerateM365DeviceAccessTokenRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1263,8 +2506,8 @@ class SourceApi:
     def generate_m365_device_code(
         self,
         body: Annotated[GenerateM365DeviceCodeRequestParams, Field(description="Specifies the parameters to generate the user and device code to initiate authentication with Microsoft365.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1284,9 +2527,9 @@ class SourceApi:
 
         :param body: Specifies the parameters to generate the user and device code to initiate authentication with Microsoft365. (required)
         :type body: GenerateM365DeviceCodeRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1338,8 +2581,8 @@ class SourceApi:
     def generate_m365_device_code_with_http_info(
         self,
         body: Annotated[GenerateM365DeviceCodeRequestParams, Field(description="Specifies the parameters to generate the user and device code to initiate authentication with Microsoft365.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1359,9 +2602,9 @@ class SourceApi:
 
         :param body: Specifies the parameters to generate the user and device code to initiate authentication with Microsoft365. (required)
         :type body: GenerateM365DeviceCodeRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1413,8 +2656,8 @@ class SourceApi:
     def generate_m365_device_code_without_preload_content(
         self,
         body: Annotated[GenerateM365DeviceCodeRequestParams, Field(description="Specifies the parameters to generate the user and device code to initiate authentication with Microsoft365.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1434,9 +2677,9 @@ class SourceApi:
 
         :param body: Specifies the parameters to generate the user and device code to initiate authentication with Microsoft365. (required)
         :type body: GenerateM365DeviceCodeRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1564,12 +2807,956 @@ class SourceApi:
 
 
     @validate_call
+    def get_m365_backup_controller(
+        self,
+        azure_token: Annotated[Optional[StrictStr], Field(description="Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Fetches the Microsoft 365 registered Backup Controller by the Cohesity App for the owner tenant
+
+        Fetches the registered Backup Controller by the Cohesity App for the tenant id within the JWT specified within the header.
+
+        :param azure_token: Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All
+        :type azure_token: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_m365_backup_controller_serialize(
+            azure_token=azure_token,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_m365_backup_controller_with_http_info(
+        self,
+        azure_token: Annotated[Optional[StrictStr], Field(description="Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Fetches the Microsoft 365 registered Backup Controller by the Cohesity App for the owner tenant
+
+        Fetches the registered Backup Controller by the Cohesity App for the tenant id within the JWT specified within the header.
+
+        :param azure_token: Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All
+        :type azure_token: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_m365_backup_controller_serialize(
+            azure_token=azure_token,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_m365_backup_controller_without_preload_content(
+        self,
+        azure_token: Annotated[Optional[StrictStr], Field(description="Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Fetches the Microsoft 365 registered Backup Controller by the Cohesity App for the owner tenant
+
+        Fetches the registered Backup Controller by the Cohesity App for the tenant id within the JWT specified within the header.
+
+        :param azure_token: Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All
+        :type azure_token: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_m365_backup_controller_serialize(
+            azure_token=azure_token,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_m365_backup_controller_serialize(
+        self,
+        azure_token,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if azure_token is not None:
+            _header_params['azureToken'] = azure_token
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/data-protect/sources/microsoft365/backup-controllers',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_microsoft365_self_service_config(
+        self,
+        domain: Annotated[Optional[StrictStr], Field(description="Specifies the domain name for the Microsoft365 source.")] = None,
+        tenant_id: Annotated[Optional[StrictStr], Field(description="Specifies the Cohesity Tenant ID for the source owner.")] = None,
+        workload_type: Annotated[Optional[StrictStr], Field(description="Specifies the workload type as filter for fetching Self-Service configuration types.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[CreateM365SelfServiceConfigRequestParams]:
+        """Get the list of Microsoft365 Self-Service configurations
+
+        Get the list of Self-Service configurations for all Microsoft365 sources for the given tenant ID.
+
+        :param domain: Specifies the domain name for the Microsoft365 source.
+        :type domain: str
+        :param tenant_id: Specifies the Cohesity Tenant ID for the source owner.
+        :type tenant_id: str
+        :param workload_type: Specifies the workload type as filter for fetching Self-Service configuration types.
+        :type workload_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_microsoft365_self_service_config_serialize(
+            domain=domain,
+            tenant_id=tenant_id,
+            workload_type=workload_type,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[CreateM365SelfServiceConfigRequestParams]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_microsoft365_self_service_config_with_http_info(
+        self,
+        domain: Annotated[Optional[StrictStr], Field(description="Specifies the domain name for the Microsoft365 source.")] = None,
+        tenant_id: Annotated[Optional[StrictStr], Field(description="Specifies the Cohesity Tenant ID for the source owner.")] = None,
+        workload_type: Annotated[Optional[StrictStr], Field(description="Specifies the workload type as filter for fetching Self-Service configuration types.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[CreateM365SelfServiceConfigRequestParams]]:
+        """Get the list of Microsoft365 Self-Service configurations
+
+        Get the list of Self-Service configurations for all Microsoft365 sources for the given tenant ID.
+
+        :param domain: Specifies the domain name for the Microsoft365 source.
+        :type domain: str
+        :param tenant_id: Specifies the Cohesity Tenant ID for the source owner.
+        :type tenant_id: str
+        :param workload_type: Specifies the workload type as filter for fetching Self-Service configuration types.
+        :type workload_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_microsoft365_self_service_config_serialize(
+            domain=domain,
+            tenant_id=tenant_id,
+            workload_type=workload_type,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[CreateM365SelfServiceConfigRequestParams]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_microsoft365_self_service_config_without_preload_content(
+        self,
+        domain: Annotated[Optional[StrictStr], Field(description="Specifies the domain name for the Microsoft365 source.")] = None,
+        tenant_id: Annotated[Optional[StrictStr], Field(description="Specifies the Cohesity Tenant ID for the source owner.")] = None,
+        workload_type: Annotated[Optional[StrictStr], Field(description="Specifies the workload type as filter for fetching Self-Service configuration types.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get the list of Microsoft365 Self-Service configurations
+
+        Get the list of Self-Service configurations for all Microsoft365 sources for the given tenant ID.
+
+        :param domain: Specifies the domain name for the Microsoft365 source.
+        :type domain: str
+        :param tenant_id: Specifies the Cohesity Tenant ID for the source owner.
+        :type tenant_id: str
+        :param workload_type: Specifies the workload type as filter for fetching Self-Service configuration types.
+        :type workload_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_microsoft365_self_service_config_serialize(
+            domain=domain,
+            tenant_id=tenant_id,
+            workload_type=workload_type,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[CreateM365SelfServiceConfigRequestParams]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_microsoft365_self_service_config_serialize(
+        self,
+        domain,
+        tenant_id,
+        workload_type,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if domain is not None:
+            
+            _query_params.append(('domain', domain))
+            
+        if tenant_id is not None:
+            
+            _query_params.append(('tenantId', tenant_id))
+            
+        if workload_type is not None:
+            
+            _query_params.append(('workloadType', workload_type))
+            
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/data-protect/sources/microsoft365/self-service-config',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_network_entities(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the entity Id of the resource pool")],
+        v_center_id: Annotated[StrictInt, Field(description="Specifies the entity Id of the vCenter")],
+        ancestor_entity_type: Annotated[StrictStr, Field(description="Specifies the ancestor entity type i.e. the node in the entity hierarchy which lies at a higher level than the resource pool entity id.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Sources:
+        """Get Network Entities within a Resource pool
+
+        List network entities for a resource pool.
+
+        :param id: Specifies the entity Id of the resource pool (required)
+        :type id: int
+        :param v_center_id: Specifies the entity Id of the vCenter (required)
+        :type v_center_id: int
+        :param ancestor_entity_type: Specifies the ancestor entity type i.e. the node in the entity hierarchy which lies at a higher level than the resource pool entity id. (required)
+        :type ancestor_entity_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_network_entities_serialize(
+            id=id,
+            v_center_id=v_center_id,
+            ancestor_entity_type=ancestor_entity_type,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "Sources",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_network_entities_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the entity Id of the resource pool")],
+        v_center_id: Annotated[StrictInt, Field(description="Specifies the entity Id of the vCenter")],
+        ancestor_entity_type: Annotated[StrictStr, Field(description="Specifies the ancestor entity type i.e. the node in the entity hierarchy which lies at a higher level than the resource pool entity id.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[Sources]:
+        """Get Network Entities within a Resource pool
+
+        List network entities for a resource pool.
+
+        :param id: Specifies the entity Id of the resource pool (required)
+        :type id: int
+        :param v_center_id: Specifies the entity Id of the vCenter (required)
+        :type v_center_id: int
+        :param ancestor_entity_type: Specifies the ancestor entity type i.e. the node in the entity hierarchy which lies at a higher level than the resource pool entity id. (required)
+        :type ancestor_entity_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_network_entities_serialize(
+            id=id,
+            v_center_id=v_center_id,
+            ancestor_entity_type=ancestor_entity_type,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "Sources",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_network_entities_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the entity Id of the resource pool")],
+        v_center_id: Annotated[StrictInt, Field(description="Specifies the entity Id of the vCenter")],
+        ancestor_entity_type: Annotated[StrictStr, Field(description="Specifies the ancestor entity type i.e. the node in the entity hierarchy which lies at a higher level than the resource pool entity id.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Network Entities within a Resource pool
+
+        List network entities for a resource pool.
+
+        :param id: Specifies the entity Id of the resource pool (required)
+        :type id: int
+        :param v_center_id: Specifies the entity Id of the vCenter (required)
+        :type v_center_id: int
+        :param ancestor_entity_type: Specifies the ancestor entity type i.e. the node in the entity hierarchy which lies at a higher level than the resource pool entity id. (required)
+        :type ancestor_entity_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_network_entities_serialize(
+            id=id,
+            v_center_id=v_center_id,
+            ancestor_entity_type=ancestor_entity_type,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "Sources",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_network_entities_serialize(
+        self,
+        id,
+        v_center_id,
+        ancestor_entity_type,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        if v_center_id is not None:
+            _path_params['vCenterId'] = v_center_id
+        # process the query parameters
+        if ancestor_entity_type is not None:
+            
+            _query_params.append(('ancestorEntityType', ancestor_entity_type))
+            
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/data-protect/sources/{vCenterId}/resource-pools/{id}/entities',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_protection_source_registration(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protection Source registration.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1589,12 +3776,12 @@ class SourceApi:
 
         :param id: Specifies the id of the Protection Source registration. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1619,9 +3806,9 @@ class SourceApi:
 
         _param = self._get_protection_source_registration_serialize(
             id=id,
+            request_initiator_type=request_initiator_type,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            request_initiator_type=request_initiator_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1646,9 +3833,9 @@ class SourceApi:
     def get_protection_source_registration_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protection Source registration.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1668,12 +3855,12 @@ class SourceApi:
 
         :param id: Specifies the id of the Protection Source registration. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1698,9 +3885,9 @@ class SourceApi:
 
         _param = self._get_protection_source_registration_serialize(
             id=id,
+            request_initiator_type=request_initiator_type,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            request_initiator_type=request_initiator_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1725,9 +3912,9 @@ class SourceApi:
     def get_protection_source_registration_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protection Source registration.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1747,12 +3934,12 @@ class SourceApi:
 
         :param id: Specifies the id of the Protection Source registration. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1777,9 +3964,9 @@ class SourceApi:
 
         _param = self._get_protection_source_registration_serialize(
             id=id,
+            request_initiator_type=request_initiator_type,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            request_initiator_type=request_initiator_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1799,9 +3986,9 @@ class SourceApi:
     def _get_protection_source_registration_serialize(
         self,
         id,
+        request_initiator_type,
         access_cluster_id,
         region_id,
-        request_initiator_type,
         _request_auth,
         _content_type,
         _headers,
@@ -1827,12 +4014,12 @@ class SourceApi:
             _path_params['id'] = id
         # process the query parameters
         # process the header parameters
+        if request_initiator_type is not None:
+            _header_params['requestInitiatorType'] = request_initiator_type
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
         if region_id is not None:
             _header_params['regionId'] = region_id
-        if request_initiator_type is not None:
-            _header_params['requestInitiatorType'] = request_initiator_type
         # process the form parameters
         # process the body parameter
 
@@ -1872,13 +4059,13 @@ class SourceApi:
     @validate_call
     def get_protection_sources(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which Sources are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Sources which belong belong to all tenants which the current user has permission to see. If false, then only Sources for the current user will be returned.")] = None,
         include_source_credentials: Annotated[Optional[StrictBool], Field(description="If true, the encrypted crednetial for the registered sources will be included. Credential is first encrypted with internal key and then reencrypted with user supplied encryption key.")] = None,
         encryption_key: Annotated[Optional[StrictStr], Field(description="Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1896,10 +4083,6 @@ class SourceApi:
 
         Get a List of Protection Sources.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param tenant_ids: TenantIds contains ids of the tenants for which Sources are to be returned.
@@ -1910,6 +4093,10 @@ class SourceApi:
         :type include_source_credentials: bool
         :param encryption_key: Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified.
         :type encryption_key: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1933,13 +4120,13 @@ class SourceApi:
         """ # noqa: E501
 
         _param = self._get_protection_sources_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
             include_source_credentials=include_source_credentials,
             encryption_key=encryption_key,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1963,13 +4150,13 @@ class SourceApi:
     @validate_call
     def get_protection_sources_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which Sources are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Sources which belong belong to all tenants which the current user has permission to see. If false, then only Sources for the current user will be returned.")] = None,
         include_source_credentials: Annotated[Optional[StrictBool], Field(description="If true, the encrypted crednetial for the registered sources will be included. Credential is first encrypted with internal key and then reencrypted with user supplied encryption key.")] = None,
         encryption_key: Annotated[Optional[StrictStr], Field(description="Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1987,10 +4174,6 @@ class SourceApi:
 
         Get a List of Protection Sources.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param tenant_ids: TenantIds contains ids of the tenants for which Sources are to be returned.
@@ -2001,6 +4184,10 @@ class SourceApi:
         :type include_source_credentials: bool
         :param encryption_key: Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified.
         :type encryption_key: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2024,13 +4211,13 @@ class SourceApi:
         """ # noqa: E501
 
         _param = self._get_protection_sources_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
             include_source_credentials=include_source_credentials,
             encryption_key=encryption_key,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2054,13 +4241,13 @@ class SourceApi:
     @validate_call
     def get_protection_sources_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which Sources are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Sources which belong belong to all tenants which the current user has permission to see. If false, then only Sources for the current user will be returned.")] = None,
         include_source_credentials: Annotated[Optional[StrictBool], Field(description="If true, the encrypted crednetial for the registered sources will be included. Credential is first encrypted with internal key and then reencrypted with user supplied encryption key.")] = None,
         encryption_key: Annotated[Optional[StrictStr], Field(description="Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2078,10 +4265,6 @@ class SourceApi:
 
         Get a List of Protection Sources.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param tenant_ids: TenantIds contains ids of the tenants for which Sources are to be returned.
@@ -2092,6 +4275,10 @@ class SourceApi:
         :type include_source_credentials: bool
         :param encryption_key: Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified.
         :type encryption_key: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2115,13 +4302,13 @@ class SourceApi:
         """ # noqa: E501
 
         _param = self._get_protection_sources_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
             include_source_credentials=include_source_credentials,
             encryption_key=encryption_key,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2140,13 +4327,13 @@ class SourceApi:
 
     def _get_protection_sources_serialize(
         self,
-        access_cluster_id,
-        region_id,
         request_initiator_type,
         tenant_ids,
         include_tenants,
         include_source_credentials,
         encryption_key,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2187,12 +4374,12 @@ class SourceApi:
             _query_params.append(('encryptionKey', encryption_key))
             
         # process the header parameters
+        if request_initiator_type is not None:
+            _header_params['requestInitiatorType'] = request_initiator_type
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
         if region_id is not None:
             _header_params['regionId'] = region_id
-        if request_initiator_type is not None:
-            _header_params['requestInitiatorType'] = request_initiator_type
         # process the form parameters
         # process the body parameter
 
@@ -2233,9 +4420,9 @@ class SourceApi:
     def get_source_attribute_filters(
         self,
         source_uuid: Annotated[StrictStr, Field(description="Specifies the source UUID of the parent entity.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         environment: Annotated[Optional[StrictStr], Field(description="Specifies the environment type of the Protection Source.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2255,12 +4442,12 @@ class SourceApi:
 
         :param source_uuid: Specifies the source UUID of the parent entity. (required)
         :type source_uuid: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param environment: Specifies the environment type of the Protection Source.
         :type environment: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2285,9 +4472,9 @@ class SourceApi:
 
         _param = self._get_source_attribute_filters_serialize(
             source_uuid=source_uuid,
+            environment=environment,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            environment=environment,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2312,9 +4499,9 @@ class SourceApi:
     def get_source_attribute_filters_with_http_info(
         self,
         source_uuid: Annotated[StrictStr, Field(description="Specifies the source UUID of the parent entity.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         environment: Annotated[Optional[StrictStr], Field(description="Specifies the environment type of the Protection Source.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2334,12 +4521,12 @@ class SourceApi:
 
         :param source_uuid: Specifies the source UUID of the parent entity. (required)
         :type source_uuid: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param environment: Specifies the environment type of the Protection Source.
         :type environment: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2364,9 +4551,9 @@ class SourceApi:
 
         _param = self._get_source_attribute_filters_serialize(
             source_uuid=source_uuid,
+            environment=environment,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            environment=environment,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2391,9 +4578,9 @@ class SourceApi:
     def get_source_attribute_filters_without_preload_content(
         self,
         source_uuid: Annotated[StrictStr, Field(description="Specifies the source UUID of the parent entity.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         environment: Annotated[Optional[StrictStr], Field(description="Specifies the environment type of the Protection Source.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2413,12 +4600,12 @@ class SourceApi:
 
         :param source_uuid: Specifies the source UUID of the parent entity. (required)
         :type source_uuid: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param environment: Specifies the environment type of the Protection Source.
         :type environment: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2443,9 +4630,9 @@ class SourceApi:
 
         _param = self._get_source_attribute_filters_serialize(
             source_uuid=source_uuid,
+            environment=environment,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            environment=environment,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2465,9 +4652,9 @@ class SourceApi:
     def _get_source_attribute_filters_serialize(
         self,
         source_uuid,
+        environment,
         access_cluster_id,
         region_id,
-        environment,
         _request_auth,
         _content_type,
         _headers,
@@ -2542,8 +4729,6 @@ class SourceApi:
     @validate_call
     def get_source_registrations(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Ids specifies the list of source registration ids to return. If left empty, every source registration will be returned by default.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Registrations which were created by all tenants which the current user has permission to see. If false, then only Registrations created by the current user will be returned.")] = None,
@@ -2551,6 +4736,9 @@ class SourceApi:
         encryption_key: Annotated[Optional[StrictStr], Field(description="Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         include_external_metadata: Annotated[Optional[StrictBool], Field(description="If true, the external entity metadata like maintenance mode config for the registered sources will be included.")] = None,
+        ignore_tenant_migration_in_progress_check: Annotated[Optional[StrictBool], Field(description="If true, tenant migration check will be ignored")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2568,10 +4756,6 @@ class SourceApi:
 
         Get the list of Protection Source registrations.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Ids specifies the list of source registration ids to return. If left empty, every source registration will be returned by default.
         :type ids: List[int]
         :param tenant_ids: TenantIds contains ids of the tenants for which objects are to be returned.
@@ -2586,6 +4770,12 @@ class SourceApi:
         :type use_cached_data: bool
         :param include_external_metadata: If true, the external entity metadata like maintenance mode config for the registered sources will be included.
         :type include_external_metadata: bool
+        :param ignore_tenant_migration_in_progress_check: If true, tenant migration check will be ignored
+        :type ignore_tenant_migration_in_progress_check: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2609,8 +4799,6 @@ class SourceApi:
         """ # noqa: E501
 
         _param = self._get_source_registrations_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
@@ -2618,6 +4806,9 @@ class SourceApi:
             encryption_key=encryption_key,
             use_cached_data=use_cached_data,
             include_external_metadata=include_external_metadata,
+            ignore_tenant_migration_in_progress_check=ignore_tenant_migration_in_progress_check,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2641,8 +4832,6 @@ class SourceApi:
     @validate_call
     def get_source_registrations_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Ids specifies the list of source registration ids to return. If left empty, every source registration will be returned by default.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Registrations which were created by all tenants which the current user has permission to see. If false, then only Registrations created by the current user will be returned.")] = None,
@@ -2650,6 +4839,9 @@ class SourceApi:
         encryption_key: Annotated[Optional[StrictStr], Field(description="Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         include_external_metadata: Annotated[Optional[StrictBool], Field(description="If true, the external entity metadata like maintenance mode config for the registered sources will be included.")] = None,
+        ignore_tenant_migration_in_progress_check: Annotated[Optional[StrictBool], Field(description="If true, tenant migration check will be ignored")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2667,10 +4859,6 @@ class SourceApi:
 
         Get the list of Protection Source registrations.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Ids specifies the list of source registration ids to return. If left empty, every source registration will be returned by default.
         :type ids: List[int]
         :param tenant_ids: TenantIds contains ids of the tenants for which objects are to be returned.
@@ -2685,6 +4873,12 @@ class SourceApi:
         :type use_cached_data: bool
         :param include_external_metadata: If true, the external entity metadata like maintenance mode config for the registered sources will be included.
         :type include_external_metadata: bool
+        :param ignore_tenant_migration_in_progress_check: If true, tenant migration check will be ignored
+        :type ignore_tenant_migration_in_progress_check: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2708,8 +4902,6 @@ class SourceApi:
         """ # noqa: E501
 
         _param = self._get_source_registrations_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
@@ -2717,6 +4909,9 @@ class SourceApi:
             encryption_key=encryption_key,
             use_cached_data=use_cached_data,
             include_external_metadata=include_external_metadata,
+            ignore_tenant_migration_in_progress_check=ignore_tenant_migration_in_progress_check,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2740,8 +4935,6 @@ class SourceApi:
     @validate_call
     def get_source_registrations_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Ids specifies the list of source registration ids to return. If left empty, every source registration will be returned by default.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Registrations which were created by all tenants which the current user has permission to see. If false, then only Registrations created by the current user will be returned.")] = None,
@@ -2749,6 +4942,9 @@ class SourceApi:
         encryption_key: Annotated[Optional[StrictStr], Field(description="Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         include_external_metadata: Annotated[Optional[StrictBool], Field(description="If true, the external entity metadata like maintenance mode config for the registered sources will be included.")] = None,
+        ignore_tenant_migration_in_progress_check: Annotated[Optional[StrictBool], Field(description="If true, tenant migration check will be ignored")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2766,10 +4962,6 @@ class SourceApi:
 
         Get the list of Protection Source registrations.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Ids specifies the list of source registration ids to return. If left empty, every source registration will be returned by default.
         :type ids: List[int]
         :param tenant_ids: TenantIds contains ids of the tenants for which objects are to be returned.
@@ -2784,6 +4976,12 @@ class SourceApi:
         :type use_cached_data: bool
         :param include_external_metadata: If true, the external entity metadata like maintenance mode config for the registered sources will be included.
         :type include_external_metadata: bool
+        :param ignore_tenant_migration_in_progress_check: If true, tenant migration check will be ignored
+        :type ignore_tenant_migration_in_progress_check: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2807,8 +5005,6 @@ class SourceApi:
         """ # noqa: E501
 
         _param = self._get_source_registrations_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
@@ -2816,6 +5012,9 @@ class SourceApi:
             encryption_key=encryption_key,
             use_cached_data=use_cached_data,
             include_external_metadata=include_external_metadata,
+            ignore_tenant_migration_in_progress_check=ignore_tenant_migration_in_progress_check,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2834,8 +5033,6 @@ class SourceApi:
 
     def _get_source_registrations_serialize(
         self,
-        access_cluster_id,
-        region_id,
         ids,
         tenant_ids,
         include_tenants,
@@ -2843,6 +5040,9 @@ class SourceApi:
         encryption_key,
         use_cached_data,
         include_external_metadata,
+        ignore_tenant_migration_in_progress_check,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2895,6 +5095,10 @@ class SourceApi:
             
             _query_params.append(('includeExternalMetadata', include_external_metadata))
             
+        if ignore_tenant_migration_in_progress_check is not None:
+            
+            _query_params.append(('ignoreTenantMigrationInProgressCheck', ignore_tenant_migration_in_progress_check))
+            
         # process the header parameters
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
@@ -2940,8 +5144,8 @@ class SourceApi:
     def get_vdc_details(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the ID of the VMware virtual datacenter.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2961,9 +5165,9 @@ class SourceApi:
 
         :param id: Specifies the ID of the VMware virtual datacenter. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3015,8 +5219,8 @@ class SourceApi:
     def get_vdc_details_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the ID of the VMware virtual datacenter.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3036,9 +5240,9 @@ class SourceApi:
 
         :param id: Specifies the ID of the VMware virtual datacenter. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3090,8 +5294,8 @@ class SourceApi:
     def get_vdc_details_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the ID of the VMware virtual datacenter.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3111,9 +5315,9 @@ class SourceApi:
 
         :param id: Specifies the ID of the VMware virtual datacenter. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3228,10 +5432,423 @@ class SourceApi:
 
 
     @validate_call
+    def list_application_servers(
+        self,
+        root_node_id: Annotated[StrictInt, Field(description="Specifies the Protection Source Id of the root node of a Protection Sources tree. A root node represents a registered Source on the Cohesity Cluster, such as a vCenter Server.")],
+        application_environment: Annotated[StrictStr, Field(description="Specifies the types of applications such as 'kSQL', 'kExchange', 'kAD' etc. running on the Protection Source.")],
+        environment: Annotated[Optional[StrictStr], Field(description="Specifies the environment of the Protection Source tree.")] = None,
+        node_id: Annotated[Optional[StrictInt], Field(description="Specifies the Protection Source Id of the entity in the Protection Source tree hosting the applications.")] = None,
+        next_entity_id: Annotated[Optional[StrictInt], Field(description="Specifies the entity id for the Node at any level within the Source entity hierarchy whose children are to be paginated.")] = None,
+        page_size: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of entities to be returned within the page.")] = None,
+        after_cursor_entity_id: Annotated[Optional[StrictInt], Field(description="Specifies the entity id starting from which the items are to be returned")] = None,
+        before_cursor_entity_id: Annotated[Optional[StrictInt], Field(description="Specifies the entity id upto which the items are to be returned")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ListAppServersResponse:
+        """The Application Servers in a Protection Source tree.
+
+        Returns the registered Application Servers and their Object subtrees. Given the root node id of a Protection Source tree, returns the list of Application Servers registered under that tree based on the filters.
+
+        :param root_node_id: Specifies the Protection Source Id of the root node of a Protection Sources tree. A root node represents a registered Source on the Cohesity Cluster, such as a vCenter Server. (required)
+        :type root_node_id: int
+        :param application_environment: Specifies the types of applications such as 'kSQL', 'kExchange', 'kAD' etc. running on the Protection Source. (required)
+        :type application_environment: str
+        :param environment: Specifies the environment of the Protection Source tree.
+        :type environment: str
+        :param node_id: Specifies the Protection Source Id of the entity in the Protection Source tree hosting the applications.
+        :type node_id: int
+        :param next_entity_id: Specifies the entity id for the Node at any level within the Source entity hierarchy whose children are to be paginated.
+        :type next_entity_id: int
+        :param page_size: Specifies the maximum number of entities to be returned within the page.
+        :type page_size: int
+        :param after_cursor_entity_id: Specifies the entity id starting from which the items are to be returned
+        :type after_cursor_entity_id: int
+        :param before_cursor_entity_id: Specifies the entity id upto which the items are to be returned
+        :type before_cursor_entity_id: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_application_servers_serialize(
+            root_node_id=root_node_id,
+            application_environment=application_environment,
+            environment=environment,
+            node_id=node_id,
+            next_entity_id=next_entity_id,
+            page_size=page_size,
+            after_cursor_entity_id=after_cursor_entity_id,
+            before_cursor_entity_id=before_cursor_entity_id,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListAppServersResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def list_application_servers_with_http_info(
+        self,
+        root_node_id: Annotated[StrictInt, Field(description="Specifies the Protection Source Id of the root node of a Protection Sources tree. A root node represents a registered Source on the Cohesity Cluster, such as a vCenter Server.")],
+        application_environment: Annotated[StrictStr, Field(description="Specifies the types of applications such as 'kSQL', 'kExchange', 'kAD' etc. running on the Protection Source.")],
+        environment: Annotated[Optional[StrictStr], Field(description="Specifies the environment of the Protection Source tree.")] = None,
+        node_id: Annotated[Optional[StrictInt], Field(description="Specifies the Protection Source Id of the entity in the Protection Source tree hosting the applications.")] = None,
+        next_entity_id: Annotated[Optional[StrictInt], Field(description="Specifies the entity id for the Node at any level within the Source entity hierarchy whose children are to be paginated.")] = None,
+        page_size: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of entities to be returned within the page.")] = None,
+        after_cursor_entity_id: Annotated[Optional[StrictInt], Field(description="Specifies the entity id starting from which the items are to be returned")] = None,
+        before_cursor_entity_id: Annotated[Optional[StrictInt], Field(description="Specifies the entity id upto which the items are to be returned")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ListAppServersResponse]:
+        """The Application Servers in a Protection Source tree.
+
+        Returns the registered Application Servers and their Object subtrees. Given the root node id of a Protection Source tree, returns the list of Application Servers registered under that tree based on the filters.
+
+        :param root_node_id: Specifies the Protection Source Id of the root node of a Protection Sources tree. A root node represents a registered Source on the Cohesity Cluster, such as a vCenter Server. (required)
+        :type root_node_id: int
+        :param application_environment: Specifies the types of applications such as 'kSQL', 'kExchange', 'kAD' etc. running on the Protection Source. (required)
+        :type application_environment: str
+        :param environment: Specifies the environment of the Protection Source tree.
+        :type environment: str
+        :param node_id: Specifies the Protection Source Id of the entity in the Protection Source tree hosting the applications.
+        :type node_id: int
+        :param next_entity_id: Specifies the entity id for the Node at any level within the Source entity hierarchy whose children are to be paginated.
+        :type next_entity_id: int
+        :param page_size: Specifies the maximum number of entities to be returned within the page.
+        :type page_size: int
+        :param after_cursor_entity_id: Specifies the entity id starting from which the items are to be returned
+        :type after_cursor_entity_id: int
+        :param before_cursor_entity_id: Specifies the entity id upto which the items are to be returned
+        :type before_cursor_entity_id: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_application_servers_serialize(
+            root_node_id=root_node_id,
+            application_environment=application_environment,
+            environment=environment,
+            node_id=node_id,
+            next_entity_id=next_entity_id,
+            page_size=page_size,
+            after_cursor_entity_id=after_cursor_entity_id,
+            before_cursor_entity_id=before_cursor_entity_id,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListAppServersResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def list_application_servers_without_preload_content(
+        self,
+        root_node_id: Annotated[StrictInt, Field(description="Specifies the Protection Source Id of the root node of a Protection Sources tree. A root node represents a registered Source on the Cohesity Cluster, such as a vCenter Server.")],
+        application_environment: Annotated[StrictStr, Field(description="Specifies the types of applications such as 'kSQL', 'kExchange', 'kAD' etc. running on the Protection Source.")],
+        environment: Annotated[Optional[StrictStr], Field(description="Specifies the environment of the Protection Source tree.")] = None,
+        node_id: Annotated[Optional[StrictInt], Field(description="Specifies the Protection Source Id of the entity in the Protection Source tree hosting the applications.")] = None,
+        next_entity_id: Annotated[Optional[StrictInt], Field(description="Specifies the entity id for the Node at any level within the Source entity hierarchy whose children are to be paginated.")] = None,
+        page_size: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of entities to be returned within the page.")] = None,
+        after_cursor_entity_id: Annotated[Optional[StrictInt], Field(description="Specifies the entity id starting from which the items are to be returned")] = None,
+        before_cursor_entity_id: Annotated[Optional[StrictInt], Field(description="Specifies the entity id upto which the items are to be returned")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """The Application Servers in a Protection Source tree.
+
+        Returns the registered Application Servers and their Object subtrees. Given the root node id of a Protection Source tree, returns the list of Application Servers registered under that tree based on the filters.
+
+        :param root_node_id: Specifies the Protection Source Id of the root node of a Protection Sources tree. A root node represents a registered Source on the Cohesity Cluster, such as a vCenter Server. (required)
+        :type root_node_id: int
+        :param application_environment: Specifies the types of applications such as 'kSQL', 'kExchange', 'kAD' etc. running on the Protection Source. (required)
+        :type application_environment: str
+        :param environment: Specifies the environment of the Protection Source tree.
+        :type environment: str
+        :param node_id: Specifies the Protection Source Id of the entity in the Protection Source tree hosting the applications.
+        :type node_id: int
+        :param next_entity_id: Specifies the entity id for the Node at any level within the Source entity hierarchy whose children are to be paginated.
+        :type next_entity_id: int
+        :param page_size: Specifies the maximum number of entities to be returned within the page.
+        :type page_size: int
+        :param after_cursor_entity_id: Specifies the entity id starting from which the items are to be returned
+        :type after_cursor_entity_id: int
+        :param before_cursor_entity_id: Specifies the entity id upto which the items are to be returned
+        :type before_cursor_entity_id: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_application_servers_serialize(
+            root_node_id=root_node_id,
+            application_environment=application_environment,
+            environment=environment,
+            node_id=node_id,
+            next_entity_id=next_entity_id,
+            page_size=page_size,
+            after_cursor_entity_id=after_cursor_entity_id,
+            before_cursor_entity_id=before_cursor_entity_id,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListAppServersResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_application_servers_serialize(
+        self,
+        root_node_id,
+        application_environment,
+        environment,
+        node_id,
+        next_entity_id,
+        page_size,
+        after_cursor_entity_id,
+        before_cursor_entity_id,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if root_node_id is not None:
+            
+            _query_params.append(('rootNodeId', root_node_id))
+            
+        if environment is not None:
+            
+            _query_params.append(('environment', environment))
+            
+        if node_id is not None:
+            
+            _query_params.append(('nodeId', node_id))
+            
+        if application_environment is not None:
+            
+            _query_params.append(('applicationEnvironment', application_environment))
+            
+        if next_entity_id is not None:
+            
+            _query_params.append(('nextEntityId', next_entity_id))
+            
+        if page_size is not None:
+            
+            _query_params.append(('pageSize', page_size))
+            
+        if after_cursor_entity_id is not None:
+            
+            _query_params.append(('afterCursorEntityId', after_cursor_entity_id))
+            
+        if before_cursor_entity_id is not None:
+            
+            _query_params.append(('beforeCursorEntityId', before_cursor_entity_id))
+            
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/data-protect/sources/application-servers',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def mcm_delete_protection_source_registration(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the ID of the Protection Source Registration.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        body: Annotated[Optional[McmSourceUnRegisterRequestParams], Field(description="Specifies the parameters to delete the registration.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3251,8 +5868,10 @@ class SourceApi:
 
         :param id: Specifies the ID of the Protection Source Registration. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
+        :param body: Specifies the parameters to delete the registration.
+        :type body: McmSourceUnRegisterRequestParams
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3278,6 +5897,7 @@ class SourceApi:
         _param = self._mcm_delete_protection_source_registration_serialize(
             id=id,
             region_id=region_id,
+            body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3302,7 +5922,8 @@ class SourceApi:
     def mcm_delete_protection_source_registration_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the ID of the Protection Source Registration.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        body: Annotated[Optional[McmSourceUnRegisterRequestParams], Field(description="Specifies the parameters to delete the registration.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3322,8 +5943,10 @@ class SourceApi:
 
         :param id: Specifies the ID of the Protection Source Registration. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
+        :param body: Specifies the parameters to delete the registration.
+        :type body: McmSourceUnRegisterRequestParams
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3349,6 +5972,7 @@ class SourceApi:
         _param = self._mcm_delete_protection_source_registration_serialize(
             id=id,
             region_id=region_id,
+            body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3373,7 +5997,8 @@ class SourceApi:
     def mcm_delete_protection_source_registration_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the ID of the Protection Source Registration.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        body: Annotated[Optional[McmSourceUnRegisterRequestParams], Field(description="Specifies the parameters to delete the registration.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3393,8 +6018,10 @@ class SourceApi:
 
         :param id: Specifies the ID of the Protection Source Registration. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
+        :param body: Specifies the parameters to delete the registration.
+        :type body: McmSourceUnRegisterRequestParams
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3420,6 +6047,7 @@ class SourceApi:
         _param = self._mcm_delete_protection_source_registration_serialize(
             id=id,
             region_id=region_id,
+            body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3440,6 +6068,7 @@ class SourceApi:
         self,
         id,
         region_id,
+        body,
         _request_auth,
         _content_type,
         _headers,
@@ -3469,6 +6098,8 @@ class SourceApi:
             _header_params['regionId'] = region_id
         # process the form parameters
         # process the body parameter
+        if body is not None:
+            _body_params = body
 
 
         # set the HTTP header `Accept`
@@ -3479,6 +6110,19 @@ class SourceApi:
                 ]
             )
 
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = [
@@ -3507,7 +6151,7 @@ class SourceApi:
     def mcm_get_protection_source_registration(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the Protection Source registration.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3527,7 +6171,7 @@ class SourceApi:
 
         :param id: Specifies the id of the Protection Source registration. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3578,7 +6222,7 @@ class SourceApi:
     def mcm_get_protection_source_registration_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the Protection Source registration.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3598,7 +6242,7 @@ class SourceApi:
 
         :param id: Specifies the id of the Protection Source registration. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3649,7 +6293,7 @@ class SourceApi:
     def mcm_get_protection_source_registration_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the Protection Source registration.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3669,7 +6313,7 @@ class SourceApi:
 
         :param id: Specifies the id of the Protection Source registration. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3782,12 +6426,12 @@ class SourceApi:
     @validate_call
     def mcm_get_protection_sources(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         environments: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of environment type of the Protection Source.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of ids to filter Protection Sources.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
         cluster_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of cluster ids.")] = None,
         exclude_protection_stats: Annotated[Optional[StrictBool], Field(description="Whether to exclude Protection Sources protection stats in response.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3805,8 +6449,6 @@ class SourceApi:
 
         Get a List of Protection Sources.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param environments: Specifies the list of environment type of the Protection Source.
         :type environments: List[str]
         :param ids: Specifies the list of ids to filter Protection Sources.
@@ -3817,6 +6459,8 @@ class SourceApi:
         :type cluster_ids: List[str]
         :param exclude_protection_stats: Whether to exclude Protection Sources protection stats in response.
         :type exclude_protection_stats: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3840,12 +6484,12 @@ class SourceApi:
         """ # noqa: E501
 
         _param = self._mcm_get_protection_sources_serialize(
-            region_id=region_id,
             environments=environments,
             ids=ids,
             region_ids=region_ids,
             cluster_ids=cluster_ids,
             exclude_protection_stats=exclude_protection_stats,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3869,12 +6513,12 @@ class SourceApi:
     @validate_call
     def mcm_get_protection_sources_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         environments: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of environment type of the Protection Source.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of ids to filter Protection Sources.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
         cluster_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of cluster ids.")] = None,
         exclude_protection_stats: Annotated[Optional[StrictBool], Field(description="Whether to exclude Protection Sources protection stats in response.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3892,8 +6536,6 @@ class SourceApi:
 
         Get a List of Protection Sources.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param environments: Specifies the list of environment type of the Protection Source.
         :type environments: List[str]
         :param ids: Specifies the list of ids to filter Protection Sources.
@@ -3904,6 +6546,8 @@ class SourceApi:
         :type cluster_ids: List[str]
         :param exclude_protection_stats: Whether to exclude Protection Sources protection stats in response.
         :type exclude_protection_stats: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3927,12 +6571,12 @@ class SourceApi:
         """ # noqa: E501
 
         _param = self._mcm_get_protection_sources_serialize(
-            region_id=region_id,
             environments=environments,
             ids=ids,
             region_ids=region_ids,
             cluster_ids=cluster_ids,
             exclude_protection_stats=exclude_protection_stats,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3956,12 +6600,12 @@ class SourceApi:
     @validate_call
     def mcm_get_protection_sources_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         environments: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of environment type of the Protection Source.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of ids to filter Protection Sources.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
         cluster_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of cluster ids.")] = None,
         exclude_protection_stats: Annotated[Optional[StrictBool], Field(description="Whether to exclude Protection Sources protection stats in response.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3979,8 +6623,6 @@ class SourceApi:
 
         Get a List of Protection Sources.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param environments: Specifies the list of environment type of the Protection Source.
         :type environments: List[str]
         :param ids: Specifies the list of ids to filter Protection Sources.
@@ -3991,6 +6633,8 @@ class SourceApi:
         :type cluster_ids: List[str]
         :param exclude_protection_stats: Whether to exclude Protection Sources protection stats in response.
         :type exclude_protection_stats: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4014,12 +6658,12 @@ class SourceApi:
         """ # noqa: E501
 
         _param = self._mcm_get_protection_sources_serialize(
-            region_id=region_id,
             environments=environments,
             ids=ids,
             region_ids=region_ids,
             cluster_ids=cluster_ids,
             exclude_protection_stats=exclude_protection_stats,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4038,12 +6682,12 @@ class SourceApi:
 
     def _mcm_get_protection_sources_serialize(
         self,
-        region_id,
         environments,
         ids,
         region_ids,
         cluster_ids,
         exclude_protection_stats,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -4133,8 +6777,8 @@ class SourceApi:
     def mcm_register_protection_source(
         self,
         body: Annotated[McmSourceRegistrationRequestParams, Field(description="Specifies the parameters to register a Protection Source.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="Specifies the destination cluster id on which this Source needs to be registered.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4154,10 +6798,10 @@ class SourceApi:
 
         :param body: Specifies the parameters to register a Protection Source. (required)
         :type body: McmSourceRegistrationRequestParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param access_cluster_id: Specifies the destination cluster id on which this Source needs to be registered.
         :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4182,8 +6826,8 @@ class SourceApi:
 
         _param = self._mcm_register_protection_source_serialize(
             body=body,
-            region_id=region_id,
             access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4208,8 +6852,8 @@ class SourceApi:
     def mcm_register_protection_source_with_http_info(
         self,
         body: Annotated[McmSourceRegistrationRequestParams, Field(description="Specifies the parameters to register a Protection Source.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="Specifies the destination cluster id on which this Source needs to be registered.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4229,10 +6873,10 @@ class SourceApi:
 
         :param body: Specifies the parameters to register a Protection Source. (required)
         :type body: McmSourceRegistrationRequestParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param access_cluster_id: Specifies the destination cluster id on which this Source needs to be registered.
         :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4257,8 +6901,8 @@ class SourceApi:
 
         _param = self._mcm_register_protection_source_serialize(
             body=body,
-            region_id=region_id,
             access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4283,8 +6927,8 @@ class SourceApi:
     def mcm_register_protection_source_without_preload_content(
         self,
         body: Annotated[McmSourceRegistrationRequestParams, Field(description="Specifies the parameters to register a Protection Source.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="Specifies the destination cluster id on which this Source needs to be registered.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4304,10 +6948,10 @@ class SourceApi:
 
         :param body: Specifies the parameters to register a Protection Source. (required)
         :type body: McmSourceRegistrationRequestParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param access_cluster_id: Specifies the destination cluster id on which this Source needs to be registered.
         :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4332,8 +6976,8 @@ class SourceApi:
 
         _param = self._mcm_register_protection_source_serialize(
             body=body,
-            region_id=region_id,
             access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4353,8 +6997,8 @@ class SourceApi:
     def _mcm_register_protection_source_serialize(
         self,
         body,
-        region_id,
         access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -4378,10 +7022,10 @@ class SourceApi:
         # process the path parameters
         # process the query parameters
         # process the header parameters
-        if region_id is not None:
-            _header_params['regionId'] = region_id
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
         # process the form parameters
         # process the body parameter
         if body is not None:
@@ -4437,8 +7081,8 @@ class SourceApi:
     def mcm_test_source_connection(
         self,
         body: Annotated[SourceConnectionRequestParams, Field(description="Specifies the parameters to test connectivity of a Protection Source.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="Specifies the destination cluster id on which this Source needs to be registered.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4458,10 +7102,10 @@ class SourceApi:
 
         :param body: Specifies the parameters to test connectivity of a Protection Source. (required)
         :type body: SourceConnectionRequestParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param access_cluster_id: Specifies the destination cluster id on which this Source needs to be registered.
         :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4486,8 +7130,8 @@ class SourceApi:
 
         _param = self._mcm_test_source_connection_serialize(
             body=body,
-            region_id=region_id,
             access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4512,8 +7156,8 @@ class SourceApi:
     def mcm_test_source_connection_with_http_info(
         self,
         body: Annotated[SourceConnectionRequestParams, Field(description="Specifies the parameters to test connectivity of a Protection Source.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="Specifies the destination cluster id on which this Source needs to be registered.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4533,10 +7177,10 @@ class SourceApi:
 
         :param body: Specifies the parameters to test connectivity of a Protection Source. (required)
         :type body: SourceConnectionRequestParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param access_cluster_id: Specifies the destination cluster id on which this Source needs to be registered.
         :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4561,8 +7205,8 @@ class SourceApi:
 
         _param = self._mcm_test_source_connection_serialize(
             body=body,
-            region_id=region_id,
             access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4587,8 +7231,8 @@ class SourceApi:
     def mcm_test_source_connection_without_preload_content(
         self,
         body: Annotated[SourceConnectionRequestParams, Field(description="Specifies the parameters to test connectivity of a Protection Source.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="Specifies the destination cluster id on which this Source needs to be registered.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4608,10 +7252,10 @@ class SourceApi:
 
         :param body: Specifies the parameters to test connectivity of a Protection Source. (required)
         :type body: SourceConnectionRequestParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param access_cluster_id: Specifies the destination cluster id on which this Source needs to be registered.
         :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4636,8 +7280,8 @@ class SourceApi:
 
         _param = self._mcm_test_source_connection_serialize(
             body=body,
-            region_id=region_id,
             access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4657,8 +7301,8 @@ class SourceApi:
     def _mcm_test_source_connection_serialize(
         self,
         body,
-        region_id,
         access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -4682,10 +7326,10 @@ class SourceApi:
         # process the path parameters
         # process the query parameters
         # process the header parameters
-        if region_id is not None:
-            _header_params['regionId'] = region_id
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
         # process the form parameters
         # process the body parameter
         if body is not None:
@@ -4742,8 +7386,8 @@ class SourceApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protection Source registration.")],
         body: Annotated[SourceRegistrationPatchRequestParams, Field(description="Specifies the parameters to partially update the registration.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4765,9 +7409,9 @@ class SourceApi:
         :type id: int
         :param body: Specifies the parameters to partially update the registration. (required)
         :type body: SourceRegistrationPatchRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4821,8 +7465,8 @@ class SourceApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protection Source registration.")],
         body: Annotated[SourceRegistrationPatchRequestParams, Field(description="Specifies the parameters to partially update the registration.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4844,9 +7488,9 @@ class SourceApi:
         :type id: int
         :param body: Specifies the parameters to partially update the registration. (required)
         :type body: SourceRegistrationPatchRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4900,8 +7544,8 @@ class SourceApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protection Source registration.")],
         body: Annotated[SourceRegistrationPatchRequestParams, Field(description="Specifies the parameters to partially update the registration.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4923,9 +7567,9 @@ class SourceApi:
         :type id: int
         :param body: Specifies the parameters to partially update the registration. (required)
         :type body: SourceRegistrationPatchRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5060,8 +7704,8 @@ class SourceApi:
     def protection_source_by_id(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protection Source.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5081,9 +7725,9 @@ class SourceApi:
 
         :param id: Specifies the id of the Protection Source. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5135,8 +7779,8 @@ class SourceApi:
     def protection_source_by_id_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protection Source.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5156,9 +7800,9 @@ class SourceApi:
 
         :param id: Specifies the id of the Protection Source. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5210,8 +7854,8 @@ class SourceApi:
     def protection_source_by_id_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protection Source.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5231,9 +7875,9 @@ class SourceApi:
 
         :param id: Specifies the id of the Protection Source. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5351,8 +7995,8 @@ class SourceApi:
     def refresh_protection_source_by_id(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protection Source.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5372,9 +8016,9 @@ class SourceApi:
 
         :param id: Specifies the id of the Protection Source. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5426,8 +8070,8 @@ class SourceApi:
     def refresh_protection_source_by_id_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protection Source.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5447,9 +8091,9 @@ class SourceApi:
 
         :param id: Specifies the id of the Protection Source. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5501,8 +8145,8 @@ class SourceApi:
     def refresh_protection_source_by_id_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protection Source.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5522,9 +8166,9 @@ class SourceApi:
 
         :param id: Specifies the id of the Protection Source. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5639,11 +8283,302 @@ class SourceApi:
 
 
     @validate_call
+    def register_m365_backup_controller(
+        self,
+        azure_token: Annotated[StrictStr, Field(description="Specifies the JWT obtained through user with the scope for BackupRestore-Control.ReadWrite.All")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetM365BackupControllerResponseParams:
+        """Registers the Cohesity App to be the Microsoft 365 Backup Controller
+
+        Registers the Cohesity App to be the Microsoft365 Backup Controller
+
+        :param azure_token: Specifies the JWT obtained through user with the scope for BackupRestore-Control.ReadWrite.All (required)
+        :type azure_token: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._register_m365_backup_controller_serialize(
+            azure_token=azure_token,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "GetM365BackupControllerResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def register_m365_backup_controller_with_http_info(
+        self,
+        azure_token: Annotated[StrictStr, Field(description="Specifies the JWT obtained through user with the scope for BackupRestore-Control.ReadWrite.All")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetM365BackupControllerResponseParams]:
+        """Registers the Cohesity App to be the Microsoft 365 Backup Controller
+
+        Registers the Cohesity App to be the Microsoft365 Backup Controller
+
+        :param azure_token: Specifies the JWT obtained through user with the scope for BackupRestore-Control.ReadWrite.All (required)
+        :type azure_token: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._register_m365_backup_controller_serialize(
+            azure_token=azure_token,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "GetM365BackupControllerResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def register_m365_backup_controller_without_preload_content(
+        self,
+        azure_token: Annotated[StrictStr, Field(description="Specifies the JWT obtained through user with the scope for BackupRestore-Control.ReadWrite.All")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Registers the Cohesity App to be the Microsoft 365 Backup Controller
+
+        Registers the Cohesity App to be the Microsoft365 Backup Controller
+
+        :param azure_token: Specifies the JWT obtained through user with the scope for BackupRestore-Control.ReadWrite.All (required)
+        :type azure_token: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._register_m365_backup_controller_serialize(
+            azure_token=azure_token,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "GetM365BackupControllerResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _register_m365_backup_controller_serialize(
+        self,
+        azure_token,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if azure_token is not None:
+            _header_params['azureToken'] = azure_token
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/data-protect/sources/microsoft365/backup-controllers',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def register_protection_source(
         self,
         body: Annotated[SourceRegistrationRequestParams, Field(description="Specifies the parameters to register a Protection Source.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5663,9 +8598,9 @@ class SourceApi:
 
         :param body: Specifies the parameters to register a Protection Source. (required)
         :type body: SourceRegistrationRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5717,8 +8652,8 @@ class SourceApi:
     def register_protection_source_with_http_info(
         self,
         body: Annotated[SourceRegistrationRequestParams, Field(description="Specifies the parameters to register a Protection Source.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5738,9 +8673,9 @@ class SourceApi:
 
         :param body: Specifies the parameters to register a Protection Source. (required)
         :type body: SourceRegistrationRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5792,8 +8727,8 @@ class SourceApi:
     def register_protection_source_without_preload_content(
         self,
         body: Annotated[SourceRegistrationRequestParams, Field(description="Specifies the parameters to register a Protection Source.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5813,9 +8748,9 @@ class SourceApi:
 
         :param body: Specifies the parameters to register a Protection Source. (required)
         :type body: SourceRegistrationRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5946,8 +8881,8 @@ class SourceApi:
     def test_connection_protection_source(
         self,
         body: Annotated[SourceConnectionRequestParams, Field(description="Specifies the parameters to test connectivity with a source.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5967,9 +8902,9 @@ class SourceApi:
 
         :param body: Specifies the parameters to test connectivity with a source. (required)
         :type body: SourceConnectionRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6021,8 +8956,8 @@ class SourceApi:
     def test_connection_protection_source_with_http_info(
         self,
         body: Annotated[SourceConnectionRequestParams, Field(description="Specifies the parameters to test connectivity with a source.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6042,9 +8977,9 @@ class SourceApi:
 
         :param body: Specifies the parameters to test connectivity with a source. (required)
         :type body: SourceConnectionRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6096,8 +9031,8 @@ class SourceApi:
     def test_connection_protection_source_without_preload_content(
         self,
         body: Annotated[SourceConnectionRequestParams, Field(description="Specifies the parameters to test connectivity with a source.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6117,9 +9052,9 @@ class SourceApi:
 
         :param body: Specifies the parameters to test connectivity with a source. (required)
         :type body: SourceConnectionRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6247,12 +9182,1282 @@ class SourceApi:
 
 
     @validate_call
+    def unregister_m365_backup_controller(
+        self,
+        id: Annotated[Optional[StrictStr], Field(description="Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller.")],
+        azure_token: Annotated[Optional[StrictStr], Field(description="Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Unregisters the Cohesity App as the Microsoft 365 Backup Controller
+
+        Unregisters the Cohesity App as the Microsoft 365 Backup Controller
+
+        :param id: Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller. (required)
+        :type id: str
+        :param azure_token: Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All
+        :type azure_token: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._unregister_m365_backup_controller_serialize(
+            id=id,
+            azure_token=azure_token,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def unregister_m365_backup_controller_with_http_info(
+        self,
+        id: Annotated[Optional[StrictStr], Field(description="Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller.")],
+        azure_token: Annotated[Optional[StrictStr], Field(description="Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Unregisters the Cohesity App as the Microsoft 365 Backup Controller
+
+        Unregisters the Cohesity App as the Microsoft 365 Backup Controller
+
+        :param id: Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller. (required)
+        :type id: str
+        :param azure_token: Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All
+        :type azure_token: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._unregister_m365_backup_controller_serialize(
+            id=id,
+            azure_token=azure_token,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def unregister_m365_backup_controller_without_preload_content(
+        self,
+        id: Annotated[Optional[StrictStr], Field(description="Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller.")],
+        azure_token: Annotated[Optional[StrictStr], Field(description="Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Unregisters the Cohesity App as the Microsoft 365 Backup Controller
+
+        Unregisters the Cohesity App as the Microsoft 365 Backup Controller
+
+        :param id: Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller. (required)
+        :type id: str
+        :param azure_token: Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All
+        :type azure_token: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._unregister_m365_backup_controller_serialize(
+            id=id,
+            azure_token=azure_token,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _unregister_m365_backup_controller_serialize(
+        self,
+        id,
+        azure_token,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if azure_token is not None:
+            _header_params['azureToken'] = azure_token
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/data-protect/sources/microsoft365/backup-controllers/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_application_servers_registration(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the source entity for application registration.")],
+        body: Annotated[ApplicationServersRegistrationRequestParams, Field(description="Specifies the parameters to register an application entity.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> CommonApplicationServersRegistrationParams:
+        """Registers or update owner entity with applications.
+
+        Register or update applications on an owner entity
+
+        :param id: Specifies the id of the source entity for application registration. (required)
+        :type id: int
+        :param body: Specifies the parameters to register an application entity. (required)
+        :type body: ApplicationServersRegistrationRequestParams
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_application_servers_registration_serialize(
+            id=id,
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CommonApplicationServersRegistrationParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_application_servers_registration_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the source entity for application registration.")],
+        body: Annotated[ApplicationServersRegistrationRequestParams, Field(description="Specifies the parameters to register an application entity.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[CommonApplicationServersRegistrationParams]:
+        """Registers or update owner entity with applications.
+
+        Register or update applications on an owner entity
+
+        :param id: Specifies the id of the source entity for application registration. (required)
+        :type id: int
+        :param body: Specifies the parameters to register an application entity. (required)
+        :type body: ApplicationServersRegistrationRequestParams
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_application_servers_registration_serialize(
+            id=id,
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CommonApplicationServersRegistrationParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_application_servers_registration_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the source entity for application registration.")],
+        body: Annotated[ApplicationServersRegistrationRequestParams, Field(description="Specifies the parameters to register an application entity.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Registers or update owner entity with applications.
+
+        Register or update applications on an owner entity
+
+        :param id: Specifies the id of the source entity for application registration. (required)
+        :type id: int
+        :param body: Specifies the parameters to register an application entity. (required)
+        :type body: ApplicationServersRegistrationRequestParams
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_application_servers_registration_serialize(
+            id=id,
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CommonApplicationServersRegistrationParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_application_servers_registration_serialize(
+        self,
+        id,
+        body,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/data-protect/sources/application-servers/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_m365_backup_controller(
+        self,
+        azure_token: Annotated[StrictStr, Field(description="Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All")],
+        id: Annotated[Optional[StrictStr], Field(description="Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller.")],
+        state: Annotated[Optional[StrictStr], Field(description="Specifies the state of the Backup Controller. The state parameter can only be either set to Active/Inactive within the request. The other states like PendingInactive & PendingActive are not applicable.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetM365BackupControllerResponseParams:
+        """Updates the status of the registered M365 Backup Controller
+
+        Updates the Backup Controller status of the registered M365 Backup Controller
+
+        :param azure_token: Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All (required)
+        :type azure_token: str
+        :param id: Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller. (required)
+        :type id: str
+        :param state: Specifies the state of the Backup Controller. The state parameter can only be either set to Active/Inactive within the request. The other states like PendingInactive & PendingActive are not applicable.
+        :type state: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_m365_backup_controller_serialize(
+            azure_token=azure_token,
+            id=id,
+            state=state,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetM365BackupControllerResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_m365_backup_controller_with_http_info(
+        self,
+        azure_token: Annotated[StrictStr, Field(description="Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All")],
+        id: Annotated[Optional[StrictStr], Field(description="Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller.")],
+        state: Annotated[Optional[StrictStr], Field(description="Specifies the state of the Backup Controller. The state parameter can only be either set to Active/Inactive within the request. The other states like PendingInactive & PendingActive are not applicable.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetM365BackupControllerResponseParams]:
+        """Updates the status of the registered M365 Backup Controller
+
+        Updates the Backup Controller status of the registered M365 Backup Controller
+
+        :param azure_token: Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All (required)
+        :type azure_token: str
+        :param id: Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller. (required)
+        :type id: str
+        :param state: Specifies the state of the Backup Controller. The state parameter can only be either set to Active/Inactive within the request. The other states like PendingInactive & PendingActive are not applicable.
+        :type state: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_m365_backup_controller_serialize(
+            azure_token=azure_token,
+            id=id,
+            state=state,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetM365BackupControllerResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_m365_backup_controller_without_preload_content(
+        self,
+        azure_token: Annotated[StrictStr, Field(description="Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All")],
+        id: Annotated[Optional[StrictStr], Field(description="Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller.")],
+        state: Annotated[Optional[StrictStr], Field(description="Specifies the state of the Backup Controller. The state parameter can only be either set to Active/Inactive within the request. The other states like PendingInactive & PendingActive are not applicable.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates the status of the registered M365 Backup Controller
+
+        Updates the Backup Controller status of the registered M365 Backup Controller
+
+        :param azure_token: Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All (required)
+        :type azure_token: str
+        :param id: Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller. (required)
+        :type id: str
+        :param state: Specifies the state of the Backup Controller. The state parameter can only be either set to Active/Inactive within the request. The other states like PendingInactive & PendingActive are not applicable.
+        :type state: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_m365_backup_controller_serialize(
+            azure_token=azure_token,
+            id=id,
+            state=state,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetM365BackupControllerResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_m365_backup_controller_serialize(
+        self,
+        azure_token,
+        id,
+        state,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        if state is not None:
+            
+            _query_params.append(('state', state))
+            
+        # process the header parameters
+        if azure_token is not None:
+            _header_params['azureToken'] = azure_token
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PATCH',
+            resource_path='/data-protect/sources/microsoft365/backup-controllers/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_m365_self_service_config(
+        self,
+        uuid: Annotated[StrictStr, Field(description="Specifies the UUID of the Microsoft365 Source.")],
+        body: Annotated[CreateM365SelfServiceConfigRequestParams, Field(description="Specifies the parameters to enable Self-Service for a Microsoft365 source. This configuration will apply to all regions incase the same source is registered across regions.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> CreateM365SelfServiceConfigRequestParams:
+        """Create or Update the Self-Service configuration for a Microsoft365 source.
+
+        Create or Update the configuration for enabling Self-Service for a Microsoft365 source through Security Groups. The configuration can be done for Mailbox & OneDrive workload only.
+
+        :param uuid: Specifies the UUID of the Microsoft365 Source. (required)
+        :type uuid: str
+        :param body: Specifies the parameters to enable Self-Service for a Microsoft365 source. This configuration will apply to all regions incase the same source is registered across regions. (required)
+        :type body: CreateM365SelfServiceConfigRequestParams
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_m365_self_service_config_serialize(
+            uuid=uuid,
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CreateM365SelfServiceConfigRequestParams",
+            '201': "CreateM365SelfServiceConfigRequestParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_m365_self_service_config_with_http_info(
+        self,
+        uuid: Annotated[StrictStr, Field(description="Specifies the UUID of the Microsoft365 Source.")],
+        body: Annotated[CreateM365SelfServiceConfigRequestParams, Field(description="Specifies the parameters to enable Self-Service for a Microsoft365 source. This configuration will apply to all regions incase the same source is registered across regions.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[CreateM365SelfServiceConfigRequestParams]:
+        """Create or Update the Self-Service configuration for a Microsoft365 source.
+
+        Create or Update the configuration for enabling Self-Service for a Microsoft365 source through Security Groups. The configuration can be done for Mailbox & OneDrive workload only.
+
+        :param uuid: Specifies the UUID of the Microsoft365 Source. (required)
+        :type uuid: str
+        :param body: Specifies the parameters to enable Self-Service for a Microsoft365 source. This configuration will apply to all regions incase the same source is registered across regions. (required)
+        :type body: CreateM365SelfServiceConfigRequestParams
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_m365_self_service_config_serialize(
+            uuid=uuid,
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CreateM365SelfServiceConfigRequestParams",
+            '201': "CreateM365SelfServiceConfigRequestParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_m365_self_service_config_without_preload_content(
+        self,
+        uuid: Annotated[StrictStr, Field(description="Specifies the UUID of the Microsoft365 Source.")],
+        body: Annotated[CreateM365SelfServiceConfigRequestParams, Field(description="Specifies the parameters to enable Self-Service for a Microsoft365 source. This configuration will apply to all regions incase the same source is registered across regions.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create or Update the Self-Service configuration for a Microsoft365 source.
+
+        Create or Update the configuration for enabling Self-Service for a Microsoft365 source through Security Groups. The configuration can be done for Mailbox & OneDrive workload only.
+
+        :param uuid: Specifies the UUID of the Microsoft365 Source. (required)
+        :type uuid: str
+        :param body: Specifies the parameters to enable Self-Service for a Microsoft365 source. This configuration will apply to all regions incase the same source is registered across regions. (required)
+        :type body: CreateM365SelfServiceConfigRequestParams
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_m365_self_service_config_serialize(
+            uuid=uuid,
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CreateM365SelfServiceConfigRequestParams",
+            '201': "CreateM365SelfServiceConfigRequestParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_m365_self_service_config_serialize(
+        self,
+        uuid,
+        body,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if uuid is not None:
+            _path_params['uuid'] = uuid
+        # process the query parameters
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/data-protect/sources/microsoft365/self-service-config/{uuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def update_protection_source_registration(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protection Source registration.")],
         body: Annotated[SourceRegistrationUpdateRequestParams, Field(description="Specifies the parameters to update the registration.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6274,9 +10479,9 @@ class SourceApi:
         :type id: int
         :param body: Specifies the parameters to update the registration. (required)
         :type body: SourceRegistrationUpdateRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6330,8 +10535,8 @@ class SourceApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protection Source registration.")],
         body: Annotated[SourceRegistrationUpdateRequestParams, Field(description="Specifies the parameters to update the registration.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6353,9 +10558,9 @@ class SourceApi:
         :type id: int
         :param body: Specifies the parameters to update the registration. (required)
         :type body: SourceRegistrationUpdateRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6409,8 +10614,8 @@ class SourceApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protection Source registration.")],
         body: Annotated[SourceRegistrationUpdateRequestParams, Field(description="Specifies the parameters to update the registration.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6432,9 +10637,9 @@ class SourceApi:
         :type id: int
         :param body: Specifies the parameters to update the registration. (required)
         :type body: SourceRegistrationUpdateRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6566,11 +10771,11 @@ class SourceApi:
 
 
     @validate_call
-    def update_protection_source_registration_mixin1(
+    def update_protection_source_registration_mixin0(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the Protection Source registration.")],
         body: Annotated[McmSourceRegistrationUpdateRequestParams, Field(description="Specifies the parameters to update the registration.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6592,7 +10797,7 @@ class SourceApi:
         :type id: str
         :param body: Specifies the parameters to update the registration. (required)
         :type body: McmSourceRegistrationUpdateRequestParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6616,7 +10821,7 @@ class SourceApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._update_protection_source_registration_mixin1_serialize(
+        _param = self._update_protection_source_registration_mixin0_serialize(
             id=id,
             body=body,
             region_id=region_id,
@@ -6641,11 +10846,11 @@ class SourceApi:
 
 
     @validate_call
-    def update_protection_source_registration_mixin1_with_http_info(
+    def update_protection_source_registration_mixin0_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the Protection Source registration.")],
         body: Annotated[McmSourceRegistrationUpdateRequestParams, Field(description="Specifies the parameters to update the registration.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6667,7 +10872,7 @@ class SourceApi:
         :type id: str
         :param body: Specifies the parameters to update the registration. (required)
         :type body: McmSourceRegistrationUpdateRequestParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6691,7 +10896,7 @@ class SourceApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._update_protection_source_registration_mixin1_serialize(
+        _param = self._update_protection_source_registration_mixin0_serialize(
             id=id,
             body=body,
             region_id=region_id,
@@ -6716,11 +10921,11 @@ class SourceApi:
 
 
     @validate_call
-    def update_protection_source_registration_mixin1_without_preload_content(
+    def update_protection_source_registration_mixin0_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the Protection Source registration.")],
         body: Annotated[McmSourceRegistrationUpdateRequestParams, Field(description="Specifies the parameters to update the registration.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6742,7 +10947,7 @@ class SourceApi:
         :type id: str
         :param body: Specifies the parameters to update the registration. (required)
         :type body: McmSourceRegistrationUpdateRequestParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6766,7 +10971,7 @@ class SourceApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._update_protection_source_registration_mixin1_serialize(
+        _param = self._update_protection_source_registration_mixin0_serialize(
             id=id,
             body=body,
             region_id=region_id,
@@ -6786,7 +10991,7 @@ class SourceApi:
         return response_data.response
 
 
-    def _update_protection_source_registration_mixin1_serialize(
+    def _update_protection_source_registration_mixin0_serialize(
         self,
         id,
         body,

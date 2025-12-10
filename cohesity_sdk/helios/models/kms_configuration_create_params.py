@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.aws_kms_configuration import AwsKmsConfiguration
+from cohesity_sdk.helios.models.ibm_kms_configuration import IbmKmsConfiguration
 from cohesity_sdk.helios.models.kmip_kms_configuration import KmipKmsConfiguration
 from typing import Set
 from typing_extensions import Self
@@ -33,10 +34,11 @@ class KmsConfigurationCreateParams(BaseModel):
     name: StrictStr = Field(description="Name of the KMS.")
     storage_domain_ids: Optional[List[StrictInt]] = Field(default=None, description="Ids of storage domains used to assign the KMS for encryption. Once an external KMS (AWS KMS or KIMP KMS) is assigned to a storage domain, it cannot be changed.", alias="storageDomainIds")
     aws_kms_params: Optional[AwsKmsConfiguration] = Field(default=None, alias="awsKmsParams")
+    ibm_kms_params: Optional[IbmKmsConfiguration] = Field(default=None, alias="ibmKmsParams")
     ownership_context: Optional[StrictStr] = Field(default=None, description="Specifies the ownership context of the kms config. 'Local' indicates this is used for regular archival. 'FortKnox' indicates this is used for FortKnox only.", alias="ownershipContext")
     type: StrictStr = Field(description="Type of KMS. 'InternalKms' indicates the internal cluster KMS. 'AwsKms' indicates AWS KMS. 'KmipKms' indicates any KMIP compliant KMS.")
     usage_type: Optional[StrictStr] = Field(default=None, description="Specifies the usage type of the kms config. 'kArchival' indicates this is used for regular archival. 'kRpaasArchival' indicates this is used for RPaaS only.", alias="usageType")
-    __properties: ClassVar[List[str]] = ["externalTargetIds", "kmipKmsParams", "name", "storageDomainIds", "awsKmsParams", "ownershipContext", "type", "usageType"]
+    __properties: ClassVar[List[str]] = ["externalTargetIds", "kmipKmsParams", "name", "storageDomainIds", "awsKmsParams", "ibmKmsParams", "ownershipContext", "type", "usageType"]
 
     @field_validator('ownership_context')
     def ownership_context_validate_enum(cls, value):
@@ -44,15 +46,15 @@ class KmsConfigurationCreateParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Local', 'FortKnox']):
-            raise ValueError("must be one of enum values ('Local', 'FortKnox')")
+        if value not in set(['Local', 'FortKnox', 'FortKnoxOnprem']):
+            raise ValueError("must be one of enum values ('Local', 'FortKnox', 'FortKnoxOnprem')")
         return value
 
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['InternalKms', 'AwsKms', 'KmipKms']):
-            raise ValueError("must be one of enum values ('InternalKms', 'AwsKms', 'KmipKms')")
+        if value not in set(['InternalKms', 'AwsKms', 'KmipKms', 'IbmKms']):
+            raise ValueError("must be one of enum values ('InternalKms', 'AwsKms', 'KmipKms', 'IbmKms')")
         return value
 
     @field_validator('usage_type')
@@ -110,6 +112,9 @@ class KmsConfigurationCreateParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of aws_kms_params
         if self.aws_kms_params:
             _dict['awsKmsParams'] = self.aws_kms_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ibm_kms_params
+        if self.ibm_kms_params:
+            _dict['ibmKmsParams'] = self.ibm_kms_params.to_dict()
         # set to None if external_target_ids (nullable) is None
         # and model_fields_set contains the field
         if self.external_target_ids is None and "external_target_ids" in self.model_fields_set:
@@ -147,6 +152,7 @@ class KmsConfigurationCreateParams(BaseModel):
             "name": obj.get("name"),
             "storageDomainIds": obj.get("storageDomainIds"),
             "awsKmsParams": AwsKmsConfiguration.from_dict(obj["awsKmsParams"]) if obj.get("awsKmsParams") is not None else None,
+            "ibmKmsParams": IbmKmsConfiguration.from_dict(obj["ibmKmsParams"]) if obj.get("ibmKmsParams") is not None else None,
             "ownershipContext": obj.get("ownershipContext"),
             "type": obj.get("type"),
             "usageType": obj.get("usageType")

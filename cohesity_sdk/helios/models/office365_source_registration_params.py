@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.credentials import Credentials
+from cohesity_sdk.helios.models.m365_csm_params import M365CsmParams
 from cohesity_sdk.helios.models.objects_discovery_params import ObjectsDiscoveryParams
 from cohesity_sdk.helios.models.office365_app_credentials import Office365AppCredentials
 from typing import Set
@@ -33,6 +34,8 @@ class Office365SourceRegistrationParams(BaseModel):
     username: StrictStr = Field(description="Specifies the username to access target entity.")
     description: Optional[StrictStr] = Field(default=None, description="Specifies the description of the source being registered.")
     endpoint: StrictStr = Field(description="Specifies the endpoint IPaddress, URL or hostname of the host.")
+    enable_m365_csm_backup: Optional[StrictBool] = Field(default=None, description="Specifies whether to enable M365 Storage Service API based(CSM) Backup for this M365 source.", alias="enableM365CSMBackup")
+    m365_csm_params: Optional[M365CsmParams] = Field(default=None, alias="m365CsmParams")
     o365_objects_discovery_params: Optional[ObjectsDiscoveryParams] = Field(default=None, alias="o365ObjectsDiscoveryParams")
     office365_app_credentials_list: Optional[List[Office365AppCredentials]] = Field(default=None, description="Specifies a list of office365 azure application credentials needed to authenticate & authorize users for Office 365.", alias="office365AppCredentialsList")
     office365_region: Optional[StrictStr] = Field(default=None, description="Specifies the region where Office 365 Exchange environment is.", alias="office365Region")
@@ -40,7 +43,7 @@ class Office365SourceRegistrationParams(BaseModel):
     proxy_host_source_id_list: Optional[List[StrictInt]] = Field(default=None, description="Specifies the list of the protection source id of the windows physical host which will be used during the protection and recovery of the sites that belong to a office365 domain.", alias="proxyHostSourceIdList")
     use_existing_credentials: Optional[StrictBool] = Field(default=None, description="Specifies whether to use existing Office365 credentials like password and client secret for app id's. This parameter is only valid in the case of updating the registered source.", alias="useExistingCredentials")
     use_o_auth_for_exchange_online: Optional[StrictBool] = Field(default=None, description="Specifies whether OAuth should be used for authentication in case of Exchange Online.", alias="useOAuthForExchangeOnline")
-    __properties: ClassVar[List[str]] = ["password", "username", "description", "endpoint", "o365ObjectsDiscoveryParams", "office365AppCredentialsList", "office365Region", "office365ServiceAccountCredentialsList", "proxyHostSourceIdList", "useExistingCredentials", "useOAuthForExchangeOnline"]
+    __properties: ClassVar[List[str]] = ["password", "username", "description", "endpoint", "enableM365CSMBackup", "m365CsmParams", "o365ObjectsDiscoveryParams", "office365AppCredentialsList", "office365Region", "office365ServiceAccountCredentialsList", "proxyHostSourceIdList", "useExistingCredentials", "useOAuthForExchangeOnline"]
 
     @field_validator('office365_region')
     def office365_region_validate_enum(cls, value):
@@ -91,6 +94,9 @@ class Office365SourceRegistrationParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of m365_csm_params
+        if self.m365_csm_params:
+            _dict['m365CsmParams'] = self.m365_csm_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of o365_objects_discovery_params
         if self.o365_objects_discovery_params:
             _dict['o365ObjectsDiscoveryParams'] = self.o365_objects_discovery_params.to_dict()
@@ -112,6 +118,11 @@ class Office365SourceRegistrationParams(BaseModel):
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
             _dict['description'] = None
+
+        # set to None if enable_m365_csm_backup (nullable) is None
+        # and model_fields_set contains the field
+        if self.enable_m365_csm_backup is None and "enable_m365_csm_backup" in self.model_fields_set:
+            _dict['enableM365CSMBackup'] = None
 
         # set to None if office365_region (nullable) is None
         # and model_fields_set contains the field
@@ -154,6 +165,8 @@ class Office365SourceRegistrationParams(BaseModel):
             "username": obj.get("username"),
             "description": obj.get("description"),
             "endpoint": obj.get("endpoint"),
+            "enableM365CSMBackup": obj.get("enableM365CSMBackup"),
+            "m365CsmParams": M365CsmParams.from_dict(obj["m365CsmParams"]) if obj.get("m365CsmParams") is not None else None,
             "o365ObjectsDiscoveryParams": ObjectsDiscoveryParams.from_dict(obj["o365ObjectsDiscoveryParams"]) if obj.get("o365ObjectsDiscoveryParams") is not None else None,
             "office365AppCredentialsList": [Office365AppCredentials.from_dict(_item) for _item in obj["office365AppCredentialsList"]] if obj.get("office365AppCredentialsList") is not None else None,
             "office365Region": obj.get("office365Region"),

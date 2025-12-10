@@ -43,11 +43,12 @@ class RecoverCassandraParams(BaseModel):
     restart_immediately: Optional[StrictBool] = Field(default=None, description="Specifies whether to restart Cassandra services immediately after the point in time recovery.", alias="restartImmediately")
     restart_services: Optional[StrictBool] = Field(default=None, description="Specifies whether to restart Cassandra services after the point in time recovery.", alias="restartServices")
     restart_services_task_id: Optional[StrictInt] = Field(default=None, description="Specifies the Id of the task required to restart Cassandra services.", alias="restartServicesTaskId")
+    run_pre_checks: Optional[StrictBool] = Field(default=None, description="Specifies Whether to run checks before the recovery. E.x if there is sufficient space in the destination cluster for the recovery to succeed.", alias="runPreChecks")
     selected_data_centers: Optional[List[StrictStr]] = Field(default=None, description="Selected Data centers for this cluster.", alias="selectedDataCenters")
     snapshots: Optional[List[RecoverCassandraSnapshotParams]] = Field(description="Specifies the local snapshot ids and other details of the Objects to be recovered.")
     staging_directory_list: Optional[List[StrictStr]] = Field(default=None, description="Specifies the directory on the primary to copy the files which are to be uploaded using destination sstableloader.", alias="stagingDirectoryList")
     suffix: Optional[StrictStr] = Field(default=None, description="A suffix that is to be applied to all recovered objects.")
-    __properties: ClassVar[List[str]] = ["advancedConfigs", "bandwidthMBPS", "concurrency", "overwrite", "recoverTo", "warnings", "isLiveTableRestore", "isSystemKeyspaceRestore", "logRestoreDirectory", "recoverPrivileges", "restartAtUsecs", "restartCommand", "restartImmediately", "restartServices", "restartServicesTaskId", "selectedDataCenters", "snapshots", "stagingDirectoryList", "suffix"]
+    __properties: ClassVar[List[str]] = ["advancedConfigs", "bandwidthMBPS", "concurrency", "overwrite", "recoverTo", "warnings", "isLiveTableRestore", "isSystemKeyspaceRestore", "logRestoreDirectory", "recoverPrivileges", "restartAtUsecs", "restartCommand", "restartImmediately", "restartServices", "restartServicesTaskId", "runPreChecks", "selectedDataCenters", "snapshots", "stagingDirectoryList", "suffix"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -181,6 +182,11 @@ class RecoverCassandraParams(BaseModel):
         if self.restart_services_task_id is None and "restart_services_task_id" in self.model_fields_set:
             _dict['restartServicesTaskId'] = None
 
+        # set to None if run_pre_checks (nullable) is None
+        # and model_fields_set contains the field
+        if self.run_pre_checks is None and "run_pre_checks" in self.model_fields_set:
+            _dict['runPreChecks'] = None
+
         # set to None if snapshots (nullable) is None
         # and model_fields_set contains the field
         if self.snapshots is None and "snapshots" in self.model_fields_set:
@@ -218,6 +224,7 @@ class RecoverCassandraParams(BaseModel):
             "restartImmediately": obj.get("restartImmediately"),
             "restartServices": obj.get("restartServices"),
             "restartServicesTaskId": obj.get("restartServicesTaskId"),
+            "runPreChecks": obj.get("runPreChecks"),
             "selectedDataCenters": obj.get("selectedDataCenters"),
             "snapshots": [RecoverCassandraSnapshotParams.from_dict(_item) for _item in obj["snapshots"]] if obj.get("snapshots") is not None else None,
             "stagingDirectoryList": obj.get("stagingDirectoryList"),

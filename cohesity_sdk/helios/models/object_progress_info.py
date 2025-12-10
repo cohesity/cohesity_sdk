@@ -30,6 +30,7 @@ class ObjectProgressInfo(BaseModel):
     """
     Specifies the progress of an object.
     """ # noqa: E501
+    aux_entity_id: Optional[StrictInt] = Field(default=None, description="Specifies the auxiliary object id.", alias="auxEntityId")
     entity_id: Optional[ObjectStringIdentifier] = Field(default=None, alias="entityId")
     environment: Optional[StrictStr] = Field(default=None, description="Specifies the environment of the object.")
     id: Optional[StrictInt] = Field(default=None, description="Specifies object id.")
@@ -44,7 +45,7 @@ class ObjectProgressInfo(BaseModel):
     stats: Optional[ProgressStats] = None
     status: Optional[StrictStr] = Field(default=None, description="Specifies the current status of the progress task.")
     failed_attempts: Optional[List[ProgressTaskInfo]] = Field(default=None, description="Specifies progress for failed attempts of this object.", alias="failedAttempts")
-    __properties: ClassVar[List[str]] = ["entityId", "environment", "id", "name", "sourceId", "sourceName", "endTimeUsecs", "events", "expectedRemainingTimeUsecs", "percentageCompleted", "startTimeUsecs", "stats", "status", "failedAttempts"]
+    __properties: ClassVar[List[str]] = ["auxEntityId", "entityId", "environment", "id", "name", "sourceId", "sourceName", "endTimeUsecs", "events", "expectedRemainingTimeUsecs", "percentageCompleted", "startTimeUsecs", "stats", "status", "failedAttempts"]
 
     @field_validator('environment')
     def environment_validate_enum(cls, value):
@@ -52,8 +53,8 @@ class ObjectProgressInfo(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAzureSQL', 'kAcropolis', 'kGCP', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc']):
-            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAzureSQL', 'kAcropolis', 'kGCP', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc')")
+        if value not in set(['kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAcropolis', 'kGCP', 'kGCPBigQuery', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kS3Compatible', 'kSAPHANA', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kAzureEntraID', 'kAzureMySQL', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kSalesforce']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAcropolis', 'kGCP', 'kGCPBigQuery', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kS3Compatible', 'kSAPHANA', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kAzureEntraID', 'kAzureMySQL', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kSalesforce')")
         return value
 
     @field_validator('status')
@@ -125,6 +126,11 @@ class ObjectProgressInfo(BaseModel):
                 if _item_failed_attempts:
                     _items.append(_item_failed_attempts.to_dict())
             _dict['failedAttempts'] = _items
+        # set to None if aux_entity_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.aux_entity_id is None and "aux_entity_id" in self.model_fields_set:
+            _dict['auxEntityId'] = None
+
         # set to None if environment (nullable) is None
         # and model_fields_set contains the field
         if self.environment is None and "environment" in self.model_fields_set:
@@ -192,6 +198,7 @@ class ObjectProgressInfo(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "auxEntityId": obj.get("auxEntityId"),
             "entityId": ObjectStringIdentifier.from_dict(obj["entityId"]) if obj.get("entityId") is not None else None,
             "environment": obj.get("environment"),
             "id": obj.get("id"),

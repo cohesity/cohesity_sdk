@@ -51,6 +51,7 @@ class StorageDomain(BaseModel):
     ldap_provider_id: Optional[StrictInt] = Field(default=None, description="Specifies the LDAP provider id that this Storage Domain is mapped to.", alias="ldapProviderId")
     name: Optional[StrictStr] = Field(description="Specifies the Storage Domain name.")
     nis_domain_names: Optional[List[StrictStr]] = Field(default=None, description="Specifies the NIS domain names that this Storage Domain is mapped to.", alias="nisDomainNames")
+    optimize_throughput_settings: Optional[StrictBool] = Field(default=None, description="Indicates whether the storage domain supports workload/throughput optimized performance settings for its Views. Note: This value cannot be modified after the storage domain is created.", alias="optimizeThroughputSettings")
     physical_quota: Optional[QuotaPolicy] = Field(default=None, description="Specifies a quota limit for physical usage of this Storage Domain. This quota defines a limit of data that can be physically (after data size is reduced by block tracking, compression and deduplication) stored on this storage domain. A new write will not be allowed when the storage domain usage will exceeds the specified quota. Due to the latency of calculating usage across all nodes, the actual storage domain usage may exceed the quota limit by a little bit.", alias="physicalQuota")
     recommended: Optional[StrictBool] = Field(default=None, description="Specifies whether Storage Domain is recommended for the specified View template.")
     removal_state: Optional[StrictStr] = Field(default=None, description="Specifies the current removal state of the Storage Domain. 'DontRemove' means the state of object is functional and it is not being removed. 'MarkedForRemoval' means the object is being removed. 'OkToRemove' means the object has been removed on the Cohesity Cluster and if the object is physical, it can be removed from the Cohesity Cluster.", alias="removalState")
@@ -62,7 +63,7 @@ class StorageDomain(BaseModel):
     tenant_ids: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of tenant ids that that Storage Domain belongs. There can only be one tenant id in this field unless Storage Domain sharing between tenants is allowed on this cluster.", alias="tenantIds")
     treat_file_sync_as_data_sync: Optional[StrictBool] = Field(default=None, description="If 'true', when the Cohesity Cluster is writing to a file, the file modification time is not persisted synchronously during the file write, so the modification time may not be accurate. (Typically the file modification time is off by 30 seconds but it can be longer.)", alias="treatFileSyncAsDataSync")
     vault_id: Optional[StrictInt] = Field(default=None, description="Specifies the vault Id associated with cloud domain ID.", alias="vaultId")
-    __properties: ClassVar[List[str]] = ["adDomainName", "blobBrickSizeBytes", "cloudDomainId", "cloudDownWaterFallParams", "clusterPartitionId", "clusterPartitionName", "defaultUserQuota", "defaultViewQuota", "dekRotationEnabled", "directArchiveEnabled", "fileCountBySize", "id", "kerberosRealmName", "kmsServerId", "lastKeyRotationTimestampMsecs", "ldapProviderId", "name", "nisDomainNames", "physicalQuota", "recommended", "removalState", "s3BucketsEnabled", "schemas", "stats", "storagePolicy", "subnetWhitelist", "tenantIds", "treatFileSyncAsDataSync", "vaultId"]
+    __properties: ClassVar[List[str]] = ["adDomainName", "blobBrickSizeBytes", "cloudDomainId", "cloudDownWaterFallParams", "clusterPartitionId", "clusterPartitionName", "defaultUserQuota", "defaultViewQuota", "dekRotationEnabled", "directArchiveEnabled", "fileCountBySize", "id", "kerberosRealmName", "kmsServerId", "lastKeyRotationTimestampMsecs", "ldapProviderId", "name", "nisDomainNames", "optimizeThroughputSettings", "physicalQuota", "recommended", "removalState", "s3BucketsEnabled", "schemas", "stats", "storagePolicy", "subnetWhitelist", "tenantIds", "treatFileSyncAsDataSync", "vaultId"]
 
     @field_validator('removal_state')
     def removal_state_validate_enum(cls, value):
@@ -239,6 +240,11 @@ class StorageDomain(BaseModel):
         if self.nis_domain_names is None and "nis_domain_names" in self.model_fields_set:
             _dict['nisDomainNames'] = None
 
+        # set to None if optimize_throughput_settings (nullable) is None
+        # and model_fields_set contains the field
+        if self.optimize_throughput_settings is None and "optimize_throughput_settings" in self.model_fields_set:
+            _dict['optimizeThroughputSettings'] = None
+
         # set to None if recommended (nullable) is None
         # and model_fields_set contains the field
         if self.recommended is None and "recommended" in self.model_fields_set:
@@ -309,6 +315,7 @@ class StorageDomain(BaseModel):
             "ldapProviderId": obj.get("ldapProviderId"),
             "name": obj.get("name"),
             "nisDomainNames": obj.get("nisDomainNames"),
+            "optimizeThroughputSettings": obj.get("optimizeThroughputSettings"),
             "physicalQuota": QuotaPolicy.from_dict(obj["physicalQuota"]) if obj.get("physicalQuota") is not None else None,
             "recommended": obj.get("recommended"),
             "removalState": obj.get("removalState"),

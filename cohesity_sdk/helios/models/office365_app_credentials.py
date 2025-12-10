@@ -19,16 +19,18 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.certificate_object_with_metadata import CertificateObjectWithMetadata
 from typing import Set
 from typing_extensions import Self
 
 class Office365AppCredentials(BaseModel):
     """
-    Specifies credentials for office365 azure registered applications, used for office 365 source registration.
+    Specifies credentials of azure registered applications, used for office 365/Azure source registration.
     """ # noqa: E501
+    client_certificate: Optional[CertificateObjectWithMetadata] = Field(default=None, alias="clientCertificate")
     client_id: Optional[StrictStr] = Field(default=None, description="Specifies the application ID that the registration portal (apps.dev.microsoft.com) assigned.", alias="clientId")
     client_secret: Optional[StrictStr] = Field(default=None, description="Specifies the application secret that was created in app registration portal.", alias="clientSecret")
-    __properties: ClassVar[List[str]] = ["clientId", "clientSecret"]
+    __properties: ClassVar[List[str]] = ["clientCertificate", "clientId", "clientSecret"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,6 +71,9 @@ class Office365AppCredentials(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of client_certificate
+        if self.client_certificate:
+            _dict['clientCertificate'] = self.client_certificate.to_dict()
         # set to None if client_id (nullable) is None
         # and model_fields_set contains the field
         if self.client_id is None and "client_id" in self.model_fields_set:
@@ -91,6 +96,7 @@ class Office365AppCredentials(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "clientCertificate": CertificateObjectWithMetadata.from_dict(obj["clientCertificate"]) if obj.get("clientCertificate") is not None else None,
             "clientId": obj.get("clientId"),
             "clientSecret": obj.get("clientSecret")
         })
