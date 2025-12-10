@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **data_lock_expiry_usecs** | **int** | DataLock (Write Once Read Many) lock expiry epoch time in microseconds. If a view is marked as a DataLock view, only a Data Security Officer (a user having Data Security Privilege) can delete the view until the lock expiry time. | [optional] 
 **description** | **str** | Specifies the description of the cloned View. | [optional] 
+**disable_s3_object_lock_config** | **bool** | Specifies whether to disable S3 Object Lock configuration on the cloned S3 View. This field is only applicable if the source View is an S3 View with S3 Object Lock configuration enabled. | [optional] 
 **is_read_only** | **bool** | Specifies if the view is a read only view. User will no longer be able to write to this view if this is set to true. | [optional] 
 **name** | **str** | Specifies the name of the cloned View. | 
 **netgroup_whitelist** | [**NisNetgroups**](NisNetgroups.md) |  | [optional] 

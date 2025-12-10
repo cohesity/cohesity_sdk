@@ -24,10 +24,15 @@ from cohesity_sdk.cluster.models.azure_source_registration_params import AzureSo
 from cohesity_sdk.cluster.models.cassandra_source_registration_params import CassandraSourceRegistrationParams
 from cohesity_sdk.cluster.models.connection_config import ConnectionConfig
 from cohesity_sdk.cluster.models.couchbase_source_registration_params import CouchbaseSourceRegistrationParams
+from cohesity_sdk.cluster.models.db2_source_registration_params import DB2SourceRegistrationParams
 from cohesity_sdk.cluster.models.elastifile_registration_params import ElastifileRegistrationParams
 from cohesity_sdk.cluster.models.entity_external_metadata import EntityExternalMetadata
+from cohesity_sdk.cluster.models.ews_exchange_source_registration_params import EwsExchangeSourceRegistrationParams
+from cohesity_sdk.cluster.models.experimental_adapter_source_registration_params import ExperimentalAdapterSourceRegistrationParams
 from cohesity_sdk.cluster.models.flashblade_registration_params import FlashbladeRegistrationParams
+from cohesity_sdk.cluster.models.gcp_source_registration_params import GcpSourceRegistrationParams
 from cohesity_sdk.cluster.models.generic_nas_registration_params import GenericNasRegistrationParams
+from cohesity_sdk.cluster.models.google_workspace_source_registration_params import GoogleWorkspaceSourceRegistrationParams
 from cohesity_sdk.cluster.models.gpfs_registration_params import GpfsRegistrationParams
 from cohesity_sdk.cluster.models.hbase_source_registration_params import HbaseSourceRegistrationParams
 from cohesity_sdk.cluster.models.hdfs_source_registration_params import HdfsSourceRegistrationParams
@@ -35,11 +40,18 @@ from cohesity_sdk.cluster.models.hive_source_registration_params import HiveSour
 from cohesity_sdk.cluster.models.hyper_v_source_registration_params import HyperVSourceRegistrationParams
 from cohesity_sdk.cluster.models.isilon_registration_params import IsilonRegistrationParams
 from cohesity_sdk.cluster.models.key_value_pair import KeyValuePair
+from cohesity_sdk.cluster.models.kubernetes_source_registration_params import KubernetesSourceRegistrationParams
+from cohesity_sdk.cluster.models.mongo_db_ops_manager_registration_params import MongoDBOpsManagerRegistrationParams
 from cohesity_sdk.cluster.models.mongo_db_source_registration_params import MongoDBSourceRegistrationParams
 from cohesity_sdk.cluster.models.netapp_registration_params import NetappRegistrationParams
+from cohesity_sdk.cluster.models.nutanix_fs_registration_params import NutanixFSRegistrationParams
 from cohesity_sdk.cluster.models.object import Object
 from cohesity_sdk.cluster.models.office365_source_registration_params import Office365SourceRegistrationParams
 from cohesity_sdk.cluster.models.physical_source_registration_params import PhysicalSourceRegistrationParams
+from cohesity_sdk.cluster.models.postgres_source_registration_params import PostgresSourceRegistrationParams
+from cohesity_sdk.cluster.models.s3_compatible_source_registration_params import S3CompatibleSourceRegistrationParams
+from cohesity_sdk.cluster.models.sap_hana_source_registration_params import SapHanaSourceRegistrationParams
+from cohesity_sdk.cluster.models.service_now_source_registration_params import ServiceNowSourceRegistrationParams
 from cohesity_sdk.cluster.models.sfdc_source_registration_params import SfdcSourceRegistrationParams
 from cohesity_sdk.cluster.models.uda_source_registration_params import UdaSourceRegistrationParams
 from cohesity_sdk.cluster.models.vmware_source_registration_params import VmwareSourceRegistrationParams
@@ -51,9 +63,10 @@ class SourceRegistration(BaseModel):
     Specifies the Source Registration.
     """ # noqa: E501
     advanced_configs: Optional[List[KeyValuePair]] = Field(default=None, description="Specifies the advanced configuration for a protection source.", alias="advancedConfigs")
-    connection_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user. This field will be depricated in future. Use connections field.", alias="connectionId")
-    connections: Optional[List[ConnectionConfig]] = Field(default=None, description="Specfies the list of connections for the source.")
+    connection_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user. This field will be deprecated in future. Use connections field.", alias="connectionId")
+    connections: Optional[List[ConnectionConfig]] = Field(default=None, description="Specifies the list of connections for the source.")
     connector_group_id: Optional[StrictInt] = Field(default=None, description="Specifies the connector group id of connector groups.", alias="connectorGroupId")
+    data_source_connection_id: Optional[StrictStr] = Field(default=None, description="Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user. Also, this is the 'string' of connectionId. This property was added to accommodate for ID values that exceed 2^53 - 1, which is the max value for which JS maintains precision.", alias="dataSourceConnectionId")
     environment: Optional[StrictStr] = Field(default=None, description="Specifies the environment type of the Protection Source.")
     id: Optional[StrictInt] = Field(default=None, description="Source Registration ID. This can be used to retrieve, edit or delete the source registration.")
     name: Optional[StrictStr] = Field(default=None, description="The user specified name for this source.")
@@ -66,24 +79,36 @@ class SourceRegistration(BaseModel):
     azure_params: Optional[AzureSourceRegistrationParams] = Field(default=None, alias="azureParams")
     cassandra_params: Optional[CassandraSourceRegistrationParams] = Field(default=None, alias="cassandraParams")
     couchbase_params: Optional[CouchbaseSourceRegistrationParams] = Field(default=None, alias="couchbaseParams")
+    db2_params: Optional[DB2SourceRegistrationParams] = Field(default=None, alias="db2Params")
     elastifile_params: Optional[ElastifileRegistrationParams] = Field(default=None, alias="elastifileParams")
+    ews_exchange_params: Optional[EwsExchangeSourceRegistrationParams] = Field(default=None, alias="ewsExchangeParams")
+    experimental_adapter_params: Optional[ExperimentalAdapterSourceRegistrationParams] = Field(default=None, alias="experimentalAdapterParams")
     external_metadata: Optional[EntityExternalMetadata] = Field(default=None, alias="externalMetadata")
     flashblade_params: Optional[FlashbladeRegistrationParams] = Field(default=None, alias="flashbladeParams")
+    gcp_params: Optional[GcpSourceRegistrationParams] = Field(default=None, alias="gcpParams")
     generic_nas_params: Optional[GenericNasRegistrationParams] = Field(default=None, alias="genericNasParams")
+    google_workspace_params: Optional[GoogleWorkspaceSourceRegistrationParams] = Field(default=None, alias="googleWorkspaceParams")
     gpfs_params: Optional[GpfsRegistrationParams] = Field(default=None, alias="gpfsParams")
     hbase_params: Optional[HbaseSourceRegistrationParams] = Field(default=None, alias="hbaseParams")
     hdfs_params: Optional[HdfsSourceRegistrationParams] = Field(default=None, alias="hdfsParams")
     hive_params: Optional[HiveSourceRegistrationParams] = Field(default=None, alias="hiveParams")
     hyperv_params: Optional[HyperVSourceRegistrationParams] = Field(default=None, alias="hypervParams")
     isilon_params: Optional[IsilonRegistrationParams] = Field(default=None, alias="isilonParams")
+    kubernetes_params: Optional[KubernetesSourceRegistrationParams] = Field(default=None, alias="kubernetesParams")
+    mongodb_ops_params: Optional[MongoDBOpsManagerRegistrationParams] = Field(default=None, alias="mongodbOpsParams")
     mongodb_params: Optional[MongoDBSourceRegistrationParams] = Field(default=None, alias="mongodbParams")
     netapp_params: Optional[NetappRegistrationParams] = Field(default=None, alias="netappParams")
+    nutanix_fs_params: Optional[NutanixFSRegistrationParams] = Field(default=None, alias="nutanixFSParams")
     office365_params: Optional[Office365SourceRegistrationParams] = Field(default=None, alias="office365Params")
     physical_params: Optional[PhysicalSourceRegistrationParams] = Field(default=None, alias="physicalParams")
+    postgres_params: Optional[PostgresSourceRegistrationParams] = Field(default=None, alias="postgresParams")
+    s3_compatible_params: Optional[S3CompatibleSourceRegistrationParams] = Field(default=None, alias="s3CompatibleParams")
+    sap_hana_params: Optional[SapHanaSourceRegistrationParams] = Field(default=None, alias="sapHanaParams")
+    service_now_params: Optional[ServiceNowSourceRegistrationParams] = Field(default=None, alias="serviceNowParams")
     sfdc_params: Optional[SfdcSourceRegistrationParams] = Field(default=None, alias="sfdcParams")
     uda_params: Optional[UdaSourceRegistrationParams] = Field(default=None, alias="udaParams")
     vmware_params: Optional[VmwareSourceRegistrationParams] = Field(default=None, alias="vmwareParams")
-    __properties: ClassVar[List[str]] = ["advancedConfigs", "connectionId", "connections", "connectorGroupId", "environment", "id", "name", "sourceId", "sourceInfo", "authenticationStatus", "lastRefreshedTimeMsecs", "registrationTimeMsecs", "awsParams", "azureParams", "cassandraParams", "couchbaseParams", "elastifileParams", "externalMetadata", "flashbladeParams", "genericNasParams", "gpfsParams", "hbaseParams", "hdfsParams", "hiveParams", "hypervParams", "isilonParams", "mongodbParams", "netappParams", "office365Params", "physicalParams", "sfdcParams", "udaParams", "vmwareParams"]
+    __properties: ClassVar[List[str]] = ["advancedConfigs", "connectionId", "connections", "connectorGroupId", "dataSourceConnectionId", "environment", "id", "name", "sourceId", "sourceInfo", "authenticationStatus", "lastRefreshedTimeMsecs", "registrationTimeMsecs", "awsParams", "azureParams", "cassandraParams", "couchbaseParams", "db2Params", "elastifileParams", "ewsExchangeParams", "experimentalAdapterParams", "externalMetadata", "flashbladeParams", "gcpParams", "genericNasParams", "googleWorkspaceParams", "gpfsParams", "hbaseParams", "hdfsParams", "hiveParams", "hypervParams", "isilonParams", "kubernetesParams", "mongodbOpsParams", "mongodbParams", "netappParams", "nutanixFSParams", "office365Params", "physicalParams", "postgresParams", "s3CompatibleParams", "sapHanaParams", "serviceNowParams", "sfdcParams", "udaParams", "vmwareParams"]
 
     @field_validator('environment')
     def environment_validate_enum(cls, value):
@@ -91,8 +116,8 @@ class SourceRegistration(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kVMware', 'kHyperV', 'kAcropolis', 'kKVM', 'kAWS', 'kGCP', 'kAzure', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kGPFS', 'kElastifile', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSQL', 'kOracle', 'kSfdc']):
-            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAcropolis', 'kKVM', 'kAWS', 'kGCP', 'kAzure', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kGPFS', 'kElastifile', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSQL', 'kOracle', 'kSfdc')")
+        if value not in set(['kVMware', 'kHyperV', 'kAcropolis', 'kKVM', 'kAWS', 'kGCP', 'kAzure', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kNetapp', 'kNutanixFS', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kGPFS', 'kElastifile', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kSQL', 'kOracle', 'kS3Compatible', 'kSfdc', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kEwsExchange', 'kServiceNow', 'kPostgres']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAcropolis', 'kKVM', 'kAWS', 'kGCP', 'kAzure', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kNetapp', 'kNutanixFS', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kGPFS', 'kElastifile', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kSQL', 'kOracle', 'kS3Compatible', 'kSfdc', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kEwsExchange', 'kServiceNow', 'kPostgres')")
         return value
 
     @field_validator('authentication_status')
@@ -183,18 +208,33 @@ class SourceRegistration(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of couchbase_params
         if self.couchbase_params:
             _dict['couchbaseParams'] = self.couchbase_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of db2_params
+        if self.db2_params:
+            _dict['db2Params'] = self.db2_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of elastifile_params
         if self.elastifile_params:
             _dict['elastifileParams'] = self.elastifile_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ews_exchange_params
+        if self.ews_exchange_params:
+            _dict['ewsExchangeParams'] = self.ews_exchange_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of experimental_adapter_params
+        if self.experimental_adapter_params:
+            _dict['experimentalAdapterParams'] = self.experimental_adapter_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of external_metadata
         if self.external_metadata:
             _dict['externalMetadata'] = self.external_metadata.to_dict()
         # override the default output from pydantic by calling `to_dict()` of flashblade_params
         if self.flashblade_params:
             _dict['flashbladeParams'] = self.flashblade_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of gcp_params
+        if self.gcp_params:
+            _dict['gcpParams'] = self.gcp_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of generic_nas_params
         if self.generic_nas_params:
             _dict['genericNasParams'] = self.generic_nas_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of google_workspace_params
+        if self.google_workspace_params:
+            _dict['googleWorkspaceParams'] = self.google_workspace_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of gpfs_params
         if self.gpfs_params:
             _dict['gpfsParams'] = self.gpfs_params.to_dict()
@@ -213,18 +253,39 @@ class SourceRegistration(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of isilon_params
         if self.isilon_params:
             _dict['isilonParams'] = self.isilon_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of kubernetes_params
+        if self.kubernetes_params:
+            _dict['kubernetesParams'] = self.kubernetes_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of mongodb_ops_params
+        if self.mongodb_ops_params:
+            _dict['mongodbOpsParams'] = self.mongodb_ops_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of mongodb_params
         if self.mongodb_params:
             _dict['mongodbParams'] = self.mongodb_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of netapp_params
         if self.netapp_params:
             _dict['netappParams'] = self.netapp_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of nutanix_fs_params
+        if self.nutanix_fs_params:
+            _dict['nutanixFSParams'] = self.nutanix_fs_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of office365_params
         if self.office365_params:
             _dict['office365Params'] = self.office365_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of physical_params
         if self.physical_params:
             _dict['physicalParams'] = self.physical_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of postgres_params
+        if self.postgres_params:
+            _dict['postgresParams'] = self.postgres_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of s3_compatible_params
+        if self.s3_compatible_params:
+            _dict['s3CompatibleParams'] = self.s3_compatible_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of sap_hana_params
+        if self.sap_hana_params:
+            _dict['sapHanaParams'] = self.sap_hana_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of service_now_params
+        if self.service_now_params:
+            _dict['serviceNowParams'] = self.service_now_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of sfdc_params
         if self.sfdc_params:
             _dict['sfdcParams'] = self.sfdc_params.to_dict()
@@ -253,6 +314,11 @@ class SourceRegistration(BaseModel):
         # and model_fields_set contains the field
         if self.connector_group_id is None and "connector_group_id" in self.model_fields_set:
             _dict['connectorGroupId'] = None
+
+        # set to None if data_source_connection_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.data_source_connection_id is None and "data_source_connection_id" in self.model_fields_set:
+            _dict['dataSourceConnectionId'] = None
 
         # set to None if environment (nullable) is None
         # and model_fields_set contains the field
@@ -305,6 +371,7 @@ class SourceRegistration(BaseModel):
             "connectionId": obj.get("connectionId"),
             "connections": [ConnectionConfig.from_dict(_item) for _item in obj["connections"]] if obj.get("connections") is not None else None,
             "connectorGroupId": obj.get("connectorGroupId"),
+            "dataSourceConnectionId": obj.get("dataSourceConnectionId"),
             "environment": obj.get("environment"),
             "id": obj.get("id"),
             "name": obj.get("name"),
@@ -317,20 +384,32 @@ class SourceRegistration(BaseModel):
             "azureParams": AzureSourceRegistrationParams.from_dict(obj["azureParams"]) if obj.get("azureParams") is not None else None,
             "cassandraParams": CassandraSourceRegistrationParams.from_dict(obj["cassandraParams"]) if obj.get("cassandraParams") is not None else None,
             "couchbaseParams": CouchbaseSourceRegistrationParams.from_dict(obj["couchbaseParams"]) if obj.get("couchbaseParams") is not None else None,
+            "db2Params": DB2SourceRegistrationParams.from_dict(obj["db2Params"]) if obj.get("db2Params") is not None else None,
             "elastifileParams": ElastifileRegistrationParams.from_dict(obj["elastifileParams"]) if obj.get("elastifileParams") is not None else None,
+            "ewsExchangeParams": EwsExchangeSourceRegistrationParams.from_dict(obj["ewsExchangeParams"]) if obj.get("ewsExchangeParams") is not None else None,
+            "experimentalAdapterParams": ExperimentalAdapterSourceRegistrationParams.from_dict(obj["experimentalAdapterParams"]) if obj.get("experimentalAdapterParams") is not None else None,
             "externalMetadata": EntityExternalMetadata.from_dict(obj["externalMetadata"]) if obj.get("externalMetadata") is not None else None,
             "flashbladeParams": FlashbladeRegistrationParams.from_dict(obj["flashbladeParams"]) if obj.get("flashbladeParams") is not None else None,
+            "gcpParams": GcpSourceRegistrationParams.from_dict(obj["gcpParams"]) if obj.get("gcpParams") is not None else None,
             "genericNasParams": GenericNasRegistrationParams.from_dict(obj["genericNasParams"]) if obj.get("genericNasParams") is not None else None,
+            "googleWorkspaceParams": GoogleWorkspaceSourceRegistrationParams.from_dict(obj["googleWorkspaceParams"]) if obj.get("googleWorkspaceParams") is not None else None,
             "gpfsParams": GpfsRegistrationParams.from_dict(obj["gpfsParams"]) if obj.get("gpfsParams") is not None else None,
             "hbaseParams": HbaseSourceRegistrationParams.from_dict(obj["hbaseParams"]) if obj.get("hbaseParams") is not None else None,
             "hdfsParams": HdfsSourceRegistrationParams.from_dict(obj["hdfsParams"]) if obj.get("hdfsParams") is not None else None,
             "hiveParams": HiveSourceRegistrationParams.from_dict(obj["hiveParams"]) if obj.get("hiveParams") is not None else None,
             "hypervParams": HyperVSourceRegistrationParams.from_dict(obj["hypervParams"]) if obj.get("hypervParams") is not None else None,
             "isilonParams": IsilonRegistrationParams.from_dict(obj["isilonParams"]) if obj.get("isilonParams") is not None else None,
+            "kubernetesParams": KubernetesSourceRegistrationParams.from_dict(obj["kubernetesParams"]) if obj.get("kubernetesParams") is not None else None,
+            "mongodbOpsParams": MongoDBOpsManagerRegistrationParams.from_dict(obj["mongodbOpsParams"]) if obj.get("mongodbOpsParams") is not None else None,
             "mongodbParams": MongoDBSourceRegistrationParams.from_dict(obj["mongodbParams"]) if obj.get("mongodbParams") is not None else None,
             "netappParams": NetappRegistrationParams.from_dict(obj["netappParams"]) if obj.get("netappParams") is not None else None,
+            "nutanixFSParams": NutanixFSRegistrationParams.from_dict(obj["nutanixFSParams"]) if obj.get("nutanixFSParams") is not None else None,
             "office365Params": Office365SourceRegistrationParams.from_dict(obj["office365Params"]) if obj.get("office365Params") is not None else None,
             "physicalParams": PhysicalSourceRegistrationParams.from_dict(obj["physicalParams"]) if obj.get("physicalParams") is not None else None,
+            "postgresParams": PostgresSourceRegistrationParams.from_dict(obj["postgresParams"]) if obj.get("postgresParams") is not None else None,
+            "s3CompatibleParams": S3CompatibleSourceRegistrationParams.from_dict(obj["s3CompatibleParams"]) if obj.get("s3CompatibleParams") is not None else None,
+            "sapHanaParams": SapHanaSourceRegistrationParams.from_dict(obj["sapHanaParams"]) if obj.get("sapHanaParams") is not None else None,
+            "serviceNowParams": ServiceNowSourceRegistrationParams.from_dict(obj["serviceNowParams"]) if obj.get("serviceNowParams") is not None else None,
             "sfdcParams": SfdcSourceRegistrationParams.from_dict(obj["sfdcParams"]) if obj.get("sfdcParams") is not None else None,
             "udaParams": UdaSourceRegistrationParams.from_dict(obj["udaParams"]) if obj.get("udaParams") is not None else None,
             "vmwareParams": VmwareSourceRegistrationParams.from_dict(obj["vmwareParams"]) if obj.get("vmwareParams") is not None else None

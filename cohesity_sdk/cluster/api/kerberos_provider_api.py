@@ -59,7 +59,7 @@ class KerberosProviderApi:
     ) -> KerberosProvider:
         """Get the Registered Kerberos Provider by id.
 
-        Get the Registered Kerberos Provider by id.
+        **Privileges:** ```KERBEROS_VIEW``` <br><br>Get the Registered Kerberos Provider by id.
 
         :param id: Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id. (required)
         :type id: str
@@ -126,7 +126,7 @@ class KerberosProviderApi:
     ) -> ApiResponse[KerberosProvider]:
         """Get the Registered Kerberos Provider by id.
 
-        Get the Registered Kerberos Provider by id.
+        **Privileges:** ```KERBEROS_VIEW``` <br><br>Get the Registered Kerberos Provider by id.
 
         :param id: Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id. (required)
         :type id: str
@@ -193,7 +193,7 @@ class KerberosProviderApi:
     ) -> RESTResponseType:
         """Get the Registered Kerberos Provider by id.
 
-        Get the Registered Kerberos Provider by id.
+        **Privileges:** ```KERBEROS_VIEW``` <br><br>Get the Registered Kerberos Provider by id.
 
         :param id: Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id. (required)
         :type id: str
@@ -325,7 +325,7 @@ class KerberosProviderApi:
     ) -> KerberosProviders:
         """Get the list of Kerberos Providers.
 
-        Get the list of Kerberos Authentication Providers.
+        **Privileges:** ```KERBEROS_VIEW``` <br><br>Get the list of Kerberos Authentication Providers.
 
         :param realm_names: Filter by a list of realm names.
         :type realm_names: List[str]
@@ -404,7 +404,7 @@ class KerberosProviderApi:
     ) -> ApiResponse[KerberosProviders]:
         """Get the list of Kerberos Providers.
 
-        Get the list of Kerberos Authentication Providers.
+        **Privileges:** ```KERBEROS_VIEW``` <br><br>Get the list of Kerberos Authentication Providers.
 
         :param realm_names: Filter by a list of realm names.
         :type realm_names: List[str]
@@ -483,7 +483,7 @@ class KerberosProviderApi:
     ) -> RESTResponseType:
         """Get the list of Kerberos Providers.
 
-        Get the list of Kerberos Authentication Providers.
+        **Privileges:** ```KERBEROS_VIEW``` <br><br>Get the list of Kerberos Authentication Providers.
 
         :param realm_names: Filter by a list of realm names.
         :type realm_names: List[str]
@@ -641,7 +641,7 @@ class KerberosProviderApi:
     ) -> KerberosProvider:
         """Register a Kerberos Authentication Provider.
 
-        Register a Kerberos Authentication Provider.
+        **Privileges:** ```KERBEROS_MODIFY``` <br><br>Register a Kerberos Authentication Provider.
 
         :param body: Specifies the parameters to Register a Kerberos Provider. (required)
         :type body: RegisterOrUpdateKerberosProviderRequest
@@ -708,7 +708,7 @@ class KerberosProviderApi:
     ) -> ApiResponse[KerberosProvider]:
         """Register a Kerberos Authentication Provider.
 
-        Register a Kerberos Authentication Provider.
+        **Privileges:** ```KERBEROS_MODIFY``` <br><br>Register a Kerberos Authentication Provider.
 
         :param body: Specifies the parameters to Register a Kerberos Provider. (required)
         :type body: RegisterOrUpdateKerberosProviderRequest
@@ -775,7 +775,7 @@ class KerberosProviderApi:
     ) -> RESTResponseType:
         """Register a Kerberos Authentication Provider.
 
-        Register a Kerberos Authentication Provider.
+        **Privileges:** ```KERBEROS_MODIFY``` <br><br>Register a Kerberos Authentication Provider.
 
         :param body: Specifies the parameters to Register a Kerberos Provider. (required)
         :type body: RegisterOrUpdateKerberosProviderRequest
@@ -918,7 +918,7 @@ class KerberosProviderApi:
     ) -> UnregisterKerberosProvider:
         """Unregister a Kerberos Provider.
 
-        Unregister a Kerberos Provider.
+        **Privileges:** ```KERBEROS_MODIFY``` <br><br>Unregister a Kerberos Provider.
 
         :param id: Specifies the id. (required)
         :type id: str
@@ -989,7 +989,7 @@ class KerberosProviderApi:
     ) -> ApiResponse[UnregisterKerberosProvider]:
         """Unregister a Kerberos Provider.
 
-        Unregister a Kerberos Provider.
+        **Privileges:** ```KERBEROS_MODIFY``` <br><br>Unregister a Kerberos Provider.
 
         :param id: Specifies the id. (required)
         :type id: str
@@ -1060,7 +1060,7 @@ class KerberosProviderApi:
     ) -> RESTResponseType:
         """Unregister a Kerberos Provider.
 
-        Unregister a Kerberos Provider.
+        **Privileges:** ```KERBEROS_MODIFY``` <br><br>Unregister a Kerberos Provider.
 
         :param id: Specifies the id. (required)
         :type id: str
@@ -1209,7 +1209,7 @@ class KerberosProviderApi:
     ) -> KerberosProvider:
         """Update the Kerberos Provider Registration.
 
-        Update the Kerberos Provider Registration.
+        **Privileges:** ```KERBEROS_MODIFY``` <br><br>Update the Kerberos Provider Registration.
 
         :param id: Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id. (required)
         :type id: str
@@ -1280,7 +1280,7 @@ class KerberosProviderApi:
     ) -> ApiResponse[KerberosProvider]:
         """Update the Kerberos Provider Registration.
 
-        Update the Kerberos Provider Registration.
+        **Privileges:** ```KERBEROS_MODIFY``` <br><br>Update the Kerberos Provider Registration.
 
         :param id: Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id. (required)
         :type id: str
@@ -1351,7 +1351,7 @@ class KerberosProviderApi:
     ) -> RESTResponseType:
         """Update the Kerberos Provider Registration.
 
-        Update the Kerberos Provider Registration.
+        **Privileges:** ```KERBEROS_MODIFY``` <br><br>Update the Kerberos Provider Registration.
 
         :param id: Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id. (required)
         :type id: str

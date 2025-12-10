@@ -29,7 +29,7 @@ class AwsTargetParamsForRecoverRDSPostgres(BaseModel):
     Specifies the recovery target params for RDS Postgres target config.
     """ # noqa: E501
     custom_server_config: Optional[RecoverRDSPostgresCustomServerConfig] = Field(default=None, description="Specifies the custom destination Server configuration parameters where the RDS Postgres instances will be recovered.", alias="customServerConfig")
-    known_source_config: Optional[RecoverRDSPostgresToKnownSourceConfig] = Field(default=None, description="Specifies the destination Source configuration parameters where the RDS Postgres instances will be recovered. This is mandatory if recoverToKnownSource is set to true.", alias="knownSourceConfig")
+    known_source_config: Optional[RecoverRDSPostgresToKnownSourceConfig] = Field(default=None, description="Specifies the destination Source configuration parameters where the RDS Postgres objects will be recovered. This is mandatory if recoverToKnownSource is set to true.", alias="knownSourceConfig")
     recover_to_known_source: Optional[StrictBool] = Field(description="Specifies whether the recovery should be performed to a known or a custom target.", alias="recoverToKnownSource")
     __properties: ClassVar[List[str]] = ["customServerConfig", "knownSourceConfig", "recoverToKnownSource"]
 

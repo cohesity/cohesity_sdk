@@ -20,7 +20,7 @@ from cohesity_sdk.helios.models.capacity_trend_analysis import CapacityTrendAnal
 from cohesity_sdk.helios.models.common_data_tiering_analysis_group_params import CommonDataTieringAnalysisGroupParams
 from cohesity_sdk.helios.models.create_or_update_data_tiering_task_request import CreateOrUpdateDataTieringTaskRequest
 from cohesity_sdk.helios.models.data_tiering_analysis_group import DataTieringAnalysisGroup
-from cohesity_sdk.helios.models.data_tiering_analysis_group_run import DataTieringAnalysisGroupRun
+from cohesity_sdk.helios.models.data_tiering_analysis_group_runs import DataTieringAnalysisGroupRuns
 from cohesity_sdk.helios.models.data_tiering_analysis_run_request import DataTieringAnalysisRunRequest
 from cohesity_sdk.helios.models.data_tiering_tag_config import DataTieringTagConfig
 from cohesity_sdk.helios.models.data_tiering_task import DataTieringTask
@@ -51,8 +51,8 @@ class DataTieringApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of data tiering group.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of data tiering group run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -74,9 +74,9 @@ class DataTieringApi:
         :type id: str
         :param run_id: Specifies a unique run id of data tiering group run. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -130,8 +130,8 @@ class DataTieringApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of data tiering group.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of data tiering group run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -153,9 +153,9 @@ class DataTieringApi:
         :type id: str
         :param run_id: Specifies a unique run id of data tiering group run. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -209,8 +209,8 @@ class DataTieringApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of data tiering group.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of data tiering group run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -232,9 +232,9 @@ class DataTieringApi:
         :type id: str
         :param run_id: Specifies a unique run id of data tiering group run. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -357,8 +357,8 @@ class DataTieringApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of data tiering task.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of data tiering task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -380,9 +380,9 @@ class DataTieringApi:
         :type id: str
         :param run_id: Specifies a unique run id of data tiering task. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -436,8 +436,8 @@ class DataTieringApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of data tiering task.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of data tiering task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -459,9 +459,9 @@ class DataTieringApi:
         :type id: str
         :param run_id: Specifies a unique run id of data tiering task. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -515,8 +515,8 @@ class DataTieringApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of data tiering task.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of data tiering task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -538,9 +538,9 @@ class DataTieringApi:
         :type id: str
         :param run_id: Specifies a unique run id of data tiering task. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -662,8 +662,8 @@ class DataTieringApi:
     def create_data_tiering_analysis_group(
         self,
         body: Annotated[CommonDataTieringAnalysisGroupParams, Field(description="Specifies the data tiering analysis group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -683,9 +683,9 @@ class DataTieringApi:
 
         :param body: Specifies the data tiering analysis group. (required)
         :type body: CommonDataTieringAnalysisGroupParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -737,8 +737,8 @@ class DataTieringApi:
     def create_data_tiering_analysis_group_with_http_info(
         self,
         body: Annotated[CommonDataTieringAnalysisGroupParams, Field(description="Specifies the data tiering analysis group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -758,9 +758,9 @@ class DataTieringApi:
 
         :param body: Specifies the data tiering analysis group. (required)
         :type body: CommonDataTieringAnalysisGroupParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -812,8 +812,8 @@ class DataTieringApi:
     def create_data_tiering_analysis_group_without_preload_content(
         self,
         body: Annotated[CommonDataTieringAnalysisGroupParams, Field(description="Specifies the data tiering analysis group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -833,9 +833,9 @@ class DataTieringApi:
 
         :param body: Specifies the data tiering analysis group. (required)
         :type body: CommonDataTieringAnalysisGroupParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -966,8 +966,8 @@ class DataTieringApi:
     def create_data_tiering_analysis_group_run(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id of the data tiering analysis group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[DataTieringAnalysisRunRequest], Field(description="Specifies the request to run analysis group once.")] = None,
         _request_timeout: Union[
             None,
@@ -988,9 +988,9 @@ class DataTieringApi:
 
         :param id: Specifies the id of the data tiering analysis group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Specifies the request to run analysis group once.
         :type body: DataTieringAnalysisRunRequest
@@ -1045,8 +1045,8 @@ class DataTieringApi:
     def create_data_tiering_analysis_group_run_with_http_info(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id of the data tiering analysis group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[DataTieringAnalysisRunRequest], Field(description="Specifies the request to run analysis group once.")] = None,
         _request_timeout: Union[
             None,
@@ -1067,9 +1067,9 @@ class DataTieringApi:
 
         :param id: Specifies the id of the data tiering analysis group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Specifies the request to run analysis group once.
         :type body: DataTieringAnalysisRunRequest
@@ -1124,8 +1124,8 @@ class DataTieringApi:
     def create_data_tiering_analysis_group_run_without_preload_content(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id of the data tiering analysis group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[DataTieringAnalysisRunRequest], Field(description="Specifies the request to run analysis group once.")] = None,
         _request_timeout: Union[
             None,
@@ -1146,9 +1146,9 @@ class DataTieringApi:
 
         :param id: Specifies the id of the data tiering analysis group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Specifies the request to run analysis group once.
         :type body: DataTieringAnalysisRunRequest
@@ -1285,8 +1285,8 @@ class DataTieringApi:
     def create_data_tiering_task(
         self,
         body: Annotated[CreateOrUpdateDataTieringTaskRequest, Field(description="Specifies the parameters to create a data tiering task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1306,9 +1306,9 @@ class DataTieringApi:
 
         :param body: Specifies the parameters to create a data tiering task. (required)
         :type body: CreateOrUpdateDataTieringTaskRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1360,8 +1360,8 @@ class DataTieringApi:
     def create_data_tiering_task_with_http_info(
         self,
         body: Annotated[CreateOrUpdateDataTieringTaskRequest, Field(description="Specifies the parameters to create a data tiering task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1381,9 +1381,9 @@ class DataTieringApi:
 
         :param body: Specifies the parameters to create a data tiering task. (required)
         :type body: CreateOrUpdateDataTieringTaskRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1435,8 +1435,8 @@ class DataTieringApi:
     def create_data_tiering_task_without_preload_content(
         self,
         body: Annotated[CreateOrUpdateDataTieringTaskRequest, Field(description="Specifies the parameters to create a data tiering task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1456,9 +1456,9 @@ class DataTieringApi:
 
         :param body: Specifies the parameters to create a data tiering task. (required)
         :type body: CreateOrUpdateDataTieringTaskRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1589,8 +1589,8 @@ class DataTieringApi:
     def create_data_tiering_task_run(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id of the data tiering tasks.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[DataTieringTaskRunRequest], Field(description="Specifies the request to run tiering task once.")] = None,
         _request_timeout: Union[
             None,
@@ -1611,9 +1611,9 @@ class DataTieringApi:
 
         :param id: Specifies the id of the data tiering tasks. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Specifies the request to run tiering task once.
         :type body: DataTieringTaskRunRequest
@@ -1668,8 +1668,8 @@ class DataTieringApi:
     def create_data_tiering_task_run_with_http_info(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id of the data tiering tasks.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[DataTieringTaskRunRequest], Field(description="Specifies the request to run tiering task once.")] = None,
         _request_timeout: Union[
             None,
@@ -1690,9 +1690,9 @@ class DataTieringApi:
 
         :param id: Specifies the id of the data tiering tasks. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Specifies the request to run tiering task once.
         :type body: DataTieringTaskRunRequest
@@ -1747,8 +1747,8 @@ class DataTieringApi:
     def create_data_tiering_task_run_without_preload_content(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id of the data tiering tasks.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[DataTieringTaskRunRequest], Field(description="Specifies the request to run tiering task once.")] = None,
         _request_timeout: Union[
             None,
@@ -1769,9 +1769,9 @@ class DataTieringApi:
 
         :param id: Specifies the id of the data tiering tasks. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Specifies the request to run tiering task once.
         :type body: DataTieringTaskRunRequest
@@ -1908,8 +1908,8 @@ class DataTieringApi:
     def delete_data_tiering_analysis_group(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the data tiering analysis group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1929,9 +1929,9 @@ class DataTieringApi:
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1983,8 +1983,8 @@ class DataTieringApi:
     def delete_data_tiering_analysis_group_with_http_info(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the data tiering analysis group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2004,9 +2004,9 @@ class DataTieringApi:
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2058,8 +2058,8 @@ class DataTieringApi:
     def delete_data_tiering_analysis_group_without_preload_content(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the data tiering analysis group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2079,9 +2079,9 @@ class DataTieringApi:
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2199,8 +2199,8 @@ class DataTieringApi:
     def delete_data_tiering_task(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the data tiering task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2220,9 +2220,9 @@ class DataTieringApi:
 
         :param id: Specifies the id of the data tiering task. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2274,8 +2274,8 @@ class DataTieringApi:
     def delete_data_tiering_task_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the data tiering task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2295,9 +2295,9 @@ class DataTieringApi:
 
         :param id: Specifies the id of the data tiering task. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2349,8 +2349,8 @@ class DataTieringApi:
     def delete_data_tiering_task_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the data tiering task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2370,9 +2370,9 @@ class DataTieringApi:
 
         :param id: Specifies the id of the data tiering task. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2487,13 +2487,354 @@ class DataTieringApi:
 
 
     @validate_call
+    def download_tiering_reports(
+        self,
+        id: Annotated[str, Field(strict=True, description="Specifies a unique id of data tiering task.")],
+        run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of data tiering task.")],
+        target_view_name: Annotated[StrictStr, Field(description="Specifies the View name from which the tiering job report file should be read from.")],
+        file_path: Annotated[StrictStr, Field(description="Specifies the file path in the targetView.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Download Tiering reports.
+
+        Specifies the API to download the tiering run report.
+
+        :param id: Specifies a unique id of data tiering task. (required)
+        :type id: str
+        :param run_id: Specifies a unique run id of data tiering task. (required)
+        :type run_id: str
+        :param target_view_name: Specifies the View name from which the tiering job report file should be read from. (required)
+        :type target_view_name: str
+        :param file_path: Specifies the file path in the targetView. (required)
+        :type file_path: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._download_tiering_reports_serialize(
+            id=id,
+            run_id=run_id,
+            target_view_name=target_view_name,
+            file_path=file_path,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def download_tiering_reports_with_http_info(
+        self,
+        id: Annotated[str, Field(strict=True, description="Specifies a unique id of data tiering task.")],
+        run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of data tiering task.")],
+        target_view_name: Annotated[StrictStr, Field(description="Specifies the View name from which the tiering job report file should be read from.")],
+        file_path: Annotated[StrictStr, Field(description="Specifies the file path in the targetView.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Download Tiering reports.
+
+        Specifies the API to download the tiering run report.
+
+        :param id: Specifies a unique id of data tiering task. (required)
+        :type id: str
+        :param run_id: Specifies a unique run id of data tiering task. (required)
+        :type run_id: str
+        :param target_view_name: Specifies the View name from which the tiering job report file should be read from. (required)
+        :type target_view_name: str
+        :param file_path: Specifies the file path in the targetView. (required)
+        :type file_path: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._download_tiering_reports_serialize(
+            id=id,
+            run_id=run_id,
+            target_view_name=target_view_name,
+            file_path=file_path,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def download_tiering_reports_without_preload_content(
+        self,
+        id: Annotated[str, Field(strict=True, description="Specifies a unique id of data tiering task.")],
+        run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of data tiering task.")],
+        target_view_name: Annotated[StrictStr, Field(description="Specifies the View name from which the tiering job report file should be read from.")],
+        file_path: Annotated[StrictStr, Field(description="Specifies the file path in the targetView.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Download Tiering reports.
+
+        Specifies the API to download the tiering run report.
+
+        :param id: Specifies a unique id of data tiering task. (required)
+        :type id: str
+        :param run_id: Specifies a unique run id of data tiering task. (required)
+        :type run_id: str
+        :param target_view_name: Specifies the View name from which the tiering job report file should be read from. (required)
+        :type target_view_name: str
+        :param file_path: Specifies the file path in the targetView. (required)
+        :type file_path: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._download_tiering_reports_serialize(
+            id=id,
+            run_id=run_id,
+            target_view_name=target_view_name,
+            file_path=file_path,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _download_tiering_reports_serialize(
+        self,
+        id,
+        run_id,
+        target_view_name,
+        file_path,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        if run_id is not None:
+            _path_params['runId'] = run_id
+        # process the query parameters
+        if target_view_name is not None:
+            
+            _query_params.append(('targetViewName', target_view_name))
+            
+        if file_path is not None:
+            
+            _query_params.append(('filePath', file_path))
+            
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/data-tiering/tasks/{id}/runs/{runId}/download-report',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_capacity_trend_analysis(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds).")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a end time. Specify the end time as a Unix epoch Timestamp (in microseconds).")] = None,
         source_id: Annotated[Optional[StrictInt], Field(description="Filter by source id. If specified, this will only return the capacity trend analysis of the specific source.")] = None,
+        truncate_response: Annotated[Optional[StrictBool], Field(description="If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2511,16 +2852,18 @@ class DataTieringApi:
 
         Get capacity trend analysis for the given time range, and for the given source or set of sources.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param start_time_usecs: Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds).
         :type start_time_usecs: int
         :param end_time_usecs: Filter by a end time. Specify the end time as a Unix epoch Timestamp (in microseconds).
         :type end_time_usecs: int
         :param source_id: Filter by source id. If specified, this will only return the capacity trend analysis of the specific source.
         :type source_id: int
+        :param truncate_response: If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes
+        :type truncate_response: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2544,11 +2887,12 @@ class DataTieringApi:
         """ # noqa: E501
 
         _param = self._get_capacity_trend_analysis_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             source_id=source_id,
+            truncate_response=truncate_response,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2572,11 +2916,12 @@ class DataTieringApi:
     @validate_call
     def get_capacity_trend_analysis_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds).")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a end time. Specify the end time as a Unix epoch Timestamp (in microseconds).")] = None,
         source_id: Annotated[Optional[StrictInt], Field(description="Filter by source id. If specified, this will only return the capacity trend analysis of the specific source.")] = None,
+        truncate_response: Annotated[Optional[StrictBool], Field(description="If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2594,16 +2939,18 @@ class DataTieringApi:
 
         Get capacity trend analysis for the given time range, and for the given source or set of sources.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param start_time_usecs: Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds).
         :type start_time_usecs: int
         :param end_time_usecs: Filter by a end time. Specify the end time as a Unix epoch Timestamp (in microseconds).
         :type end_time_usecs: int
         :param source_id: Filter by source id. If specified, this will only return the capacity trend analysis of the specific source.
         :type source_id: int
+        :param truncate_response: If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes
+        :type truncate_response: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2627,11 +2974,12 @@ class DataTieringApi:
         """ # noqa: E501
 
         _param = self._get_capacity_trend_analysis_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             source_id=source_id,
+            truncate_response=truncate_response,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2655,11 +3003,12 @@ class DataTieringApi:
     @validate_call
     def get_capacity_trend_analysis_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds).")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a end time. Specify the end time as a Unix epoch Timestamp (in microseconds).")] = None,
         source_id: Annotated[Optional[StrictInt], Field(description="Filter by source id. If specified, this will only return the capacity trend analysis of the specific source.")] = None,
+        truncate_response: Annotated[Optional[StrictBool], Field(description="If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2677,16 +3026,18 @@ class DataTieringApi:
 
         Get capacity trend analysis for the given time range, and for the given source or set of sources.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param start_time_usecs: Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds).
         :type start_time_usecs: int
         :param end_time_usecs: Filter by a end time. Specify the end time as a Unix epoch Timestamp (in microseconds).
         :type end_time_usecs: int
         :param source_id: Filter by source id. If specified, this will only return the capacity trend analysis of the specific source.
         :type source_id: int
+        :param truncate_response: If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes
+        :type truncate_response: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2710,11 +3061,12 @@ class DataTieringApi:
         """ # noqa: E501
 
         _param = self._get_capacity_trend_analysis_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             source_id=source_id,
+            truncate_response=truncate_response,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2733,11 +3085,12 @@ class DataTieringApi:
 
     def _get_capacity_trend_analysis_serialize(
         self,
-        access_cluster_id,
-        region_id,
         start_time_usecs,
         end_time_usecs,
         source_id,
+        truncate_response,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2771,6 +3124,10 @@ class DataTieringApi:
         if source_id is not None:
             
             _query_params.append(('sourceId', source_id))
+            
+        if truncate_response is not None:
+            
+            _query_params.append(('truncateResponse', truncate_response))
             
         # process the header parameters
         if access_cluster_id is not None:
@@ -2817,8 +3174,8 @@ class DataTieringApi:
     def get_data_tiering_analysis_group_by_id(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the data tiering analysis group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2838,9 +3195,9 @@ class DataTieringApi:
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2892,8 +3249,8 @@ class DataTieringApi:
     def get_data_tiering_analysis_group_by_id_with_http_info(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the data tiering analysis group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2913,9 +3270,9 @@ class DataTieringApi:
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2967,8 +3324,8 @@ class DataTieringApi:
     def get_data_tiering_analysis_group_by_id_without_preload_content(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the data tiering analysis group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2988,9 +3345,9 @@ class DataTieringApi:
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3108,9 +3465,10 @@ class DataTieringApi:
     def get_data_tiering_analysis_group_runs(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the data tiering analysis group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         run_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of analysis group run ids.")] = None,
+        truncate_response: Annotated[Optional[StrictBool], Field(description="If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3123,19 +3481,21 @@ class DataTieringApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[DataTieringAnalysisGroupRun]:
+    ) -> DataTieringAnalysisGroupRuns:
         """Get data tiering analysis group runs.
 
         Get data tiering analysis group runs for an analysis group.
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param run_ids: Filter by a list of analysis group run ids.
         :type run_ids: List[str]
+        :param truncate_response: If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes
+        :type truncate_response: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3160,9 +3520,10 @@ class DataTieringApi:
 
         _param = self._get_data_tiering_analysis_group_runs_serialize(
             id=id,
+            run_ids=run_ids,
+            truncate_response=truncate_response,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            run_ids=run_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3170,7 +3531,7 @@ class DataTieringApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[DataTieringAnalysisGroupRun]",
+            '200': "DataTieringAnalysisGroupRuns",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3187,9 +3548,10 @@ class DataTieringApi:
     def get_data_tiering_analysis_group_runs_with_http_info(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the data tiering analysis group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         run_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of analysis group run ids.")] = None,
+        truncate_response: Annotated[Optional[StrictBool], Field(description="If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3202,19 +3564,21 @@ class DataTieringApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[DataTieringAnalysisGroupRun]]:
+    ) -> ApiResponse[DataTieringAnalysisGroupRuns]:
         """Get data tiering analysis group runs.
 
         Get data tiering analysis group runs for an analysis group.
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param run_ids: Filter by a list of analysis group run ids.
         :type run_ids: List[str]
+        :param truncate_response: If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes
+        :type truncate_response: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3239,9 +3603,10 @@ class DataTieringApi:
 
         _param = self._get_data_tiering_analysis_group_runs_serialize(
             id=id,
+            run_ids=run_ids,
+            truncate_response=truncate_response,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            run_ids=run_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3249,7 +3614,7 @@ class DataTieringApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[DataTieringAnalysisGroupRun]",
+            '200': "DataTieringAnalysisGroupRuns",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3266,9 +3631,10 @@ class DataTieringApi:
     def get_data_tiering_analysis_group_runs_without_preload_content(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the data tiering analysis group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         run_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of analysis group run ids.")] = None,
+        truncate_response: Annotated[Optional[StrictBool], Field(description="If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3288,12 +3654,14 @@ class DataTieringApi:
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param run_ids: Filter by a list of analysis group run ids.
         :type run_ids: List[str]
+        :param truncate_response: If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes
+        :type truncate_response: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3318,9 +3686,10 @@ class DataTieringApi:
 
         _param = self._get_data_tiering_analysis_group_runs_serialize(
             id=id,
+            run_ids=run_ids,
+            truncate_response=truncate_response,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            run_ids=run_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3328,7 +3697,7 @@ class DataTieringApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[DataTieringAnalysisGroupRun]",
+            '200': "DataTieringAnalysisGroupRuns",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3340,9 +3709,10 @@ class DataTieringApi:
     def _get_data_tiering_analysis_group_runs_serialize(
         self,
         id,
+        run_ids,
+        truncate_response,
         access_cluster_id,
         region_id,
-        run_ids,
         _request_auth,
         _content_type,
         _headers,
@@ -3371,6 +3741,10 @@ class DataTieringApi:
         if run_ids is not None:
             
             _query_params.append(('runIds', run_ids))
+            
+        if truncate_response is not None:
+            
+            _query_params.append(('truncateResponse', truncate_response))
             
         # process the header parameters
         if access_cluster_id is not None:
@@ -3416,10 +3790,10 @@ class DataTieringApi:
     @validate_call
     def get_data_tiering_analysis_groups(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Analysis Group IDs.")] = None,
         include_last_run_stats: Annotated[Optional[StrictBool], Field(description="If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3437,14 +3811,14 @@ class DataTieringApi:
 
         Get list of all data tiering analysis groups.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter by a list of Analysis Group IDs.
         :type ids: List[str]
         :param include_last_run_stats: If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.
         :type include_last_run_stats: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3468,10 +3842,10 @@ class DataTieringApi:
         """ # noqa: E501
 
         _param = self._get_data_tiering_analysis_groups_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             include_last_run_stats=include_last_run_stats,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3495,10 +3869,10 @@ class DataTieringApi:
     @validate_call
     def get_data_tiering_analysis_groups_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Analysis Group IDs.")] = None,
         include_last_run_stats: Annotated[Optional[StrictBool], Field(description="If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3516,14 +3890,14 @@ class DataTieringApi:
 
         Get list of all data tiering analysis groups.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter by a list of Analysis Group IDs.
         :type ids: List[str]
         :param include_last_run_stats: If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.
         :type include_last_run_stats: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3547,10 +3921,10 @@ class DataTieringApi:
         """ # noqa: E501
 
         _param = self._get_data_tiering_analysis_groups_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             include_last_run_stats=include_last_run_stats,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3574,10 +3948,10 @@ class DataTieringApi:
     @validate_call
     def get_data_tiering_analysis_groups_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Analysis Group IDs.")] = None,
         include_last_run_stats: Annotated[Optional[StrictBool], Field(description="If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3595,14 +3969,14 @@ class DataTieringApi:
 
         Get list of all data tiering analysis groups.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter by a list of Analysis Group IDs.
         :type ids: List[str]
         :param include_last_run_stats: If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.
         :type include_last_run_stats: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3626,10 +4000,10 @@ class DataTieringApi:
         """ # noqa: E501
 
         _param = self._get_data_tiering_analysis_groups_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             include_last_run_stats=include_last_run_stats,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3648,10 +4022,10 @@ class DataTieringApi:
 
     def _get_data_tiering_analysis_groups_serialize(
         self,
-        access_cluster_id,
-        region_id,
         ids,
         include_last_run_stats,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -3727,8 +4101,8 @@ class DataTieringApi:
     @validate_call
     def get_data_tiering_analysis_groups_default_config(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3746,9 +4120,9 @@ class DataTieringApi:
 
         Get default grouping configuration for data tiering analysis groups.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3798,8 +4172,8 @@ class DataTieringApi:
     @validate_call
     def get_data_tiering_analysis_groups_default_config_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3817,9 +4191,9 @@ class DataTieringApi:
 
         Get default grouping configuration for data tiering analysis groups.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3869,8 +4243,8 @@ class DataTieringApi:
     @validate_call
     def get_data_tiering_analysis_groups_default_config_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3888,9 +4262,9 @@ class DataTieringApi:
 
         Get default grouping configuration for data tiering analysis groups.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4004,8 +4378,8 @@ class DataTieringApi:
     def get_data_tiering_task_by_id(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the data tiering task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4025,9 +4399,9 @@ class DataTieringApi:
 
         :param id: Specifies the id of the data tiering task. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4079,8 +4453,8 @@ class DataTieringApi:
     def get_data_tiering_task_by_id_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the data tiering task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4100,9 +4474,9 @@ class DataTieringApi:
 
         :param id: Specifies the id of the data tiering task. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4154,8 +4528,8 @@ class DataTieringApi:
     def get_data_tiering_task_by_id_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the data tiering task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4175,9 +4549,9 @@ class DataTieringApi:
 
         :param id: Specifies the id of the data tiering task. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4294,10 +4668,10 @@ class DataTieringApi:
     @validate_call
     def get_data_tiering_tasks(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of data tiering task ids.")] = None,
         include_downtiered_data_location: Annotated[Optional[StrictBool], Field(description="If true, it will also return a list of downtiered data locations for downtiered tasks.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4315,14 +4689,14 @@ class DataTieringApi:
 
         Get the list of data tiering tasks.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter by a list of data tiering task ids.
         :type ids: List[str]
         :param include_downtiered_data_location: If true, it will also return a list of downtiered data locations for downtiered tasks.
         :type include_downtiered_data_location: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4346,10 +4720,10 @@ class DataTieringApi:
         """ # noqa: E501
 
         _param = self._get_data_tiering_tasks_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             include_downtiered_data_location=include_downtiered_data_location,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4373,10 +4747,10 @@ class DataTieringApi:
     @validate_call
     def get_data_tiering_tasks_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of data tiering task ids.")] = None,
         include_downtiered_data_location: Annotated[Optional[StrictBool], Field(description="If true, it will also return a list of downtiered data locations for downtiered tasks.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4394,14 +4768,14 @@ class DataTieringApi:
 
         Get the list of data tiering tasks.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter by a list of data tiering task ids.
         :type ids: List[str]
         :param include_downtiered_data_location: If true, it will also return a list of downtiered data locations for downtiered tasks.
         :type include_downtiered_data_location: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4425,10 +4799,10 @@ class DataTieringApi:
         """ # noqa: E501
 
         _param = self._get_data_tiering_tasks_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             include_downtiered_data_location=include_downtiered_data_location,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4452,10 +4826,10 @@ class DataTieringApi:
     @validate_call
     def get_data_tiering_tasks_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of data tiering task ids.")] = None,
         include_downtiered_data_location: Annotated[Optional[StrictBool], Field(description="If true, it will also return a list of downtiered data locations for downtiered tasks.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4473,14 +4847,14 @@ class DataTieringApi:
 
         Get the list of data tiering tasks.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter by a list of data tiering task ids.
         :type ids: List[str]
         :param include_downtiered_data_location: If true, it will also return a list of downtiered data locations for downtiered tasks.
         :type include_downtiered_data_location: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4504,10 +4878,10 @@ class DataTieringApi:
         """ # noqa: E501
 
         _param = self._get_data_tiering_tasks_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             include_downtiered_data_location=include_downtiered_data_location,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4526,10 +4900,10 @@ class DataTieringApi:
 
     def _get_data_tiering_tasks_serialize(
         self,
-        access_cluster_id,
-        region_id,
         ids,
         include_downtiered_data_location,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -4607,8 +4981,8 @@ class DataTieringApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the data tiering analysis group.")],
         body: Annotated[CommonDataTieringAnalysisGroupParams, Field(description="Specifies the data tiering analysis group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4630,9 +5004,9 @@ class DataTieringApi:
         :type id: str
         :param body: Specifies the data tiering analysis group. (required)
         :type body: CommonDataTieringAnalysisGroupParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4686,8 +5060,8 @@ class DataTieringApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the data tiering analysis group.")],
         body: Annotated[CommonDataTieringAnalysisGroupParams, Field(description="Specifies the data tiering analysis group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4709,9 +5083,9 @@ class DataTieringApi:
         :type id: str
         :param body: Specifies the data tiering analysis group. (required)
         :type body: CommonDataTieringAnalysisGroupParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4765,8 +5139,8 @@ class DataTieringApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the data tiering analysis group.")],
         body: Annotated[CommonDataTieringAnalysisGroupParams, Field(description="Specifies the data tiering analysis group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4788,9 +5162,9 @@ class DataTieringApi:
         :type id: str
         :param body: Specifies the data tiering analysis group. (required)
         :type body: CommonDataTieringAnalysisGroupParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4926,8 +5300,8 @@ class DataTieringApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the data tiering analysis group.")],
         body: Annotated[DataTieringTagConfig, Field(description="Specifies the data tiering analysis Tags Config.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4949,9 +5323,9 @@ class DataTieringApi:
         :type id: str
         :param body: Specifies the data tiering analysis Tags Config. (required)
         :type body: DataTieringTagConfig
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5005,8 +5379,8 @@ class DataTieringApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the data tiering analysis group.")],
         body: Annotated[DataTieringTagConfig, Field(description="Specifies the data tiering analysis Tags Config.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5028,9 +5402,9 @@ class DataTieringApi:
         :type id: str
         :param body: Specifies the data tiering analysis Tags Config. (required)
         :type body: DataTieringTagConfig
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5084,8 +5458,8 @@ class DataTieringApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the data tiering analysis group.")],
         body: Annotated[DataTieringTagConfig, Field(description="Specifies the data tiering analysis Tags Config.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5107,9 +5481,9 @@ class DataTieringApi:
         :type id: str
         :param body: Specifies the data tiering analysis Tags Config. (required)
         :type body: DataTieringTagConfig
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5244,8 +5618,8 @@ class DataTieringApi:
     def update_data_tiering_analysis_groups_state(
         self,
         body: Annotated[UpdateDataTieringStateRequest, Field(description="Specifies the parameters to perform an action of list of data tiering analysis groups.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5265,9 +5639,9 @@ class DataTieringApi:
 
         :param body: Specifies the parameters to perform an action of list of data tiering analysis groups. (required)
         :type body: UpdateDataTieringStateRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5319,8 +5693,8 @@ class DataTieringApi:
     def update_data_tiering_analysis_groups_state_with_http_info(
         self,
         body: Annotated[UpdateDataTieringStateRequest, Field(description="Specifies the parameters to perform an action of list of data tiering analysis groups.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5340,9 +5714,9 @@ class DataTieringApi:
 
         :param body: Specifies the parameters to perform an action of list of data tiering analysis groups. (required)
         :type body: UpdateDataTieringStateRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5394,8 +5768,8 @@ class DataTieringApi:
     def update_data_tiering_analysis_groups_state_without_preload_content(
         self,
         body: Annotated[UpdateDataTieringStateRequest, Field(description="Specifies the parameters to perform an action of list of data tiering analysis groups.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5415,9 +5789,9 @@ class DataTieringApi:
 
         :param body: Specifies the parameters to perform an action of list of data tiering analysis groups. (required)
         :type body: UpdateDataTieringStateRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5549,8 +5923,8 @@ class DataTieringApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the data tiering task.")],
         body: Annotated[CreateOrUpdateDataTieringTaskRequest, Field(description="Specifies the parameters to update a data tiering task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5572,9 +5946,9 @@ class DataTieringApi:
         :type id: str
         :param body: Specifies the parameters to update a data tiering task. (required)
         :type body: CreateOrUpdateDataTieringTaskRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5628,8 +6002,8 @@ class DataTieringApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the data tiering task.")],
         body: Annotated[CreateOrUpdateDataTieringTaskRequest, Field(description="Specifies the parameters to update a data tiering task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5651,9 +6025,9 @@ class DataTieringApi:
         :type id: str
         :param body: Specifies the parameters to update a data tiering task. (required)
         :type body: CreateOrUpdateDataTieringTaskRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5707,8 +6081,8 @@ class DataTieringApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the data tiering task.")],
         body: Annotated[CreateOrUpdateDataTieringTaskRequest, Field(description="Specifies the parameters to update a data tiering task.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5730,9 +6104,9 @@ class DataTieringApi:
         :type id: str
         :param body: Specifies the parameters to update a data tiering task. (required)
         :type body: CreateOrUpdateDataTieringTaskRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5867,8 +6241,8 @@ class DataTieringApi:
     def update_data_tiering_tasks_state(
         self,
         body: Annotated[UpdateDataTieringStateRequest, Field(description="Specifies the parameters to perform an action of list of data tiering tasks.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5888,9 +6262,9 @@ class DataTieringApi:
 
         :param body: Specifies the parameters to perform an action of list of data tiering tasks. (required)
         :type body: UpdateDataTieringStateRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5942,8 +6316,8 @@ class DataTieringApi:
     def update_data_tiering_tasks_state_with_http_info(
         self,
         body: Annotated[UpdateDataTieringStateRequest, Field(description="Specifies the parameters to perform an action of list of data tiering tasks.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5963,9 +6337,9 @@ class DataTieringApi:
 
         :param body: Specifies the parameters to perform an action of list of data tiering tasks. (required)
         :type body: UpdateDataTieringStateRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6017,8 +6391,8 @@ class DataTieringApi:
     def update_data_tiering_tasks_state_without_preload_content(
         self,
         body: Annotated[UpdateDataTieringStateRequest, Field(description="Specifies the parameters to perform an action of list of data tiering tasks.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6038,9 +6412,9 @@ class DataTieringApi:
 
         :param body: Specifies the parameters to perform an action of list of data tiering tasks. (required)
         :type body: UpdateDataTieringStateRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

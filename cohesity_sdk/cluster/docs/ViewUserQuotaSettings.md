@@ -7,7 +7,7 @@ Specifies the user quota config on the View.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **default_quota_policy** | [**QuotaPolicy**](QuotaPolicy.md) |  | [optional] 
-**enabled** | **bool** | Specifies whether user quota is enabled for the View. | 
+**enabled** | **bool** | Specifies whether user quota is enabled for the View. | [optional] 
 
 ## Example
 

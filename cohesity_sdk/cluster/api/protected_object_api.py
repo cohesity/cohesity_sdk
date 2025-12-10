@@ -59,7 +59,7 @@ class ProtectedObjectApi:
     ) -> ProtectedObjectActionResponse:
         """Perform Actions on Protect Objects.
 
-        Perform actions on Protected Objects.
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Perform actions on Protected Objects.
 
         :param body: Specifies the parameters to perform an action on an already protected object. (required)
         :type body: ProtectdObjectsActionRequest
@@ -126,7 +126,7 @@ class ProtectedObjectApi:
     ) -> ApiResponse[ProtectedObjectActionResponse]:
         """Perform Actions on Protect Objects.
 
-        Perform actions on Protected Objects.
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Perform actions on Protected Objects.
 
         :param body: Specifies the parameters to perform an action on an already protected object. (required)
         :type body: ProtectdObjectsActionRequest
@@ -193,7 +193,7 @@ class ProtectedObjectApi:
     ) -> RESTResponseType:
         """Perform Actions on Protect Objects.
 
-        Perform actions on Protected Objects.
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Perform actions on Protected Objects.
 
         :param body: Specifies the parameters to perform an action on an already protected object. (required)
         :type body: ProtectdObjectsActionRequest
@@ -336,7 +336,7 @@ class ProtectedObjectApi:
     ) -> CreateProtectedObjectsResponse:
         """Create Object Backup.
 
-        Create Protect Objects Backup.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Create Protect Objects Backup.
 
         :param body: Specifies the parameters to protect objects. (required)
         :type body: CreateProtectedObjectsRequest
@@ -407,7 +407,7 @@ class ProtectedObjectApi:
     ) -> ApiResponse[CreateProtectedObjectsResponse]:
         """Create Object Backup.
 
-        Create Protect Objects Backup.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Create Protect Objects Backup.
 
         :param body: Specifies the parameters to protect objects. (required)
         :type body: CreateProtectedObjectsRequest
@@ -478,7 +478,7 @@ class ProtectedObjectApi:
     ) -> RESTResponseType:
         """Create Object Backup.
 
-        Create Protect Objects Backup.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Create Protect Objects Backup.
 
         :param body: Specifies the parameters to protect objects. (required)
         :type body: CreateProtectedObjectsRequest
@@ -628,7 +628,7 @@ class ProtectedObjectApi:
     ) -> GetProtectedObjectResponse:
         """Update Object Backup.
 
-        Update Protected object backup configuration given a object id.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Update Protected object backup configuration given a object id.
 
         :param id: Specifies the id of the Protected Object. (required)
         :type id: int
@@ -703,7 +703,7 @@ class ProtectedObjectApi:
     ) -> ApiResponse[GetProtectedObjectResponse]:
         """Update Object Backup.
 
-        Update Protected object backup configuration given a object id.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Update Protected object backup configuration given a object id.
 
         :param id: Specifies the id of the Protected Object. (required)
         :type id: int
@@ -778,7 +778,7 @@ class ProtectedObjectApi:
     ) -> RESTResponseType:
         """Update Object Backup.
 
-        Update Protected object backup configuration given a object id.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Update Protected object backup configuration given a object id.
 
         :param id: Specifies the id of the Protected Object. (required)
         :type id: int

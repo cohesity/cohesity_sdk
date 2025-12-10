@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.cluster.models.kubernetes_resource_meta_info_result import KubernetesResourceMetaInfoResult
 from cohesity_sdk.cluster.models.oracle_restore_meta_info_result import OracleRestoreMetaInfoResult
 from cohesity_sdk.cluster.models.sfdc_meta_info_result import SfdcMetaInfoResult
 from typing import Set
@@ -29,9 +30,10 @@ class ConstructMetaInfoResult(BaseModel):
     Result to store meta-info from an object snapshot and additional information.
     """ # noqa: E501
     environment: Optional[StrictStr] = Field(default=None, description="Specifies the environment type for fetching the meta Info.")
+    kubernetes_params: Optional[KubernetesResourceMetaInfoResult] = Field(default=None, alias="kubernetesParams")
     oracle_params: Optional[OracleRestoreMetaInfoResult] = Field(default=None, alias="oracleParams")
     sfdc_params: Optional[SfdcMetaInfoResult] = Field(default=None, alias="sfdcParams")
-    __properties: ClassVar[List[str]] = ["environment", "oracleParams", "sfdcParams"]
+    __properties: ClassVar[List[str]] = ["environment", "kubernetesParams", "oracleParams", "sfdcParams"]
 
     @field_validator('environment')
     def environment_validate_enum(cls, value):
@@ -39,8 +41,8 @@ class ConstructMetaInfoResult(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAzureNative', 'kAzureSQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc']):
-            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAzureNative', 'kAzureSQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc')")
+        if value not in set(['kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kGCPBigQuery', 'kGCPMySQL', 'kGoogleSpanner', 'kGCPPostgreSQL', 'kGCPAlloyDBPostgreSQL', 'kGCPSQLServer', 'kGCPFirestore', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kRDSPostgresSnapshotManager', 'kRDSMySQLSnapshotManager', 'kRDSMSSQLSnapshotManager', 'kRDSOracleSnapshotManager', 'kRDSMariaDBSnapshotManager', 'kRDSCustomMSSQLSnapshotManager', 'kRDSCustomOracleSnapshotManager', 'kAuroraSnapshotManager', 'kAuroraPostgresSnapshotManager', 'kAuroraMySQLSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAWSAuroraMySQL', 'kAwsDynamoDB', 'kAWSRdsOracle', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRDSMSSQL', 'kAWSRedshift', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzurePostgreSQLServer', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureBlobStorage', 'kAzureTableAPI', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kNutanixFS', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kS3Compatible', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kServiceNow', 'kPostgres']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kGCPBigQuery', 'kGCPMySQL', 'kGoogleSpanner', 'kGCPPostgreSQL', 'kGCPAlloyDBPostgreSQL', 'kGCPSQLServer', 'kGCPFirestore', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kRDSPostgresSnapshotManager', 'kRDSMySQLSnapshotManager', 'kRDSMSSQLSnapshotManager', 'kRDSOracleSnapshotManager', 'kRDSMariaDBSnapshotManager', 'kRDSCustomMSSQLSnapshotManager', 'kRDSCustomOracleSnapshotManager', 'kAuroraSnapshotManager', 'kAuroraPostgresSnapshotManager', 'kAuroraMySQLSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAWSAuroraMySQL', 'kAwsDynamoDB', 'kAWSRdsOracle', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRDSMSSQL', 'kAWSRedshift', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzurePostgreSQLServer', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureBlobStorage', 'kAzureTableAPI', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kNutanixFS', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kS3Compatible', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kServiceNow', 'kPostgres')")
         return value
 
     model_config = ConfigDict(
@@ -82,6 +84,9 @@ class ConstructMetaInfoResult(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of kubernetes_params
+        if self.kubernetes_params:
+            _dict['kubernetesParams'] = self.kubernetes_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of oracle_params
         if self.oracle_params:
             _dict['oracleParams'] = self.oracle_params.to_dict()
@@ -106,6 +111,7 @@ class ConstructMetaInfoResult(BaseModel):
 
         _obj = cls.model_validate({
             "environment": obj.get("environment"),
+            "kubernetesParams": KubernetesResourceMetaInfoResult.from_dict(obj["kubernetesParams"]) if obj.get("kubernetesParams") is not None else None,
             "oracleParams": OracleRestoreMetaInfoResult.from_dict(obj["oracleParams"]) if obj.get("oracleParams") is not None else None,
             "sfdcParams": SfdcMetaInfoResult.from_dict(obj["sfdcParams"]) if obj.get("sfdcParams") is not None else None
         })

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **groups_object_protection_params** | [**Office365ObjectProtectionCommonParams**](Office365ObjectProtectionCommonParams.md) |  | [optional] 
 **object_protection_type** | **str** | Specifies the Microsoft 365 Object Protection type. | 
 **sharepoint_site_object_protection_params** | [**Office365SharepointSiteObjectProtectionParams**](Office365SharepointSiteObjectProtectionParams.md) |  | [optional] 
-**teams_object_protection_params** | [**Office365ObjectProtectionCommonParams**](Office365ObjectProtectionCommonParams.md) |  | [optional] 
+**teams_object_protection_params** | [**Office365TeamsObjectProtectionParams**](Office365TeamsObjectProtectionParams.md) |  | [optional] 
 **user_mailbox_object_protection_params** | [**Office365UserMailboxObjectProtectionParams**](Office365UserMailboxObjectProtectionParams.md) |  | [optional] 
 **user_one_drive_object_protection_params** | [**Office365UserOneDriveObjectProtectionParams**](Office365UserOneDriveObjectProtectionParams.md) |  | [optional] 
 

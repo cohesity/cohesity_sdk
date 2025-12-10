@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.helios_full_backup_policy import HeliosFullBackupPolicy
+from cohesity_sdk.helios.models.helios_full_schedule_and_retention import HeliosFullScheduleAndRetention
 from cohesity_sdk.helios.models.helios_incremental_backup_policy import HeliosIncrementalBackupPolicy
 from cohesity_sdk.helios.models.helios_primary_backup_target import HeliosPrimaryBackupTarget
 from cohesity_sdk.helios.models.helios_retention import HeliosRetention
@@ -31,10 +32,11 @@ class HeliosRegularBackupPolicy(BaseModel):
     Specifies the Incremental and Full policy settings and also the common Retention policy settings.\"
     """ # noqa: E501
     full: Optional[HeliosFullBackupPolicy] = None
+    full_backups: Optional[List[HeliosFullScheduleAndRetention]] = Field(default=None, description="Specifies multiple schedules and retentions for full backup. Specify either of the 'full' or 'fullBackups' values. Its recommended to use 'fullBaackups' value since 'full' will be deprecated after few releases.", alias="fullBackups")
     incremental: Optional[HeliosIncrementalBackupPolicy] = None
     primary_backup_target: Optional[HeliosPrimaryBackupTarget] = Field(default=None, alias="primaryBackupTarget")
     retention: Optional[HeliosRetention] = None
-    __properties: ClassVar[List[str]] = ["full", "incremental", "primaryBackupTarget", "retention"]
+    __properties: ClassVar[List[str]] = ["full", "fullBackups", "incremental", "primaryBackupTarget", "retention"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,6 +80,13 @@ class HeliosRegularBackupPolicy(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of full
         if self.full:
             _dict['full'] = self.full.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in full_backups (list)
+        _items = []
+        if self.full_backups:
+            for _item_full_backups in self.full_backups:
+                if _item_full_backups:
+                    _items.append(_item_full_backups.to_dict())
+            _dict['fullBackups'] = _items
         # override the default output from pydantic by calling `to_dict()` of incremental
         if self.incremental:
             _dict['incremental'] = self.incremental.to_dict()
@@ -100,6 +109,7 @@ class HeliosRegularBackupPolicy(BaseModel):
 
         _obj = cls.model_validate({
             "full": HeliosFullBackupPolicy.from_dict(obj["full"]) if obj.get("full") is not None else None,
+            "fullBackups": [HeliosFullScheduleAndRetention.from_dict(_item) for _item in obj["fullBackups"]] if obj.get("fullBackups") is not None else None,
             "incremental": HeliosIncrementalBackupPolicy.from_dict(obj["incremental"]) if obj.get("incremental") is not None else None,
             "primaryBackupTarget": HeliosPrimaryBackupTarget.from_dict(obj["primaryBackupTarget"]) if obj.get("primaryBackupTarget") is not None else None,
             "retention": HeliosRetention.from_dict(obj["retention"]) if obj.get("retention") is not None else None

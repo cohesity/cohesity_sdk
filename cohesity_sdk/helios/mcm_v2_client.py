@@ -7,36 +7,51 @@ from cohesity_sdk.helios.api.active_directory_api import ActiveDirectoryApi
 from cohesity_sdk.helios.api.agent_api import AgentApi
 from cohesity_sdk.helios.api.alert_api import AlertApi
 from cohesity_sdk.helios.api.antivirus_service_api import AntivirusServiceApi
+from cohesity_sdk.helios.api.app_api import AppApi
+from cohesity_sdk.helios.api.athena_app_ops_api import AthenaAppOpsApi
 from cohesity_sdk.helios.api.audit_log_api import AuditLogApi
-from cohesity_sdk.helios.api.baseos_patch_management_api import BaseosPatchManagementApi
 from cohesity_sdk.helios.api.certificate_api import CertificateApi
+from cohesity_sdk.helios.api.certificate_store_api import CertificateStoreApi
+from cohesity_sdk.helios.api.cloud_domain_api import CloudDomainApi
 from cohesity_sdk.helios.api.cloud_retrieve_task_api import CloudRetrieveTaskApi
 from cohesity_sdk.helios.api.cluster_management_api import ClusterManagementApi
+from cohesity_sdk.helios.api.cluster_registration_api import ClusterRegistrationApi
+from cohesity_sdk.helios.api.cohesity_ca_api import CohesityCAApi
+from cohesity_sdk.helios.api.config_api import ConfigApi
 from cohesity_sdk.helios.api.copy_stats_api import CopyStatsApi
+from cohesity_sdk.helios.api.dspm_api import DSPMApi
+from cohesity_sdk.helios.api.data_accessor_api import DataAccessorApi
+from cohesity_sdk.helios.api.data_source_connection_api import DataSourceConnectionApi
+from cohesity_sdk.helios.api.data_source_connector_api import DataSourceConnectorApi
+from cohesity_sdk.helios.api.data_source_connector_local_api import DataSourceConnectorLocalApi
 from cohesity_sdk.helios.api.data_tiering_api import DataTieringApi
 from cohesity_sdk.helios.api.external_target_api import ExternalTargetApi
 from cohesity_sdk.helios.api.failover_api import FailoverApi
 from cohesity_sdk.helios.api.firewall_api import FirewallApi
-from cohesity_sdk.helios.api.fortknox_api import FortknoxApi
+from cohesity_sdk.helios.api.fort_knox_api import FortKnoxApi
+from cohesity_sdk.helios.api.fortknox_onprem_api import FortknoxOnpremApi
 from cohesity_sdk.helios.api.helios_data_protect_stats_api import HeliosDataProtectStatsApi
+from cohesity_sdk.helios.api.helios_identity_provider_api import HeliosIdentityProviderApi
 from cohesity_sdk.helios.api.helios_notifications_api import HeliosNotificationsApi
 from cohesity_sdk.helios.api.helios_on_prem_api import HeliosOnPremApi
 from cohesity_sdk.helios.api.helios_principals_api import HeliosPrincipalsApi
-from cohesity_sdk.helios.api.ips_api import IPsApi
 from cohesity_sdk.helios.api.identity_provider_api import IdentityProviderApi
 from cohesity_sdk.helios.api.kerberos_provider_api import KerberosProviderApi
 from cohesity_sdk.helios.api.key_management_system_api import KeyManagementSystemApi
 from cohesity_sdk.helios.api.keystone_api import KeystoneApi
 from cohesity_sdk.helios.api.ldap_api import LDAPApi
+from cohesity_sdk.helios.api.lsu_api import LSUApi
+from cohesity_sdk.helios.api.license_api import LicenseApi
 from cohesity_sdk.helios.api.mfa_api import MFAApi
 from cohesity_sdk.helios.api.node_group_api import NodeGroupApi
 from cohesity_sdk.helios.api.object_api import ObjectApi
-from cohesity_sdk.helios.api.patch_management_api import PatchManagementApi
+from cohesity_sdk.helios.api.one_helios_api import OneHeliosApi
 from cohesity_sdk.helios.api.platform_api import PlatformApi
 from cohesity_sdk.helios.api.policy_api import PolicyApi
 from cohesity_sdk.helios.api.privilege_api import PrivilegeApi
 from cohesity_sdk.helios.api.protected_object_api import ProtectedObjectApi
 from cohesity_sdk.helios.api.protection_group_api import ProtectionGroupApi
+from cohesity_sdk.helios.api.provider_instances_api import ProviderInstancesApi
 from cohesity_sdk.helios.api.recovery_api import RecoveryApi
 from cohesity_sdk.helios.api.registration_api import RegistrationApi
 from cohesity_sdk.helios.api.remote_clusters_api import RemoteClustersApi
@@ -46,6 +61,9 @@ from cohesity_sdk.helios.api.routes_api import RoutesApi
 from cohesity_sdk.helios.api.rpaas_api import RpaasApi
 from cohesity_sdk.helios.api.search_api import SearchApi
 from cohesity_sdk.helios.api.security_api import SecurityApi
+from cohesity_sdk.helios.api.security_integration_api import SecurityIntegrationApi
+from cohesity_sdk.helios.api.session_management_api import SessionManagementApi
+from cohesity_sdk.helios.api.snmp_config_api import SnmpConfigApi
 from cohesity_sdk.helios.api.source_api import SourceApi
 from cohesity_sdk.helios.api.stats_api import StatsApi
 from cohesity_sdk.helios.api.storage_domain_api import StorageDomainApi
@@ -55,8 +73,8 @@ from cohesity_sdk.helios.api.tag_api import TagApi
 from cohesity_sdk.helios.api.tagging_service_api import TaggingServiceApi
 from cohesity_sdk.helios.api.templates_api import TemplatesApi
 from cohesity_sdk.helios.api.tenant_api import TenantApi
+from cohesity_sdk.helios.api.tenant_deactivation_api import TenantDeactivationApi
 from cohesity_sdk.helios.api.user_api import UserApi
-from cohesity_sdk.helios.api.user_preferences_api import UserPreferencesApi
 from cohesity_sdk.helios.api.view_api import ViewApi
 
 
@@ -98,7 +116,7 @@ class McmV2Client:
         # TODO: remove this once the backend has ssl certificate setup
         self.configuration.verify_ssl = False
 
-        if cluster_vip != None: # noqa: E711
+        if cluster_vip is not None:
             self.configuration.host = f"https://{cluster_vip}/v2"
         else:
             raise Exception('Missing cluster_vip info to initialize a client.')
@@ -106,7 +124,7 @@ class McmV2Client:
         # This fixes the response type conflict between the backend and Swagger spec file
         self.configuration.discard_unknown_keys = True
 
-        if api_key == None: # noqa: E711
+        if api_key is None:
             raise Exception('Fail to initialize a client. Please provide authentication info.')
 
         self.__authenticate()
@@ -151,22 +169,40 @@ class McmV2Client:
             return AntivirusServiceApi(api_client)
 
     @lazy_property
+    def app_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return AppApi(api_client)
+
+    @lazy_property
+    def athena_app_ops_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return AthenaAppOpsApi(api_client)
+
+    @lazy_property
     def audit_log_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return AuditLogApi(api_client)
 
     @lazy_property
-    def baseos_patch_management_api(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return BaseosPatchManagementApi(api_client)
-
-    @lazy_property
     def certificate_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return CertificateApi(api_client)
+
+    @lazy_property
+    def certificate_store_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return CertificateStoreApi(api_client)
+
+    @lazy_property
+    def cloud_domain_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return CloudDomainApi(api_client)
 
     @lazy_property
     def cloud_retrieve_task_api(self):
@@ -181,10 +217,58 @@ class McmV2Client:
             return ClusterManagementApi(api_client)
 
     @lazy_property
+    def cluster_registration_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return ClusterRegistrationApi(api_client)
+
+    @lazy_property
+    def cohesity_ca_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return CohesityCAApi(api_client)
+
+    @lazy_property
+    def config_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return ConfigApi(api_client)
+
+    @lazy_property
     def copy_stats_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return CopyStatsApi(api_client)
+
+    @lazy_property
+    def dspm_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return DSPMApi(api_client)
+
+    @lazy_property
+    def data_accessor_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return DataAccessorApi(api_client)
+
+    @lazy_property
+    def data_source_connection_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return DataSourceConnectionApi(api_client)
+
+    @lazy_property
+    def data_source_connector_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return DataSourceConnectorApi(api_client)
+
+    @lazy_property
+    def data_source_connector_local_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return DataSourceConnectorLocalApi(api_client)
 
     @lazy_property
     def data_tiering_api(self):
@@ -211,16 +295,28 @@ class McmV2Client:
             return FirewallApi(api_client)
 
     @lazy_property
-    def fortknox_api(self):
+    def fort_knox_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
-            return FortknoxApi(api_client)
+            return FortKnoxApi(api_client)
+
+    @lazy_property
+    def fortknox_onprem_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return FortknoxOnpremApi(api_client)
 
     @lazy_property
     def helios_data_protect_stats_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return HeliosDataProtectStatsApi(api_client)
+
+    @lazy_property
+    def helios_identity_provider_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return HeliosIdentityProviderApi(api_client)
 
     @lazy_property
     def helios_notifications_api(self):
@@ -239,12 +335,6 @@ class McmV2Client:
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return HeliosPrincipalsApi(api_client)
-
-    @lazy_property
-    def ips_api(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return IPsApi(api_client)
 
     @lazy_property
     def identity_provider_api(self):
@@ -277,6 +367,18 @@ class McmV2Client:
             return LDAPApi(api_client)
 
     @lazy_property
+    def lsu_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return LSUApi(api_client)
+
+    @lazy_property
+    def license_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return LicenseApi(api_client)
+
+    @lazy_property
     def mfa_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
@@ -295,10 +397,10 @@ class McmV2Client:
             return ObjectApi(api_client)
 
     @lazy_property
-    def patch_management_api(self):
+    def one_helios_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
-            return PatchManagementApi(api_client)
+            return OneHeliosApi(api_client)
 
     @lazy_property
     def platform_api(self):
@@ -329,6 +431,12 @@ class McmV2Client:
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return ProtectionGroupApi(api_client)
+
+    @lazy_property
+    def provider_instances_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return ProviderInstancesApi(api_client)
 
     @lazy_property
     def recovery_api(self):
@@ -385,6 +493,24 @@ class McmV2Client:
             return SecurityApi(api_client)
 
     @lazy_property
+    def security_integration_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return SecurityIntegrationApi(api_client)
+
+    @lazy_property
+    def session_management_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return SessionManagementApi(api_client)
+
+    @lazy_property
+    def snmp_config_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return SnmpConfigApi(api_client)
+
+    @lazy_property
     def source_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
@@ -439,16 +565,16 @@ class McmV2Client:
             return TenantApi(api_client)
 
     @lazy_property
+    def tenant_deactivation_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return TenantDeactivationApi(api_client)
+
+    @lazy_property
     def user_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return UserApi(api_client)
-
-    @lazy_property
-    def user_preferences_api(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return UserPreferencesApi(api_client)
 
     @lazy_property
     def view_api(self):

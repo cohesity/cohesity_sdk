@@ -21,7 +21,9 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.common_download_file_and_folder_params import CommonDownloadFileAndFolderParams
 from cohesity_sdk.helios.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
+from cohesity_sdk.helios.models.recover_azure_entra_id_params import RecoverAzureEntraIdParams
 from cohesity_sdk.helios.models.recover_azure_file_and_folder_params import RecoverAzureFileAndFolderParams
+from cohesity_sdk.helios.models.recover_azure_my_sql_params import RecoverAzureMySQLParams
 from cohesity_sdk.helios.models.recover_azure_sql_params import RecoverAzureSqlParams
 from cohesity_sdk.helios.models.recover_azure_vm_params import RecoverAzureVmParams
 from typing import Set
@@ -31,19 +33,21 @@ class RecoverAzureParams(BaseModel):
     """
     Specifies the recovery options specific to Azure environment.
     """ # noqa: E501
+    azure_entra_id_params: Optional[RecoverAzureEntraIdParams] = Field(default=None, description="Specifies the parameters to recover Azure Entra ID workloads.", alias="azureEntraIdParams")
+    azure_mysql_params: Optional[RecoverAzureMySQLParams] = Field(default=None, alias="azureMysqlParams")
     azure_sql_params: Optional[RecoverAzureSqlParams] = Field(default=None, description="Specifies the parameters to recover Azure SQL workloads.", alias="azureSqlParams")
     download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, description="Specifies the parameters to download files and folders.", alias="downloadFileAndFolderParams")
     objects: Optional[List[CommonRecoverObjectSnapshotParams]] = Field(default=None, description="Specifies the list of recover Object parameters. This property is mandatory for all recovery action types except recover vms. While recovering VMs, a user can specify snapshots of VM's or a Protection Group Run details to recover all the VM's that are backed up by that Run. For recovering files, specifies the object contains the file to recover.")
     recover_file_and_folder_params: Optional[RecoverAzureFileAndFolderParams] = Field(default=None, description="Specifies the parameters to recover Azure files and folders.", alias="recoverFileAndFolderParams")
     recover_vm_params: Optional[RecoverAzureVmParams] = Field(default=None, description="Specifies the parameters to recover Azure VM.", alias="recoverVmParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recover action to be performed.", alias="recoveryAction")
-    __properties: ClassVar[List[str]] = ["azureSqlParams", "downloadFileAndFolderParams", "objects", "recoverFileAndFolderParams", "recoverVmParams", "recoveryAction"]
+    __properties: ClassVar[List[str]] = ["azureEntraIdParams", "azureMysqlParams", "azureSqlParams", "downloadFileAndFolderParams", "objects", "recoverFileAndFolderParams", "recoverVmParams", "recoveryAction"]
 
     @field_validator('recovery_action')
     def recovery_action_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['RecoverVMs', 'RecoverFiles', 'RecoverAzureSQL']):
-            raise ValueError("must be one of enum values ('RecoverVMs', 'RecoverFiles', 'RecoverAzureSQL')")
+        if value not in set(['RecoverVMs', 'RecoverFiles', 'RecoverAzureSQL', 'RecoverAzureEntraID', 'RecoverAzureMySQL']):
+            raise ValueError("must be one of enum values ('RecoverVMs', 'RecoverFiles', 'RecoverAzureSQL', 'RecoverAzureEntraID', 'RecoverAzureMySQL')")
         return value
 
     model_config = ConfigDict(
@@ -85,6 +89,12 @@ class RecoverAzureParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of azure_entra_id_params
+        if self.azure_entra_id_params:
+            _dict['azureEntraIdParams'] = self.azure_entra_id_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_mysql_params
+        if self.azure_mysql_params:
+            _dict['azureMysqlParams'] = self.azure_mysql_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of azure_sql_params
         if self.azure_sql_params:
             _dict['azureSqlParams'] = self.azure_sql_params.to_dict()
@@ -104,6 +114,11 @@ class RecoverAzureParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of recover_vm_params
         if self.recover_vm_params:
             _dict['recoverVmParams'] = self.recover_vm_params.to_dict()
+        # set to None if azure_entra_id_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.azure_entra_id_params is None and "azure_entra_id_params" in self.model_fields_set:
+            _dict['azureEntraIdParams'] = None
+
         # set to None if azure_sql_params (nullable) is None
         # and model_fields_set contains the field
         if self.azure_sql_params is None and "azure_sql_params" in self.model_fields_set:
@@ -141,6 +156,8 @@ class RecoverAzureParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "azureEntraIdParams": RecoverAzureEntraIdParams.from_dict(obj["azureEntraIdParams"]) if obj.get("azureEntraIdParams") is not None else None,
+            "azureMysqlParams": RecoverAzureMySQLParams.from_dict(obj["azureMysqlParams"]) if obj.get("azureMysqlParams") is not None else None,
             "azureSqlParams": RecoverAzureSqlParams.from_dict(obj["azureSqlParams"]) if obj.get("azureSqlParams") is not None else None,
             "downloadFileAndFolderParams": CommonDownloadFileAndFolderParams.from_dict(obj["downloadFileAndFolderParams"]) if obj.get("downloadFileAndFolderParams") is not None else None,
             "objects": [CommonRecoverObjectSnapshotParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None,

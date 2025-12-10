@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **purpose** | **List[str]** | Specifies the purpose for which the remote cluster is being registered. | [optional] 
 **replication_params** | [**ReplicationParams**](ReplicationParams.md) |  | [optional] 
 **supported_aes_encryption_mode** | **str** | Specifies the AES Encryption mode of the remote cluster. | [optional] 
+**tenant_id** | **str** | Specifies the tenant Id of the Remote Cluster. | [optional] [readonly] 
 **tenant_storage_domain_sharing_enabled** | **bool** | Specifies if Tenant Storage Domain sharing is enabled on the Remote Cluster. | [optional] 
 **tls_enabled** | **bool** | Specifies if TLS is enabled on the Remote Cluster. | [optional] 
 **node_addresses** | **List[str]** | Specifies the VIP or IP addresses of the Nodes on the Remote Cluster to connect with. Hostnames are not supported. | [optional] 

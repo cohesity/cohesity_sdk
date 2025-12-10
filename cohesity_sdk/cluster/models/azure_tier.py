@@ -47,8 +47,8 @@ class AzureTier(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kAzureTierHot', 'kAzureTierCool', 'kAzureTierArchive']):
-            raise ValueError("must be one of enum values ('kAzureTierHot', 'kAzureTierCool', 'kAzureTierArchive')")
+        if value not in set(['kAzureTierHot', 'kAzureTierCool', 'kAzureTierArchive', 'kAzureTierCold']):
+            raise ValueError("must be one of enum values ('kAzureTierHot', 'kAzureTierCool', 'kAzureTierArchive', 'kAzureTierCold')")
         return value
 
     model_config = ConfigDict(

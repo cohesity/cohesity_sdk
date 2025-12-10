@@ -35,8 +35,8 @@ class TenantActionBody(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Activate', 'Deactivate']):
-            raise ValueError("must be one of enum values ('Activate', 'Deactivate')")
+        if value not in set(['Activate', 'Deactivate', 'Suspend']):
+            raise ValueError("must be one of enum values ('Activate', 'Deactivate', 'Suspend')")
         return value
 
     model_config = ConfigDict(

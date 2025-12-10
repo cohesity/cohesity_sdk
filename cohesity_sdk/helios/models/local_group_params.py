@@ -27,7 +27,8 @@ class LocalGroupParams(BaseModel):
     Specifies properties for LOCAL Cohesity group.
     """ # noqa: E501
     user_sids: Optional[List[StrictStr]] = Field(default=None, description="Specifies the LOCAL users which are part of this group.", alias="userSids")
-    __properties: ClassVar[List[str]] = ["userSids"]
+    usernames: Optional[List[StrictStr]] = Field(default=None, description="Specifies the usernames of the LOCAL users which are part of this group.")
+    __properties: ClassVar[List[str]] = ["userSids", "usernames"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -59,8 +60,10 @@ class LocalGroupParams(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
+            "usernames",
         ])
 
         _dict = self.model_dump(
@@ -80,7 +83,8 @@ class LocalGroupParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "userSids": obj.get("userSids")
+            "userSids": obj.get("userSids"),
+            "usernames": obj.get("usernames")
         })
         return _obj
 

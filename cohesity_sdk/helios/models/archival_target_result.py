@@ -55,6 +55,7 @@ class ArchivalTargetResult(BaseModel):
     progress_task_id: Optional[StrictStr] = Field(default=None, description="Progress monitor task id for archival.", alias="progressTaskId")
     queued_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the time when the archival is queued for schedule in Unix epoch Timestamp(in microseconds) for a target.", alias="queuedTimeUsecs")
     run_type: Optional[StrictStr] = Field(default=None, description="Type of Protection Group run. 'kRegular' indicates an incremental (CBT) backup. Incremental backups utilizing CBT (if supported) are captured of the target protection objects. The first run of a kRegular schedule captures all the blocks. 'kFull' indicates a full (no CBT) backup. A complete backup (all blocks) of the target protection objects are always captured and Change Block Tracking (CBT) is not utilized. 'kLog' indicates a Database Log backup. Capture the database transaction logs to allow rolling back to a specific point in time. 'kSystem' indicates system volume backup. It produces an image for bare metal recovery.", alias="runType")
+    skipped_app_objects_count: Optional[StrictInt] = Field(default=None, description="Specifies the count of app objects for which backup was skipped.", alias="skippedAppObjectsCount")
     snapshot_id: Optional[StrictStr] = Field(default=None, description="Snapshot id for a successful snapshot. This field will not be set if the archival Run fails to take the snapshot.", alias="snapshotId")
     start_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the start time of replication run in Unix epoch Timestamp(in microseconds) for an archival target.", alias="startTimeUsecs")
     stats: Optional[ArchivalDataStats] = None
@@ -63,7 +64,7 @@ class ArchivalTargetResult(BaseModel):
     successful_app_objects_count: Optional[StrictInt] = Field(default=None, description="Specifies the count of app objects for which backup was successful.", alias="successfulAppObjectsCount")
     successful_objects_count: Optional[StrictInt] = Field(default=None, description="Specifies the count of objects for which backup was successful.", alias="successfulObjectsCount")
     worm_properties: Optional[WormProperties] = Field(default=None, alias="wormProperties")
-    __properties: ClassVar[List[str]] = ["archivalTaskId", "ownershipContext", "targetId", "targetName", "targetType", "tierSettings", "usageType", "cancelledAppObjectsCount", "cancelledObjectsCount", "dataLockConstraints", "endTimeUsecs", "expiryTimeUsecs", "failedAppObjectsCount", "failedObjectsCount", "indexingTaskId", "isCadArchive", "isForeverIncremental", "isIncremental", "isManuallyDeleted", "isSlaViolated", "message", "onLegalHold", "progressTaskId", "queuedTimeUsecs", "runType", "snapshotId", "startTimeUsecs", "stats", "statsTaskId", "status", "successfulAppObjectsCount", "successfulObjectsCount", "wormProperties"]
+    __properties: ClassVar[List[str]] = ["archivalTaskId", "ownershipContext", "targetId", "targetName", "targetType", "tierSettings", "usageType", "cancelledAppObjectsCount", "cancelledObjectsCount", "dataLockConstraints", "endTimeUsecs", "expiryTimeUsecs", "failedAppObjectsCount", "failedObjectsCount", "indexingTaskId", "isCadArchive", "isForeverIncremental", "isIncremental", "isManuallyDeleted", "isSlaViolated", "message", "onLegalHold", "progressTaskId", "queuedTimeUsecs", "runType", "skippedAppObjectsCount", "snapshotId", "startTimeUsecs", "stats", "statsTaskId", "status", "successfulAppObjectsCount", "successfulObjectsCount", "wormProperties"]
 
     @field_validator('ownership_context')
     def ownership_context_validate_enum(cls, value):
@@ -71,8 +72,8 @@ class ArchivalTargetResult(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Local', 'FortKnox']):
-            raise ValueError("must be one of enum values ('Local', 'FortKnox')")
+        if value not in set(['Local', 'FortKnox', 'FortKnoxOnprem']):
+            raise ValueError("must be one of enum values ('Local', 'FortKnox', 'FortKnoxOnprem')")
         return value
 
     @field_validator('target_type')
@@ -111,8 +112,8 @@ class ArchivalTargetResult(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'Paused']):
-            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'Paused')")
+        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold', 'Paused']):
+            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold', 'Paused')")
         return value
 
     model_config = ConfigDict(
@@ -281,6 +282,11 @@ class ArchivalTargetResult(BaseModel):
         if self.run_type is None and "run_type" in self.model_fields_set:
             _dict['runType'] = None
 
+        # set to None if skipped_app_objects_count (nullable) is None
+        # and model_fields_set contains the field
+        if self.skipped_app_objects_count is None and "skipped_app_objects_count" in self.model_fields_set:
+            _dict['skippedAppObjectsCount'] = None
+
         # set to None if snapshot_id (nullable) is None
         # and model_fields_set contains the field
         if self.snapshot_id is None and "snapshot_id" in self.model_fields_set:
@@ -348,6 +354,7 @@ class ArchivalTargetResult(BaseModel):
             "progressTaskId": obj.get("progressTaskId"),
             "queuedTimeUsecs": obj.get("queuedTimeUsecs"),
             "runType": obj.get("runType"),
+            "skippedAppObjectsCount": obj.get("skippedAppObjectsCount"),
             "snapshotId": obj.get("snapshotId"),
             "startTimeUsecs": obj.get("startTimeUsecs"),
             "stats": ArchivalDataStats.from_dict(obj["stats"]) if obj.get("stats") is not None else None,

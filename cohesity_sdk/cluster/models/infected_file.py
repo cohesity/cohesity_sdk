@@ -24,21 +24,32 @@ from typing_extensions import Self
 
 class InfectedFile(BaseModel):
     """
-    Specifies an infected file.
+    Specifies an infected entity.
     """ # noqa: E501
     antivirus_service_group_name: Optional[StrictStr] = Field(default=None, description="Specifies the Antivirus Service group which detected the threats.", alias="antivirusServiceGroupName")
     antivirus_service_icap_uri: Optional[StrictStr] = Field(default=None, description="Specifies the ICAP Uri of the Antivirus Service which detected the threats.", alias="antivirusServiceIcapUri")
     detected_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp in microseconds when the threats were detected.", alias="detectedTimeUsecs")
-    entity_id: Optional[StrictInt] = Field(description="Specifies the entity id of the infected file.", alias="entityId")
-    last_modified_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp in microseconds when this file was last modified.", alias="lastModifiedTimeUsecs")
-    path: Optional[StrictStr] = Field(default=None, description="Specifies the infected file path.")
-    root_inode_id: Optional[StrictInt] = Field(description="Specifies the root inode id of the file system which the infected file belongs to.", alias="rootInodeId")
+    entity_id: Optional[StrictInt] = Field(description="Specifies the entity id of the infected entity.", alias="entityId")
+    entity_type: Optional[StrictStr] = Field(default=None, description="Specifies the type of the infected entity.", alias="entityType")
+    last_modified_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp in microseconds when this entity was last modified.", alias="lastModifiedTimeUsecs")
+    path: Optional[StrictStr] = Field(default=None, description="Specifies the infected entity path.")
+    root_inode_id: Optional[StrictInt] = Field(description="Specifies the root inode id of the file system which the infected entity belongs to.", alias="rootInodeId")
     scanned_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp in microseconds when inode was scanned for viruses.", alias="scannedTimeUsecs")
-    state: Optional[StrictStr] = Field(default=None, description="Specifies the state of the infected file.")
-    threat_descriptions: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of virus threat descriptions found in the file.", alias="threatDescriptions")
-    view_id: Optional[StrictInt] = Field(description="Specifies the view id which the infected file belongs to.", alias="viewId")
-    view_name: Optional[StrictStr] = Field(default=None, description="Specifies the View name to which the infected file belongs to.", alias="viewName")
-    __properties: ClassVar[List[str]] = ["antivirusServiceGroupName", "antivirusServiceIcapUri", "detectedTimeUsecs", "entityId", "lastModifiedTimeUsecs", "path", "rootInodeId", "scannedTimeUsecs", "state", "threatDescriptions", "viewId", "viewName"]
+    state: Optional[StrictStr] = Field(default=None, description="Specifies the state of the infected entity.")
+    threat_descriptions: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of virus threat descriptions found in the entity.", alias="threatDescriptions")
+    view_id: Optional[StrictInt] = Field(description="Specifies the view id which the infected entity belongs to.", alias="viewId")
+    view_name: Optional[StrictStr] = Field(default=None, description="Specifies the View name to which the infected entity belongs to.", alias="viewName")
+    __properties: ClassVar[List[str]] = ["antivirusServiceGroupName", "antivirusServiceIcapUri", "detectedTimeUsecs", "entityId", "entityType", "lastModifiedTimeUsecs", "path", "rootInodeId", "scannedTimeUsecs", "state", "threatDescriptions", "viewId", "viewName"]
+
+    @field_validator('entity_type')
+    def entity_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['kObject', 'kFile']):
+            raise ValueError("must be one of enum values ('kObject', 'kFile')")
+        return value
 
     @field_validator('state')
     def state_validate_enum(cls, value):
@@ -109,6 +120,11 @@ class InfectedFile(BaseModel):
         if self.entity_id is None and "entity_id" in self.model_fields_set:
             _dict['entityId'] = None
 
+        # set to None if entity_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.entity_type is None and "entity_type" in self.model_fields_set:
+            _dict['entityType'] = None
+
         # set to None if last_modified_time_usecs (nullable) is None
         # and model_fields_set contains the field
         if self.last_modified_time_usecs is None and "last_modified_time_usecs" in self.model_fields_set:
@@ -165,6 +181,7 @@ class InfectedFile(BaseModel):
             "antivirusServiceIcapUri": obj.get("antivirusServiceIcapUri"),
             "detectedTimeUsecs": obj.get("detectedTimeUsecs"),
             "entityId": obj.get("entityId"),
+            "entityType": obj.get("entityType"),
             "lastModifiedTimeUsecs": obj.get("lastModifiedTimeUsecs"),
             "path": obj.get("path"),
             "rootInodeId": obj.get("rootInodeId"),

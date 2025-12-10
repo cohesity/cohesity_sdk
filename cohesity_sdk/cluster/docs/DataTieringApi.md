@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**create_data_tiering_task_run**](DataTieringApi.md#create_data_tiering_task_run) | **POST** /data-tiering/tasks/{id}/runs | Create a data tiering tasks run.
 [**delete_data_tiering_analysis_group**](DataTieringApi.md#delete_data_tiering_analysis_group) | **DELETE** /data-tiering/analysis-groups/{id} | Delete data tiering analysis group.
 [**delete_data_tiering_task**](DataTieringApi.md#delete_data_tiering_task) | **DELETE** /data-tiering/tasks/{id} | delete the data tiering task.
+[**download_tiering_reports**](DataTieringApi.md#download_tiering_reports) | **GET** /data-tiering/tasks/{id}/runs/{runId}/download-report | Download Tiering reports.
 [**get_capacity_trend_analysis**](DataTieringApi.md#get_capacity_trend_analysis) | **GET** /data-tiering/capacity-trend | Get capacity trend analysis for all sources or a specific source.
 [**get_data_tiering_analysis_group_by_id**](DataTieringApi.md#get_data_tiering_analysis_group_by_id) | **GET** /data-tiering/analysis-groups/{id} | Get data tiering analysis group by id.
 [**get_data_tiering_analysis_group_runs**](DataTieringApi.md#get_data_tiering_analysis_group_runs) | **GET** /data-tiering/analysis-groups/{id}/runs | Get data tiering analysis group runs.
@@ -31,7 +32,7 @@ Method | HTTP request | Description
 
 Cancel data tiering analysis run.
 
-Cancel data tiering analysis run for given analysis group ID and run ID
+**Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Cancel data tiering analysis run for given analysis group ID and run ID
 
 ### Example
 
@@ -124,7 +125,7 @@ void (empty response body)
 
 Cancel data tiering task.
 
-Cancel data tiering task run for given data tiering task id and run id.
+**Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Cancel data tiering task run for given data tiering task id and run id.
 
 ### Example
 
@@ -217,7 +218,7 @@ void (empty response body)
 
 Create a data tiering analysis group.
 
-Create a data tiering analysis group.
+**Privileges:** ```PROTECTION_MODIFY``` <br><br>Create a data tiering analysis group.
 
 ### Example
 
@@ -312,7 +313,7 @@ Name | Type | Description  | Notes
 
 Create a data tiering analysis group run.
 
-Create a data tiering analysis group run.
+**Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Create a data tiering analysis group run.
 
 ### Example
 
@@ -406,7 +407,7 @@ void (empty response body)
 
 Create a data tiering task.
 
-Create a data tiering task.
+**Privileges:** ```PROTECTION_MODIFY``` <br><br>Create a data tiering task.
 
 ### Example
 
@@ -501,7 +502,7 @@ Name | Type | Description  | Notes
 
 Create a data tiering tasks run.
 
-Create a data tiering tasks run.
+**Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Create a data tiering tasks run.
 
 ### Example
 
@@ -595,7 +596,7 @@ void (empty response body)
 
 Delete data tiering analysis group.
 
-Returns NoContentResponse if the data tiering analysis group is deleted.
+**Privileges:** ```PROTECTION_MODIFY``` <br><br>Returns NoContentResponse if the data tiering analysis group is deleted.
 
 ### Example
 
@@ -686,7 +687,7 @@ void (empty response body)
 
 delete the data tiering task.
 
-Returns Success if the data tiering task is deleted.
+**Privileges:** ```PROTECTION_MODIFY``` <br><br>Returns Success if the data tiering task is deleted.
 
 ### Example
 
@@ -772,12 +773,109 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **download_tiering_reports**
+> download_tiering_reports(id, run_id, target_view_name, file_path)
+
+Download Tiering reports.
+
+**Privileges:** ```PROTECTION_VIEW``` <br><br>Specifies the API to download the tiering run report.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
+```python
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
+    id = 'id_example' # str | Specifies a unique id of data tiering task.
+    run_id = 'run_id_example' # str | Specifies a unique run id of data tiering task.
+    target_view_name = 'target_view_name_example' # str | Specifies the View name from which the tiering job report file should be read from.
+    file_path = 'file_path_example' # str | Specifies the file path in the targetView.
+
+    try:
+        # Download Tiering reports.
+        api_instance.download_tiering_reports(id, run_id, target_view_name, file_path)
+    except Exception as e:
+        print("Exception when calling DataTieringApi->download_tiering_reports: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| Specifies a unique id of data tiering task. | 
+ **run_id** | **str**| Specifies a unique run id of data tiering task. | 
+ **target_view_name** | **str**| Specifies the View name from which the tiering job report file should be read from. | 
+ **file_path** | **str**| Specifies the file path in the targetView. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No Content |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_capacity_trend_analysis**
-> CapacityTrendAnalysis get_capacity_trend_analysis(start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, source_id=source_id)
+> CapacityTrendAnalysis get_capacity_trend_analysis(start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, source_id=source_id, truncate_response=truncate_response)
 
 Get capacity trend analysis for all sources or a specific source.
 
-Get capacity trend analysis for the given time range, and for the given source or set of sources.
+**Privileges:** ```PROTECTION_VIEW``` <br><br>Get capacity trend analysis for the given time range, and for the given source or set of sources.
 
 ### Example
 
@@ -827,10 +925,11 @@ with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     start_time_usecs = 56 # int | Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds). (optional)
     end_time_usecs = 56 # int | Filter by a end time. Specify the end time as a Unix epoch Timestamp (in microseconds). (optional)
     source_id = 56 # int | Filter by source id. If specified, this will only return the capacity trend analysis of the specific source. (optional)
+    truncate_response = True # bool | If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes (optional)
 
     try:
         # Get capacity trend analysis for all sources or a specific source.
-        api_response = api_instance.get_capacity_trend_analysis(start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, source_id=source_id)
+        api_response = api_instance.get_capacity_trend_analysis(start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, source_id=source_id, truncate_response=truncate_response)
         print("The response of DataTieringApi->get_capacity_trend_analysis:\n")
         pprint(api_response)
     except Exception as e:
@@ -847,6 +946,7 @@ Name | Type | Description  | Notes
  **start_time_usecs** | **int**| Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds). | [optional] 
  **end_time_usecs** | **int**| Filter by a end time. Specify the end time as a Unix epoch Timestamp (in microseconds). | [optional] 
  **source_id** | **int**| Filter by source id. If specified, this will only return the capacity trend analysis of the specific source. | [optional] 
+ **truncate_response** | **bool**| If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes | [optional] 
 
 ### Return type
 
@@ -875,7 +975,7 @@ Name | Type | Description  | Notes
 
 Get data tiering analysis group by id.
 
-Get data tiering analysis group by id.
+**Privileges:** ```PROTECTION_VIEW``` <br><br>Get data tiering analysis group by id.
 
 ### Example
 
@@ -965,11 +1065,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_data_tiering_analysis_group_runs**
-> List[DataTieringAnalysisGroupRun] get_data_tiering_analysis_group_runs(id, run_ids=run_ids)
+> DataTieringAnalysisGroupRuns get_data_tiering_analysis_group_runs(id, run_ids=run_ids, truncate_response=truncate_response)
 
 Get data tiering analysis group runs.
 
-Get data tiering analysis group runs for an analysis group.
+**Privileges:** ```PROTECTION_VIEW``` <br><br>Get data tiering analysis group runs for an analysis group.
 
 ### Example
 
@@ -979,7 +1079,7 @@ Get data tiering analysis group runs for an analysis group.
 
 ```python
 import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.data_tiering_analysis_group_run import DataTieringAnalysisGroupRun
+from cohesity_sdk.cluster.models.data_tiering_analysis_group_runs import DataTieringAnalysisGroupRuns
 from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
@@ -1018,10 +1118,11 @@ with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the data tiering analysis group.
     run_ids = ['run_ids_example'] # List[str] | Filter by a list of analysis group run ids. (optional)
+    truncate_response = True # bool | If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes (optional)
 
     try:
         # Get data tiering analysis group runs.
-        api_response = api_instance.get_data_tiering_analysis_group_runs(id, run_ids=run_ids)
+        api_response = api_instance.get_data_tiering_analysis_group_runs(id, run_ids=run_ids, truncate_response=truncate_response)
         print("The response of DataTieringApi->get_data_tiering_analysis_group_runs:\n")
         pprint(api_response)
     except Exception as e:
@@ -1037,10 +1138,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies a unique id of the data tiering analysis group. | 
  **run_ids** | [**List[str]**](str.md)| Filter by a list of analysis group run ids. | [optional] 
+ **truncate_response** | **bool**| If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes | [optional] 
 
 ### Return type
 
-[**List[DataTieringAnalysisGroupRun]**](DataTieringAnalysisGroupRun.md)
+[**DataTieringAnalysisGroupRuns**](DataTieringAnalysisGroupRuns.md)
 
 ### Authorization
 
@@ -1065,7 +1167,7 @@ Name | Type | Description  | Notes
 
 Get the list of data tiering analysis groups.
 
-Get list of all data tiering analysis groups.
+**Privileges:** ```PROTECTION_VIEW``` <br><br>Get list of all data tiering analysis groups.
 
 ### Example
 
@@ -1161,7 +1263,7 @@ Name | Type | Description  | Notes
 
 Get the default config of data tiering analysis groups.
 
-Get default grouping configuration for data tiering analysis groups.
+**Privileges:** ```PROTECTION_VIEW``` <br><br>Get default grouping configuration for data tiering analysis groups.
 
 ### Example
 
@@ -1251,7 +1353,7 @@ This endpoint does not need any parameter.
 
 Get data tiering task by id.
 
-Get data tiering task by id.
+**Privileges:** ```PROTECTION_VIEW``` <br><br>Get data tiering task by id.
 
 ### Example
 
@@ -1345,7 +1447,7 @@ Name | Type | Description  | Notes
 
 Get the list of data tiering tasks.
 
-Get the list of data tiering tasks.
+**Privileges:** ```PROTECTION_VIEW``` <br><br>Get the list of data tiering tasks.
 
 ### Example
 
@@ -1441,7 +1543,7 @@ Name | Type | Description  | Notes
 
 Update a data tiering analysis group. Currently, it supports updating sources and schedule only.
 
-Update a data tiering analysis group.
+**Privileges:** ```PROTECTION_MODIFY``` <br><br>Update a data tiering analysis group.
 
 ### Example
 
@@ -1538,7 +1640,7 @@ Name | Type | Description  | Notes
 
 Update data tiering analysis group config.
 
-Update data tiering analysis group config.
+**Privileges:** ```PROTECTION_MODIFY``` <br><br>Update data tiering analysis group config.
 
 ### Example
 
@@ -1634,7 +1736,7 @@ Name | Type | Description  | Notes
 
 Update data tiering analysis groups state.
 
-Perform actions like pause or resume on the data tiering analysis groups for the specified sources.
+**Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Perform actions like pause or resume on the data tiering analysis groups for the specified sources.
 
 ### Example
 
@@ -1729,7 +1831,7 @@ Name | Type | Description  | Notes
 
 Update a data tiering task.
 
-Update a data tiering task.
+**Privileges:** ```PROTECTION_MODIFY``` <br><br>Update a data tiering task.
 
 ### Example
 
@@ -1826,7 +1928,7 @@ Name | Type | Description  | Notes
 
 Update data tiering source analysis tasks state.
 
-Perform actions like pause or resume on the data tiering tasks.
+**Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Perform actions like pause or resume on the data tiering tasks.
 
 ### Example
 

@@ -19,7 +19,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.local_user_params import LocalUserParams
 from typing import Set
 from typing_extensions import Self
 
@@ -27,19 +26,20 @@ class CreateUserParameters(BaseModel):
     """
     Specifies the parameters to create a new Cohesity User.
     """ # noqa: E501
-    allow_smb_access_token: Optional[StrictBool] = Field(default=None, description="Specifies whether the SMB access token is to be set for the user.", alias="allowSmbAccessToken")
     description: Optional[StrictStr] = Field(default=None, description="Specifies the description of the User.")
-    domain: StrictStr = Field(description="Specifies the domain of the user. For active directories, this is the fully qualified domain name (FQDN). It is 'LOCAL' for local users on the Cohesity Cluster. A user is uniquely identified by combination of the username and the domain.")
     effective_time_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the epoch time in milliseconds since when the user can login.", alias="effectiveTimeMsecs")
     expiry_time_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the epoch time in milliseconds when the user expires. Post expiry the user cannot access Cohesity cluster.", alias="expiryTimeMsecs")
-    local_user_params: Optional[LocalUserParams] = Field(default=None, description="Specifies the LOCAL user properties. This field is required when adding a new LOCAL Cohesity User.", alias="localUserParams")
     locked: Optional[StrictBool] = Field(default=None, description="Specifies whether the User is locked.")
     other_groups: Optional[List[StrictStr]] = Field(default=None, description="Specifies additional groups the User may belong to.", alias="otherGroups")
     primary_group: Optional[StrictStr] = Field(default=None, description="Specifies the primary group of the User. Primary group is used for file access.", alias="primaryGroup")
     restricted: Optional[StrictBool] = Field(default=None, description="Specifies whether the User is restricted. A restricted user can only view & manage the objects it has permissions to.")
     roles: Optional[List[StrictStr]] = Field(default=None, description="Specifies the Cohesity roles to associate with the user. The Cohesity roles determine privileges on the Cohesity Cluster for this user.")
-    username: StrictStr = Field(description="Specifies the username.")
-    __properties: ClassVar[List[str]] = ["allowSmbAccessToken", "description", "domain", "effectiveTimeMsecs", "expiryTimeMsecs", "localUserParams", "locked", "otherGroups", "primaryGroup", "restricted", "roles", "username"]
+    s3_access_keys: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the S3 Access Keys of the User.", alias="S3AccessKeys")
+    allow_smb_access_token: Optional[StrictBool] = Field(default=None, description="Specifies whether the SMB access token is to be set for the user.", alias="allowSmbAccessToken")
+    domain: Optional[StrictStr] = Field(default=None, description="Specifies the domain of the user. For active directories, this is the fully qualified domain name (FQDN). It is 'LOCAL' for local users on the Cohesity Cluster. A user is uniquely identified by combination of the username and the domain.")
+    local_user_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the LOCAL user properties. This field is required when adding a new LOCAL Cohesity User.", alias="localUserParams")
+    username: Optional[StrictStr] = Field(default=None, description="Specifies the username.")
+    __properties: ClassVar[List[str]] = ["description", "effectiveTimeMsecs", "expiryTimeMsecs", "locked", "otherGroups", "primaryGroup", "restricted", "roles", "S3AccessKeys", "allowSmbAccessToken", "domain", "localUserParams", "username"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,14 +84,6 @@ class CreateUserParameters(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of local_user_params
-        if self.local_user_params:
-            _dict['localUserParams'] = self.local_user_params.to_dict()
-        # set to None if allow_smb_access_token (nullable) is None
-        # and model_fields_set contains the field
-        if self.allow_smb_access_token is None and "allow_smb_access_token" in self.model_fields_set:
-            _dict['allowSmbAccessToken'] = None
-
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
@@ -127,6 +119,11 @@ class CreateUserParameters(BaseModel):
         if self.roles is None and "roles" in self.model_fields_set:
             _dict['roles'] = None
 
+        # set to None if allow_smb_access_token (nullable) is None
+        # and model_fields_set contains the field
+        if self.allow_smb_access_token is None and "allow_smb_access_token" in self.model_fields_set:
+            _dict['allowSmbAccessToken'] = None
+
         return _dict
 
     @classmethod
@@ -139,17 +136,18 @@ class CreateUserParameters(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "allowSmbAccessToken": obj.get("allowSmbAccessToken"),
             "description": obj.get("description"),
-            "domain": obj.get("domain"),
             "effectiveTimeMsecs": obj.get("effectiveTimeMsecs"),
             "expiryTimeMsecs": obj.get("expiryTimeMsecs"),
-            "localUserParams": LocalUserParams.from_dict(obj["localUserParams"]) if obj.get("localUserParams") is not None else None,
             "locked": obj.get("locked"),
             "otherGroups": obj.get("otherGroups"),
             "primaryGroup": obj.get("primaryGroup"),
             "restricted": obj.get("restricted"),
             "roles": obj.get("roles"),
+            "S3AccessKeys": obj.get("S3AccessKeys"),
+            "allowSmbAccessToken": obj.get("allowSmbAccessToken"),
+            "domain": obj.get("domain"),
+            "localUserParams": obj.get("localUserParams"),
             "username": obj.get("username")
         })
         return _obj

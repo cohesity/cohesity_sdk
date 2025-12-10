@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **attempts** | **int** | Specifies the number of runs have been executed before the run completed successfully. | [optional] 
 **external_target_info** | [**ArchivalTargetSummaryInfo**](ArchivalTargetSummaryInfo.md) |  | [optional] 
+**indexed_object_hash** | **str** | Specifies the hash of the indexed object. This is currently only applicable for snapshots of the file. | [optional] 
 **indexed_object_name** | **str** | Specifies the indexed object name. | [optional] 
 **indexed_object_source_uuid** | **str** | Specifies the unique identifier from the source of the item associated with this particular snapshot. It can get changed between the snapshots and therefore will be required for recovery. | [optional] 
 **inode_id** | **int** | Specifies the source inode number of the file being recovered. | [optional] [readonly] 
@@ -19,6 +20,7 @@ Name | Type | Description | Notes
 **size_bytes** | **int** | Specifies the indexed object size in bytes. | [optional] 
 **snapshot_timestamp_usecs** | **int** | Specifies a unix timestamp when the object snapshot was taken in micro seconds. | [optional] 
 **storage_domain_id** | **int** | Specifies the storage domain id containing this snapshot. | [optional] 
+**uda_params** | [**UdaSnapshotMetadata**](UdaSnapshotMetadata.md) |  | [optional] 
 
 ## Example
 

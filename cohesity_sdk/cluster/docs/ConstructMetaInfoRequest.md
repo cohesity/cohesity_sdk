@@ -7,6 +7,7 @@ Params to construct meta info
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **environment** | **str** | Specifies the environment type of the Protection group | 
+**kubernetes_params** | [**ConstructMetaInfoKubernetesParams**](ConstructMetaInfoKubernetesParams.md) |  | [optional] 
 **oracle_params** | [**ConstructRestoreMetaInfoOracleParams**](ConstructRestoreMetaInfoOracleParams.md) |  | [optional] 
 **sfdc_params** | [**ConstructMetaInfoSfdcParams**](ConstructMetaInfoSfdcParams.md) |  | [optional] 
 

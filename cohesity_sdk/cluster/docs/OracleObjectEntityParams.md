@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **database_entity_info** | [**DatabaseEntityInfo**](DatabaseEntityInfo.md) |  | [optional] 
 **host_info** | [**HostInformation**](HostInformation.md) |  | [optional] 
+**rman_backup_type** | **str** | Specifies the type of Oracle RMAN backup type. | [optional] [readonly] 
 
 ## Example
 

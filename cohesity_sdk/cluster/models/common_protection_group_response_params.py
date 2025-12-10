@@ -22,6 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.common_protection_group_run_response_parameters import CommonProtectionGroupRunResponseParameters
 from cohesity_sdk.cluster.models.key_value_pair import KeyValuePair
 from cohesity_sdk.cluster.models.missing_entity_params import MissingEntityParams
+from cohesity_sdk.cluster.models.pause_metadata import PauseMetadata
 from cohesity_sdk.cluster.models.protection_group_alerting_policy import ProtectionGroupAlertingPolicy
 from cohesity_sdk.cluster.models.sla_rule import SlaRule
 from cohesity_sdk.cluster.models.tenant_info import TenantInfo
@@ -37,6 +38,7 @@ class CommonProtectionGroupResponseParams(BaseModel):
     advanced_configs: Optional[List[KeyValuePair]] = Field(default=None, description="Specifies the advanced configuration for a protection job.", alias="advancedConfigs")
     alert_policy: Optional[ProtectionGroupAlertingPolicy] = Field(default=None, alias="alertPolicy")
     cluster_id: Optional[StrictStr] = Field(default=None, description="Specifies the cluster ID.", alias="clusterId")
+    creation_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the time in micro seconds when this protection group was created.", alias="creationTimeUsecs")
     description: Optional[StrictStr] = Field(default=None, description="Specifies a description of the Protection Group.")
     end_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.", alias="endTimeUsecs")
     environment: Optional[StrictStr] = Field(default=None, description="Specifies the environment of the Protection Group.")
@@ -52,6 +54,7 @@ class CommonProtectionGroupResponseParams(BaseModel):
     name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the Protection Group.")
     num_protected_objects: Optional[StrictInt] = Field(default=None, description="Specifies the number of protected objects of the Protection Group.", alias="numProtectedObjects")
     pause_in_blackouts: Optional[StrictBool] = Field(default=None, description="Specifies whether currently executing jobs should be paused if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if 'abortInBlackouts' is sent as true.", alias="pauseInBlackouts")
+    pause_metadata: Optional[PauseMetadata] = Field(default=None, alias="pauseMetadata")
     permissions: Optional[List[TenantInfo]] = Field(default=None, description="Specifies the list of tenants that have permissions for this protection group.")
     policy_id: Optional[StrictStr] = Field(default=None, description="Specifies the unique id of the Protection Policy associated with the Protection Group. The Policy provides retry settings Protection Schedules, Priority, SLA, etc.", alias="policyId")
     priority: Optional[StrictStr] = Field(default=None, description="Specifies the priority of the Protection Group.")
@@ -60,7 +63,7 @@ class CommonProtectionGroupResponseParams(BaseModel):
     sla: Optional[List[SlaRule]] = Field(default=None, description="Specifies the SLA parameters for this Protection Group.")
     start_time: Optional[TimeOfDay] = Field(default=None, alias="startTime")
     storage_domain_id: Optional[StrictInt] = Field(default=None, description="Specifies the Storage Domain (View Box) ID where this Protection Group writes data.", alias="storageDomainId")
-    __properties: ClassVar[List[str]] = ["abortInBlackouts", "advancedConfigs", "alertPolicy", "clusterId", "description", "endTimeUsecs", "environment", "id", "invalidEntities", "isActive", "isDeleted", "isPaused", "isProtectOnce", "lastModifiedTimestampUsecs", "lastRun", "missingEntities", "name", "numProtectedObjects", "pauseInBlackouts", "permissions", "policyId", "priority", "qosPolicy", "regionId", "sla", "startTime", "storageDomainId"]
+    __properties: ClassVar[List[str]] = ["abortInBlackouts", "advancedConfigs", "alertPolicy", "clusterId", "creationTimeUsecs", "description", "endTimeUsecs", "environment", "id", "invalidEntities", "isActive", "isDeleted", "isPaused", "isProtectOnce", "lastModifiedTimestampUsecs", "lastRun", "missingEntities", "name", "numProtectedObjects", "pauseInBlackouts", "pauseMetadata", "permissions", "policyId", "priority", "qosPolicy", "regionId", "sla", "startTime", "storageDomainId"]
 
     @field_validator('environment')
     def environment_validate_enum(cls, value):
@@ -68,8 +71,8 @@ class CommonProtectionGroupResponseParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAzureNative', 'kAzureSQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc']):
-            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAzureNative', 'kAzureSQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc')")
+        if value not in set(['kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kGCPBigQuery', 'kGCPMySQL', 'kGoogleSpanner', 'kGCPPostgreSQL', 'kGCPAlloyDBPostgreSQL', 'kGCPSQLServer', 'kGCPFirestore', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kRDSPostgresSnapshotManager', 'kRDSMySQLSnapshotManager', 'kRDSMSSQLSnapshotManager', 'kRDSOracleSnapshotManager', 'kRDSMariaDBSnapshotManager', 'kRDSCustomMSSQLSnapshotManager', 'kRDSCustomOracleSnapshotManager', 'kAuroraSnapshotManager', 'kAuroraPostgresSnapshotManager', 'kAuroraMySQLSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAWSAuroraMySQL', 'kAwsDynamoDB', 'kAWSRdsOracle', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRDSMSSQL', 'kAWSRedshift', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzurePostgreSQLServer', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureBlobStorage', 'kAzureTableAPI', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kNutanixFS', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kS3Compatible', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kServiceNow', 'kPostgres']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kGCPBigQuery', 'kGCPMySQL', 'kGoogleSpanner', 'kGCPPostgreSQL', 'kGCPAlloyDBPostgreSQL', 'kGCPSQLServer', 'kGCPFirestore', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kRDSPostgresSnapshotManager', 'kRDSMySQLSnapshotManager', 'kRDSMSSQLSnapshotManager', 'kRDSOracleSnapshotManager', 'kRDSMariaDBSnapshotManager', 'kRDSCustomMSSQLSnapshotManager', 'kRDSCustomOracleSnapshotManager', 'kAuroraSnapshotManager', 'kAuroraPostgresSnapshotManager', 'kAuroraMySQLSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAWSAuroraMySQL', 'kAwsDynamoDB', 'kAWSRdsOracle', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRDSMSSQL', 'kAWSRedshift', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzurePostgreSQLServer', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureBlobStorage', 'kAzureTableAPI', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kNutanixFS', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kS3Compatible', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kServiceNow', 'kPostgres')")
         return value
 
     @field_validator('priority')
@@ -158,6 +161,9 @@ class CommonProtectionGroupResponseParams(BaseModel):
                 if _item_missing_entities:
                     _items.append(_item_missing_entities.to_dict())
             _dict['missingEntities'] = _items
+        # override the default output from pydantic by calling `to_dict()` of pause_metadata
+        if self.pause_metadata:
+            _dict['pauseMetadata'] = self.pause_metadata.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in permissions (list)
         _items = []
         if self.permissions:
@@ -189,6 +195,11 @@ class CommonProtectionGroupResponseParams(BaseModel):
         # and model_fields_set contains the field
         if self.cluster_id is None and "cluster_id" in self.model_fields_set:
             _dict['clusterId'] = None
+
+        # set to None if creation_time_usecs (nullable) is None
+        # and model_fields_set contains the field
+        if self.creation_time_usecs is None and "creation_time_usecs" in self.model_fields_set:
+            _dict['creationTimeUsecs'] = None
 
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
@@ -311,6 +322,7 @@ class CommonProtectionGroupResponseParams(BaseModel):
             "advancedConfigs": [KeyValuePair.from_dict(_item) for _item in obj["advancedConfigs"]] if obj.get("advancedConfigs") is not None else None,
             "alertPolicy": ProtectionGroupAlertingPolicy.from_dict(obj["alertPolicy"]) if obj.get("alertPolicy") is not None else None,
             "clusterId": obj.get("clusterId"),
+            "creationTimeUsecs": obj.get("creationTimeUsecs"),
             "description": obj.get("description"),
             "endTimeUsecs": obj.get("endTimeUsecs"),
             "environment": obj.get("environment"),
@@ -326,6 +338,7 @@ class CommonProtectionGroupResponseParams(BaseModel):
             "name": obj.get("name"),
             "numProtectedObjects": obj.get("numProtectedObjects"),
             "pauseInBlackouts": obj.get("pauseInBlackouts"),
+            "pauseMetadata": PauseMetadata.from_dict(obj["pauseMetadata"]) if obj.get("pauseMetadata") is not None else None,
             "permissions": [TenantInfo.from_dict(_item) for _item in obj["permissions"]] if obj.get("permissions") is not None else None,
             "policyId": obj.get("policyId"),
             "priority": obj.get("priority"),

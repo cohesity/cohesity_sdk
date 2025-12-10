@@ -26,9 +26,13 @@ class SupportChannelConfig(BaseModel):
     """
     Specifies the support channel configuration.
     """ # noqa: E501
+    enable_extension: Optional[StrictBool] = Field(default=None, description="Specifies if the support channel extension is allowed.", alias="enableExtension")
     end_time_usecs: Optional[StrictInt] = Field(description="Specifies the support channel expiry time.", alias="endTimeUsecs")
-    is_enabled: Optional[StrictBool] = Field(description="Specifies id the support channel is enabled.", alias="isEnabled")
-    __properties: ClassVar[List[str]] = ["endTimeUsecs", "isEnabled"]
+    extension_duration_hours: Optional[StrictInt] = Field(default=None, description="Specifies the support channel extension duration in hours.", alias="extensionDurationHours")
+    force_enable_reverse_tunnel: Optional[StrictBool] = Field(default=None, description="Specifies if SSH reverse tunnel should be initiated with RT server. Use this only if there are connectivity issues with Support Channel server.", alias="forceEnableReverseTunnel")
+    is_enabled: Optional[StrictBool] = Field(description="Specifies if the support channel should be enabled.", alias="isEnabled")
+    node_ids: Optional[List[StrictInt]] = Field(default=None, description="List of nodes where support channel should be enabled in addition to master node.", alias="nodeIds")
+    __properties: ClassVar[List[str]] = ["enableExtension", "endTimeUsecs", "extensionDurationHours", "forceEnableReverseTunnel", "isEnabled", "nodeIds"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,15 +73,30 @@ class SupportChannelConfig(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if enable_extension (nullable) is None
+        # and model_fields_set contains the field
+        if self.enable_extension is None and "enable_extension" in self.model_fields_set:
+            _dict['enableExtension'] = None
+
         # set to None if end_time_usecs (nullable) is None
         # and model_fields_set contains the field
         if self.end_time_usecs is None and "end_time_usecs" in self.model_fields_set:
             _dict['endTimeUsecs'] = None
 
+        # set to None if extension_duration_hours (nullable) is None
+        # and model_fields_set contains the field
+        if self.extension_duration_hours is None and "extension_duration_hours" in self.model_fields_set:
+            _dict['extensionDurationHours'] = None
+
         # set to None if is_enabled (nullable) is None
         # and model_fields_set contains the field
         if self.is_enabled is None and "is_enabled" in self.model_fields_set:
             _dict['isEnabled'] = None
+
+        # set to None if node_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.node_ids is None and "node_ids" in self.model_fields_set:
+            _dict['nodeIds'] = None
 
         return _dict
 
@@ -91,8 +110,12 @@ class SupportChannelConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "enableExtension": obj.get("enableExtension"),
             "endTimeUsecs": obj.get("endTimeUsecs"),
-            "isEnabled": obj.get("isEnabled")
+            "extensionDurationHours": obj.get("extensionDurationHours"),
+            "forceEnableReverseTunnel": obj.get("forceEnableReverseTunnel"),
+            "isEnabled": obj.get("isEnabled"),
+            "nodeIds": obj.get("nodeIds")
         })
         return _obj
 

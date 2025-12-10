@@ -6,7 +6,7 @@ Specifies the result for upgrade checks run tests request.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**test_run_instance_id** | **int** | Specifies test run instance allocated for upgrade checks | [optional] 
+**test_run_instance_id** | **int** | Specifies test run instance allocated for upgrade checks | 
 
 ## Example
 

@@ -39,8 +39,8 @@ class CancelObjectRunsParams(BaseModel):
             return value
 
         for i in value:
-            if i not in set(['kAWSNative', 'kAWSSnapshotManager', 'kPhysical', 'kSQL', 'kOracle', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup', 'kAzureNative', 'kAzureSnapshotManager', 'kAzureSQL']):
-                raise ValueError("each list item must be one of ('kAWSNative', 'kAWSSnapshotManager', 'kPhysical', 'kSQL', 'kOracle', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup', 'kAzureNative', 'kAzureSnapshotManager', 'kAzureSQL')")
+            if i not in set(['kAWSNative', 'kAWSSnapshotManager', 'kPhysical', 'kSQL', 'kOracle', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup', 'kAzureNative', 'kAzureSnapshotManager', 'kAzureSQL', 'kAwsAuroraPostgres', 'kAwsRDSPostgres', 'kAWSMySQL', 'kAzureEntraID', 'kAzureMySQL', 'kAwsDynamoDB', 'kO365Exchange', 'kO365OneDrive']):
+                raise ValueError("each list item must be one of ('kAWSNative', 'kAWSSnapshotManager', 'kPhysical', 'kSQL', 'kOracle', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup', 'kAzureNative', 'kAzureSnapshotManager', 'kAzureSQL', 'kAwsAuroraPostgres', 'kAwsRDSPostgres', 'kAWSMySQL', 'kAzureEntraID', 'kAzureMySQL', 'kAwsDynamoDB', 'kO365Exchange', 'kO365OneDrive')")
         return value
 
     model_config = ConfigDict(

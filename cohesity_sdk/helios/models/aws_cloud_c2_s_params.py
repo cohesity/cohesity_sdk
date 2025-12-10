@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Set
 from typing_extensions import Self
@@ -28,13 +28,24 @@ class AwsCloudC2SParams(BaseModel):
     """ # noqa: E501
     agency: Optional[StrictStr] = Field(description="Specifies agency of the External Target.")
     base_url: Optional[StrictStr] = Field(description="Specifies base url of the External Target.", alias="baseURL")
-    client_certificate: Optional[StrictStr] = Field(description="Specifies client certificate of the External Target", alias="clientCertificate")
-    client_certificate_password: Optional[StrictStr] = Field(description="Specifies client certificate password of the External Target", alias="clientCertificatePassword")
-    client_private_key: Optional[StrictStr] = Field(description="Specifies client private key of the External Target", alias="clientPrivateKey")
+    c2s_type: Optional[StrictStr] = Field(default=None, description="Specifies C2S type of the External Target C2S or SC2S. C2S is for Top secrect Cloud Services. In case the type is not provided, default value is assumed as C2S.", alias="c2sType")
+    client_certificate: Optional[StrictStr] = Field(default=None, description="Specifies client certificate of the External Target", alias="clientCertificate")
+    client_certificate_password: Optional[StrictStr] = Field(default=None, description="Specifies client certificate password of the External Target", alias="clientCertificatePassword")
+    client_private_key: Optional[StrictStr] = Field(default=None, description="Specifies client private key of the External Target", alias="clientPrivateKey")
     mission: Optional[StrictStr] = Field(description="Specifies mission of the External Target")
     role: Optional[StrictStr] = Field(description="Specifies role of the External Target")
-    server_ca_trusted_certificate: Optional[StrictStr] = Field(description="Specifies server CA trusted certificate of the External Target", alias="serverCATrustedCertificate")
-    __properties: ClassVar[List[str]] = ["agency", "baseURL", "clientCertificate", "clientCertificatePassword", "clientPrivateKey", "mission", "role", "serverCATrustedCertificate"]
+    server_ca_trusted_certificate: Optional[StrictStr] = Field(default=None, description="Specifies server CA trusted certificate of the External Target", alias="serverCATrustedCertificate")
+    __properties: ClassVar[List[str]] = ["agency", "baseURL", "c2sType", "clientCertificate", "clientCertificatePassword", "clientPrivateKey", "mission", "role", "serverCATrustedCertificate"]
+
+    @field_validator('c2s_type')
+    def c2s_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['C2S', 'SC2S']):
+            raise ValueError("must be one of enum values ('C2S', 'SC2S')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,6 +96,11 @@ class AwsCloudC2SParams(BaseModel):
         if self.base_url is None and "base_url" in self.model_fields_set:
             _dict['baseURL'] = None
 
+        # set to None if c2s_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.c2s_type is None and "c2s_type" in self.model_fields_set:
+            _dict['c2sType'] = None
+
         # set to None if client_certificate (nullable) is None
         # and model_fields_set contains the field
         if self.client_certificate is None and "client_certificate" in self.model_fields_set:
@@ -129,6 +145,7 @@ class AwsCloudC2SParams(BaseModel):
         _obj = cls.model_validate({
             "agency": obj.get("agency"),
             "baseURL": obj.get("baseURL"),
+            "c2sType": obj.get("c2sType"),
             "clientCertificate": obj.get("clientCertificate"),
             "clientCertificatePassword": obj.get("clientCertificatePassword"),
             "clientPrivateKey": obj.get("clientPrivateKey"),

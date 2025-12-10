@@ -42,8 +42,8 @@ class SnapshotDiffParams(BaseModel):
     @field_validator('entity_type')
     def entity_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['kVMware', 'kPhysical', 'kView', 'kHyperV', 'kNetapp', 'kPure', 'kIsilon']):
-            raise ValueError("must be one of enum values ('kVMware', 'kPhysical', 'kView', 'kHyperV', 'kNetapp', 'kPure', 'kIsilon')")
+        if value not in set(['kVMware', 'kPhysical', 'kView', 'kHyperV', 'kNetapp', 'kPure', 'kIsilon', 'kAzure', 'kAWS', 'kAzureNative']):
+            raise ValueError("must be one of enum values ('kVMware', 'kPhysical', 'kView', 'kHyperV', 'kNetapp', 'kPure', 'kIsilon', 'kAzure', 'kAWS', 'kAzureNative')")
         return value
 
     model_config = ConfigDict(

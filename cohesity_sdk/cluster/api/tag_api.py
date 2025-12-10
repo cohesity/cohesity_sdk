@@ -55,7 +55,7 @@ class TagApi:
     ) -> Tag:
         """Create a Tag
 
-        Creates a Tag.
+        **Privileges:** ```TAGS_MODIFY``` <br><br>Creates a Tag.
 
         :param body: Request to create a Tag. (required)
         :type body: Tag
@@ -122,7 +122,7 @@ class TagApi:
     ) -> ApiResponse[Tag]:
         """Create a Tag
 
-        Creates a Tag.
+        **Privileges:** ```TAGS_MODIFY``` <br><br>Creates a Tag.
 
         :param body: Request to create a Tag. (required)
         :type body: Tag
@@ -189,7 +189,7 @@ class TagApi:
     ) -> RESTResponseType:
         """Create a Tag
 
-        Creates a Tag.
+        **Privileges:** ```TAGS_MODIFY``` <br><br>Creates a Tag.
 
         :param body: Request to create a Tag. (required)
         :type body: Tag
@@ -331,7 +331,7 @@ class TagApi:
     ) -> None:
         """Delete a Tag
 
-        Deletes a Tag by id.
+        **Privileges:** ```TAGS_MODIFY``` <br><br>Deletes a Tag by id.
 
         :param id: Specifies the Id of the tag. (required)
         :type id: str
@@ -398,7 +398,7 @@ class TagApi:
     ) -> ApiResponse[None]:
         """Delete a Tag
 
-        Deletes a Tag by id.
+        **Privileges:** ```TAGS_MODIFY``` <br><br>Deletes a Tag by id.
 
         :param id: Specifies the Id of the tag. (required)
         :type id: str
@@ -465,7 +465,7 @@ class TagApi:
     ) -> RESTResponseType:
         """Delete a Tag
 
-        Deletes a Tag by id.
+        **Privileges:** ```TAGS_MODIFY``` <br><br>Deletes a Tag by id.
 
         :param id: Specifies the Id of the tag. (required)
         :type id: str
@@ -594,7 +594,7 @@ class TagApi:
     ) -> Tag:
         """Get Tag by id.
 
-        Get Tag by id.
+        **Privileges:** ```TAGS_VIEW``` <br><br>Get Tag by id.
 
         :param id: Specifies the Id of the tag. (required)
         :type id: str
@@ -661,7 +661,7 @@ class TagApi:
     ) -> ApiResponse[Tag]:
         """Get Tag by id.
 
-        Get Tag by id.
+        **Privileges:** ```TAGS_VIEW``` <br><br>Get Tag by id.
 
         :param id: Specifies the Id of the tag. (required)
         :type id: str
@@ -728,7 +728,7 @@ class TagApi:
     ) -> RESTResponseType:
         """Get Tag by id.
 
-        Get Tag by id.
+        **Privileges:** ```TAGS_VIEW``` <br><br>Get Tag by id.
 
         :param id: Specifies the Id of the tag. (required)
         :type id: str
@@ -862,7 +862,7 @@ class TagApi:
     ) -> List[Tag]:
         """Get tags based on filters.
 
-        If no parameters are specified, all tags are returned. Specifying parameters filters the results that are returned.
+        **Privileges:** ```TAGS_VIEW``` <br><br>If no parameters are specified, all tags are returned. Specifying parameters filters the results that are returned.
 
         :param ids: Filter by a list of Tag Ids. If Ids are mentioned all other fields will be ignored.
         :type ids: List[str]
@@ -949,7 +949,7 @@ class TagApi:
     ) -> ApiResponse[List[Tag]]:
         """Get tags based on filters.
 
-        If no parameters are specified, all tags are returned. Specifying parameters filters the results that are returned.
+        **Privileges:** ```TAGS_VIEW``` <br><br>If no parameters are specified, all tags are returned. Specifying parameters filters the results that are returned.
 
         :param ids: Filter by a list of Tag Ids. If Ids are mentioned all other fields will be ignored.
         :type ids: List[str]
@@ -1036,7 +1036,7 @@ class TagApi:
     ) -> RESTResponseType:
         """Get tags based on filters.
 
-        If no parameters are specified, all tags are returned. Specifying parameters filters the results that are returned.
+        **Privileges:** ```TAGS_VIEW``` <br><br>If no parameters are specified, all tags are returned. Specifying parameters filters the results that are returned.
 
         :param ids: Filter by a list of Tag Ids. If Ids are mentioned all other fields will be ignored.
         :type ids: List[str]
@@ -1212,7 +1212,7 @@ class TagApi:
     ) -> Tag:
         """Update a Tag
 
-        Updates a Tag by id.
+        **Privileges:** ```TAGS_MODIFY``` <br><br>Updates a Tag by id.
 
         :param id: Specifies the Id of the tag. (required)
         :type id: str
@@ -1283,7 +1283,7 @@ class TagApi:
     ) -> ApiResponse[Tag]:
         """Update a Tag
 
-        Updates a Tag by id.
+        **Privileges:** ```TAGS_MODIFY``` <br><br>Updates a Tag by id.
 
         :param id: Specifies the Id of the tag. (required)
         :type id: str
@@ -1354,7 +1354,7 @@ class TagApi:
     ) -> RESTResponseType:
         """Update a Tag
 
-        Updates a Tag by id.
+        **Privileges:** ```TAGS_MODIFY``` <br><br>Updates a Tag by id.
 
         :param id: Specifies the Id of the tag. (required)
         :type id: str

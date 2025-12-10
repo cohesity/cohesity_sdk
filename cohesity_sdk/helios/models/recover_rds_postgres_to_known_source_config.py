@@ -25,11 +25,11 @@ from typing_extensions import Self
 
 class RecoverRDSPostgresToKnownSourceConfig(BaseModel):
     """
-    Specifies the configuration for recovering RDS Postgres instance to the known target.
+    Specifies the configuration for recovering RDS Postgres objects to the known target.
     """ # noqa: E501
-    instance: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the instance in which to deploy the Rds instance.")
+    instance: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the instance in which to deploy the Rds objects.")
     recover_to_new_source: Optional[StrictBool] = Field(default=None, description="Specifies the parameter whether the recovery should be performed to a new target.", alias="recoverToNewSource")
-    region: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the AWS region in which to deploy the Rds instance.")
+    region: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the AWS region in which to deploy the Rds objects.")
     source: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the target source details where RDS Postgres database will be recovered. This source id should be a RDS Postgres target instance id were databases could be restored.")
     __properties: ClassVar[List[str]] = ["instance", "recoverToNewSource", "region", "source"]
 

@@ -7,6 +7,7 @@ Specifies parameters to initiate/cancel node removal.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cancel** | **bool** | If true, cancels node removal that is already in progress. | 
+**is_clear_pre_check_result_only** | **bool** | Specifies whether request is for clearing pre-check result only | [optional] [default to False]
 **is_offline** | **bool** | Specifies whether node being removed is offline. | [optional] [default to False]
 **is_validate_only** | **bool** | Specifies whether request is for pre-check validations only | [optional] [default to False]
 

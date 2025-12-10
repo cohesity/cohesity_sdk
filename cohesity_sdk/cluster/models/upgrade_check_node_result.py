@@ -27,17 +27,14 @@ class UpgradeCheckNodeResult(BaseModel):
     """
     The healthcheck results for node
     """ # noqa: E501
-    node_ip: Optional[StrictStr] = Field(default=None, description="The node ip", alias="nodeIp")
+    node_ip: StrictStr = Field(description="The node ip", alias="nodeIp")
     node_test_results: Optional[List[UpgradeCheckTestResult]] = Field(default=None, description="The healthcheck test results for node", alias="nodeTestResults")
-    node_test_status: Optional[StrictStr] = Field(default=None, description="The healthcheck run status for node", alias="nodeTestStatus")
+    node_test_status: StrictStr = Field(description="The healthcheck run status for node", alias="nodeTestStatus")
     __properties: ClassVar[List[str]] = ["nodeIp", "nodeTestResults", "nodeTestStatus"]
 
     @field_validator('node_test_status')
     def node_test_status_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
         if value not in set(['Running', 'Passed', 'Failed', 'Skipped', 'Error']):
             raise ValueError("must be one of enum values ('Running', 'Passed', 'Failed', 'Skipped', 'Error')")
         return value

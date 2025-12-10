@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 Create Ldap provider.
 
-Create Ldap provider with given parameters.
+**Privileges:** ```AD_LDAP_MODIFY``` <br><br>Create Ldap provider with given parameters.
 
 ### Example
 
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 Delete LDAP provider.
 
-Delete LDAP provider which will be identified by given Id.
+**Privileges:** ```AD_LDAP_MODIFY``` <br><br>Delete LDAP provider which will be identified by given Id.
 
 ### Example
 
@@ -201,7 +201,7 @@ void (empty response body)
 
 Get LDAP connection status.
 
-Get LDAP connection status.
+**Privileges:** ```AD_LDAP_VIEW``` <br><br>Get LDAP connection status.
 
 ### Example
 
@@ -295,7 +295,7 @@ Name | Type | Description  | Notes
 
 Get Groups.
 
-Get LDAPs.
+**Privileges:** ```AD_LDAP_VIEW``` <br><br>Get LDAPs.
 
 ### Example
 
@@ -393,7 +393,7 @@ Name | Type | Description  | Notes
 
 Update Ldap provider.
 
-Modify Ldap provider with given parameters.
+**Privileges:** ```AD_LDAP_MODIFY``` <br><br>Modify Ldap provider with given parameters.
 
 ### Example
 

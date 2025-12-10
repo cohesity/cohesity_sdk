@@ -38,8 +38,9 @@ class VcenterRegistrationParams(BaseModel):
     min_free_datastore_space_for_backup_gb: Optional[StrictInt] = Field(default=None, description="Specifies the minimum free space (in GB) expected to be available in the datastore where the virtual disks of the VM being backed up reside. If the space available is lower than the specified value, backup will be aborted.", alias="minFreeDatastoreSpaceForBackupGb")
     min_free_datastore_space_for_backup_percentage: Optional[StrictInt] = Field(default=None, description="Specifies the minimum free space (in percentage) expected to be available in the datastore where the virtual disks of the VM being backed up reside. If the space available is lower than the specified value, backup will be aborted.", alias="minFreeDatastoreSpaceForBackupPercentage")
     throttling_params: Optional[VmwareThrottlingParams] = Field(default=None, alias="throttlingParams")
+    update_last_backup_details: Optional[StrictBool] = Field(default=None, description="Specifies whether to update the last backup details, including the time of the backup attempt and backup status, for the virtual machines on the vCenter.", alias="updateLastBackupDetails")
     use_vm_bios_uuid: Optional[StrictBool] = Field(default=None, description="Specifies to use VM BIOS UUID to track virtual machines in the host.", alias="useVmBiosUuid")
-    __properties: ClassVar[List[str]] = ["password", "username", "description", "endpoint", "caCert", "dataStoreParams", "linkVmsAcrossVcenter", "minFreeDatastoreSpaceForBackupGb", "minFreeDatastoreSpaceForBackupPercentage", "throttlingParams", "useVmBiosUuid"]
+    __properties: ClassVar[List[str]] = ["password", "username", "description", "endpoint", "caCert", "dataStoreParams", "linkVmsAcrossVcenter", "minFreeDatastoreSpaceForBackupGb", "minFreeDatastoreSpaceForBackupPercentage", "throttlingParams", "updateLastBackupDetails", "useVmBiosUuid"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -120,6 +121,11 @@ class VcenterRegistrationParams(BaseModel):
         if self.min_free_datastore_space_for_backup_percentage is None and "min_free_datastore_space_for_backup_percentage" in self.model_fields_set:
             _dict['minFreeDatastoreSpaceForBackupPercentage'] = None
 
+        # set to None if update_last_backup_details (nullable) is None
+        # and model_fields_set contains the field
+        if self.update_last_backup_details is None and "update_last_backup_details" in self.model_fields_set:
+            _dict['updateLastBackupDetails'] = None
+
         # set to None if use_vm_bios_uuid (nullable) is None
         # and model_fields_set contains the field
         if self.use_vm_bios_uuid is None and "use_vm_bios_uuid" in self.model_fields_set:
@@ -147,6 +153,7 @@ class VcenterRegistrationParams(BaseModel):
             "minFreeDatastoreSpaceForBackupGb": obj.get("minFreeDatastoreSpaceForBackupGb"),
             "minFreeDatastoreSpaceForBackupPercentage": obj.get("minFreeDatastoreSpaceForBackupPercentage"),
             "throttlingParams": VmwareThrottlingParams.from_dict(obj["throttlingParams"]) if obj.get("throttlingParams") is not None else None,
+            "updateLastBackupDetails": obj.get("updateLastBackupDetails"),
             "useVmBiosUuid": obj.get("useVmBiosUuid")
         })
         return _obj

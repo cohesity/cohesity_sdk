@@ -6,8 +6,8 @@ Specifies the s3 specific parameters for source registration
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**inventory_report_bucket** | **str** | Specifies the ARN for S3 bucket where inventory reports are to be stored. | 
-**inventory_report_prefix** | **str** | The inventory bucket prefix where inventory reports are to be stored. | 
+**inventory_report_bucket** | **str** | Specifies the ARN for S3 bucket where inventory reports are to be stored. | [optional] 
+**inventory_report_prefix** | **str** | The inventory bucket prefix where inventory reports are to be stored. | [optional] 
 
 ## Example
 

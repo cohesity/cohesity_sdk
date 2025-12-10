@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.hadoop_connection_params_ssh_password_credentials import HadoopConnectionParamsSshPasswordCredentials
 from cohesity_sdk.cluster.models.hadoop_connection_params_ssh_private_key_credentials import HadoopConnectionParamsSshPrivateKeyCredentials
@@ -29,10 +29,21 @@ class HadoopConnectionParams(BaseModel):
     Specifies the parameters to connect to a seed node and fetch information from its config file.
     """ # noqa: E501
     configuration_directory: StrictStr = Field(description="The directory containing the application specific config file. .", alias="configurationDirectory")
+    hdfs_connection_type: Optional[StrictStr] = Field(default=None, description="HDFS Connection Type.", alias="hdfsConnectionType")
     host: StrictStr = Field(description="IP or hostname of any host from which the  configuration file can be read.")
     ssh_password_credentials: Optional[HadoopConnectionParamsSshPasswordCredentials] = Field(default=None, alias="sshPasswordCredentials")
     ssh_private_key_credentials: Optional[HadoopConnectionParamsSshPrivateKeyCredentials] = Field(default=None, alias="sshPrivateKeyCredentials")
-    __properties: ClassVar[List[str]] = ["configurationDirectory", "host", "sshPasswordCredentials", "sshPrivateKeyCredentials"]
+    __properties: ClassVar[List[str]] = ["configurationDirectory", "hdfsConnectionType", "host", "sshPasswordCredentials", "sshPrivateKeyCredentials"]
+
+    @field_validator('hdfs_connection_type')
+    def hdfs_connection_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['DFS', 'WEBHDFS', 'HTTPFSLB', 'HTTPFS']):
+            raise ValueError("must be one of enum values ('DFS', 'WEBHDFS', 'HTTPFSLB', 'HTTPFS')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,6 +90,11 @@ class HadoopConnectionParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of ssh_private_key_credentials
         if self.ssh_private_key_credentials:
             _dict['sshPrivateKeyCredentials'] = self.ssh_private_key_credentials.to_dict()
+        # set to None if hdfs_connection_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.hdfs_connection_type is None and "hdfs_connection_type" in self.model_fields_set:
+            _dict['hdfsConnectionType'] = None
+
         # set to None if ssh_password_credentials (nullable) is None
         # and model_fields_set contains the field
         if self.ssh_password_credentials is None and "ssh_password_credentials" in self.model_fields_set:
@@ -102,6 +118,7 @@ class HadoopConnectionParams(BaseModel):
 
         _obj = cls.model_validate({
             "configurationDirectory": obj.get("configurationDirectory"),
+            "hdfsConnectionType": obj.get("hdfsConnectionType"),
             "host": obj.get("host"),
             "sshPasswordCredentials": HadoopConnectionParamsSshPasswordCredentials.from_dict(obj["sshPasswordCredentials"]) if obj.get("sshPasswordCredentials") is not None else None,
             "sshPrivateKeyCredentials": HadoopConnectionParamsSshPrivateKeyCredentials.from_dict(obj["sshPrivateKeyCredentials"]) if obj.get("sshPrivateKeyCredentials") is not None else None

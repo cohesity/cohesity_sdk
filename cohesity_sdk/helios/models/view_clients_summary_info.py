@@ -27,10 +27,12 @@ class ViewClientsSummaryInfo(BaseModel):
     Specifies the View Client summary info.
     """ # noqa: E501
     nfs_client_count: Optional[StrictInt] = Field(default=None, description="Specifies the number of NFS clients.", alias="nfsClientCount")
+    nfs_open_file_count: Optional[StrictInt] = Field(default=None, description="Specifies the number of files open over the NFS4 protocol.", alias="nfsOpenFileCount")
     node_ip: Optional[StrictStr] = Field(default=None, description="Specifies the node ip the clients are connected to.", alias="nodeIp")
     server_ip: Optional[StrictStr] = Field(default=None, description="Specifies the server ip the clients are connected to.", alias="serverIp")
     smb_client_count: Optional[StrictInt] = Field(default=None, description="Specifies the number of SMB clients.", alias="smbClientCount")
-    __properties: ClassVar[List[str]] = ["nfsClientCount", "nodeIp", "serverIp", "smbClientCount"]
+    smb_open_file_count: Optional[StrictInt] = Field(default=None, description="Specifies the number of files open over the SMB protocol.", alias="smbOpenFileCount")
+    __properties: ClassVar[List[str]] = ["nfsClientCount", "nfsOpenFileCount", "nodeIp", "serverIp", "smbClientCount", "smbOpenFileCount"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,6 +78,11 @@ class ViewClientsSummaryInfo(BaseModel):
         if self.nfs_client_count is None and "nfs_client_count" in self.model_fields_set:
             _dict['nfsClientCount'] = None
 
+        # set to None if nfs_open_file_count (nullable) is None
+        # and model_fields_set contains the field
+        if self.nfs_open_file_count is None and "nfs_open_file_count" in self.model_fields_set:
+            _dict['nfsOpenFileCount'] = None
+
         # set to None if node_ip (nullable) is None
         # and model_fields_set contains the field
         if self.node_ip is None and "node_ip" in self.model_fields_set:
@@ -91,6 +98,11 @@ class ViewClientsSummaryInfo(BaseModel):
         if self.smb_client_count is None and "smb_client_count" in self.model_fields_set:
             _dict['smbClientCount'] = None
 
+        # set to None if smb_open_file_count (nullable) is None
+        # and model_fields_set contains the field
+        if self.smb_open_file_count is None and "smb_open_file_count" in self.model_fields_set:
+            _dict['smbOpenFileCount'] = None
+
         return _dict
 
     @classmethod
@@ -104,9 +116,11 @@ class ViewClientsSummaryInfo(BaseModel):
 
         _obj = cls.model_validate({
             "nfsClientCount": obj.get("nfsClientCount"),
+            "nfsOpenFileCount": obj.get("nfsOpenFileCount"),
             "nodeIp": obj.get("nodeIp"),
             "serverIp": obj.get("serverIp"),
-            "smbClientCount": obj.get("smbClientCount")
+            "smbClientCount": obj.get("smbClientCount"),
+            "smbOpenFileCount": obj.get("smbOpenFileCount")
         })
         return _obj
 

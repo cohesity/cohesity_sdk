@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.aws_kms_configuration_update_params import AwsKmsConfigurationUpdateParams
+from cohesity_sdk.helios.models.ibm_kms_configuration_update_params import IbmKmsConfigurationUpdateParams
 from cohesity_sdk.helios.models.kmip_kms_configuration import KmipKmsConfiguration
 from typing import Set
 from typing_extensions import Self
@@ -33,7 +34,8 @@ class KmsConfigurationUpdateParams(BaseModel):
     name: StrictStr = Field(description="Name of the KMS.")
     storage_domain_ids: Optional[List[StrictInt]] = Field(default=None, description="Ids of storage domains used to assign the KMS for encryption. Once an external KMS (AWS KMS or KIMP KMS) is assigned to a storage domain, it cannot be changed.", alias="storageDomainIds")
     aws_kms_params: Optional[AwsKmsConfigurationUpdateParams] = Field(default=None, alias="awsKmsParams")
-    __properties: ClassVar[List[str]] = ["externalTargetIds", "kmipKmsParams", "name", "storageDomainIds", "awsKmsParams"]
+    ibm_kms_params: Optional[IbmKmsConfigurationUpdateParams] = Field(default=None, alias="ibmKmsParams")
+    __properties: ClassVar[List[str]] = ["externalTargetIds", "kmipKmsParams", "name", "storageDomainIds", "awsKmsParams", "ibmKmsParams"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,6 +82,9 @@ class KmsConfigurationUpdateParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of aws_kms_params
         if self.aws_kms_params:
             _dict['awsKmsParams'] = self.aws_kms_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ibm_kms_params
+        if self.ibm_kms_params:
+            _dict['ibmKmsParams'] = self.ibm_kms_params.to_dict()
         # set to None if external_target_ids (nullable) is None
         # and model_fields_set contains the field
         if self.external_target_ids is None and "external_target_ids" in self.model_fields_set:
@@ -106,7 +111,8 @@ class KmsConfigurationUpdateParams(BaseModel):
             "kmipKmsParams": KmipKmsConfiguration.from_dict(obj["kmipKmsParams"]) if obj.get("kmipKmsParams") is not None else None,
             "name": obj.get("name"),
             "storageDomainIds": obj.get("storageDomainIds"),
-            "awsKmsParams": AwsKmsConfigurationUpdateParams.from_dict(obj["awsKmsParams"]) if obj.get("awsKmsParams") is not None else None
+            "awsKmsParams": AwsKmsConfigurationUpdateParams.from_dict(obj["awsKmsParams"]) if obj.get("awsKmsParams") is not None else None,
+            "ibmKmsParams": IbmKmsConfigurationUpdateParams.from_dict(obj["ibmKmsParams"]) if obj.get("ibmKmsParams") is not None else None
         })
         return _obj
 

@@ -31,6 +31,7 @@ class HeliosReplicationConfig(BaseModel):
     """
     Specifies settings for copying Snapshots to Remote Clusters. This also specifies the retention policy that should be applied to Snapshots after they have been copied to the specified target.
     """ # noqa: E501
+    backup_run_type: Optional[StrictStr] = Field(default=None, description="Specifies which type of run should be copied, if not set, all types of runs will be eligible for copying. If set, this will ensure that the first run of given type in the scheduled period will get copied. Currently, this can only be set to Full.", alias="backupRunType")
     config_id: Optional[StrictStr] = Field(default=None, description="Specifies the unique identifier for the target getting added. This field need to be passed only when helios policies are updated.", alias="configId")
     copy_on_run_success: Optional[StrictBool] = Field(default=None, description="Specifies if Snapshots are copied from the first completely successful Protection Group Run or the first partially successful Protection Group Run occurring at the start of the replication schedule. <br> If true, Snapshots are copied from the first Protection Group Run occurring at the start of the replication schedule that was completely successful i.e. Snapshots for all the Objects in the Protection Group were successfully captured. <br> If false, Snapshots are copied from the first Protection Group Run occurring at the start of the replication schedule, even if first Protection Group Run was not completely successful i.e. Snapshots were not captured for all Objects in the Protection Group.", alias="copyOnRunSuccess")
     retention: Optional[HeliosRetention] = None
@@ -39,7 +40,17 @@ class HeliosReplicationConfig(BaseModel):
     azure_target_config: Optional[HeliosAzureTargetConfig] = Field(default=None, alias="azureTargetConfig")
     remote_target_config: Optional[HeliosRemoteTargetConfig] = Field(default=None, alias="remoteTargetConfig")
     target_type: Optional[StrictStr] = Field(default=None, description="Specifies the type of target to which replication need to be performed.", alias="targetType")
-    __properties: ClassVar[List[str]] = ["configId", "copyOnRunSuccess", "retention", "schedule", "awsTargetConfig", "azureTargetConfig", "remoteTargetConfig", "targetType"]
+    __properties: ClassVar[List[str]] = ["backupRunType", "configId", "copyOnRunSuccess", "retention", "schedule", "awsTargetConfig", "azureTargetConfig", "remoteTargetConfig", "targetType"]
+
+    @field_validator('backup_run_type')
+    def backup_run_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['Regular', 'Full', 'Log', 'System', 'StorageArraySnapshot']):
+            raise ValueError("must be one of enum values ('Regular', 'Full', 'Log', 'System', 'StorageArraySnapshot')")
+        return value
 
     @field_validator('target_type')
     def target_type_validate_enum(cls, value):
@@ -105,6 +116,11 @@ class HeliosReplicationConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of remote_target_config
         if self.remote_target_config:
             _dict['remoteTargetConfig'] = self.remote_target_config.to_dict()
+        # set to None if backup_run_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.backup_run_type is None and "backup_run_type" in self.model_fields_set:
+            _dict['backupRunType'] = None
+
         # set to None if config_id (nullable) is None
         # and model_fields_set contains the field
         if self.config_id is None and "config_id" in self.model_fields_set:
@@ -132,6 +148,7 @@ class HeliosReplicationConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "backupRunType": obj.get("backupRunType"),
             "configId": obj.get("configId"),
             "copyOnRunSuccess": obj.get("copyOnRunSuccess"),
             "retention": HeliosRetention.from_dict(obj["retention"]) if obj.get("retention") is not None else None,

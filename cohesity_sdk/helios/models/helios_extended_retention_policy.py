@@ -40,8 +40,8 @@ class HeliosExtendedRetentionPolicy(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Regular', 'Full', 'Log', 'System']):
-            raise ValueError("must be one of enum values ('Regular', 'Full', 'Log', 'System')")
+        if value not in set(['Regular', 'Full', 'Log', 'System', 'StorageArraySnapshot']):
+            raise ValueError("must be one of enum values ('Regular', 'Full', 'Log', 'System', 'StorageArraySnapshot')")
         return value
 
     model_config = ConfigDict(

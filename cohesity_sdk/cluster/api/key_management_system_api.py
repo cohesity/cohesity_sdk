@@ -58,7 +58,7 @@ class KeyManagementSystemApi:
     ) -> KmsConfiguration:
         """Add KMS
 
-        Add a key management system(KMS) to the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Add a key management system(KMS) to the cluster.
 
         :param body: Parameters to add KMS on the cluster. (required)
         :type body: KmsConfigurationCreateParams
@@ -125,7 +125,7 @@ class KeyManagementSystemApi:
     ) -> ApiResponse[KmsConfiguration]:
         """Add KMS
 
-        Add a key management system(KMS) to the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Add a key management system(KMS) to the cluster.
 
         :param body: Parameters to add KMS on the cluster. (required)
         :type body: KmsConfigurationCreateParams
@@ -192,7 +192,7 @@ class KeyManagementSystemApi:
     ) -> RESTResponseType:
         """Add KMS
 
-        Add a key management system(KMS) to the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Add a key management system(KMS) to the cluster.
 
         :param body: Parameters to add KMS on the cluster. (required)
         :type body: KmsConfigurationCreateParams
@@ -334,7 +334,7 @@ class KeyManagementSystemApi:
     ) -> None:
         """Delete KMS
 
-        Delete KMS configued on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete KMS configued on the cluster.
 
         :param id: ID of the KMS configured on the cluster. (required)
         :type id: int
@@ -401,7 +401,7 @@ class KeyManagementSystemApi:
     ) -> ApiResponse[None]:
         """Delete KMS
 
-        Delete KMS configued on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete KMS configued on the cluster.
 
         :param id: ID of the KMS configured on the cluster. (required)
         :type id: int
@@ -468,7 +468,7 @@ class KeyManagementSystemApi:
     ) -> RESTResponseType:
         """Delete KMS
 
-        Delete KMS configued on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete KMS configued on the cluster.
 
         :param id: ID of the KMS configured on the cluster. (required)
         :type id: int
@@ -598,7 +598,7 @@ class KeyManagementSystemApi:
     ) -> KmsConfigurations:
         """Get KMS
 
-        Get key management systems(KMS) configured on the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get key management systems(KMS) configured on the cluster.
 
         :param ids: Ids of KMS configured on the cluster.
         :type ids: List[int]
@@ -669,7 +669,7 @@ class KeyManagementSystemApi:
     ) -> ApiResponse[KmsConfigurations]:
         """Get KMS
 
-        Get key management systems(KMS) configured on the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get key management systems(KMS) configured on the cluster.
 
         :param ids: Ids of KMS configured on the cluster.
         :type ids: List[int]
@@ -740,7 +740,7 @@ class KeyManagementSystemApi:
     ) -> RESTResponseType:
         """Get KMS
 
-        Get key management systems(KMS) configured on the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get key management systems(KMS) configured on the cluster.
 
         :param ids: Ids of KMS configured on the cluster.
         :type ids: List[int]
@@ -881,7 +881,7 @@ class KeyManagementSystemApi:
     ) -> KmsConfiguration:
         """Update KMS
 
-        Update KMS on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update KMS on the cluster.
 
         :param id: ID of the KMS configured on the cluster. (required)
         :type id: int
@@ -952,7 +952,7 @@ class KeyManagementSystemApi:
     ) -> ApiResponse[KmsConfiguration]:
         """Update KMS
 
-        Update KMS on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update KMS on the cluster.
 
         :param id: ID of the KMS configured on the cluster. (required)
         :type id: int
@@ -1023,7 +1023,7 @@ class KeyManagementSystemApi:
     ) -> RESTResponseType:
         """Update KMS
 
-        Update KMS on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update KMS on the cluster.
 
         :param id: ID of the KMS configured on the cluster. (required)
         :type id: int

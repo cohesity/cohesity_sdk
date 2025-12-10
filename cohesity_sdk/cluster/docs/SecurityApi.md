@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**get_csr_list**](SecurityApi.md#get_csr_list) | **GET** /csr | List Certificate Signing Requests on the cluster.
 [**get_object_store_ciphers**](SecurityApi.md#get_object_store_ciphers) | **GET** /security/object-store-ciphers | Gets the list of object store ciphers enabled on the cluster.
 [**get_security_config**](SecurityApi.md#get_security_config) | **GET** /security-config | Get cluster security settings.
+[**get_ssl_certificates**](SecurityApi.md#get_ssl_certificates) | **GET** /ssl-certificates | Get list of SSL certificates.
 [**import_certificate_by_clientcsr**](SecurityApi.md#import_certificate_by_clientcsr) | **POST** /client-csr/certificate | Import the signed certificates on the cluster after the Certificate Signing Requests are created.
 [**list_trusted_ca_by_id**](SecurityApi.md#list_trusted_ca_by_id) | **GET** /trusted-cas/{id} | List the specified Certificate.
 [**list_trusted_cas**](SecurityApi.md#list_trusted_cas) | **GET** /trusted-cas | List all Certificates with cluster trust store.
@@ -29,7 +30,7 @@ Method | HTTP request | Description
 
 Create Certificate Signing Requests on the cluster.
 
-Create two Certificate Signing Request on the cluster with the given details one each for client and server. Each service can have at most one outstanding pair of CSR.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Create two Certificate Signing Request on the cluster with the given details one each for client and server. Each service can have at most one outstanding pair of CSR.
 
 ### Example
 
@@ -124,7 +125,7 @@ Name | Type | Description  | Notes
 
 Create a Certificate Signing Request on the cluster.
 
-Create a Certificate Signing Request on the cluster with the given details. Each service has at most one outstanding CSR.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Create a Certificate Signing Request on the cluster with the given details. Each service has at most one outstanding CSR.
 
 ### Example
 
@@ -219,7 +220,7 @@ Name | Type | Description  | Notes
 
 Delete a Certificate Signing Request on the cluster.
 
-Delete a Certificate Signing Request on the cluster.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete a Certificate Signing Request on the cluster.
 
 ### Example
 
@@ -310,7 +311,7 @@ void (empty response body)
 
 Gets the list of ciphers enabled on the cluster.
 
-Gets the list of ciphers enabled on the cluster.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>Gets the list of ciphers enabled on the cluster.
 
 ### Example
 
@@ -400,7 +401,7 @@ This endpoint does not need any parameter.
 
 List the specified Certificate Signing Request.
 
-List the specified Certificate Signing Request.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>List the specified Certificate Signing Request.
 
 ### Example
 
@@ -494,7 +495,7 @@ Name | Type | Description  | Notes
 
 List Certificate Signing Requests on the cluster.
 
-List Certificate Signing Requests on the cluster with service name filtering.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>List Certificate Signing Requests on the cluster with service name filtering.
 
 ### Example
 
@@ -590,7 +591,7 @@ Name | Type | Description  | Notes
 
 Gets the list of object store ciphers enabled on the cluster.
 
-Gets the list of object store ciphers enabled on the cluster.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>Gets the list of object store ciphers enabled on the cluster.
 
 ### Example
 
@@ -676,11 +677,11 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_security_config**
-> SecurityConfig get_security_config()
+> SecurityConfigResponse get_security_config()
 
 Get cluster security settings.
 
-Get cluster security settings.
+**Privileges:** ```SECURITY_ADVISOR_VIEW, TENANT_VIEW``` <br><br>Get cluster security settings.
 
 ### Example
 
@@ -690,7 +691,7 @@ Get cluster security settings.
 
 ```python
 import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.security_config import SecurityConfig
+from cohesity_sdk.cluster.models.security_config_response import SecurityConfigResponse
 from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
@@ -745,7 +746,101 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SecurityConfig**](SecurityConfig.md)
+[**SecurityConfigResponse**](SecurityConfigResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_ssl_certificates**
+> List[SslCertificate] get_ssl_certificates(service_name=service_name)
+
+Get list of SSL certificates.
+
+**Privileges:** ```CLUSTER_VIEW``` <br><br>Get list of SSL certificates.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
+```python
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ssl_certificate import SslCertificate
+from cohesity_sdk.cluster.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.SecurityApi(api_client)
+    service_name = 'service_name_example' # str | Specifies the service name for which the certificate details needs to be returned. If this is not specified, all certificates are returned. (optional)
+
+    try:
+        # Get list of SSL certificates.
+        api_response = api_instance.get_ssl_certificates(service_name=service_name)
+        print("The response of SecurityApi->get_ssl_certificates:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SecurityApi->get_ssl_certificates: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **service_name** | **str**| Specifies the service name for which the certificate details needs to be returned. If this is not specified, all certificates are returned. | [optional] 
+
+### Return type
+
+[**List[SslCertificate]**](SslCertificate.md)
 
 ### Authorization
 
@@ -770,7 +865,7 @@ This endpoint does not need any parameter.
 
 Import the signed certificates on the cluster after the Certificate Signing Requests are created.
 
-Import the signed certificates on the cluster after the Certificate Signing Requests are created.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Import the signed certificates on the cluster after the Certificate Signing Requests are created.
 
 ### Example
 
@@ -865,7 +960,7 @@ Name | Type | Description  | Notes
 
 List the specified Certificate.
 
-List the specified Certificate.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>List the specified Certificate.
 
 ### Example
 
@@ -959,7 +1054,7 @@ Name | Type | Description  | Notes
 
 List all Certificates with cluster trust store.
 
-List all trusted certificates in cluster trust store.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>List all trusted certificates in cluster trust store.
 
 ### Example
 
@@ -1055,7 +1150,7 @@ Name | Type | Description  | Notes
 
 Enable/Disable a list of ciphers on the cluster. Iris must be restarted for the change to take effect.
 
-Enable/Disable a list of ciphers on the cluster.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Enable/Disable a list of ciphers on the cluster.
 
 ### Example
 
@@ -1150,7 +1245,7 @@ Name | Type | Description  | Notes
 
 Enable/Disable a list of object store ciphers on the cluster. Bridge must be restarted for the change to take effect.
 
-Enable/Disable a list of object store ciphers on the cluster.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Enable/Disable a list of object store ciphers on the cluster.
 
 ### Example
 
@@ -1245,7 +1340,7 @@ Name | Type | Description  | Notes
 
 Register CA Certificate to the cluster trust store.
 
-Register CA Certificate to the cluster trust store.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Register CA Certificate to the cluster trust store.
 
 ### Example
 
@@ -1340,7 +1435,7 @@ Name | Type | Description  | Notes
 
 Unregister CA Certificate from the cluster trust store.
 
-Unregister CA Certificate from the cluster trust store.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Unregister CA Certificate from the cluster trust store.
 
 ### Example
 
@@ -1431,7 +1526,7 @@ void (empty response body)
 
 Update the signed certificate on the cluster after a Certificate Signing Request is created.
 
-Update the signed certificate on the cluster after a Certificate Signing Request is created.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the signed certificate on the cluster after a Certificate Signing Request is created.
 
 ### Example
 
@@ -1522,11 +1617,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_security_config**
-> SecurityConfig update_security_config(body)
+> SecurityConfigResponse update_security_config(body)
 
 Update cluster security settings.
 
-Update cluster security settings.
+**Privileges:** ```SECURITY_ADVISOR_MODIFY``` <br><br>Update cluster security settings.
 
 ### Example
 
@@ -1537,6 +1632,7 @@ Update cluster security settings.
 ```python
 import cohesity_sdk.cluster
 from cohesity_sdk.cluster.models.security_config import SecurityConfig
+from cohesity_sdk.cluster.models.security_config_response import SecurityConfigResponse
 from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
@@ -1595,7 +1691,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SecurityConfig**](SecurityConfig.md)
+[**SecurityConfigResponse**](SecurityConfigResponse.md)
 
 ### Authorization
 
@@ -1620,7 +1716,7 @@ Name | Type | Description  | Notes
 
 Validate CA Certificate.
 
-Certificate will be checked for Expiration and Revocation.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Certificate will be checked for Expiration and Revocation.
 
 ### Example
 

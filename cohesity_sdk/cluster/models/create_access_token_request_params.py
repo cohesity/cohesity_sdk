@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.cluster.models.mfa_params import MfaParams
 from typing import Set
 from typing_extensions import Self
 
@@ -26,10 +27,13 @@ class CreateAccessTokenRequestParams(BaseModel):
     """
     Specifies the Cohesity credentials required for creating an access token.
     """ # noqa: E501
+    certificate: Optional[StrictStr] = Field(default=None, description="Specifies the certificate for logging in the cert base auth cluster.")
     domain: Optional[StrictStr] = Field(default=None, description="Specifies the domain the user is logging in to. For a local user the domain is LOCAL. For LDAP/AD user, the domain will map to a LDAP connection string. A user is uniquely identified by a combination of username and domain. LOCAL is the default domain.")
-    password: Optional[StrictStr] = Field(description="Specifies the password of the Cohesity user account.")
-    username: Optional[StrictStr] = Field(description="Specifies the login name of the Cohesity user.")
-    __properties: ClassVar[List[str]] = ["domain", "password", "username"]
+    mfa_params: Optional[MfaParams] = Field(default=None, alias="mfaParams")
+    password: Optional[StrictStr] = Field(default=None, description="Specifies the password of the Cohesity user account.")
+    private_key: Optional[StrictStr] = Field(default=None, description="Specifies the matching private key of the above certificate.", alias="privateKey")
+    username: Optional[StrictStr] = Field(default=None, description="Specifies the login name of the Cohesity user.")
+    __properties: ClassVar[List[str]] = ["certificate", "domain", "mfaParams", "password", "privateKey", "username"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,6 +74,14 @@ class CreateAccessTokenRequestParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of mfa_params
+        if self.mfa_params:
+            _dict['mfaParams'] = self.mfa_params.to_dict()
+        # set to None if certificate (nullable) is None
+        # and model_fields_set contains the field
+        if self.certificate is None and "certificate" in self.model_fields_set:
+            _dict['certificate'] = None
+
         # set to None if domain (nullable) is None
         # and model_fields_set contains the field
         if self.domain is None and "domain" in self.model_fields_set:
@@ -79,6 +91,11 @@ class CreateAccessTokenRequestParams(BaseModel):
         # and model_fields_set contains the field
         if self.password is None and "password" in self.model_fields_set:
             _dict['password'] = None
+
+        # set to None if private_key (nullable) is None
+        # and model_fields_set contains the field
+        if self.private_key is None and "private_key" in self.model_fields_set:
+            _dict['privateKey'] = None
 
         # set to None if username (nullable) is None
         # and model_fields_set contains the field
@@ -97,8 +114,11 @@ class CreateAccessTokenRequestParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "certificate": obj.get("certificate"),
             "domain": obj.get("domain"),
+            "mfaParams": MfaParams.from_dict(obj["mfaParams"]) if obj.get("mfaParams") is not None else None,
             "password": obj.get("password"),
+            "privateKey": obj.get("privateKey"),
             "username": obj.get("username")
         })
         return _obj

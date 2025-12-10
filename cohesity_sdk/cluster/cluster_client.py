@@ -9,24 +9,34 @@ from cohesity_sdk.cluster.api.active_directory_api import ActiveDirectoryApi
 from cohesity_sdk.cluster.api.agent_api import AgentApi
 from cohesity_sdk.cluster.api.alert_api import AlertApi
 from cohesity_sdk.cluster.api.antivirus_service_api import AntivirusServiceApi
+from cohesity_sdk.cluster.api.app_api import AppApi
+from cohesity_sdk.cluster.api.athena_app_ops_api import AthenaAppOpsApi
 from cohesity_sdk.cluster.api.audit_log_api import AuditLogApi
-from cohesity_sdk.cluster.api.baseos_patch_management_api import BaseosPatchManagementApi
+from cohesity_sdk.cluster.api.certificate_store_api import CertificateStoreApi
+from cohesity_sdk.cluster.api.certificates_api import CertificatesApi
+from cohesity_sdk.cluster.api.cloud_domain_api import CloudDomainApi
 from cohesity_sdk.cluster.api.cloud_retrieve_task_api import CloudRetrieveTaskApi
+from cohesity_sdk.cluster.api.cohesity_ca_api import CohesityCAApi
+from cohesity_sdk.cluster.api.data_accessor_api import DataAccessorApi
+from cohesity_sdk.cluster.api.data_source_connection_api import DataSourceConnectionApi
+from cohesity_sdk.cluster.api.data_source_connector_api import DataSourceConnectorApi
+from cohesity_sdk.cluster.api.data_source_connector_local_api import DataSourceConnectorLocalApi
 from cohesity_sdk.cluster.api.data_tiering_api import DataTieringApi
 from cohesity_sdk.cluster.api.external_target_api import ExternalTargetApi
 from cohesity_sdk.cluster.api.failover_api import FailoverApi
 from cohesity_sdk.cluster.api.firewall_api import FirewallApi
+from cohesity_sdk.cluster.api.fortknox_onprem_api import FortknoxOnpremApi
 from cohesity_sdk.cluster.api.helios_on_prem_api import HeliosOnPremApi
-from cohesity_sdk.cluster.api.ips_api import IPsApi
 from cohesity_sdk.cluster.api.identity_provider_api import IdentityProviderApi
 from cohesity_sdk.cluster.api.kerberos_provider_api import KerberosProviderApi
 from cohesity_sdk.cluster.api.key_management_system_api import KeyManagementSystemApi
 from cohesity_sdk.cluster.api.keystone_api import KeystoneApi
 from cohesity_sdk.cluster.api.ldap_api import LDAPApi
+from cohesity_sdk.cluster.api.lsu_api import LSUApi
 from cohesity_sdk.cluster.api.mfa_api import MFAApi
 from cohesity_sdk.cluster.api.node_group_api import NodeGroupApi
 from cohesity_sdk.cluster.api.object_api import ObjectApi
-from cohesity_sdk.cluster.api.patch_management_api import PatchManagementApi
+from cohesity_sdk.cluster.api.one_helios_api import OneHeliosApi
 from cohesity_sdk.cluster.api.platform_api import PlatformApi
 from cohesity_sdk.cluster.api.policy_api import PolicyApi
 from cohesity_sdk.cluster.api.privilege_api import PrivilegeApi
@@ -40,6 +50,7 @@ from cohesity_sdk.cluster.api.role_api import RoleApi
 from cohesity_sdk.cluster.api.routes_api import RoutesApi
 from cohesity_sdk.cluster.api.search_api import SearchApi
 from cohesity_sdk.cluster.api.security_api import SecurityApi
+from cohesity_sdk.cluster.api.snmp_config_api import SnmpConfigApi
 from cohesity_sdk.cluster.api.source_api import SourceApi
 from cohesity_sdk.cluster.api.stats_api import StatsApi
 from cohesity_sdk.cluster.api.storage_domain_api import StorageDomainApi
@@ -48,6 +59,7 @@ from cohesity_sdk.cluster.api.syslog_api import SyslogApi
 from cohesity_sdk.cluster.api.tag_api import TagApi
 from cohesity_sdk.cluster.api.templates_api import TemplatesApi
 from cohesity_sdk.cluster.api.tenant_api import TenantApi
+from cohesity_sdk.cluster.api.tenant_deactivation_api import TenantDeactivationApi
 from cohesity_sdk.cluster.api.user_api import UserApi
 from cohesity_sdk.cluster.api.view_api import ViewApi
 
@@ -87,10 +99,12 @@ class ClusterClient:
         self.auth_timeout = auth_timeout
 
         self.configuration = Configuration()
-        if cluster_vip != None: # noqa: E711
+        if cluster_vip is not None:
             self.configuration.host = f"https://{cluster_vip}/v2"
         else:
             raise Exception('Missing cluster_vip info to initialize a client.')
+            # for potential use case
+            # self.configuration.host = 'https://xxx.cohesity.com/v2'
 
         # TODO: remove this later, python in MacOS Catalina has a problem in verify SSL
         self.configuration.verify_ssl = False
@@ -98,7 +112,7 @@ class ClusterClient:
         # This fixes the response type conflict between the backend and Swagger spec file
         self.configuration.discard_unknown_keys = True
 
-        if username == None and password == None and api_key == None: # noqa: E711
+        if username is None and password is None and api_key is None:
             raise Exception('Missing authentication info to initialize a client. \
                 Please provide authentication info.')
 
@@ -123,7 +137,10 @@ class ClusterClient:
     def __authenticate(self):
         if self.username and self.password and self.domain:
             token = self.__get_token()
-            self.configuration.api_key['Bearer'] = token.token_type + ' ' + token.access_token
+            if token and token.token_type and token.access_token:
+                self.configuration.api_key['Bearer'] = token.token_type + ' ' + token.access_token
+            else:
+                raise Exception('Failed to retrieve valid access token.')
         elif self.api_key:
             self.configuration.api_key['APIKeyHeader'] = self.api_key
 
@@ -160,22 +177,76 @@ class ClusterClient:
             return AntivirusServiceApi(api_client)
 
     @lazy_property
+    def app_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return AppApi(api_client)
+
+    @lazy_property
+    def athena_app_ops_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return AthenaAppOpsApi(api_client)
+
+    @lazy_property
     def audit_log_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return AuditLogApi(api_client)
 
     @lazy_property
-    def baseos_patch_management_api(self):
+    def certificate_store_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
-            return BaseosPatchManagementApi(api_client)
+            return CertificateStoreApi(api_client)
+
+    @lazy_property
+    def certificates_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return CertificatesApi(api_client)
+
+    @lazy_property
+    def cloud_domain_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return CloudDomainApi(api_client)
 
     @lazy_property
     def cloud_retrieve_task_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return CloudRetrieveTaskApi(api_client)
+
+    @lazy_property
+    def cohesity_ca_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return CohesityCAApi(api_client)
+
+    @lazy_property
+    def data_accessor_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return DataAccessorApi(api_client)
+
+    @lazy_property
+    def data_source_connection_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return DataSourceConnectionApi(api_client)
+
+    @lazy_property
+    def data_source_connector_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return DataSourceConnectorApi(api_client)
+
+    @lazy_property
+    def data_source_connector_local_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return DataSourceConnectorLocalApi(api_client)
 
     @lazy_property
     def data_tiering_api(self):
@@ -202,16 +273,16 @@ class ClusterClient:
             return FirewallApi(api_client)
 
     @lazy_property
+    def fortknox_onprem_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return FortknoxOnpremApi(api_client)
+
+    @lazy_property
     def helios_on_prem_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return HeliosOnPremApi(api_client)
-
-    @lazy_property
-    def ips_api(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return IPsApi(api_client)
 
     @lazy_property
     def identity_provider_api(self):
@@ -244,6 +315,12 @@ class ClusterClient:
             return LDAPApi(api_client)
 
     @lazy_property
+    def lsu_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return LSUApi(api_client)
+
+    @lazy_property
     def mfa_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
@@ -262,10 +339,10 @@ class ClusterClient:
             return ObjectApi(api_client)
 
     @lazy_property
-    def patch_management_api(self):
+    def one_helios_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
-            return PatchManagementApi(api_client)
+            return OneHeliosApi(api_client)
 
     @lazy_property
     def platform_api(self):
@@ -346,6 +423,12 @@ class ClusterClient:
             return SecurityApi(api_client)
 
     @lazy_property
+    def snmp_config_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return SnmpConfigApi(api_client)
+
+    @lazy_property
     def source_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
@@ -392,6 +475,12 @@ class ClusterClient:
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return TenantApi(api_client)
+
+    @lazy_property
+    def tenant_deactivation_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return TenantDeactivationApi(api_client)
 
     @lazy_property
     def user_api(self):

@@ -12,6 +12,9 @@ Name | Type | Description | Notes
 **file_walk_done** | **bool** | Specifies whether the file system walk is done. Only applicable to file based backups. | [optional] 
 **logical_bytes_transferred** | **int** | Specifies the logical bytes transferred. | [optional] 
 **logical_size_bytes** | **int** | Specifies the logicalSizeBytes. | [optional] 
+**num_changed_granular_objects** | **int** | Number of granular objects added/deleted/modified since the last backup. | [optional] 
+**num_protected_granular_objects** | **int** | Specifies total number of granular objects protected in this backup. | [optional] 
+**num_successful_backed_granular_objects** | **int** | Specifies number of changed granular objects which were backed up succesfully. | [optional] 
 **physical_bytes_transferred** | **int** | Specifies the physical bytes transferred. | [optional] 
 **total_file_count** | **int** | Specifies the total number of file and directory entities visited in this backup. Only applicable to file based backups. | [optional] 
 

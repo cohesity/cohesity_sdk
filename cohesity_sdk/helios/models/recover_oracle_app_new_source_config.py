@@ -29,9 +29,9 @@ class RecoverOracleAppNewSourceConfig(BaseModel):
     """
     Specifies the new destination Source configuration where the databases will be recovered.
     """ # noqa: E501
-    host: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the source id of target host where databases will be recovered. This source id can be a physical host or virtual machine.")
-    recover_database_params: Optional[RecoverOracleNewTargetDatabaseConfig] = Field(default=None, description="Specifies recovery parameters when recovering to a database", alias="recoverDatabaseParams")
-    recover_view_params: Optional[RecoverOracleNewTargetViewConfig] = Field(default=None, description="Specifies recovery parameters when recovering to a view.", alias="recoverViewParams")
+    host: RecoveryObjectIdentifier
+    recover_database_params: Optional[RecoverOracleNewTargetDatabaseConfig] = Field(default=None, alias="recoverDatabaseParams")
+    recover_view_params: Optional[RecoverOracleNewTargetViewConfig] = Field(default=None, alias="recoverViewParams")
     recovery_target: Optional[StrictStr] = Field(default=None, description="Specifies if recovery target is a database or a view.", alias="recoveryTarget")
     __properties: ClassVar[List[str]] = ["host", "recoverDatabaseParams", "recoverViewParams", "recoveryTarget"]
 
@@ -93,21 +93,6 @@ class RecoverOracleAppNewSourceConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of recover_view_params
         if self.recover_view_params:
             _dict['recoverViewParams'] = self.recover_view_params.to_dict()
-        # set to None if host (nullable) is None
-        # and model_fields_set contains the field
-        if self.host is None and "host" in self.model_fields_set:
-            _dict['host'] = None
-
-        # set to None if recover_database_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.recover_database_params is None and "recover_database_params" in self.model_fields_set:
-            _dict['recoverDatabaseParams'] = None
-
-        # set to None if recover_view_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.recover_view_params is None and "recover_view_params" in self.model_fields_set:
-            _dict['recoverViewParams'] = None
-
         # set to None if recovery_target (nullable) is None
         # and model_fields_set contains the field
         if self.recovery_target is None and "recovery_target" in self.model_fields_set:

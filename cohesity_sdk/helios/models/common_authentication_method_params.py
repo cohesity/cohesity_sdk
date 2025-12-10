@@ -35,8 +35,8 @@ class CommonAuthenticationMethodParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kUseIAMUser', 'kUseIAMRole', 'kUseSTS', 'kUseHelios']):
-            raise ValueError("must be one of enum values ('kUseIAMUser', 'kUseIAMRole', 'kUseSTS', 'kUseHelios')")
+        if value not in set(['kUseIAMUser', 'kUseIAMRole', 'kUseIAMRolesAnywhere', 'kUseSTS', 'kUseHelios', 'kUseInstanceProfile']):
+            raise ValueError("must be one of enum values ('kUseIAMUser', 'kUseIAMRole', 'kUseIAMRolesAnywhere', 'kUseSTS', 'kUseHelios', 'kUseInstanceProfile')")
         return value
 
     model_config = ConfigDict(

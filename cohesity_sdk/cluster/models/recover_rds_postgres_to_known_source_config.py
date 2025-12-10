@@ -25,7 +25,7 @@ from typing_extensions import Self
 
 class RecoverRDSPostgresToKnownSourceConfig(BaseModel):
     """
-    Specifies the configuration for recovering RDS Postgres instance to the known target.
+    Specifies the configuration for recovering RDS Postgres objects to the known target.
     """ # noqa: E501
     instance: Optional[RecoveryObjectIdentifier] = None
     recover_to_new_source: Optional[StrictBool] = Field(default=None, description="Specifies the parameter whether the recovery should be performed to a new target.", alias="recoverToNewSource")

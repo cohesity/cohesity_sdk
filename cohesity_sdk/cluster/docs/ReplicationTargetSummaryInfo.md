@@ -11,6 +11,10 @@ Name | Type | Description | Notes
 **cluster_name** | **str** | Specifies the name of the cluster. | [optional] [readonly] 
 **aws_target_config** | [**AWSTargetConfig**](AWSTargetConfig.md) |  | [optional] 
 **azure_target_config** | [**AzureTargetConfig**](AzureTargetConfig.md) |  | [optional] 
+**logical_size_bytes** | **int** | Specifies the logical size of this snapshot in bytes. | [optional] 
+**object_ids** | **List[str]** | Specifies the list of object ids for which this replication run was performed. | [optional] 
+**ownership_context** | **str** | Specifies the ownership context for the replication. This will only be populated when the replication target is a remote cluster. | [optional] 
+**snapshot_id** | **str** | Specifies the id of the replication snapshot for the object. | [optional] 
 
 ## Example
 

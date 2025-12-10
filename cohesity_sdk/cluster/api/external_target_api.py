@@ -58,7 +58,7 @@ class ExternalTargetApi:
     ) -> ExternalTarget:
         """Create a External Target.
 
-        Create a External Target.
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Create a External Target.
 
         :param body: Specifies the parameters to create a External Target. (required)
         :type body: ExternalTarget
@@ -125,7 +125,7 @@ class ExternalTargetApi:
     ) -> ApiResponse[ExternalTarget]:
         """Create a External Target.
 
-        Create a External Target.
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Create a External Target.
 
         :param body: Specifies the parameters to create a External Target. (required)
         :type body: ExternalTarget
@@ -192,7 +192,7 @@ class ExternalTargetApi:
     ) -> RESTResponseType:
         """Create a External Target.
 
-        Create a External Target.
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Create a External Target.
 
         :param body: Specifies the parameters to create a External Target. (required)
         :type body: ExternalTarget
@@ -335,7 +335,7 @@ class ExternalTargetApi:
     ) -> None:
         """Delete a External Target.
 
-        Returns Success if the External Target is deleted.
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Returns Success if the External Target is deleted.
 
         :param id: Specifies a unique id of the External Target. (required)
         :type id: int
@@ -406,7 +406,7 @@ class ExternalTargetApi:
     ) -> ApiResponse[None]:
         """Delete a External Target.
 
-        Returns Success if the External Target is deleted.
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Returns Success if the External Target is deleted.
 
         :param id: Specifies a unique id of the External Target. (required)
         :type id: int
@@ -477,7 +477,7 @@ class ExternalTargetApi:
     ) -> RESTResponseType:
         """Delete a External Target.
 
-        Returns Success if the External Target is deleted.
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Returns Success if the External Target is deleted.
 
         :param id: Specifies a unique id of the External Target. (required)
         :type id: int
@@ -614,7 +614,7 @@ class ExternalTargetApi:
     ) -> ExternalTarget:
         """List details about single External Target.
 
-        Returns the External Target corresponding to the specified Group id.
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Returns the External Target corresponding to the specified Group id.
 
         :param id: Specifies a unique id of the External Target. (required)
         :type id: int
@@ -681,7 +681,7 @@ class ExternalTargetApi:
     ) -> ApiResponse[ExternalTarget]:
         """List details about single External Target.
 
-        Returns the External Target corresponding to the specified Group id.
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Returns the External Target corresponding to the specified Group id.
 
         :param id: Specifies a unique id of the External Target. (required)
         :type id: int
@@ -748,7 +748,7 @@ class ExternalTargetApi:
     ) -> RESTResponseType:
         """List details about single External Target.
 
-        Returns the External Target corresponding to the specified Group id.
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Returns the External Target corresponding to the specified Group id.
 
         :param id: Specifies a unique id of the External Target. (required)
         :type id: int
@@ -877,7 +877,7 @@ class ExternalTargetApi:
     ) -> bytearray:
         """Get the encryption key info for an external target
 
-        Get the encryption key info for an external target
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Get the encryption key info for an external target
 
         :param id: Specifies the id of the External Target. (required)
         :type id: int
@@ -944,7 +944,7 @@ class ExternalTargetApi:
     ) -> ApiResponse[bytearray]:
         """Get the encryption key info for an external target
 
-        Get the encryption key info for an external target
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Get the encryption key info for an external target
 
         :param id: Specifies the id of the External Target. (required)
         :type id: int
@@ -1011,7 +1011,7 @@ class ExternalTargetApi:
     ) -> RESTResponseType:
         """Get the encryption key info for an external target
 
-        Get the encryption key info for an external target
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Get the encryption key info for an external target
 
         :param id: Specifies the id of the External Target. (required)
         :type id: int
@@ -1144,7 +1144,7 @@ class ExternalTargetApi:
     ) -> ArchivalMediaInfo:
         """List archive media information
 
-        Returns the media information about the specified archive service uid (such as a QStar tape archive service).
+        ```Unknown Privileges``` <br><br>Returns the media information about the specified archive service uid (such as a QStar tape archive service).
 
         :param cluster_id: Specifies the id of the Cohesity cluster which archived to a QStart media target. (required)
         :type cluster_id: int
@@ -1227,7 +1227,7 @@ class ExternalTargetApi:
     ) -> ApiResponse[ArchivalMediaInfo]:
         """List archive media information
 
-        Returns the media information about the specified archive service uid (such as a QStar tape archive service).
+        ```Unknown Privileges``` <br><br>Returns the media information about the specified archive service uid (such as a QStar tape archive service).
 
         :param cluster_id: Specifies the id of the Cohesity cluster which archived to a QStart media target. (required)
         :type cluster_id: int
@@ -1310,7 +1310,7 @@ class ExternalTargetApi:
     ) -> RESTResponseType:
         """List archive media information
 
-        Returns the media information about the specified archive service uid (such as a QStar tape archive service).
+        ```Unknown Privileges``` <br><br>Returns the media information about the specified archive service uid (such as a QStar tape archive service).
 
         :param cluster_id: Specifies the id of the Cohesity cluster which archived to a QStart media target. (required)
         :type cluster_id: int
@@ -1473,7 +1473,7 @@ class ExternalTargetApi:
     ) -> ExternalTarget:
         """Get the list of External Target Settings.
 
-        Get the list of External Target Settings
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Get the list of External Target Settings
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1536,7 +1536,7 @@ class ExternalTargetApi:
     ) -> ApiResponse[ExternalTarget]:
         """Get the list of External Target Settings.
 
-        Get the list of External Target Settings
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Get the list of External Target Settings
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1599,7 +1599,7 @@ class ExternalTargetApi:
     ) -> RESTResponseType:
         """Get the list of External Target Settings.
 
-        Get the list of External Target Settings
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Get the list of External Target Settings
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1728,7 +1728,7 @@ class ExternalTargetApi:
     ) -> ExternalTargets:
         """Get the list of External Targets.
 
-        Get the list of External Targets.
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Get the list of External Targets.
 
         :param ids: Filter by a list of External Target ids.
         :type ids: List[int]
@@ -1819,7 +1819,7 @@ class ExternalTargetApi:
     ) -> ApiResponse[ExternalTargets]:
         """Get the list of External Targets.
 
-        Get the list of External Targets.
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Get the list of External Targets.
 
         :param ids: Filter by a list of External Target ids.
         :type ids: List[int]
@@ -1910,7 +1910,7 @@ class ExternalTargetApi:
     ) -> RESTResponseType:
         """Get the list of External Targets.
 
-        Get the list of External Targets.
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Get the list of External Targets.
 
         :param ids: Filter by a list of External Target ids.
         :type ids: List[int]
@@ -2097,7 +2097,7 @@ class ExternalTargetApi:
     ) -> ExternalTarget:
         """Update a External Target.
 
-        Update the specified External Target.
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Update the specified External Target.
 
         :param id: Specifies the id of the External Target. (required)
         :type id: int
@@ -2168,7 +2168,7 @@ class ExternalTargetApi:
     ) -> ApiResponse[ExternalTarget]:
         """Update a External Target.
 
-        Update the specified External Target.
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Update the specified External Target.
 
         :param id: Specifies the id of the External Target. (required)
         :type id: int
@@ -2239,7 +2239,7 @@ class ExternalTargetApi:
     ) -> RESTResponseType:
         """Update a External Target.
 
-        Update the specified External Target.
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Update the specified External Target.
 
         :param id: Specifies the id of the External Target. (required)
         :type id: int
@@ -2387,7 +2387,7 @@ class ExternalTargetApi:
     ) -> GlobalBandwidthSettings:
         """Update External Target Settings
 
-        Update External Target Settings
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Update External Target Settings
 
         :param body: Specifies the parameters to update a External Target Settings. (required)
         :type body: GlobalBandwidthSettings
@@ -2454,7 +2454,7 @@ class ExternalTargetApi:
     ) -> ApiResponse[GlobalBandwidthSettings]:
         """Update External Target Settings
 
-        Update External Target Settings
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Update External Target Settings
 
         :param body: Specifies the parameters to update a External Target Settings. (required)
         :type body: GlobalBandwidthSettings
@@ -2521,7 +2521,7 @@ class ExternalTargetApi:
     ) -> RESTResponseType:
         """Update External Target Settings
 
-        Update External Target Settings
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Update External Target Settings
 
         :param body: Specifies the parameters to update a External Target Settings. (required)
         :type body: GlobalBandwidthSettings

@@ -6,6 +6,7 @@ Specifies the object parameters to create Azure Native Protection Group.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**disk_exclusion_params** | [**AzureDiskExclusionParams**](AzureDiskExclusionParams.md) |  | [optional] 
 **id** | **int** | Specifies the id of the object. | 
 **name** | **str** | Specifies the name of the virtual machine. | [optional] [readonly] 
 

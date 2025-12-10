@@ -6,7 +6,8 @@ Specifies the parameters to create a download files and folders Recovery.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**files_and_folders** | [**List[FilesAndFoldersObject]**](FilesAndFoldersObject.md) | Specifies the list of files and folders to download. | 
+**documents** | [**List[DocumentObject]**](DocumentObject.md) | Specifies the list of documents to download using item ids. Only one of filesAndFolders or documents should be used. Currently only files are supported by documents. | [optional] 
+**files_and_folders** | [**List[FilesAndFoldersObject]**](FilesAndFoldersObject.md) | Specifies the list of files and folders to download. Only one of filesAndFolders or documents should be used. | [optional] 
 **glacier_retrieval_type** | **str** | Specifies the glacier retrieval type when restoring or downloding files or folders from a Glacier-based cloud snapshot. | [optional] 
 **name** | **str** | Specifies the name of the recovery task. This field must be set and must be a unique name. | 
 **object** | [**CommonRecoverObjectSnapshotParams**](CommonRecoverObjectSnapshotParams.md) |  | 

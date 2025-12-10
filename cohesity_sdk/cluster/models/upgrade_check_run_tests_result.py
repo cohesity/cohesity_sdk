@@ -18,15 +18,15 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
-from typing import Any, ClassVar, Dict, List, Optional
-from typing import Set
+from typing import Any, ClassVar, Dict, List
+from typing import Optional, Set
 from typing_extensions import Self
 
 class UpgradeCheckRunTestsResult(BaseModel):
     """
     Specifies the result for upgrade checks run tests request.
     """ # noqa: E501
-    test_run_instance_id: Optional[StrictInt] = Field(default=None, description="Specifies test run instance allocated for upgrade checks", alias="testRunInstanceId")
+    test_run_instance_id: StrictInt = Field(description="Specifies test run instance allocated for upgrade checks", alias="testRunInstanceId")
     __properties: ClassVar[List[str]] = ["testRunInstanceId"]
 
     model_config = ConfigDict(

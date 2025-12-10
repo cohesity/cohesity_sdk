@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.vmware_recover_target_source_disk_params import VmwareRecoverTargetSourceDiskParams
@@ -30,7 +30,9 @@ class VmwareRecoverDisksTargetSourceConfig(BaseModel):
     """ # noqa: E501
     disks: Annotated[List[VmwareRecoverTargetSourceDiskParams], Field(min_length=1)] = Field(description="Specifies the disks to be recovered and the location to which they will be recovered.")
     source_id: Optional[StrictInt] = Field(description="Specifies the source ID of the VM to which the disks will be restored.", alias="sourceId")
-    __properties: ClassVar[List[str]] = ["disks", "sourceId"]
+    source_name: Optional[StrictStr] = Field(default=None, description="Specifies the source name of the VM to which the disks will be restored.", alias="sourceName")
+    target: Optional[StrictStr] = Field(default=None, description="Specifies the name of the vm to which the disks will be restored.")
+    __properties: ClassVar[List[str]] = ["disks", "sourceId", "sourceName", "target"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,6 +85,16 @@ class VmwareRecoverDisksTargetSourceConfig(BaseModel):
         if self.source_id is None and "source_id" in self.model_fields_set:
             _dict['sourceId'] = None
 
+        # set to None if source_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.source_name is None and "source_name" in self.model_fields_set:
+            _dict['sourceName'] = None
+
+        # set to None if target (nullable) is None
+        # and model_fields_set contains the field
+        if self.target is None and "target" in self.model_fields_set:
+            _dict['target'] = None
+
         return _dict
 
     @classmethod
@@ -96,7 +108,9 @@ class VmwareRecoverDisksTargetSourceConfig(BaseModel):
 
         _obj = cls.model_validate({
             "disks": [VmwareRecoverTargetSourceDiskParams.from_dict(_item) for _item in obj["disks"]] if obj.get("disks") is not None else None,
-            "sourceId": obj.get("sourceId")
+            "sourceId": obj.get("sourceId"),
+            "sourceName": obj.get("sourceName"),
+            "target": obj.get("target")
         })
         return _obj
 

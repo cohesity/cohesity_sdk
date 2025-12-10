@@ -7,9 +7,19 @@ Specifies the parameters which are specific to Azure related Protection Groups.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **agent_protection_type_params** | [**AzureAgentProtectionGroupParams**](AzureAgentProtectionGroupParams.md) |  | [optional] 
+**blob_storage_protection_type_params** | [**AzureBlobStorageProtectionGroupParams**](AzureBlobStorageProtectionGroupParams.md) |  | [optional] 
+**cassandra_protection_type_params** | [**AzureCosmosDBCassandraProtectionGroupParams**](AzureCosmosDBCassandraProtectionGroupParams.md) |  | [optional] 
+**cosmos_dbno_sql_protection_type_params** | [**AzureCosmosDBNoSQLProtectionGroupParams**](AzureCosmosDBNoSQLProtectionGroupParams.md) |  | [optional] 
+**cosmosdbmongodb_protection_type_params** | [**AzureCosmosDBMongoDBProtectionGroupParams**](AzureCosmosDBMongoDBProtectionGroupParams.md) |  | [optional] 
+**mysql_protection_type_params** | [**AzureMySQLProtectionGroupParams**](AzureMySQLProtectionGroupParams.md) |  | [optional] 
 **native_protection_type_params** | [**AzureNativeProtectionGroupParams**](AzureNativeProtectionGroupParams.md) |  | [optional] 
+**postgresql_protection_type_params** | [**AzurePostgreSQLProtectionGroupParams**](AzurePostgreSQLProtectionGroupParams.md) |  | [optional] 
 **protection_type** | **str** | Specifies the Azure Protection Group type. | 
 **snapshot_manager_protection_type_params** | [**AzureSnapshotManagerProtectionGroupParams**](AzureSnapshotManagerProtectionGroupParams.md) |  | [optional] 
+**sql_db_protection_type_params** | [**AzureSQLDBProtectionGroupParams**](AzureSQLDBProtectionGroupParams.md) |  | [optional] 
+**sql_mi_protection_type_params** | [**AzureSQLMIProtectionGroupParams**](AzureSQLMIProtectionGroupParams.md) |  | [optional] 
+**table_api_protection_type_params** | [**AzureTableApiProtectionGroupParams**](AzureTableApiProtectionGroupParams.md) |  | [optional] 
+**table_storage_protection_type_params** | [**AzureTableStorageProtectionGroupParams**](AzureTableStorageProtectionGroupParams.md) |  | [optional] 
 
 ## Example
 

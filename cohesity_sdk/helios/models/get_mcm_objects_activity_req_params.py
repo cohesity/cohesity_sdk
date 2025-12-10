@@ -22,6 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.activity_stats_params import ActivityStatsParams
 from cohesity_sdk.helios.models.archival_run_filter_params import ArchivalRunFilterParams
 from cohesity_sdk.helios.models.backup_run_filter_params import BackupRunFilterParams
+from cohesity_sdk.helios.models.cursor_pagination_params import CursorPaginationParams
 from cohesity_sdk.helios.models.mcm_object_identifier import McmObjectIdentifier
 from cohesity_sdk.helios.models.restore_filter_params import RestoreFilterParams
 from typing import Set
@@ -38,14 +39,17 @@ class GetMcmObjectsActivityReqParams(BaseModel):
     exclude_data: Optional[StrictBool] = Field(default=None, description="Specifies whether to exclude activity information from the response. If not specified or false, activity information will be included.", alias="excludeData")
     exclude_stats: Optional[StrictBool] = Field(default=None, description="Specifies whether to exclude stats information from the response. If not specified or false, stats information will be included.", alias="excludeStats")
     from_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the time in Unix timestamp epoch in microsecond which filters all the activity started after this value.", alias="fromTimeUsecs")
+    include_refresh_task_status: Optional[StrictBool] = Field(default=None, description="Specifies whether to include refresh task status in the API response. If not specified, the default value is considered as false.", alias="includeRefreshTaskStatus")
     is_sla_violated: Optional[StrictBool] = Field(default=None, description="Specifies whether to only return activities which violated SLA. Default is false.", alias="isSlaViolated")
     message_codes: Optional[List[StrictStr]] = Field(default=None, description="Specifies the error codes to filter backup runs.", alias="messageCodes")
     object_identifiers: Optional[List[McmObjectIdentifier]] = Field(default=None, description="Specifies the list of object identifiers to filter the activity.", alias="objectIdentifiers")
+    object_name: Optional[StrictStr] = Field(default=None, description="Specifies the string filter to filter the results based on object name.", alias="objectName")
+    pagination: Optional[CursorPaginationParams] = None
     restore_params: Optional[RestoreFilterParams] = Field(default=None, description="Specifies the additional filters in case activity type is set to 'Restore'.", alias="restoreParams")
     stats_params: Optional[ActivityStatsParams] = Field(default=None, alias="statsParams")
     statuses: Optional[List[StrictStr]] = Field(default=None, description="Specifies the list of statuses to filter activity events.")
     to_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the time in Unix timestamp epoch in microsecond which filters all the activity started before this value.", alias="toTimeUsecs")
-    __properties: ClassVar[List[str]] = ["activityTypes", "archivalRunParams", "backupRunParams", "environments", "excludeData", "excludeStats", "fromTimeUsecs", "isSlaViolated", "messageCodes", "objectIdentifiers", "restoreParams", "statsParams", "statuses", "toTimeUsecs"]
+    __properties: ClassVar[List[str]] = ["activityTypes", "archivalRunParams", "backupRunParams", "environments", "excludeData", "excludeStats", "fromTimeUsecs", "includeRefreshTaskStatus", "isSlaViolated", "messageCodes", "objectIdentifiers", "objectName", "pagination", "restoreParams", "statsParams", "statuses", "toTimeUsecs"]
 
     @field_validator('activity_types')
     def activity_types_validate_enum(cls, value):
@@ -54,8 +58,8 @@ class GetMcmObjectsActivityReqParams(BaseModel):
             return value
 
         for i in value:
-            if i not in set(['BackupRun', 'Restore', 'ArchivalRun']):
-                raise ValueError("each list item must be one of ('BackupRun', 'Restore', 'ArchivalRun')")
+            if i not in set(['BackupRun', 'Restore', 'ArchivalRun', 'Browse']):
+                raise ValueError("each list item must be one of ('BackupRun', 'Restore', 'ArchivalRun', 'Browse')")
         return value
 
     @field_validator('environments')
@@ -65,8 +69,8 @@ class GetMcmObjectsActivityReqParams(BaseModel):
             return value
 
         for i in value:
-            if i not in set(['kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAzureSQL', 'kAcropolis', 'kGCP', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc']):
-                raise ValueError("each list item must be one of ('kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAzureSQL', 'kAcropolis', 'kGCP', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc')")
+            if i not in set(['kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAcropolis', 'kGCP', 'kGCPBigQuery', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kS3Compatible', 'kSAPHANA', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kAzureEntraID', 'kAzureMySQL', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kSalesforce']):
+                raise ValueError("each list item must be one of ('kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAcropolis', 'kGCP', 'kGCPBigQuery', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kS3Compatible', 'kSAPHANA', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kAzureEntraID', 'kAzureMySQL', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kSalesforce')")
         return value
 
     @field_validator('statuses')
@@ -76,8 +80,8 @@ class GetMcmObjectsActivityReqParams(BaseModel):
             return value
 
         for i in value:
-            if i not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped']):
-                raise ValueError("each list item must be one of ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped')")
+            if i not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold']):
+                raise ValueError("each list item must be one of ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold')")
         return value
 
     model_config = ConfigDict(
@@ -132,6 +136,9 @@ class GetMcmObjectsActivityReqParams(BaseModel):
                 if _item_object_identifiers:
                     _items.append(_item_object_identifiers.to_dict())
             _dict['objectIdentifiers'] = _items
+        # override the default output from pydantic by calling `to_dict()` of pagination
+        if self.pagination:
+            _dict['pagination'] = self.pagination.to_dict()
         # override the default output from pydantic by calling `to_dict()` of restore_params
         if self.restore_params:
             _dict['restoreParams'] = self.restore_params.to_dict()
@@ -168,6 +175,11 @@ class GetMcmObjectsActivityReqParams(BaseModel):
         if self.from_time_usecs is None and "from_time_usecs" in self.model_fields_set:
             _dict['fromTimeUsecs'] = None
 
+        # set to None if include_refresh_task_status (nullable) is None
+        # and model_fields_set contains the field
+        if self.include_refresh_task_status is None and "include_refresh_task_status" in self.model_fields_set:
+            _dict['includeRefreshTaskStatus'] = None
+
         # set to None if is_sla_violated (nullable) is None
         # and model_fields_set contains the field
         if self.is_sla_violated is None and "is_sla_violated" in self.model_fields_set:
@@ -182,6 +194,11 @@ class GetMcmObjectsActivityReqParams(BaseModel):
         # and model_fields_set contains the field
         if self.object_identifiers is None and "object_identifiers" in self.model_fields_set:
             _dict['objectIdentifiers'] = None
+
+        # set to None if object_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.object_name is None and "object_name" in self.model_fields_set:
+            _dict['objectName'] = None
 
         # set to None if restore_params (nullable) is None
         # and model_fields_set contains the field
@@ -217,9 +234,12 @@ class GetMcmObjectsActivityReqParams(BaseModel):
             "excludeData": obj.get("excludeData"),
             "excludeStats": obj.get("excludeStats"),
             "fromTimeUsecs": obj.get("fromTimeUsecs"),
+            "includeRefreshTaskStatus": obj.get("includeRefreshTaskStatus"),
             "isSlaViolated": obj.get("isSlaViolated"),
             "messageCodes": obj.get("messageCodes"),
             "objectIdentifiers": [McmObjectIdentifier.from_dict(_item) for _item in obj["objectIdentifiers"]] if obj.get("objectIdentifiers") is not None else None,
+            "objectName": obj.get("objectName"),
+            "pagination": CursorPaginationParams.from_dict(obj["pagination"]) if obj.get("pagination") is not None else None,
             "restoreParams": RestoreFilterParams.from_dict(obj["restoreParams"]) if obj.get("restoreParams") is not None else None,
             "statsParams": ActivityStatsParams.from_dict(obj["statsParams"]) if obj.get("statsParams") is not None else None,
             "statuses": obj.get("statuses"),

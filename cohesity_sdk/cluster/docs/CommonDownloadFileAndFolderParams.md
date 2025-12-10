@@ -7,6 +7,7 @@ Specifies the parameters to download files and folders.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **download_file_path** | **str** | Specifies the path location to download the files and folders. | [optional] 
+**download_file_path_list** | [**List[DownloadFileDetails]**](DownloadFileDetails.md) | Specifies list of file locations deatils to download. | [optional] 
 **expiry_time_usecs** | **int** | Specifies the time upto which the download link is available. | [optional] 
 **files_and_folders** | [**List[CommonRecoverFileAndFolderInfo]**](CommonRecoverFileAndFolderInfo.md) | Specifies the info about the files and folders to be recovered. | [optional] 
 

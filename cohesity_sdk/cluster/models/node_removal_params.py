@@ -27,9 +27,10 @@ class NodeRemovalParams(BaseModel):
     Specifies parameters to initiate/cancel node removal.
     """ # noqa: E501
     cancel: Optional[StrictBool] = Field(description="If true, cancels node removal that is already in progress.")
+    is_clear_pre_check_result_only: Optional[StrictBool] = Field(default=False, description="Specifies whether request is for clearing pre-check result only", alias="isClearPreCheckResultOnly")
     is_offline: Optional[StrictBool] = Field(default=False, description="Specifies whether node being removed is offline.", alias="isOffline")
     is_validate_only: Optional[StrictBool] = Field(default=False, description="Specifies whether request is for pre-check validations only", alias="isValidateOnly")
-    __properties: ClassVar[List[str]] = ["cancel", "isOffline", "isValidateOnly"]
+    __properties: ClassVar[List[str]] = ["cancel", "isClearPreCheckResultOnly", "isOffline", "isValidateOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,6 +76,11 @@ class NodeRemovalParams(BaseModel):
         if self.cancel is None and "cancel" in self.model_fields_set:
             _dict['cancel'] = None
 
+        # set to None if is_clear_pre_check_result_only (nullable) is None
+        # and model_fields_set contains the field
+        if self.is_clear_pre_check_result_only is None and "is_clear_pre_check_result_only" in self.model_fields_set:
+            _dict['isClearPreCheckResultOnly'] = None
+
         # set to None if is_offline (nullable) is None
         # and model_fields_set contains the field
         if self.is_offline is None and "is_offline" in self.model_fields_set:
@@ -98,6 +104,7 @@ class NodeRemovalParams(BaseModel):
 
         _obj = cls.model_validate({
             "cancel": obj.get("cancel"),
+            "isClearPreCheckResultOnly": obj.get("isClearPreCheckResultOnly") if obj.get("isClearPreCheckResultOnly") is not None else False,
             "isOffline": obj.get("isOffline") if obj.get("isOffline") is not None else False,
             "isValidateOnly": obj.get("isValidateOnly") if obj.get("isValidateOnly") is not None else False
         })

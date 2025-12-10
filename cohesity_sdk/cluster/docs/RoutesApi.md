@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Configure a static route
 
-Configure a static route on an interface.
+**Privileges:** ```CLUSTER_MODIFY, CLUSTER_CREATE``` <br><br>Configure a static route on an interface.
 
 ### Example
 
@@ -109,7 +109,7 @@ Name | Type | Description  | Notes
 
 Delete a static route
 
-Delete a static route on a network interface.
+```Unknown Privileges``` <br><br>Delete a static route on a network interface.
 
 ### Example
 
@@ -200,7 +200,7 @@ void (empty response body)
 
 List all static routes
 
-List the static routes for the Cohesity Cluster.
+**Privileges:** ```CLUSTER_VIEW, CLUSTER_CREATE``` <br><br>List the static routes for the Cohesity Cluster.
 
 ### Example
 
@@ -294,7 +294,7 @@ Name | Type | Description  | Notes
 
 Update a static route
 
-Update static route details.
+```Unknown Privileges``` <br><br>Update static route details.
 
 ### Example
 

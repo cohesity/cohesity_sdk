@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **protection_group_instance_id** | **int** | Protection Group instance Id. This field will be removed later. | [optional] 
 **protection_group_name** | **str** | Name of the Protection Group to which this run belongs. | [optional] 
 **replication_info** | [**ReplicationRunSummary**](ReplicationRunSummary.md) |  | [optional] 
+**replication_runs** | [**List[ReplicationRunSummary]**](ReplicationRunSummary.md) | Summary information about all replication runs for this backup run. replicationInfo provides information about the latest replication run for this backup run. whereas this field provides information about all historical replication runs for this backup run. | [optional] 
 
 ## Example
 

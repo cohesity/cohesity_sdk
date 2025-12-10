@@ -6,10 +6,18 @@ Specifies the object parameters to create Kubernetes Protection Group.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**backup_only_pvc** | **bool** | Specifies whether to backup pvc and related resources only | [optional] 
+**exclude_object_ids** | **List[int]** | Specifies the object ids to be excluded for protection. This is supported for object protection on helios only | [optional] 
+**exclude_params** | [**KubernetesFilterParams**](KubernetesFilterParams.md) |  | [optional] 
 **exclude_pvcs** | [**List[KubernetesPvcInfo]**](KubernetesPvcInfo.md) | Specifies a list of pvcs to exclude from being protected. This is only applicable to kubernetes. | [optional] 
+**excluded_resources** | **List[str]** | Specifies the resources to exclude during backup | [optional] 
+**fail_backup_on_hook_failure** | **bool** | If true, fail backups when quiesce hook executions fail. | [optional] 
 **id** | **int** | Specifies the id of the object. | 
+**include_params** | [**KubernetesFilterParams**](KubernetesFilterParams.md) |  | [optional] 
 **include_pvcs** | [**List[KubernetesPvcInfo]**](KubernetesPvcInfo.md) | Specifies a list of Pvcs to include in the protection. This is only applicable to kubernetes. | [optional] 
+**included_resources** | **List[str]** | Specifies the resources to include during backup | [optional] 
 **name** | **str** | Specifies the name of the object. | [optional] [readonly] 
+**quiesce_groups** | [**List[QuiesceGroup]**](QuiesceGroup.md) | Specifies the quiescing rules are which specified by the user for doing backup. | [optional] 
 
 ## Example
 

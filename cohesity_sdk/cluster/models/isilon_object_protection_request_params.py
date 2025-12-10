@@ -42,10 +42,21 @@ class IsilonObjectProtectionRequestParams(BaseModel):
     pre_post_script: Optional[HostBasedBackupScriptParams] = Field(default=None, alias="prePostScript")
     throttling_config: Optional[NasThrottlingConfig] = Field(default=None, alias="throttlingConfig")
     continuous_snapshots: Optional[ContinuousSnapshotParams] = Field(default=None, alias="continuousSnapshots")
+    nfs_version_preference: Optional[StrictStr] = Field(default=None, description="Specifies the preference of NFS version to be used for backing up Isilon.", alias="nfsVersionPreference")
     protocol: Optional[StrictStr] = Field(default=None, description="Specifies the protocol of the NAS device being backed up.")
     use_changelist: Optional[StrictBool] = Field(default=None, description="Specify whether to use the Isilon Changelist API to directly discover changed files/directories for faster incremental backup. Cohesity will keep an extra snapshot which will be deleted by the next successful backup.", alias="useChangelist")
     objects: Annotated[List[ProtectionObjectInput], Field(min_length=1)] = Field(description="Specifies the objects to be protected.")
-    __properties: ClassVar[List[str]] = ["continueOnError", "encryptionEnabled", "fileFilters", "fileLockConfig", "indexingPolicy", "prePostScript", "throttlingConfig", "continuousSnapshots", "protocol", "useChangelist", "objects"]
+    __properties: ClassVar[List[str]] = ["continueOnError", "encryptionEnabled", "fileFilters", "fileLockConfig", "indexingPolicy", "prePostScript", "throttlingConfig", "continuousSnapshots", "nfsVersionPreference", "protocol", "useChangelist", "objects"]
+
+    @field_validator('nfs_version_preference')
+    def nfs_version_preference_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['kNfs3', 'kNfs4_1']):
+            raise ValueError("must be one of enum values ('kNfs3', 'kNfs4_1')")
+        return value
 
     @field_validator('protocol')
     def protocol_validate_enum(cls, value):
@@ -131,6 +142,11 @@ class IsilonObjectProtectionRequestParams(BaseModel):
         if self.encryption_enabled is None and "encryption_enabled" in self.model_fields_set:
             _dict['encryptionEnabled'] = None
 
+        # set to None if nfs_version_preference (nullable) is None
+        # and model_fields_set contains the field
+        if self.nfs_version_preference is None and "nfs_version_preference" in self.model_fields_set:
+            _dict['nfsVersionPreference'] = None
+
         # set to None if protocol (nullable) is None
         # and model_fields_set contains the field
         if self.protocol is None and "protocol" in self.model_fields_set:
@@ -161,6 +177,7 @@ class IsilonObjectProtectionRequestParams(BaseModel):
             "prePostScript": HostBasedBackupScriptParams.from_dict(obj["prePostScript"]) if obj.get("prePostScript") is not None else None,
             "throttlingConfig": NasThrottlingConfig.from_dict(obj["throttlingConfig"]) if obj.get("throttlingConfig") is not None else None,
             "continuousSnapshots": ContinuousSnapshotParams.from_dict(obj["continuousSnapshots"]) if obj.get("continuousSnapshots") is not None else None,
+            "nfsVersionPreference": obj.get("nfsVersionPreference"),
             "protocol": obj.get("protocol"),
             "useChangelist": obj.get("useChangelist"),
             "objects": [ProtectionObjectInput.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None

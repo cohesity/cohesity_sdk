@@ -44,8 +44,8 @@ class ProtectedObjectApi:
     def perform_action_on_protect_objects(
         self,
         body: Annotated[ProtectdObjectsActionRequest, Field(description="Specifies the parameters to perform an action on an already protected object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -65,9 +65,9 @@ class ProtectedObjectApi:
 
         :param body: Specifies the parameters to perform an action on an already protected object. (required)
         :type body: ProtectdObjectsActionRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -119,8 +119,8 @@ class ProtectedObjectApi:
     def perform_action_on_protect_objects_with_http_info(
         self,
         body: Annotated[ProtectdObjectsActionRequest, Field(description="Specifies the parameters to perform an action on an already protected object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -140,9 +140,9 @@ class ProtectedObjectApi:
 
         :param body: Specifies the parameters to perform an action on an already protected object. (required)
         :type body: ProtectdObjectsActionRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -194,8 +194,8 @@ class ProtectedObjectApi:
     def perform_action_on_protect_objects_without_preload_content(
         self,
         body: Annotated[ProtectdObjectsActionRequest, Field(description="Specifies the parameters to perform an action on an already protected object.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -215,9 +215,9 @@ class ProtectedObjectApi:
 
         :param body: Specifies the parameters to perform an action on an already protected object. (required)
         :type body: ProtectdObjectsActionRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -348,9 +348,9 @@ class ProtectedObjectApi:
     def protect_objects_of_any_type(
         self,
         body: Annotated[CreateProtectedObjectsRequest, Field(description="Specifies the parameters to protect objects.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -370,12 +370,12 @@ class ProtectedObjectApi:
 
         :param body: Specifies the parameters to protect objects. (required)
         :type body: CreateProtectedObjectsRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -400,9 +400,9 @@ class ProtectedObjectApi:
 
         _param = self._protect_objects_of_any_type_serialize(
             body=body,
+            request_initiator_type=request_initiator_type,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            request_initiator_type=request_initiator_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -427,9 +427,9 @@ class ProtectedObjectApi:
     def protect_objects_of_any_type_with_http_info(
         self,
         body: Annotated[CreateProtectedObjectsRequest, Field(description="Specifies the parameters to protect objects.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -449,12 +449,12 @@ class ProtectedObjectApi:
 
         :param body: Specifies the parameters to protect objects. (required)
         :type body: CreateProtectedObjectsRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -479,9 +479,9 @@ class ProtectedObjectApi:
 
         _param = self._protect_objects_of_any_type_serialize(
             body=body,
+            request_initiator_type=request_initiator_type,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            request_initiator_type=request_initiator_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -506,9 +506,9 @@ class ProtectedObjectApi:
     def protect_objects_of_any_type_without_preload_content(
         self,
         body: Annotated[CreateProtectedObjectsRequest, Field(description="Specifies the parameters to protect objects.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -528,12 +528,12 @@ class ProtectedObjectApi:
 
         :param body: Specifies the parameters to protect objects. (required)
         :type body: CreateProtectedObjectsRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -558,9 +558,9 @@ class ProtectedObjectApi:
 
         _param = self._protect_objects_of_any_type_serialize(
             body=body,
+            request_initiator_type=request_initiator_type,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            request_initiator_type=request_initiator_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -580,9 +580,9 @@ class ProtectedObjectApi:
     def _protect_objects_of_any_type_serialize(
         self,
         body,
+        request_initiator_type,
         access_cluster_id,
         region_id,
-        request_initiator_type,
         _request_auth,
         _content_type,
         _headers,
@@ -606,12 +606,12 @@ class ProtectedObjectApi:
         # process the path parameters
         # process the query parameters
         # process the header parameters
+        if request_initiator_type is not None:
+            _header_params['requestInitiatorType'] = request_initiator_type
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
         if region_id is not None:
             _header_params['regionId'] = region_id
-        if request_initiator_type is not None:
-            _header_params['requestInitiatorType'] = request_initiator_type
         # process the form parameters
         # process the body parameter
         if body is not None:
@@ -668,9 +668,9 @@ class ProtectedObjectApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protected Object.")],
         body: Annotated[UpdateProtectedObjectsRequest, Field(description="Specifies the parameters to perform an update on protected objects.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -692,12 +692,12 @@ class ProtectedObjectApi:
         :type id: int
         :param body: Specifies the parameters to perform an update on protected objects. (required)
         :type body: UpdateProtectedObjectsRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -723,9 +723,9 @@ class ProtectedObjectApi:
         _param = self._update_protected_objects_of_any_type_serialize(
             id=id,
             body=body,
+            request_initiator_type=request_initiator_type,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            request_initiator_type=request_initiator_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -751,9 +751,9 @@ class ProtectedObjectApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protected Object.")],
         body: Annotated[UpdateProtectedObjectsRequest, Field(description="Specifies the parameters to perform an update on protected objects.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -775,12 +775,12 @@ class ProtectedObjectApi:
         :type id: int
         :param body: Specifies the parameters to perform an update on protected objects. (required)
         :type body: UpdateProtectedObjectsRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -806,9 +806,9 @@ class ProtectedObjectApi:
         _param = self._update_protected_objects_of_any_type_serialize(
             id=id,
             body=body,
+            request_initiator_type=request_initiator_type,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            request_initiator_type=request_initiator_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -834,9 +834,9 @@ class ProtectedObjectApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protected Object.")],
         body: Annotated[UpdateProtectedObjectsRequest, Field(description="Specifies the parameters to perform an update on protected objects.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -858,12 +858,12 @@ class ProtectedObjectApi:
         :type id: int
         :param body: Specifies the parameters to perform an update on protected objects. (required)
         :type body: UpdateProtectedObjectsRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -889,9 +889,9 @@ class ProtectedObjectApi:
         _param = self._update_protected_objects_of_any_type_serialize(
             id=id,
             body=body,
+            request_initiator_type=request_initiator_type,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            request_initiator_type=request_initiator_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -912,9 +912,9 @@ class ProtectedObjectApi:
         self,
         id,
         body,
+        request_initiator_type,
         access_cluster_id,
         region_id,
-        request_initiator_type,
         _request_auth,
         _content_type,
         _headers,
@@ -940,12 +940,12 @@ class ProtectedObjectApi:
             _path_params['id'] = id
         # process the query parameters
         # process the header parameters
+        if request_initiator_type is not None:
+            _header_params['requestInitiatorType'] = request_initiator_type
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
         if region_id is not None:
             _header_params['regionId'] = region_id
-        if request_initiator_type is not None:
-            _header_params['requestInitiatorType'] = request_initiator_type
         # process the form parameters
         # process the body parameter
         if body is not None:

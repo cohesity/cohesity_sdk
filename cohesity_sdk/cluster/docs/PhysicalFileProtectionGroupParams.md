@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **allow_parallel_runs** | **bool** | Specifies whether or not this job can have parallel runs. | [optional] 
 **cobmr_backup** | **bool** | Specifies whether to take CoBMR backup. | [optional] 
+**continue_on_error** | **bool** | Specifies if physical file based backup should be continued or failed immediately on encountering an error. | [optional] 
 **continue_on_quiesce_failure** | **bool** | Specifies whether to continue backing up on quiesce failure. | [optional] 
 **dedup_exclusion_source_ids** | **List[int]** | Specifies ids of sources for which deduplication has to be disabled. | [optional] 
 **excluded_vss_writers** | **List[str]** | Specifies writer names which should be excluded from physical file based backups. | [optional] 

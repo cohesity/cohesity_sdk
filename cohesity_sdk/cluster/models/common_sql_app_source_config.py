@@ -30,13 +30,14 @@ class CommonSqlAppSourceConfig(BaseModel):
     """ # noqa: E501
     keep_cdc: Optional[StrictBool] = Field(default=None, description="Specifies whether to keep CDC (Change Data Capture) on recovered databases or not. If not passed, this is assumed to be true. If withNoRecovery is passed as true, then this field must not be set to true. Passing this field as true in this scenario will be a invalid request.", alias="keepCdc")
     multi_stage_restore_options: Optional[MultiStageRestoreOptions] = Field(default=None, alias="multiStageRestoreOptions")
+    native_log_recovery_with_clause: Optional[StrictStr] = Field(default=None, description="Specifies the WITH clause to be used in native sql log restore command. This is only applicable for native log restore.", alias="nativeLogRecoveryWithClause")
     native_recovery_with_clause: Optional[StrictStr] = Field(default=None, description="'with_clause' contains 'with clause' to be used in native sql restore command. This is only applicable for database restore of native sql backup. Here user can specify multiple restore options. Example: 'WITH BUFFERCOUNT = 575, MAXTRANSFERSIZE = 2097152'.", alias="nativeRecoveryWithClause")
     overwriting_policy: Optional[StrictStr] = Field(default=None, description="Specifies a policy to be used while recovering existing databases.", alias="overwritingPolicy")
     replay_entire_last_log: Optional[StrictBool] = Field(default=None, description="Specifies the option to set replay last log bit while creating the sql restore task and doing restore to latest point-in-time. If this is set to true, we will replay the entire last log without STOPAT.", alias="replayEntireLastLog")
     restore_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the time in the past to which the Sql database needs to be restored. This allows for granular recovery of Sql databases. If this is not set, the Sql database will be restored from the full/incremental snapshot.", alias="restoreTimeUsecs")
     secondary_data_files_dir_list: Optional[List[FilenamePatternToDirectory]] = Field(default=None, description="Specifies the secondary data filename pattern and corresponding direcories of the DB. Secondary data files are optional and are user defined. The recommended file extention for secondary files is \".ndf\". If this option is specified and the destination folders do not exist they will be automatically created.", alias="secondaryDataFilesDirList")
     with_no_recovery: Optional[StrictBool] = Field(default=None, description="Specifies the flag to bring DBs online or not after successful recovery. If this is passed as true, then it means DBs won't be brought online.", alias="withNoRecovery")
-    __properties: ClassVar[List[str]] = ["keepCdc", "multiStageRestoreOptions", "nativeRecoveryWithClause", "overwritingPolicy", "replayEntireLastLog", "restoreTimeUsecs", "secondaryDataFilesDirList", "withNoRecovery"]
+    __properties: ClassVar[List[str]] = ["keepCdc", "multiStageRestoreOptions", "nativeLogRecoveryWithClause", "nativeRecoveryWithClause", "overwritingPolicy", "replayEntireLastLog", "restoreTimeUsecs", "secondaryDataFilesDirList", "withNoRecovery"]
 
     @field_validator('overwriting_policy')
     def overwriting_policy_validate_enum(cls, value):
@@ -102,6 +103,11 @@ class CommonSqlAppSourceConfig(BaseModel):
         if self.keep_cdc is None and "keep_cdc" in self.model_fields_set:
             _dict['keepCdc'] = None
 
+        # set to None if native_log_recovery_with_clause (nullable) is None
+        # and model_fields_set contains the field
+        if self.native_log_recovery_with_clause is None and "native_log_recovery_with_clause" in self.model_fields_set:
+            _dict['nativeLogRecoveryWithClause'] = None
+
         # set to None if native_recovery_with_clause (nullable) is None
         # and model_fields_set contains the field
         if self.native_recovery_with_clause is None and "native_recovery_with_clause" in self.model_fields_set:
@@ -146,6 +152,7 @@ class CommonSqlAppSourceConfig(BaseModel):
         _obj = cls.model_validate({
             "keepCdc": obj.get("keepCdc"),
             "multiStageRestoreOptions": MultiStageRestoreOptions.from_dict(obj["multiStageRestoreOptions"]) if obj.get("multiStageRestoreOptions") is not None else None,
+            "nativeLogRecoveryWithClause": obj.get("nativeLogRecoveryWithClause"),
             "nativeRecoveryWithClause": obj.get("nativeRecoveryWithClause"),
             "overwritingPolicy": obj.get("overwritingPolicy"),
             "replayEntireLastLog": obj.get("replayEntireLastLog"),

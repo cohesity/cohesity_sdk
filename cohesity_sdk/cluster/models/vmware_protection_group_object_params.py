@@ -30,6 +30,7 @@ class VmwareProtectionGroupObjectParams(BaseModel):
     Specifies the input for a protection object in the VMware environment.
     """ # noqa: E501
     exclude_disks: Optional[List[DiskInfo]] = Field(default=None, description="Specifies a list of disks to exclude from being protected. This is only applicable to VM objects.", alias="excludeDisks")
+    include_disks: Optional[List[DiskInfo]] = Field(default=None, description="Specifies a list of disks to be protected. This is only applicable to VM objects.", alias="includeDisks")
     truncate_exchange_logs: Optional[StrictBool] = Field(default=None, description="Specifies whether or not to truncate MS Exchange logs while taking an app consistent snapshot of this object. This is only applicable to objects which have a registered MS Exchange app.", alias="truncateExchangeLogs")
     cdp_info: Optional[VmwareCdpObject] = Field(default=None, alias="cdpInfo")
     id: Optional[StrictInt] = Field(description="Specifies the id of the object being protected. This can be a leaf level or non leaf level object.")
@@ -37,7 +38,7 @@ class VmwareProtectionGroupObjectParams(BaseModel):
     name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the virtual machine.")
     standby_info: Optional[VmwareStandbyObject] = Field(default=None, alias="standbyInfo")
     type: Optional[StrictStr] = Field(default=None, description="Specifies the type of the VMware object.")
-    __properties: ClassVar[List[str]] = ["excludeDisks", "truncateExchangeLogs", "cdpInfo", "id", "isAutoprotected", "name", "standbyInfo", "type"]
+    __properties: ClassVar[List[str]] = ["excludeDisks", "includeDisks", "truncateExchangeLogs", "cdpInfo", "id", "isAutoprotected", "name", "standbyInfo", "type"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -45,8 +46,8 @@ class VmwareProtectionGroupObjectParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kVCenter', 'kStandaloneHost', 'kvCloudDirector', 'kFolder', 'kDatacenter', 'kComputeResource', 'kClusterComputeResource', 'kResourcePool', 'kDatastore', 'kHostSystem', 'kVirtualMachine', 'kVirtualApp', 'kStoragePod', 'kNetwork', 'kDistributedVirtualPortgroup', 'kTagCategory', 'kTag', 'kOpaqueNetwork', 'kOrganization', 'kVirtualDatacenter', 'kCatalog', 'kOrgMetadata', 'kStoragePolicy', 'kVirtualAppTemplate']):
-            raise ValueError("must be one of enum values ('kVCenter', 'kStandaloneHost', 'kvCloudDirector', 'kFolder', 'kDatacenter', 'kComputeResource', 'kClusterComputeResource', 'kResourcePool', 'kDatastore', 'kHostSystem', 'kVirtualMachine', 'kVirtualApp', 'kStoragePod', 'kNetwork', 'kDistributedVirtualPortgroup', 'kTagCategory', 'kTag', 'kOpaqueNetwork', 'kOrganization', 'kVirtualDatacenter', 'kCatalog', 'kOrgMetadata', 'kStoragePolicy', 'kVirtualAppTemplate')")
+        if value not in set(['kVCenter', 'kStandaloneHost', 'kvCloudDirector', 'kFolder', 'kDatacenter', 'kComputeResource', 'kClusterComputeResource', 'kResourcePool', 'kDatastore', 'kHostSystem', 'kVirtualMachine', 'kVirtualApp', 'kStoragePod', 'kNetwork', 'kDistributedVirtualPortgroup', 'kTagCategory', 'kTag', 'kOpaqueNetwork', 'kOrganization', 'kVirtualDatacenter', 'kCatalog', 'kOrgMetadata', 'kStoragePolicy', 'kVirtualAppTemplate', 'kProviderVDC', 'kPlacementPolicy', 'kSizingPolicy', 'kComputePolicy']):
+            raise ValueError("must be one of enum values ('kVCenter', 'kStandaloneHost', 'kvCloudDirector', 'kFolder', 'kDatacenter', 'kComputeResource', 'kClusterComputeResource', 'kResourcePool', 'kDatastore', 'kHostSystem', 'kVirtualMachine', 'kVirtualApp', 'kStoragePod', 'kNetwork', 'kDistributedVirtualPortgroup', 'kTagCategory', 'kTag', 'kOpaqueNetwork', 'kOrganization', 'kVirtualDatacenter', 'kCatalog', 'kOrgMetadata', 'kStoragePolicy', 'kVirtualAppTemplate', 'kProviderVDC', 'kPlacementPolicy', 'kSizingPolicy', 'kComputePolicy')")
         return value
 
     model_config = ConfigDict(
@@ -97,6 +98,13 @@ class VmwareProtectionGroupObjectParams(BaseModel):
                 if _item_exclude_disks:
                     _items.append(_item_exclude_disks.to_dict())
             _dict['excludeDisks'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in include_disks (list)
+        _items = []
+        if self.include_disks:
+            for _item_include_disks in self.include_disks:
+                if _item_include_disks:
+                    _items.append(_item_include_disks.to_dict())
+            _dict['includeDisks'] = _items
         # override the default output from pydantic by calling `to_dict()` of cdp_info
         if self.cdp_info:
             _dict['cdpInfo'] = self.cdp_info.to_dict()
@@ -141,6 +149,7 @@ class VmwareProtectionGroupObjectParams(BaseModel):
 
         _obj = cls.model_validate({
             "excludeDisks": [DiskInfo.from_dict(_item) for _item in obj["excludeDisks"]] if obj.get("excludeDisks") is not None else None,
+            "includeDisks": [DiskInfo.from_dict(_item) for _item in obj["includeDisks"]] if obj.get("includeDisks") is not None else None,
             "truncateExchangeLogs": obj.get("truncateExchangeLogs"),
             "cdpInfo": VmwareCdpObject.from_dict(obj["cdpInfo"]) if obj.get("cdpInfo") is not None else None,
             "id": obj.get("id"),

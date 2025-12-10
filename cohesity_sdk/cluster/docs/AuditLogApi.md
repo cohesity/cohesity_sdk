@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 Create cluster audit logs.
 
-Create a cluster audit logs.
+```No Privileges Required``` <br><br>Create a cluster audit logs.
 
 ### Example
 
@@ -112,7 +112,7 @@ Name | Type | Description  | Notes
 
 Get cluster audit logs.
 
-Get a cluster audit logs.
+**Privileges:** ```CLUSTER_AUDIT``` <br><br>Get a cluster audit logs.
 
 ### Example
 
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 Get cluster audit logs actions.
 
-Get all actions of cluster audit logs.
+**Privileges:** ```CLUSTER_AUDIT``` <br><br>Get all actions of cluster audit logs.
 
 ### Example
 
@@ -316,7 +316,7 @@ This endpoint does not need any parameter.
 
 Get cluster audit logs entity types.
 
-Get all entity types of cluster audit logs.
+**Privileges:** ```CLUSTER_AUDIT``` <br><br>Get all entity types of cluster audit logs.
 
 ### Example
 
@@ -406,7 +406,7 @@ This endpoint does not need any parameter.
 
 Get filer audit log configs.
 
-Get filer audit log configs.
+**Privileges:** ```CLUSTER_AUDIT``` <br><br>Get filer audit log configs.
 
 ### Example
 
@@ -496,7 +496,7 @@ This endpoint does not need any parameter.
 
 Update filer audit log configs.
 
-Update filer audit log configs.
+**Privileges:** ```CLUSTER_AUDIT``` <br><br>Update filer audit log configs.
 
 ### Example
 

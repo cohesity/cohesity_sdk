@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 Retreive Helios OnPrem Configuration
 
-View the configuration for Helios OnPrem VM Node.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>View the configuration for Helios OnPrem VM Node.
 
 ### Example
 
@@ -103,7 +103,7 @@ This endpoint does not need any parameter.
 
 Update Helios OnPrem Configuration
 
-Update the configuration for Helios OnPrem VM Node.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the configuration for Helios OnPrem VM Node.
 
 ### Example
 

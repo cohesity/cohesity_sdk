@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **domain** | **str** | Specifies the domain of the principal. For active directories, this is the fully qualified domain name (FQDN). | [optional] 
 **name** | **str** | Specifies the principal name. | [optional] 
 **object_class** | **str** | Specifies the principal class. | [optional] 
+**sid** | **str** | Specifies the SID of the principal. | [optional] 
 
 ## Example
 

@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.primary_archival_target import PrimaryArchivalTarget
 from typing import Set
@@ -29,7 +29,8 @@ class PrimaryBackupTarget(BaseModel):
     """ # noqa: E501
     archival_target_settings: Optional[PrimaryArchivalTarget] = Field(default=None, alias="archivalTargetSettings")
     target_type: Optional[StrictStr] = Field(default='Local', description="Specifies the primary backup location where backups will be stored. If not specified, then default is assumed as local backup on Cohesity cluster.", alias="targetType")
-    __properties: ClassVar[List[str]] = ["archivalTargetSettings", "targetType"]
+    use_default_backup_target: Optional[StrictBool] = Field(default=None, description="Specifies if the default primary backup target must be used for backups. If this is not specified or set to false, then targets specified in 'archivalTargetSettings' will be used for backups. If the value is specified as true, then default backup target is used internally. This field should only be set in the environment where tenant policy management is enabled and external targets are assigned to tenant when provisioning tenants.", alias="useDefaultBackupTarget")
+    __properties: ClassVar[List[str]] = ["archivalTargetSettings", "targetType", "useDefaultBackupTarget"]
 
     @field_validator('target_type')
     def target_type_validate_enum(cls, value):
@@ -88,6 +89,11 @@ class PrimaryBackupTarget(BaseModel):
         if self.target_type is None and "target_type" in self.model_fields_set:
             _dict['targetType'] = None
 
+        # set to None if use_default_backup_target (nullable) is None
+        # and model_fields_set contains the field
+        if self.use_default_backup_target is None and "use_default_backup_target" in self.model_fields_set:
+            _dict['useDefaultBackupTarget'] = None
+
         return _dict
 
     @classmethod
@@ -101,7 +107,8 @@ class PrimaryBackupTarget(BaseModel):
 
         _obj = cls.model_validate({
             "archivalTargetSettings": PrimaryArchivalTarget.from_dict(obj["archivalTargetSettings"]) if obj.get("archivalTargetSettings") is not None else None,
-            "targetType": obj.get("targetType") if obj.get("targetType") is not None else 'Local'
+            "targetType": obj.get("targetType") if obj.get("targetType") is not None else 'Local',
+            "useDefaultBackupTarget": obj.get("useDefaultBackupTarget")
         })
         return _obj
 

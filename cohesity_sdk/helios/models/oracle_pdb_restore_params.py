@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.key_value_pair import KeyValuePair
 from cohesity_sdk.helios.models.oracle_pdb_object_info import OraclePdbObjectInfo
@@ -33,7 +33,9 @@ class OraclePdbRestoreParams(BaseModel):
     pdb_objects: Optional[List[OraclePdbObjectInfo]] = Field(default=None, description="Specifies list of PDB objects to restore.", alias="pdbObjects")
     rename_pdb_map: Optional[List[KeyValuePair]] = Field(default=None, description="Specifies the new PDB name mapping to existing PDBs.", alias="renamePdbMap")
     restore_to_existing_cdb: Optional[StrictBool] = Field(default=None, description="Specifies if pdbs should be restored to an existing CDB.", alias="restoreToExistingCdb")
-    __properties: ClassVar[List[str]] = ["dropDuplicatePDB", "includeInRestore", "pdbObjects", "renamePdbMap", "restoreToExistingCdb"]
+    source_cdb_keystore_password: Optional[StrictStr] = Field(default=None, description="Specifies the keystore password of the source CDB.", alias="sourceCdbKeystorePassword")
+    target_cdb_keystore_password: Optional[StrictStr] = Field(default=None, description="Specifies the keystore password of the target CDB.", alias="targetCdbKeystorePassword")
+    __properties: ClassVar[List[str]] = ["dropDuplicatePDB", "includeInRestore", "pdbObjects", "renamePdbMap", "restoreToExistingCdb", "sourceCdbKeystorePassword", "targetCdbKeystorePassword"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -113,6 +115,16 @@ class OraclePdbRestoreParams(BaseModel):
         if self.restore_to_existing_cdb is None and "restore_to_existing_cdb" in self.model_fields_set:
             _dict['restoreToExistingCdb'] = None
 
+        # set to None if source_cdb_keystore_password (nullable) is None
+        # and model_fields_set contains the field
+        if self.source_cdb_keystore_password is None and "source_cdb_keystore_password" in self.model_fields_set:
+            _dict['sourceCdbKeystorePassword'] = None
+
+        # set to None if target_cdb_keystore_password (nullable) is None
+        # and model_fields_set contains the field
+        if self.target_cdb_keystore_password is None and "target_cdb_keystore_password" in self.model_fields_set:
+            _dict['targetCdbKeystorePassword'] = None
+
         return _dict
 
     @classmethod
@@ -129,7 +141,9 @@ class OraclePdbRestoreParams(BaseModel):
             "includeInRestore": obj.get("includeInRestore"),
             "pdbObjects": [OraclePdbObjectInfo.from_dict(_item) for _item in obj["pdbObjects"]] if obj.get("pdbObjects") is not None else None,
             "renamePdbMap": [KeyValuePair.from_dict(_item) for _item in obj["renamePdbMap"]] if obj.get("renamePdbMap") is not None else None,
-            "restoreToExistingCdb": obj.get("restoreToExistingCdb")
+            "restoreToExistingCdb": obj.get("restoreToExistingCdb"),
+            "sourceCdbKeystorePassword": obj.get("sourceCdbKeystorePassword"),
+            "targetCdbKeystorePassword": obj.get("targetCdbKeystorePassword")
         })
         return _obj
 

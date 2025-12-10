@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Set
 from typing_extensions import Self
@@ -29,6 +29,8 @@ class ViewClient(BaseModel):
     connected_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the time how long the client has connected to the server.", alias="connectedTimeUsecs")
     gid: Optional[StrictInt] = Field(default=None, description="Specifies the GID of the client user.")
     ip: Optional[StrictStr] = Field(default=None, description="Specifies the client ip.")
+    is_idle: Optional[StrictBool] = Field(default=None, description="Specifies if the connection is idle.", alias="isIdle")
+    last_active_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the time the client was last active. This property Only applies for SMB protocol", alias="lastActiveTimeUsecs")
     node_ip: Optional[StrictStr] = Field(default=None, description="Specifies the node ip which the client is connected to.", alias="nodeIp")
     protocol: Optional[StrictStr] = Field(default=None, description="Specifies the protocol the client uses.")
     server_ip: Optional[StrictStr] = Field(default=None, description="Specifies the server ip which the client is connected to.", alias="serverIp")
@@ -39,7 +41,7 @@ class ViewClient(BaseModel):
     view_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the View which the client is connected to.", alias="viewId")
     view_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the View which the client is connected to.", alias="viewName")
     view_path: Optional[StrictStr] = Field(default=None, description="Specifies the path of the View which the client is connected to.", alias="viewPath")
-    __properties: ClassVar[List[str]] = ["connectedTimeUsecs", "gid", "ip", "nodeIp", "protocol", "serverIp", "smbDialectVersion", "uid", "userDomain", "username", "viewId", "viewName", "viewPath"]
+    __properties: ClassVar[List[str]] = ["connectedTimeUsecs", "gid", "ip", "isIdle", "lastActiveTimeUsecs", "nodeIp", "protocol", "serverIp", "smbDialectVersion", "uid", "userDomain", "username", "viewId", "viewName", "viewPath"]
 
     @field_validator('protocol')
     def protocol_validate_enum(cls, value):
@@ -47,8 +49,8 @@ class ViewClient(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['NFS', 'SMB']):
-            raise ValueError("must be one of enum values ('NFS', 'SMB')")
+        if value not in set(['NFS', 'SMB', 'NFS4']):
+            raise ValueError("must be one of enum values ('NFS', 'SMB', 'NFS4')")
         return value
 
     model_config = ConfigDict(
@@ -104,6 +106,16 @@ class ViewClient(BaseModel):
         # and model_fields_set contains the field
         if self.ip is None and "ip" in self.model_fields_set:
             _dict['ip'] = None
+
+        # set to None if is_idle (nullable) is None
+        # and model_fields_set contains the field
+        if self.is_idle is None and "is_idle" in self.model_fields_set:
+            _dict['isIdle'] = None
+
+        # set to None if last_active_time_usecs (nullable) is None
+        # and model_fields_set contains the field
+        if self.last_active_time_usecs is None and "last_active_time_usecs" in self.model_fields_set:
+            _dict['lastActiveTimeUsecs'] = None
 
         # set to None if node_ip (nullable) is None
         # and model_fields_set contains the field
@@ -170,6 +182,8 @@ class ViewClient(BaseModel):
             "connectedTimeUsecs": obj.get("connectedTimeUsecs"),
             "gid": obj.get("gid"),
             "ip": obj.get("ip"),
+            "isIdle": obj.get("isIdle"),
+            "lastActiveTimeUsecs": obj.get("lastActiveTimeUsecs"),
             "nodeIp": obj.get("nodeIp"),
             "protocol": obj.get("protocol"),
             "serverIp": obj.get("serverIp"),

@@ -35,8 +35,8 @@ class AwsCommonObjectProtectionParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kAgent', 'kNative', 'kSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup']):
-            raise ValueError("must be one of enum values ('kAgent', 'kNative', 'kSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup')")
+        if value not in set(['kAgent', 'kNative', 'kSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup', 'kAwsAuroraPostgres', 'kAwsRDSPostgres', 'kAWSMySQL', 'kAWSSnapshotManager', 'kAwsDynamoDB']):
+            raise ValueError("must be one of enum values ('kAgent', 'kNative', 'kSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup', 'kAwsAuroraPostgres', 'kAwsRDSPostgres', 'kAWSMySQL', 'kAWSSnapshotManager', 'kAwsDynamoDB')")
         return value
 
     model_config = ConfigDict(

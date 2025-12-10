@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **enable_legal_hold** | **bool** | Specifies whether to retain the snapshot for legal purpose. If set to true, the snapshots cannot be deleted until the retention period. Note that using this option may cause the Cluster to run out of space. If set to false explicitly, the hold is removed, and the snapshots will expire as specified in the policy of the Protection Group. If this field is not specified, there is no change to the hold of the run. This field can be set only by a User having Data Security Role. | [optional] 
 **id** | **int** | Specifies the cluster id of the replication cluster. | 
 **name** | **str** | Specifies the cluster name of the replication cluster. | [optional] 
+**object_ids** | **List[Optional[str]]** | Specifies the list of object as string ids to be replicated by this Protection Group run. These can be leaf objects or non-leaf objects in the protection hierarchy. This must be specified only if a subset of objects from the Protection Group needs to be replicated. | [optional] 
 **resync** | **bool** | Specifies whether to retry the replication operation in case if earlier attempt failed. If not specified or set to false, replication is not retried. | [optional] 
 
 ## Example

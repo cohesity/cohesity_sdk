@@ -19,6 +19,7 @@ from pydantic import StrictBool
 from cohesity_sdk.cluster.models.active_directories import ActiveDirectories
 from cohesity_sdk.cluster.models.active_directory import ActiveDirectory
 from cohesity_sdk.cluster.models.active_directory_principals import ActiveDirectoryPrincipals
+from cohesity_sdk.cluster.models.active_directory_topology import ActiveDirectoryTopology
 from cohesity_sdk.cluster.models.add_active_directory_principals_parameters import AddActiveDirectoryPrincipalsParameters
 from cohesity_sdk.cluster.models.added_active_directory_principal import AddedActiveDirectoryPrincipal
 from cohesity_sdk.cluster.models.centrify_zones import CentrifyZones
@@ -64,7 +65,7 @@ class ActiveDirectoryApi:
     ) -> List[AddedActiveDirectoryPrincipal]:
         """Add multiple groups or users on the Cohesity Cluster for the specified Active Directory principals. In addition, assign Cohesity roles to the users or groups to define their Cohesity privileges.
 
-        After a group or user has been added to a Cohesity Cluster, the referenced Active Directory principal can be used by the Cohesity Cluster. In addition, this operation maps Cohesity roles with a group or user and this mapping defines the privileges allowed on the Cohesity Cluster for the group or user. For example if an 'management' group is created on the Cohesity Cluster for the Active Directory 'management' principal group and is associated with the Cohesity 'View' role, all users in the referenced Active Directory 'management' principal group can log in to the Cohesity Dashboard but will only have view-only privileges. These users cannot create new Protection Jobs, Policies, Views, etc. NOTE: Local Cohesity users and groups cannot be created by this operation. Local Cohesity users or groups do not have an associated Active Directory principals and are created directly in the default LOCAL domain.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>After a group or user has been added to a Cohesity Cluster, the referenced Active Directory principal can be used by the Cohesity Cluster. In addition, this operation maps Cohesity roles with a group or user and this mapping defines the privileges allowed on the Cohesity Cluster for the group or user. For example if an 'management' group is created on the Cohesity Cluster for the Active Directory 'management' principal group and is associated with the Cohesity 'View' role, all users in the referenced Active Directory 'management' principal group can log in to the Cohesity Dashboard but will only have view-only privileges. These users cannot create new Protection Jobs, Policies, Views, etc. NOTE: Local Cohesity users and groups cannot be created by this operation. Local Cohesity users or groups do not have an associated Active Directory principals and are created directly in the default LOCAL domain.
 
         :param body: (required)
         :type body: List[AddActiveDirectoryPrincipalsParameters]
@@ -131,7 +132,7 @@ class ActiveDirectoryApi:
     ) -> ApiResponse[List[AddedActiveDirectoryPrincipal]]:
         """Add multiple groups or users on the Cohesity Cluster for the specified Active Directory principals. In addition, assign Cohesity roles to the users or groups to define their Cohesity privileges.
 
-        After a group or user has been added to a Cohesity Cluster, the referenced Active Directory principal can be used by the Cohesity Cluster. In addition, this operation maps Cohesity roles with a group or user and this mapping defines the privileges allowed on the Cohesity Cluster for the group or user. For example if an 'management' group is created on the Cohesity Cluster for the Active Directory 'management' principal group and is associated with the Cohesity 'View' role, all users in the referenced Active Directory 'management' principal group can log in to the Cohesity Dashboard but will only have view-only privileges. These users cannot create new Protection Jobs, Policies, Views, etc. NOTE: Local Cohesity users and groups cannot be created by this operation. Local Cohesity users or groups do not have an associated Active Directory principals and are created directly in the default LOCAL domain.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>After a group or user has been added to a Cohesity Cluster, the referenced Active Directory principal can be used by the Cohesity Cluster. In addition, this operation maps Cohesity roles with a group or user and this mapping defines the privileges allowed on the Cohesity Cluster for the group or user. For example if an 'management' group is created on the Cohesity Cluster for the Active Directory 'management' principal group and is associated with the Cohesity 'View' role, all users in the referenced Active Directory 'management' principal group can log in to the Cohesity Dashboard but will only have view-only privileges. These users cannot create new Protection Jobs, Policies, Views, etc. NOTE: Local Cohesity users and groups cannot be created by this operation. Local Cohesity users or groups do not have an associated Active Directory principals and are created directly in the default LOCAL domain.
 
         :param body: (required)
         :type body: List[AddActiveDirectoryPrincipalsParameters]
@@ -198,7 +199,7 @@ class ActiveDirectoryApi:
     ) -> RESTResponseType:
         """Add multiple groups or users on the Cohesity Cluster for the specified Active Directory principals. In addition, assign Cohesity roles to the users or groups to define their Cohesity privileges.
 
-        After a group or user has been added to a Cohesity Cluster, the referenced Active Directory principal can be used by the Cohesity Cluster. In addition, this operation maps Cohesity roles with a group or user and this mapping defines the privileges allowed on the Cohesity Cluster for the group or user. For example if an 'management' group is created on the Cohesity Cluster for the Active Directory 'management' principal group and is associated with the Cohesity 'View' role, all users in the referenced Active Directory 'management' principal group can log in to the Cohesity Dashboard but will only have view-only privileges. These users cannot create new Protection Jobs, Policies, Views, etc. NOTE: Local Cohesity users and groups cannot be created by this operation. Local Cohesity users or groups do not have an associated Active Directory principals and are created directly in the default LOCAL domain.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>After a group or user has been added to a Cohesity Cluster, the referenced Active Directory principal can be used by the Cohesity Cluster. In addition, this operation maps Cohesity roles with a group or user and this mapping defines the privileges allowed on the Cohesity Cluster for the group or user. For example if an 'management' group is created on the Cohesity Cluster for the Active Directory 'management' principal group and is associated with the Cohesity 'View' role, all users in the referenced Active Directory 'management' principal group can log in to the Cohesity Dashboard but will only have view-only privileges. These users cannot create new Protection Jobs, Policies, Views, etc. NOTE: Local Cohesity users and groups cannot be created by this operation. Local Cohesity users or groups do not have an associated Active Directory principals and are created directly in the default LOCAL domain.
 
         :param body: (required)
         :type body: List[AddActiveDirectoryPrincipalsParameters]
@@ -341,7 +342,7 @@ class ActiveDirectoryApi:
     ) -> ActiveDirectory:
         """Create an Active Directory.
 
-        Create an Active Directory.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Create an Active Directory.
 
         :param body: Specifies the parameters to create an Active Directory. (required)
         :type body: CreateActiveDirectoryRequest
@@ -408,7 +409,7 @@ class ActiveDirectoryApi:
     ) -> ApiResponse[ActiveDirectory]:
         """Create an Active Directory.
 
-        Create an Active Directory.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Create an Active Directory.
 
         :param body: Specifies the parameters to create an Active Directory. (required)
         :type body: CreateActiveDirectoryRequest
@@ -475,7 +476,7 @@ class ActiveDirectoryApi:
     ) -> RESTResponseType:
         """Create an Active Directory.
 
-        Create an Active Directory.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Create an Active Directory.
 
         :param body: Specifies the parameters to create an Active Directory. (required)
         :type body: CreateActiveDirectoryRequest
@@ -620,7 +621,7 @@ class ActiveDirectoryApi:
     ) -> None:
         """Delete an Active Directory.
 
-        Delete an Active Directory.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Delete an Active Directory.
 
         :param id: Specifies id of an Active Directory. (required)
         :type id: int
@@ -699,7 +700,7 @@ class ActiveDirectoryApi:
     ) -> ApiResponse[None]:
         """Delete an Active Directory.
 
-        Delete an Active Directory.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Delete an Active Directory.
 
         :param id: Specifies id of an Active Directory. (required)
         :type id: int
@@ -778,7 +779,7 @@ class ActiveDirectoryApi:
     ) -> RESTResponseType:
         """Delete an Active Directory.
 
-        Delete an Active Directory.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Delete an Active Directory.
 
         :param id: Specifies id of an Active Directory. (required)
         :type id: int
@@ -930,7 +931,7 @@ class ActiveDirectoryApi:
     ) -> ActiveDirectories:
         """Get the list of Active Directories.
 
-        Get the list of Active Directories.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get the list of Active Directories.
 
         :param domain_names: Filter by a list of Active Directory domain names.
         :type domain_names: List[str]
@@ -1009,7 +1010,7 @@ class ActiveDirectoryApi:
     ) -> ApiResponse[ActiveDirectories]:
         """Get the list of Active Directories.
 
-        Get the list of Active Directories.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get the list of Active Directories.
 
         :param domain_names: Filter by a list of Active Directory domain names.
         :type domain_names: List[str]
@@ -1088,7 +1089,7 @@ class ActiveDirectoryApi:
     ) -> RESTResponseType:
         """Get the list of Active Directories.
 
-        Get the list of Active Directories.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get the list of Active Directories.
 
         :param domain_names: Filter by a list of Active Directory domain names.
         :type domain_names: List[str]
@@ -1251,7 +1252,7 @@ class ActiveDirectoryApi:
     ) -> ActiveDirectory:
         """Get an Active Directory by id.
 
-        Get an Active Directory by id.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get an Active Directory by id.
 
         :param id: Specifies id of an Active Directory. (required)
         :type id: int
@@ -1338,7 +1339,7 @@ class ActiveDirectoryApi:
     ) -> ApiResponse[ActiveDirectory]:
         """Get an Active Directory by id.
 
-        Get an Active Directory by id.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get an Active Directory by id.
 
         :param id: Specifies id of an Active Directory. (required)
         :type id: int
@@ -1425,7 +1426,7 @@ class ActiveDirectoryApi:
     ) -> RESTResponseType:
         """Get an Active Directory by id.
 
-        Get an Active Directory by id.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get an Active Directory by id.
 
         :param id: Specifies id of an Active Directory. (required)
         :type id: int
@@ -1600,7 +1601,7 @@ class ActiveDirectoryApi:
     ) -> ActiveDirectoryPrincipals:
         """Get the list of user and group principals from the Active Directory that match the specified filter criteria.
 
-        Get the list of user and group principals from the Active Directory that match the specified filter criteria.
+        **Privileges:** ```PRINCIPAL_VIEW, AD_LDAP_VIEW``` <br><br>Get the list of user and group principals from the Active Directory that match the specified filter criteria.
 
         :param domain_name: Specifies the domain name of the principals to search. If specified the principals in that domain are searched. Domain could be an Active Directory domain joined by the Cluster or any one of the trusted domains of the Active Directory domain or the LOCAL domain. If not specified, all the domains are searched.
         :type domain_name: str
@@ -1687,7 +1688,7 @@ class ActiveDirectoryApi:
     ) -> ApiResponse[ActiveDirectoryPrincipals]:
         """Get the list of user and group principals from the Active Directory that match the specified filter criteria.
 
-        Get the list of user and group principals from the Active Directory that match the specified filter criteria.
+        **Privileges:** ```PRINCIPAL_VIEW, AD_LDAP_VIEW``` <br><br>Get the list of user and group principals from the Active Directory that match the specified filter criteria.
 
         :param domain_name: Specifies the domain name of the principals to search. If specified the principals in that domain are searched. Domain could be an Active Directory domain joined by the Cluster or any one of the trusted domains of the Active Directory domain or the LOCAL domain. If not specified, all the domains are searched.
         :type domain_name: str
@@ -1774,7 +1775,7 @@ class ActiveDirectoryApi:
     ) -> RESTResponseType:
         """Get the list of user and group principals from the Active Directory that match the specified filter criteria.
 
-        Get the list of user and group principals from the Active Directory that match the specified filter criteria.
+        **Privileges:** ```PRINCIPAL_VIEW, AD_LDAP_VIEW``` <br><br>Get the list of user and group principals from the Active Directory that match the specified filter criteria.
 
         :param domain_name: Specifies the domain name of the principals to search. If specified the principals in that domain are searched. Domain could be an Active Directory domain joined by the Cluster or any one of the trusted domains of the Active Directory domain or the LOCAL domain. If not specified, all the domains are searched.
         :type domain_name: str
@@ -1928,6 +1929,254 @@ class ActiveDirectoryApi:
 
 
     @validate_call
+    def get_active_directory_topology(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ActiveDirectoryTopology:
+        """Get Active Directory Topology
+
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get the Active Directory topology for the cluster. The topology includes trust relationships between the Active Directories registered on the cluster and their neighboring domains.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_active_directory_topology_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ActiveDirectoryTopology",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_active_directory_topology_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ActiveDirectoryTopology]:
+        """Get Active Directory Topology
+
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get the Active Directory topology for the cluster. The topology includes trust relationships between the Active Directories registered on the cluster and their neighboring domains.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_active_directory_topology_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ActiveDirectoryTopology",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_active_directory_topology_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Active Directory Topology
+
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get the Active Directory topology for the cluster. The topology includes trust relationships between the Active Directories registered on the cluster and their neighboring domains.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_active_directory_topology_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ActiveDirectoryTopology",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_active_directory_topology_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/active-directory-topology',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_centrify_zones(
         self,
         domain_name: Annotated[str, Field(strict=True, description="Specifies the FQDN of the domain name.")],
@@ -1946,7 +2195,7 @@ class ActiveDirectoryApi:
     ) -> CentrifyZones:
         """Get Centrify Zones.
 
-        Get Centrify zones for a specified domain.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get Centrify zones for a specified domain.
 
         :param domain_name: Specifies the FQDN of the domain name. (required)
         :type domain_name: str
@@ -2013,7 +2262,7 @@ class ActiveDirectoryApi:
     ) -> ApiResponse[CentrifyZones]:
         """Get Centrify Zones.
 
-        Get Centrify zones for a specified domain.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get Centrify zones for a specified domain.
 
         :param domain_name: Specifies the FQDN of the domain name. (required)
         :type domain_name: str
@@ -2080,7 +2329,7 @@ class ActiveDirectoryApi:
     ) -> RESTResponseType:
         """Get Centrify Zones.
 
-        Get Centrify zones for a specified domain.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get Centrify zones for a specified domain.
 
         :param domain_name: Specifies the FQDN of the domain name. (required)
         :type domain_name: str
@@ -2212,7 +2461,7 @@ class ActiveDirectoryApi:
     ) -> DomainControllersResponse:
         """Get Domain Controllers of specified domains.
 
-        Get Domain Controllers of specified domains.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get Domain Controllers of specified domains.
 
         :param domain_names: Specifies a list of domain names. (required)
         :type domain_names: List[str]
@@ -2283,7 +2532,7 @@ class ActiveDirectoryApi:
     ) -> ApiResponse[DomainControllersResponse]:
         """Get Domain Controllers of specified domains.
 
-        Get Domain Controllers of specified domains.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get Domain Controllers of specified domains.
 
         :param domain_names: Specifies a list of domain names. (required)
         :type domain_names: List[str]
@@ -2354,7 +2603,7 @@ class ActiveDirectoryApi:
     ) -> RESTResponseType:
         """Get Domain Controllers of specified domains.
 
-        Get Domain Controllers of specified domains.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get Domain Controllers of specified domains.
 
         :param domain_names: Specifies a list of domain names. (required)
         :type domain_names: List[str]
@@ -2494,7 +2743,7 @@ class ActiveDirectoryApi:
     ) -> TrustedDomainParams:
         """Get Trusted Domains.
 
-        Get Trusted Domains for a specified domain.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get Trusted Domains for a specified domain.
 
         :param domain_name: Specifies the FQDN of an Active directory domain. (required)
         :type domain_name: str
@@ -2561,7 +2810,7 @@ class ActiveDirectoryApi:
     ) -> ApiResponse[TrustedDomainParams]:
         """Get Trusted Domains.
 
-        Get Trusted Domains for a specified domain.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get Trusted Domains for a specified domain.
 
         :param domain_name: Specifies the FQDN of an Active directory domain. (required)
         :type domain_name: str
@@ -2628,7 +2877,7 @@ class ActiveDirectoryApi:
     ) -> RESTResponseType:
         """Get Trusted Domains.
 
-        Get Trusted Domains for a specified domain.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get Trusted Domains for a specified domain.
 
         :param domain_name: Specifies the FQDN of an Active directory domain. (required)
         :type domain_name: str
@@ -2760,7 +3009,7 @@ class ActiveDirectoryApi:
     ) -> None:
         """Rediscover trusted domains.
 
-        Re-trigger the trusted domains of an Active Directory.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Re-trigger the trusted domains of an Active Directory.
 
         :param domain_name: Specifies the FQDN of an Active directory domain. (required)
         :type domain_name: str
@@ -2831,7 +3080,7 @@ class ActiveDirectoryApi:
     ) -> ApiResponse[None]:
         """Rediscover trusted domains.
 
-        Re-trigger the trusted domains of an Active Directory.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Re-trigger the trusted domains of an Active Directory.
 
         :param domain_name: Specifies the FQDN of an Active directory domain. (required)
         :type domain_name: str
@@ -2902,7 +3151,7 @@ class ActiveDirectoryApi:
     ) -> RESTResponseType:
         """Rediscover trusted domains.
 
-        Re-trigger the trusted domains of an Active Directory.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Re-trigger the trusted domains of an Active Directory.
 
         :param domain_name: Specifies the FQDN of an Active directory domain. (required)
         :type domain_name: str
@@ -3042,7 +3291,7 @@ class ActiveDirectoryApi:
     ) -> ActiveDirectory:
         """Update an Active Directory.
 
-        Update an Active Directory.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Update an Active Directory.
 
         :param id: Specifies id of an Active Directory. (required)
         :type id: int
@@ -3113,7 +3362,7 @@ class ActiveDirectoryApi:
     ) -> ApiResponse[ActiveDirectory]:
         """Update an Active Directory.
 
-        Update an Active Directory.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Update an Active Directory.
 
         :param id: Specifies id of an Active Directory. (required)
         :type id: int
@@ -3184,7 +3433,7 @@ class ActiveDirectoryApi:
     ) -> RESTResponseType:
         """Update an Active Directory.
 
-        Update an Active Directory.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Update an Active Directory.
 
         :param id: Specifies id of an Active Directory. (required)
         :type id: int
@@ -3333,7 +3582,7 @@ class ActiveDirectoryApi:
     ) -> TrustedDomainParams:
         """Update trusted domains.
 
-        To update trusted domains of an Active Directory.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>To update trusted domains of an Active Directory.
 
         :param domain_name: Specifies the FQDN of an Active directory domain. (required)
         :type domain_name: str
@@ -3404,7 +3653,7 @@ class ActiveDirectoryApi:
     ) -> ApiResponse[TrustedDomainParams]:
         """Update trusted domains.
 
-        To update trusted domains of an Active Directory.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>To update trusted domains of an Active Directory.
 
         :param domain_name: Specifies the FQDN of an Active directory domain. (required)
         :type domain_name: str
@@ -3475,7 +3724,7 @@ class ActiveDirectoryApi:
     ) -> RESTResponseType:
         """Update trusted domains.
 
-        To update trusted domains of an Active Directory.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>To update trusted domains of an Active Directory.
 
         :param domain_name: Specifies the FQDN of an Active directory domain. (required)
         :type domain_name: str

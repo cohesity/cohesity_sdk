@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **connected_time_usecs** | **int** | Specifies the time how long the client has connected to the server. | [optional] 
 **gid** | **int** | Specifies the GID of the client user. | [optional] 
 **ip** | **str** | Specifies the client ip. | [optional] 
+**is_idle** | **bool** | Specifies if the connection is idle. | [optional] 
+**last_active_time_usecs** | **int** | Specifies the time the client was last active. This property Only applies for SMB protocol | [optional] 
 **node_ip** | **str** | Specifies the node ip which the client is connected to. | [optional] 
 **protocol** | **str** | Specifies the protocol the client uses. | [optional] 
 **server_ip** | **str** | Specifies the server ip which the client is connected to. | [optional] 

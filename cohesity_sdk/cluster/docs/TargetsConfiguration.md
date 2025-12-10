@@ -9,8 +9,10 @@ Name | Type | Description | Notes
 **archival_targets** | [**List[ArchivalConfig]**](ArchivalConfig.md) |  | [optional] 
 **cloud_spin_targets** | [**List[CloudSpinConfig]**](CloudSpinConfig.md) |  | [optional] 
 **onprem_deploy_targets** | [**List[OnpremDeployConfig]**](OnpremDeployConfig.md) |  | [optional] 
+**onprem_vault_targets** | [**List[OnpremVaultConfig]**](OnpremVaultConfig.md) |  | [optional] 
 **replication_targets** | [**List[ReplicationConfig]**](ReplicationConfig.md) |  | [optional] 
 **rpaas_targets** | [**List[RpaasConfig]**](RpaasConfig.md) |  | [optional] 
+**source_targets** | [**SourceConfig**](SourceConfig.md) |  | [optional] 
 
 ## Example
 

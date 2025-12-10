@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **endpoint** | **str** | Specifies the endpoint IPaddress, URL or hostname of the physical host. | 
 **force_register** | **bool** | The agent running on a physical host will fail the registration if it is already registered as part of another cluster. By setting this option to true, agent can be forced to register with the current cluster. | [optional] 
 **host_type** | **str** | Specifies the type of host. | [optional] 
+**name** | **str** | A user specified human-readable name provided for the source. It contains the hostname/ip address of the physical host or the Windows Cluster VIP. | [optional] 
 **physical_type** | **str** | Specifies the type of physical server. | [optional] 
 
 ## Example

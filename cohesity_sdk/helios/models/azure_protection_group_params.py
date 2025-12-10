@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.azure_agent_protection_group_params import AzureAgentProtectionGroupParams
+from cohesity_sdk.helios.models.azure_my_sql_protection_group_params import AzureMySQLProtectionGroupParams
 from cohesity_sdk.helios.models.azure_native_protection_group_params import AzureNativeProtectionGroupParams
 from cohesity_sdk.helios.models.azure_snapshot_manager_protection_group_params import AzureSnapshotManagerProtectionGroupParams
 from typing import Set
@@ -30,16 +31,17 @@ class AzureProtectionGroupParams(BaseModel):
     Specifies the parameters which are specific to Azure related Protection Groups.
     """ # noqa: E501
     agent_protection_type_params: Optional[AzureAgentProtectionGroupParams] = Field(default=None, alias="agentProtectionTypeParams")
+    mysql_protection_type_params: Optional[AzureMySQLProtectionGroupParams] = Field(default=None, alias="mysqlProtectionTypeParams")
     native_protection_type_params: Optional[AzureNativeProtectionGroupParams] = Field(default=None, alias="nativeProtectionTypeParams")
     protection_type: StrictStr = Field(description="Specifies the Azure Protection Group type.", alias="protectionType")
     snapshot_manager_protection_type_params: Optional[AzureSnapshotManagerProtectionGroupParams] = Field(default=None, alias="snapshotManagerProtectionTypeParams")
-    __properties: ClassVar[List[str]] = ["agentProtectionTypeParams", "nativeProtectionTypeParams", "protectionType", "snapshotManagerProtectionTypeParams"]
+    __properties: ClassVar[List[str]] = ["agentProtectionTypeParams", "mysqlProtectionTypeParams", "nativeProtectionTypeParams", "protectionType", "snapshotManagerProtectionTypeParams"]
 
     @field_validator('protection_type')
     def protection_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL']):
-            raise ValueError("must be one of enum values ('kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL')")
+        if value not in set(['kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kKubernetes']):
+            raise ValueError("must be one of enum values ('kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kKubernetes')")
         return value
 
     model_config = ConfigDict(
@@ -84,6 +86,9 @@ class AzureProtectionGroupParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of agent_protection_type_params
         if self.agent_protection_type_params:
             _dict['agentProtectionTypeParams'] = self.agent_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of mysql_protection_type_params
+        if self.mysql_protection_type_params:
+            _dict['mysqlProtectionTypeParams'] = self.mysql_protection_type_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of native_protection_type_params
         if self.native_protection_type_params:
             _dict['nativeProtectionTypeParams'] = self.native_protection_type_params.to_dict()
@@ -103,6 +108,7 @@ class AzureProtectionGroupParams(BaseModel):
 
         _obj = cls.model_validate({
             "agentProtectionTypeParams": AzureAgentProtectionGroupParams.from_dict(obj["agentProtectionTypeParams"]) if obj.get("agentProtectionTypeParams") is not None else None,
+            "mysqlProtectionTypeParams": AzureMySQLProtectionGroupParams.from_dict(obj["mysqlProtectionTypeParams"]) if obj.get("mysqlProtectionTypeParams") is not None else None,
             "nativeProtectionTypeParams": AzureNativeProtectionGroupParams.from_dict(obj["nativeProtectionTypeParams"]) if obj.get("nativeProtectionTypeParams") is not None else None,
             "protectionType": obj.get("protectionType"),
             "snapshotManagerProtectionTypeParams": AzureSnapshotManagerProtectionGroupParams.from_dict(obj["snapshotManagerProtectionTypeParams"]) if obj.get("snapshotManagerProtectionTypeParams") is not None else None

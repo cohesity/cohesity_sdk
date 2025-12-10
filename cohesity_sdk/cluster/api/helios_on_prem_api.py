@@ -53,7 +53,7 @@ class HeliosOnPremApi:
     ) -> HeliosOnPremConfig:
         """Retreive Helios OnPrem Configuration
 
-        View the configuration for Helios OnPrem VM Node.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>View the configuration for Helios OnPrem VM Node.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -116,7 +116,7 @@ class HeliosOnPremApi:
     ) -> ApiResponse[HeliosOnPremConfig]:
         """Retreive Helios OnPrem Configuration
 
-        View the configuration for Helios OnPrem VM Node.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>View the configuration for Helios OnPrem VM Node.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -179,7 +179,7 @@ class HeliosOnPremApi:
     ) -> RESTResponseType:
         """Retreive Helios OnPrem Configuration
 
-        View the configuration for Helios OnPrem VM Node.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>View the configuration for Helios OnPrem VM Node.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -302,7 +302,7 @@ class HeliosOnPremApi:
     ) -> HeliosOnPremConfig:
         """Update Helios OnPrem Configuration
 
-        Update the configuration for Helios OnPrem VM Node.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the configuration for Helios OnPrem VM Node.
 
         :param body: Specifies the parameters for config update. (required)
         :type body: HeliosOnPremConfig
@@ -369,7 +369,7 @@ class HeliosOnPremApi:
     ) -> ApiResponse[HeliosOnPremConfig]:
         """Update Helios OnPrem Configuration
 
-        Update the configuration for Helios OnPrem VM Node.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the configuration for Helios OnPrem VM Node.
 
         :param body: Specifies the parameters for config update. (required)
         :type body: HeliosOnPremConfig
@@ -436,7 +436,7 @@ class HeliosOnPremApi:
     ) -> RESTResponseType:
         """Update Helios OnPrem Configuration
 
-        Update the configuration for Helios OnPrem VM Node.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the configuration for Helios OnPrem VM Node.
 
         :param body: Specifies the parameters for config update. (required)
         :type body: HeliosOnPremConfig

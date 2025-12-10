@@ -18,9 +18,12 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, TYPE_CHECKING
 from typing import Set
 from typing_extensions import Self
+
+if TYPE_CHECKING:
+    from cohesity_sdk.cluster.models.device_tree_node import DeviceTreeNode
 
 class DeviceTreeNonLeafNode(BaseModel):
     """
@@ -127,6 +130,9 @@ class DeviceTreeNonLeafNode(BaseModel):
         })
         return _obj
 
-from cohesity_sdk.cluster.models.device_tree_node import DeviceTreeNode # noqa: E402
+# Import here for runtime to avoid circular dependency issues
+if not TYPE_CHECKING:
+    from cohesity_sdk.cluster.models.device_tree_node import DeviceTreeNode
 # TODO: Rewrite to not use raise_errors
 DeviceTreeNonLeafNode.model_rebuild(raise_errors=False)
+

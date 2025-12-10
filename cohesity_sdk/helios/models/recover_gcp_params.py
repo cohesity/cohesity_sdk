@@ -21,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.common_download_file_and_folder_params import CommonDownloadFileAndFolderParams
 from cohesity_sdk.helios.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
+from cohesity_sdk.helios.models.recover_gcp_big_query_params import RecoverGCPBigQueryParams
 from cohesity_sdk.helios.models.recover_gcp_file_and_folder_params import RecoverGcpFileAndFolderParams
 from cohesity_sdk.helios.models.recover_gcp_vm_params import RecoverGcpVmParams
 from typing import Set
@@ -31,17 +32,18 @@ class RecoverGcpParams(BaseModel):
     Specifies the recovery options specific to GCP environment.
     """ # noqa: E501
     download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, description="Specifies the parameters to download files and folders.", alias="downloadFileAndFolderParams")
+    gcp_big_query_params: Optional[RecoverGCPBigQueryParams] = Field(default=None, alias="gcpBigQueryParams")
     objects: Optional[List[CommonRecoverObjectSnapshotParams]] = Field(default=None, description="Specifies the list of recover Object parameters. This property is mandatory for all recovery action types except recover vms. While recovering VMs, a user can specify snapshots of VM's or a Protection Group Run details to recover all the VM's that are backed up by that Run.")
     recover_file_and_folder_params: Optional[RecoverGcpFileAndFolderParams] = Field(default=None, description="Specifies the parameters to recover files and folders.", alias="recoverFileAndFolderParams")
     recover_vm_params: Optional[RecoverGcpVmParams] = Field(default=None, description="Specifies the parameters to recover GCP VM.", alias="recoverVmParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recover action to be performed.", alias="recoveryAction")
-    __properties: ClassVar[List[str]] = ["downloadFileAndFolderParams", "objects", "recoverFileAndFolderParams", "recoverVmParams", "recoveryAction"]
+    __properties: ClassVar[List[str]] = ["downloadFileAndFolderParams", "gcpBigQueryParams", "objects", "recoverFileAndFolderParams", "recoverVmParams", "recoveryAction"]
 
     @field_validator('recovery_action')
     def recovery_action_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['RecoverVMs', 'RecoverFiles']):
-            raise ValueError("must be one of enum values ('RecoverVMs', 'RecoverFiles')")
+        if value not in set(['RecoverVMs', 'RecoverFiles', 'RecoverGCPBigQuery']):
+            raise ValueError("must be one of enum values ('RecoverVMs', 'RecoverFiles', 'RecoverGCPBigQuery')")
         return value
 
     model_config = ConfigDict(
@@ -86,6 +88,9 @@ class RecoverGcpParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of download_file_and_folder_params
         if self.download_file_and_folder_params:
             _dict['downloadFileAndFolderParams'] = self.download_file_and_folder_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of gcp_big_query_params
+        if self.gcp_big_query_params:
+            _dict['gcpBigQueryParams'] = self.gcp_big_query_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in objects (list)
         _items = []
         if self.objects:
@@ -132,6 +137,7 @@ class RecoverGcpParams(BaseModel):
 
         _obj = cls.model_validate({
             "downloadFileAndFolderParams": CommonDownloadFileAndFolderParams.from_dict(obj["downloadFileAndFolderParams"]) if obj.get("downloadFileAndFolderParams") is not None else None,
+            "gcpBigQueryParams": RecoverGCPBigQueryParams.from_dict(obj["gcpBigQueryParams"]) if obj.get("gcpBigQueryParams") is not None else None,
             "objects": [CommonRecoverObjectSnapshotParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None,
             "recoverFileAndFolderParams": RecoverGcpFileAndFolderParams.from_dict(obj["recoverFileAndFolderParams"]) if obj.get("recoverFileAndFolderParams") is not None else None,
             "recoverVmParams": RecoverGcpVmParams.from_dict(obj["recoverVmParams"]) if obj.get("recoverVmParams") is not None else None,

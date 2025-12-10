@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **password** | **str** | Specifies the password for the MongoDB cluster. Should be set if &#39;authType&#39; is &#39;LDAP&#39; or &#39;SCRAM&#39;. | [optional] 
 **principal** | **str** | Specifies the principal name of the MongoDB cluster. Should be set if &#39;authType&#39; is &#39;KERBEROS&#39;. | [optional] 
 **secondary_node_tag** | **str** | MongoDB Secondary node tag. Required only if &#39;useSecondaryForBackup&#39; is true.The system will use this to identify the secondary nodes for reading backup data. | [optional] 
+**use_fixed_node_for_backup** | **bool** | Set this to true if you want the system to peform backups from fixed node. | 
 **use_secondary_for_backup** | **bool** | Set this to true if you want the system to peform backups from secondary nodes. | 
 **username** | **str** | Specifies the username of the MongoDB cluster. Should be set if &#39;authType&#39; is &#39;LDAP&#39; or &#39;SCRAM&#39;. | [optional] 
 

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **create_pst** | **bool** | Specifies if create a PST or MSG for input items. | [optional] 
 **password** | **str** | Specifies Password to be set for generated PSTs. | 
+**separate_download_files** | **bool** | If true, a separate download file will be made for each snapshot. If false, a single common download file will be used for all snapshots. Default is false. | [optional] 
 **size_threshold_bytes** | **int** | Specifies PST size threshold in bytes. | [optional] 
 
 ## Example

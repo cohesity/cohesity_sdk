@@ -1,13 +1,13 @@
 # UpdateInfectedFilesList
 
-Specifies a list of infected files.
+Specifies a list of infected entities.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**update_failed_infected_files** | [**List[InfectedFile]**](InfectedFile.md) | Specifies the list of infected files that failed update. | [optional] 
-**update_succeeded_infected_files** | [**List[InfectedFile]**](InfectedFile.md) | Specifies the list of infected files that are successfully updated. | [optional] 
+**update_failed_infected_files** | [**List[InfectedFile]**](InfectedFile.md) | Specifies the list of infected entities that failed update. | [optional] 
+**update_succeeded_infected_files** | [**List[InfectedFile]**](InfectedFile.md) | Specifies the list of infected entities that are successfully updated. | [optional] 
 
 ## Example
 

@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **username** | **str** | Specifies the username to access target entity. | 
 **description** | **str** | Specifies the description of the source being registered. | [optional] 
 **endpoint** | **str** | Specifies the endpoint IPaddress, URL or hostname of the host. | 
+**enable_m365_csm_backup** | **bool** | Specifies whether to enable M365 Storage Service API based(CSM) Backup for this M365 source. | [optional] 
+**m365_csm_params** | [**M365CsmParams**](M365CsmParams.md) |  | [optional] 
 **o365_objects_discovery_params** | [**ObjectsDiscoveryParams**](ObjectsDiscoveryParams.md) |  | [optional] 
 **office365_app_credentials_list** | [**List[Office365AppCredentials]**](Office365AppCredentials.md) | Specifies a list of office365 azure application credentials needed to authenticate &amp; authorize users for Office 365. | [optional] 
 **office365_region** | **str** | Specifies the region where Office 365 Exchange environment is. | [optional] 

@@ -21,7 +21,10 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.aws_entity_metadata import AwsEntityMetadata
 from cohesity_sdk.cluster.models.azure_entity_metadata import AzureEntityMetadata
+from cohesity_sdk.cluster.models.experimental_adapter_entity_metadata import ExperimentalAdapterEntityMetadata
+from cohesity_sdk.cluster.models.gcp_entity_metadata import GCPEntityMetadata
 from cohesity_sdk.cluster.models.maintenance_mode_config import MaintenanceModeConfig
+from cohesity_sdk.cluster.models.tag_attribute_params import TagAttributeParams
 from typing import Set
 from typing_extensions import Self
 
@@ -32,8 +35,11 @@ class EntityMetadataParams(BaseModel):
     aws_params: Optional[AwsEntityMetadata] = Field(default=None, alias="awsParams")
     azure_params: Optional[AzureEntityMetadata] = Field(default=None, alias="azureParams")
     entity_id: StrictInt = Field(description="Specifies the entity id of the entity whose metadata is being updated.", alias="entityId")
+    experimental_adapter_params: Optional[ExperimentalAdapterEntityMetadata] = Field(default=None, alias="experimentalAdapterParams")
+    gcp_params: Optional[GCPEntityMetadata] = Field(default=None, alias="gcpParams")
     maintenance_mode_config: Optional[MaintenanceModeConfig] = Field(default=None, alias="maintenanceModeConfig")
-    __properties: ClassVar[List[str]] = ["awsParams", "azureParams", "entityId", "maintenanceModeConfig"]
+    user_tag_attributes: Optional[List[TagAttributeParams]] = Field(default=None, description="Specifies the tag attributes associated with the entity created by the user", alias="userTagAttributes")
+    __properties: ClassVar[List[str]] = ["awsParams", "azureParams", "entityId", "experimentalAdapterParams", "gcpParams", "maintenanceModeConfig", "userTagAttributes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,9 +86,22 @@ class EntityMetadataParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of azure_params
         if self.azure_params:
             _dict['azureParams'] = self.azure_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of experimental_adapter_params
+        if self.experimental_adapter_params:
+            _dict['experimentalAdapterParams'] = self.experimental_adapter_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of gcp_params
+        if self.gcp_params:
+            _dict['gcpParams'] = self.gcp_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of maintenance_mode_config
         if self.maintenance_mode_config:
             _dict['maintenanceModeConfig'] = self.maintenance_mode_config.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in user_tag_attributes (list)
+        _items = []
+        if self.user_tag_attributes:
+            for _item_user_tag_attributes in self.user_tag_attributes:
+                if _item_user_tag_attributes:
+                    _items.append(_item_user_tag_attributes.to_dict())
+            _dict['userTagAttributes'] = _items
         return _dict
 
     @classmethod
@@ -98,7 +117,10 @@ class EntityMetadataParams(BaseModel):
             "awsParams": AwsEntityMetadata.from_dict(obj["awsParams"]) if obj.get("awsParams") is not None else None,
             "azureParams": AzureEntityMetadata.from_dict(obj["azureParams"]) if obj.get("azureParams") is not None else None,
             "entityId": obj.get("entityId"),
-            "maintenanceModeConfig": MaintenanceModeConfig.from_dict(obj["maintenanceModeConfig"]) if obj.get("maintenanceModeConfig") is not None else None
+            "experimentalAdapterParams": ExperimentalAdapterEntityMetadata.from_dict(obj["experimentalAdapterParams"]) if obj.get("experimentalAdapterParams") is not None else None,
+            "gcpParams": GCPEntityMetadata.from_dict(obj["gcpParams"]) if obj.get("gcpParams") is not None else None,
+            "maintenanceModeConfig": MaintenanceModeConfig.from_dict(obj["maintenanceModeConfig"]) if obj.get("maintenanceModeConfig") is not None else None,
+            "userTagAttributes": [TagAttributeParams.from_dict(_item) for _item in obj["userTagAttributes"]] if obj.get("userTagAttributes") is not None else None
         })
         return _obj
 

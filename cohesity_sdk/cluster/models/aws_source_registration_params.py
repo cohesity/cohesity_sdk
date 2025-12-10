@@ -19,6 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
+from cohesity_sdk.cluster.models.dynamo_db_specific_params import DynamoDBSpecificParams
 from cohesity_sdk.cluster.models.s3_specific_params import S3SpecificParams
 from cohesity_sdk.cluster.models.standard_params import StandardParams
 from typing import Set
@@ -28,10 +30,12 @@ class AwsSourceRegistrationParams(BaseModel):
     """
     Specifies the paramaters to register an AWS source.
     """ # noqa: E501
+    dynamo_db_params: Optional[DynamoDBSpecificParams] = Field(default=None, alias="dynamoDBParams")
     s3_params: Optional[S3SpecificParams] = Field(default=None, alias="s3Params")
     standard_params: Optional[StandardParams] = Field(default=None, alias="standardParams")
     subscription_type: Optional[StrictStr] = Field(description="Specifies the AWS Subscription type (Commercial/Gov).", alias="subscriptionType")
-    __properties: ClassVar[List[str]] = ["s3Params", "standardParams", "subscriptionType"]
+    use_cases: Optional[Annotated[List[StrictStr], Field(min_length=1)]] = Field(default=None, description="The use cases for which the source is to be registered.", alias="useCases")
+    __properties: ClassVar[List[str]] = ["dynamoDBParams", "s3Params", "standardParams", "subscriptionType", "useCases"]
 
     @field_validator('subscription_type')
     def subscription_type_validate_enum(cls, value):
@@ -41,6 +45,17 @@ class AwsSourceRegistrationParams(BaseModel):
 
         if value not in set(['kAWSCommercial', 'kAWSGovCloud', 'kAWSC2S']):
             raise ValueError("must be one of enum values ('kAWSCommercial', 'kAWSGovCloud', 'kAWSC2S')")
+        return value
+
+    @field_validator('use_cases')
+    def use_cases_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        for i in value:
+            if i not in set(['kEC2', 'kRDS', 'kPostgres', 'kDynamoDB', 'kS3', 'kDocumentDB', 'kRedshift']):
+                raise ValueError("each list item must be one of ('kEC2', 'kRDS', 'kPostgres', 'kDynamoDB', 'kS3', 'kDocumentDB', 'kRedshift')")
         return value
 
     model_config = ConfigDict(
@@ -82,6 +97,9 @@ class AwsSourceRegistrationParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of dynamo_db_params
+        if self.dynamo_db_params:
+            _dict['dynamoDBParams'] = self.dynamo_db_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of s3_params
         if self.s3_params:
             _dict['s3Params'] = self.s3_params.to_dict()
@@ -92,6 +110,11 @@ class AwsSourceRegistrationParams(BaseModel):
         # and model_fields_set contains the field
         if self.subscription_type is None and "subscription_type" in self.model_fields_set:
             _dict['subscriptionType'] = None
+
+        # set to None if use_cases (nullable) is None
+        # and model_fields_set contains the field
+        if self.use_cases is None and "use_cases" in self.model_fields_set:
+            _dict['useCases'] = None
 
         return _dict
 
@@ -105,9 +128,11 @@ class AwsSourceRegistrationParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "dynamoDBParams": DynamoDBSpecificParams.from_dict(obj["dynamoDBParams"]) if obj.get("dynamoDBParams") is not None else None,
             "s3Params": S3SpecificParams.from_dict(obj["s3Params"]) if obj.get("s3Params") is not None else None,
             "standardParams": StandardParams.from_dict(obj["standardParams"]) if obj.get("standardParams") is not None else None,
-            "subscriptionType": obj.get("subscriptionType")
+            "subscriptionType": obj.get("subscriptionType"),
+            "useCases": obj.get("useCases")
         })
         return _obj
 

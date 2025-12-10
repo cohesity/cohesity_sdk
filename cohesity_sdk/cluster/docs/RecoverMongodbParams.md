@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **overwrite** | **bool** | Set to true to overwrite an existing object at the destination. If set to false, and the same object exists at the destination, then recovery will fail for that object. | [optional] 
 **recover_to** | **int** | Specifies the &#39;Source Registration ID&#39; of the source where the objects are to be recovered. If this is not specified, the recovery job will recover to the original location. | [optional] 
 **warnings** | **List[str]** | This field will hold the warnings in cases where the job status is SucceededWithWarnings. | [optional] [readonly] 
+**recover_user_roles** | **bool** | Specifies whether to recover User and roles at the time of recovery. | [optional] 
+**recover_zones_tags** | **bool** | Specifies whether to recover Zones/shard tags at the time of recovery. | [optional] 
 **snapshots** | [**List[RecoverMongodbSnapshotParams]**](RecoverMongodbSnapshotParams.md) | Specifies the local snapshot ids of the Objects to be recovered. | 
 **suffix** | **str** | A suffix that is to be applied to all recovered objects. | [optional] 
 

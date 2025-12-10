@@ -32,8 +32,9 @@ class UpdateExistingReplicationSnapshotConfig(BaseModel):
     enable_legal_hold: Optional[StrictBool] = Field(default=None, description="Specifies whether to retain the snapshot for legal purpose. If set to true, the snapshots cannot be deleted until the retention period. Note that using this option may cause the Cluster to run out of space. If set to false explicitly, the hold is removed, and the snapshots will expire as specified in the policy of the Protection Group. If this field is not specified, there is no change to the hold of the run. This field can be set only by a User having Data Security Role.", alias="enableLegalHold")
     id: StrictInt = Field(description="Specifies the cluster id of the replication cluster.")
     name: Optional[StrictStr] = Field(default=None, description="Specifies the cluster name of the replication cluster.")
+    object_ids: Optional[List[Optional[StrictStr]]] = Field(default=None, description="Specifies the list of object as string ids to be replicated by this Protection Group run. These can be leaf objects or non-leaf objects in the protection hierarchy. This must be specified only if a subset of objects from the Protection Group needs to be replicated.", alias="objectIds")
     resync: Optional[StrictBool] = Field(default=None, description="Specifies whether to retry the replication operation in case if earlier attempt failed. If not specified or set to false, replication is not retried.")
-    __properties: ClassVar[List[str]] = ["dataLock", "daysToKeep", "deleteSnapshot", "enableLegalHold", "id", "name", "resync"]
+    __properties: ClassVar[List[str]] = ["dataLock", "daysToKeep", "deleteSnapshot", "enableLegalHold", "id", "name", "objectIds", "resync"]
 
     @field_validator('data_lock')
     def data_lock_validate_enum(cls, value):
@@ -109,6 +110,11 @@ class UpdateExistingReplicationSnapshotConfig(BaseModel):
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
 
+        # set to None if object_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.object_ids is None and "object_ids" in self.model_fields_set:
+            _dict['objectIds'] = None
+
         # set to None if resync (nullable) is None
         # and model_fields_set contains the field
         if self.resync is None and "resync" in self.model_fields_set:
@@ -132,6 +138,7 @@ class UpdateExistingReplicationSnapshotConfig(BaseModel):
             "enableLegalHold": obj.get("enableLegalHold"),
             "id": obj.get("id"),
             "name": obj.get("name"),
+            "objectIds": obj.get("objectIds"),
             "resync": obj.get("resync")
         })
         return _obj

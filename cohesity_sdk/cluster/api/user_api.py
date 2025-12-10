@@ -17,22 +17,30 @@ from typing_extensions import Annotated
 
 from pydantic import StrictBool
 from cohesity_sdk.cluster.models.active_sessions_count_params import ActiveSessionsCountParams
+from cohesity_sdk.cluster.models.added_principal_response_object import AddedPrincipalResponseObject
 from cohesity_sdk.cluster.models.assigned_sources import AssignedSources
-from cohesity_sdk.cluster.models.create_group_params import CreateGroupParams
+from cohesity_sdk.cluster.models.create_groups_params import CreateGroupsParams
 from cohesity_sdk.cluster.models.create_or_update_api_key_request import CreateOrUpdateAPIKeyRequest
+from cohesity_sdk.cluster.models.create_principal_request_params import CreatePrincipalRequestParams
 from cohesity_sdk.cluster.models.create_user_parameters import CreateUserParameters
 from cohesity_sdk.cluster.models.create_user_session_request_params import CreateUserSessionRequestParams
 from cohesity_sdk.cluster.models.created_user_api_key import CreatedUserAPIKey
 from cohesity_sdk.cluster.models.delete_groups_request import DeleteGroupsRequest
 from cohesity_sdk.cluster.models.delete_users_request import DeleteUsersRequest
+from cohesity_sdk.cluster.models.get_user_task_notifications_response_object import GetUserTaskNotificationsResponseObject
 from cohesity_sdk.cluster.models.group_params import GroupParams
 from cohesity_sdk.cluster.models.groups import Groups
+from cohesity_sdk.cluster.models.s3_keys import S3Keys
 from cohesity_sdk.cluster.models.secret_key_entity import SecretKeyEntity
 from cohesity_sdk.cluster.models.security_principals import SecurityPrincipals
+from cohesity_sdk.cluster.models.success_resp import SuccessResp
 from cohesity_sdk.cluster.models.update_group_parameters import UpdateGroupParameters
+from cohesity_sdk.cluster.models.update_linux_password_request import UpdateLinuxPasswordRequest
 from cohesity_sdk.cluster.models.update_user_parameters import UpdateUserParameters
 from cohesity_sdk.cluster.models.user_api_key import UserAPIKey
 from cohesity_sdk.cluster.models.user_api_keys import UserAPIKeys
+from cohesity_sdk.cluster.models.user_otp_params import UserOtpParams
+from cohesity_sdk.cluster.models.user_otp_response_object import UserOtpResponseObject
 from cohesity_sdk.cluster.models.user_params import UserParams
 from cohesity_sdk.cluster.models.user_session import UserSession
 from cohesity_sdk.cluster.models.users_list import UsersList
@@ -56,9 +64,285 @@ class UserApi:
 
 
     @validate_call
+    def add_principals(
+        self,
+        body: Annotated[CreatePrincipalRequestParams, Field(description="Specifies parameters to add multiple principals.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AddedPrincipalResponseObject:
+        """Add the specified principals for the users or groups created on the Cohesity Cluster.
+
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>After a group or user has been added to a Cohesity Cluster, the referenced principal can be used by the group or user. In addition, this operation maps Cohesity roles with a group or user and this mapping defines the privileges allowed on the Cohesity Cluster for the group or user.
+
+        :param body: Specifies parameters to add multiple principals. (required)
+        :type body: CreatePrincipalRequestParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._add_principals_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "AddedPrincipalResponseObject",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def add_principals_with_http_info(
+        self,
+        body: Annotated[CreatePrincipalRequestParams, Field(description="Specifies parameters to add multiple principals.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AddedPrincipalResponseObject]:
+        """Add the specified principals for the users or groups created on the Cohesity Cluster.
+
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>After a group or user has been added to a Cohesity Cluster, the referenced principal can be used by the group or user. In addition, this operation maps Cohesity roles with a group or user and this mapping defines the privileges allowed on the Cohesity Cluster for the group or user.
+
+        :param body: Specifies parameters to add multiple principals. (required)
+        :type body: CreatePrincipalRequestParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._add_principals_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "AddedPrincipalResponseObject",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def add_principals_without_preload_content(
+        self,
+        body: Annotated[CreatePrincipalRequestParams, Field(description="Specifies parameters to add multiple principals.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Add the specified principals for the users or groups created on the Cohesity Cluster.
+
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>After a group or user has been added to a Cohesity Cluster, the referenced principal can be used by the group or user. In addition, this operation maps Cohesity roles with a group or user and this mapping defines the privileges allowed on the Cohesity Cluster for the group or user.
+
+        :param body: Specifies parameters to add multiple principals. (required)
+        :type body: CreatePrincipalRequestParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._add_principals_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "AddedPrincipalResponseObject",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _add_principals_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/principals',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def create_group(
         self,
-        body: Annotated[List[CreateGroupParams], Field(min_length=1, description="Specifies the new group parameters.")],
+        body: Annotated[CreateGroupsParams, Field(description="Specifies the new group parameters.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -74,10 +358,10 @@ class UserApi:
     ) -> Groups:
         """Create Groups
 
-        If an Active Directory/IdP domain is specified, a new group is added to the Cohesity Cluster for the specified Active Directory/IdP group principal. If the LOCAL domain is specified, a new group is created directly in the default LOCAL domain on the Cohesity Cluster.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>If an Active Directory/IdP domain is specified, a new group is added to the Cohesity Cluster for the specified Active Directory/IdP group principal. If the LOCAL domain is specified, a new group is created directly in the default LOCAL domain on the Cohesity Cluster.
 
         :param body: Specifies the new group parameters. (required)
-        :type body: List[CreateGroupParams]
+        :type body: CreateGroupsParams
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -125,7 +409,7 @@ class UserApi:
     @validate_call
     def create_group_with_http_info(
         self,
-        body: Annotated[List[CreateGroupParams], Field(min_length=1, description="Specifies the new group parameters.")],
+        body: Annotated[CreateGroupsParams, Field(description="Specifies the new group parameters.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -141,10 +425,10 @@ class UserApi:
     ) -> ApiResponse[Groups]:
         """Create Groups
 
-        If an Active Directory/IdP domain is specified, a new group is added to the Cohesity Cluster for the specified Active Directory/IdP group principal. If the LOCAL domain is specified, a new group is created directly in the default LOCAL domain on the Cohesity Cluster.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>If an Active Directory/IdP domain is specified, a new group is added to the Cohesity Cluster for the specified Active Directory/IdP group principal. If the LOCAL domain is specified, a new group is created directly in the default LOCAL domain on the Cohesity Cluster.
 
         :param body: Specifies the new group parameters. (required)
-        :type body: List[CreateGroupParams]
+        :type body: CreateGroupsParams
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -192,7 +476,7 @@ class UserApi:
     @validate_call
     def create_group_without_preload_content(
         self,
-        body: Annotated[List[CreateGroupParams], Field(min_length=1, description="Specifies the new group parameters.")],
+        body: Annotated[CreateGroupsParams, Field(description="Specifies the new group parameters.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -208,10 +492,10 @@ class UserApi:
     ) -> RESTResponseType:
         """Create Groups
 
-        If an Active Directory/IdP domain is specified, a new group is added to the Cohesity Cluster for the specified Active Directory/IdP group principal. If the LOCAL domain is specified, a new group is created directly in the default LOCAL domain on the Cohesity Cluster.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>If an Active Directory/IdP domain is specified, a new group is added to the Cohesity Cluster for the specified Active Directory/IdP group principal. If the LOCAL domain is specified, a new group is created directly in the default LOCAL domain on the Cohesity Cluster.
 
         :param body: Specifies the new group parameters. (required)
-        :type body: List[CreateGroupParams]
+        :type body: CreateGroupsParams
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -264,7 +548,6 @@ class UserApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            'body': '',
         }
 
         _path_params: Dict[str, str] = {}
@@ -351,7 +634,7 @@ class UserApi:
     ) -> UserSession:
         """Create a user session
 
-        Create a user session
+        ```No Privileges Required``` <br><br>Creates a new user session. Session Management must be enabled before exercising this endpoint. <br/>Subsequent requests to other Cohesity REST API operations must specify the returned session token and 'session-id' in the http header in the following format: `session-id: generated-session-key` 
 
         :param body: Specifies the parameters to create a user session (required)
         :type body: CreateUserSessionRequestParams
@@ -418,7 +701,7 @@ class UserApi:
     ) -> ApiResponse[UserSession]:
         """Create a user session
 
-        Create a user session
+        ```No Privileges Required``` <br><br>Creates a new user session. Session Management must be enabled before exercising this endpoint. <br/>Subsequent requests to other Cohesity REST API operations must specify the returned session token and 'session-id' in the http header in the following format: `session-id: generated-session-key` 
 
         :param body: Specifies the parameters to create a user session (required)
         :type body: CreateUserSessionRequestParams
@@ -485,7 +768,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Create a user session
 
-        Create a user session
+        ```No Privileges Required``` <br><br>Creates a new user session. Session Management must be enabled before exercising this endpoint. <br/>Subsequent requests to other Cohesity REST API operations must specify the returned session token and 'session-id' in the http header in the following format: `session-id: generated-session-key` 
 
         :param body: Specifies the parameters to create a user session (required)
         :type body: CreateUserSessionRequestParams
@@ -585,9 +868,6 @@ class UserApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'APIKeyHeader', 
-            'SessionIdHeader', 
-            'Bearer'
         ]
 
         return self.api_client.param_serialize(
@@ -628,7 +908,7 @@ class UserApi:
     ) -> CreatedUserAPIKey:
         """Create a new user API key.
 
-        Create a new user API key.
+        ```No Privileges Required``` <br><br>Create a new user API key.
 
         :param user_sid: Specify the SID of the API key owner. (required)
         :type user_sid: str
@@ -699,7 +979,7 @@ class UserApi:
     ) -> ApiResponse[CreatedUserAPIKey]:
         """Create a new user API key.
 
-        Create a new user API key.
+        ```No Privileges Required``` <br><br>Create a new user API key.
 
         :param user_sid: Specify the SID of the API key owner. (required)
         :type user_sid: str
@@ -770,7 +1050,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Create a new user API key.
 
-        Create a new user API key.
+        ```No Privileges Required``` <br><br>Create a new user API key.
 
         :param user_sid: Specify the SID of the API key owner. (required)
         :type user_sid: str
@@ -918,7 +1198,7 @@ class UserApi:
     ) -> UsersList:
         """Add one or more users to Cohesity Cluster.
 
-        Add one or more users to Cohesity Cluster.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Add one or more users to Cohesity Cluster.
 
         :param body: If an Active Directory or an IdP domain is specified, a new user is added to the Cohesity Cluster against the specified Active Directory/IdP user principal. If the LOCAL domain is specified, a new user is created directly in the default LOCAL domain on the Cohesity Cluster. (required)
         :type body: List[CreateUserParameters]
@@ -985,7 +1265,7 @@ class UserApi:
     ) -> ApiResponse[UsersList]:
         """Add one or more users to Cohesity Cluster.
 
-        Add one or more users to Cohesity Cluster.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Add one or more users to Cohesity Cluster.
 
         :param body: If an Active Directory or an IdP domain is specified, a new user is added to the Cohesity Cluster against the specified Active Directory/IdP user principal. If the LOCAL domain is specified, a new user is created directly in the default LOCAL domain on the Cohesity Cluster. (required)
         :type body: List[CreateUserParameters]
@@ -1052,7 +1332,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Add one or more users to Cohesity Cluster.
 
-        Add one or more users to Cohesity Cluster.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Add one or more users to Cohesity Cluster.
 
         :param body: If an Active Directory or an IdP domain is specified, a new user is added to the Cohesity Cluster against the specified Active Directory/IdP user principal. If the LOCAL domain is specified, a new user is created directly in the default LOCAL domain on the Cohesity Cluster. (required)
         :type body: List[CreateUserParameters]
@@ -1195,7 +1475,7 @@ class UserApi:
     ) -> None:
         """Delete Group
 
-        If the group on the Cohesity Cluster was added for an Active Directory/IdP group, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>If the group on the Cohesity Cluster was added for an Active Directory/IdP group, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.
 
         :param sid: Specify the SID of the group. (required)
         :type sid: str
@@ -1262,7 +1542,7 @@ class UserApi:
     ) -> ApiResponse[None]:
         """Delete Group
 
-        If the group on the Cohesity Cluster was added for an Active Directory/IdP group, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>If the group on the Cohesity Cluster was added for an Active Directory/IdP group, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.
 
         :param sid: Specify the SID of the group. (required)
         :type sid: str
@@ -1329,7 +1609,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Delete Group
 
-        If the group on the Cohesity Cluster was added for an Active Directory/IdP group, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>If the group on the Cohesity Cluster was added for an Active Directory/IdP group, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.
 
         :param sid: Specify the SID of the group. (required)
         :type sid: str
@@ -1458,7 +1738,7 @@ class UserApi:
     ) -> None:
         """Delete Groups
 
-        If the Cohesity group was created against an Active Directory/IdP, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>If the Cohesity group was created against an Active Directory/IdP, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.
 
         :param body: Specifies the delete request payload. (required)
         :type body: DeleteGroupsRequest
@@ -1525,7 +1805,7 @@ class UserApi:
     ) -> ApiResponse[None]:
         """Delete Groups
 
-        If the Cohesity group was created against an Active Directory/IdP, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>If the Cohesity group was created against an Active Directory/IdP, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.
 
         :param body: Specifies the delete request payload. (required)
         :type body: DeleteGroupsRequest
@@ -1592,7 +1872,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Delete Groups
 
-        If the Cohesity group was created against an Active Directory/IdP, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>If the Cohesity group was created against an Active Directory/IdP, the referenced principal group on the Active Directory/IdP domain is NOT deleted. Only the group on the Cohesity Cluster is deleted.
 
         :param body: Specifies the delete request payload. (required)
         :type body: DeleteGroupsRequest
@@ -1734,7 +2014,7 @@ class UserApi:
     ) -> None:
         """Delete user sessions
 
-        Deletes all sessions for given user sid or system wide sessions
+        ```No Privileges Required``` <br><br>Deletes all sessions for given user sid or system wide sessions
 
         :param sid: Specifies a user sid. If sid is not given system wide sessions are deleted.
         :type sid: str
@@ -1801,7 +2081,7 @@ class UserApi:
     ) -> ApiResponse[None]:
         """Delete user sessions
 
-        Deletes all sessions for given user sid or system wide sessions
+        ```No Privileges Required``` <br><br>Deletes all sessions for given user sid or system wide sessions
 
         :param sid: Specifies a user sid. If sid is not given system wide sessions are deleted.
         :type sid: str
@@ -1868,7 +2148,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Delete user sessions
 
-        Deletes all sessions for given user sid or system wide sessions
+        ```No Privileges Required``` <br><br>Deletes all sessions for given user sid or system wide sessions
 
         :param sid: Specifies a user sid. If sid is not given system wide sessions are deleted.
         :type sid: str
@@ -1999,7 +2279,7 @@ class UserApi:
     ) -> None:
         """Delete a Cohesity (LOCAL/IdP/AD) user.
 
-        Delete a Cohesity user.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete a Cohesity user.
 
         :param sid: Specify the SID of the user. (required)
         :type sid: str
@@ -2066,7 +2346,7 @@ class UserApi:
     ) -> ApiResponse[None]:
         """Delete a Cohesity (LOCAL/IdP/AD) user.
 
-        Delete a Cohesity user.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete a Cohesity user.
 
         :param sid: Specify the SID of the user. (required)
         :type sid: str
@@ -2133,7 +2413,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Delete a Cohesity (LOCAL/IdP/AD) user.
 
-        Delete a Cohesity user.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete a Cohesity user.
 
         :param sid: Specify the SID of the user. (required)
         :type sid: str
@@ -2263,7 +2543,7 @@ class UserApi:
     ) -> None:
         """Delete a user API key.
 
-        Delete a user API key.
+        ```No Privileges Required``` <br><br>Delete a user API key.
 
         :param user_sid: Specify the SID of the API key owner. (required)
         :type user_sid: str
@@ -2334,7 +2614,7 @@ class UserApi:
     ) -> ApiResponse[None]:
         """Delete a user API key.
 
-        Delete a user API key.
+        ```No Privileges Required``` <br><br>Delete a user API key.
 
         :param user_sid: Specify the SID of the API key owner. (required)
         :type user_sid: str
@@ -2405,7 +2685,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Delete a user API key.
 
-        Delete a user API key.
+        ```No Privileges Required``` <br><br>Delete a user API key.
 
         :param user_sid: Specify the SID of the API key owner. (required)
         :type user_sid: str
@@ -2540,7 +2820,7 @@ class UserApi:
     ) -> None:
         """Delete one or more Cohesity users.
 
-        Delete one or more Cohesity users.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete one or more Cohesity users.
 
         :param body: If the Cohesity user was created against an Active Directory/IdP user, the referenced principal user on the Active Directory/IdP domain is NOT deleted. Only the user on the Cohesity Cluster is deleted. (required)
         :type body: DeleteUsersRequest
@@ -2607,7 +2887,7 @@ class UserApi:
     ) -> ApiResponse[None]:
         """Delete one or more Cohesity users.
 
-        Delete one or more Cohesity users.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete one or more Cohesity users.
 
         :param body: If the Cohesity user was created against an Active Directory/IdP user, the referenced principal user on the Active Directory/IdP domain is NOT deleted. Only the user on the Cohesity Cluster is deleted. (required)
         :type body: DeleteUsersRequest
@@ -2674,7 +2954,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Delete one or more Cohesity users.
 
-        Delete one or more Cohesity users.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete one or more Cohesity users.
 
         :param body: If the Cohesity user was created against an Active Directory/IdP user, the referenced principal user on the Active Directory/IdP domain is NOT deleted. Only the user on the Cohesity Cluster is deleted. (required)
         :type body: DeleteUsersRequest
@@ -2816,7 +3096,7 @@ class UserApi:
     ) -> ActiveSessionsCountParams:
         """Get sessions count
 
-        Get the number of user sessions.
+        **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get the number of user sessions.
 
         :param sids: Filter sessions based on user sids.
         :type sids: List[str]
@@ -2883,7 +3163,7 @@ class UserApi:
     ) -> ApiResponse[ActiveSessionsCountParams]:
         """Get sessions count
 
-        Get the number of user sessions.
+        **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get the number of user sessions.
 
         :param sids: Filter sessions based on user sids.
         :type sids: List[str]
@@ -2950,7 +3230,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Get sessions count
 
-        Get the number of user sessions.
+        **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get the number of user sessions.
 
         :param sids: Filter sessions based on user sids.
         :type sids: List[str]
@@ -3085,7 +3365,7 @@ class UserApi:
     ) -> UserAPIKeys:
         """Get the list of all API keys which are created or owned by the user.
 
-        Get the list of all API keys which are created or owned by the user.
+        ```No Privileges Required``` <br><br>Get the list of all API keys which are created or owned by the user.
 
         :param ids: Filter by API Key Ids
         :type ids: List[str]
@@ -3164,7 +3444,7 @@ class UserApi:
     ) -> ApiResponse[UserAPIKeys]:
         """Get the list of all API keys which are created or owned by the user.
 
-        Get the list of all API keys which are created or owned by the user.
+        ```No Privileges Required``` <br><br>Get the list of all API keys which are created or owned by the user.
 
         :param ids: Filter by API Key Ids
         :type ids: List[str]
@@ -3243,7 +3523,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Get the list of all API keys which are created or owned by the user.
 
-        Get the list of all API keys which are created or owned by the user.
+        ```No Privileges Required``` <br><br>Get the list of all API keys which are created or owned by the user.
 
         :param ids: Filter by API Key Ids
         :type ids: List[str]
@@ -3400,7 +3680,7 @@ class UserApi:
     ) -> GroupParams:
         """Get Group by SID
 
-        Get Group by SID.
+        ```No Privileges Required``` <br><br>Get Group by SID.
 
         :param sid: Specify the SID of the group. (required)
         :type sid: str
@@ -3467,7 +3747,7 @@ class UserApi:
     ) -> ApiResponse[GroupParams]:
         """Get Group by SID
 
-        Get Group by SID.
+        ```No Privileges Required``` <br><br>Get Group by SID.
 
         :param sid: Specify the SID of the group. (required)
         :type sid: str
@@ -3534,7 +3814,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Get Group by SID
 
-        Get Group by SID.
+        ```No Privileges Required``` <br><br>Get Group by SID.
 
         :param sid: Specify the SID of the group. (required)
         :type sid: str
@@ -3669,7 +3949,7 @@ class UserApi:
     ) -> Groups:
         """Get Groups.
 
-        Get groups on the Cohesity cluster.
+        ```No Privileges Required``` <br><br>Get groups on the Cohesity cluster.
 
         :param names: Specifies a list of group names to filter.
         :type names: List[str]
@@ -3760,7 +4040,7 @@ class UserApi:
     ) -> ApiResponse[Groups]:
         """Get Groups.
 
-        Get groups on the Cohesity cluster.
+        ```No Privileges Required``` <br><br>Get groups on the Cohesity cluster.
 
         :param names: Specifies a list of group names to filter.
         :type names: List[str]
@@ -3851,7 +4131,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Get Groups.
 
-        Get groups on the Cohesity cluster.
+        ```No Privileges Required``` <br><br>Get groups on the Cohesity cluster.
 
         :param names: Specifies a list of group names to filter.
         :type names: List[str]
@@ -4034,7 +4314,7 @@ class UserApi:
     ) -> AssignedSources:
         """Fetch sources & views assigned to a user/group.
 
-        Fetches all the sources assigned to a principal.
+        ```No Privileges Required``` <br><br>Fetches all the sources assigned to a principal.
 
         :param sid: Specify the SID of the principal. (required)
         :type sid: str
@@ -4101,7 +4381,7 @@ class UserApi:
     ) -> ApiResponse[AssignedSources]:
         """Fetch sources & views assigned to a user/group.
 
-        Fetches all the sources assigned to a principal.
+        ```No Privileges Required``` <br><br>Fetches all the sources assigned to a principal.
 
         :param sid: Specify the SID of the principal. (required)
         :type sid: str
@@ -4168,7 +4448,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Fetch sources & views assigned to a user/group.
 
-        Fetches all the sources assigned to a principal.
+        ```No Privileges Required``` <br><br>Fetches all the sources assigned to a principal.
 
         :param sid: Specify the SID of the principal. (required)
         :type sid: str
@@ -4297,7 +4577,7 @@ class UserApi:
     ) -> SecurityPrincipals:
         """Get Security Principals.
 
-        Get Security Principals
+        **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Security Principals
 
         :param sids: Specifies a list of SIDs. (required)
         :type sids: List[str]
@@ -4364,7 +4644,7 @@ class UserApi:
     ) -> ApiResponse[SecurityPrincipals]:
         """Get Security Principals.
 
-        Get Security Principals
+        **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Security Principals
 
         :param sids: Specifies a list of SIDs. (required)
         :type sids: List[str]
@@ -4431,7 +4711,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Get Security Principals.
 
-        Get Security Principals
+        **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Security Principals
 
         :param sids: Specifies a list of SIDs. (required)
         :type sids: List[str]
@@ -4564,7 +4844,7 @@ class UserApi:
     ) -> UserAPIKey:
         """Get the API key by id.
 
-        Get the API key by id.
+        ```No Privileges Required``` <br><br>Get the API key by id.
 
         :param id: Specify the id of the API key. (required)
         :type id: str
@@ -4635,7 +4915,7 @@ class UserApi:
     ) -> ApiResponse[UserAPIKey]:
         """Get the API key by id.
 
-        Get the API key by id.
+        ```No Privileges Required``` <br><br>Get the API key by id.
 
         :param id: Specify the id of the API key. (required)
         :type id: str
@@ -4706,7 +4986,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Get the API key by id.
 
-        Get the API key by id.
+        ```No Privileges Required``` <br><br>Get the API key by id.
 
         :param id: Specify the id of the API key. (required)
         :type id: str
@@ -4844,7 +5124,7 @@ class UserApi:
     ) -> UserAPIKeys:
         """Get the list of API keys owned by the user.
 
-        Returns the list of API keys owned by the user. For security reasons there is no way to retrieve the key itself after it's created.
+        ```No Privileges Required``` <br><br>Returns the list of API keys owned by the user. For security reasons there is no way to retrieve the key itself after it's created.
 
         :param user_sid: Specify the SID of the API key owner. (required)
         :type user_sid: str
@@ -4923,7 +5203,7 @@ class UserApi:
     ) -> ApiResponse[UserAPIKeys]:
         """Get the list of API keys owned by the user.
 
-        Returns the list of API keys owned by the user. For security reasons there is no way to retrieve the key itself after it's created.
+        ```No Privileges Required``` <br><br>Returns the list of API keys owned by the user. For security reasons there is no way to retrieve the key itself after it's created.
 
         :param user_sid: Specify the SID of the API key owner. (required)
         :type user_sid: str
@@ -5002,7 +5282,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Get the list of API keys owned by the user.
 
-        Returns the list of API keys owned by the user. For security reasons there is no way to retrieve the key itself after it's created.
+        ```No Privileges Required``` <br><br>Returns the list of API keys owned by the user. For security reasons there is no way to retrieve the key itself after it's created.
 
         :param user_sid: Specify the SID of the API key owner. (required)
         :type user_sid: str
@@ -5156,7 +5436,7 @@ class UserApi:
     ) -> UserParams:
         """Get User by SID.
 
-        Get User by SID.
+        ```No Privileges Required``` <br><br>Get User by SID.
 
         :param sid: Specify the SID of the user. (required)
         :type sid: str
@@ -5223,7 +5503,7 @@ class UserApi:
     ) -> ApiResponse[UserParams]:
         """Get User by SID.
 
-        Get User by SID.
+        ```No Privileges Required``` <br><br>Get User by SID.
 
         :param sid: Specify the SID of the user. (required)
         :type sid: str
@@ -5290,7 +5570,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Get User by SID.
 
-        Get User by SID.
+        ```No Privileges Required``` <br><br>Get User by SID.
 
         :param sid: Specify the SID of the user. (required)
         :type sid: str
@@ -5401,6 +5681,303 @@ class UserApi:
 
 
     @validate_call
+    def get_user_task_notifications(
+        self,
+        sid: Annotated[StrictStr, Field(description="Specify the SID of the user.")],
+        include_count: Annotated[Optional[StrictBool], Field(description="Specifies whether the notification count is needed or not.")] = None,
+        exclude_event_logs: Annotated[Optional[StrictBool], Field(description="Specifies whether to exclude event logs within the response.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetUserTaskNotificationsResponseObject:
+        """Get task notifications for the given user.
+
+        **Privileges:** ```CLUSTER_VIEW, TENANT_VIEW``` <br><br>Get task notifications for the given user.
+
+        :param sid: Specify the SID of the user. (required)
+        :type sid: str
+        :param include_count: Specifies whether the notification count is needed or not.
+        :type include_count: bool
+        :param exclude_event_logs: Specifies whether to exclude event logs within the response.
+        :type exclude_event_logs: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_user_task_notifications_serialize(
+            sid=sid,
+            include_count=include_count,
+            exclude_event_logs=exclude_event_logs,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetUserTaskNotificationsResponseObject",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_user_task_notifications_with_http_info(
+        self,
+        sid: Annotated[StrictStr, Field(description="Specify the SID of the user.")],
+        include_count: Annotated[Optional[StrictBool], Field(description="Specifies whether the notification count is needed or not.")] = None,
+        exclude_event_logs: Annotated[Optional[StrictBool], Field(description="Specifies whether to exclude event logs within the response.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetUserTaskNotificationsResponseObject]:
+        """Get task notifications for the given user.
+
+        **Privileges:** ```CLUSTER_VIEW, TENANT_VIEW``` <br><br>Get task notifications for the given user.
+
+        :param sid: Specify the SID of the user. (required)
+        :type sid: str
+        :param include_count: Specifies whether the notification count is needed or not.
+        :type include_count: bool
+        :param exclude_event_logs: Specifies whether to exclude event logs within the response.
+        :type exclude_event_logs: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_user_task_notifications_serialize(
+            sid=sid,
+            include_count=include_count,
+            exclude_event_logs=exclude_event_logs,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetUserTaskNotificationsResponseObject",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_user_task_notifications_without_preload_content(
+        self,
+        sid: Annotated[StrictStr, Field(description="Specify the SID of the user.")],
+        include_count: Annotated[Optional[StrictBool], Field(description="Specifies whether the notification count is needed or not.")] = None,
+        exclude_event_logs: Annotated[Optional[StrictBool], Field(description="Specifies whether to exclude event logs within the response.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get task notifications for the given user.
+
+        **Privileges:** ```CLUSTER_VIEW, TENANT_VIEW``` <br><br>Get task notifications for the given user.
+
+        :param sid: Specify the SID of the user. (required)
+        :type sid: str
+        :param include_count: Specifies whether the notification count is needed or not.
+        :type include_count: bool
+        :param exclude_event_logs: Specifies whether to exclude event logs within the response.
+        :type exclude_event_logs: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_user_task_notifications_serialize(
+            sid=sid,
+            include_count=include_count,
+            exclude_event_logs=exclude_event_logs,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetUserTaskNotificationsResponseObject",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_user_task_notifications_serialize(
+        self,
+        sid,
+        include_count,
+        exclude_event_logs,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if sid is not None:
+            _path_params['sid'] = sid
+        # process the query parameters
+        if include_count is not None:
+            
+            _query_params.append(('includeCount', include_count))
+            
+        if exclude_event_logs is not None:
+            
+            _query_params.append(('excludeEventLogs', exclude_event_logs))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/users/{sid}/notifications',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_users(
         self,
         domain: Annotated[Optional[StrictStr], Field(description="Specifies the user domain to filter.")] = None,
@@ -5426,7 +6003,7 @@ class UserApi:
     ) -> UsersList:
         """Get Users.
 
-        Get Users.
+        ```No Privileges Required``` <br><br>Get Users.
 
         :param domain: Specifies the user domain to filter.
         :type domain: str
@@ -5521,7 +6098,7 @@ class UserApi:
     ) -> ApiResponse[UsersList]:
         """Get Users.
 
-        Get Users.
+        ```No Privileges Required``` <br><br>Get Users.
 
         :param domain: Specifies the user domain to filter.
         :type domain: str
@@ -5616,7 +6193,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Get Users.
 
-        Get Users.
+        ```No Privileges Required``` <br><br>Get Users.
 
         :param domain: Specifies the user domain to filter.
         :type domain: str
@@ -5808,7 +6385,7 @@ class UserApi:
     ) -> SecretKeyEntity:
         """Reset S3 secret access key
 
-        Reset the S3 secret access key for the specified user on the Cohesity Cluster. Admin users who have the Manage Users privilege can generate keys for other users. When generating a new key, anyone using the old key will lose access until they retrieve and use the newly generated key. The user must have the following privilege to access this endpoint, 'Manage S3 Keys'.
+        ```No Privileges Required``` <br><br>Reset the S3 secret access key for the specified user on the Cohesity Cluster. Admin users who have the Manage Users privilege can generate keys for other users. When generating a new key, anyone using the old key will lose access until they retrieve and use the newly generated key. The user must have the following privilege to access this endpoint, 'Manage S3 Keys'.
 
         :param sid: Specify the SID of the user. (required)
         :type sid: str
@@ -5875,7 +6452,7 @@ class UserApi:
     ) -> ApiResponse[SecretKeyEntity]:
         """Reset S3 secret access key
 
-        Reset the S3 secret access key for the specified user on the Cohesity Cluster. Admin users who have the Manage Users privilege can generate keys for other users. When generating a new key, anyone using the old key will lose access until they retrieve and use the newly generated key. The user must have the following privilege to access this endpoint, 'Manage S3 Keys'.
+        ```No Privileges Required``` <br><br>Reset the S3 secret access key for the specified user on the Cohesity Cluster. Admin users who have the Manage Users privilege can generate keys for other users. When generating a new key, anyone using the old key will lose access until they retrieve and use the newly generated key. The user must have the following privilege to access this endpoint, 'Manage S3 Keys'.
 
         :param sid: Specify the SID of the user. (required)
         :type sid: str
@@ -5942,7 +6519,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Reset S3 secret access key
 
-        Reset the S3 secret access key for the specified user on the Cohesity Cluster. Admin users who have the Manage Users privilege can generate keys for other users. When generating a new key, anyone using the old key will lose access until they retrieve and use the newly generated key. The user must have the following privilege to access this endpoint, 'Manage S3 Keys'.
+        ```No Privileges Required``` <br><br>Reset the S3 secret access key for the specified user on the Cohesity Cluster. Admin users who have the Manage Users privilege can generate keys for other users. When generating a new key, anyone using the old key will lose access until they retrieve and use the newly generated key. The user must have the following privilege to access this endpoint, 'Manage S3 Keys'.
 
         :param sid: Specify the SID of the user. (required)
         :type sid: str
@@ -6072,7 +6649,7 @@ class UserApi:
     ) -> CreatedUserAPIKey:
         """Refresh an existing user API key.
 
-        Refresh an existing user API key.
+        ```No Privileges Required``` <br><br>Refresh an existing user API key.
 
         :param user_sid: Specify the SID of the API key owner. (required)
         :type user_sid: str
@@ -6143,7 +6720,7 @@ class UserApi:
     ) -> ApiResponse[CreatedUserAPIKey]:
         """Refresh an existing user API key.
 
-        Refresh an existing user API key.
+        ```No Privileges Required``` <br><br>Refresh an existing user API key.
 
         :param user_sid: Specify the SID of the API key owner. (required)
         :type user_sid: str
@@ -6214,7 +6791,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Refresh an existing user API key.
 
-        Refresh an existing user API key.
+        ```No Privileges Required``` <br><br>Refresh an existing user API key.
 
         :param user_sid: Specify the SID of the API key owner. (required)
         :type user_sid: str
@@ -6350,7 +6927,7 @@ class UserApi:
     ) -> GroupParams:
         """Update Group
 
-        Only group settings on the Cohesity Cluster are updated. No changes are made to the referenced group principal on the Active Directory/IdP.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Only group settings on the Cohesity Cluster are updated. No changes are made to the referenced group principal on the Active Directory/IdP.
 
         :param sid: Specify the SID of the group. (required)
         :type sid: str
@@ -6421,7 +6998,7 @@ class UserApi:
     ) -> ApiResponse[GroupParams]:
         """Update Group
 
-        Only group settings on the Cohesity Cluster are updated. No changes are made to the referenced group principal on the Active Directory/IdP.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Only group settings on the Cohesity Cluster are updated. No changes are made to the referenced group principal on the Active Directory/IdP.
 
         :param sid: Specify the SID of the group. (required)
         :type sid: str
@@ -6492,7 +7069,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Update Group
 
-        Only group settings on the Cohesity Cluster are updated. No changes are made to the referenced group principal on the Active Directory/IdP.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Only group settings on the Cohesity Cluster are updated. No changes are made to the referenced group principal on the Active Directory/IdP.
 
         :param sid: Specify the SID of the group. (required)
         :type sid: str
@@ -6622,6 +7199,282 @@ class UserApi:
 
 
     @validate_call
+    def update_linux_credentials_v2(
+        self,
+        body: Annotated[UpdateLinuxPasswordRequest, Field(description="Specifies the linux user parameters.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> SuccessResp:
+        """Update or validate linux user password.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update or validate linux user password.
+
+        :param body: Specifies the linux user parameters. (required)
+        :type body: UpdateLinuxPasswordRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_linux_credentials_v2_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '202': "SuccessResp",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_linux_credentials_v2_with_http_info(
+        self,
+        body: Annotated[UpdateLinuxPasswordRequest, Field(description="Specifies the linux user parameters.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[SuccessResp]:
+        """Update or validate linux user password.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update or validate linux user password.
+
+        :param body: Specifies the linux user parameters. (required)
+        :type body: UpdateLinuxPasswordRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_linux_credentials_v2_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '202': "SuccessResp",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_linux_credentials_v2_without_preload_content(
+        self,
+        body: Annotated[UpdateLinuxPasswordRequest, Field(description="Specifies the linux user parameters.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update or validate linux user password.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update or validate linux user password.
+
+        :param body: Specifies the linux user parameters. (required)
+        :type body: UpdateLinuxPasswordRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_linux_credentials_v2_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '202': "SuccessResp",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_linux_credentials_v2_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/users/linux-password',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def update_principal_sources(
         self,
         sid: Annotated[StrictStr, Field(description="Specify the SID of the principal.")],
@@ -6641,7 +7494,7 @@ class UserApi:
     ) -> AssignedSources:
         """Update protection sources assigned to a user/group.
 
-        Update protection sources assigned to a user/group.
+        ```No Privileges Required``` <br><br>Update protection sources assigned to a user/group.
 
         :param sid: Specify the SID of the principal. (required)
         :type sid: str
@@ -6712,7 +7565,7 @@ class UserApi:
     ) -> ApiResponse[AssignedSources]:
         """Update protection sources assigned to a user/group.
 
-        Update protection sources assigned to a user/group.
+        ```No Privileges Required``` <br><br>Update protection sources assigned to a user/group.
 
         :param sid: Specify the SID of the principal. (required)
         :type sid: str
@@ -6783,7 +7636,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Update protection sources assigned to a user/group.
 
-        Update protection sources assigned to a user/group.
+        ```No Privileges Required``` <br><br>Update protection sources assigned to a user/group.
 
         :param sid: Specify the SID of the principal. (required)
         :type sid: str
@@ -6932,7 +7785,7 @@ class UserApi:
     ) -> UserParams:
         """Update User information.
 
-        Update an existing user on the Cohesity Cluster. Only user settings on the Cohesity Cluster are updated. No changes are made to the referenced user principal on the Active Directory/IdP.
+        ```No Privileges Required``` <br><br>Update an existing user on the Cohesity Cluster. Only user settings on the Cohesity Cluster are updated. No changes are made to the referenced user principal on the Active Directory/IdP.
 
         :param sid: Specify the SID of the user. (required)
         :type sid: str
@@ -7003,7 +7856,7 @@ class UserApi:
     ) -> ApiResponse[UserParams]:
         """Update User information.
 
-        Update an existing user on the Cohesity Cluster. Only user settings on the Cohesity Cluster are updated. No changes are made to the referenced user principal on the Active Directory/IdP.
+        ```No Privileges Required``` <br><br>Update an existing user on the Cohesity Cluster. Only user settings on the Cohesity Cluster are updated. No changes are made to the referenced user principal on the Active Directory/IdP.
 
         :param sid: Specify the SID of the user. (required)
         :type sid: str
@@ -7074,7 +7927,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Update User information.
 
-        Update an existing user on the Cohesity Cluster. Only user settings on the Cohesity Cluster are updated. No changes are made to the referenced user principal on the Active Directory/IdP.
+        ```No Privileges Required``` <br><br>Update an existing user on the Cohesity Cluster. Only user settings on the Cohesity Cluster are updated. No changes are made to the referenced user principal on the Active Directory/IdP.
 
         :param sid: Specify the SID of the user. (required)
         :type sid: str
@@ -7224,7 +8077,7 @@ class UserApi:
     ) -> UserAPIKey:
         """Update a user API key.
 
-        Update a user API key.
+        ```No Privileges Required``` <br><br>Update a user API key.
 
         :param id: Specify the id of the API key. (required)
         :type id: str
@@ -7299,7 +8152,7 @@ class UserApi:
     ) -> ApiResponse[UserAPIKey]:
         """Update a user API key.
 
-        Update a user API key.
+        ```No Privileges Required``` <br><br>Update a user API key.
 
         :param id: Specify the id of the API key. (required)
         :type id: str
@@ -7374,7 +8227,7 @@ class UserApi:
     ) -> RESTResponseType:
         """Update a user API key.
 
-        Update a user API key.
+        ```No Privileges Required``` <br><br>Update a user API key.
 
         :param id: Specify the id of the API key. (required)
         :type id: str
@@ -7494,6 +8347,573 @@ class UserApi:
         return self.api_client.param_serialize(
             method='PUT',
             resource_path='/users/{userSid}/api-keys/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_user_s3_keys(
+        self,
+        sid: Annotated[StrictStr, Field(description="Specify the SID of the user.")],
+        body: Annotated[S3Keys, Field(description="Specifies the body to update the User S3 Keys")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Update S3 keys for a User
+
+        ```No Privileges Required``` <br><br>Update the S3 Access/Secret Keys for a User on the Cohesity Cluster.
+
+        :param sid: Specify the SID of the user. (required)
+        :type sid: str
+        :param body: Specifies the body to update the User S3 Keys (required)
+        :type body: S3Keys
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_user_s3_keys_serialize(
+            sid=sid,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_user_s3_keys_with_http_info(
+        self,
+        sid: Annotated[StrictStr, Field(description="Specify the SID of the user.")],
+        body: Annotated[S3Keys, Field(description="Specifies the body to update the User S3 Keys")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Update S3 keys for a User
+
+        ```No Privileges Required``` <br><br>Update the S3 Access/Secret Keys for a User on the Cohesity Cluster.
+
+        :param sid: Specify the SID of the user. (required)
+        :type sid: str
+        :param body: Specifies the body to update the User S3 Keys (required)
+        :type body: S3Keys
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_user_s3_keys_serialize(
+            sid=sid,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_user_s3_keys_without_preload_content(
+        self,
+        sid: Annotated[StrictStr, Field(description="Specify the SID of the user.")],
+        body: Annotated[S3Keys, Field(description="Specifies the body to update the User S3 Keys")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update S3 keys for a User
+
+        ```No Privileges Required``` <br><br>Update the S3 Access/Secret Keys for a User on the Cohesity Cluster.
+
+        :param sid: Specify the SID of the user. (required)
+        :type sid: str
+        :param body: Specifies the body to update the User S3 Keys (required)
+        :type body: S3Keys
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_user_s3_keys_serialize(
+            sid=sid,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_user_s3_keys_serialize(
+        self,
+        sid,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if sid is not None:
+            _path_params['sid'] = sid
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/users/{sid}/update-s3-keys',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def verify_user_otp(
+        self,
+        body: Annotated[UserOtpParams, Field(description="Request to verify OTP.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UserOtpResponseObject:
+        """Verify the OTP for a user.
+
+        ```No Privileges Required``` <br><br>Returns the user info if the otp verification is successful.
+
+        :param body: Request to verify OTP. (required)
+        :type body: UserOtpParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._verify_user_otp_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UserOtpResponseObject",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def verify_user_otp_with_http_info(
+        self,
+        body: Annotated[UserOtpParams, Field(description="Request to verify OTP.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UserOtpResponseObject]:
+        """Verify the OTP for a user.
+
+        ```No Privileges Required``` <br><br>Returns the user info if the otp verification is successful.
+
+        :param body: Request to verify OTP. (required)
+        :type body: UserOtpParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._verify_user_otp_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UserOtpResponseObject",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def verify_user_otp_without_preload_content(
+        self,
+        body: Annotated[UserOtpParams, Field(description="Request to verify OTP.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Verify the OTP for a user.
+
+        ```No Privileges Required``` <br><br>Returns the user info if the otp verification is successful.
+
+        :param body: Request to verify OTP. (required)
+        :type body: UserOtpParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._verify_user_otp_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UserOtpResponseObject",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _verify_user_otp_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/users/verify-otp',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

@@ -7,7 +7,7 @@ Specifies the network config parameters to applied for Acropolis VMs.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **detach_network** | **bool** | If this is set to true, then the network will be detached from the recovered VMs. All the other networking parameters set will be ignored if set to true. Default value is false. | [optional] 
-**network_port_group** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | [optional] 
+**new_network_config** | [**RecoverAcropolisVmNewNetworkConfig**](RecoverAcropolisVmNewNetworkConfig.md) |  | [optional] 
 
 ## Example
 

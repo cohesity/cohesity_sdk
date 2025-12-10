@@ -17,10 +17,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
-from cohesity_sdk.cluster.models.cluster_create_node_params import ClusterCreateNodeParams
+from cohesity_sdk.cluster.models.encryption_configuration_params import EncryptionConfigurationParams
+from cohesity_sdk.cluster.models.node_config_params import NodeConfigParams
 from typing import Set
 from typing_extensions import Self
 
@@ -28,8 +28,19 @@ class ClusterCreateVirtualParams(BaseModel):
     """
     Params for Virtual Edition Cluster Creation
     """ # noqa: E501
-    nodes: Optional[Annotated[List[ClusterCreateNodeParams], Field(min_length=1)]] = None
-    __properties: ClassVar[List[str]] = ["nodes"]
+    allow_api_based_fetch: Optional[StrictBool] = Field(default=None, description="Specifies if API based GET should be enabled for cluster destroy params", alias="allowApiBasedFetch")
+    apps_subnet_ip: Optional[StrictStr] = Field(default=None, description="Specifies the IP for apps subnet", alias="appsSubnetIp")
+    apps_subnet_ip_v6: Optional[StrictStr] = Field(default=None, description="Specifies the IPv6 for apps subnet", alias="appsSubnetIpV6")
+    apps_subnet_mask: Optional[StrictStr] = Field(default=None, description="Specifies the Mask for apps subnet", alias="appsSubnetMask")
+    apps_subnet_mask_v6: Optional[StrictStr] = Field(default=None, description="Specifies the MaskV6 for apps subnet", alias="appsSubnetMaskV6")
+    cluster_destroy_hmac_key: Optional[StrictStr] = Field(default=None, description="Specifies HMAC secret key that will be used to validate OTP used for destroy request", alias="clusterDestroyHmacKey")
+    enable_cluster_destroy: Optional[StrictBool] = Field(default=None, description="Specifies if cluster destroy op is enabled on this cluster", alias="enableClusterDestroy")
+    encryption_config: Optional[EncryptionConfigurationParams] = Field(default=None, alias="encryptionConfig")
+    ip_preference: Optional[StrictInt] = Field(default=None, description="Specifies IP preference", alias="ipPreference")
+    metadata_fault_tolerance: Optional[StrictInt] = Field(default=None, description="Specifies the metadata fault tolerance.", alias="metadataFaultTolerance")
+    node_configs: Optional[List[NodeConfigParams]] = Field(default=None, description="Configuration of the nodes.", alias="nodeConfigs")
+    trust_domain: Optional[StrictStr] = Field(default=None, description="Specifies Trust Domain used for Service Identity", alias="trustDomain")
+    __properties: ClassVar[List[str]] = ["allowApiBasedFetch", "appsSubnetIp", "appsSubnetIpV6", "appsSubnetMask", "appsSubnetMaskV6", "clusterDestroyHmacKey", "enableClusterDestroy", "encryptionConfig", "ipPreference", "metadataFaultTolerance", "nodeConfigs", "trustDomain"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,13 +81,66 @@ class ClusterCreateVirtualParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in nodes (list)
+        # override the default output from pydantic by calling `to_dict()` of encryption_config
+        if self.encryption_config:
+            _dict['encryptionConfig'] = self.encryption_config.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in node_configs (list)
         _items = []
-        if self.nodes:
-            for _item_nodes in self.nodes:
-                if _item_nodes:
-                    _items.append(_item_nodes.to_dict())
-            _dict['nodes'] = _items
+        if self.node_configs:
+            for _item_node_configs in self.node_configs:
+                if _item_node_configs:
+                    _items.append(_item_node_configs.to_dict())
+            _dict['nodeConfigs'] = _items
+        # set to None if allow_api_based_fetch (nullable) is None
+        # and model_fields_set contains the field
+        if self.allow_api_based_fetch is None and "allow_api_based_fetch" in self.model_fields_set:
+            _dict['allowApiBasedFetch'] = None
+
+        # set to None if apps_subnet_ip (nullable) is None
+        # and model_fields_set contains the field
+        if self.apps_subnet_ip is None and "apps_subnet_ip" in self.model_fields_set:
+            _dict['appsSubnetIp'] = None
+
+        # set to None if apps_subnet_ip_v6 (nullable) is None
+        # and model_fields_set contains the field
+        if self.apps_subnet_ip_v6 is None and "apps_subnet_ip_v6" in self.model_fields_set:
+            _dict['appsSubnetIpV6'] = None
+
+        # set to None if apps_subnet_mask (nullable) is None
+        # and model_fields_set contains the field
+        if self.apps_subnet_mask is None and "apps_subnet_mask" in self.model_fields_set:
+            _dict['appsSubnetMask'] = None
+
+        # set to None if apps_subnet_mask_v6 (nullable) is None
+        # and model_fields_set contains the field
+        if self.apps_subnet_mask_v6 is None and "apps_subnet_mask_v6" in self.model_fields_set:
+            _dict['appsSubnetMaskV6'] = None
+
+        # set to None if cluster_destroy_hmac_key (nullable) is None
+        # and model_fields_set contains the field
+        if self.cluster_destroy_hmac_key is None and "cluster_destroy_hmac_key" in self.model_fields_set:
+            _dict['clusterDestroyHmacKey'] = None
+
+        # set to None if enable_cluster_destroy (nullable) is None
+        # and model_fields_set contains the field
+        if self.enable_cluster_destroy is None and "enable_cluster_destroy" in self.model_fields_set:
+            _dict['enableClusterDestroy'] = None
+
+        # set to None if ip_preference (nullable) is None
+        # and model_fields_set contains the field
+        if self.ip_preference is None and "ip_preference" in self.model_fields_set:
+            _dict['ipPreference'] = None
+
+        # set to None if metadata_fault_tolerance (nullable) is None
+        # and model_fields_set contains the field
+        if self.metadata_fault_tolerance is None and "metadata_fault_tolerance" in self.model_fields_set:
+            _dict['metadataFaultTolerance'] = None
+
+        # set to None if trust_domain (nullable) is None
+        # and model_fields_set contains the field
+        if self.trust_domain is None and "trust_domain" in self.model_fields_set:
+            _dict['trustDomain'] = None
+
         return _dict
 
     @classmethod
@@ -89,7 +153,18 @@ class ClusterCreateVirtualParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "nodes": [ClusterCreateNodeParams.from_dict(_item) for _item in obj["nodes"]] if obj.get("nodes") is not None else None
+            "allowApiBasedFetch": obj.get("allowApiBasedFetch"),
+            "appsSubnetIp": obj.get("appsSubnetIp"),
+            "appsSubnetIpV6": obj.get("appsSubnetIpV6"),
+            "appsSubnetMask": obj.get("appsSubnetMask"),
+            "appsSubnetMaskV6": obj.get("appsSubnetMaskV6"),
+            "clusterDestroyHmacKey": obj.get("clusterDestroyHmacKey"),
+            "enableClusterDestroy": obj.get("enableClusterDestroy"),
+            "encryptionConfig": EncryptionConfigurationParams.from_dict(obj["encryptionConfig"]) if obj.get("encryptionConfig") is not None else None,
+            "ipPreference": obj.get("ipPreference"),
+            "metadataFaultTolerance": obj.get("metadataFaultTolerance"),
+            "nodeConfigs": [NodeConfigParams.from_dict(_item) for _item in obj["nodeConfigs"]] if obj.get("nodeConfigs") is not None else None,
+            "trustDomain": obj.get("trustDomain")
         })
         return _obj
 

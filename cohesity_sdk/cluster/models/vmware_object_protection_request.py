@@ -28,10 +28,11 @@ class VmwareObjectProtectionRequest(BaseModel):
     Specifies the VMware object level settings for object protection.
     """ # noqa: E501
     exclude_disks: Optional[List[DiskInfo]] = Field(default=None, description="Specifies a list of disks to exclude from being protected. This is only applicable to VM objects.", alias="excludeDisks")
+    include_disks: Optional[List[DiskInfo]] = Field(default=None, description="Specifies a list of disks to be protected. This is only applicable to VM objects.", alias="includeDisks")
     truncate_exchange_logs: Optional[StrictBool] = Field(default=None, description="Specifies whether or not to truncate MS Exchange logs while taking an app consistent snapshot of this object. This is only applicable to objects which have a registered MS Exchange app.", alias="truncateExchangeLogs")
     exclude_object_ids: Optional[List[Optional[StrictInt]]] = Field(default=None, description="Specifies the list of IDs of the objects to not be protected in this backup. This field only applies if provided object id is non leaf entity such as Tag or a folder. This can be used to ignore specific objects under a parent object which has been included for protection.", alias="excludeObjectIds")
     id: Optional[StrictInt] = Field(description="Specifies the id of the object being protected. This can be a leaf level or non leaf level object.")
-    __properties: ClassVar[List[str]] = ["excludeDisks", "truncateExchangeLogs", "excludeObjectIds", "id"]
+    __properties: ClassVar[List[str]] = ["excludeDisks", "includeDisks", "truncateExchangeLogs", "excludeObjectIds", "id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,6 +80,13 @@ class VmwareObjectProtectionRequest(BaseModel):
                 if _item_exclude_disks:
                     _items.append(_item_exclude_disks.to_dict())
             _dict['excludeDisks'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in include_disks (list)
+        _items = []
+        if self.include_disks:
+            for _item_include_disks in self.include_disks:
+                if _item_include_disks:
+                    _items.append(_item_include_disks.to_dict())
+            _dict['includeDisks'] = _items
         # set to None if truncate_exchange_logs (nullable) is None
         # and model_fields_set contains the field
         if self.truncate_exchange_logs is None and "truncate_exchange_logs" in self.model_fields_set:
@@ -102,6 +110,7 @@ class VmwareObjectProtectionRequest(BaseModel):
 
         _obj = cls.model_validate({
             "excludeDisks": [DiskInfo.from_dict(_item) for _item in obj["excludeDisks"]] if obj.get("excludeDisks") is not None else None,
+            "includeDisks": [DiskInfo.from_dict(_item) for _item in obj["includeDisks"]] if obj.get("includeDisks") is not None else None,
             "truncateExchangeLogs": obj.get("truncateExchangeLogs"),
             "excludeObjectIds": obj.get("excludeObjectIds"),
             "id": obj.get("id")

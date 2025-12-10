@@ -7,6 +7,7 @@ Result to store meta-info from an object snapshot and additional information.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **environment** | **str** | Specifies the environment type for fetching the meta Info. | [optional] 
+**kubernetes_params** | [**KubernetesResourceMetaInfoResult**](KubernetesResourceMetaInfoResult.md) |  | [optional] 
 **oracle_params** | [**OracleRestoreMetaInfoResult**](OracleRestoreMetaInfoResult.md) |  | [optional] 
 **sfdc_params** | [**SfdcMetaInfoResult**](SfdcMetaInfoResult.md) |  | [optional] 
 

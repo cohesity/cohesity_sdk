@@ -44,8 +44,8 @@ class ObjectArchivalSnapshotInfo(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Local', 'FortKnox']):
-            raise ValueError("must be one of enum values ('Local', 'FortKnox')")
+        if value not in set(['Local', 'FortKnox', 'FortKnoxOnprem']):
+            raise ValueError("must be one of enum values ('Local', 'FortKnox', 'FortKnoxOnprem')")
         return value
 
     @field_validator('target_type')

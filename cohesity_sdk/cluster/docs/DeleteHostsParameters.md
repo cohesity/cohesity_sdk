@@ -6,6 +6,7 @@ Specifies the params for deleting hosts
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**domain_names** | **List[str]** | Specifies the list of domain names to be deleted | [optional] 
 **ips** | **List[str]** | Specifies the list of IPs to be deleted | [optional] 
 
 ## Example

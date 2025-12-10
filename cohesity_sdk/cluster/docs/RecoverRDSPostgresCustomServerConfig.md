@@ -1,14 +1,15 @@
 # RecoverRDSPostgresCustomServerConfig
 
-Specifies the configuration for recovering RDS Postgres instance to the known target.
+Specifies the configuration for recovering RDS Objects to the custom target.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ip** | **str** | Specifies the Ip in which to deploy the Rds instance. | 
+**ip** | **str** | Specifies the Ip in which to deploy the Rds objects. | 
 **port** | **int** | Specifies the port to use to connect to the server. | 
 **region** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | 
+**source** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | [optional] 
 **standard_credentials** | [**Credentials**](Credentials.md) |  | 
 
 ## Example

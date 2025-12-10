@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Perform Actions on Protect Objects.
 
-Perform actions on Protected Objects.
+**Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Perform actions on Protected Objects.
 
 ### Example
 
@@ -109,7 +109,7 @@ Name | Type | Description  | Notes
 
 Create Object Backup.
 
-Create Protect Objects Backup.
+**Privileges:** ```PROTECTION_MODIFY``` <br><br>Create Protect Objects Backup.
 
 ### Example
 
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 
 Update Object Backup.
 
-Update Protected object backup configuration given a object id.
+**Privileges:** ```PROTECTION_MODIFY``` <br><br>Update Protected object backup configuration given a object id.
 
 ### Example
 

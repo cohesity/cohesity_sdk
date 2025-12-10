@@ -57,7 +57,7 @@ class ProtectionGroupApi:
     def create_mcm_protection_group(
         self,
         body: Annotated[CreateOrUpdateProtectionGroupRequest, Field(description="Specifies the parameters to create a Protection Group.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -77,7 +77,7 @@ class ProtectionGroupApi:
 
         :param body: Specifies the parameters to create a Protection Group. (required)
         :type body: CreateOrUpdateProtectionGroupRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -128,7 +128,7 @@ class ProtectionGroupApi:
     def create_mcm_protection_group_with_http_info(
         self,
         body: Annotated[CreateOrUpdateProtectionGroupRequest, Field(description="Specifies the parameters to create a Protection Group.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -148,7 +148,7 @@ class ProtectionGroupApi:
 
         :param body: Specifies the parameters to create a Protection Group. (required)
         :type body: CreateOrUpdateProtectionGroupRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -199,7 +199,7 @@ class ProtectionGroupApi:
     def create_mcm_protection_group_without_preload_content(
         self,
         body: Annotated[CreateOrUpdateProtectionGroupRequest, Field(description="Specifies the parameters to create a Protection Group.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -219,7 +219,7 @@ class ProtectionGroupApi:
 
         :param body: Specifies the parameters to create a Protection Group. (required)
         :type body: CreateOrUpdateProtectionGroupRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -346,8 +346,8 @@ class ProtectionGroupApi:
     def create_protection_group(
         self,
         body: Annotated[CreateOrUpdateProtectionGroupRequest, Field(description="Specifies the parameters to create a Protection Group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -367,9 +367,9 @@ class ProtectionGroupApi:
 
         :param body: Specifies the parameters to create a Protection Group. (required)
         :type body: CreateOrUpdateProtectionGroupRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -421,8 +421,8 @@ class ProtectionGroupApi:
     def create_protection_group_with_http_info(
         self,
         body: Annotated[CreateOrUpdateProtectionGroupRequest, Field(description="Specifies the parameters to create a Protection Group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -442,9 +442,9 @@ class ProtectionGroupApi:
 
         :param body: Specifies the parameters to create a Protection Group. (required)
         :type body: CreateOrUpdateProtectionGroupRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -496,8 +496,8 @@ class ProtectionGroupApi:
     def create_protection_group_without_preload_content(
         self,
         body: Annotated[CreateOrUpdateProtectionGroupRequest, Field(description="Specifies the parameters to create a Protection Group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -517,9 +517,9 @@ class ProtectionGroupApi:
 
         :param body: Specifies the parameters to create a Protection Group. (required)
         :type body: CreateOrUpdateProtectionGroupRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -651,8 +651,8 @@ class ProtectionGroupApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
         body: Annotated[CreateProtectionGroupRunRequest, Field(description="Specifies the parameters to start a protection run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -674,9 +674,9 @@ class ProtectionGroupApi:
         :type id: str
         :param body: Specifies the parameters to start a protection run. (required)
         :type body: CreateProtectionGroupRunRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -730,8 +730,8 @@ class ProtectionGroupApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
         body: Annotated[CreateProtectionGroupRunRequest, Field(description="Specifies the parameters to start a protection run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -753,9 +753,9 @@ class ProtectionGroupApi:
         :type id: str
         :param body: Specifies the parameters to start a protection run. (required)
         :type body: CreateProtectionGroupRunRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -809,8 +809,8 @@ class ProtectionGroupApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
         body: Annotated[CreateProtectionGroupRunRequest, Field(description="Specifies the parameters to start a protection run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -832,9 +832,9 @@ class ProtectionGroupApi:
         :type id: str
         :param body: Specifies the parameters to start a protection run. (required)
         :type body: CreateProtectionGroupRunRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -969,8 +969,9 @@ class ProtectionGroupApi:
     def delete_mcm_protection_group(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         delete_snapshots: Annotated[Optional[StrictBool], Field(description="Specifies if Snapshots generated by the Protection Group should also be deleted when the Protection Group is deleted.")] = None,
+        reason: Annotated[Optional[StrictStr], Field(description="Specifies the reason for group deletion with or without snapshots")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -990,10 +991,12 @@ class ProtectionGroupApi:
 
         :param id: Specifies a unique id of the Protection Group. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param delete_snapshots: Specifies if Snapshots generated by the Protection Group should also be deleted when the Protection Group is deleted.
         :type delete_snapshots: bool
+        :param reason: Specifies the reason for group deletion with or without snapshots
+        :type reason: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1018,8 +1021,9 @@ class ProtectionGroupApi:
 
         _param = self._delete_mcm_protection_group_serialize(
             id=id,
-            region_id=region_id,
             delete_snapshots=delete_snapshots,
+            reason=reason,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1044,8 +1048,9 @@ class ProtectionGroupApi:
     def delete_mcm_protection_group_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         delete_snapshots: Annotated[Optional[StrictBool], Field(description="Specifies if Snapshots generated by the Protection Group should also be deleted when the Protection Group is deleted.")] = None,
+        reason: Annotated[Optional[StrictStr], Field(description="Specifies the reason for group deletion with or without snapshots")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1065,10 +1070,12 @@ class ProtectionGroupApi:
 
         :param id: Specifies a unique id of the Protection Group. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param delete_snapshots: Specifies if Snapshots generated by the Protection Group should also be deleted when the Protection Group is deleted.
         :type delete_snapshots: bool
+        :param reason: Specifies the reason for group deletion with or without snapshots
+        :type reason: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1093,8 +1100,9 @@ class ProtectionGroupApi:
 
         _param = self._delete_mcm_protection_group_serialize(
             id=id,
-            region_id=region_id,
             delete_snapshots=delete_snapshots,
+            reason=reason,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1119,8 +1127,9 @@ class ProtectionGroupApi:
     def delete_mcm_protection_group_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         delete_snapshots: Annotated[Optional[StrictBool], Field(description="Specifies if Snapshots generated by the Protection Group should also be deleted when the Protection Group is deleted.")] = None,
+        reason: Annotated[Optional[StrictStr], Field(description="Specifies the reason for group deletion with or without snapshots")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1140,10 +1149,12 @@ class ProtectionGroupApi:
 
         :param id: Specifies a unique id of the Protection Group. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param delete_snapshots: Specifies if Snapshots generated by the Protection Group should also be deleted when the Protection Group is deleted.
         :type delete_snapshots: bool
+        :param reason: Specifies the reason for group deletion with or without snapshots
+        :type reason: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1168,8 +1179,9 @@ class ProtectionGroupApi:
 
         _param = self._delete_mcm_protection_group_serialize(
             id=id,
-            region_id=region_id,
             delete_snapshots=delete_snapshots,
+            reason=reason,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1189,8 +1201,9 @@ class ProtectionGroupApi:
     def _delete_mcm_protection_group_serialize(
         self,
         id,
-        region_id,
         delete_snapshots,
+        reason,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1218,6 +1231,10 @@ class ProtectionGroupApi:
         if delete_snapshots is not None:
             
             _query_params.append(('deleteSnapshots', delete_snapshots))
+            
+        if reason is not None:
+            
+            _query_params.append(('reason', reason))
             
         # process the header parameters
         if region_id is not None:
@@ -1262,9 +1279,10 @@ class ProtectionGroupApi:
     def delete_protection_group(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         delete_snapshots: Annotated[Optional[StrictBool], Field(description="Specifies if Snapshots generated by the Protection Group should also be deleted when the Protection Group is deleted.")] = None,
+        reason: Annotated[Optional[Annotated[str, Field(strict=True, max_length=255)]], Field(description="Specifies the reason for group deletion with or without snapshots")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1284,12 +1302,14 @@ class ProtectionGroupApi:
 
         :param id: Specifies a unique id of the Protection Group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param delete_snapshots: Specifies if Snapshots generated by the Protection Group should also be deleted when the Protection Group is deleted.
         :type delete_snapshots: bool
+        :param reason: Specifies the reason for group deletion with or without snapshots
+        :type reason: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1314,9 +1334,10 @@ class ProtectionGroupApi:
 
         _param = self._delete_protection_group_serialize(
             id=id,
+            delete_snapshots=delete_snapshots,
+            reason=reason,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            delete_snapshots=delete_snapshots,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1341,9 +1362,10 @@ class ProtectionGroupApi:
     def delete_protection_group_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         delete_snapshots: Annotated[Optional[StrictBool], Field(description="Specifies if Snapshots generated by the Protection Group should also be deleted when the Protection Group is deleted.")] = None,
+        reason: Annotated[Optional[Annotated[str, Field(strict=True, max_length=255)]], Field(description="Specifies the reason for group deletion with or without snapshots")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1363,12 +1385,14 @@ class ProtectionGroupApi:
 
         :param id: Specifies a unique id of the Protection Group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param delete_snapshots: Specifies if Snapshots generated by the Protection Group should also be deleted when the Protection Group is deleted.
         :type delete_snapshots: bool
+        :param reason: Specifies the reason for group deletion with or without snapshots
+        :type reason: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1393,9 +1417,10 @@ class ProtectionGroupApi:
 
         _param = self._delete_protection_group_serialize(
             id=id,
+            delete_snapshots=delete_snapshots,
+            reason=reason,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            delete_snapshots=delete_snapshots,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1420,9 +1445,10 @@ class ProtectionGroupApi:
     def delete_protection_group_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         delete_snapshots: Annotated[Optional[StrictBool], Field(description="Specifies if Snapshots generated by the Protection Group should also be deleted when the Protection Group is deleted.")] = None,
+        reason: Annotated[Optional[Annotated[str, Field(strict=True, max_length=255)]], Field(description="Specifies the reason for group deletion with or without snapshots")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1442,12 +1468,14 @@ class ProtectionGroupApi:
 
         :param id: Specifies a unique id of the Protection Group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param delete_snapshots: Specifies if Snapshots generated by the Protection Group should also be deleted when the Protection Group is deleted.
         :type delete_snapshots: bool
+        :param reason: Specifies the reason for group deletion with or without snapshots
+        :type reason: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1472,9 +1500,10 @@ class ProtectionGroupApi:
 
         _param = self._delete_protection_group_serialize(
             id=id,
+            delete_snapshots=delete_snapshots,
+            reason=reason,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            delete_snapshots=delete_snapshots,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1494,9 +1523,10 @@ class ProtectionGroupApi:
     def _delete_protection_group_serialize(
         self,
         id,
+        delete_snapshots,
+        reason,
         access_cluster_id,
         region_id,
-        delete_snapshots,
         _request_auth,
         _content_type,
         _headers,
@@ -1524,6 +1554,10 @@ class ProtectionGroupApi:
         if delete_snapshots is not None:
             
             _query_params.append(('deleteSnapshots', delete_snapshots))
+            
+        if reason is not None:
+            
+            _query_params.append(('reason', reason))
             
         # process the header parameters
         if access_cluster_id is not None:
@@ -1570,9 +1604,9 @@ class ProtectionGroupApi:
     def get_mcm_protection_group_by_id(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         include_last_run_info: Annotated[Optional[StrictBool], Field(description="If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1592,12 +1626,12 @@ class ProtectionGroupApi:
 
         :param id: Specifies a unique id of the Protection Group. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param include_last_run_info: If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.
         :type include_last_run_info: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1622,9 +1656,9 @@ class ProtectionGroupApi:
 
         _param = self._get_mcm_protection_group_by_id_serialize(
             id=id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             include_last_run_info=include_last_run_info,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1649,9 +1683,9 @@ class ProtectionGroupApi:
     def get_mcm_protection_group_by_id_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         include_last_run_info: Annotated[Optional[StrictBool], Field(description="If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1671,12 +1705,12 @@ class ProtectionGroupApi:
 
         :param id: Specifies a unique id of the Protection Group. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param include_last_run_info: If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.
         :type include_last_run_info: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1701,9 +1735,9 @@ class ProtectionGroupApi:
 
         _param = self._get_mcm_protection_group_by_id_serialize(
             id=id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             include_last_run_info=include_last_run_info,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1728,9 +1762,9 @@ class ProtectionGroupApi:
     def get_mcm_protection_group_by_id_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         include_last_run_info: Annotated[Optional[StrictBool], Field(description="If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1750,12 +1784,12 @@ class ProtectionGroupApi:
 
         :param id: Specifies a unique id of the Protection Group. (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param include_last_run_info: If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.
         :type include_last_run_info: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1780,9 +1814,9 @@ class ProtectionGroupApi:
 
         _param = self._get_mcm_protection_group_by_id_serialize(
             id=id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             include_last_run_info=include_last_run_info,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1802,9 +1836,9 @@ class ProtectionGroupApi:
     def _get_mcm_protection_group_by_id_serialize(
         self,
         id,
-        region_id,
         request_initiator_type,
         include_last_run_info,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1834,10 +1868,10 @@ class ProtectionGroupApi:
             _query_params.append(('includeLastRunInfo', include_last_run_info))
             
         # process the header parameters
-        if region_id is not None:
-            _header_params['regionId'] = region_id
         if request_initiator_type is not None:
             _header_params['requestInitiatorType'] = request_initiator_type
+        if region_id is not None:
+            _header_params['regionId'] = region_id
         # process the form parameters
         # process the body parameter
 
@@ -1877,7 +1911,6 @@ class ProtectionGroupApi:
     @validate_call
     def get_mcm_protection_groups(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Protection Group ids.")] = None,
         names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Protection Group names.")] = None,
         policy_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by Policy ids that are associated with Protection Groups. Only Protection Groups associated with the specified Policy ids, are returned.")] = None,
@@ -1888,6 +1921,7 @@ class ProtectionGroupApi:
         last_run_any_status: Annotated[Optional[List[StrictStr]], Field(description="Filter by last any run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. 'Skipped' indicates that the run was skipped.")] = None,
         is_last_run_sla_violated: Annotated[Optional[StrictBool], Field(description="If true, return Protection Groups for which last run SLA was violated.")] = None,
         include_last_run_info: Annotated[Optional[StrictBool], Field(description="If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1905,8 +1939,6 @@ class ProtectionGroupApi:
 
         Get the list of Protection Groups.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter by a list of Protection Group ids.
         :type ids: List[str]
         :param names: Filter by a list of Protection Group names.
@@ -1927,6 +1959,8 @@ class ProtectionGroupApi:
         :type is_last_run_sla_violated: bool
         :param include_last_run_info: If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.
         :type include_last_run_info: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1950,7 +1984,6 @@ class ProtectionGroupApi:
         """ # noqa: E501
 
         _param = self._get_mcm_protection_groups_serialize(
-            region_id=region_id,
             ids=ids,
             names=names,
             policy_ids=policy_ids,
@@ -1961,6 +1994,7 @@ class ProtectionGroupApi:
             last_run_any_status=last_run_any_status,
             is_last_run_sla_violated=is_last_run_sla_violated,
             include_last_run_info=include_last_run_info,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1984,7 +2018,6 @@ class ProtectionGroupApi:
     @validate_call
     def get_mcm_protection_groups_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Protection Group ids.")] = None,
         names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Protection Group names.")] = None,
         policy_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by Policy ids that are associated with Protection Groups. Only Protection Groups associated with the specified Policy ids, are returned.")] = None,
@@ -1995,6 +2028,7 @@ class ProtectionGroupApi:
         last_run_any_status: Annotated[Optional[List[StrictStr]], Field(description="Filter by last any run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. 'Skipped' indicates that the run was skipped.")] = None,
         is_last_run_sla_violated: Annotated[Optional[StrictBool], Field(description="If true, return Protection Groups for which last run SLA was violated.")] = None,
         include_last_run_info: Annotated[Optional[StrictBool], Field(description="If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2012,8 +2046,6 @@ class ProtectionGroupApi:
 
         Get the list of Protection Groups.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter by a list of Protection Group ids.
         :type ids: List[str]
         :param names: Filter by a list of Protection Group names.
@@ -2034,6 +2066,8 @@ class ProtectionGroupApi:
         :type is_last_run_sla_violated: bool
         :param include_last_run_info: If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.
         :type include_last_run_info: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2057,7 +2091,6 @@ class ProtectionGroupApi:
         """ # noqa: E501
 
         _param = self._get_mcm_protection_groups_serialize(
-            region_id=region_id,
             ids=ids,
             names=names,
             policy_ids=policy_ids,
@@ -2068,6 +2101,7 @@ class ProtectionGroupApi:
             last_run_any_status=last_run_any_status,
             is_last_run_sla_violated=is_last_run_sla_violated,
             include_last_run_info=include_last_run_info,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2091,7 +2125,6 @@ class ProtectionGroupApi:
     @validate_call
     def get_mcm_protection_groups_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Protection Group ids.")] = None,
         names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Protection Group names.")] = None,
         policy_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by Policy ids that are associated with Protection Groups. Only Protection Groups associated with the specified Policy ids, are returned.")] = None,
@@ -2102,6 +2135,7 @@ class ProtectionGroupApi:
         last_run_any_status: Annotated[Optional[List[StrictStr]], Field(description="Filter by last any run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. 'Skipped' indicates that the run was skipped.")] = None,
         is_last_run_sla_violated: Annotated[Optional[StrictBool], Field(description="If true, return Protection Groups for which last run SLA was violated.")] = None,
         include_last_run_info: Annotated[Optional[StrictBool], Field(description="If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2119,8 +2153,6 @@ class ProtectionGroupApi:
 
         Get the list of Protection Groups.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter by a list of Protection Group ids.
         :type ids: List[str]
         :param names: Filter by a list of Protection Group names.
@@ -2141,6 +2173,8 @@ class ProtectionGroupApi:
         :type is_last_run_sla_violated: bool
         :param include_last_run_info: If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.
         :type include_last_run_info: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2164,7 +2198,6 @@ class ProtectionGroupApi:
         """ # noqa: E501
 
         _param = self._get_mcm_protection_groups_serialize(
-            region_id=region_id,
             ids=ids,
             names=names,
             policy_ids=policy_ids,
@@ -2175,6 +2208,7 @@ class ProtectionGroupApi:
             last_run_any_status=last_run_any_status,
             is_last_run_sla_violated=is_last_run_sla_violated,
             include_last_run_info=include_last_run_info,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2193,7 +2227,6 @@ class ProtectionGroupApi:
 
     def _get_mcm_protection_groups_serialize(
         self,
-        region_id,
         ids,
         names,
         policy_ids,
@@ -2204,6 +2237,7 @@ class ProtectionGroupApi:
         last_run_any_status,
         is_last_run_sla_violated,
         include_last_run_info,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2313,11 +2347,11 @@ class ProtectionGroupApi:
     @validate_call
     def get_mcm_protection_groups_activity(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
         rpaas_region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids. This is used for Rpaas only.")] = None,
         rpaas_global_vault_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of FortKnox global vault ids. This is used for FortKnox only. When rpaasGlobalVaultIds is specified, rpaasRegionIds will be ignored.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of cluster identifiers in format of clusterId:clusterIncarnationId.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[GetMcmProtectionGroupsActivityReqParams], Field(description="Request parameters to filter Protection Group activity.")] = None,
         _request_timeout: Union[
             None,
@@ -2336,8 +2370,6 @@ class ProtectionGroupApi:
 
         Get Protection Group activity on Helios.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Filter by a list of region ids.
         :type region_ids: List[str]
         :param rpaas_region_ids: Filter by a list of region ids. This is used for Rpaas only.
@@ -2346,6 +2378,8 @@ class ProtectionGroupApi:
         :type rpaas_global_vault_ids: List[str]
         :param cluster_identifiers: Filter by a list of cluster identifiers in format of clusterId:clusterIncarnationId.
         :type cluster_identifiers: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param body: Request parameters to filter Protection Group activity.
         :type body: GetMcmProtectionGroupsActivityReqParams
         :param _request_timeout: timeout setting for this request. If one
@@ -2371,11 +2405,11 @@ class ProtectionGroupApi:
         """ # noqa: E501
 
         _param = self._get_mcm_protection_groups_activity_serialize(
-            region_id=region_id,
             region_ids=region_ids,
             rpaas_region_ids=rpaas_region_ids,
             rpaas_global_vault_ids=rpaas_global_vault_ids,
             cluster_identifiers=cluster_identifiers,
+            region_id=region_id,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2400,11 +2434,11 @@ class ProtectionGroupApi:
     @validate_call
     def get_mcm_protection_groups_activity_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
         rpaas_region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids. This is used for Rpaas only.")] = None,
         rpaas_global_vault_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of FortKnox global vault ids. This is used for FortKnox only. When rpaasGlobalVaultIds is specified, rpaasRegionIds will be ignored.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of cluster identifiers in format of clusterId:clusterIncarnationId.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[GetMcmProtectionGroupsActivityReqParams], Field(description="Request parameters to filter Protection Group activity.")] = None,
         _request_timeout: Union[
             None,
@@ -2423,8 +2457,6 @@ class ProtectionGroupApi:
 
         Get Protection Group activity on Helios.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Filter by a list of region ids.
         :type region_ids: List[str]
         :param rpaas_region_ids: Filter by a list of region ids. This is used for Rpaas only.
@@ -2433,6 +2465,8 @@ class ProtectionGroupApi:
         :type rpaas_global_vault_ids: List[str]
         :param cluster_identifiers: Filter by a list of cluster identifiers in format of clusterId:clusterIncarnationId.
         :type cluster_identifiers: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param body: Request parameters to filter Protection Group activity.
         :type body: GetMcmProtectionGroupsActivityReqParams
         :param _request_timeout: timeout setting for this request. If one
@@ -2458,11 +2492,11 @@ class ProtectionGroupApi:
         """ # noqa: E501
 
         _param = self._get_mcm_protection_groups_activity_serialize(
-            region_id=region_id,
             region_ids=region_ids,
             rpaas_region_ids=rpaas_region_ids,
             rpaas_global_vault_ids=rpaas_global_vault_ids,
             cluster_identifiers=cluster_identifiers,
+            region_id=region_id,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2487,11 +2521,11 @@ class ProtectionGroupApi:
     @validate_call
     def get_mcm_protection_groups_activity_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
         rpaas_region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids. This is used for Rpaas only.")] = None,
         rpaas_global_vault_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of FortKnox global vault ids. This is used for FortKnox only. When rpaasGlobalVaultIds is specified, rpaasRegionIds will be ignored.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of cluster identifiers in format of clusterId:clusterIncarnationId.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[GetMcmProtectionGroupsActivityReqParams], Field(description="Request parameters to filter Protection Group activity.")] = None,
         _request_timeout: Union[
             None,
@@ -2510,8 +2544,6 @@ class ProtectionGroupApi:
 
         Get Protection Group activity on Helios.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: Filter by a list of region ids.
         :type region_ids: List[str]
         :param rpaas_region_ids: Filter by a list of region ids. This is used for Rpaas only.
@@ -2520,6 +2552,8 @@ class ProtectionGroupApi:
         :type rpaas_global_vault_ids: List[str]
         :param cluster_identifiers: Filter by a list of cluster identifiers in format of clusterId:clusterIncarnationId.
         :type cluster_identifiers: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param body: Request parameters to filter Protection Group activity.
         :type body: GetMcmProtectionGroupsActivityReqParams
         :param _request_timeout: timeout setting for this request. If one
@@ -2545,11 +2579,11 @@ class ProtectionGroupApi:
         """ # noqa: E501
 
         _param = self._get_mcm_protection_groups_activity_serialize(
-            region_id=region_id,
             region_ids=region_ids,
             rpaas_region_ids=rpaas_region_ids,
             rpaas_global_vault_ids=rpaas_global_vault_ids,
             cluster_identifiers=cluster_identifiers,
+            region_id=region_id,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2569,11 +2603,11 @@ class ProtectionGroupApi:
 
     def _get_mcm_protection_groups_activity_serialize(
         self,
-        region_id,
         region_ids,
         rpaas_region_ids,
         rpaas_global_vault_ids,
         cluster_identifiers,
+        region_id,
         body,
         _request_auth,
         _content_type,
@@ -2675,12 +2709,12 @@ class ProtectionGroupApi:
     def get_protection_group_by_id(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         include_last_run_info: Annotated[Optional[StrictBool], Field(description="If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.")] = None,
         prune_excluded_source_ids: Annotated[Optional[StrictBool], Field(description="If true, the response will not include the list of excluded source IDs in groups that contain this field. This can be set to true in order to improve performance if excluded source IDs are not needed by the user.")] = None,
         prune_source_ids: Annotated[Optional[StrictBool], Field(description="If true, the response will exclude the list of source IDs within the group specified.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2700,10 +2734,6 @@ class ProtectionGroupApi:
 
         :param id: Specifies a unique id of the Protection Group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param include_last_run_info: If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.
@@ -2712,6 +2742,10 @@ class ProtectionGroupApi:
         :type prune_excluded_source_ids: bool
         :param prune_source_ids: If true, the response will exclude the list of source IDs within the group specified.
         :type prune_source_ids: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2736,12 +2770,12 @@ class ProtectionGroupApi:
 
         _param = self._get_protection_group_by_id_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             include_last_run_info=include_last_run_info,
             prune_excluded_source_ids=prune_excluded_source_ids,
             prune_source_ids=prune_source_ids,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2766,12 +2800,12 @@ class ProtectionGroupApi:
     def get_protection_group_by_id_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         include_last_run_info: Annotated[Optional[StrictBool], Field(description="If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.")] = None,
         prune_excluded_source_ids: Annotated[Optional[StrictBool], Field(description="If true, the response will not include the list of excluded source IDs in groups that contain this field. This can be set to true in order to improve performance if excluded source IDs are not needed by the user.")] = None,
         prune_source_ids: Annotated[Optional[StrictBool], Field(description="If true, the response will exclude the list of source IDs within the group specified.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2791,10 +2825,6 @@ class ProtectionGroupApi:
 
         :param id: Specifies a unique id of the Protection Group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param include_last_run_info: If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.
@@ -2803,6 +2833,10 @@ class ProtectionGroupApi:
         :type prune_excluded_source_ids: bool
         :param prune_source_ids: If true, the response will exclude the list of source IDs within the group specified.
         :type prune_source_ids: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2827,12 +2861,12 @@ class ProtectionGroupApi:
 
         _param = self._get_protection_group_by_id_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             include_last_run_info=include_last_run_info,
             prune_excluded_source_ids=prune_excluded_source_ids,
             prune_source_ids=prune_source_ids,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2857,12 +2891,12 @@ class ProtectionGroupApi:
     def get_protection_group_by_id_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         include_last_run_info: Annotated[Optional[StrictBool], Field(description="If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.")] = None,
         prune_excluded_source_ids: Annotated[Optional[StrictBool], Field(description="If true, the response will not include the list of excluded source IDs in groups that contain this field. This can be set to true in order to improve performance if excluded source IDs are not needed by the user.")] = None,
         prune_source_ids: Annotated[Optional[StrictBool], Field(description="If true, the response will exclude the list of source IDs within the group specified.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2882,10 +2916,6 @@ class ProtectionGroupApi:
 
         :param id: Specifies a unique id of the Protection Group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param include_last_run_info: If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.
@@ -2894,6 +2924,10 @@ class ProtectionGroupApi:
         :type prune_excluded_source_ids: bool
         :param prune_source_ids: If true, the response will exclude the list of source IDs within the group specified.
         :type prune_source_ids: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2918,12 +2952,12 @@ class ProtectionGroupApi:
 
         _param = self._get_protection_group_by_id_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             include_last_run_info=include_last_run_info,
             prune_excluded_source_ids=prune_excluded_source_ids,
             prune_source_ids=prune_source_ids,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2943,12 +2977,12 @@ class ProtectionGroupApi:
     def _get_protection_group_by_id_serialize(
         self,
         id,
-        access_cluster_id,
-        region_id,
         request_initiator_type,
         include_last_run_info,
         prune_excluded_source_ids,
         prune_source_ids,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2986,12 +3020,12 @@ class ProtectionGroupApi:
             _query_params.append(('pruneSourceIds', prune_source_ids))
             
         # process the header parameters
+        if request_initiator_type is not None:
+            _header_params['requestInitiatorType'] = request_initiator_type
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
         if region_id is not None:
             _header_params['regionId'] = region_id
-        if request_initiator_type is not None:
-            _header_params['requestInitiatorType'] = request_initiator_type
         # process the form parameters
         # process the body parameter
 
@@ -3033,13 +3067,13 @@ class ProtectionGroupApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of the Protection Group run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which the run is to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. If it's not specified, it is true by default.")] = None,
         include_object_details: Annotated[Optional[StrictBool], Field(description="Specifies if the result includes the object details for a protection run. If set to true, details of the protected object will be returned. If set to false or not specified, details will not be returned.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3061,10 +3095,6 @@ class ProtectionGroupApi:
         :type id: str
         :param run_id: Specifies a unique run id of the Protection Group run. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param tenant_ids: TenantIds contains ids of the tenants for which the run is to be returned.
@@ -3075,6 +3105,10 @@ class ProtectionGroupApi:
         :type include_object_details: bool
         :param use_cached_data: Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
         :type use_cached_data: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3100,13 +3134,13 @@ class ProtectionGroupApi:
         _param = self._get_protection_group_run_serialize(
             id=id,
             run_id=run_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
             include_object_details=include_object_details,
             use_cached_data=use_cached_data,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3132,13 +3166,13 @@ class ProtectionGroupApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of the Protection Group run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which the run is to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. If it's not specified, it is true by default.")] = None,
         include_object_details: Annotated[Optional[StrictBool], Field(description="Specifies if the result includes the object details for a protection run. If set to true, details of the protected object will be returned. If set to false or not specified, details will not be returned.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3160,10 +3194,6 @@ class ProtectionGroupApi:
         :type id: str
         :param run_id: Specifies a unique run id of the Protection Group run. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param tenant_ids: TenantIds contains ids of the tenants for which the run is to be returned.
@@ -3174,6 +3204,10 @@ class ProtectionGroupApi:
         :type include_object_details: bool
         :param use_cached_data: Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
         :type use_cached_data: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3199,13 +3233,13 @@ class ProtectionGroupApi:
         _param = self._get_protection_group_run_serialize(
             id=id,
             run_id=run_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
             include_object_details=include_object_details,
             use_cached_data=use_cached_data,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3231,13 +3265,13 @@ class ProtectionGroupApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of the Protection Group run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which the run is to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. If it's not specified, it is true by default.")] = None,
         include_object_details: Annotated[Optional[StrictBool], Field(description="Specifies if the result includes the object details for a protection run. If set to true, details of the protected object will be returned. If set to false or not specified, details will not be returned.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3259,10 +3293,6 @@ class ProtectionGroupApi:
         :type id: str
         :param run_id: Specifies a unique run id of the Protection Group run. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param tenant_ids: TenantIds contains ids of the tenants for which the run is to be returned.
@@ -3273,6 +3303,10 @@ class ProtectionGroupApi:
         :type include_object_details: bool
         :param use_cached_data: Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
         :type use_cached_data: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3298,13 +3332,13 @@ class ProtectionGroupApi:
         _param = self._get_protection_group_run_serialize(
             id=id,
             run_id=run_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
             include_object_details=include_object_details,
             use_cached_data=use_cached_data,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3325,13 +3359,13 @@ class ProtectionGroupApi:
         self,
         id,
         run_id,
-        access_cluster_id,
-        region_id,
         request_initiator_type,
         tenant_ids,
         include_tenants,
         include_object_details,
         use_cached_data,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -3376,12 +3410,12 @@ class ProtectionGroupApi:
             _query_params.append(('useCachedData', use_cached_data))
             
         # process the header parameters
+        if request_initiator_type is not None:
+            _header_params['requestInitiatorType'] = request_initiator_type
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
         if region_id is not None:
             _header_params['regionId'] = region_id
-        if request_initiator_type is not None:
-            _header_params['requestInitiatorType'] = request_initiator_type
         # process the form parameters
         # process the body parameter
 
@@ -3422,8 +3456,6 @@ class ProtectionGroupApi:
     def get_protection_group_runs(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the Protection Group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         run_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Specifies the protection run id.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour.")] = None,
@@ -3444,8 +3476,19 @@ class ProtectionGroupApi:
         snapshot_target_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the snapshot's target type which should be filtered. Note: this field is only considered when, filterByCopyTaskEndTime is set to true, or else it is ignored.")] = None,
         only_return_successful_copy_run: Annotated[Optional[StrictBool], Field(description="If set to false, all copy_tasks in any given valid state will be considered. If left empty or set to true, only successful copy_tasks would be considered. Note: this field is only considered when, filterByCopyTaskEndTime is set to true, or else it is ignored.")] = None,
         filter_by_copy_task_end_time: Annotated[Optional[StrictBool], Field(description="If true, then the details of the runs for which any copyTask completed in the given timerange will be returned. Only one of filterByEndTime and filterByCopyTaskEndTime can be set.")] = None,
+        truncate_response: Annotated[Optional[StrictBool], Field(description="If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes")] = None,
+        only_return_shell_info: Annotated[Optional[StrictBool], Field(description="If set, returns only shell info such as run's start time, type, error if any.")] = None,
+        exclude_error_runs: Annotated[Optional[StrictBool], Field(description="Specifies whether to exclude runs with error. If no value is specified, then runs with errors are included.")] = None,
+        job_run_start_time_usecs: Annotated[Optional[StrictInt], Field(description="Return a specific Job Run by specifying a time and a group id. Specify the time when the Job Run started as a Unix epoch Timestamp (in microseconds). If this field is specified, jobId must also be specified.")] = None,
+        only_return_data_migration_jobs: Annotated[Optional[StrictBool], Field(description="Specifies if only data stubbing jobs should be returned. If not set, no data migration job will be returned.")] = None,
+        include_extension_info: Annotated[Optional[StrictBool], Field(description="Specifies if needs to include proto extensions if they are extended.")] = None,
+        include_rpo_snapshots: Annotated[Optional[StrictBool], Field(description="If true, then the snapshots for Protection Sources protected by Rpo policies will also be returned.")] = None,
+        source_id: Annotated[Optional[StrictInt], Field(description="Filter by source id. Only Job Runs protecting the specified source (such as a VM or View) are returned. The source id is assigned by the Cohesity Cluster.")] = None,
         max_result_count: Annotated[Optional[StrictInt], Field(description="Identifies the max number of items to be returned. This is specifically to be used with pagination.")] = None,
         pagination_cookie: Annotated[Optional[StrictStr], Field(description="Specifies the cookie to fetch the next page of results")] = None,
+        include_external_target_runs: Annotated[Optional[StrictBool], Field(description="If true, then the response will include all target runs information for the protection run. If false or not specified, only the latest copy (target) run information will be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3465,10 +3508,6 @@ class ProtectionGroupApi:
 
         :param id: Specifies a unique id of the Protection Group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param run_id: Specifies the protection run id.
@@ -3509,10 +3548,32 @@ class ProtectionGroupApi:
         :type only_return_successful_copy_run: bool
         :param filter_by_copy_task_end_time: If true, then the details of the runs for which any copyTask completed in the given timerange will be returned. Only one of filterByEndTime and filterByCopyTaskEndTime can be set.
         :type filter_by_copy_task_end_time: bool
+        :param truncate_response: If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes
+        :type truncate_response: bool
+        :param only_return_shell_info: If set, returns only shell info such as run's start time, type, error if any.
+        :type only_return_shell_info: bool
+        :param exclude_error_runs: Specifies whether to exclude runs with error. If no value is specified, then runs with errors are included.
+        :type exclude_error_runs: bool
+        :param job_run_start_time_usecs: Return a specific Job Run by specifying a time and a group id. Specify the time when the Job Run started as a Unix epoch Timestamp (in microseconds). If this field is specified, jobId must also be specified.
+        :type job_run_start_time_usecs: int
+        :param only_return_data_migration_jobs: Specifies if only data stubbing jobs should be returned. If not set, no data migration job will be returned.
+        :type only_return_data_migration_jobs: bool
+        :param include_extension_info: Specifies if needs to include proto extensions if they are extended.
+        :type include_extension_info: bool
+        :param include_rpo_snapshots: If true, then the snapshots for Protection Sources protected by Rpo policies will also be returned.
+        :type include_rpo_snapshots: bool
+        :param source_id: Filter by source id. Only Job Runs protecting the specified source (such as a VM or View) are returned. The source id is assigned by the Cohesity Cluster.
+        :type source_id: int
         :param max_result_count: Identifies the max number of items to be returned. This is specifically to be used with pagination.
         :type max_result_count: int
         :param pagination_cookie: Specifies the cookie to fetch the next page of results
         :type pagination_cookie: str
+        :param include_external_target_runs: If true, then the response will include all target runs information for the protection run. If false or not specified, only the latest copy (target) run information will be returned.
+        :type include_external_target_runs: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3537,8 +3598,6 @@ class ProtectionGroupApi:
 
         _param = self._get_protection_group_runs_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             run_id=run_id,
             start_time_usecs=start_time_usecs,
@@ -3559,8 +3618,19 @@ class ProtectionGroupApi:
             snapshot_target_types=snapshot_target_types,
             only_return_successful_copy_run=only_return_successful_copy_run,
             filter_by_copy_task_end_time=filter_by_copy_task_end_time,
+            truncate_response=truncate_response,
+            only_return_shell_info=only_return_shell_info,
+            exclude_error_runs=exclude_error_runs,
+            job_run_start_time_usecs=job_run_start_time_usecs,
+            only_return_data_migration_jobs=only_return_data_migration_jobs,
+            include_extension_info=include_extension_info,
+            include_rpo_snapshots=include_rpo_snapshots,
+            source_id=source_id,
             max_result_count=max_result_count,
             pagination_cookie=pagination_cookie,
+            include_external_target_runs=include_external_target_runs,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3585,8 +3655,6 @@ class ProtectionGroupApi:
     def get_protection_group_runs_with_http_info(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the Protection Group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         run_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Specifies the protection run id.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour.")] = None,
@@ -3607,8 +3675,19 @@ class ProtectionGroupApi:
         snapshot_target_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the snapshot's target type which should be filtered. Note: this field is only considered when, filterByCopyTaskEndTime is set to true, or else it is ignored.")] = None,
         only_return_successful_copy_run: Annotated[Optional[StrictBool], Field(description="If set to false, all copy_tasks in any given valid state will be considered. If left empty or set to true, only successful copy_tasks would be considered. Note: this field is only considered when, filterByCopyTaskEndTime is set to true, or else it is ignored.")] = None,
         filter_by_copy_task_end_time: Annotated[Optional[StrictBool], Field(description="If true, then the details of the runs for which any copyTask completed in the given timerange will be returned. Only one of filterByEndTime and filterByCopyTaskEndTime can be set.")] = None,
+        truncate_response: Annotated[Optional[StrictBool], Field(description="If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes")] = None,
+        only_return_shell_info: Annotated[Optional[StrictBool], Field(description="If set, returns only shell info such as run's start time, type, error if any.")] = None,
+        exclude_error_runs: Annotated[Optional[StrictBool], Field(description="Specifies whether to exclude runs with error. If no value is specified, then runs with errors are included.")] = None,
+        job_run_start_time_usecs: Annotated[Optional[StrictInt], Field(description="Return a specific Job Run by specifying a time and a group id. Specify the time when the Job Run started as a Unix epoch Timestamp (in microseconds). If this field is specified, jobId must also be specified.")] = None,
+        only_return_data_migration_jobs: Annotated[Optional[StrictBool], Field(description="Specifies if only data stubbing jobs should be returned. If not set, no data migration job will be returned.")] = None,
+        include_extension_info: Annotated[Optional[StrictBool], Field(description="Specifies if needs to include proto extensions if they are extended.")] = None,
+        include_rpo_snapshots: Annotated[Optional[StrictBool], Field(description="If true, then the snapshots for Protection Sources protected by Rpo policies will also be returned.")] = None,
+        source_id: Annotated[Optional[StrictInt], Field(description="Filter by source id. Only Job Runs protecting the specified source (such as a VM or View) are returned. The source id is assigned by the Cohesity Cluster.")] = None,
         max_result_count: Annotated[Optional[StrictInt], Field(description="Identifies the max number of items to be returned. This is specifically to be used with pagination.")] = None,
         pagination_cookie: Annotated[Optional[StrictStr], Field(description="Specifies the cookie to fetch the next page of results")] = None,
+        include_external_target_runs: Annotated[Optional[StrictBool], Field(description="If true, then the response will include all target runs information for the protection run. If false or not specified, only the latest copy (target) run information will be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3628,10 +3707,6 @@ class ProtectionGroupApi:
 
         :param id: Specifies a unique id of the Protection Group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param run_id: Specifies the protection run id.
@@ -3672,10 +3747,32 @@ class ProtectionGroupApi:
         :type only_return_successful_copy_run: bool
         :param filter_by_copy_task_end_time: If true, then the details of the runs for which any copyTask completed in the given timerange will be returned. Only one of filterByEndTime and filterByCopyTaskEndTime can be set.
         :type filter_by_copy_task_end_time: bool
+        :param truncate_response: If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes
+        :type truncate_response: bool
+        :param only_return_shell_info: If set, returns only shell info such as run's start time, type, error if any.
+        :type only_return_shell_info: bool
+        :param exclude_error_runs: Specifies whether to exclude runs with error. If no value is specified, then runs with errors are included.
+        :type exclude_error_runs: bool
+        :param job_run_start_time_usecs: Return a specific Job Run by specifying a time and a group id. Specify the time when the Job Run started as a Unix epoch Timestamp (in microseconds). If this field is specified, jobId must also be specified.
+        :type job_run_start_time_usecs: int
+        :param only_return_data_migration_jobs: Specifies if only data stubbing jobs should be returned. If not set, no data migration job will be returned.
+        :type only_return_data_migration_jobs: bool
+        :param include_extension_info: Specifies if needs to include proto extensions if they are extended.
+        :type include_extension_info: bool
+        :param include_rpo_snapshots: If true, then the snapshots for Protection Sources protected by Rpo policies will also be returned.
+        :type include_rpo_snapshots: bool
+        :param source_id: Filter by source id. Only Job Runs protecting the specified source (such as a VM or View) are returned. The source id is assigned by the Cohesity Cluster.
+        :type source_id: int
         :param max_result_count: Identifies the max number of items to be returned. This is specifically to be used with pagination.
         :type max_result_count: int
         :param pagination_cookie: Specifies the cookie to fetch the next page of results
         :type pagination_cookie: str
+        :param include_external_target_runs: If true, then the response will include all target runs information for the protection run. If false or not specified, only the latest copy (target) run information will be returned.
+        :type include_external_target_runs: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3700,8 +3797,6 @@ class ProtectionGroupApi:
 
         _param = self._get_protection_group_runs_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             run_id=run_id,
             start_time_usecs=start_time_usecs,
@@ -3722,8 +3817,19 @@ class ProtectionGroupApi:
             snapshot_target_types=snapshot_target_types,
             only_return_successful_copy_run=only_return_successful_copy_run,
             filter_by_copy_task_end_time=filter_by_copy_task_end_time,
+            truncate_response=truncate_response,
+            only_return_shell_info=only_return_shell_info,
+            exclude_error_runs=exclude_error_runs,
+            job_run_start_time_usecs=job_run_start_time_usecs,
+            only_return_data_migration_jobs=only_return_data_migration_jobs,
+            include_extension_info=include_extension_info,
+            include_rpo_snapshots=include_rpo_snapshots,
+            source_id=source_id,
             max_result_count=max_result_count,
             pagination_cookie=pagination_cookie,
+            include_external_target_runs=include_external_target_runs,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3748,8 +3854,6 @@ class ProtectionGroupApi:
     def get_protection_group_runs_without_preload_content(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the Protection Group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         run_id: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="Specifies the protection run id.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour.")] = None,
@@ -3770,8 +3874,19 @@ class ProtectionGroupApi:
         snapshot_target_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the snapshot's target type which should be filtered. Note: this field is only considered when, filterByCopyTaskEndTime is set to true, or else it is ignored.")] = None,
         only_return_successful_copy_run: Annotated[Optional[StrictBool], Field(description="If set to false, all copy_tasks in any given valid state will be considered. If left empty or set to true, only successful copy_tasks would be considered. Note: this field is only considered when, filterByCopyTaskEndTime is set to true, or else it is ignored.")] = None,
         filter_by_copy_task_end_time: Annotated[Optional[StrictBool], Field(description="If true, then the details of the runs for which any copyTask completed in the given timerange will be returned. Only one of filterByEndTime and filterByCopyTaskEndTime can be set.")] = None,
+        truncate_response: Annotated[Optional[StrictBool], Field(description="If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes")] = None,
+        only_return_shell_info: Annotated[Optional[StrictBool], Field(description="If set, returns only shell info such as run's start time, type, error if any.")] = None,
+        exclude_error_runs: Annotated[Optional[StrictBool], Field(description="Specifies whether to exclude runs with error. If no value is specified, then runs with errors are included.")] = None,
+        job_run_start_time_usecs: Annotated[Optional[StrictInt], Field(description="Return a specific Job Run by specifying a time and a group id. Specify the time when the Job Run started as a Unix epoch Timestamp (in microseconds). If this field is specified, jobId must also be specified.")] = None,
+        only_return_data_migration_jobs: Annotated[Optional[StrictBool], Field(description="Specifies if only data stubbing jobs should be returned. If not set, no data migration job will be returned.")] = None,
+        include_extension_info: Annotated[Optional[StrictBool], Field(description="Specifies if needs to include proto extensions if they are extended.")] = None,
+        include_rpo_snapshots: Annotated[Optional[StrictBool], Field(description="If true, then the snapshots for Protection Sources protected by Rpo policies will also be returned.")] = None,
+        source_id: Annotated[Optional[StrictInt], Field(description="Filter by source id. Only Job Runs protecting the specified source (such as a VM or View) are returned. The source id is assigned by the Cohesity Cluster.")] = None,
         max_result_count: Annotated[Optional[StrictInt], Field(description="Identifies the max number of items to be returned. This is specifically to be used with pagination.")] = None,
         pagination_cookie: Annotated[Optional[StrictStr], Field(description="Specifies the cookie to fetch the next page of results")] = None,
+        include_external_target_runs: Annotated[Optional[StrictBool], Field(description="If true, then the response will include all target runs information for the protection run. If false or not specified, only the latest copy (target) run information will be returned.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3791,10 +3906,6 @@ class ProtectionGroupApi:
 
         :param id: Specifies a unique id of the Protection Group. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param run_id: Specifies the protection run id.
@@ -3835,10 +3946,32 @@ class ProtectionGroupApi:
         :type only_return_successful_copy_run: bool
         :param filter_by_copy_task_end_time: If true, then the details of the runs for which any copyTask completed in the given timerange will be returned. Only one of filterByEndTime and filterByCopyTaskEndTime can be set.
         :type filter_by_copy_task_end_time: bool
+        :param truncate_response: If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes
+        :type truncate_response: bool
+        :param only_return_shell_info: If set, returns only shell info such as run's start time, type, error if any.
+        :type only_return_shell_info: bool
+        :param exclude_error_runs: Specifies whether to exclude runs with error. If no value is specified, then runs with errors are included.
+        :type exclude_error_runs: bool
+        :param job_run_start_time_usecs: Return a specific Job Run by specifying a time and a group id. Specify the time when the Job Run started as a Unix epoch Timestamp (in microseconds). If this field is specified, jobId must also be specified.
+        :type job_run_start_time_usecs: int
+        :param only_return_data_migration_jobs: Specifies if only data stubbing jobs should be returned. If not set, no data migration job will be returned.
+        :type only_return_data_migration_jobs: bool
+        :param include_extension_info: Specifies if needs to include proto extensions if they are extended.
+        :type include_extension_info: bool
+        :param include_rpo_snapshots: If true, then the snapshots for Protection Sources protected by Rpo policies will also be returned.
+        :type include_rpo_snapshots: bool
+        :param source_id: Filter by source id. Only Job Runs protecting the specified source (such as a VM or View) are returned. The source id is assigned by the Cohesity Cluster.
+        :type source_id: int
         :param max_result_count: Identifies the max number of items to be returned. This is specifically to be used with pagination.
         :type max_result_count: int
         :param pagination_cookie: Specifies the cookie to fetch the next page of results
         :type pagination_cookie: str
+        :param include_external_target_runs: If true, then the response will include all target runs information for the protection run. If false or not specified, only the latest copy (target) run information will be returned.
+        :type include_external_target_runs: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3863,8 +3996,6 @@ class ProtectionGroupApi:
 
         _param = self._get_protection_group_runs_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             run_id=run_id,
             start_time_usecs=start_time_usecs,
@@ -3885,8 +4016,19 @@ class ProtectionGroupApi:
             snapshot_target_types=snapshot_target_types,
             only_return_successful_copy_run=only_return_successful_copy_run,
             filter_by_copy_task_end_time=filter_by_copy_task_end_time,
+            truncate_response=truncate_response,
+            only_return_shell_info=only_return_shell_info,
+            exclude_error_runs=exclude_error_runs,
+            job_run_start_time_usecs=job_run_start_time_usecs,
+            only_return_data_migration_jobs=only_return_data_migration_jobs,
+            include_extension_info=include_extension_info,
+            include_rpo_snapshots=include_rpo_snapshots,
+            source_id=source_id,
             max_result_count=max_result_count,
             pagination_cookie=pagination_cookie,
+            include_external_target_runs=include_external_target_runs,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3906,8 +4048,6 @@ class ProtectionGroupApi:
     def _get_protection_group_runs_serialize(
         self,
         id,
-        access_cluster_id,
-        region_id,
         request_initiator_type,
         run_id,
         start_time_usecs,
@@ -3928,8 +4068,19 @@ class ProtectionGroupApi:
         snapshot_target_types,
         only_return_successful_copy_run,
         filter_by_copy_task_end_time,
+        truncate_response,
+        only_return_shell_info,
+        exclude_error_runs,
+        job_run_start_time_usecs,
+        only_return_data_migration_jobs,
+        include_extension_info,
+        include_rpo_snapshots,
+        source_id,
         max_result_count,
         pagination_cookie,
+        include_external_target_runs,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -4038,6 +4189,38 @@ class ProtectionGroupApi:
             
             _query_params.append(('filterByCopyTaskEndTime', filter_by_copy_task_end_time))
             
+        if truncate_response is not None:
+            
+            _query_params.append(('truncateResponse', truncate_response))
+            
+        if only_return_shell_info is not None:
+            
+            _query_params.append(('onlyReturnShellInfo', only_return_shell_info))
+            
+        if exclude_error_runs is not None:
+            
+            _query_params.append(('excludeErrorRuns', exclude_error_runs))
+            
+        if job_run_start_time_usecs is not None:
+            
+            _query_params.append(('jobRunStartTimeUsecs', job_run_start_time_usecs))
+            
+        if only_return_data_migration_jobs is not None:
+            
+            _query_params.append(('onlyReturnDataMigrationJobs', only_return_data_migration_jobs))
+            
+        if include_extension_info is not None:
+            
+            _query_params.append(('includeExtensionInfo', include_extension_info))
+            
+        if include_rpo_snapshots is not None:
+            
+            _query_params.append(('includeRpoSnapshots', include_rpo_snapshots))
+            
+        if source_id is not None:
+            
+            _query_params.append(('sourceId', source_id))
+            
         if max_result_count is not None:
             
             _query_params.append(('maxResultCount', max_result_count))
@@ -4046,13 +4229,17 @@ class ProtectionGroupApi:
             
             _query_params.append(('paginationCookie', pagination_cookie))
             
+        if include_external_target_runs is not None:
+            
+            _query_params.append(('includeExternalTargetRuns', include_external_target_runs))
+            
         # process the header parameters
+        if request_initiator_type is not None:
+            _header_params['requestInitiatorType'] = request_initiator_type
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
         if region_id is not None:
             _header_params['regionId'] = region_id
-        if request_initiator_type is not None:
-            _header_params['requestInitiatorType'] = request_initiator_type
         # process the form parameters
         # process the body parameter
 
@@ -4092,8 +4279,6 @@ class ProtectionGroupApi:
     @validate_call
     def get_protection_groups(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Protection Group ids.")] = None,
         names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Protection Group names.")] = None,
@@ -4120,6 +4305,8 @@ class ProtectionGroupApi:
         source_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by Source ids that are associated with Protection Groups. Only Protection Groups associated with the specified Source ids, are returned.")] = None,
         max_result_count: Annotated[Optional[StrictInt], Field(description="Identifies the max number of items to be returned. This is specifically to be used with pagination.")] = None,
         pagination_cookie: Annotated[Optional[StrictStr], Field(description="Specifies the cookie to fetch the set page of results")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4137,10 +4324,6 @@ class ProtectionGroupApi:
 
         Get the list of Protection Groups.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param ids: Filter by a list of Protection Group ids.
@@ -4193,6 +4376,10 @@ class ProtectionGroupApi:
         :type max_result_count: int
         :param pagination_cookie: Specifies the cookie to fetch the set page of results
         :type pagination_cookie: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4216,8 +4403,6 @@ class ProtectionGroupApi:
         """ # noqa: E501
 
         _param = self._get_protection_groups_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             ids=ids,
             names=names,
@@ -4244,6 +4429,8 @@ class ProtectionGroupApi:
             source_ids=source_ids,
             max_result_count=max_result_count,
             pagination_cookie=pagination_cookie,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4267,8 +4454,6 @@ class ProtectionGroupApi:
     @validate_call
     def get_protection_groups_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Protection Group ids.")] = None,
         names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Protection Group names.")] = None,
@@ -4295,6 +4480,8 @@ class ProtectionGroupApi:
         source_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by Source ids that are associated with Protection Groups. Only Protection Groups associated with the specified Source ids, are returned.")] = None,
         max_result_count: Annotated[Optional[StrictInt], Field(description="Identifies the max number of items to be returned. This is specifically to be used with pagination.")] = None,
         pagination_cookie: Annotated[Optional[StrictStr], Field(description="Specifies the cookie to fetch the set page of results")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4312,10 +4499,6 @@ class ProtectionGroupApi:
 
         Get the list of Protection Groups.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param ids: Filter by a list of Protection Group ids.
@@ -4368,6 +4551,10 @@ class ProtectionGroupApi:
         :type max_result_count: int
         :param pagination_cookie: Specifies the cookie to fetch the set page of results
         :type pagination_cookie: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4391,8 +4578,6 @@ class ProtectionGroupApi:
         """ # noqa: E501
 
         _param = self._get_protection_groups_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             ids=ids,
             names=names,
@@ -4419,6 +4604,8 @@ class ProtectionGroupApi:
             source_ids=source_ids,
             max_result_count=max_result_count,
             pagination_cookie=pagination_cookie,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4442,8 +4629,6 @@ class ProtectionGroupApi:
     @validate_call
     def get_protection_groups_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
         ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Protection Group ids.")] = None,
         names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Protection Group names.")] = None,
@@ -4470,6 +4655,8 @@ class ProtectionGroupApi:
         source_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by Source ids that are associated with Protection Groups. Only Protection Groups associated with the specified Source ids, are returned.")] = None,
         max_result_count: Annotated[Optional[StrictInt], Field(description="Identifies the max number of items to be returned. This is specifically to be used with pagination.")] = None,
         pagination_cookie: Annotated[Optional[StrictStr], Field(description="Specifies the cookie to fetch the set page of results")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4487,10 +4674,6 @@ class ProtectionGroupApi:
 
         Get the list of Protection Groups.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
         :param ids: Filter by a list of Protection Group ids.
@@ -4543,6 +4726,10 @@ class ProtectionGroupApi:
         :type max_result_count: int
         :param pagination_cookie: Specifies the cookie to fetch the set page of results
         :type pagination_cookie: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4566,8 +4753,6 @@ class ProtectionGroupApi:
         """ # noqa: E501
 
         _param = self._get_protection_groups_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             request_initiator_type=request_initiator_type,
             ids=ids,
             names=names,
@@ -4594,6 +4779,8 @@ class ProtectionGroupApi:
             source_ids=source_ids,
             max_result_count=max_result_count,
             pagination_cookie=pagination_cookie,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4612,8 +4799,6 @@ class ProtectionGroupApi:
 
     def _get_protection_groups_serialize(
         self,
-        access_cluster_id,
-        region_id,
         request_initiator_type,
         ids,
         names,
@@ -4640,6 +4825,8 @@ class ProtectionGroupApi:
         source_ids,
         max_result_count,
         pagination_cookie,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -4775,12 +4962,12 @@ class ProtectionGroupApi:
             _query_params.append(('paginationCookie', pagination_cookie))
             
         # process the header parameters
+        if request_initiator_type is not None:
+            _header_params['requestInitiatorType'] = request_initiator_type
         if access_cluster_id is not None:
             _header_params['accessClusterId'] = access_cluster_id
         if region_id is not None:
             _header_params['regionId'] = region_id
-        if request_initiator_type is not None:
-            _header_params['requestInitiatorType'] = request_initiator_type
         # process the form parameters
         # process the body parameter
 
@@ -4821,8 +5008,6 @@ class ProtectionGroupApi:
     def get_protection_run_progress(
         self,
         run_id: Annotated[StrictStr, Field(description="Specifies a unique run id of the Protection Run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         objects: Annotated[Optional[List[StrictInt]], Field(description="Specifies the objects whose progress will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run progress will not be returned and only the progress of the specified objects will be returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which the run is to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. If it's not specified, it is true by default.")] = None,
@@ -4835,6 +5020,8 @@ class ProtectionGroupApi:
         max_log_level: Annotated[Optional[StrictInt], Field(description="Specifies the number of levels till which to fetch the event logs. This is applicable only when includeEventLogs is true.")] = None,
         run_task_path: Annotated[Optional[StrictStr], Field(description="Specifies the task path of the run or object run. This is applicable only if progress of a protection group with one or more object is required.If provided this will be used to fetch progress details directly without looking actual task path of the object. Objects field is stil expected else it changes the response format.")] = None,
         object_task_paths: Annotated[Optional[List[StrictStr]], Field(description="Specifies the object level task path. This relates to the objectID. If provided this will take precedence over the objects, and will be used to fetch progress details directly without looking actuall task path of the object.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4854,10 +5041,6 @@ class ProtectionGroupApi:
 
         :param run_id: Specifies a unique run id of the Protection Run. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param objects: Specifies the objects whose progress will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run progress will not be returned and only the progress of the specified objects will be returned.
         :type objects: List[int]
         :param tenant_ids: TenantIds contains ids of the tenants for which the run is to be returned.
@@ -4882,6 +5065,10 @@ class ProtectionGroupApi:
         :type run_task_path: str
         :param object_task_paths: Specifies the object level task path. This relates to the objectID. If provided this will take precedence over the objects, and will be used to fetch progress details directly without looking actuall task path of the object.
         :type object_task_paths: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4906,8 +5093,6 @@ class ProtectionGroupApi:
 
         _param = self._get_protection_run_progress_serialize(
             run_id=run_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             objects=objects,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
@@ -4920,6 +5105,8 @@ class ProtectionGroupApi:
             max_log_level=max_log_level,
             run_task_path=run_task_path,
             object_task_paths=object_task_paths,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4944,8 +5131,6 @@ class ProtectionGroupApi:
     def get_protection_run_progress_with_http_info(
         self,
         run_id: Annotated[StrictStr, Field(description="Specifies a unique run id of the Protection Run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         objects: Annotated[Optional[List[StrictInt]], Field(description="Specifies the objects whose progress will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run progress will not be returned and only the progress of the specified objects will be returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which the run is to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. If it's not specified, it is true by default.")] = None,
@@ -4958,6 +5143,8 @@ class ProtectionGroupApi:
         max_log_level: Annotated[Optional[StrictInt], Field(description="Specifies the number of levels till which to fetch the event logs. This is applicable only when includeEventLogs is true.")] = None,
         run_task_path: Annotated[Optional[StrictStr], Field(description="Specifies the task path of the run or object run. This is applicable only if progress of a protection group with one or more object is required.If provided this will be used to fetch progress details directly without looking actual task path of the object. Objects field is stil expected else it changes the response format.")] = None,
         object_task_paths: Annotated[Optional[List[StrictStr]], Field(description="Specifies the object level task path. This relates to the objectID. If provided this will take precedence over the objects, and will be used to fetch progress details directly without looking actuall task path of the object.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4977,10 +5164,6 @@ class ProtectionGroupApi:
 
         :param run_id: Specifies a unique run id of the Protection Run. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param objects: Specifies the objects whose progress will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run progress will not be returned and only the progress of the specified objects will be returned.
         :type objects: List[int]
         :param tenant_ids: TenantIds contains ids of the tenants for which the run is to be returned.
@@ -5005,6 +5188,10 @@ class ProtectionGroupApi:
         :type run_task_path: str
         :param object_task_paths: Specifies the object level task path. This relates to the objectID. If provided this will take precedence over the objects, and will be used to fetch progress details directly without looking actuall task path of the object.
         :type object_task_paths: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5029,8 +5216,6 @@ class ProtectionGroupApi:
 
         _param = self._get_protection_run_progress_serialize(
             run_id=run_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             objects=objects,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
@@ -5043,6 +5228,8 @@ class ProtectionGroupApi:
             max_log_level=max_log_level,
             run_task_path=run_task_path,
             object_task_paths=object_task_paths,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5067,8 +5254,6 @@ class ProtectionGroupApi:
     def get_protection_run_progress_without_preload_content(
         self,
         run_id: Annotated[StrictStr, Field(description="Specifies a unique run id of the Protection Run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         objects: Annotated[Optional[List[StrictInt]], Field(description="Specifies the objects whose progress will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run progress will not be returned and only the progress of the specified objects will be returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which the run is to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. If it's not specified, it is true by default.")] = None,
@@ -5081,6 +5266,8 @@ class ProtectionGroupApi:
         max_log_level: Annotated[Optional[StrictInt], Field(description="Specifies the number of levels till which to fetch the event logs. This is applicable only when includeEventLogs is true.")] = None,
         run_task_path: Annotated[Optional[StrictStr], Field(description="Specifies the task path of the run or object run. This is applicable only if progress of a protection group with one or more object is required.If provided this will be used to fetch progress details directly without looking actual task path of the object. Objects field is stil expected else it changes the response format.")] = None,
         object_task_paths: Annotated[Optional[List[StrictStr]], Field(description="Specifies the object level task path. This relates to the objectID. If provided this will take precedence over the objects, and will be used to fetch progress details directly without looking actuall task path of the object.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5100,10 +5287,6 @@ class ProtectionGroupApi:
 
         :param run_id: Specifies a unique run id of the Protection Run. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param objects: Specifies the objects whose progress will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run progress will not be returned and only the progress of the specified objects will be returned.
         :type objects: List[int]
         :param tenant_ids: TenantIds contains ids of the tenants for which the run is to be returned.
@@ -5128,6 +5311,10 @@ class ProtectionGroupApi:
         :type run_task_path: str
         :param object_task_paths: Specifies the object level task path. This relates to the objectID. If provided this will take precedence over the objects, and will be used to fetch progress details directly without looking actuall task path of the object.
         :type object_task_paths: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5152,8 +5339,6 @@ class ProtectionGroupApi:
 
         _param = self._get_protection_run_progress_serialize(
             run_id=run_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             objects=objects,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
@@ -5166,6 +5351,8 @@ class ProtectionGroupApi:
             max_log_level=max_log_level,
             run_task_path=run_task_path,
             object_task_paths=object_task_paths,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5185,8 +5372,6 @@ class ProtectionGroupApi:
     def _get_protection_run_progress_serialize(
         self,
         run_id,
-        access_cluster_id,
-        region_id,
         objects,
         tenant_ids,
         include_tenants,
@@ -5199,6 +5384,8 @@ class ProtectionGroupApi:
         max_log_level,
         run_task_path,
         object_task_paths,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -5319,8 +5506,6 @@ class ProtectionGroupApi:
     def get_protection_run_stats(
         self,
         run_id: Annotated[str, Field(strict=True, max_length=255, description="Specifies a unique run id of the Protection Run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         objects: Annotated[Optional[List[StrictInt]], Field(description="Specifies the objects whose stats will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run stats will not be returned and only the stats of the specified objects will be returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which the run is to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. If it's not specified, it is true by default.")] = None,
@@ -5331,6 +5516,8 @@ class ProtectionGroupApi:
         exclude_object_details: Annotated[Optional[StrictBool], Field(description="Specifies whether to return objects. By default all the task tree are returned.")] = None,
         run_task_path: Annotated[Optional[StrictStr], Field(description="Specifies the task path of the run or object run. This is applicable only if stats of a protection group with one or more object is required. If provided this will be used to fetch stats details directly without looking actual task path of the object. Objects field is stil expected else it changes the response format.")] = None,
         object_task_paths: Annotated[Optional[List[StrictStr]], Field(description="Specifies the object level task path. This relates to the objectID. If provided this will take precedence over the objects, and will be used to fetch stats details directly without looking actuall task path of the object.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5350,10 +5537,6 @@ class ProtectionGroupApi:
 
         :param run_id: Specifies a unique run id of the Protection Run. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param objects: Specifies the objects whose stats will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run stats will not be returned and only the stats of the specified objects will be returned.
         :type objects: List[int]
         :param tenant_ids: TenantIds contains ids of the tenants for which the run is to be returned.
@@ -5374,6 +5557,10 @@ class ProtectionGroupApi:
         :type run_task_path: str
         :param object_task_paths: Specifies the object level task path. This relates to the objectID. If provided this will take precedence over the objects, and will be used to fetch stats details directly without looking actuall task path of the object.
         :type object_task_paths: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5398,8 +5585,6 @@ class ProtectionGroupApi:
 
         _param = self._get_protection_run_stats_serialize(
             run_id=run_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             objects=objects,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
@@ -5410,6 +5595,8 @@ class ProtectionGroupApi:
             exclude_object_details=exclude_object_details,
             run_task_path=run_task_path,
             object_task_paths=object_task_paths,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5434,8 +5621,6 @@ class ProtectionGroupApi:
     def get_protection_run_stats_with_http_info(
         self,
         run_id: Annotated[str, Field(strict=True, max_length=255, description="Specifies a unique run id of the Protection Run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         objects: Annotated[Optional[List[StrictInt]], Field(description="Specifies the objects whose stats will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run stats will not be returned and only the stats of the specified objects will be returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which the run is to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. If it's not specified, it is true by default.")] = None,
@@ -5446,6 +5631,8 @@ class ProtectionGroupApi:
         exclude_object_details: Annotated[Optional[StrictBool], Field(description="Specifies whether to return objects. By default all the task tree are returned.")] = None,
         run_task_path: Annotated[Optional[StrictStr], Field(description="Specifies the task path of the run or object run. This is applicable only if stats of a protection group with one or more object is required. If provided this will be used to fetch stats details directly without looking actual task path of the object. Objects field is stil expected else it changes the response format.")] = None,
         object_task_paths: Annotated[Optional[List[StrictStr]], Field(description="Specifies the object level task path. This relates to the objectID. If provided this will take precedence over the objects, and will be used to fetch stats details directly without looking actuall task path of the object.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5465,10 +5652,6 @@ class ProtectionGroupApi:
 
         :param run_id: Specifies a unique run id of the Protection Run. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param objects: Specifies the objects whose stats will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run stats will not be returned and only the stats of the specified objects will be returned.
         :type objects: List[int]
         :param tenant_ids: TenantIds contains ids of the tenants for which the run is to be returned.
@@ -5489,6 +5672,10 @@ class ProtectionGroupApi:
         :type run_task_path: str
         :param object_task_paths: Specifies the object level task path. This relates to the objectID. If provided this will take precedence over the objects, and will be used to fetch stats details directly without looking actuall task path of the object.
         :type object_task_paths: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5513,8 +5700,6 @@ class ProtectionGroupApi:
 
         _param = self._get_protection_run_stats_serialize(
             run_id=run_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             objects=objects,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
@@ -5525,6 +5710,8 @@ class ProtectionGroupApi:
             exclude_object_details=exclude_object_details,
             run_task_path=run_task_path,
             object_task_paths=object_task_paths,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5549,8 +5736,6 @@ class ProtectionGroupApi:
     def get_protection_run_stats_without_preload_content(
         self,
         run_id: Annotated[str, Field(strict=True, max_length=255, description="Specifies a unique run id of the Protection Run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         objects: Annotated[Optional[List[StrictInt]], Field(description="Specifies the objects whose stats will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run stats will not be returned and only the stats of the specified objects will be returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which the run is to be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. If it's not specified, it is true by default.")] = None,
@@ -5561,6 +5746,8 @@ class ProtectionGroupApi:
         exclude_object_details: Annotated[Optional[StrictBool], Field(description="Specifies whether to return objects. By default all the task tree are returned.")] = None,
         run_task_path: Annotated[Optional[StrictStr], Field(description="Specifies the task path of the run or object run. This is applicable only if stats of a protection group with one or more object is required. If provided this will be used to fetch stats details directly without looking actual task path of the object. Objects field is stil expected else it changes the response format.")] = None,
         object_task_paths: Annotated[Optional[List[StrictStr]], Field(description="Specifies the object level task path. This relates to the objectID. If provided this will take precedence over the objects, and will be used to fetch stats details directly without looking actuall task path of the object.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5580,10 +5767,6 @@ class ProtectionGroupApi:
 
         :param run_id: Specifies a unique run id of the Protection Run. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param objects: Specifies the objects whose stats will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run stats will not be returned and only the stats of the specified objects will be returned.
         :type objects: List[int]
         :param tenant_ids: TenantIds contains ids of the tenants for which the run is to be returned.
@@ -5604,6 +5787,10 @@ class ProtectionGroupApi:
         :type run_task_path: str
         :param object_task_paths: Specifies the object level task path. This relates to the objectID. If provided this will take precedence over the objects, and will be used to fetch stats details directly without looking actuall task path of the object.
         :type object_task_paths: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5628,8 +5815,6 @@ class ProtectionGroupApi:
 
         _param = self._get_protection_run_stats_serialize(
             run_id=run_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             objects=objects,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
@@ -5640,6 +5825,8 @@ class ProtectionGroupApi:
             exclude_object_details=exclude_object_details,
             run_task_path=run_task_path,
             object_task_paths=object_task_paths,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5659,8 +5846,6 @@ class ProtectionGroupApi:
     def _get_protection_run_stats_serialize(
         self,
         run_id,
-        access_cluster_id,
-        region_id,
         objects,
         tenant_ids,
         include_tenants,
@@ -5671,6 +5856,8 @@ class ProtectionGroupApi:
         exclude_object_details,
         run_task_path,
         object_task_paths,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -5782,11 +5969,11 @@ class ProtectionGroupApi:
     @validate_call
     def get_protection_runs(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour.")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="End time for time range filter. Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time.")] = None,
         run_status: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5804,16 +5991,16 @@ class ProtectionGroupApi:
 
         Get a list of protection runs.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param start_time_usecs: Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour.
         :type start_time_usecs: int
         :param end_time_usecs: End time for time range filter. Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time.
         :type end_time_usecs: int
         :param run_status: Specifies a list of status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.
         :type run_status: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5837,11 +6024,11 @@ class ProtectionGroupApi:
         """ # noqa: E501
 
         _param = self._get_protection_runs_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             run_status=run_status,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5865,11 +6052,11 @@ class ProtectionGroupApi:
     @validate_call
     def get_protection_runs_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour.")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="End time for time range filter. Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time.")] = None,
         run_status: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5887,16 +6074,16 @@ class ProtectionGroupApi:
 
         Get a list of protection runs.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param start_time_usecs: Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour.
         :type start_time_usecs: int
         :param end_time_usecs: End time for time range filter. Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time.
         :type end_time_usecs: int
         :param run_status: Specifies a list of status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.
         :type run_status: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5920,11 +6107,11 @@ class ProtectionGroupApi:
         """ # noqa: E501
 
         _param = self._get_protection_runs_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             run_status=run_status,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5948,11 +6135,11 @@ class ProtectionGroupApi:
     @validate_call
     def get_protection_runs_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour.")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="End time for time range filter. Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time.")] = None,
         run_status: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5970,16 +6157,16 @@ class ProtectionGroupApi:
 
         Get a list of protection runs.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param start_time_usecs: Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour.
         :type start_time_usecs: int
         :param end_time_usecs: End time for time range filter. Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time.
         :type end_time_usecs: int
         :param run_status: Specifies a list of status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.
         :type run_status: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6003,11 +6190,11 @@ class ProtectionGroupApi:
         """ # noqa: E501
 
         _param = self._get_protection_runs_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             run_status=run_status,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6026,11 +6213,11 @@ class ProtectionGroupApi:
 
     def _get_protection_runs_serialize(
         self,
-        access_cluster_id,
-        region_id,
         start_time_usecs,
         end_time_usecs,
         run_status,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -6112,9 +6299,9 @@ class ProtectionGroupApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the Protection Group.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of the Protection Group run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         object_id: Annotated[Optional[StrictStr], Field(description="Specifies the id of the object for which debug logs are to be returned. ")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6136,12 +6323,12 @@ class ProtectionGroupApi:
         :type id: str
         :param run_id: Specifies a unique run id of the Protection Group run. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param object_id: Specifies the id of the object for which debug logs are to be returned. 
         :type object_id: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6167,9 +6354,9 @@ class ProtectionGroupApi:
         _param = self._get_run_debug_logs_serialize(
             id=id,
             run_id=run_id,
+            object_id=object_id,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            object_id=object_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6195,9 +6382,9 @@ class ProtectionGroupApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the Protection Group.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of the Protection Group run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         object_id: Annotated[Optional[StrictStr], Field(description="Specifies the id of the object for which debug logs are to be returned. ")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6219,12 +6406,12 @@ class ProtectionGroupApi:
         :type id: str
         :param run_id: Specifies a unique run id of the Protection Group run. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param object_id: Specifies the id of the object for which debug logs are to be returned. 
         :type object_id: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6250,9 +6437,9 @@ class ProtectionGroupApi:
         _param = self._get_run_debug_logs_serialize(
             id=id,
             run_id=run_id,
+            object_id=object_id,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            object_id=object_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6278,9 +6465,9 @@ class ProtectionGroupApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the Protection Group.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of the Protection Group run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         object_id: Annotated[Optional[StrictStr], Field(description="Specifies the id of the object for which debug logs are to be returned. ")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6302,12 +6489,12 @@ class ProtectionGroupApi:
         :type id: str
         :param run_id: Specifies a unique run id of the Protection Group run. (required)
         :type run_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param object_id: Specifies the id of the object for which debug logs are to be returned. 
         :type object_id: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6333,9 +6520,9 @@ class ProtectionGroupApi:
         _param = self._get_run_debug_logs_serialize(
             id=id,
             run_id=run_id,
+            object_id=object_id,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            object_id=object_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6356,9 +6543,9 @@ class ProtectionGroupApi:
         self,
         id,
         run_id,
+        object_id,
         access_cluster_id,
         region_id,
-        object_id,
         _request_auth,
         _content_type,
         _headers,
@@ -6436,8 +6623,8 @@ class ProtectionGroupApi:
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the Protection Group.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of the Protection Group run.")],
         object_id: Annotated[StrictStr, Field(description="Specifies the id of the object for which debug logs are to be returned. ")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6461,9 +6648,9 @@ class ProtectionGroupApi:
         :type run_id: str
         :param object_id: Specifies the id of the object for which debug logs are to be returned.  (required)
         :type object_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6519,8 +6706,8 @@ class ProtectionGroupApi:
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the Protection Group.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of the Protection Group run.")],
         object_id: Annotated[StrictStr, Field(description="Specifies the id of the object for which debug logs are to be returned. ")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6544,9 +6731,9 @@ class ProtectionGroupApi:
         :type run_id: str
         :param object_id: Specifies the id of the object for which debug logs are to be returned.  (required)
         :type object_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6602,8 +6789,8 @@ class ProtectionGroupApi:
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the Protection Group.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of the Protection Group run.")],
         object_id: Annotated[StrictStr, Field(description="Specifies the id of the object for which debug logs are to be returned. ")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6627,9 +6814,9 @@ class ProtectionGroupApi:
         :type run_id: str
         :param object_id: Specifies the id of the object for which debug logs are to be returned.  (required)
         :type object_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6757,10 +6944,10 @@ class ProtectionGroupApi:
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of the Protection Group run.")],
         object_id: Annotated[StrictStr, Field(description="Specifies the id of the object for which errors/warnings are to be returned. ")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         file_type: Annotated[Optional[StrictStr], Field(description="Specifies the downloaded type, i.e: inclusion_exclusion_reports, error_files_list. default: error_files_list")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the source being backed up")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6784,14 +6971,14 @@ class ProtectionGroupApi:
         :type run_id: str
         :param object_id: Specifies the id of the object for which errors/warnings are to be returned.  (required)
         :type object_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param file_type: Specifies the downloaded type, i.e: inclusion_exclusion_reports, error_files_list. default: error_files_list
         :type file_type: str
         :param name: Specifies the name of the source being backed up
         :type name: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6818,10 +7005,10 @@ class ProtectionGroupApi:
             id=id,
             run_id=run_id,
             object_id=object_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             file_type=file_type,
             name=name,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6848,10 +7035,10 @@ class ProtectionGroupApi:
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of the Protection Group run.")],
         object_id: Annotated[StrictStr, Field(description="Specifies the id of the object for which errors/warnings are to be returned. ")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         file_type: Annotated[Optional[StrictStr], Field(description="Specifies the downloaded type, i.e: inclusion_exclusion_reports, error_files_list. default: error_files_list")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the source being backed up")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6875,14 +7062,14 @@ class ProtectionGroupApi:
         :type run_id: str
         :param object_id: Specifies the id of the object for which errors/warnings are to be returned.  (required)
         :type object_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param file_type: Specifies the downloaded type, i.e: inclusion_exclusion_reports, error_files_list. default: error_files_list
         :type file_type: str
         :param name: Specifies the name of the source being backed up
         :type name: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6909,10 +7096,10 @@ class ProtectionGroupApi:
             id=id,
             run_id=run_id,
             object_id=object_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             file_type=file_type,
             name=name,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6939,10 +7126,10 @@ class ProtectionGroupApi:
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of the Protection Group run.")],
         object_id: Annotated[StrictStr, Field(description="Specifies the id of the object for which errors/warnings are to be returned. ")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         file_type: Annotated[Optional[StrictStr], Field(description="Specifies the downloaded type, i.e: inclusion_exclusion_reports, error_files_list. default: error_files_list")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the source being backed up")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6966,14 +7153,14 @@ class ProtectionGroupApi:
         :type run_id: str
         :param object_id: Specifies the id of the object for which errors/warnings are to be returned.  (required)
         :type object_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param file_type: Specifies the downloaded type, i.e: inclusion_exclusion_reports, error_files_list. default: error_files_list
         :type file_type: str
         :param name: Specifies the name of the source being backed up
         :type name: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7000,10 +7187,10 @@ class ProtectionGroupApi:
             id=id,
             run_id=run_id,
             object_id=object_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             file_type=file_type,
             name=name,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7025,10 +7212,10 @@ class ProtectionGroupApi:
         id,
         run_id,
         object_id,
-        access_cluster_id,
-        region_id,
         file_type,
         name,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -7112,10 +7299,10 @@ class ProtectionGroupApi:
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the Protection Group.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of the Protection Group run.")],
         object_id: Annotated[StrictStr, Field(description="Specifies the id of the object for which errors/warnings are to be returned. ")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         file_type: Annotated[Optional[StrictStr], Field(description="Specifies the downloaded type, i.e: success_files_list, default: success_files_list")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the source being backed up")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7139,14 +7326,14 @@ class ProtectionGroupApi:
         :type run_id: str
         :param object_id: Specifies the id of the object for which errors/warnings are to be returned.  (required)
         :type object_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param file_type: Specifies the downloaded type, i.e: success_files_list, default: success_files_list
         :type file_type: str
         :param name: Specifies the name of the source being backed up
         :type name: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7173,10 +7360,10 @@ class ProtectionGroupApi:
             id=id,
             run_id=run_id,
             object_id=object_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             file_type=file_type,
             name=name,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7203,10 +7390,10 @@ class ProtectionGroupApi:
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the Protection Group.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of the Protection Group run.")],
         object_id: Annotated[StrictStr, Field(description="Specifies the id of the object for which errors/warnings are to be returned. ")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         file_type: Annotated[Optional[StrictStr], Field(description="Specifies the downloaded type, i.e: success_files_list, default: success_files_list")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the source being backed up")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7230,14 +7417,14 @@ class ProtectionGroupApi:
         :type run_id: str
         :param object_id: Specifies the id of the object for which errors/warnings are to be returned.  (required)
         :type object_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param file_type: Specifies the downloaded type, i.e: success_files_list, default: success_files_list
         :type file_type: str
         :param name: Specifies the name of the source being backed up
         :type name: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7264,10 +7451,10 @@ class ProtectionGroupApi:
             id=id,
             run_id=run_id,
             object_id=object_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             file_type=file_type,
             name=name,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7294,10 +7481,10 @@ class ProtectionGroupApi:
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the Protection Group.")],
         run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of the Protection Group run.")],
         object_id: Annotated[StrictStr, Field(description="Specifies the id of the object for which errors/warnings are to be returned. ")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         file_type: Annotated[Optional[StrictStr], Field(description="Specifies the downloaded type, i.e: success_files_list, default: success_files_list")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the source being backed up")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7321,14 +7508,14 @@ class ProtectionGroupApi:
         :type run_id: str
         :param object_id: Specifies the id of the object for which errors/warnings are to be returned.  (required)
         :type object_id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param file_type: Specifies the downloaded type, i.e: success_files_list, default: success_files_list
         :type file_type: str
         :param name: Specifies the name of the source being backed up
         :type name: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7355,10 +7542,10 @@ class ProtectionGroupApi:
             id=id,
             run_id=run_id,
             object_id=object_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             file_type=file_type,
             name=name,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7380,10 +7567,10 @@ class ProtectionGroupApi:
         id,
         run_id,
         object_id,
-        access_cluster_id,
-        region_id,
         file_type,
         name,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -7466,8 +7653,8 @@ class ProtectionGroupApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
         body: Annotated[PerformActionOnProtectionGroupRunRequest, Field(description="Specifies the parameters to perform an action on a protection run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7489,9 +7676,9 @@ class ProtectionGroupApi:
         :type id: str
         :param body: Specifies the parameters to perform an action on a protection run. (required)
         :type body: PerformActionOnProtectionGroupRunRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7545,8 +7732,8 @@ class ProtectionGroupApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
         body: Annotated[PerformActionOnProtectionGroupRunRequest, Field(description="Specifies the parameters to perform an action on a protection run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7568,9 +7755,9 @@ class ProtectionGroupApi:
         :type id: str
         :param body: Specifies the parameters to perform an action on a protection run. (required)
         :type body: PerformActionOnProtectionGroupRunRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7624,8 +7811,8 @@ class ProtectionGroupApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
         body: Annotated[PerformActionOnProtectionGroupRunRequest, Field(description="Specifies the parameters to perform an action on a protection run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7647,9 +7834,9 @@ class ProtectionGroupApi:
         :type id: str
         :param body: Specifies the parameters to perform an action on a protection run. (required)
         :type body: PerformActionOnProtectionGroupRunRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7785,7 +7972,7 @@ class ProtectionGroupApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the Protection Group.")],
         body: Annotated[CreateOrUpdateProtectionGroupRequest, Field(description="Specifies the parameters to update a Protection Group.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7807,7 +7994,7 @@ class ProtectionGroupApi:
         :type id: str
         :param body: Specifies the parameters to update a Protection Group. (required)
         :type body: CreateOrUpdateProtectionGroupRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7860,7 +8047,7 @@ class ProtectionGroupApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the Protection Group.")],
         body: Annotated[CreateOrUpdateProtectionGroupRequest, Field(description="Specifies the parameters to update a Protection Group.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7882,7 +8069,7 @@ class ProtectionGroupApi:
         :type id: str
         :param body: Specifies the parameters to update a Protection Group. (required)
         :type body: CreateOrUpdateProtectionGroupRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7935,7 +8122,7 @@ class ProtectionGroupApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the Protection Group.")],
         body: Annotated[CreateOrUpdateProtectionGroupRequest, Field(description="Specifies the parameters to update a Protection Group.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7957,7 +8144,7 @@ class ProtectionGroupApi:
         :type id: str
         :param body: Specifies the parameters to update a Protection Group. (required)
         :type body: CreateOrUpdateProtectionGroupRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8089,8 +8276,8 @@ class ProtectionGroupApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the Protection Group.")],
         body: Annotated[CreateOrUpdateProtectionGroupRequest, Field(description="Specifies the parameters to update a Protection Group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8112,9 +8299,9 @@ class ProtectionGroupApi:
         :type id: str
         :param body: Specifies the parameters to update a Protection Group. (required)
         :type body: CreateOrUpdateProtectionGroupRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8168,8 +8355,8 @@ class ProtectionGroupApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the Protection Group.")],
         body: Annotated[CreateOrUpdateProtectionGroupRequest, Field(description="Specifies the parameters to update a Protection Group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8191,9 +8378,9 @@ class ProtectionGroupApi:
         :type id: str
         :param body: Specifies the parameters to update a Protection Group. (required)
         :type body: CreateOrUpdateProtectionGroupRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8247,8 +8434,8 @@ class ProtectionGroupApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the Protection Group.")],
         body: Annotated[CreateOrUpdateProtectionGroupRequest, Field(description="Specifies the parameters to update a Protection Group.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8270,9 +8457,9 @@ class ProtectionGroupApi:
         :type id: str
         :param body: Specifies the parameters to update a Protection Group. (required)
         :type body: CreateOrUpdateProtectionGroupRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8408,8 +8595,8 @@ class ProtectionGroupApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
         body: Annotated[UpdateProtectionGroupRunRequestBody, Field(description="Specifies the parameters to update a Protection Group Run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8431,9 +8618,9 @@ class ProtectionGroupApi:
         :type id: str
         :param body: Specifies the parameters to update a Protection Group Run. (required)
         :type body: UpdateProtectionGroupRunRequestBody
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8487,8 +8674,8 @@ class ProtectionGroupApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
         body: Annotated[UpdateProtectionGroupRunRequestBody, Field(description="Specifies the parameters to update a Protection Group Run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8510,9 +8697,9 @@ class ProtectionGroupApi:
         :type id: str
         :param body: Specifies the parameters to update a Protection Group Run. (required)
         :type body: UpdateProtectionGroupRunRequestBody
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8566,8 +8753,8 @@ class ProtectionGroupApi:
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Group.")],
         body: Annotated[UpdateProtectionGroupRunRequestBody, Field(description="Specifies the parameters to update a Protection Group Run.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8589,9 +8776,9 @@ class ProtectionGroupApi:
         :type id: str
         :param body: Specifies the parameters to update a Protection Group Run. (required)
         :type body: UpdateProtectionGroupRunRequestBody
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8726,8 +8913,8 @@ class ProtectionGroupApi:
     def update_protection_groups_state(
         self,
         body: Annotated[UpdateProtectionGroupsStateRequest, Field(description="Specifies the parameters to perform an action of list of Protection Groups.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8747,9 +8934,9 @@ class ProtectionGroupApi:
 
         :param body: Specifies the parameters to perform an action of list of Protection Groups. (required)
         :type body: UpdateProtectionGroupsStateRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8801,8 +8988,8 @@ class ProtectionGroupApi:
     def update_protection_groups_state_with_http_info(
         self,
         body: Annotated[UpdateProtectionGroupsStateRequest, Field(description="Specifies the parameters to perform an action of list of Protection Groups.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8822,9 +9009,9 @@ class ProtectionGroupApi:
 
         :param body: Specifies the parameters to perform an action of list of Protection Groups. (required)
         :type body: UpdateProtectionGroupsStateRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8876,8 +9063,8 @@ class ProtectionGroupApi:
     def update_protection_groups_state_without_preload_content(
         self,
         body: Annotated[UpdateProtectionGroupsStateRequest, Field(description="Specifies the parameters to perform an action of list of Protection Groups.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8897,9 +9084,9 @@ class ProtectionGroupApi:
 
         :param body: Specifies the parameters to perform an action of list of Protection Groups. (required)
         :type body: UpdateProtectionGroupsStateRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

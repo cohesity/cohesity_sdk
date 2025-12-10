@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.vcenter_credential_info import VcenterCredentialInfo
@@ -32,8 +32,9 @@ class VcdRegistrationParams(BaseModel):
     username: StrictStr = Field(description="Specifies the username to access target entity.")
     description: Optional[StrictStr] = Field(default=None, description="Specifies the description of the source being registered.")
     endpoint: StrictStr = Field(description="Specifies the endpoint IPaddress, URL or hostname of the host.")
+    link_vms_across_vcenter: Optional[StrictBool] = Field(default=None, description="Specifies if the VM linking feature is enabled for the VCD. If enabled, migrated VMs present in the VCD which earlier belonged to some other VCD/Vcenter will be linked during EH refresh.", alias="linkVmsAcrossVcenter")
     vcenter_credential_info_list: Optional[Annotated[List[VcenterCredentialInfo], Field(min_length=1)]] = Field(description="Specifies the credentials information for all the vcenters in vcloud director.", alias="vcenterCredentialInfoList")
-    __properties: ClassVar[List[str]] = ["password", "username", "description", "endpoint", "vcenterCredentialInfoList"]
+    __properties: ClassVar[List[str]] = ["password", "username", "description", "endpoint", "linkVmsAcrossVcenter", "vcenterCredentialInfoList"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,6 +87,11 @@ class VcdRegistrationParams(BaseModel):
         if self.description is None and "description" in self.model_fields_set:
             _dict['description'] = None
 
+        # set to None if link_vms_across_vcenter (nullable) is None
+        # and model_fields_set contains the field
+        if self.link_vms_across_vcenter is None and "link_vms_across_vcenter" in self.model_fields_set:
+            _dict['linkVmsAcrossVcenter'] = None
+
         # set to None if vcenter_credential_info_list (nullable) is None
         # and model_fields_set contains the field
         if self.vcenter_credential_info_list is None and "vcenter_credential_info_list" in self.model_fields_set:
@@ -107,6 +113,7 @@ class VcdRegistrationParams(BaseModel):
             "username": obj.get("username"),
             "description": obj.get("description"),
             "endpoint": obj.get("endpoint"),
+            "linkVmsAcrossVcenter": obj.get("linkVmsAcrossVcenter"),
             "vcenterCredentialInfoList": [VcenterCredentialInfo.from_dict(_item) for _item in obj["vcenterCredentialInfoList"]] if obj.get("vcenterCredentialInfoList") is not None else None
         })
         return _obj

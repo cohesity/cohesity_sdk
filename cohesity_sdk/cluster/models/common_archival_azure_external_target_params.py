@@ -46,8 +46,8 @@ class CommonArchivalAzureExternalTargetParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['AzureArchiveBlob', 'AzureCoolBlob', 'AzureHotBlob']):
-            raise ValueError("must be one of enum values ('AzureArchiveBlob', 'AzureCoolBlob', 'AzureHotBlob')")
+        if value not in set(['AzureArchiveBlob', 'AzureCoolBlob', 'AzureHotBlob', 'AzureColdBlob']):
+            raise ValueError("must be one of enum values ('AzureArchiveBlob', 'AzureCoolBlob', 'AzureHotBlob', 'AzureColdBlob')")
         return value
 
     model_config = ConfigDict(

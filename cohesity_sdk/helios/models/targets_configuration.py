@@ -22,8 +22,10 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.archival_config import ArchivalConfig
 from cohesity_sdk.helios.models.cloud_spin_config import CloudSpinConfig
 from cohesity_sdk.helios.models.onprem_deploy_config import OnpremDeployConfig
+from cohesity_sdk.helios.models.onprem_vault_config import OnpremVaultConfig
 from cohesity_sdk.helios.models.replication_config import ReplicationConfig
 from cohesity_sdk.helios.models.rpaas_config import RpaasConfig
+from cohesity_sdk.helios.models.source_config import SourceConfig
 from typing import Set
 from typing_extensions import Self
 
@@ -34,9 +36,11 @@ class TargetsConfiguration(BaseModel):
     archival_targets: Optional[List[ArchivalConfig]] = Field(default=None, alias="archivalTargets")
     cloud_spin_targets: Optional[List[CloudSpinConfig]] = Field(default=None, alias="cloudSpinTargets")
     onprem_deploy_targets: Optional[List[OnpremDeployConfig]] = Field(default=None, alias="onpremDeployTargets")
+    onprem_vault_targets: Optional[List[OnpremVaultConfig]] = Field(default=None, alias="onpremVaultTargets")
     replication_targets: Optional[List[ReplicationConfig]] = Field(default=None, alias="replicationTargets")
     rpaas_targets: Optional[List[RpaasConfig]] = Field(default=None, alias="rpaasTargets")
-    __properties: ClassVar[List[str]] = ["archivalTargets", "cloudSpinTargets", "onpremDeployTargets", "replicationTargets", "rpaasTargets"]
+    source_targets: Optional[SourceConfig] = Field(default=None, alias="sourceTargets")
+    __properties: ClassVar[List[str]] = ["archivalTargets", "cloudSpinTargets", "onpremDeployTargets", "onpremVaultTargets", "replicationTargets", "rpaasTargets", "sourceTargets"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -98,6 +102,13 @@ class TargetsConfiguration(BaseModel):
                 if _item_onprem_deploy_targets:
                     _items.append(_item_onprem_deploy_targets.to_dict())
             _dict['onpremDeployTargets'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in onprem_vault_targets (list)
+        _items = []
+        if self.onprem_vault_targets:
+            for _item_onprem_vault_targets in self.onprem_vault_targets:
+                if _item_onprem_vault_targets:
+                    _items.append(_item_onprem_vault_targets.to_dict())
+            _dict['onpremVaultTargets'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in replication_targets (list)
         _items = []
         if self.replication_targets:
@@ -112,6 +123,9 @@ class TargetsConfiguration(BaseModel):
                 if _item_rpaas_targets:
                     _items.append(_item_rpaas_targets.to_dict())
             _dict['rpaasTargets'] = _items
+        # override the default output from pydantic by calling `to_dict()` of source_targets
+        if self.source_targets:
+            _dict['sourceTargets'] = self.source_targets.to_dict()
         return _dict
 
     @classmethod
@@ -127,8 +141,10 @@ class TargetsConfiguration(BaseModel):
             "archivalTargets": [ArchivalConfig.from_dict(_item) for _item in obj["archivalTargets"]] if obj.get("archivalTargets") is not None else None,
             "cloudSpinTargets": [CloudSpinConfig.from_dict(_item) for _item in obj["cloudSpinTargets"]] if obj.get("cloudSpinTargets") is not None else None,
             "onpremDeployTargets": [OnpremDeployConfig.from_dict(_item) for _item in obj["onpremDeployTargets"]] if obj.get("onpremDeployTargets") is not None else None,
+            "onpremVaultTargets": [OnpremVaultConfig.from_dict(_item) for _item in obj["onpremVaultTargets"]] if obj.get("onpremVaultTargets") is not None else None,
             "replicationTargets": [ReplicationConfig.from_dict(_item) for _item in obj["replicationTargets"]] if obj.get("replicationTargets") is not None else None,
-            "rpaasTargets": [RpaasConfig.from_dict(_item) for _item in obj["rpaasTargets"]] if obj.get("rpaasTargets") is not None else None
+            "rpaasTargets": [RpaasConfig.from_dict(_item) for _item in obj["rpaasTargets"]] if obj.get("rpaasTargets") is not None else None,
+            "sourceTargets": SourceConfig.from_dict(obj["sourceTargets"]) if obj.get("sourceTargets") is not None else None
         })
         return _obj
 

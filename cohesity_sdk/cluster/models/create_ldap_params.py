@@ -28,7 +28,6 @@ class CreateLdapParams(BaseModel):
     """
     Specifies the parameters to create an LDAP.
     """ # noqa: E501
-    active_directory_id: Optional[StrictInt] = Field(default=None, description="Specifies the Active Directory id which is mapped to this LDAP.", alias="activeDirectoryId")
     ad_domain_name: Optional[StrictStr] = Field(default=None, description="Specifies the domain name of an Active Directory which is mapped to this LDAP provider", alias="adDomainName")
     attribute_common_name: Optional[StrictStr] = Field(default=None, description="Specifies name of the LDAP attribute used for common name of an object.", alias="attributeCommonName")
     attribute_gid: Optional[StrictStr] = Field(default=None, description="Specifies name of the attribute used to lookup unix GID of an LDAP user.", alias="attributeGid")
@@ -44,7 +43,7 @@ class CreateLdapParams(BaseModel):
     port: Optional[StrictInt] = Field(default=None, description="Specifies the LDAP server port.")
     preferred_ldap_servers: Optional[Annotated[List[StrictStr], Field(min_length=1)]] = Field(default=None, description="Specifies a list of preferred LDAP servers. Servers should either be FQDNs or IP addresses.", alias="preferredLdapServers")
     simple_auth_params: Optional[SimpleAuthParams] = Field(default=None, alias="simpleAuthParams")
-    __properties: ClassVar[List[str]] = ["activeDirectoryId", "adDomainName", "attributeCommonName", "attributeGid", "attributeMemberOf", "attributeUid", "attributeUsername", "authType", "baseDistinguishedName", "domainName", "name", "objectClassGroup", "objectClassUser", "port", "preferredLdapServers", "simpleAuthParams"]
+    __properties: ClassVar[List[str]] = ["adDomainName", "attributeCommonName", "attributeGid", "attributeMemberOf", "attributeUid", "attributeUsername", "authType", "baseDistinguishedName", "domainName", "name", "objectClassGroup", "objectClassUser", "port", "preferredLdapServers", "simpleAuthParams"]
 
     @field_validator('auth_type')
     def auth_type_validate_enum(cls, value):
@@ -172,7 +171,6 @@ class CreateLdapParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "activeDirectoryId": obj.get("activeDirectoryId"),
             "adDomainName": obj.get("adDomainName"),
             "attributeCommonName": obj.get("attributeCommonName"),
             "attributeGid": obj.get("attributeGid"),

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **keep_cdc** | **bool** | Specifies whether to keep CDC (Change Data Capture) on recovered databases or not. If not passed, this is assumed to be true. If withNoRecovery is passed as true, then this field must not be set to true. Passing this field as true in this scenario will be a invalid request. | [optional] 
 **multi_stage_restore_options** | [**MultiStageRestoreOptions**](MultiStageRestoreOptions.md) |  | [optional] 
+**native_log_recovery_with_clause** | **str** | Specifies the WITH clause to be used in native sql log restore command. This is only applicable for native log restore. | [optional] 
 **native_recovery_with_clause** | **str** | &#39;with_clause&#39; contains &#39;with clause&#39; to be used in native sql restore command. This is only applicable for database restore of native sql backup. Here user can specify multiple restore options. Example: &#39;WITH BUFFERCOUNT &#x3D; 575, MAXTRANSFERSIZE &#x3D; 2097152&#39;. | [optional] 
 **overwriting_policy** | **str** | Specifies a policy to be used while recovering existing databases. | [optional] 
 **replay_entire_last_log** | **bool** | Specifies the option to set replay last log bit while creating the sql restore task and doing restore to latest point-in-time. If this is set to true, we will replay the entire last log without STOPAT. | [optional] 

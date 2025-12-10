@@ -29,10 +29,11 @@ class UpdateSMTPParams(BaseModel):
     hostname: StrictStr = Field(description="Specifies the IP address or the FQDN of the SMTP server.")
     is_active: Optional[StrictBool] = Field(default=True, description="Specifies if the SMTP configuration is active.", alias="isActive")
     port: StrictInt = Field(description="Specifies the SMTP port. Usually 465 or 587. For authenticated connection, it is generally 587.")
+    sender_email_address: Optional[StrictStr] = Field(default=None, description="This is used for setting \"Sender\" field in SMTP header. This has to be in valid email format, and could be different from username, and it's a required field if the username is not of valid email address. ", alias="senderEmailAddress")
     use_ssl: Optional[StrictBool] = Field(default=False, description="This is set to true when the SMTP server uses SSL/TLS without supporting STARTTLS. Typically, this is used for port 465.", alias="useSSL")
     username: Optional[StrictStr] = Field(default=None, description="Specifies the username which will be used to connect to the SMTP server. If username is not specified, then it would imply that SMTP server is set up for unauthenticated access.")
     password: Optional[StrictStr] = Field(default=None, description="Specifies the password of the SMTP user. This is required if username is specified in the request.")
-    __properties: ClassVar[List[str]] = ["hostname", "isActive", "port", "useSSL", "username", "password"]
+    __properties: ClassVar[List[str]] = ["hostname", "isActive", "port", "senderEmailAddress", "useSSL", "username", "password"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,6 +79,11 @@ class UpdateSMTPParams(BaseModel):
         if self.is_active is None and "is_active" in self.model_fields_set:
             _dict['isActive'] = None
 
+        # set to None if sender_email_address (nullable) is None
+        # and model_fields_set contains the field
+        if self.sender_email_address is None and "sender_email_address" in self.model_fields_set:
+            _dict['senderEmailAddress'] = None
+
         # set to None if use_ssl (nullable) is None
         # and model_fields_set contains the field
         if self.use_ssl is None and "use_ssl" in self.model_fields_set:
@@ -108,6 +114,7 @@ class UpdateSMTPParams(BaseModel):
             "hostname": obj.get("hostname"),
             "isActive": obj.get("isActive") if obj.get("isActive") is not None else True,
             "port": obj.get("port"),
+            "senderEmailAddress": obj.get("senderEmailAddress"),
             "useSSL": obj.get("useSSL") if obj.get("useSSL") is not None else False,
             "username": obj.get("username"),
             "password": obj.get("password")

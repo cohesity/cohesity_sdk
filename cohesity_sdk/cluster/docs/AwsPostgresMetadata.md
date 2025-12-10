@@ -7,7 +7,7 @@ Specifies the metadata types and values of aws postgres.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **metadata_type** | **str** | Specifies the type of metadata being sent in the request. | 
-**standard_credentials** | [**Credentials**](Credentials.md) |  | [optional] 
+**standard_credentials** | [**AwsCredentials**](AwsCredentials.md) |  | [optional] 
 
 ## Example
 

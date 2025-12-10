@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**get_active_directory**](ActiveDirectoryApi.md#get_active_directory) | **GET** /active-directories | Get the list of Active Directories.
 [**get_active_directory_by_id**](ActiveDirectoryApi.md#get_active_directory_by_id) | **GET** /active-directories/{id} | Get an Active Directory by id.
 [**get_active_directory_principals**](ActiveDirectoryApi.md#get_active_directory_principals) | **GET** /active-directory-principals | Get the list of user and group principals from the Active Directory that match the specified filter criteria.
+[**get_active_directory_topology**](ActiveDirectoryApi.md#get_active_directory_topology) | **GET** /active-directory-topology | Get Active Directory Topology
 [**get_centrify_zones**](ActiveDirectoryApi.md#get_centrify_zones) | **GET** /centrify-zones | Get Centrify Zones.
 [**get_domain_controllers**](ActiveDirectoryApi.md#get_domain_controllers) | **GET** /domain-controllers | Get Domain Controllers of specified domains.
 [**get_trusted_domains**](ActiveDirectoryApi.md#get_trusted_domains) | **GET** /trusted-domains | Get Trusted Domains.
@@ -23,7 +24,7 @@ Method | HTTP request | Description
 
 Add multiple groups or users on the Cohesity Cluster for the specified Active Directory principals. In addition, assign Cohesity roles to the users or groups to define their Cohesity privileges.
 
-After a group or user has been added to a Cohesity Cluster, the referenced Active Directory principal can be used by the Cohesity Cluster. In addition, this operation maps Cohesity roles with a group or user and this mapping defines the privileges allowed on the Cohesity Cluster for the group or user. For example if an 'management' group is created on the Cohesity Cluster for the Active Directory 'management' principal group and is associated with the Cohesity 'View' role, all users in the referenced Active Directory 'management' principal group can log in to the Cohesity Dashboard but will only have view-only privileges. These users cannot create new Protection Jobs, Policies, Views, etc. NOTE: Local Cohesity users and groups cannot be created by this operation. Local Cohesity users or groups do not have an associated Active Directory principals and are created directly in the default LOCAL domain.
+**Privileges:** ```PRINCIPAL_MODIFY``` <br><br>After a group or user has been added to a Cohesity Cluster, the referenced Active Directory principal can be used by the Cohesity Cluster. In addition, this operation maps Cohesity roles with a group or user and this mapping defines the privileges allowed on the Cohesity Cluster for the group or user. For example if an 'management' group is created on the Cohesity Cluster for the Active Directory 'management' principal group and is associated with the Cohesity 'View' role, all users in the referenced Active Directory 'management' principal group can log in to the Cohesity Dashboard but will only have view-only privileges. These users cannot create new Protection Jobs, Policies, Views, etc. NOTE: Local Cohesity users and groups cannot be created by this operation. Local Cohesity users or groups do not have an associated Active Directory principals and are created directly in the default LOCAL domain.
 
 ### Example
 
@@ -118,7 +119,7 @@ Name | Type | Description  | Notes
 
 Create an Active Directory.
 
-Create an Active Directory.
+**Privileges:** ```AD_LDAP_MODIFY``` <br><br>Create an Active Directory.
 
 ### Example
 
@@ -213,7 +214,7 @@ Name | Type | Description  | Notes
 
 Delete an Active Directory.
 
-Delete an Active Directory.
+**Privileges:** ```AD_LDAP_MODIFY``` <br><br>Delete an Active Directory.
 
 ### Example
 
@@ -310,7 +311,7 @@ void (empty response body)
 
 Get the list of Active Directories.
 
-Get the list of Active Directories.
+**Privileges:** ```AD_LDAP_VIEW``` <br><br>Get the list of Active Directories.
 
 ### Example
 
@@ -410,7 +411,7 @@ Name | Type | Description  | Notes
 
 Get an Active Directory by id.
 
-Get an Active Directory by id.
+**Privileges:** ```AD_LDAP_VIEW``` <br><br>Get an Active Directory by id.
 
 ### Example
 
@@ -514,7 +515,7 @@ Name | Type | Description  | Notes
 
 Get the list of user and group principals from the Active Directory that match the specified filter criteria.
 
-Get the list of user and group principals from the Active Directory that match the specified filter criteria.
+**Privileges:** ```PRINCIPAL_VIEW, AD_LDAP_VIEW``` <br><br>Get the list of user and group principals from the Active Directory that match the specified filter criteria.
 
 ### Example
 
@@ -613,12 +614,102 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_active_directory_topology**
+> ActiveDirectoryTopology get_active_directory_topology()
+
+Get Active Directory Topology
+
+**Privileges:** ```AD_LDAP_VIEW``` <br><br>Get the Active Directory topology for the cluster. The topology includes trust relationships between the Active Directories registered on the cluster and their neighboring domains.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
+```python
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.active_directory_topology import ActiveDirectoryTopology
+from cohesity_sdk.cluster.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.ActiveDirectoryApi(api_client)
+
+    try:
+        # Get Active Directory Topology
+        api_response = api_instance.get_active_directory_topology()
+        print("The response of ActiveDirectoryApi->get_active_directory_topology:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ActiveDirectoryApi->get_active_directory_topology: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ActiveDirectoryTopology**](ActiveDirectoryTopology.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_centrify_zones**
 > CentrifyZones get_centrify_zones(domain_name)
 
 Get Centrify Zones.
 
-Get Centrify zones for a specified domain.
+**Privileges:** ```AD_LDAP_VIEW``` <br><br>Get Centrify zones for a specified domain.
 
 ### Example
 
@@ -712,7 +803,7 @@ Name | Type | Description  | Notes
 
 Get Domain Controllers of specified domains.
 
-Get Domain Controllers of specified domains.
+**Privileges:** ```AD_LDAP_VIEW``` <br><br>Get Domain Controllers of specified domains.
 
 ### Example
 
@@ -808,7 +899,7 @@ Name | Type | Description  | Notes
 
 Get Trusted Domains.
 
-Get Trusted Domains for a specified domain.
+**Privileges:** ```AD_LDAP_VIEW``` <br><br>Get Trusted Domains for a specified domain.
 
 ### Example
 
@@ -902,7 +993,7 @@ Name | Type | Description  | Notes
 
 Rediscover trusted domains.
 
-Re-trigger the trusted domains of an Active Directory.
+**Privileges:** ```AD_LDAP_MODIFY``` <br><br>Re-trigger the trusted domains of an Active Directory.
 
 ### Example
 
@@ -995,7 +1086,7 @@ void (empty response body)
 
 Update an Active Directory.
 
-Update an Active Directory.
+**Privileges:** ```AD_LDAP_MODIFY``` <br><br>Update an Active Directory.
 
 ### Example
 
@@ -1092,7 +1183,7 @@ Name | Type | Description  | Notes
 
 Update trusted domains.
 
-To update trusted domains of an Active Directory.
+**Privileges:** ```AD_LDAP_MODIFY``` <br><br>To update trusted domains of an Active Directory.
 
 ### Example
 

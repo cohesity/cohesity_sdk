@@ -26,9 +26,9 @@ class EndPoint(BaseModel):
     """
     Specifies information about a node interface.
     """ # noqa: E501
-    index: Optional[StrictInt] = Field(default=None, description="Index of the interface as given by 'ip a' command.")
+    index: StrictInt = Field(description="Index of the interface as given by 'ip a' command.")
     ip_addresses: Optional[List[StrictStr]] = Field(default=None, description="IP addresses on the interface", alias="ipAddresses")
-    name: Optional[StrictStr] = Field(default=None, description="Name of the interface like bond0.")
+    name: StrictStr = Field(description="Name of the interface like bond0.")
     __properties: ClassVar[List[str]] = ["index", "ipAddresses", "name"]
 
     model_config = ConfigDict(

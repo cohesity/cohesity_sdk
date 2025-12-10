@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **bucket_owner_account_id** | **str** | Specifies the account Id of the S3 bucket owner. | [optional] 
 **is_forever_incremental_archival_enabled** | **bool** | Specifies if Forever Incremental Archival setting is enabled or not. | [optional] 
 **is_incremental_archival_enabled** | **bool** | Specifies if Incremental Archival setting is enabled or not. | [optional] 
+**lambda_private_endpoint** | **str** | Lambda private endpoint if the traffic needs to be routed through a private link. | [optional] 
+**private_endpoint** | **str** | Private endpoint if specified. | [optional] 
 **source_side_deduplication** | **bool** | Specifies the Source Side Deduplication setting for the AWS external target | [optional] 
 **storage_class** | **str** | Specifies the AWS External Target storage class. | 
 **aws_glacier_params** | [**AwsGlacierParams**](AwsGlacierParams.md) |  | [optional] 

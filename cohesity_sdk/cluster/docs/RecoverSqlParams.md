@@ -6,6 +6,7 @@ Specifies the recovery options specific to Sql environment.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**recover_app_files_params** | [**List[RecoverSqlAppFilesParams]**](RecoverSqlAppFilesParams.md) | Specifies parameters for recovering SQL databases as flat files. Includes options to set the destination path and control whether existing files should be overwritten. | [optional] 
 **recover_app_params** | [**List[RecoverSqlAppParams]**](RecoverSqlAppParams.md) | Specifies the parameters to recover Sql databases. | [optional] 
 **recovery_action** | **str** | Specifies the type of recover action to be performed. | 
 **vlan_config** | [**RecoveryVlanConfig**](RecoveryVlanConfig.md) |  | [optional] 

@@ -20,6 +20,8 @@ from cohesity_sdk.cluster.models.antivirus_service_groups import AntivirusServic
 from cohesity_sdk.cluster.models.create_antivirus_service_group_params import CreateAntivirusServiceGroupParams
 from cohesity_sdk.cluster.models.delete_infected_files import DeleteInfectedFiles
 from cohesity_sdk.cluster.models.delete_infected_files_parameters import DeleteInfectedFilesParameters
+from cohesity_sdk.cluster.models.delete_infected_objects import DeleteInfectedObjects
+from cohesity_sdk.cluster.models.delete_infected_objects_parameters import DeleteInfectedObjectsParameters
 from cohesity_sdk.cluster.models.icap_uri_connection_status_list import IcapUriConnectionStatusList
 from cohesity_sdk.cluster.models.infected_files import InfectedFiles
 from cohesity_sdk.cluster.models.update_infected_files_list import UpdateInfectedFilesList
@@ -62,7 +64,7 @@ class AntivirusServiceApi:
     ) -> AntivirusServiceGroup:
         """Create an Antivirus Service group.
 
-        Create Antivirus Service group.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Create Antivirus Service group.
 
         :param body: Specifies the parameters to create antivirus service group. (required)
         :type body: CreateAntivirusServiceGroupParams
@@ -129,7 +131,7 @@ class AntivirusServiceApi:
     ) -> ApiResponse[AntivirusServiceGroup]:
         """Create an Antivirus Service group.
 
-        Create Antivirus Service group.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Create Antivirus Service group.
 
         :param body: Specifies the parameters to create antivirus service group. (required)
         :type body: CreateAntivirusServiceGroupParams
@@ -196,7 +198,7 @@ class AntivirusServiceApi:
     ) -> RESTResponseType:
         """Create an Antivirus Service group.
 
-        Create Antivirus Service group.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Create Antivirus Service group.
 
         :param body: Specifies the parameters to create antivirus service group. (required)
         :type body: CreateAntivirusServiceGroupParams
@@ -338,7 +340,7 @@ class AntivirusServiceApi:
     ) -> None:
         """Delete an Antivirus Service group
 
-        Deletes an Antivirus service group based on given id.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Deletes an Antivirus service group based on given id.
 
         :param id: Specifies a unique id of the Antivirus Group to delete. (required)
         :type id: int
@@ -405,7 +407,7 @@ class AntivirusServiceApi:
     ) -> ApiResponse[None]:
         """Delete an Antivirus Service group
 
-        Deletes an Antivirus service group based on given id.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Deletes an Antivirus service group based on given id.
 
         :param id: Specifies a unique id of the Antivirus Group to delete. (required)
         :type id: int
@@ -472,7 +474,7 @@ class AntivirusServiceApi:
     ) -> RESTResponseType:
         """Delete an Antivirus Service group
 
-        Deletes an Antivirus service group based on given id.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Deletes an Antivirus service group based on given id.
 
         :param id: Specifies a unique id of the Antivirus Group to delete. (required)
         :type id: int
@@ -601,7 +603,7 @@ class AntivirusServiceApi:
     ) -> DeleteInfectedFiles:
         """Delete infected files.
 
-        Delete infected files.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete infected files.
 
         :param body: Specifies the parameters of infected files to be deleted. (required)
         :type body: DeleteInfectedFilesParameters
@@ -668,7 +670,7 @@ class AntivirusServiceApi:
     ) -> ApiResponse[DeleteInfectedFiles]:
         """Delete infected files.
 
-        Delete infected files.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete infected files.
 
         :param body: Specifies the parameters of infected files to be deleted. (required)
         :type body: DeleteInfectedFilesParameters
@@ -735,7 +737,7 @@ class AntivirusServiceApi:
     ) -> RESTResponseType:
         """Delete infected files.
 
-        Delete infected files.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete infected files.
 
         :param body: Specifies the parameters of infected files to be deleted. (required)
         :type body: DeleteInfectedFilesParameters
@@ -859,6 +861,282 @@ class AntivirusServiceApi:
 
 
     @validate_call
+    def delete_infected_objects(
+        self,
+        body: Annotated[DeleteInfectedObjectsParameters, Field(description="Specifies the parameters of infected objects to be deleted.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> DeleteInfectedObjects:
+        """Delete infected objects permanently.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete infected objects permanently.
+
+        :param body: Specifies the parameters of infected objects to be deleted. (required)
+        :type body: DeleteInfectedObjectsParameters
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_infected_objects_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "DeleteInfectedObjects",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def delete_infected_objects_with_http_info(
+        self,
+        body: Annotated[DeleteInfectedObjectsParameters, Field(description="Specifies the parameters of infected objects to be deleted.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[DeleteInfectedObjects]:
+        """Delete infected objects permanently.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete infected objects permanently.
+
+        :param body: Specifies the parameters of infected objects to be deleted. (required)
+        :type body: DeleteInfectedObjectsParameters
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_infected_objects_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "DeleteInfectedObjects",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def delete_infected_objects_without_preload_content(
+        self,
+        body: Annotated[DeleteInfectedObjectsParameters, Field(description="Specifies the parameters of infected objects to be deleted.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete infected objects permanently.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete infected objects permanently.
+
+        :param body: Specifies the parameters of infected objects to be deleted. (required)
+        :type body: DeleteInfectedObjectsParameters
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_infected_objects_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "DeleteInfectedObjects",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _delete_infected_objects_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/antivirus-service/infected-objects',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_antivirus_service_groups(
         self,
         _request_timeout: Union[
@@ -876,7 +1154,7 @@ class AntivirusServiceApi:
     ) -> AntivirusServiceGroups:
         """Get Antivirus Service groups.
 
-        Get Antivirus Service groups.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get Antivirus Service groups.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -939,7 +1217,7 @@ class AntivirusServiceApi:
     ) -> ApiResponse[AntivirusServiceGroups]:
         """Get Antivirus Service groups.
 
-        Get Antivirus Service groups.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get Antivirus Service groups.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1002,7 +1280,7 @@ class AntivirusServiceApi:
     ) -> RESTResponseType:
         """Get Antivirus Service groups.
 
-        Get Antivirus Service groups.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get Antivirus Service groups.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1125,7 +1403,7 @@ class AntivirusServiceApi:
     ) -> IcapUriConnectionStatusList:
         """Get ICAP Uri connection status.
 
-        Get ICAP Uri connection status.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get ICAP Uri connection status.
 
         :param uris: Specifies a list of URIs to check connection status.
         :type uris: List[str]
@@ -1192,7 +1470,7 @@ class AntivirusServiceApi:
     ) -> ApiResponse[IcapUriConnectionStatusList]:
         """Get ICAP Uri connection status.
 
-        Get ICAP Uri connection status.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get ICAP Uri connection status.
 
         :param uris: Specifies a list of URIs to check connection status.
         :type uris: List[str]
@@ -1259,7 +1537,7 @@ class AntivirusServiceApi:
     ) -> RESTResponseType:
         """Get ICAP Uri connection status.
 
-        Get ICAP Uri connection status.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get ICAP Uri connection status.
 
         :param uris: Specifies a list of URIs to check connection status.
         :type uris: List[str]
@@ -1375,7 +1653,7 @@ class AntivirusServiceApi:
     @validate_call
     def get_infected_files(
         self,
-        view_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of view ids. Only infected files from these views will be returned.")] = None,
+        view_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of view ids. Only infected entities from these views will be returned.")] = None,
         path: Annotated[Optional[StrictStr], Field(description="Specifies the file path.")] = None,
         states: Annotated[Optional[List[StrictStr]], Field(description="Specifies the file states.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies the max number of files to be returned.")] = None,
@@ -1393,11 +1671,11 @@ class AntivirusServiceApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> InfectedFiles:
-        """Get infected files.
+        """Get infected entities.
 
-        Get infected files.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get infected entities.
 
-        :param view_ids: Specifies a list of view ids. Only infected files from these views will be returned.
+        :param view_ids: Specifies a list of view ids. Only infected entities from these views will be returned.
         :type view_ids: List[int]
         :param path: Specifies the file path.
         :type path: str
@@ -1458,7 +1736,7 @@ class AntivirusServiceApi:
     @validate_call
     def get_infected_files_with_http_info(
         self,
-        view_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of view ids. Only infected files from these views will be returned.")] = None,
+        view_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of view ids. Only infected entities from these views will be returned.")] = None,
         path: Annotated[Optional[StrictStr], Field(description="Specifies the file path.")] = None,
         states: Annotated[Optional[List[StrictStr]], Field(description="Specifies the file states.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies the max number of files to be returned.")] = None,
@@ -1476,11 +1754,11 @@ class AntivirusServiceApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[InfectedFiles]:
-        """Get infected files.
+        """Get infected entities.
 
-        Get infected files.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get infected entities.
 
-        :param view_ids: Specifies a list of view ids. Only infected files from these views will be returned.
+        :param view_ids: Specifies a list of view ids. Only infected entities from these views will be returned.
         :type view_ids: List[int]
         :param path: Specifies the file path.
         :type path: str
@@ -1541,7 +1819,7 @@ class AntivirusServiceApi:
     @validate_call
     def get_infected_files_without_preload_content(
         self,
-        view_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of view ids. Only infected files from these views will be returned.")] = None,
+        view_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of view ids. Only infected entities from these views will be returned.")] = None,
         path: Annotated[Optional[StrictStr], Field(description="Specifies the file path.")] = None,
         states: Annotated[Optional[List[StrictStr]], Field(description="Specifies the file states.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies the max number of files to be returned.")] = None,
@@ -1559,11 +1837,11 @@ class AntivirusServiceApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get infected files.
+        """Get infected entities.
 
-        Get infected files.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get infected entities.
 
-        :param view_ids: Specifies a list of view ids. Only infected files from these views will be returned.
+        :param view_ids: Specifies a list of view ids. Only infected entities from these views will be returned.
         :type view_ids: List[int]
         :param path: Specifies the file path.
         :type path: str
@@ -1727,7 +2005,7 @@ class AntivirusServiceApi:
     ) -> AntivirusServiceGroup:
         """Update an Antivirus Service group with given parameters or if state is specified, enable or disable given group.
 
-        Update an Antivirus Service group.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Update an Antivirus Service group.
 
         :param id: Specifies a unique id of the Antivirus Group to update. (required)
         :type id: int
@@ -1798,7 +2076,7 @@ class AntivirusServiceApi:
     ) -> ApiResponse[AntivirusServiceGroup]:
         """Update an Antivirus Service group with given parameters or if state is specified, enable or disable given group.
 
-        Update an Antivirus Service group.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Update an Antivirus Service group.
 
         :param id: Specifies a unique id of the Antivirus Group to update. (required)
         :type id: int
@@ -1869,7 +2147,7 @@ class AntivirusServiceApi:
     ) -> RESTResponseType:
         """Update an Antivirus Service group with given parameters or if state is specified, enable or disable given group.
 
-        Update an Antivirus Service group.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Update an Antivirus Service group.
 
         :param id: Specifies a unique id of the Antivirus Group to update. (required)
         :type id: int
@@ -2001,7 +2279,7 @@ class AntivirusServiceApi:
     @validate_call
     def update_infected_files(
         self,
-        body: Annotated[UpdateInfectedFilesParameters, Field(description="Specifies the parameters of infected files to be updated.")],
+        body: Annotated[UpdateInfectedFilesParameters, Field(description="Specifies the parameters of infected entities to be updated.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2015,11 +2293,11 @@ class AntivirusServiceApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UpdateInfectedFilesList:
-        """Update infected files state.
+        """Update infected entities state.
 
-        Update infected files state.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update infected entities state.
 
-        :param body: Specifies the parameters of infected files to be updated. (required)
+        :param body: Specifies the parameters of infected entities to be updated. (required)
         :type body: UpdateInfectedFilesParameters
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2068,7 +2346,7 @@ class AntivirusServiceApi:
     @validate_call
     def update_infected_files_with_http_info(
         self,
-        body: Annotated[UpdateInfectedFilesParameters, Field(description="Specifies the parameters of infected files to be updated.")],
+        body: Annotated[UpdateInfectedFilesParameters, Field(description="Specifies the parameters of infected entities to be updated.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2082,11 +2360,11 @@ class AntivirusServiceApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UpdateInfectedFilesList]:
-        """Update infected files state.
+        """Update infected entities state.
 
-        Update infected files state.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update infected entities state.
 
-        :param body: Specifies the parameters of infected files to be updated. (required)
+        :param body: Specifies the parameters of infected entities to be updated. (required)
         :type body: UpdateInfectedFilesParameters
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2135,7 +2413,7 @@ class AntivirusServiceApi:
     @validate_call
     def update_infected_files_without_preload_content(
         self,
-        body: Annotated[UpdateInfectedFilesParameters, Field(description="Specifies the parameters of infected files to be updated.")],
+        body: Annotated[UpdateInfectedFilesParameters, Field(description="Specifies the parameters of infected entities to be updated.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2149,11 +2427,11 @@ class AntivirusServiceApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Update infected files state.
+        """Update infected entities state.
 
-        Update infected files state.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update infected entities state.
 
-        :param body: Specifies the parameters of infected files to be updated. (required)
+        :param body: Specifies the parameters of infected entities to be updated. (required)
         :type body: UpdateInfectedFilesParameters
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Create an upgrade task
 
-Create a schedule based agent upgrade task.
+**Privileges:** ```AGENT_UPGRADE_MODIFY``` <br><br>Create a schedule based agent upgrade task.
 
 ### Example
 
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 Download agent
 
-Download agent for different hosts.
+**Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Download agent for different hosts.
 
 ### Example
 
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 
 Get upgrade tasks
 
-Get the list of agent upgrade tasks.
+**Privileges:** ```AGENT_UPGRADE_VIEW``` <br><br>Get the list of agent upgrade tasks.
 
 ### Example
 
@@ -302,7 +302,7 @@ Name | Type | Description  | Notes
 
 Perform action on an upgrade task.
 
-Perform actions on an agent upgrade task.
+**Privileges:** ```AGENT_UPGRADE_MODIFY``` <br><br>Perform actions on an agent upgrade task.
 
 ### Example
 

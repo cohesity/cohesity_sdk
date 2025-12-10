@@ -26,12 +26,13 @@ class SearchFileRequestParams(BaseModel):
     """
     Specifies the request parameters to search for files and file folders.
     """ # noqa: E501
+    hashes: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of the source hashes. Only files matches with these hashes will be returned. Only supported for adapters supported by ThreatHunting.")
     search_string: Optional[StrictStr] = Field(default=None, description="Specifies the search string to filter the files. User can specify a wildcard character '*' as a suffix to a string where all files name are matched with the prefix string.", alias="searchString")
     source_environments: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of the source environments. Only files from these types of source will be returned.", alias="sourceEnvironments")
     types: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of file types. Only files within the given types will be returned.")
     source_ids: Optional[List[StrictInt]] = Field(default=None, description="Specifies a list of source ids. Only files found in these sources will be returned.", alias="sourceIds")
     object_ids: Optional[List[StrictInt]] = Field(default=None, description="Specifies a list of object ids. Only files found in these objects will be returned.", alias="objectIds")
-    __properties: ClassVar[List[str]] = ["searchString", "sourceEnvironments", "types", "sourceIds", "objectIds"]
+    __properties: ClassVar[List[str]] = ["hashes", "searchString", "sourceEnvironments", "types", "sourceIds", "objectIds"]
 
     @field_validator('source_environments')
     def source_environments_validate_enum(cls, value):
@@ -40,8 +41,8 @@ class SearchFileRequestParams(BaseModel):
             return value
 
         for i in value:
-            if i not in set(['kVMware', 'kHyperV', 'kSQL', 'kView', 'kRemoteAdapter', 'kPhysical', 'kPhysicalFiles', 'kPure', 'kIbmFlashSystem', 'kAzure', 'kNetapp', 'kGenericNas', 'kAcropolis', 'kIsilon', 'kGPFS', 'kKVM', 'kAWS', 'kExchange', 'kOracle', 'kGCP', 'kFlashBlade', 'kO365', 'kHyperFlex', 'kKubernetes', 'kElastifile', 'kUDA', 'kSfdc']):
-                raise ValueError("each list item must be one of ('kVMware', 'kHyperV', 'kSQL', 'kView', 'kRemoteAdapter', 'kPhysical', 'kPhysicalFiles', 'kPure', 'kIbmFlashSystem', 'kAzure', 'kNetapp', 'kGenericNas', 'kAcropolis', 'kIsilon', 'kGPFS', 'kKVM', 'kAWS', 'kExchange', 'kOracle', 'kGCP', 'kFlashBlade', 'kO365', 'kHyperFlex', 'kKubernetes', 'kElastifile', 'kUDA', 'kSfdc')")
+            if i not in set(['kVMware', 'kHyperV', 'kSQL', 'kView', 'kRemoteAdapter', 'kPhysical', 'kPhysicalFiles', 'kPure', 'kIbmFlashSystem', 'kAzure', 'kNetapp', 'kGenericNas', 'kAcropolis', 'kIsilon', 'kGPFS', 'kKVM', 'kAWS', 'kExchange', 'kOracle', 'kGCP', 'kFlashBlade', 'kO365', 'kHyperFlex', 'kKubernetes', 'kElastifile', 'kS3Compatible', 'kSAPHANA', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kSalesforce']):
+                raise ValueError("each list item must be one of ('kVMware', 'kHyperV', 'kSQL', 'kView', 'kRemoteAdapter', 'kPhysical', 'kPhysicalFiles', 'kPure', 'kIbmFlashSystem', 'kAzure', 'kNetapp', 'kGenericNas', 'kAcropolis', 'kIsilon', 'kGPFS', 'kKVM', 'kAWS', 'kExchange', 'kOracle', 'kGCP', 'kFlashBlade', 'kO365', 'kHyperFlex', 'kKubernetes', 'kElastifile', 'kS3Compatible', 'kSAPHANA', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kSalesforce')")
         return value
 
     @field_validator('types')
@@ -94,6 +95,11 @@ class SearchFileRequestParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if hashes (nullable) is None
+        # and model_fields_set contains the field
+        if self.hashes is None and "hashes" in self.model_fields_set:
+            _dict['hashes'] = None
+
         # set to None if search_string (nullable) is None
         # and model_fields_set contains the field
         if self.search_string is None and "search_string" in self.model_fields_set:
@@ -131,6 +137,7 @@ class SearchFileRequestParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "hashes": obj.get("hashes"),
             "searchString": obj.get("searchString"),
             "sourceEnvironments": obj.get("sourceEnvironments"),
             "types": obj.get("types"),

@@ -26,6 +26,8 @@ from cohesity_sdk.cluster.models.get_nlm_locks_result import GetNlmLocksResult
 from cohesity_sdk.cluster.models.get_view_templates_result import GetViewTemplatesResult
 from cohesity_sdk.cluster.models.get_views_result import GetViewsResult
 from cohesity_sdk.cluster.models.lock_file_params import LockFileParams
+from cohesity_sdk.cluster.models.migrate_s3_views import MigrateS3Views
+from cohesity_sdk.cluster.models.multiple_views_update_success_failure_ids import MultipleViewsUpdateSuccessFailureIds
 from cohesity_sdk.cluster.models.overwrite_view_params import OverwriteViewParams
 from cohesity_sdk.cluster.models.qos_policies_result import QosPoliciesResult
 from cohesity_sdk.cluster.models.quota_policy import QuotaPolicy
@@ -84,7 +86,7 @@ class ViewApi:
     ) -> UserQuotaOverrides:
         """Add User Quota overrides.
 
-        Specifies the parameters to override the user quota on the view. User quota on the view should be enabled before setting a user override.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Specifies the parameters to override the user quota on the view. User quota on the view should be enabled before setting a user override.
 
         :param view_id: Specifies the id of a view. (required)
         :type view_id: int
@@ -155,7 +157,7 @@ class ViewApi:
     ) -> ApiResponse[UserQuotaOverrides]:
         """Add User Quota overrides.
 
-        Specifies the parameters to override the user quota on the view. User quota on the view should be enabled before setting a user override.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Specifies the parameters to override the user quota on the view. User quota on the view should be enabled before setting a user override.
 
         :param view_id: Specifies the id of a view. (required)
         :type view_id: int
@@ -226,7 +228,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Add User Quota overrides.
 
-        Specifies the parameters to override the user quota on the view. User quota on the view should be enabled before setting a user override.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Specifies the parameters to override the user quota on the view. User quota on the view should be enabled before setting a user override.
 
         :param view_id: Specifies the id of a view. (required)
         :type view_id: int
@@ -374,7 +376,7 @@ class ViewApi:
     ) -> None:
         """Clear NLM locks.
 
-        Clear NLM locks that match the filter criteria specified using parameters
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Clear NLM locks that match the filter criteria specified using parameters
 
         :param body: Request to clear NLM lock. (required)
         :type body: ClearNlmLockRequest
@@ -441,7 +443,7 @@ class ViewApi:
     ) -> ApiResponse[None]:
         """Clear NLM locks.
 
-        Clear NLM locks that match the filter criteria specified using parameters
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Clear NLM locks that match the filter criteria specified using parameters
 
         :param body: Request to clear NLM lock. (required)
         :type body: ClearNlmLockRequest
@@ -508,7 +510,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Clear NLM locks.
 
-        Clear NLM locks that match the filter criteria specified using parameters
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Clear NLM locks that match the filter criteria specified using parameters
 
         :param body: Request to clear NLM lock. (required)
         :type body: ClearNlmLockRequest
@@ -651,7 +653,7 @@ class ViewApi:
     ) -> View:
         """Clone View.
 
-        Clone View.
+        **Privileges:** ```STORAGE_MODIFY, CLONE_MODIFY``` <br><br>Clone View.
 
         :param id: Specifies the View id to clone. (required)
         :type id: int
@@ -722,7 +724,7 @@ class ViewApi:
     ) -> ApiResponse[View]:
         """Clone View.
 
-        Clone View.
+        **Privileges:** ```STORAGE_MODIFY, CLONE_MODIFY``` <br><br>Clone View.
 
         :param id: Specifies the View id to clone. (required)
         :type id: int
@@ -793,7 +795,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Clone View.
 
-        Clone View.
+        **Privileges:** ```STORAGE_MODIFY, CLONE_MODIFY``` <br><br>Clone View.
 
         :param id: Specifies the View id to clone. (required)
         :type id: int
@@ -941,7 +943,7 @@ class ViewApi:
     ) -> None:
         """Clone View Directory.
 
-        Clone View Directory.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Clone View Directory.
 
         :param body: Specifies the request to clone View directory. (required)
         :type body: CloneViewDirectoryParams
@@ -1008,7 +1010,7 @@ class ViewApi:
     ) -> ApiResponse[None]:
         """Clone View Directory.
 
-        Clone View Directory.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Clone View Directory.
 
         :param body: Specifies the request to clone View directory. (required)
         :type body: CloneViewDirectoryParams
@@ -1075,7 +1077,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Clone View Directory.
 
-        Clone View Directory.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Clone View Directory.
 
         :param body: Specifies the request to clone View directory. (required)
         :type body: CloneViewDirectoryParams
@@ -1217,7 +1219,7 @@ class ViewApi:
     ) -> None:
         """Close SMB File open.
 
-        Close an active SMB file open.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Close an active SMB file open.
 
         :param body: Specifies parameters to close active  SMB file open.
         :type body: CloseSmbFileOpenParams
@@ -1284,7 +1286,7 @@ class ViewApi:
     ) -> ApiResponse[None]:
         """Close SMB File open.
 
-        Close an active SMB file open.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Close an active SMB file open.
 
         :param body: Specifies parameters to close active  SMB file open.
         :type body: CloseSmbFileOpenParams
@@ -1351,7 +1353,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Close SMB File open.
 
-        Close an active SMB file open.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Close an active SMB file open.
 
         :param body: Specifies parameters to close active  SMB file open.
         :type body: CloseSmbFileOpenParams
@@ -1493,7 +1495,7 @@ class ViewApi:
     ) -> Share:
         """Create a Share.
 
-        Create a Share.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Create a Share.
 
         :param body: Specifies the request to create a Share. (required)
         :type body: Share
@@ -1560,7 +1562,7 @@ class ViewApi:
     ) -> ApiResponse[Share]:
         """Create a Share.
 
-        Create a Share.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Create a Share.
 
         :param body: Specifies the request to create a Share. (required)
         :type body: Share
@@ -1627,7 +1629,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Create a Share.
 
-        Create a Share.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Create a Share.
 
         :param body: Specifies the request to create a Share. (required)
         :type body: Share
@@ -1769,7 +1771,7 @@ class ViewApi:
     ) -> View:
         """Create a View
 
-        Creates a View.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Creates a View.
 
         :param body: Request to create a View. (required)
         :type body: CreateViewRequest
@@ -1836,7 +1838,7 @@ class ViewApi:
     ) -> ApiResponse[View]:
         """Create a View
 
-        Creates a View.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Creates a View.
 
         :param body: Request to create a View. (required)
         :type body: CreateViewRequest
@@ -1903,7 +1905,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Create a View
 
-        Creates a View.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Creates a View.
 
         :param body: Request to create a View. (required)
         :type body: CreateViewRequest
@@ -2045,7 +2047,7 @@ class ViewApi:
     ) -> Template:
         """Create a View Template
 
-        Creates a View Template.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Creates a View Template.
 
         :param body: Request to create a view template. (required)
         :type body: Template
@@ -2112,7 +2114,7 @@ class ViewApi:
     ) -> ApiResponse[Template]:
         """Create a View Template
 
-        Creates a View Template.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Creates a View Template.
 
         :param body: Request to create a view template. (required)
         :type body: Template
@@ -2179,7 +2181,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Create a View Template
 
-        Creates a View Template.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Creates a View Template.
 
         :param body: Request to create a view template. (required)
         :type body: Template
@@ -2321,7 +2323,7 @@ class ViewApi:
     ) -> None:
         """Delete a Share.
 
-        Delete a Share.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Delete a Share.
 
         :param name: Specifies the Share name to delete. (required)
         :type name: str
@@ -2388,7 +2390,7 @@ class ViewApi:
     ) -> ApiResponse[None]:
         """Delete a Share.
 
-        Delete a Share.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Delete a Share.
 
         :param name: Specifies the Share name to delete. (required)
         :type name: str
@@ -2455,7 +2457,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Delete a Share.
 
-        Delete a Share.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Delete a Share.
 
         :param name: Specifies the Share name to delete. (required)
         :type name: str
@@ -2584,7 +2586,7 @@ class ViewApi:
     ) -> None:
         """Delete a View
 
-        Deletes a View based on given id.
+        ```No Privileges Required``` <br><br>Deletes a View based on given id.
 
         :param id: Specifies a unique id of the View to delete. (required)
         :type id: int
@@ -2651,7 +2653,7 @@ class ViewApi:
     ) -> ApiResponse[None]:
         """Delete a View
 
-        Deletes a View based on given id.
+        ```No Privileges Required``` <br><br>Deletes a View based on given id.
 
         :param id: Specifies a unique id of the View to delete. (required)
         :type id: int
@@ -2718,7 +2720,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Delete a View
 
-        Deletes a View based on given id.
+        ```No Privileges Required``` <br><br>Deletes a View based on given id.
 
         :param id: Specifies a unique id of the View to delete. (required)
         :type id: int
@@ -2849,7 +2851,7 @@ class ViewApi:
     ) -> None:
         """Delete directory quota for the View.
 
-        Delete directory quota for the View.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Delete directory quota for the View.
 
         :param id: Specifies the View id. (required)
         :type id: int
@@ -2924,7 +2926,7 @@ class ViewApi:
     ) -> ApiResponse[None]:
         """Delete directory quota for the View.
 
-        Delete directory quota for the View.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Delete directory quota for the View.
 
         :param id: Specifies the View id. (required)
         :type id: int
@@ -2999,7 +3001,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Delete directory quota for the View.
 
-        Delete directory quota for the View.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Delete directory quota for the View.
 
         :param id: Specifies the View id. (required)
         :type id: int
@@ -3144,7 +3146,7 @@ class ViewApi:
     ) -> None:
         """Delete a View Template
 
-        Deletes a view template based on given template id.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Deletes a view template based on given template id.
 
         :param id: Specifies a unique id of the view template to delete. (required)
         :type id: int
@@ -3211,7 +3213,7 @@ class ViewApi:
     ) -> ApiResponse[None]:
         """Delete a View Template
 
-        Deletes a view template based on given template id.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Deletes a view template based on given template id.
 
         :param id: Specifies a unique id of the view template to delete. (required)
         :type id: int
@@ -3278,7 +3280,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Delete a View Template
 
-        Deletes a view template based on given template id.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Deletes a view template based on given template id.
 
         :param id: Specifies a unique id of the view template to delete. (required)
         :type id: int
@@ -3408,7 +3410,7 @@ class ViewApi:
     ) -> None:
         """Delete user quota overrides.
 
-        Specifies the parameters to delete user quotas on the view.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Specifies the parameters to delete user quotas on the view.
 
         :param view_id: Specifies the id of a view. (required)
         :type view_id: int
@@ -3479,7 +3481,7 @@ class ViewApi:
     ) -> ApiResponse[None]:
         """Delete user quota overrides.
 
-        Specifies the parameters to delete user quotas on the view.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Specifies the parameters to delete user quotas on the view.
 
         :param view_id: Specifies the id of a view. (required)
         :type view_id: int
@@ -3550,7 +3552,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Delete user quota overrides.
 
-        Specifies the parameters to delete user quotas on the view.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Specifies the parameters to delete user quotas on the view.
 
         :param view_id: Specifies the id of a view. (required)
         :type view_id: int
@@ -3683,7 +3685,7 @@ class ViewApi:
     def get_file_lock_status(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of a view.")],
-        path: Annotated[StrictStr, Field(description="Specifies the request file path in a view.")],
+        path: Annotated[StrictStr, Field(description="Specifies the file path relative to root of the view.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3699,11 +3701,11 @@ class ViewApi:
     ) -> FileLockStatus:
         """Get file lock status
 
-        Get the lock status of a file in a view.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get the lock status of a file in a view.
 
         :param id: Specifies the id of a view. (required)
         :type id: int
-        :param path: Specifies the request file path in a view. (required)
+        :param path: Specifies the file path relative to root of the view. (required)
         :type path: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3754,7 +3756,7 @@ class ViewApi:
     def get_file_lock_status_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of a view.")],
-        path: Annotated[StrictStr, Field(description="Specifies the request file path in a view.")],
+        path: Annotated[StrictStr, Field(description="Specifies the file path relative to root of the view.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3770,11 +3772,11 @@ class ViewApi:
     ) -> ApiResponse[FileLockStatus]:
         """Get file lock status
 
-        Get the lock status of a file in a view.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get the lock status of a file in a view.
 
         :param id: Specifies the id of a view. (required)
         :type id: int
-        :param path: Specifies the request file path in a view. (required)
+        :param path: Specifies the file path relative to root of the view. (required)
         :type path: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3825,7 +3827,7 @@ class ViewApi:
     def get_file_lock_status_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of a view.")],
-        path: Annotated[StrictStr, Field(description="Specifies the request file path in a view.")],
+        path: Annotated[StrictStr, Field(description="Specifies the file path relative to root of the view.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3841,11 +3843,11 @@ class ViewApi:
     ) -> RESTResponseType:
         """Get file lock status
 
-        Get the lock status of a file in a view.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get the lock status of a file in a view.
 
         :param id: Specifies the id of a view. (required)
         :type id: int
-        :param path: Specifies the request file path in a view. (required)
+        :param path: Specifies the file path relative to root of the view. (required)
         :type path: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3981,7 +3983,7 @@ class ViewApi:
     ) -> GetNlmLocksResult:
         """Get NLM locks.
 
-        Get the list of NLM locks in the views.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get the list of NLM locks in the views.
 
         :param file_path: Specifies the filepath in the view relative to the root filesystem. If this field is specified, viewName field must also be specified.
         :type file_path: str
@@ -4060,7 +4062,7 @@ class ViewApi:
     ) -> ApiResponse[GetNlmLocksResult]:
         """Get NLM locks.
 
-        Get the list of NLM locks in the views.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get the list of NLM locks in the views.
 
         :param file_path: Specifies the filepath in the view relative to the root filesystem. If this field is specified, viewName field must also be specified.
         :type file_path: str
@@ -4139,7 +4141,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Get NLM locks.
 
-        Get the list of NLM locks in the views.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get the list of NLM locks in the views.
 
         :param file_path: Specifies the filepath in the view relative to the root filesystem. If this field is specified, viewName field must also be specified.
         :type file_path: str
@@ -4293,7 +4295,7 @@ class ViewApi:
     ) -> QosPoliciesResult:
         """Get QoS Policies.
 
-        Get the list of QoS policies on the Cohesity cluster.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get the list of QoS policies on the Cohesity cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4356,7 +4358,7 @@ class ViewApi:
     ) -> ApiResponse[QosPoliciesResult]:
         """Get QoS Policies.
 
-        Get the list of QoS policies on the Cohesity cluster.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get the list of QoS policies on the Cohesity cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4419,7 +4421,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Get QoS Policies.
 
-        Get the list of QoS policies on the Cohesity cluster.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get the list of QoS policies on the Cohesity cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4527,6 +4529,7 @@ class ViewApi:
     def get_shares(
         self,
         name: Annotated[Optional[StrictStr], Field(description="Specifies the Share name.")] = None,
+        is_read_only_view: Annotated[Optional[StrictBool], Field(description="If true, only shares of Views that are Read-Only will be returned.")] = None,
         match_partial_name: Annotated[Optional[StrictBool], Field(description="If true, the share name is matched by any partial rather than exactly matched.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of Shares returned. If maxCount is not specified, the first 2000 Shares.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the pagination cookie. Expected to be empty in the first call to the API. To get the next set of results, set this value to the pagination cookie value returned in the response of the previous call.")] = None,
@@ -4547,10 +4550,12 @@ class ViewApi:
     ) -> Shares:
         """Get Shares.
 
-        If no parameters are specified, all shares on the Cohesity Cluster are returned. Specifying share name/prefix filters the results that are returned. NOTE: If maxCount is set and the number of Shares returned exceeds the maxCount, there are more Share to return. To get the next set of Views, send another request and specify the pagination cookie from the previous response. If maxCount is not specified, the first 2000 Shares.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>If no parameters are specified, all shares on the Cohesity Cluster are returned. Specifying share name/prefix filters the results that are returned. NOTE: If maxCount is set and the number of Shares returned exceeds the maxCount, there are more Share to return. To get the next set of Views, send another request and specify the pagination cookie from the previous response. If maxCount is not specified, the first 2000 Shares.
 
         :param name: Specifies the Share name.
         :type name: str
+        :param is_read_only_view: If true, only shares of Views that are Read-Only will be returned.
+        :type is_read_only_view: bool
         :param match_partial_name: If true, the share name is matched by any partial rather than exactly matched.
         :type match_partial_name: bool
         :param max_count: Specifies a limit on the number of Shares returned. If maxCount is not specified, the first 2000 Shares.
@@ -4585,6 +4590,7 @@ class ViewApi:
 
         _param = self._get_shares_serialize(
             name=name,
+            is_read_only_view=is_read_only_view,
             match_partial_name=match_partial_name,
             max_count=max_count,
             cookie=cookie,
@@ -4614,6 +4620,7 @@ class ViewApi:
     def get_shares_with_http_info(
         self,
         name: Annotated[Optional[StrictStr], Field(description="Specifies the Share name.")] = None,
+        is_read_only_view: Annotated[Optional[StrictBool], Field(description="If true, only shares of Views that are Read-Only will be returned.")] = None,
         match_partial_name: Annotated[Optional[StrictBool], Field(description="If true, the share name is matched by any partial rather than exactly matched.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of Shares returned. If maxCount is not specified, the first 2000 Shares.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the pagination cookie. Expected to be empty in the first call to the API. To get the next set of results, set this value to the pagination cookie value returned in the response of the previous call.")] = None,
@@ -4634,10 +4641,12 @@ class ViewApi:
     ) -> ApiResponse[Shares]:
         """Get Shares.
 
-        If no parameters are specified, all shares on the Cohesity Cluster are returned. Specifying share name/prefix filters the results that are returned. NOTE: If maxCount is set and the number of Shares returned exceeds the maxCount, there are more Share to return. To get the next set of Views, send another request and specify the pagination cookie from the previous response. If maxCount is not specified, the first 2000 Shares.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>If no parameters are specified, all shares on the Cohesity Cluster are returned. Specifying share name/prefix filters the results that are returned. NOTE: If maxCount is set and the number of Shares returned exceeds the maxCount, there are more Share to return. To get the next set of Views, send another request and specify the pagination cookie from the previous response. If maxCount is not specified, the first 2000 Shares.
 
         :param name: Specifies the Share name.
         :type name: str
+        :param is_read_only_view: If true, only shares of Views that are Read-Only will be returned.
+        :type is_read_only_view: bool
         :param match_partial_name: If true, the share name is matched by any partial rather than exactly matched.
         :type match_partial_name: bool
         :param max_count: Specifies a limit on the number of Shares returned. If maxCount is not specified, the first 2000 Shares.
@@ -4672,6 +4681,7 @@ class ViewApi:
 
         _param = self._get_shares_serialize(
             name=name,
+            is_read_only_view=is_read_only_view,
             match_partial_name=match_partial_name,
             max_count=max_count,
             cookie=cookie,
@@ -4701,6 +4711,7 @@ class ViewApi:
     def get_shares_without_preload_content(
         self,
         name: Annotated[Optional[StrictStr], Field(description="Specifies the Share name.")] = None,
+        is_read_only_view: Annotated[Optional[StrictBool], Field(description="If true, only shares of Views that are Read-Only will be returned.")] = None,
         match_partial_name: Annotated[Optional[StrictBool], Field(description="If true, the share name is matched by any partial rather than exactly matched.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of Shares returned. If maxCount is not specified, the first 2000 Shares.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the pagination cookie. Expected to be empty in the first call to the API. To get the next set of results, set this value to the pagination cookie value returned in the response of the previous call.")] = None,
@@ -4721,10 +4732,12 @@ class ViewApi:
     ) -> RESTResponseType:
         """Get Shares.
 
-        If no parameters are specified, all shares on the Cohesity Cluster are returned. Specifying share name/prefix filters the results that are returned. NOTE: If maxCount is set and the number of Shares returned exceeds the maxCount, there are more Share to return. To get the next set of Views, send another request and specify the pagination cookie from the previous response. If maxCount is not specified, the first 2000 Shares.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>If no parameters are specified, all shares on the Cohesity Cluster are returned. Specifying share name/prefix filters the results that are returned. NOTE: If maxCount is set and the number of Shares returned exceeds the maxCount, there are more Share to return. To get the next set of Views, send another request and specify the pagination cookie from the previous response. If maxCount is not specified, the first 2000 Shares.
 
         :param name: Specifies the Share name.
         :type name: str
+        :param is_read_only_view: If true, only shares of Views that are Read-Only will be returned.
+        :type is_read_only_view: bool
         :param match_partial_name: If true, the share name is matched by any partial rather than exactly matched.
         :type match_partial_name: bool
         :param max_count: Specifies a limit on the number of Shares returned. If maxCount is not specified, the first 2000 Shares.
@@ -4759,6 +4772,7 @@ class ViewApi:
 
         _param = self._get_shares_serialize(
             name=name,
+            is_read_only_view=is_read_only_view,
             match_partial_name=match_partial_name,
             max_count=max_count,
             cookie=cookie,
@@ -4783,6 +4797,7 @@ class ViewApi:
     def _get_shares_serialize(
         self,
         name,
+        is_read_only_view,
         match_partial_name,
         max_count,
         cookie,
@@ -4814,6 +4829,10 @@ class ViewApi:
         if name is not None:
             
             _query_params.append(('name', name))
+            
+        if is_read_only_view is not None:
+            
+            _query_params.append(('isReadOnlyView', is_read_only_view))
             
         if match_partial_name is not None:
             
@@ -4893,7 +4912,7 @@ class ViewApi:
     ) -> View:
         """Get a View by Id
 
-        Get a View based on given Id.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get a View based on given Id.
 
         :param id: Specifies a unique id of the View to fetch. (required)
         :type id: int
@@ -4960,7 +4979,7 @@ class ViewApi:
     ) -> ApiResponse[View]:
         """Get a View by Id
 
-        Get a View based on given Id.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get a View based on given Id.
 
         :param id: Specifies a unique id of the View to fetch. (required)
         :type id: int
@@ -5027,7 +5046,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Get a View by Id
 
-        Get a View based on given Id.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get a View based on given Id.
 
         :param id: Specifies a unique id of the View to fetch. (required)
         :type id: int
@@ -5143,7 +5162,8 @@ class ViewApi:
         protocols: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of protocols to filter the clients.")] = None,
         view_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of View ids. Only clients connected to these Views will be returned.")] = None,
         node_ip: Annotated[Optional[StrictStr], Field(description="Specifies a node ip. Only clients connected to this node will be returned.")] = None,
-        max_count: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of connections to return for SMB and NFS protocols respectively.")] = None,
+        max_count: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of connections to return for SMB and NFS protocols respectively. It will be ignored if parameter 'includeSummary' is set to true.")] = None,
+        include_summary: Annotated[Optional[StrictBool], Field(description="Set this to include response summary. Parameter 'maxCount' will be ignored if this is set to true.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5159,7 +5179,7 @@ class ViewApi:
     ) -> ViewClients:
         """Get View Clients.
 
-        Get View Clients.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get View Clients.
 
         :param protocols: Specifies a list of protocols to filter the clients.
         :type protocols: List[str]
@@ -5167,8 +5187,10 @@ class ViewApi:
         :type view_ids: List[int]
         :param node_ip: Specifies a node ip. Only clients connected to this node will be returned.
         :type node_ip: str
-        :param max_count: Specifies the maximum number of connections to return for SMB and NFS protocols respectively.
+        :param max_count: Specifies the maximum number of connections to return for SMB and NFS protocols respectively. It will be ignored if parameter 'includeSummary' is set to true.
         :type max_count: int
+        :param include_summary: Set this to include response summary. Parameter 'maxCount' will be ignored if this is set to true.
+        :type include_summary: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5196,6 +5218,7 @@ class ViewApi:
             view_ids=view_ids,
             node_ip=node_ip,
             max_count=max_count,
+            include_summary=include_summary,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5222,7 +5245,8 @@ class ViewApi:
         protocols: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of protocols to filter the clients.")] = None,
         view_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of View ids. Only clients connected to these Views will be returned.")] = None,
         node_ip: Annotated[Optional[StrictStr], Field(description="Specifies a node ip. Only clients connected to this node will be returned.")] = None,
-        max_count: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of connections to return for SMB and NFS protocols respectively.")] = None,
+        max_count: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of connections to return for SMB and NFS protocols respectively. It will be ignored if parameter 'includeSummary' is set to true.")] = None,
+        include_summary: Annotated[Optional[StrictBool], Field(description="Set this to include response summary. Parameter 'maxCount' will be ignored if this is set to true.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5238,7 +5262,7 @@ class ViewApi:
     ) -> ApiResponse[ViewClients]:
         """Get View Clients.
 
-        Get View Clients.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get View Clients.
 
         :param protocols: Specifies a list of protocols to filter the clients.
         :type protocols: List[str]
@@ -5246,8 +5270,10 @@ class ViewApi:
         :type view_ids: List[int]
         :param node_ip: Specifies a node ip. Only clients connected to this node will be returned.
         :type node_ip: str
-        :param max_count: Specifies the maximum number of connections to return for SMB and NFS protocols respectively.
+        :param max_count: Specifies the maximum number of connections to return for SMB and NFS protocols respectively. It will be ignored if parameter 'includeSummary' is set to true.
         :type max_count: int
+        :param include_summary: Set this to include response summary. Parameter 'maxCount' will be ignored if this is set to true.
+        :type include_summary: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5275,6 +5301,7 @@ class ViewApi:
             view_ids=view_ids,
             node_ip=node_ip,
             max_count=max_count,
+            include_summary=include_summary,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5301,7 +5328,8 @@ class ViewApi:
         protocols: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of protocols to filter the clients.")] = None,
         view_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of View ids. Only clients connected to these Views will be returned.")] = None,
         node_ip: Annotated[Optional[StrictStr], Field(description="Specifies a node ip. Only clients connected to this node will be returned.")] = None,
-        max_count: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of connections to return for SMB and NFS protocols respectively.")] = None,
+        max_count: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of connections to return for SMB and NFS protocols respectively. It will be ignored if parameter 'includeSummary' is set to true.")] = None,
+        include_summary: Annotated[Optional[StrictBool], Field(description="Set this to include response summary. Parameter 'maxCount' will be ignored if this is set to true.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5317,7 +5345,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Get View Clients.
 
-        Get View Clients.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get View Clients.
 
         :param protocols: Specifies a list of protocols to filter the clients.
         :type protocols: List[str]
@@ -5325,8 +5353,10 @@ class ViewApi:
         :type view_ids: List[int]
         :param node_ip: Specifies a node ip. Only clients connected to this node will be returned.
         :type node_ip: str
-        :param max_count: Specifies the maximum number of connections to return for SMB and NFS protocols respectively.
+        :param max_count: Specifies the maximum number of connections to return for SMB and NFS protocols respectively. It will be ignored if parameter 'includeSummary' is set to true.
         :type max_count: int
+        :param include_summary: Set this to include response summary. Parameter 'maxCount' will be ignored if this is set to true.
+        :type include_summary: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5354,6 +5384,7 @@ class ViewApi:
             view_ids=view_ids,
             node_ip=node_ip,
             max_count=max_count,
+            include_summary=include_summary,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5376,6 +5407,7 @@ class ViewApi:
         view_ids,
         node_ip,
         max_count,
+        include_summary,
         _request_auth,
         _content_type,
         _headers,
@@ -5415,6 +5447,10 @@ class ViewApi:
         if max_count is not None:
             
             _query_params.append(('maxCount', max_count))
+            
+        if include_summary is not None:
+            
+            _query_params.append(('includeSummary', include_summary))
             
         # process the header parameters
         # process the form parameters
@@ -5474,7 +5510,7 @@ class ViewApi:
     ) -> ViewClientsSummary:
         """Get View Clients Summary.
 
-        Get View Clients Summary.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get View Clients Summary.
 
         :param view_ids: Specifies a list of View ids. Only clients connected to these Views will be included in the summary.
         :type view_ids: List[int]
@@ -5541,7 +5577,7 @@ class ViewApi:
     ) -> ApiResponse[ViewClientsSummary]:
         """Get View Clients Summary.
 
-        Get View Clients Summary.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get View Clients Summary.
 
         :param view_ids: Specifies a list of View ids. Only clients connected to these Views will be included in the summary.
         :type view_ids: List[int]
@@ -5608,7 +5644,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Get View Clients Summary.
 
-        Get View Clients Summary.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get View Clients Summary.
 
         :param view_ids: Specifies a list of View ids. Only clients connected to these Views will be included in the summary.
         :type view_ids: List[int]
@@ -5742,7 +5778,7 @@ class ViewApi:
     ) -> ViewDirectoryQuotas:
         """Get directory quotas for the View.
 
-        Get directory quotas for the View.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get directory quotas for the View.
 
         :param id: Specifies the View id. (required)
         :type id: int
@@ -5817,7 +5853,7 @@ class ViewApi:
     ) -> ApiResponse[ViewDirectoryQuotas]:
         """Get directory quotas for the View.
 
-        Get directory quotas for the View.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get directory quotas for the View.
 
         :param id: Specifies the View id. (required)
         :type id: int
@@ -5892,7 +5928,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Get directory quotas for the View.
 
-        Get directory quotas for the View.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get directory quotas for the View.
 
         :param id: Specifies the View id. (required)
         :type id: int
@@ -6022,7 +6058,13 @@ class ViewApi:
     def get_view_user_quotas(
         self,
         view_id: Annotated[StrictInt, Field(description="Specifies the View id.")],
-        max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results.")] = None,
+        include_usage: Annotated[Optional[StrictBool], Field(description="If set to true, the logical usage info is included only for users with quota overrides. By default, it is set to false")] = None,
+        include_user_with_quota_overrides_only: Annotated[Optional[StrictBool], Field(description="If set to true, the result will only contain user with user quota override enabled. By default, this field is set to false, and it's only in effect when 'SummaryOnly' is set to false.")] = None,
+        exclude_users_within_alert_threshold: Annotated[Optional[StrictBool], Field(description="This field can be set only when includeUsage is set to true. By default, all the users with logical usage > 0 will be returned in the result. If this field is set to true, only the list of users who has exceeded the alert threshold will be returned.")] = None,
+        summary_only: Annotated[Optional[StrictBool], Field(description="Specifies a flag to just return a summary. If set to true, it returns the summary of users for a view. By default, it is set to false.")] = None,
+        output_format: Annotated[Optional[StrictStr], Field(description="OutputFormat is the Output format for the output. If it is not specified, default is json.")] = None,
+        top_quotas: Annotated[Optional[StrictInt], Field(description="TopQuotas is the quotas sorted by quota usage in descending order. This parameter defines number of results to be returned. No pagination cookie is returned if this parameter is set.")] = None,
+        max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results. This parameter will be ignored if 'topQuotas' is set.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the cookie. If there are more results than maxCount, response will include a cookie with has to be set as part of the next GET request.")] = None,
         unix_uid: Annotated[Optional[StrictInt], Field(description="Specifies the user identifier of an Unix user. If a valid unix-id to SID mappings are available (i.e., when mixed mode is enabled) the server will perform the necessary id mapping and return the correct usage irrespective of whether the unix id / SID is provided.")] = None,
         sid: Annotated[Optional[StrictStr], Field(description="Specifies the user identifier of a SMB user. If a valid unix-id to SID mappings are available (i.e., when mixed mode is enabled) the server will perform the necessary id mapping and return the correct usage irrespective of whether the unix id / SID is provided.")] = None,
@@ -6041,11 +6083,23 @@ class ViewApi:
     ) -> ViewUserQuotas:
         """Get View user quotas.
 
-        Get user quotas for the View.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get user quotas for the View.
 
         :param view_id: Specifies the View id. (required)
         :type view_id: int
-        :param max_count: Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results.
+        :param include_usage: If set to true, the logical usage info is included only for users with quota overrides. By default, it is set to false
+        :type include_usage: bool
+        :param include_user_with_quota_overrides_only: If set to true, the result will only contain user with user quota override enabled. By default, this field is set to false, and it's only in effect when 'SummaryOnly' is set to false.
+        :type include_user_with_quota_overrides_only: bool
+        :param exclude_users_within_alert_threshold: This field can be set only when includeUsage is set to true. By default, all the users with logical usage > 0 will be returned in the result. If this field is set to true, only the list of users who has exceeded the alert threshold will be returned.
+        :type exclude_users_within_alert_threshold: bool
+        :param summary_only: Specifies a flag to just return a summary. If set to true, it returns the summary of users for a view. By default, it is set to false.
+        :type summary_only: bool
+        :param output_format: OutputFormat is the Output format for the output. If it is not specified, default is json.
+        :type output_format: str
+        :param top_quotas: TopQuotas is the quotas sorted by quota usage in descending order. This parameter defines number of results to be returned. No pagination cookie is returned if this parameter is set.
+        :type top_quotas: int
+        :param max_count: Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results. This parameter will be ignored if 'topQuotas' is set.
         :type max_count: int
         :param cookie: Specifies the cookie. If there are more results than maxCount, response will include a cookie with has to be set as part of the next GET request.
         :type cookie: str
@@ -6077,6 +6131,12 @@ class ViewApi:
 
         _param = self._get_view_user_quotas_serialize(
             view_id=view_id,
+            include_usage=include_usage,
+            include_user_with_quota_overrides_only=include_user_with_quota_overrides_only,
+            exclude_users_within_alert_threshold=exclude_users_within_alert_threshold,
+            summary_only=summary_only,
+            output_format=output_format,
+            top_quotas=top_quotas,
             max_count=max_count,
             cookie=cookie,
             unix_uid=unix_uid,
@@ -6105,7 +6165,13 @@ class ViewApi:
     def get_view_user_quotas_with_http_info(
         self,
         view_id: Annotated[StrictInt, Field(description="Specifies the View id.")],
-        max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results.")] = None,
+        include_usage: Annotated[Optional[StrictBool], Field(description="If set to true, the logical usage info is included only for users with quota overrides. By default, it is set to false")] = None,
+        include_user_with_quota_overrides_only: Annotated[Optional[StrictBool], Field(description="If set to true, the result will only contain user with user quota override enabled. By default, this field is set to false, and it's only in effect when 'SummaryOnly' is set to false.")] = None,
+        exclude_users_within_alert_threshold: Annotated[Optional[StrictBool], Field(description="This field can be set only when includeUsage is set to true. By default, all the users with logical usage > 0 will be returned in the result. If this field is set to true, only the list of users who has exceeded the alert threshold will be returned.")] = None,
+        summary_only: Annotated[Optional[StrictBool], Field(description="Specifies a flag to just return a summary. If set to true, it returns the summary of users for a view. By default, it is set to false.")] = None,
+        output_format: Annotated[Optional[StrictStr], Field(description="OutputFormat is the Output format for the output. If it is not specified, default is json.")] = None,
+        top_quotas: Annotated[Optional[StrictInt], Field(description="TopQuotas is the quotas sorted by quota usage in descending order. This parameter defines number of results to be returned. No pagination cookie is returned if this parameter is set.")] = None,
+        max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results. This parameter will be ignored if 'topQuotas' is set.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the cookie. If there are more results than maxCount, response will include a cookie with has to be set as part of the next GET request.")] = None,
         unix_uid: Annotated[Optional[StrictInt], Field(description="Specifies the user identifier of an Unix user. If a valid unix-id to SID mappings are available (i.e., when mixed mode is enabled) the server will perform the necessary id mapping and return the correct usage irrespective of whether the unix id / SID is provided.")] = None,
         sid: Annotated[Optional[StrictStr], Field(description="Specifies the user identifier of a SMB user. If a valid unix-id to SID mappings are available (i.e., when mixed mode is enabled) the server will perform the necessary id mapping and return the correct usage irrespective of whether the unix id / SID is provided.")] = None,
@@ -6124,11 +6190,23 @@ class ViewApi:
     ) -> ApiResponse[ViewUserQuotas]:
         """Get View user quotas.
 
-        Get user quotas for the View.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get user quotas for the View.
 
         :param view_id: Specifies the View id. (required)
         :type view_id: int
-        :param max_count: Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results.
+        :param include_usage: If set to true, the logical usage info is included only for users with quota overrides. By default, it is set to false
+        :type include_usage: bool
+        :param include_user_with_quota_overrides_only: If set to true, the result will only contain user with user quota override enabled. By default, this field is set to false, and it's only in effect when 'SummaryOnly' is set to false.
+        :type include_user_with_quota_overrides_only: bool
+        :param exclude_users_within_alert_threshold: This field can be set only when includeUsage is set to true. By default, all the users with logical usage > 0 will be returned in the result. If this field is set to true, only the list of users who has exceeded the alert threshold will be returned.
+        :type exclude_users_within_alert_threshold: bool
+        :param summary_only: Specifies a flag to just return a summary. If set to true, it returns the summary of users for a view. By default, it is set to false.
+        :type summary_only: bool
+        :param output_format: OutputFormat is the Output format for the output. If it is not specified, default is json.
+        :type output_format: str
+        :param top_quotas: TopQuotas is the quotas sorted by quota usage in descending order. This parameter defines number of results to be returned. No pagination cookie is returned if this parameter is set.
+        :type top_quotas: int
+        :param max_count: Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results. This parameter will be ignored if 'topQuotas' is set.
         :type max_count: int
         :param cookie: Specifies the cookie. If there are more results than maxCount, response will include a cookie with has to be set as part of the next GET request.
         :type cookie: str
@@ -6160,6 +6238,12 @@ class ViewApi:
 
         _param = self._get_view_user_quotas_serialize(
             view_id=view_id,
+            include_usage=include_usage,
+            include_user_with_quota_overrides_only=include_user_with_quota_overrides_only,
+            exclude_users_within_alert_threshold=exclude_users_within_alert_threshold,
+            summary_only=summary_only,
+            output_format=output_format,
+            top_quotas=top_quotas,
             max_count=max_count,
             cookie=cookie,
             unix_uid=unix_uid,
@@ -6188,7 +6272,13 @@ class ViewApi:
     def get_view_user_quotas_without_preload_content(
         self,
         view_id: Annotated[StrictInt, Field(description="Specifies the View id.")],
-        max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results.")] = None,
+        include_usage: Annotated[Optional[StrictBool], Field(description="If set to true, the logical usage info is included only for users with quota overrides. By default, it is set to false")] = None,
+        include_user_with_quota_overrides_only: Annotated[Optional[StrictBool], Field(description="If set to true, the result will only contain user with user quota override enabled. By default, this field is set to false, and it's only in effect when 'SummaryOnly' is set to false.")] = None,
+        exclude_users_within_alert_threshold: Annotated[Optional[StrictBool], Field(description="This field can be set only when includeUsage is set to true. By default, all the users with logical usage > 0 will be returned in the result. If this field is set to true, only the list of users who has exceeded the alert threshold will be returned.")] = None,
+        summary_only: Annotated[Optional[StrictBool], Field(description="Specifies a flag to just return a summary. If set to true, it returns the summary of users for a view. By default, it is set to false.")] = None,
+        output_format: Annotated[Optional[StrictStr], Field(description="OutputFormat is the Output format for the output. If it is not specified, default is json.")] = None,
+        top_quotas: Annotated[Optional[StrictInt], Field(description="TopQuotas is the quotas sorted by quota usage in descending order. This parameter defines number of results to be returned. No pagination cookie is returned if this parameter is set.")] = None,
+        max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results. This parameter will be ignored if 'topQuotas' is set.")] = None,
         cookie: Annotated[Optional[StrictStr], Field(description="Specifies the cookie. If there are more results than maxCount, response will include a cookie with has to be set as part of the next GET request.")] = None,
         unix_uid: Annotated[Optional[StrictInt], Field(description="Specifies the user identifier of an Unix user. If a valid unix-id to SID mappings are available (i.e., when mixed mode is enabled) the server will perform the necessary id mapping and return the correct usage irrespective of whether the unix id / SID is provided.")] = None,
         sid: Annotated[Optional[StrictStr], Field(description="Specifies the user identifier of a SMB user. If a valid unix-id to SID mappings are available (i.e., when mixed mode is enabled) the server will perform the necessary id mapping and return the correct usage irrespective of whether the unix id / SID is provided.")] = None,
@@ -6207,11 +6297,23 @@ class ViewApi:
     ) -> RESTResponseType:
         """Get View user quotas.
 
-        Get user quotas for the View.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get user quotas for the View.
 
         :param view_id: Specifies the View id. (required)
         :type view_id: int
-        :param max_count: Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results.
+        :param include_usage: If set to true, the logical usage info is included only for users with quota overrides. By default, it is set to false
+        :type include_usage: bool
+        :param include_user_with_quota_overrides_only: If set to true, the result will only contain user with user quota override enabled. By default, this field is set to false, and it's only in effect when 'SummaryOnly' is set to false.
+        :type include_user_with_quota_overrides_only: bool
+        :param exclude_users_within_alert_threshold: This field can be set only when includeUsage is set to true. By default, all the users with logical usage > 0 will be returned in the result. If this field is set to true, only the list of users who has exceeded the alert threshold will be returned.
+        :type exclude_users_within_alert_threshold: bool
+        :param summary_only: Specifies a flag to just return a summary. If set to true, it returns the summary of users for a view. By default, it is set to false.
+        :type summary_only: bool
+        :param output_format: OutputFormat is the Output format for the output. If it is not specified, default is json.
+        :type output_format: str
+        :param top_quotas: TopQuotas is the quotas sorted by quota usage in descending order. This parameter defines number of results to be returned. No pagination cookie is returned if this parameter is set.
+        :type top_quotas: int
+        :param max_count: Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results. This parameter will be ignored if 'topQuotas' is set.
         :type max_count: int
         :param cookie: Specifies the cookie. If there are more results than maxCount, response will include a cookie with has to be set as part of the next GET request.
         :type cookie: str
@@ -6243,6 +6345,12 @@ class ViewApi:
 
         _param = self._get_view_user_quotas_serialize(
             view_id=view_id,
+            include_usage=include_usage,
+            include_user_with_quota_overrides_only=include_user_with_quota_overrides_only,
+            exclude_users_within_alert_threshold=exclude_users_within_alert_threshold,
+            summary_only=summary_only,
+            output_format=output_format,
+            top_quotas=top_quotas,
             max_count=max_count,
             cookie=cookie,
             unix_uid=unix_uid,
@@ -6266,6 +6374,12 @@ class ViewApi:
     def _get_view_user_quotas_serialize(
         self,
         view_id,
+        include_usage,
+        include_user_with_quota_overrides_only,
+        exclude_users_within_alert_threshold,
+        summary_only,
+        output_format,
+        top_quotas,
         max_count,
         cookie,
         unix_uid,
@@ -6294,6 +6408,30 @@ class ViewApi:
         if view_id is not None:
             _path_params['viewId'] = view_id
         # process the query parameters
+        if include_usage is not None:
+            
+            _query_params.append(('includeUsage', include_usage))
+            
+        if include_user_with_quota_overrides_only is not None:
+            
+            _query_params.append(('includeUserWithQuotaOverridesOnly', include_user_with_quota_overrides_only))
+            
+        if exclude_users_within_alert_threshold is not None:
+            
+            _query_params.append(('excludeUsersWithinAlertThreshold', exclude_users_within_alert_threshold))
+            
+        if summary_only is not None:
+            
+            _query_params.append(('summaryOnly', summary_only))
+            
+        if output_format is not None:
+            
+            _query_params.append(('outputFormat', output_format))
+            
+        if top_quotas is not None:
+            
+            _query_params.append(('topQuotas', top_quotas))
+            
         if max_count is not None:
             
             _query_params.append(('maxCount', max_count))
@@ -6360,6 +6498,7 @@ class ViewApi:
         match_partial_names: Annotated[Optional[StrictBool], Field(description="If true, the names in viewNames are matched by any partial rather than exactly matched.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of Views returned.")] = None,
         include_internal_views: Annotated[Optional[StrictBool], Field(description="Specifies if internal Views created by the Cohesity Cluster are also returned. In addition, regular Views are returned.")] = None,
+        skip_high_id_views: Annotated[Optional[StrictBool], Field(description="Specifies if Views with ID greater than BridgeConstants::kViewIdMangleMask should be returned. These Views are created by MagnetoV2 or NetBackup.")] = None,
         include_protection_groups: Annotated[Optional[StrictBool], Field(description="Specifies if Protection Groups information needs to be returned along with view metadata. By default, if not set or set to true, Group information is returned.")] = None,
         max_view_id: Annotated[Optional[StrictInt], Field(description="If the number of Views to return exceeds the maxCount specified in the original request, specify the id of the last View from the viewList in the previous response to get the next set of Views.")] = None,
         include_inactive: Annotated[Optional[StrictBool], Field(description="Specifies if inactive Views on this Remote Cluster (which have Snapshots copied by replication) should also be returned. Inactive Views are not counted towards the maxCount. By default, this field is set to false.")] = None,
@@ -6384,9 +6523,13 @@ class ViewApi:
         last_run_replication_statuses: Annotated[Optional[List[StrictStr]], Field(description="Filter by last remote replication run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.")] = None,
         last_run_archival_statuses: Annotated[Optional[List[StrictStr]], Field(description="Filter by last cloud archival run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.")] = None,
         is_protected: Annotated[Optional[StrictBool], Field(description="Specifies the protection status of Views. If set to true, only protected Views will be returned. If set to false, only unprotected Views will be returned.")] = None,
-        qos_principal_ids: Annotated[Optional[List[StrictInt]], Field(description="qosPrincipalIds contains ids of the QoS principal for which views are to be returned.")] = None,
+        qos_principal_ids: Annotated[Optional[List[StrictInt]], Field(description="qosPrincipalIds contains ids of the QoS principal for which views are to be returned. This field is deprecated.")] = None,
+        qos_policies: Annotated[Optional[List[StrictStr]], Field(description="Specifies a filter for Views based on the qosPolicies. This param will be prioritized if qosPrincipalIds is also specified.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         include_deleted_protection_groups: Annotated[Optional[StrictBool], Field(description="Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.")] = None,
+        return_all_views: Annotated[Optional[StrictBool], Field(description="Specifies if all the Views should be returned as part of the response.")] = None,
+        include_s3_migration_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to return only views which have a s3 migration state.")] = None,
+        s3_migration_state: Annotated[Optional[StrictStr], Field(description="Filter the list of Views by S3 Migration Statuses. Supported filter values are [Enabled, UnderMigration, Paused, Completed, Eligible].\" If `s3MigrationState` is specified then `includeS3MigrationOnly` param should also be set to true.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6402,7 +6545,7 @@ class ViewApi:
     ) -> GetViewsResult:
         """List Views
 
-        If no parameters are specified, all Views on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned. NOTE: If maxCount is set and the number of Views returned exceeds the maxCount, there are more Views to return. To get the next set of Views, send another request and specify the id of the last View returned in viewList from the previous response.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>If no parameters are specified, all Views on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned. NOTE: If maxCount is set and the number of Views returned exceeds the maxCount, there are more Views to return. To get the next set of Views, send another request and specify the id of the last View returned in viewList from the previous response.
 
         :param view_names: Filter by a list of View names.
         :type view_names: List[str]
@@ -6420,6 +6563,8 @@ class ViewApi:
         :type max_count: int
         :param include_internal_views: Specifies if internal Views created by the Cohesity Cluster are also returned. In addition, regular Views are returned.
         :type include_internal_views: bool
+        :param skip_high_id_views: Specifies if Views with ID greater than BridgeConstants::kViewIdMangleMask should be returned. These Views are created by MagnetoV2 or NetBackup.
+        :type skip_high_id_views: bool
         :param include_protection_groups: Specifies if Protection Groups information needs to be returned along with view metadata. By default, if not set or set to true, Group information is returned.
         :type include_protection_groups: bool
         :param max_view_id: If the number of Views to return exceeds the maxCount specified in the original request, specify the id of the last View from the viewList in the previous response to get the next set of Views.
@@ -6468,12 +6613,20 @@ class ViewApi:
         :type last_run_archival_statuses: List[str]
         :param is_protected: Specifies the protection status of Views. If set to true, only protected Views will be returned. If set to false, only unprotected Views will be returned.
         :type is_protected: bool
-        :param qos_principal_ids: qosPrincipalIds contains ids of the QoS principal for which views are to be returned.
+        :param qos_principal_ids: qosPrincipalIds contains ids of the QoS principal for which views are to be returned. This field is deprecated.
         :type qos_principal_ids: List[int]
+        :param qos_policies: Specifies a filter for Views based on the qosPolicies. This param will be prioritized if qosPrincipalIds is also specified.
+        :type qos_policies: List[str]
         :param use_cached_data: Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
         :type use_cached_data: bool
         :param include_deleted_protection_groups: Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.
         :type include_deleted_protection_groups: bool
+        :param return_all_views: Specifies if all the Views should be returned as part of the response.
+        :type return_all_views: bool
+        :param include_s3_migration_only: Specifies whether to return only views which have a s3 migration state.
+        :type include_s3_migration_only: bool
+        :param s3_migration_state: Filter the list of Views by S3 Migration Statuses. Supported filter values are [Enabled, UnderMigration, Paused, Completed, Eligible].\" If `s3MigrationState` is specified then `includeS3MigrationOnly` param should also be set to true.
+        :type s3_migration_state: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6505,6 +6658,7 @@ class ViewApi:
             match_partial_names=match_partial_names,
             max_count=max_count,
             include_internal_views=include_internal_views,
+            skip_high_id_views=skip_high_id_views,
             include_protection_groups=include_protection_groups,
             max_view_id=max_view_id,
             include_inactive=include_inactive,
@@ -6530,8 +6684,12 @@ class ViewApi:
             last_run_archival_statuses=last_run_archival_statuses,
             is_protected=is_protected,
             qos_principal_ids=qos_principal_ids,
+            qos_policies=qos_policies,
             use_cached_data=use_cached_data,
             include_deleted_protection_groups=include_deleted_protection_groups,
+            return_all_views=return_all_views,
+            include_s3_migration_only=include_s3_migration_only,
+            s3_migration_state=s3_migration_state,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6563,6 +6721,7 @@ class ViewApi:
         match_partial_names: Annotated[Optional[StrictBool], Field(description="If true, the names in viewNames are matched by any partial rather than exactly matched.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of Views returned.")] = None,
         include_internal_views: Annotated[Optional[StrictBool], Field(description="Specifies if internal Views created by the Cohesity Cluster are also returned. In addition, regular Views are returned.")] = None,
+        skip_high_id_views: Annotated[Optional[StrictBool], Field(description="Specifies if Views with ID greater than BridgeConstants::kViewIdMangleMask should be returned. These Views are created by MagnetoV2 or NetBackup.")] = None,
         include_protection_groups: Annotated[Optional[StrictBool], Field(description="Specifies if Protection Groups information needs to be returned along with view metadata. By default, if not set or set to true, Group information is returned.")] = None,
         max_view_id: Annotated[Optional[StrictInt], Field(description="If the number of Views to return exceeds the maxCount specified in the original request, specify the id of the last View from the viewList in the previous response to get the next set of Views.")] = None,
         include_inactive: Annotated[Optional[StrictBool], Field(description="Specifies if inactive Views on this Remote Cluster (which have Snapshots copied by replication) should also be returned. Inactive Views are not counted towards the maxCount. By default, this field is set to false.")] = None,
@@ -6587,9 +6746,13 @@ class ViewApi:
         last_run_replication_statuses: Annotated[Optional[List[StrictStr]], Field(description="Filter by last remote replication run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.")] = None,
         last_run_archival_statuses: Annotated[Optional[List[StrictStr]], Field(description="Filter by last cloud archival run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.")] = None,
         is_protected: Annotated[Optional[StrictBool], Field(description="Specifies the protection status of Views. If set to true, only protected Views will be returned. If set to false, only unprotected Views will be returned.")] = None,
-        qos_principal_ids: Annotated[Optional[List[StrictInt]], Field(description="qosPrincipalIds contains ids of the QoS principal for which views are to be returned.")] = None,
+        qos_principal_ids: Annotated[Optional[List[StrictInt]], Field(description="qosPrincipalIds contains ids of the QoS principal for which views are to be returned. This field is deprecated.")] = None,
+        qos_policies: Annotated[Optional[List[StrictStr]], Field(description="Specifies a filter for Views based on the qosPolicies. This param will be prioritized if qosPrincipalIds is also specified.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         include_deleted_protection_groups: Annotated[Optional[StrictBool], Field(description="Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.")] = None,
+        return_all_views: Annotated[Optional[StrictBool], Field(description="Specifies if all the Views should be returned as part of the response.")] = None,
+        include_s3_migration_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to return only views which have a s3 migration state.")] = None,
+        s3_migration_state: Annotated[Optional[StrictStr], Field(description="Filter the list of Views by S3 Migration Statuses. Supported filter values are [Enabled, UnderMigration, Paused, Completed, Eligible].\" If `s3MigrationState` is specified then `includeS3MigrationOnly` param should also be set to true.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6605,7 +6768,7 @@ class ViewApi:
     ) -> ApiResponse[GetViewsResult]:
         """List Views
 
-        If no parameters are specified, all Views on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned. NOTE: If maxCount is set and the number of Views returned exceeds the maxCount, there are more Views to return. To get the next set of Views, send another request and specify the id of the last View returned in viewList from the previous response.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>If no parameters are specified, all Views on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned. NOTE: If maxCount is set and the number of Views returned exceeds the maxCount, there are more Views to return. To get the next set of Views, send another request and specify the id of the last View returned in viewList from the previous response.
 
         :param view_names: Filter by a list of View names.
         :type view_names: List[str]
@@ -6623,6 +6786,8 @@ class ViewApi:
         :type max_count: int
         :param include_internal_views: Specifies if internal Views created by the Cohesity Cluster are also returned. In addition, regular Views are returned.
         :type include_internal_views: bool
+        :param skip_high_id_views: Specifies if Views with ID greater than BridgeConstants::kViewIdMangleMask should be returned. These Views are created by MagnetoV2 or NetBackup.
+        :type skip_high_id_views: bool
         :param include_protection_groups: Specifies if Protection Groups information needs to be returned along with view metadata. By default, if not set or set to true, Group information is returned.
         :type include_protection_groups: bool
         :param max_view_id: If the number of Views to return exceeds the maxCount specified in the original request, specify the id of the last View from the viewList in the previous response to get the next set of Views.
@@ -6671,12 +6836,20 @@ class ViewApi:
         :type last_run_archival_statuses: List[str]
         :param is_protected: Specifies the protection status of Views. If set to true, only protected Views will be returned. If set to false, only unprotected Views will be returned.
         :type is_protected: bool
-        :param qos_principal_ids: qosPrincipalIds contains ids of the QoS principal for which views are to be returned.
+        :param qos_principal_ids: qosPrincipalIds contains ids of the QoS principal for which views are to be returned. This field is deprecated.
         :type qos_principal_ids: List[int]
+        :param qos_policies: Specifies a filter for Views based on the qosPolicies. This param will be prioritized if qosPrincipalIds is also specified.
+        :type qos_policies: List[str]
         :param use_cached_data: Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
         :type use_cached_data: bool
         :param include_deleted_protection_groups: Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.
         :type include_deleted_protection_groups: bool
+        :param return_all_views: Specifies if all the Views should be returned as part of the response.
+        :type return_all_views: bool
+        :param include_s3_migration_only: Specifies whether to return only views which have a s3 migration state.
+        :type include_s3_migration_only: bool
+        :param s3_migration_state: Filter the list of Views by S3 Migration Statuses. Supported filter values are [Enabled, UnderMigration, Paused, Completed, Eligible].\" If `s3MigrationState` is specified then `includeS3MigrationOnly` param should also be set to true.
+        :type s3_migration_state: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6708,6 +6881,7 @@ class ViewApi:
             match_partial_names=match_partial_names,
             max_count=max_count,
             include_internal_views=include_internal_views,
+            skip_high_id_views=skip_high_id_views,
             include_protection_groups=include_protection_groups,
             max_view_id=max_view_id,
             include_inactive=include_inactive,
@@ -6733,8 +6907,12 @@ class ViewApi:
             last_run_archival_statuses=last_run_archival_statuses,
             is_protected=is_protected,
             qos_principal_ids=qos_principal_ids,
+            qos_policies=qos_policies,
             use_cached_data=use_cached_data,
             include_deleted_protection_groups=include_deleted_protection_groups,
+            return_all_views=return_all_views,
+            include_s3_migration_only=include_s3_migration_only,
+            s3_migration_state=s3_migration_state,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6766,6 +6944,7 @@ class ViewApi:
         match_partial_names: Annotated[Optional[StrictBool], Field(description="If true, the names in viewNames are matched by any partial rather than exactly matched.")] = None,
         max_count: Annotated[Optional[StrictInt], Field(description="Specifies a limit on the number of Views returned.")] = None,
         include_internal_views: Annotated[Optional[StrictBool], Field(description="Specifies if internal Views created by the Cohesity Cluster are also returned. In addition, regular Views are returned.")] = None,
+        skip_high_id_views: Annotated[Optional[StrictBool], Field(description="Specifies if Views with ID greater than BridgeConstants::kViewIdMangleMask should be returned. These Views are created by MagnetoV2 or NetBackup.")] = None,
         include_protection_groups: Annotated[Optional[StrictBool], Field(description="Specifies if Protection Groups information needs to be returned along with view metadata. By default, if not set or set to true, Group information is returned.")] = None,
         max_view_id: Annotated[Optional[StrictInt], Field(description="If the number of Views to return exceeds the maxCount specified in the original request, specify the id of the last View from the viewList in the previous response to get the next set of Views.")] = None,
         include_inactive: Annotated[Optional[StrictBool], Field(description="Specifies if inactive Views on this Remote Cluster (which have Snapshots copied by replication) should also be returned. Inactive Views are not counted towards the maxCount. By default, this field is set to false.")] = None,
@@ -6790,9 +6969,13 @@ class ViewApi:
         last_run_replication_statuses: Annotated[Optional[List[StrictStr]], Field(description="Filter by last remote replication run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.")] = None,
         last_run_archival_statuses: Annotated[Optional[List[StrictStr]], Field(description="Filter by last cloud archival run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.")] = None,
         is_protected: Annotated[Optional[StrictBool], Field(description="Specifies the protection status of Views. If set to true, only protected Views will be returned. If set to false, only unprotected Views will be returned.")] = None,
-        qos_principal_ids: Annotated[Optional[List[StrictInt]], Field(description="qosPrincipalIds contains ids of the QoS principal for which views are to be returned.")] = None,
+        qos_principal_ids: Annotated[Optional[List[StrictInt]], Field(description="qosPrincipalIds contains ids of the QoS principal for which views are to be returned. This field is deprecated.")] = None,
+        qos_policies: Annotated[Optional[List[StrictStr]], Field(description="Specifies a filter for Views based on the qosPolicies. This param will be prioritized if qosPrincipalIds is also specified.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         include_deleted_protection_groups: Annotated[Optional[StrictBool], Field(description="Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.")] = None,
+        return_all_views: Annotated[Optional[StrictBool], Field(description="Specifies if all the Views should be returned as part of the response.")] = None,
+        include_s3_migration_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to return only views which have a s3 migration state.")] = None,
+        s3_migration_state: Annotated[Optional[StrictStr], Field(description="Filter the list of Views by S3 Migration Statuses. Supported filter values are [Enabled, UnderMigration, Paused, Completed, Eligible].\" If `s3MigrationState` is specified then `includeS3MigrationOnly` param should also be set to true.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6808,7 +6991,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """List Views
 
-        If no parameters are specified, all Views on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned. NOTE: If maxCount is set and the number of Views returned exceeds the maxCount, there are more Views to return. To get the next set of Views, send another request and specify the id of the last View returned in viewList from the previous response.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>If no parameters are specified, all Views on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned. NOTE: If maxCount is set and the number of Views returned exceeds the maxCount, there are more Views to return. To get the next set of Views, send another request and specify the id of the last View returned in viewList from the previous response.
 
         :param view_names: Filter by a list of View names.
         :type view_names: List[str]
@@ -6826,6 +7009,8 @@ class ViewApi:
         :type max_count: int
         :param include_internal_views: Specifies if internal Views created by the Cohesity Cluster are also returned. In addition, regular Views are returned.
         :type include_internal_views: bool
+        :param skip_high_id_views: Specifies if Views with ID greater than BridgeConstants::kViewIdMangleMask should be returned. These Views are created by MagnetoV2 or NetBackup.
+        :type skip_high_id_views: bool
         :param include_protection_groups: Specifies if Protection Groups information needs to be returned along with view metadata. By default, if not set or set to true, Group information is returned.
         :type include_protection_groups: bool
         :param max_view_id: If the number of Views to return exceeds the maxCount specified in the original request, specify the id of the last View from the viewList in the previous response to get the next set of Views.
@@ -6874,12 +7059,20 @@ class ViewApi:
         :type last_run_archival_statuses: List[str]
         :param is_protected: Specifies the protection status of Views. If set to true, only protected Views will be returned. If set to false, only unprotected Views will be returned.
         :type is_protected: bool
-        :param qos_principal_ids: qosPrincipalIds contains ids of the QoS principal for which views are to be returned.
+        :param qos_principal_ids: qosPrincipalIds contains ids of the QoS principal for which views are to be returned. This field is deprecated.
         :type qos_principal_ids: List[int]
+        :param qos_policies: Specifies a filter for Views based on the qosPolicies. This param will be prioritized if qosPrincipalIds is also specified.
+        :type qos_policies: List[str]
         :param use_cached_data: Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
         :type use_cached_data: bool
         :param include_deleted_protection_groups: Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.
         :type include_deleted_protection_groups: bool
+        :param return_all_views: Specifies if all the Views should be returned as part of the response.
+        :type return_all_views: bool
+        :param include_s3_migration_only: Specifies whether to return only views which have a s3 migration state.
+        :type include_s3_migration_only: bool
+        :param s3_migration_state: Filter the list of Views by S3 Migration Statuses. Supported filter values are [Enabled, UnderMigration, Paused, Completed, Eligible].\" If `s3MigrationState` is specified then `includeS3MigrationOnly` param should also be set to true.
+        :type s3_migration_state: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6911,6 +7104,7 @@ class ViewApi:
             match_partial_names=match_partial_names,
             max_count=max_count,
             include_internal_views=include_internal_views,
+            skip_high_id_views=skip_high_id_views,
             include_protection_groups=include_protection_groups,
             max_view_id=max_view_id,
             include_inactive=include_inactive,
@@ -6936,8 +7130,12 @@ class ViewApi:
             last_run_archival_statuses=last_run_archival_statuses,
             is_protected=is_protected,
             qos_principal_ids=qos_principal_ids,
+            qos_policies=qos_policies,
             use_cached_data=use_cached_data,
             include_deleted_protection_groups=include_deleted_protection_groups,
+            return_all_views=return_all_views,
+            include_s3_migration_only=include_s3_migration_only,
+            s3_migration_state=s3_migration_state,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6964,6 +7162,7 @@ class ViewApi:
         match_partial_names,
         max_count,
         include_internal_views,
+        skip_high_id_views,
         include_protection_groups,
         max_view_id,
         include_inactive,
@@ -6989,8 +7188,12 @@ class ViewApi:
         last_run_archival_statuses,
         is_protected,
         qos_principal_ids,
+        qos_policies,
         use_cached_data,
         include_deleted_protection_groups,
+        return_all_views,
+        include_s3_migration_only,
+        s3_migration_state,
         _request_auth,
         _content_type,
         _headers,
@@ -7016,6 +7219,7 @@ class ViewApi:
             'lastRunReplicationStatuses': 'csv',
             'lastRunArchivalStatuses': 'csv',
             'qosPrincipalIds': 'csv',
+            'qosPolicies': 'csv',
         }
 
         _path_params: Dict[str, str] = {}
@@ -7060,6 +7264,10 @@ class ViewApi:
         if include_internal_views is not None:
             
             _query_params.append(('includeInternalViews', include_internal_views))
+            
+        if skip_high_id_views is not None:
+            
+            _query_params.append(('skipHighIdViews', skip_high_id_views))
             
         if include_protection_groups is not None:
             
@@ -7161,6 +7369,10 @@ class ViewApi:
             
             _query_params.append(('qosPrincipalIds', qos_principal_ids))
             
+        if qos_policies is not None:
+            
+            _query_params.append(('qosPolicies', qos_policies))
+            
         if use_cached_data is not None:
             
             _query_params.append(('useCachedData', use_cached_data))
@@ -7168,6 +7380,18 @@ class ViewApi:
         if include_deleted_protection_groups is not None:
             
             _query_params.append(('includeDeletedProtectionGroups', include_deleted_protection_groups))
+            
+        if return_all_views is not None:
+            
+            _query_params.append(('returnAllViews', return_all_views))
+            
+        if include_s3_migration_only is not None:
+            
+            _query_params.append(('includeS3MigrationOnly', include_s3_migration_only))
+            
+        if s3_migration_state is not None:
+            
+            _query_params.append(('s3MigrationState', s3_migration_state))
             
         # process the header parameters
         # process the form parameters
@@ -7232,7 +7456,7 @@ class ViewApi:
     ) -> ViewsSummary:
         """Get Views summary.
 
-        Get Views summary.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get Views summary.
 
         :param msecs_before_current_time_to_compare: Specifies the time in msecs before current time to compare with.
         :type msecs_before_current_time_to_compare: int
@@ -7319,7 +7543,7 @@ class ViewApi:
     ) -> ApiResponse[ViewsSummary]:
         """Get Views summary.
 
-        Get Views summary.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get Views summary.
 
         :param msecs_before_current_time_to_compare: Specifies the time in msecs before current time to compare with.
         :type msecs_before_current_time_to_compare: int
@@ -7406,7 +7630,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Get Views summary.
 
-        Get Views summary.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get Views summary.
 
         :param msecs_before_current_time_to_compare: Specifies the time in msecs before current time to compare with.
         :type msecs_before_current_time_to_compare: int
@@ -7581,7 +7805,7 @@ class ViewApi:
     ) -> SmbFileOpens:
         """Get SMB File opens.
 
-        Get SMB active file opens on a Cohesity View.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get SMB active file opens on a Cohesity View.
 
         :param file_path: Specifies the filepath in the Cohesity View relative to the root filesystem. If this field is specified, viewName field must also be specified.
         :type file_path: str
@@ -7660,7 +7884,7 @@ class ViewApi:
     ) -> ApiResponse[SmbFileOpens]:
         """Get SMB File opens.
 
-        Get SMB active file opens on a Cohesity View.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get SMB active file opens on a Cohesity View.
 
         :param file_path: Specifies the filepath in the Cohesity View relative to the root filesystem. If this field is specified, viewName field must also be specified.
         :type file_path: str
@@ -7739,7 +7963,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Get SMB File opens.
 
-        Get SMB active file opens on a Cohesity View.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Get SMB active file opens on a Cohesity View.
 
         :param file_path: Specifies the filepath in the Cohesity View relative to the root filesystem. If this field is specified, viewName field must also be specified.
         :type file_path: str
@@ -7895,7 +8119,7 @@ class ViewApi:
     ) -> FileLockStatus:
         """Create a file-lock
 
-        Locks a file in a view and returns the lock status of the file.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Locks a file in a view and returns the lock status of the file.
 
         :param id: Specifies the id of a view. (required)
         :type id: int
@@ -7966,7 +8190,7 @@ class ViewApi:
     ) -> ApiResponse[FileLockStatus]:
         """Create a file-lock
 
-        Locks a file in a view and returns the lock status of the file.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Locks a file in a view and returns the lock status of the file.
 
         :param id: Specifies the id of a view. (required)
         :type id: int
@@ -8037,7 +8261,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Create a file-lock
 
-        Locks a file in a view and returns the lock status of the file.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Locks a file in a view and returns the lock status of the file.
 
         :param id: Specifies the id of a view. (required)
         :type id: int
@@ -8167,6 +8391,282 @@ class ViewApi:
 
 
     @validate_call
+    def migrate_s3_views(
+        self,
+        body: Annotated[MigrateS3Views, Field(description="Specifies the request body to Migrate S3 Views.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> MultipleViewsUpdateSuccessFailureIds:
+        """Migrate S3 Views.
+
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Migrate S3 Views from S3 1.0 to 2.0.
+
+        :param body: Specifies the request body to Migrate S3 Views. (required)
+        :type body: MigrateS3Views
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._migrate_s3_views_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '207': "MultipleViewsUpdateSuccessFailureIds",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def migrate_s3_views_with_http_info(
+        self,
+        body: Annotated[MigrateS3Views, Field(description="Specifies the request body to Migrate S3 Views.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[MultipleViewsUpdateSuccessFailureIds]:
+        """Migrate S3 Views.
+
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Migrate S3 Views from S3 1.0 to 2.0.
+
+        :param body: Specifies the request body to Migrate S3 Views. (required)
+        :type body: MigrateS3Views
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._migrate_s3_views_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '207': "MultipleViewsUpdateSuccessFailureIds",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def migrate_s3_views_without_preload_content(
+        self,
+        body: Annotated[MigrateS3Views, Field(description="Specifies the request body to Migrate S3 Views.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Migrate S3 Views.
+
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Migrate S3 Views from S3 1.0 to 2.0.
+
+        :param body: Specifies the request body to Migrate S3 Views. (required)
+        :type body: MigrateS3Views
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._migrate_s3_views_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '207': "MultipleViewsUpdateSuccessFailureIds",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _migrate_s3_views_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/file-services/migrate-s3-views',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def overwrite_view(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the View id to be overwritten.")],
@@ -8186,7 +8686,7 @@ class ViewApi:
     ) -> None:
         """Overwrite View.
 
-        Overwrite View.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Overwrite View.
 
         :param id: Specifies the View id to be overwritten. (required)
         :type id: int
@@ -8257,7 +8757,7 @@ class ViewApi:
     ) -> ApiResponse[None]:
         """Overwrite View.
 
-        Overwrite View.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Overwrite View.
 
         :param id: Specifies the View id to be overwritten. (required)
         :type id: int
@@ -8328,7 +8828,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Overwrite View.
 
-        Overwrite View.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Overwrite View.
 
         :param id: Specifies the View id to be overwritten. (required)
         :type id: int
@@ -8476,7 +8976,7 @@ class ViewApi:
     ) -> Template:
         """Read a View Template by Id
 
-        Reads a view template based on given template id.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Reads a view template based on given template id.
 
         :param id: Specifies a unique id of the view template. (required)
         :type id: int
@@ -8543,7 +9043,7 @@ class ViewApi:
     ) -> ApiResponse[Template]:
         """Read a View Template by Id
 
-        Reads a view template based on given template id.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Reads a view template based on given template id.
 
         :param id: Specifies a unique id of the view template. (required)
         :type id: int
@@ -8610,7 +9110,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Read a View Template by Id
 
-        Reads a view template based on given template id.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>Reads a view template based on given template id.
 
         :param id: Specifies a unique id of the view template. (required)
         :type id: int
@@ -8738,7 +9238,7 @@ class ViewApi:
     ) -> GetViewTemplatesResult:
         """List View Templates
 
-        All view templates on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>All view templates on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8801,7 +9301,7 @@ class ViewApi:
     ) -> ApiResponse[GetViewTemplatesResult]:
         """List View Templates
 
-        All view templates on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>All view templates on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8864,7 +9364,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """List View Templates
 
-        All view templates on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned.
+        **Privileges:** ```STORAGE_VIEW``` <br><br>All view templates on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8988,7 +9488,7 @@ class ViewApi:
     ) -> Share:
         """Update a Share.
 
-        Update a Share.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Update a Share.
 
         :param name: Specifies the Share name to update. (required)
         :type name: str
@@ -9059,7 +9559,7 @@ class ViewApi:
     ) -> ApiResponse[Share]:
         """Update a Share.
 
-        Update a Share.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Update a Share.
 
         :param name: Specifies the Share name to update. (required)
         :type name: str
@@ -9130,7 +9630,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Update a Share.
 
-        Update a Share.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Update a Share.
 
         :param name: Specifies the Share name to update. (required)
         :type name: str
@@ -9279,7 +9779,7 @@ class ViewApi:
     ) -> View:
         """Update a View
 
-        Updates a View based on given id.
+        ```No Privileges Required``` <br><br>Updates a View based on given id.
 
         :param id: Specifies a unique id of the View to update. (required)
         :type id: int
@@ -9350,7 +9850,7 @@ class ViewApi:
     ) -> ApiResponse[View]:
         """Update a View
 
-        Updates a View based on given id.
+        ```No Privileges Required``` <br><br>Updates a View based on given id.
 
         :param id: Specifies a unique id of the View to update. (required)
         :type id: int
@@ -9421,7 +9921,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Update a View
 
-        Updates a View based on given id.
+        ```No Privileges Required``` <br><br>Updates a View based on given id.
 
         :param id: Specifies a unique id of the View to update. (required)
         :type id: int
@@ -9570,7 +10070,7 @@ class ViewApi:
     ) -> ViewDirectoryQuota:
         """Update directory quota for the View.
 
-        Update directory quota for the View.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Update directory quota for the View.
 
         :param id: Specifies the View id. (required)
         :type id: int
@@ -9641,7 +10141,7 @@ class ViewApi:
     ) -> ApiResponse[ViewDirectoryQuota]:
         """Update directory quota for the View.
 
-        Update directory quota for the View.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Update directory quota for the View.
 
         :param id: Specifies the View id. (required)
         :type id: int
@@ -9712,7 +10212,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Update directory quota for the View.
 
-        Update directory quota for the View.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Update directory quota for the View.
 
         :param id: Specifies the View id. (required)
         :type id: int
@@ -9861,7 +10361,7 @@ class ViewApi:
     ) -> Template:
         """Update a View Template
 
-        Updates a View Template.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Updates a View Template.
 
         :param id: Specifies a unique id of the view template. (required)
         :type id: int
@@ -9932,7 +10432,7 @@ class ViewApi:
     ) -> ApiResponse[Template]:
         """Update a View Template
 
-        Updates a View Template.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Updates a View Template.
 
         :param id: Specifies a unique id of the view template. (required)
         :type id: int
@@ -10003,7 +10503,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Update a View Template
 
-        Updates a View Template.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Updates a View Template.
 
         :param id: Specifies a unique id of the view template. (required)
         :type id: int
@@ -10153,7 +10653,7 @@ class ViewApi:
     ) -> UserQuota:
         """Update user quota override.
 
-        Update user quota. To use this API, User quota settings should be enabled on the View and there should be a user quota override added for this user.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Update user quota. To use this API, User quota settings should be enabled on the View and there should be a user quota override added for this user.
 
         :param view_id: Specifies the View id. (required)
         :type view_id: int
@@ -10228,7 +10728,7 @@ class ViewApi:
     ) -> ApiResponse[UserQuota]:
         """Update user quota override.
 
-        Update user quota. To use this API, User quota settings should be enabled on the View and there should be a user quota override added for this user.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Update user quota. To use this API, User quota settings should be enabled on the View and there should be a user quota override added for this user.
 
         :param view_id: Specifies the View id. (required)
         :type view_id: int
@@ -10303,7 +10803,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Update user quota override.
 
-        Update user quota. To use this API, User quota settings should be enabled on the View and there should be a user quota override added for this user.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Update user quota. To use this API, User quota settings should be enabled on the View and there should be a user quota override added for this user.
 
         :param view_id: Specifies the View id. (required)
         :type view_id: int
@@ -10458,7 +10958,7 @@ class ViewApi:
     ) -> ViewUserQuotas:
         """Update View user quota settings.
 
-        Specifies parameters to update View user quota settings.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Specifies parameters to update View user quota settings.
 
         :param view_id: Specifies the View id. (required)
         :type view_id: int
@@ -10529,7 +11029,7 @@ class ViewApi:
     ) -> ApiResponse[ViewUserQuotas]:
         """Update View user quota settings.
 
-        Specifies parameters to update View user quota settings.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Specifies parameters to update View user quota settings.
 
         :param view_id: Specifies the View id. (required)
         :type view_id: int
@@ -10600,7 +11100,7 @@ class ViewApi:
     ) -> RESTResponseType:
         """Update View user quota settings.
 
-        Specifies parameters to update View user quota settings.
+        **Privileges:** ```STORAGE_MODIFY``` <br><br>Specifies parameters to update View user quota settings.
 
         :param view_id: Specifies the View id. (required)
         :type view_id: int

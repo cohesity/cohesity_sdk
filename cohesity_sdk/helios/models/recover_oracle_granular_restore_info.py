@@ -28,7 +28,7 @@ class RecoverOracleGranularRestoreInfo(BaseModel):
     Specifies information about list of objects (PDBs) to restore.
     """ # noqa: E501
     granularity_type: Optional[StrictStr] = Field(default=None, description="Specifies type of granular restore.", alias="granularityType")
-    pdb_restore_params: Optional[OraclePdbRestoreParams] = Field(default=None, description="Specifies information about the list of pdbs to be restored.", alias="pdbRestoreParams")
+    pdb_restore_params: Optional[OraclePdbRestoreParams] = Field(default=None, alias="pdbRestoreParams")
     __properties: ClassVar[List[str]] = ["granularityType", "pdbRestoreParams"]
 
     @field_validator('granularity_type')

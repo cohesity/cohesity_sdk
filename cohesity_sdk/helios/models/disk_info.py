@@ -37,8 +37,8 @@ class DiskInfo(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kScsi', 'kIde', 'kSata']):
-            raise ValueError("must be one of enum values ('kScsi', 'kIde', 'kSata')")
+        if value not in set(['kScsi', 'kIde', 'kSata', 'kNvme']):
+            raise ValueError("must be one of enum values ('kScsi', 'kIde', 'kSata', 'kNvme')")
         return value
 
     model_config = ConfigDict(

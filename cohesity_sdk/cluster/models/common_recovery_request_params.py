@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.cluster.models.common_filter_expression import CommonFilterExpression
 from typing import Set
 from typing_extensions import Self
 
@@ -26,15 +27,27 @@ class CommonRecoveryRequestParams(BaseModel):
     """
     Specifies the common request parameters to create a Recovery.
     """ # noqa: E501
+    filter_params: Optional[CommonFilterExpression] = Field(default=None, alias="filterParams")
     name: Optional[StrictStr] = Field(description="Specifies the name of the Recovery.")
+    nfs_protocol: Optional[StrictStr] = Field(default=None, description="Specifies NFS protocol version. This protocol will be employed if the recovery request mounts the Cohesity storage via NFS on the primary source.", alias="nfsProtocol")
     snapshot_environment: StrictStr = Field(description="Specifies the type of environment of snapshots for which the Recovery has to be performed.", alias="snapshotEnvironment")
-    __properties: ClassVar[List[str]] = ["name", "snapshotEnvironment"]
+    __properties: ClassVar[List[str]] = ["filterParams", "name", "nfsProtocol", "snapshotEnvironment"]
+
+    @field_validator('nfs_protocol')
+    def nfs_protocol_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['kNfs3', 'kNfs4_1']):
+            raise ValueError("must be one of enum values ('kNfs3', 'kNfs4_1')")
+        return value
 
     @field_validator('snapshot_environment')
     def snapshot_environment_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['kVMware', 'kHyperV', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kPhysical', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc']):
-            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kPhysical', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc')")
+        if value not in set(['kVMware', 'kHyperV', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kPhysical', 'kGPFS', 'kElastifile', 'kNetapp', 'kNutanixFS', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kS3Compatible', 'kSAPHANA', 'kHBase', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kPostgres']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kPhysical', 'kGPFS', 'kElastifile', 'kNetapp', 'kNutanixFS', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kS3Compatible', 'kSAPHANA', 'kHBase', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kPostgres')")
         return value
 
     model_config = ConfigDict(
@@ -76,10 +89,18 @@ class CommonRecoveryRequestParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of filter_params
+        if self.filter_params:
+            _dict['filterParams'] = self.filter_params.to_dict()
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
+
+        # set to None if nfs_protocol (nullable) is None
+        # and model_fields_set contains the field
+        if self.nfs_protocol is None and "nfs_protocol" in self.model_fields_set:
+            _dict['nfsProtocol'] = None
 
         return _dict
 
@@ -93,7 +114,9 @@ class CommonRecoveryRequestParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "filterParams": CommonFilterExpression.from_dict(obj["filterParams"]) if obj.get("filterParams") is not None else None,
             "name": obj.get("name"),
+            "nfsProtocol": obj.get("nfsProtocol"),
             "snapshotEnvironment": obj.get("snapshotEnvironment")
         })
         return _obj

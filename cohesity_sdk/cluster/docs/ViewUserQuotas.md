@@ -7,10 +7,11 @@ Specifies the default logical user quota on the View along with the list of logi
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **default_quota_policy** | [**QuotaPolicy**](QuotaPolicy.md) |  | [optional] 
-**enabled** | **bool** | Specifies whether user quota is enabled for the View. | 
+**enabled** | **bool** | Specifies whether user quota is enabled for the View. | [optional] 
 **cookie** | **str** | Specifies the pagination cookie. | [optional] 
 **override_existing_per_user_quotas** | **bool** | By default, the overrides specified in userQuotas is treated as delta and the existing overrides will be left untouched. Set this to true, if the existing overrides should be cleared before applying overrides specified in userQuotas. | [optional] 
 **user_quotas** | [**List[UserQuota]**](UserQuota.md) | Array of UserQuota. Specifies the list of UserQuota for each user. | 
+**summary_for_view** | [**UserQuotaSummaryForView**](UserQuotaSummaryForView.md) |  | [optional] 
 
 ## Example
 

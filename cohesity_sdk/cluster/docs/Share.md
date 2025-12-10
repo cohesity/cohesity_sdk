@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **enable_filer_audit_logging** | **bool** | This field is currently deprecated. Specifies if Filer Audit Logging is enabled for this Share. | [optional] 
 **file_audit_logging_state** | **str** | Specifies the state of File Audit logging for this Share. Inherited: Audit log setting is inherited from the  View. Enabled: Audit log is enabled for this Share. Disabled: Audit log is disabled for this Share. | [optional] 
 **smb_config** | [**AliasSmbConfig**](AliasSmbConfig.md) |  | [optional] 
+**is_read_only_view** | **bool** | Specifies the view this share belongs to is a read only view. | [optional] [readonly] 
 **name** | **str** | Specifies the Share name. | 
 **nfs_mount_paths** | **List[str]** | Specifies the path for mounting this Share as an NFS share. If Kerberos Provider has multiple hostaliases, each host alias has its own path. | [optional] [readonly] 
 **s3_access_path** | **str** | Specifies the path to access this Share as an S3 share. | [optional] [readonly] 

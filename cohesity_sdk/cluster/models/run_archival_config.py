@@ -30,8 +30,10 @@ class RunArchivalConfig(BaseModel):
     archival_target_type: Optional[StrictStr] = Field(description="Specifies the snapshot's archival target type from which recovery has been performed.", alias="archivalTargetType")
     copy_only_fully_successful: Optional[StrictBool] = Field(default=None, description="Specifies if Snapshots are copied from a fully successful Protection Group Run or a partially successful Protection Group Run. If false, Snapshots are copied the Protection Group Run, even if the Run was not fully successful i.e. Snapshots were not captured for all Objects in the Protection Group. If true, Snapshots are copied only when the run is fully successful.", alias="copyOnlyFullySuccessful")
     id: Optional[StrictInt] = Field(description="Specifies the Archival target to copy the Snapshots to.")
+    name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the archival target.")
+    on_legal_hold: Optional[StrictBool] = Field(default=None, description="Specifies if the Run is on legal hold.", alias="onLegalHold")
     retention: Optional[Retention] = None
-    __properties: ClassVar[List[str]] = ["archivalTargetType", "copyOnlyFullySuccessful", "id", "retention"]
+    __properties: ClassVar[List[str]] = ["archivalTargetType", "copyOnlyFullySuccessful", "id", "name", "onLegalHold", "retention"]
 
     @field_validator('archival_target_type')
     def archival_target_type_validate_enum(cls, value):
@@ -100,6 +102,16 @@ class RunArchivalConfig(BaseModel):
         if self.id is None and "id" in self.model_fields_set:
             _dict['id'] = None
 
+        # set to None if name (nullable) is None
+        # and model_fields_set contains the field
+        if self.name is None and "name" in self.model_fields_set:
+            _dict['name'] = None
+
+        # set to None if on_legal_hold (nullable) is None
+        # and model_fields_set contains the field
+        if self.on_legal_hold is None and "on_legal_hold" in self.model_fields_set:
+            _dict['onLegalHold'] = None
+
         return _dict
 
     @classmethod
@@ -115,6 +127,8 @@ class RunArchivalConfig(BaseModel):
             "archivalTargetType": obj.get("archivalTargetType"),
             "copyOnlyFullySuccessful": obj.get("copyOnlyFullySuccessful"),
             "id": obj.get("id"),
+            "name": obj.get("name"),
+            "onLegalHold": obj.get("onLegalHold"),
             "retention": Retention.from_dict(obj["retention"]) if obj.get("retention") is not None else None
         })
         return _obj

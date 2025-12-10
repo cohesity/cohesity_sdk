@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **namenode_address** | **str** | The HDFS Namenode IP or hostname. | [optional] [readonly] 
 **webhdfs_port** | **int** | The HDFS WebHDFS port. | [optional] [readonly] 
 **configuration_directory** | **str** | The directory containing the core-site.xml and hdfs-site.xml configuration files. | 
+**connection_type** | **str** | HDFS Connection Type. | [optional] 
 **hadoop_distribution** | **str** | The hadoop distribution for this cluster. This can be either &#39;CDH&#39; or &#39;HDP&#39; | 
 **hadoop_version** | **str** | The hadoop version for this cluster. | 
 **host** | **str** | IP or hostname of any host from which the HDFS configuration files core-site.xml and hdfs-site.xml can be read. | 

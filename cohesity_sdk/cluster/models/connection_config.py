@@ -28,7 +28,7 @@ class ConnectionConfig(BaseModel):
     """ # noqa: E501
     connection_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the connection.", alias="connectionId")
     connector_group_id: Optional[StrictInt] = Field(default=None, description="Specifies the connector group id of connector groups.", alias="connectorGroupId")
-    entity_id: Optional[StrictInt] = Field(default=None, description="Specifies the entity id of the source. The source can a non-root entity.", alias="entityId")
+    entity_id: Optional[StrictInt] = Field(description="Specifies the entity id of the source. The source can a non-root entity.", alias="entityId")
     __properties: ClassVar[List[str]] = ["connectionId", "connectorGroupId", "entityId"]
 
     model_config = ConfigDict(

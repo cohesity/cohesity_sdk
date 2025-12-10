@@ -1,13 +1,13 @@
 # UpdateInfectedFilesParameters
 
-Specifies the parameters of infected files to be updated.
+Specifies the parameters of infected entities to be updated.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**infected_files** | [**List[InfectedFile]**](InfectedFile.md) | Specifies a list of infected files to be updated. | 
-**state** | **str** | Specifies the state[Quarantined, Unquarantined] of the infected file. | [optional] 
+**infected_files** | [**List[InfectedFile]**](InfectedFile.md) | Specifies a list of infected entities to be updated. | 
+**state** | **str** | Specifies the state[Quarantined, Unquarantined] of the infected entity. | [optional] 
 
 ## Example
 

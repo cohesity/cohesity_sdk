@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **full_auto_kill_timeout_secs** | **int** | Time in seconds after which the full backup of the database in given backup job should be auto-killed. | [optional] 
 **incr_auto_kill_timeout_secs** | **int** | Time in seconds after which the incremental backup of the database in given backup job should be auto-killed. | [optional] 
 **log_auto_kill_timeout_secs** | **int** | Time in seconds after which the log backup of the database in given backup job should be auto-killed. | [optional] 
+**nfs_protocol** | **str** | Specifies the preferred protocol to use if this device supports multiple protocols. | [optional] 
 **objects** | [**List[OracleProtectionGroupObjectParams]**](OracleProtectionGroupObjectParams.md) | Specifies the list of object ids to be protected. | 
 **persist_mountpoints** | **bool** | Specifies whether the mountpoints created while backing up Oracle DBs should be persisted. Defaults to true if value is null to handle the backward compatibility for the upgrade case. | [optional] [default to True]
 **pre_post_script** | [**PrePostScriptParams**](PrePostScriptParams.md) |  | [optional] 

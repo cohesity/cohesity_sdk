@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **access_sids** | **List[str]** | Array of Security Identifiers (SIDs) Specifies the list of security identifiers (SIDs) for the restricted Principals who have access to this View. | [optional] 
 **allow_mount_on_windows** | **bool** | Specifies if this View can be mounted using the NFS protocol on Windows systems. If true, this View can be NFS mounted on Windows systems. | [optional] 
 **antivirus_scan_config** | [**AntivirusScanConfig**](AntivirusScanConfig.md) |  | [optional] 
-**category** | **str** | Specifies the category of the View. | [optional] 
+**category** | **str** | Specifies the category of the View. | 
 **description** | **str** | Specifies an optional text description about the View. | [optional] 
 **enable_filer_audit_logging** | **bool** | Specifies if Filer Audit Logging is enabled for this view. | [optional] 
 **enable_live_indexing** | **bool** | Specifies whether to enable live indexing for the view. | [optional] 
@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 **netgroup_whitelist** | [**NisNetgroups**](NisNetgroups.md) |  | [optional] 
 **override_global_netgroup_whitelist** | **bool** | Specifies whether view level client netgroup whitelist overrides cluster and global setting. | [optional] 
 **override_global_subnet_whitelist** | **bool** | Specifies whether view level client subnet whitelist overrides cluster and global setting. | [optional] 
-**protocol_access** | [**List[ViewProtocol]**](ViewProtocol.md) | Specifies the supported Protocols for the View. | [optional] 
+**protocol_access** | [**List[ViewProtocol]**](ViewProtocol.md) | Specifies the supported Protocols for the View. | 
 **qos** | [**QoS**](QoS.md) |  | [optional] 
 **security_mode** | **str** | Specifies the security mode used for this view. Currently we support the following modes: Native, Unified and NTFS style. &#39;NativeMode&#39; indicates a native security mode. &#39;UnifiedMode&#39; indicates a unified security mode. &#39;NtfsMode&#39; indicates a NTFS style security mode. | [optional] 
 **self_service_snapshot_config** | [**SelfServiceSnapshotConfig**](SelfServiceSnapshotConfig.md) |  | [optional] 
@@ -59,6 +59,11 @@ Name | Type | Description | Notes
 **lifecycle_management** | [**S3LifecycleManagement**](S3LifecycleManagement.md) |  | [optional] 
 **owner_info** | [**S3ConfigOwnerInfo**](S3ConfigOwnerInfo.md) |  | [optional] 
 **s3_access_path** | **str** | Specifies the path to access this View as an S3 share. | [optional] [readonly] 
+**s3_efficient_mpu_max_subfiles** | **int** | Specifies if this View has S3 MPU 2.0 enabled. This can set while editing a view.  | [optional] 
+**s3_enable_efficient_mpu** | **bool** | Specifies if this View has S3 MPU 2.0 enabled. This can set while editing a view.  | [optional] 
+**s3_migration_action** | **str** | Specifies the S3 migration action to be performed on this View. Supported migration actions are: [Enable, Cancel, Pause, Resume]. | [optional] 
+**s3_migration_progress** | **int** | Specifies the S3 migration progress in percentage for a view. | [optional] 
+**s3_migration_state** | **str** | Specifies the current S3 migration state for this View. A View can be under following migration states: [Eligible, Enable, Pause, Complete, UnderMigration]. | [optional] 
 **versioning** | **str** | Specifies the versioning state of S3 bucket. Buckets can be in one of three states: UnVersioned (default), VersioningEnabled, or VersioningSuspended. Once versioning is enabled for a bucket, it can never return to an UnVersioned state. However, versioning on the bucket can be suspended. | [optional] 
 **swift_project_domain** | **str** | Specifies the Keystone project domain. | [optional] 
 **swift_project_name** | **str** | Specifies the Keystone project name. | [optional] 
@@ -68,7 +73,7 @@ Name | Type | Description | Notes
 **intent** | [**ViewIntent**](ViewIntent.md) |  | [optional] 
 **object_services_mapping_config** | **str** | Specifies the Object Services key mapping config of the view. This parameter can only be set during create and cannot be changed. Configuration of Object Services key mapping. Specifies the type of Object Services key mapping config. | [optional] 
 **s3_folder_support_enabled** | **bool** | Specifies whether to support s3 folder support feature. This parameter can only be set during create and cannot be changed. | [optional] 
-**storage_domain_id** | **int** | Specifies the id of the Storage Domain (View Box) where the View will be created. | [optional] 
+**storage_domain_id** | **int** | Specifies the id of the Storage Domain (View Box) where the View will be created. | 
 **view_protection_config** | [**ViewProtectionConfig**](ViewProtectionConfig.md) |  | [optional] 
 
 ## Example

@@ -6,6 +6,8 @@ Holds the Totp code to be verified.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**purpose** | **str** | Specifies the purpose of the totp code verification. * &#x60;DisableMfa&#x60; - To be used when disabling the MFA. * &#x60;VerifyOtp&#x60; (Default) - To be used when verifying OTP. | [optional] 
+**support_user_password** | **str** | Specifies the support user password, required for totp verification while disabling MFA. | [optional] 
 **totp_code** | **str** | Specifies the Totp code. | [optional] 
 
 ## Example

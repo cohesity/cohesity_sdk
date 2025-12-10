@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **disks** | [**List[VmwareRecoverTargetSourceDiskParams]**](VmwareRecoverTargetSourceDiskParams.md) | Specifies the disks to be recovered and the location to which they will be recovered. | 
 **source_id** | **int** | Specifies the source ID of the VM to which the disks will be restored. | 
+**source_name** | **str** | Specifies the source name of the VM to which the disks will be restored. | [optional] 
+**target** | **str** | Specifies the name of the vm to which the disks will be restored. | [optional] 
 
 ## Example
 

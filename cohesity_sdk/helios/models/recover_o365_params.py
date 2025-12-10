@@ -50,8 +50,8 @@ class RecoverO365Params(BaseModel):
     @field_validator('recovery_action')
     def recovery_action_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['RecoverMailbox', 'RecoverOneDrive', 'RecoverSharePoint', 'RecoverPublicFolders', 'RecoverMsGroup', 'RecoverMsTeam', 'ConvertToPst', 'DownloadChats']):
-            raise ValueError("must be one of enum values ('RecoverMailbox', 'RecoverOneDrive', 'RecoverSharePoint', 'RecoverPublicFolders', 'RecoverMsGroup', 'RecoverMsTeam', 'ConvertToPst', 'DownloadChats')")
+        if value not in set(['RecoverMailbox', 'RecoverOneDrive', 'RecoverSharePoint', 'RecoverPublicFolders', 'RecoverMsGroup', 'RecoverMsTeam', 'ConvertToPst', 'DownloadChats', 'RecoverMailboxCSM', 'RecoverOneDriveCSM', 'RecoverSharePointCSM', 'RecoverO365ToExchangeServer']):
+            raise ValueError("must be one of enum values ('RecoverMailbox', 'RecoverOneDrive', 'RecoverSharePoint', 'RecoverPublicFolders', 'RecoverMsGroup', 'RecoverMsTeam', 'ConvertToPst', 'DownloadChats', 'RecoverMailboxCSM', 'RecoverOneDriveCSM', 'RecoverSharePointCSM', 'RecoverO365ToExchangeServer')")
         return value
 
     model_config = ConfigDict(

@@ -6,6 +6,7 @@ Specifies a list of Storage Domains.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**settings** | [**StorageDomainsSettings**](StorageDomainsSettings.md) |  | [optional] 
 **storage_domains** | [**List[StorageDomain]**](StorageDomain.md) | Specifies the list of storage domains. | [optional] 
 
 ## Example

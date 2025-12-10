@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 Lists the Helios Registration Config.
 
-Lists the Helios Registration Config.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>Lists the Helios Registration Config.
 
 ### Example
 
@@ -103,7 +103,7 @@ This endpoint does not need any parameter.
 
 Register to Helios.
 
-Claim to Helios.
+**Privileges:** ```MCM_MODIFY``` <br><br>Claim to Helios.
 
 ### Example
 

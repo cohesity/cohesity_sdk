@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **aws_kms_params** | [**AwsKmsConfigurationResponse**](AwsKmsConfigurationResponse.md) |  | [optional] 
 **external_target_ids** | **List[int]** | Ids of external targets used to assign the KMS for encryption. Once an external KMS (AWS KMS or KIMP KMS) is assigned to an external target, it cannot be changed. | [optional] 
+**gcp_kms_params** | [**GcpKmsConfigurationResponse**](GcpKmsConfigurationResponse.md) |  | [optional] 
+**ibm_kms_params** | [**IbmKmsConfigurationResponse**](IbmKmsConfigurationResponse.md) |  | [optional] 
 **kmip_kms_params** | [**KmipKmsConfigurationResponse**](KmipKmsConfigurationResponse.md) |  | [optional] 
 **name** | **str** | Name of the KMS. | [optional] 
 **ownership_context** | **str** | Describes the consumption of the KMS key whether it is used for local or FortKnox. | [optional] 

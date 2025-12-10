@@ -25,10 +25,10 @@ from typing_extensions import Self
 
 class UpdateInfectedFilesList(BaseModel):
     """
-    Specifies a list of infected files.
+    Specifies a list of infected entities.
     """ # noqa: E501
-    update_failed_infected_files: Optional[List[InfectedFile]] = Field(default=None, description="Specifies the list of infected files that failed update.", alias="updateFailedInfectedFiles")
-    update_succeeded_infected_files: Optional[List[InfectedFile]] = Field(default=None, description="Specifies the list of infected files that are successfully updated.", alias="updateSucceededInfectedFiles")
+    update_failed_infected_files: Optional[List[InfectedFile]] = Field(default=None, description="Specifies the list of infected entities that failed update.", alias="updateFailedInfectedFiles")
+    update_succeeded_infected_files: Optional[List[InfectedFile]] = Field(default=None, description="Specifies the list of infected entities that are successfully updated.", alias="updateSucceededInfectedFiles")
     __properties: ClassVar[List[str]] = ["updateFailedInfectedFiles", "updateSucceededInfectedFiles"]
 
     model_config = ConfigDict(

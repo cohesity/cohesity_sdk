@@ -30,11 +30,12 @@ class VmwareObjectProtectionResponse(BaseModel):
     Specifies the input for a protection object in the VMware environment.
     """ # noqa: E501
     exclude_disks: Optional[List[DiskInfo]] = Field(default=None, description="Specifies a list of disks to exclude from being protected. This is only applicable to VM objects.", alias="excludeDisks")
+    include_disks: Optional[List[DiskInfo]] = Field(default=None, description="Specifies a list of disks to be protected. This is only applicable to VM objects.", alias="includeDisks")
     truncate_exchange_logs: Optional[StrictBool] = Field(default=None, description="Specifies whether or not to truncate MS Exchange logs while taking an app consistent snapshot of this object. This is only applicable to objects which have a registered MS Exchange app.", alias="truncateExchangeLogs")
     cdp_info: Optional[VmwareCdpObject] = Field(default=None, alias="cdpInfo")
     exclude_object_ids: Optional[List[Optional[StrictInt]]] = Field(default=None, description="Specifies the list of IDs of the objects to not be protected in this backup. This field only applies if provided object id is non leaf entity such as Tag or a folder. This can be used to ignore specific objects under a parent object which has been included for protection.", alias="excludeObjectIds")
     standby_info: Optional[VmwareStandbyObject] = Field(default=None, alias="standbyInfo")
-    __properties: ClassVar[List[str]] = ["excludeDisks", "truncateExchangeLogs", "cdpInfo", "excludeObjectIds", "standbyInfo"]
+    __properties: ClassVar[List[str]] = ["excludeDisks", "includeDisks", "truncateExchangeLogs", "cdpInfo", "excludeObjectIds", "standbyInfo"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,6 +83,13 @@ class VmwareObjectProtectionResponse(BaseModel):
                 if _item_exclude_disks:
                     _items.append(_item_exclude_disks.to_dict())
             _dict['excludeDisks'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in include_disks (list)
+        _items = []
+        if self.include_disks:
+            for _item_include_disks in self.include_disks:
+                if _item_include_disks:
+                    _items.append(_item_include_disks.to_dict())
+            _dict['includeDisks'] = _items
         # override the default output from pydantic by calling `to_dict()` of cdp_info
         if self.cdp_info:
             _dict['cdpInfo'] = self.cdp_info.to_dict()
@@ -106,6 +114,7 @@ class VmwareObjectProtectionResponse(BaseModel):
 
         _obj = cls.model_validate({
             "excludeDisks": [DiskInfo.from_dict(_item) for _item in obj["excludeDisks"]] if obj.get("excludeDisks") is not None else None,
+            "includeDisks": [DiskInfo.from_dict(_item) for _item in obj["includeDisks"]] if obj.get("includeDisks") is not None else None,
             "truncateExchangeLogs": obj.get("truncateExchangeLogs"),
             "cdpInfo": VmwareCdpObject.from_dict(obj["cdpInfo"]) if obj.get("cdpInfo") is not None else None,
             "excludeObjectIds": obj.get("excludeObjectIds"),

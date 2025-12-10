@@ -6,9 +6,9 @@ Specifies the firewall profile & their attachments.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**attachments** | [**List[Attachment]**](Attachment.md) | Specifies the profile attachments. | [optional] 
-**gateway_params** | [**List[GatewayParams]**](GatewayParams.md) | Specifies the port &amp; direction settings. | [optional] 
+**directions** | **List[str]** | Specifies the packet direction settings. | [optional] 
 **name** | **str** | Specifies the name of the profile. | 
+**ports** | **List[str]** | Specifies the port along with the protocol settings. For example 22/tcp, 68/udp. | [optional] 
 
 ## Example
 

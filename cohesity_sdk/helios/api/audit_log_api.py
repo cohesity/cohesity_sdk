@@ -49,8 +49,8 @@ class AuditLogApi:
     def create_audit_logs(
         self,
         body: Annotated[AuditLog, Field(description="Request to create a audit log.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -70,9 +70,9 @@ class AuditLogApi:
 
         :param body: Request to create a audit log. (required)
         :type body: AuditLog
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -124,8 +124,8 @@ class AuditLogApi:
     def create_audit_logs_with_http_info(
         self,
         body: Annotated[AuditLog, Field(description="Request to create a audit log.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -145,9 +145,9 @@ class AuditLogApi:
 
         :param body: Request to create a audit log. (required)
         :type body: AuditLog
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -199,8 +199,8 @@ class AuditLogApi:
     def create_audit_logs_without_preload_content(
         self,
         body: Annotated[AuditLog, Field(description="Request to create a audit log.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -220,9 +220,9 @@ class AuditLogApi:
 
         :param body: Request to create a audit log. (required)
         :type body: AuditLog
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -352,23 +352,22 @@ class AuditLogApi:
     @validate_call
     def download_helios_audit_logs(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         search_string: Annotated[Optional[StrictStr], Field(description="Search audit logs by 'entityName' or 'details'.")] = None,
         usernames: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of usernames, only audit logs made by these users will be returned.")] = None,
         domains: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of domains, only audit logs made by user in these domains will be returned.")] = None,
         entity_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of entity types, only audit logs containing these entity types will be returned.")] = None,
         actions: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of actions, only audit logs containing these actions will be returned.")] = None,
-        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies a unix timestamp in microseconds, only audit logs made after this time will be returned.")] = None,
-        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies a unix timestamp in microseconds, only audit logs made before this time will be returned.")] = None,
+        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies a unix timestamp in microseconds, only audit logs made after this time will be returned. If not provided then it will be set to 1 day before the current time or end time")] = None,
+        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies a unix timestamp in microseconds, only audit logs made before this time will be returned. If not provided then it will be set to the current time.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of tenant ids, only audit logs made by these tenants will be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Protection Groups which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned.")] = None,
         cluster_identifiers: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies the list of cluster identifiers. The format is clusterId:clusterIncarnationId.")] = None,
         start_index: Annotated[Optional[StrictInt], Field(description="Specifies a start index. The oldest logs before this index will skipped, only audit logs from this index will be fetched.")] = None,
         count: Annotated[Optional[Annotated[int, Field(le=10000, strict=True, ge=1)]], Field(description="Specifies the number of indexed objects to be fetched from the index.")] = None,
         include_helios_logs: Annotated[Optional[StrictBool], Field(description="Specifies if helios audit logs need to be fetched or not from the index.")] = None,
-        include_dmaas_logs: Annotated[Optional[StrictBool], Field(description="Specifies if dmaas audit logs need to be fetched or not from the index.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of region ids to filter. ")] = None,
         service_context: Annotated[Optional[List[StrictStr]], Field(description="Returns the audit logs for a list of filter service context. Passing service context only one at a time is supported as of now")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -386,8 +385,6 @@ class AuditLogApi:
 
         Download helios audit logs.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param search_string: Search audit logs by 'entityName' or 'details'.
         :type search_string: str
         :param usernames: Specifies a list of usernames, only audit logs made by these users will be returned.
@@ -398,9 +395,9 @@ class AuditLogApi:
         :type entity_types: List[str]
         :param actions: Specifies a list of actions, only audit logs containing these actions will be returned.
         :type actions: List[str]
-        :param start_time_usecs: Specifies a unix timestamp in microseconds, only audit logs made after this time will be returned.
+        :param start_time_usecs: Specifies a unix timestamp in microseconds, only audit logs made after this time will be returned. If not provided then it will be set to 1 day before the current time or end time
         :type start_time_usecs: int
-        :param end_time_usecs: Specifies a unix timestamp in microseconds, only audit logs made before this time will be returned.
+        :param end_time_usecs: Specifies a unix timestamp in microseconds, only audit logs made before this time will be returned. If not provided then it will be set to the current time.
         :type end_time_usecs: int
         :param tenant_ids: Specifies a list of tenant ids, only audit logs made by these tenants will be returned.
         :type tenant_ids: List[str]
@@ -414,12 +411,12 @@ class AuditLogApi:
         :type count: int
         :param include_helios_logs: Specifies if helios audit logs need to be fetched or not from the index.
         :type include_helios_logs: bool
-        :param include_dmaas_logs: Specifies if dmaas audit logs need to be fetched or not from the index.
-        :type include_dmaas_logs: bool
         :param region_ids: Specifies the list of region ids to filter. 
         :type region_ids: List[str]
         :param service_context: Returns the audit logs for a list of filter service context. Passing service context only one at a time is supported as of now
         :type service_context: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -443,7 +440,6 @@ class AuditLogApi:
         """ # noqa: E501
 
         _param = self._download_helios_audit_logs_serialize(
-            region_id=region_id,
             search_string=search_string,
             usernames=usernames,
             domains=domains,
@@ -457,9 +453,9 @@ class AuditLogApi:
             start_index=start_index,
             count=count,
             include_helios_logs=include_helios_logs,
-            include_dmaas_logs=include_dmaas_logs,
             region_ids=region_ids,
             service_context=service_context,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -483,23 +479,22 @@ class AuditLogApi:
     @validate_call
     def download_helios_audit_logs_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         search_string: Annotated[Optional[StrictStr], Field(description="Search audit logs by 'entityName' or 'details'.")] = None,
         usernames: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of usernames, only audit logs made by these users will be returned.")] = None,
         domains: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of domains, only audit logs made by user in these domains will be returned.")] = None,
         entity_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of entity types, only audit logs containing these entity types will be returned.")] = None,
         actions: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of actions, only audit logs containing these actions will be returned.")] = None,
-        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies a unix timestamp in microseconds, only audit logs made after this time will be returned.")] = None,
-        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies a unix timestamp in microseconds, only audit logs made before this time will be returned.")] = None,
+        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies a unix timestamp in microseconds, only audit logs made after this time will be returned. If not provided then it will be set to 1 day before the current time or end time")] = None,
+        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies a unix timestamp in microseconds, only audit logs made before this time will be returned. If not provided then it will be set to the current time.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of tenant ids, only audit logs made by these tenants will be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Protection Groups which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned.")] = None,
         cluster_identifiers: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies the list of cluster identifiers. The format is clusterId:clusterIncarnationId.")] = None,
         start_index: Annotated[Optional[StrictInt], Field(description="Specifies a start index. The oldest logs before this index will skipped, only audit logs from this index will be fetched.")] = None,
         count: Annotated[Optional[Annotated[int, Field(le=10000, strict=True, ge=1)]], Field(description="Specifies the number of indexed objects to be fetched from the index.")] = None,
         include_helios_logs: Annotated[Optional[StrictBool], Field(description="Specifies if helios audit logs need to be fetched or not from the index.")] = None,
-        include_dmaas_logs: Annotated[Optional[StrictBool], Field(description="Specifies if dmaas audit logs need to be fetched or not from the index.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of region ids to filter. ")] = None,
         service_context: Annotated[Optional[List[StrictStr]], Field(description="Returns the audit logs for a list of filter service context. Passing service context only one at a time is supported as of now")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -517,8 +512,6 @@ class AuditLogApi:
 
         Download helios audit logs.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param search_string: Search audit logs by 'entityName' or 'details'.
         :type search_string: str
         :param usernames: Specifies a list of usernames, only audit logs made by these users will be returned.
@@ -529,9 +522,9 @@ class AuditLogApi:
         :type entity_types: List[str]
         :param actions: Specifies a list of actions, only audit logs containing these actions will be returned.
         :type actions: List[str]
-        :param start_time_usecs: Specifies a unix timestamp in microseconds, only audit logs made after this time will be returned.
+        :param start_time_usecs: Specifies a unix timestamp in microseconds, only audit logs made after this time will be returned. If not provided then it will be set to 1 day before the current time or end time
         :type start_time_usecs: int
-        :param end_time_usecs: Specifies a unix timestamp in microseconds, only audit logs made before this time will be returned.
+        :param end_time_usecs: Specifies a unix timestamp in microseconds, only audit logs made before this time will be returned. If not provided then it will be set to the current time.
         :type end_time_usecs: int
         :param tenant_ids: Specifies a list of tenant ids, only audit logs made by these tenants will be returned.
         :type tenant_ids: List[str]
@@ -545,12 +538,12 @@ class AuditLogApi:
         :type count: int
         :param include_helios_logs: Specifies if helios audit logs need to be fetched or not from the index.
         :type include_helios_logs: bool
-        :param include_dmaas_logs: Specifies if dmaas audit logs need to be fetched or not from the index.
-        :type include_dmaas_logs: bool
         :param region_ids: Specifies the list of region ids to filter. 
         :type region_ids: List[str]
         :param service_context: Returns the audit logs for a list of filter service context. Passing service context only one at a time is supported as of now
         :type service_context: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -574,7 +567,6 @@ class AuditLogApi:
         """ # noqa: E501
 
         _param = self._download_helios_audit_logs_serialize(
-            region_id=region_id,
             search_string=search_string,
             usernames=usernames,
             domains=domains,
@@ -588,9 +580,9 @@ class AuditLogApi:
             start_index=start_index,
             count=count,
             include_helios_logs=include_helios_logs,
-            include_dmaas_logs=include_dmaas_logs,
             region_ids=region_ids,
             service_context=service_context,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -614,23 +606,22 @@ class AuditLogApi:
     @validate_call
     def download_helios_audit_logs_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         search_string: Annotated[Optional[StrictStr], Field(description="Search audit logs by 'entityName' or 'details'.")] = None,
         usernames: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of usernames, only audit logs made by these users will be returned.")] = None,
         domains: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of domains, only audit logs made by user in these domains will be returned.")] = None,
         entity_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of entity types, only audit logs containing these entity types will be returned.")] = None,
         actions: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of actions, only audit logs containing these actions will be returned.")] = None,
-        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies a unix timestamp in microseconds, only audit logs made after this time will be returned.")] = None,
-        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies a unix timestamp in microseconds, only audit logs made before this time will be returned.")] = None,
+        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies a unix timestamp in microseconds, only audit logs made after this time will be returned. If not provided then it will be set to 1 day before the current time or end time")] = None,
+        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies a unix timestamp in microseconds, only audit logs made before this time will be returned. If not provided then it will be set to the current time.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of tenant ids, only audit logs made by these tenants will be returned.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Protection Groups which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned.")] = None,
         cluster_identifiers: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies the list of cluster identifiers. The format is clusterId:clusterIncarnationId.")] = None,
         start_index: Annotated[Optional[StrictInt], Field(description="Specifies a start index. The oldest logs before this index will skipped, only audit logs from this index will be fetched.")] = None,
         count: Annotated[Optional[Annotated[int, Field(le=10000, strict=True, ge=1)]], Field(description="Specifies the number of indexed objects to be fetched from the index.")] = None,
         include_helios_logs: Annotated[Optional[StrictBool], Field(description="Specifies if helios audit logs need to be fetched or not from the index.")] = None,
-        include_dmaas_logs: Annotated[Optional[StrictBool], Field(description="Specifies if dmaas audit logs need to be fetched or not from the index.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of region ids to filter. ")] = None,
         service_context: Annotated[Optional[List[StrictStr]], Field(description="Returns the audit logs for a list of filter service context. Passing service context only one at a time is supported as of now")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -648,8 +639,6 @@ class AuditLogApi:
 
         Download helios audit logs.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param search_string: Search audit logs by 'entityName' or 'details'.
         :type search_string: str
         :param usernames: Specifies a list of usernames, only audit logs made by these users will be returned.
@@ -660,9 +649,9 @@ class AuditLogApi:
         :type entity_types: List[str]
         :param actions: Specifies a list of actions, only audit logs containing these actions will be returned.
         :type actions: List[str]
-        :param start_time_usecs: Specifies a unix timestamp in microseconds, only audit logs made after this time will be returned.
+        :param start_time_usecs: Specifies a unix timestamp in microseconds, only audit logs made after this time will be returned. If not provided then it will be set to 1 day before the current time or end time
         :type start_time_usecs: int
-        :param end_time_usecs: Specifies a unix timestamp in microseconds, only audit logs made before this time will be returned.
+        :param end_time_usecs: Specifies a unix timestamp in microseconds, only audit logs made before this time will be returned. If not provided then it will be set to the current time.
         :type end_time_usecs: int
         :param tenant_ids: Specifies a list of tenant ids, only audit logs made by these tenants will be returned.
         :type tenant_ids: List[str]
@@ -676,12 +665,12 @@ class AuditLogApi:
         :type count: int
         :param include_helios_logs: Specifies if helios audit logs need to be fetched or not from the index.
         :type include_helios_logs: bool
-        :param include_dmaas_logs: Specifies if dmaas audit logs need to be fetched or not from the index.
-        :type include_dmaas_logs: bool
         :param region_ids: Specifies the list of region ids to filter. 
         :type region_ids: List[str]
         :param service_context: Returns the audit logs for a list of filter service context. Passing service context only one at a time is supported as of now
         :type service_context: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -705,7 +694,6 @@ class AuditLogApi:
         """ # noqa: E501
 
         _param = self._download_helios_audit_logs_serialize(
-            region_id=region_id,
             search_string=search_string,
             usernames=usernames,
             domains=domains,
@@ -719,9 +707,9 @@ class AuditLogApi:
             start_index=start_index,
             count=count,
             include_helios_logs=include_helios_logs,
-            include_dmaas_logs=include_dmaas_logs,
             region_ids=region_ids,
             service_context=service_context,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -740,7 +728,6 @@ class AuditLogApi:
 
     def _download_helios_audit_logs_serialize(
         self,
-        region_id,
         search_string,
         usernames,
         domains,
@@ -754,9 +741,9 @@ class AuditLogApi:
         start_index,
         count,
         include_helios_logs,
-        include_dmaas_logs,
         region_ids,
         service_context,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -839,10 +826,6 @@ class AuditLogApi:
             
             _query_params.append(('includeHeliosLogs', include_helios_logs))
             
-        if include_dmaas_logs is not None:
-            
-            _query_params.append(('includeDmaasLogs', include_dmaas_logs))
-            
         if region_ids is not None:
             
             _query_params.append(('regionIds', region_ids))
@@ -893,8 +876,6 @@ class AuditLogApi:
     @validate_call
     def get_audit_logs(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         search_string: Annotated[Optional[StrictStr], Field(description="Search audit logs by 'entityName' or 'details'.")] = None,
         usernames: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of usernames, only audit logs made by these users will be returned.")] = None,
         domains: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of domains, only audit logs made by user in these domains will be returned.")] = None,
@@ -906,6 +887,8 @@ class AuditLogApi:
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Protection Groups which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned.")] = None,
         start_index: Annotated[Optional[StrictInt], Field(description="Specifies a start index. The oldest logs before this index will skipped, only audit logs from this index will be fetched.")] = None,
         count: Annotated[Optional[StrictInt], Field(description="Specifies the number of indexed obejcts to be fetched from the specified start index.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -923,10 +906,6 @@ class AuditLogApi:
 
         Get a cluster audit logs.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param search_string: Search audit logs by 'entityName' or 'details'.
         :type search_string: str
         :param usernames: Specifies a list of usernames, only audit logs made by these users will be returned.
@@ -949,6 +928,10 @@ class AuditLogApi:
         :type start_index: int
         :param count: Specifies the number of indexed obejcts to be fetched from the specified start index.
         :type count: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -972,8 +955,6 @@ class AuditLogApi:
         """ # noqa: E501
 
         _param = self._get_audit_logs_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             search_string=search_string,
             usernames=usernames,
             domains=domains,
@@ -985,6 +966,8 @@ class AuditLogApi:
             include_tenants=include_tenants,
             start_index=start_index,
             count=count,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1008,8 +991,6 @@ class AuditLogApi:
     @validate_call
     def get_audit_logs_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         search_string: Annotated[Optional[StrictStr], Field(description="Search audit logs by 'entityName' or 'details'.")] = None,
         usernames: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of usernames, only audit logs made by these users will be returned.")] = None,
         domains: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of domains, only audit logs made by user in these domains will be returned.")] = None,
@@ -1021,6 +1002,8 @@ class AuditLogApi:
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Protection Groups which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned.")] = None,
         start_index: Annotated[Optional[StrictInt], Field(description="Specifies a start index. The oldest logs before this index will skipped, only audit logs from this index will be fetched.")] = None,
         count: Annotated[Optional[StrictInt], Field(description="Specifies the number of indexed obejcts to be fetched from the specified start index.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1038,10 +1021,6 @@ class AuditLogApi:
 
         Get a cluster audit logs.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param search_string: Search audit logs by 'entityName' or 'details'.
         :type search_string: str
         :param usernames: Specifies a list of usernames, only audit logs made by these users will be returned.
@@ -1064,6 +1043,10 @@ class AuditLogApi:
         :type start_index: int
         :param count: Specifies the number of indexed obejcts to be fetched from the specified start index.
         :type count: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1087,8 +1070,6 @@ class AuditLogApi:
         """ # noqa: E501
 
         _param = self._get_audit_logs_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             search_string=search_string,
             usernames=usernames,
             domains=domains,
@@ -1100,6 +1081,8 @@ class AuditLogApi:
             include_tenants=include_tenants,
             start_index=start_index,
             count=count,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1123,8 +1106,6 @@ class AuditLogApi:
     @validate_call
     def get_audit_logs_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         search_string: Annotated[Optional[StrictStr], Field(description="Search audit logs by 'entityName' or 'details'.")] = None,
         usernames: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of usernames, only audit logs made by these users will be returned.")] = None,
         domains: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of domains, only audit logs made by user in these domains will be returned.")] = None,
@@ -1136,6 +1117,8 @@ class AuditLogApi:
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Protection Groups which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned.")] = None,
         start_index: Annotated[Optional[StrictInt], Field(description="Specifies a start index. The oldest logs before this index will skipped, only audit logs from this index will be fetched.")] = None,
         count: Annotated[Optional[StrictInt], Field(description="Specifies the number of indexed obejcts to be fetched from the specified start index.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1153,10 +1136,6 @@ class AuditLogApi:
 
         Get a cluster audit logs.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param search_string: Search audit logs by 'entityName' or 'details'.
         :type search_string: str
         :param usernames: Specifies a list of usernames, only audit logs made by these users will be returned.
@@ -1179,6 +1158,10 @@ class AuditLogApi:
         :type start_index: int
         :param count: Specifies the number of indexed obejcts to be fetched from the specified start index.
         :type count: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1202,8 +1185,6 @@ class AuditLogApi:
         """ # noqa: E501
 
         _param = self._get_audit_logs_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             search_string=search_string,
             usernames=usernames,
             domains=domains,
@@ -1215,6 +1196,8 @@ class AuditLogApi:
             include_tenants=include_tenants,
             start_index=start_index,
             count=count,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1233,8 +1216,6 @@ class AuditLogApi:
 
     def _get_audit_logs_serialize(
         self,
-        access_cluster_id,
-        region_id,
         search_string,
         usernames,
         domains,
@@ -1246,6 +1227,8 @@ class AuditLogApi:
         include_tenants,
         start_index,
         count,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1361,8 +1344,8 @@ class AuditLogApi:
     @validate_call
     def get_audit_logs_actions(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1380,9 +1363,9 @@ class AuditLogApi:
 
         Get all actions of cluster audit logs.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1432,8 +1415,8 @@ class AuditLogApi:
     @validate_call
     def get_audit_logs_actions_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1451,9 +1434,9 @@ class AuditLogApi:
 
         Get all actions of cluster audit logs.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1503,8 +1486,8 @@ class AuditLogApi:
     @validate_call
     def get_audit_logs_actions_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1522,9 +1505,9 @@ class AuditLogApi:
 
         Get all actions of cluster audit logs.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1637,8 +1620,8 @@ class AuditLogApi:
     @validate_call
     def get_audit_logs_entity_types(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1656,9 +1639,9 @@ class AuditLogApi:
 
         Get all entity types of cluster audit logs.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1708,8 +1691,8 @@ class AuditLogApi:
     @validate_call
     def get_audit_logs_entity_types_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1727,9 +1710,9 @@ class AuditLogApi:
 
         Get all entity types of cluster audit logs.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1779,8 +1762,8 @@ class AuditLogApi:
     @validate_call
     def get_audit_logs_entity_types_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1798,9 +1781,9 @@ class AuditLogApi:
 
         Get all entity types of cluster audit logs.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1913,8 +1896,8 @@ class AuditLogApi:
     @validate_call
     def get_filer_audit_log_configs(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1932,9 +1915,9 @@ class AuditLogApi:
 
         Get filer audit log configs.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1984,8 +1967,8 @@ class AuditLogApi:
     @validate_call
     def get_filer_audit_log_configs_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2003,9 +1986,9 @@ class AuditLogApi:
 
         Get filer audit log configs.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2055,8 +2038,8 @@ class AuditLogApi:
     @validate_call
     def get_filer_audit_log_configs_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2074,9 +2057,9 @@ class AuditLogApi:
 
         Get filer audit log configs.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2189,7 +2172,7 @@ class AuditLogApi:
     @validate_call
     def get_helios_audit_log_settings(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2207,7 +2190,7 @@ class AuditLogApi:
 
         Returns a list of Helios audit log settings.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2256,7 +2239,7 @@ class AuditLogApi:
     @validate_call
     def get_helios_audit_log_settings_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2274,7 +2257,7 @@ class AuditLogApi:
 
         Returns a list of Helios audit log settings.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2323,7 +2306,7 @@ class AuditLogApi:
     @validate_call
     def get_helios_audit_log_settings_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2341,7 +2324,7 @@ class AuditLogApi:
 
         Returns a list of Helios audit log settings.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2450,7 +2433,6 @@ class AuditLogApi:
     @validate_call
     def get_helios_audit_logs(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         search_string: Annotated[Optional[StrictStr], Field(description="Search audit logs by 'entityName' or 'details'.")] = None,
         usernames: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of usernames, only audit logs made by these users will be returned.")] = None,
         domains: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of domains, only audit logs made by user in these domains will be returned.")] = None,
@@ -2465,9 +2447,9 @@ class AuditLogApi:
         start_index: Annotated[Optional[StrictInt], Field(description="Specifies a start index. The oldest logs before this index will skipped, only audit logs from this index will be fetched.")] = None,
         count: Annotated[Optional[Annotated[int, Field(le=10000, strict=True, ge=1)]], Field(description="Specifies the number of indexed objects to be fetched from the index.")] = None,
         include_helios_logs: Annotated[Optional[StrictBool], Field(description="Specifies if helios audit logs need to be fetched or not from the index. This is deprecated. Use serviceContext instead.")] = None,
-        include_dmaas_logs: Annotated[Optional[StrictBool], Field(description="Specifies if dmaas audit logs need to be fetched or not from the index. This is deprecated. Use serviceContext instead.")] = None,
         service_context: Annotated[Optional[List[StrictStr]], Field(description="Returns the audit logs for a list of filter service context. Passing service context only one at a time is supported as of now")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of region ids to filter. ")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2485,8 +2467,6 @@ class AuditLogApi:
 
         Get helios audit logs.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param search_string: Search audit logs by 'entityName' or 'details'.
         :type search_string: str
         :param usernames: Specifies a list of usernames, only audit logs made by these users will be returned.
@@ -2515,12 +2495,12 @@ class AuditLogApi:
         :type count: int
         :param include_helios_logs: Specifies if helios audit logs need to be fetched or not from the index. This is deprecated. Use serviceContext instead.
         :type include_helios_logs: bool
-        :param include_dmaas_logs: Specifies if dmaas audit logs need to be fetched or not from the index. This is deprecated. Use serviceContext instead.
-        :type include_dmaas_logs: bool
         :param service_context: Returns the audit logs for a list of filter service context. Passing service context only one at a time is supported as of now
         :type service_context: List[str]
         :param region_ids: Specifies the list of region ids to filter. 
         :type region_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2544,7 +2524,6 @@ class AuditLogApi:
         """ # noqa: E501
 
         _param = self._get_helios_audit_logs_serialize(
-            region_id=region_id,
             search_string=search_string,
             usernames=usernames,
             domains=domains,
@@ -2559,9 +2538,9 @@ class AuditLogApi:
             start_index=start_index,
             count=count,
             include_helios_logs=include_helios_logs,
-            include_dmaas_logs=include_dmaas_logs,
             service_context=service_context,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2585,7 +2564,6 @@ class AuditLogApi:
     @validate_call
     def get_helios_audit_logs_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         search_string: Annotated[Optional[StrictStr], Field(description="Search audit logs by 'entityName' or 'details'.")] = None,
         usernames: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of usernames, only audit logs made by these users will be returned.")] = None,
         domains: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of domains, only audit logs made by user in these domains will be returned.")] = None,
@@ -2600,9 +2578,9 @@ class AuditLogApi:
         start_index: Annotated[Optional[StrictInt], Field(description="Specifies a start index. The oldest logs before this index will skipped, only audit logs from this index will be fetched.")] = None,
         count: Annotated[Optional[Annotated[int, Field(le=10000, strict=True, ge=1)]], Field(description="Specifies the number of indexed objects to be fetched from the index.")] = None,
         include_helios_logs: Annotated[Optional[StrictBool], Field(description="Specifies if helios audit logs need to be fetched or not from the index. This is deprecated. Use serviceContext instead.")] = None,
-        include_dmaas_logs: Annotated[Optional[StrictBool], Field(description="Specifies if dmaas audit logs need to be fetched or not from the index. This is deprecated. Use serviceContext instead.")] = None,
         service_context: Annotated[Optional[List[StrictStr]], Field(description="Returns the audit logs for a list of filter service context. Passing service context only one at a time is supported as of now")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of region ids to filter. ")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2620,8 +2598,6 @@ class AuditLogApi:
 
         Get helios audit logs.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param search_string: Search audit logs by 'entityName' or 'details'.
         :type search_string: str
         :param usernames: Specifies a list of usernames, only audit logs made by these users will be returned.
@@ -2650,12 +2626,12 @@ class AuditLogApi:
         :type count: int
         :param include_helios_logs: Specifies if helios audit logs need to be fetched or not from the index. This is deprecated. Use serviceContext instead.
         :type include_helios_logs: bool
-        :param include_dmaas_logs: Specifies if dmaas audit logs need to be fetched or not from the index. This is deprecated. Use serviceContext instead.
-        :type include_dmaas_logs: bool
         :param service_context: Returns the audit logs for a list of filter service context. Passing service context only one at a time is supported as of now
         :type service_context: List[str]
         :param region_ids: Specifies the list of region ids to filter. 
         :type region_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2679,7 +2655,6 @@ class AuditLogApi:
         """ # noqa: E501
 
         _param = self._get_helios_audit_logs_serialize(
-            region_id=region_id,
             search_string=search_string,
             usernames=usernames,
             domains=domains,
@@ -2694,9 +2669,9 @@ class AuditLogApi:
             start_index=start_index,
             count=count,
             include_helios_logs=include_helios_logs,
-            include_dmaas_logs=include_dmaas_logs,
             service_context=service_context,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2720,7 +2695,6 @@ class AuditLogApi:
     @validate_call
     def get_helios_audit_logs_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         search_string: Annotated[Optional[StrictStr], Field(description="Search audit logs by 'entityName' or 'details'.")] = None,
         usernames: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of usernames, only audit logs made by these users will be returned.")] = None,
         domains: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of domains, only audit logs made by user in these domains will be returned.")] = None,
@@ -2735,9 +2709,9 @@ class AuditLogApi:
         start_index: Annotated[Optional[StrictInt], Field(description="Specifies a start index. The oldest logs before this index will skipped, only audit logs from this index will be fetched.")] = None,
         count: Annotated[Optional[Annotated[int, Field(le=10000, strict=True, ge=1)]], Field(description="Specifies the number of indexed objects to be fetched from the index.")] = None,
         include_helios_logs: Annotated[Optional[StrictBool], Field(description="Specifies if helios audit logs need to be fetched or not from the index. This is deprecated. Use serviceContext instead.")] = None,
-        include_dmaas_logs: Annotated[Optional[StrictBool], Field(description="Specifies if dmaas audit logs need to be fetched or not from the index. This is deprecated. Use serviceContext instead.")] = None,
         service_context: Annotated[Optional[List[StrictStr]], Field(description="Returns the audit logs for a list of filter service context. Passing service context only one at a time is supported as of now")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of region ids to filter. ")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2755,8 +2729,6 @@ class AuditLogApi:
 
         Get helios audit logs.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param search_string: Search audit logs by 'entityName' or 'details'.
         :type search_string: str
         :param usernames: Specifies a list of usernames, only audit logs made by these users will be returned.
@@ -2785,12 +2757,12 @@ class AuditLogApi:
         :type count: int
         :param include_helios_logs: Specifies if helios audit logs need to be fetched or not from the index. This is deprecated. Use serviceContext instead.
         :type include_helios_logs: bool
-        :param include_dmaas_logs: Specifies if dmaas audit logs need to be fetched or not from the index. This is deprecated. Use serviceContext instead.
-        :type include_dmaas_logs: bool
         :param service_context: Returns the audit logs for a list of filter service context. Passing service context only one at a time is supported as of now
         :type service_context: List[str]
         :param region_ids: Specifies the list of region ids to filter. 
         :type region_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2814,7 +2786,6 @@ class AuditLogApi:
         """ # noqa: E501
 
         _param = self._get_helios_audit_logs_serialize(
-            region_id=region_id,
             search_string=search_string,
             usernames=usernames,
             domains=domains,
@@ -2829,9 +2800,9 @@ class AuditLogApi:
             start_index=start_index,
             count=count,
             include_helios_logs=include_helios_logs,
-            include_dmaas_logs=include_dmaas_logs,
             service_context=service_context,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2850,7 +2821,6 @@ class AuditLogApi:
 
     def _get_helios_audit_logs_serialize(
         self,
-        region_id,
         search_string,
         usernames,
         domains,
@@ -2865,9 +2835,9 @@ class AuditLogApi:
         start_index,
         count,
         include_helios_logs,
-        include_dmaas_logs,
         service_context,
         region_ids,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2955,10 +2925,6 @@ class AuditLogApi:
             
             _query_params.append(('includeHeliosLogs', include_helios_logs))
             
-        if include_dmaas_logs is not None:
-            
-            _query_params.append(('includeDmaasLogs', include_dmaas_logs))
-            
         if service_context is not None:
             
             _query_params.append(('serviceContext', service_context))
@@ -3009,8 +2975,8 @@ class AuditLogApi:
     @validate_call
     def get_helios_audit_logs_actions(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         service: Annotated[Optional[StrictStr], Field(description="Get audit logs actions by service.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3028,10 +2994,10 @@ class AuditLogApi:
 
         Get all actions of helios audit logs.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param service: Get audit logs actions by service.
         :type service: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3055,8 +3021,8 @@ class AuditLogApi:
         """ # noqa: E501
 
         _param = self._get_helios_audit_logs_actions_serialize(
-            region_id=region_id,
             service=service,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3080,8 +3046,8 @@ class AuditLogApi:
     @validate_call
     def get_helios_audit_logs_actions_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         service: Annotated[Optional[StrictStr], Field(description="Get audit logs actions by service.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3099,10 +3065,10 @@ class AuditLogApi:
 
         Get all actions of helios audit logs.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param service: Get audit logs actions by service.
         :type service: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3126,8 +3092,8 @@ class AuditLogApi:
         """ # noqa: E501
 
         _param = self._get_helios_audit_logs_actions_serialize(
-            region_id=region_id,
             service=service,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3151,8 +3117,8 @@ class AuditLogApi:
     @validate_call
     def get_helios_audit_logs_actions_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         service: Annotated[Optional[StrictStr], Field(description="Get audit logs actions by service.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3170,10 +3136,10 @@ class AuditLogApi:
 
         Get all actions of helios audit logs.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param service: Get audit logs actions by service.
         :type service: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3197,8 +3163,8 @@ class AuditLogApi:
         """ # noqa: E501
 
         _param = self._get_helios_audit_logs_actions_serialize(
-            region_id=region_id,
             service=service,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3217,8 +3183,8 @@ class AuditLogApi:
 
     def _get_helios_audit_logs_actions_serialize(
         self,
-        region_id,
         service,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -3287,7 +3253,7 @@ class AuditLogApi:
     @validate_call
     def get_helios_audit_logs_cluster_users(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3305,7 +3271,7 @@ class AuditLogApi:
 
         Get all cluster users of helios audit logs.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3354,7 +3320,7 @@ class AuditLogApi:
     @validate_call
     def get_helios_audit_logs_cluster_users_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3372,7 +3338,7 @@ class AuditLogApi:
 
         Get all cluster users of helios audit logs.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3421,7 +3387,7 @@ class AuditLogApi:
     @validate_call
     def get_helios_audit_logs_cluster_users_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3439,7 +3405,7 @@ class AuditLogApi:
 
         Get all cluster users of helios audit logs.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3548,8 +3514,8 @@ class AuditLogApi:
     @validate_call
     def get_helios_audit_logs_entity_types(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         service: Annotated[Optional[StrictStr], Field(description="Get audit logs entity type by service.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3567,10 +3533,10 @@ class AuditLogApi:
 
         Get all entity types of helios audit logs.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param service: Get audit logs entity type by service.
         :type service: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3594,8 +3560,8 @@ class AuditLogApi:
         """ # noqa: E501
 
         _param = self._get_helios_audit_logs_entity_types_serialize(
-            region_id=region_id,
             service=service,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3619,8 +3585,8 @@ class AuditLogApi:
     @validate_call
     def get_helios_audit_logs_entity_types_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         service: Annotated[Optional[StrictStr], Field(description="Get audit logs entity type by service.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3638,10 +3604,10 @@ class AuditLogApi:
 
         Get all entity types of helios audit logs.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param service: Get audit logs entity type by service.
         :type service: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3665,8 +3631,8 @@ class AuditLogApi:
         """ # noqa: E501
 
         _param = self._get_helios_audit_logs_entity_types_serialize(
-            region_id=region_id,
             service=service,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3690,8 +3656,8 @@ class AuditLogApi:
     @validate_call
     def get_helios_audit_logs_entity_types_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         service: Annotated[Optional[StrictStr], Field(description="Get audit logs entity type by service.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3709,10 +3675,10 @@ class AuditLogApi:
 
         Get all entity types of helios audit logs.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param service: Get audit logs entity type by service.
         :type service: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3736,8 +3702,8 @@ class AuditLogApi:
         """ # noqa: E501
 
         _param = self._get_helios_audit_logs_entity_types_serialize(
-            region_id=region_id,
             service=service,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3756,8 +3722,8 @@ class AuditLogApi:
 
     def _get_helios_audit_logs_entity_types_serialize(
         self,
-        region_id,
         service,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -3827,8 +3793,8 @@ class AuditLogApi:
     def update_filer_audit_log_configs(
         self,
         body: Annotated[FilerAuditLogConfigs, Field(description="Specifies the filer audit log config to update.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3848,9 +3814,9 @@ class AuditLogApi:
 
         :param body: Specifies the filer audit log config to update. (required)
         :type body: FilerAuditLogConfigs
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3902,8 +3868,8 @@ class AuditLogApi:
     def update_filer_audit_log_configs_with_http_info(
         self,
         body: Annotated[FilerAuditLogConfigs, Field(description="Specifies the filer audit log config to update.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3923,9 +3889,9 @@ class AuditLogApi:
 
         :param body: Specifies the filer audit log config to update. (required)
         :type body: FilerAuditLogConfigs
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3977,8 +3943,8 @@ class AuditLogApi:
     def update_filer_audit_log_configs_without_preload_content(
         self,
         body: Annotated[FilerAuditLogConfigs, Field(description="Specifies the filer audit log config to update.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3998,9 +3964,9 @@ class AuditLogApi:
 
         :param body: Specifies the filer audit log config to update. (required)
         :type body: FilerAuditLogConfigs
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4131,7 +4097,7 @@ class AuditLogApi:
     def update_helios_audit_log_settings(
         self,
         body: HeliosAuditLogSettings,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4151,7 +4117,7 @@ class AuditLogApi:
 
         :param body: (required)
         :type body: HeliosAuditLogSettings
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4202,7 +4168,7 @@ class AuditLogApi:
     def update_helios_audit_log_settings_with_http_info(
         self,
         body: HeliosAuditLogSettings,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4222,7 +4188,7 @@ class AuditLogApi:
 
         :param body: (required)
         :type body: HeliosAuditLogSettings
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4273,7 +4239,7 @@ class AuditLogApi:
     def update_helios_audit_log_settings_without_preload_content(
         self,
         body: HeliosAuditLogSettings,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4293,7 +4259,7 @@ class AuditLogApi:
 
         :param body: (required)
         :type body: HeliosAuditLogSettings
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

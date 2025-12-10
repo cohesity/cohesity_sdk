@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.file_extension_filter import FileExtensionFilter
+from cohesity_sdk.cluster.models.s3_tagging_filter import S3TaggingFilter
 from typing import Set
 from typing_extensions import Self
 
@@ -30,11 +31,14 @@ class AntivirusScanConfig(BaseModel):
     block_access_on_scan_failure: Optional[StrictBool] = Field(default=None, description="Specifies whether block access to the file when antivirus scan fails.", alias="blockAccessOnScanFailure")
     is_enabled: Optional[StrictBool] = Field(default=None, description="Specifies whether the antivirus service is enabled or not.", alias="isEnabled")
     maximum_scan_file_size: Optional[StrictInt] = Field(default=None, description="Specifies maximum file size that will be sent to antivirus server for scanning. if greater than zero, the file size that exceeds this size would be skipped from virus scan.", alias="maximumScanFileSize")
+    prefix_scan_filter: Optional[FileExtensionFilter] = Field(default=None, alias="prefixScanFilter")
+    s3_tagging_filter: Optional[S3TaggingFilter] = Field(default=None, alias="s3TaggingFilter")
     scan_filter: Optional[FileExtensionFilter] = Field(default=None, alias="scanFilter")
-    scan_on_access: Optional[StrictBool] = Field(default=None, description="Specifies whether to scan a file when it is opened.", alias="scanOnAccess")
-    scan_on_close: Optional[StrictBool] = Field(default=None, description="Specifies whether to scan a file when it is closed after modify.", alias="scanOnClose")
+    scan_on_access: Optional[StrictBool] = Field(default=None, description="Specifies whether to scan a SMB file or S3 object before it is opened/GET.", alias="scanOnAccess")
+    scan_on_close: Optional[StrictBool] = Field(default=None, description="Specifies whether to scan a SMB file when it is closed after modify.", alias="scanOnClose")
+    scan_on_put: Optional[StrictBool] = Field(default=None, description="Specifies whether to scan a S3 object after it is PUT.", alias="scanOnPut")
     scan_timeout_usecs: Optional[StrictInt] = Field(description="Specifies the maximum amount of time that a scan can take before timing out.", alias="scanTimeoutUsecs")
-    __properties: ClassVar[List[str]] = ["blockAccessOnScanFailure", "isEnabled", "maximumScanFileSize", "scanFilter", "scanOnAccess", "scanOnClose", "scanTimeoutUsecs"]
+    __properties: ClassVar[List[str]] = ["blockAccessOnScanFailure", "isEnabled", "maximumScanFileSize", "prefixScanFilter", "s3TaggingFilter", "scanFilter", "scanOnAccess", "scanOnClose", "scanOnPut", "scanTimeoutUsecs"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,6 +79,12 @@ class AntivirusScanConfig(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of prefix_scan_filter
+        if self.prefix_scan_filter:
+            _dict['prefixScanFilter'] = self.prefix_scan_filter.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of s3_tagging_filter
+        if self.s3_tagging_filter:
+            _dict['s3TaggingFilter'] = self.s3_tagging_filter.to_dict()
         # override the default output from pydantic by calling `to_dict()` of scan_filter
         if self.scan_filter:
             _dict['scanFilter'] = self.scan_filter.to_dict()
@@ -103,6 +113,11 @@ class AntivirusScanConfig(BaseModel):
         if self.scan_on_close is None and "scan_on_close" in self.model_fields_set:
             _dict['scanOnClose'] = None
 
+        # set to None if scan_on_put (nullable) is None
+        # and model_fields_set contains the field
+        if self.scan_on_put is None and "scan_on_put" in self.model_fields_set:
+            _dict['scanOnPut'] = None
+
         # set to None if scan_timeout_usecs (nullable) is None
         # and model_fields_set contains the field
         if self.scan_timeout_usecs is None and "scan_timeout_usecs" in self.model_fields_set:
@@ -123,9 +138,12 @@ class AntivirusScanConfig(BaseModel):
             "blockAccessOnScanFailure": obj.get("blockAccessOnScanFailure"),
             "isEnabled": obj.get("isEnabled"),
             "maximumScanFileSize": obj.get("maximumScanFileSize"),
+            "prefixScanFilter": FileExtensionFilter.from_dict(obj["prefixScanFilter"]) if obj.get("prefixScanFilter") is not None else None,
+            "s3TaggingFilter": S3TaggingFilter.from_dict(obj["s3TaggingFilter"]) if obj.get("s3TaggingFilter") is not None else None,
             "scanFilter": FileExtensionFilter.from_dict(obj["scanFilter"]) if obj.get("scanFilter") is not None else None,
             "scanOnAccess": obj.get("scanOnAccess"),
             "scanOnClose": obj.get("scanOnClose"),
+            "scanOnPut": obj.get("scanOnPut"),
             "scanTimeoutUsecs": obj.get("scanTimeoutUsecs")
         })
         return _obj

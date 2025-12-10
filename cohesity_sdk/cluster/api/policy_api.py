@@ -16,6 +16,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictBool
+from cohesity_sdk.cluster.models.policy_summary_response import PolicySummaryResponse
 from cohesity_sdk.cluster.models.policy_template_response import PolicyTemplateResponse
 from cohesity_sdk.cluster.models.policy_templates_response_with_pagination import PolicyTemplatesResponseWithPagination
 from cohesity_sdk.cluster.models.protection_policy_request import ProtectionPolicyRequest
@@ -59,7 +60,7 @@ class PolicyApi:
     ) -> ProtectionPolicyResponse:
         """Create a Protection Policy.
 
-        Create the Protection Policy and returns the newly created policy object.
+        **Privileges:** ```PROTECTION_POLICY_MODIFY``` <br><br>Create the Protection Policy and returns the newly created policy object.
 
         :param body: Request to create a Protection Policy. (required)
         :type body: ProtectionPolicyRequest
@@ -126,7 +127,7 @@ class PolicyApi:
     ) -> ApiResponse[ProtectionPolicyResponse]:
         """Create a Protection Policy.
 
-        Create the Protection Policy and returns the newly created policy object.
+        **Privileges:** ```PROTECTION_POLICY_MODIFY``` <br><br>Create the Protection Policy and returns the newly created policy object.
 
         :param body: Request to create a Protection Policy. (required)
         :type body: ProtectionPolicyRequest
@@ -193,7 +194,7 @@ class PolicyApi:
     ) -> RESTResponseType:
         """Create a Protection Policy.
 
-        Create the Protection Policy and returns the newly created policy object.
+        **Privileges:** ```PROTECTION_POLICY_MODIFY``` <br><br>Create the Protection Policy and returns the newly created policy object.
 
         :param body: Request to create a Protection Policy. (required)
         :type body: ProtectionPolicyRequest
@@ -335,7 +336,7 @@ class PolicyApi:
     ) -> None:
         """Delete a Protection Policy.
 
-        Deletes a Protection Policy based on given policy id.
+        **Privileges:** ```PROTECTION_POLICY_MODIFY``` <br><br>Deletes a Protection Policy based on given policy id.
 
         :param id: Specifies a unique id of the Protection Policy to delete. (required)
         :type id: str
@@ -402,7 +403,7 @@ class PolicyApi:
     ) -> ApiResponse[None]:
         """Delete a Protection Policy.
 
-        Deletes a Protection Policy based on given policy id.
+        **Privileges:** ```PROTECTION_POLICY_MODIFY``` <br><br>Deletes a Protection Policy based on given policy id.
 
         :param id: Specifies a unique id of the Protection Policy to delete. (required)
         :type id: str
@@ -469,7 +470,7 @@ class PolicyApi:
     ) -> RESTResponseType:
         """Delete a Protection Policy.
 
-        Deletes a Protection Policy based on given policy id.
+        **Privileges:** ```PROTECTION_POLICY_MODIFY``` <br><br>Deletes a Protection Policy based on given policy id.
 
         :param id: Specifies a unique id of the Protection Policy to delete. (required)
         :type id: str
@@ -580,6 +581,386 @@ class PolicyApi:
 
 
     @validate_call
+    def get_policy_summary(
+        self,
+        id: Annotated[StrictStr, Field(description="Specifies the id of the policy whose summary should be retrieved. If this is not set, the API will return error.")],
+        request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        include_aggregated_last_run_summary: Annotated[Optional[StrictBool], Field(description="Specifies whether to include summary of the last Protection Run of each Protection Source")] = None,
+        include_aggregated_runs_summary: Annotated[Optional[StrictBool], Field(description="Specifies whether to include summary of all Protection Runs of the Protection Source or Protection Jobs. If this is set to true, then only the Protection Runs from the provided 'startTimeUsecs' and 'endTimeUsecs' are processed.")] = None,
+        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a start time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that started after the specified time are included in the aggregated runs summary result.")] = None,
+        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a end time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that completed before the specified time are included in the aggregated runs summary result.")] = None,
+        page_count: Annotated[Optional[StrictInt], Field(description="Specifies the limit of the number of Protection Sources or Protection Jobs to be returned as a part of the Protection Policy Summary.")] = None,
+        pagination_cookie: Annotated[Optional[StrictStr], Field(description="If set, i.e. there are more results to display, use this value to get the next set of results, by using this value in paginationCookie param for the next request to GetProtectionPolicySummary.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PolicySummaryResponse:
+        """Get the protection policy summary
+
+        **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Fetch the summary for a given protection policy.
+
+        :param id: Specifies the id of the policy whose summary should be retrieved. If this is not set, the API will return error. (required)
+        :type id: str
+        :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
+        :type request_initiator_type: str
+        :param include_aggregated_last_run_summary: Specifies whether to include summary of the last Protection Run of each Protection Source
+        :type include_aggregated_last_run_summary: bool
+        :param include_aggregated_runs_summary: Specifies whether to include summary of all Protection Runs of the Protection Source or Protection Jobs. If this is set to true, then only the Protection Runs from the provided 'startTimeUsecs' and 'endTimeUsecs' are processed.
+        :type include_aggregated_runs_summary: bool
+        :param start_time_usecs: Filter by a start time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that started after the specified time are included in the aggregated runs summary result.
+        :type start_time_usecs: int
+        :param end_time_usecs: Filter by a end time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that completed before the specified time are included in the aggregated runs summary result.
+        :type end_time_usecs: int
+        :param page_count: Specifies the limit of the number of Protection Sources or Protection Jobs to be returned as a part of the Protection Policy Summary.
+        :type page_count: int
+        :param pagination_cookie: If set, i.e. there are more results to display, use this value to get the next set of results, by using this value in paginationCookie param for the next request to GetProtectionPolicySummary.
+        :type pagination_cookie: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_policy_summary_serialize(
+            id=id,
+            request_initiator_type=request_initiator_type,
+            include_aggregated_last_run_summary=include_aggregated_last_run_summary,
+            include_aggregated_runs_summary=include_aggregated_runs_summary,
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            page_count=page_count,
+            pagination_cookie=pagination_cookie,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PolicySummaryResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_policy_summary_with_http_info(
+        self,
+        id: Annotated[StrictStr, Field(description="Specifies the id of the policy whose summary should be retrieved. If this is not set, the API will return error.")],
+        request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        include_aggregated_last_run_summary: Annotated[Optional[StrictBool], Field(description="Specifies whether to include summary of the last Protection Run of each Protection Source")] = None,
+        include_aggregated_runs_summary: Annotated[Optional[StrictBool], Field(description="Specifies whether to include summary of all Protection Runs of the Protection Source or Protection Jobs. If this is set to true, then only the Protection Runs from the provided 'startTimeUsecs' and 'endTimeUsecs' are processed.")] = None,
+        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a start time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that started after the specified time are included in the aggregated runs summary result.")] = None,
+        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a end time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that completed before the specified time are included in the aggregated runs summary result.")] = None,
+        page_count: Annotated[Optional[StrictInt], Field(description="Specifies the limit of the number of Protection Sources or Protection Jobs to be returned as a part of the Protection Policy Summary.")] = None,
+        pagination_cookie: Annotated[Optional[StrictStr], Field(description="If set, i.e. there are more results to display, use this value to get the next set of results, by using this value in paginationCookie param for the next request to GetProtectionPolicySummary.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PolicySummaryResponse]:
+        """Get the protection policy summary
+
+        **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Fetch the summary for a given protection policy.
+
+        :param id: Specifies the id of the policy whose summary should be retrieved. If this is not set, the API will return error. (required)
+        :type id: str
+        :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
+        :type request_initiator_type: str
+        :param include_aggregated_last_run_summary: Specifies whether to include summary of the last Protection Run of each Protection Source
+        :type include_aggregated_last_run_summary: bool
+        :param include_aggregated_runs_summary: Specifies whether to include summary of all Protection Runs of the Protection Source or Protection Jobs. If this is set to true, then only the Protection Runs from the provided 'startTimeUsecs' and 'endTimeUsecs' are processed.
+        :type include_aggregated_runs_summary: bool
+        :param start_time_usecs: Filter by a start time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that started after the specified time are included in the aggregated runs summary result.
+        :type start_time_usecs: int
+        :param end_time_usecs: Filter by a end time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that completed before the specified time are included in the aggregated runs summary result.
+        :type end_time_usecs: int
+        :param page_count: Specifies the limit of the number of Protection Sources or Protection Jobs to be returned as a part of the Protection Policy Summary.
+        :type page_count: int
+        :param pagination_cookie: If set, i.e. there are more results to display, use this value to get the next set of results, by using this value in paginationCookie param for the next request to GetProtectionPolicySummary.
+        :type pagination_cookie: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_policy_summary_serialize(
+            id=id,
+            request_initiator_type=request_initiator_type,
+            include_aggregated_last_run_summary=include_aggregated_last_run_summary,
+            include_aggregated_runs_summary=include_aggregated_runs_summary,
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            page_count=page_count,
+            pagination_cookie=pagination_cookie,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PolicySummaryResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_policy_summary_without_preload_content(
+        self,
+        id: Annotated[StrictStr, Field(description="Specifies the id of the policy whose summary should be retrieved. If this is not set, the API will return error.")],
+        request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        include_aggregated_last_run_summary: Annotated[Optional[StrictBool], Field(description="Specifies whether to include summary of the last Protection Run of each Protection Source")] = None,
+        include_aggregated_runs_summary: Annotated[Optional[StrictBool], Field(description="Specifies whether to include summary of all Protection Runs of the Protection Source or Protection Jobs. If this is set to true, then only the Protection Runs from the provided 'startTimeUsecs' and 'endTimeUsecs' are processed.")] = None,
+        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a start time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that started after the specified time are included in the aggregated runs summary result.")] = None,
+        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a end time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that completed before the specified time are included in the aggregated runs summary result.")] = None,
+        page_count: Annotated[Optional[StrictInt], Field(description="Specifies the limit of the number of Protection Sources or Protection Jobs to be returned as a part of the Protection Policy Summary.")] = None,
+        pagination_cookie: Annotated[Optional[StrictStr], Field(description="If set, i.e. there are more results to display, use this value to get the next set of results, by using this value in paginationCookie param for the next request to GetProtectionPolicySummary.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get the protection policy summary
+
+        **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Fetch the summary for a given protection policy.
+
+        :param id: Specifies the id of the policy whose summary should be retrieved. If this is not set, the API will return error. (required)
+        :type id: str
+        :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
+        :type request_initiator_type: str
+        :param include_aggregated_last_run_summary: Specifies whether to include summary of the last Protection Run of each Protection Source
+        :type include_aggregated_last_run_summary: bool
+        :param include_aggregated_runs_summary: Specifies whether to include summary of all Protection Runs of the Protection Source or Protection Jobs. If this is set to true, then only the Protection Runs from the provided 'startTimeUsecs' and 'endTimeUsecs' are processed.
+        :type include_aggregated_runs_summary: bool
+        :param start_time_usecs: Filter by a start time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that started after the specified time are included in the aggregated runs summary result.
+        :type start_time_usecs: int
+        :param end_time_usecs: Filter by a end time specified as a Unix epoch Timestamp (in microseconds). Only Job Runs that completed before the specified time are included in the aggregated runs summary result.
+        :type end_time_usecs: int
+        :param page_count: Specifies the limit of the number of Protection Sources or Protection Jobs to be returned as a part of the Protection Policy Summary.
+        :type page_count: int
+        :param pagination_cookie: If set, i.e. there are more results to display, use this value to get the next set of results, by using this value in paginationCookie param for the next request to GetProtectionPolicySummary.
+        :type pagination_cookie: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_policy_summary_serialize(
+            id=id,
+            request_initiator_type=request_initiator_type,
+            include_aggregated_last_run_summary=include_aggregated_last_run_summary,
+            include_aggregated_runs_summary=include_aggregated_runs_summary,
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            page_count=page_count,
+            pagination_cookie=pagination_cookie,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PolicySummaryResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_policy_summary_serialize(
+        self,
+        id,
+        request_initiator_type,
+        include_aggregated_last_run_summary,
+        include_aggregated_runs_summary,
+        start_time_usecs,
+        end_time_usecs,
+        page_count,
+        pagination_cookie,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        if include_aggregated_last_run_summary is not None:
+            
+            _query_params.append(('includeAggregatedLastRunSummary', include_aggregated_last_run_summary))
+            
+        if include_aggregated_runs_summary is not None:
+            
+            _query_params.append(('includeAggregatedRunsSummary', include_aggregated_runs_summary))
+            
+        if start_time_usecs is not None:
+            
+            _query_params.append(('startTimeUsecs', start_time_usecs))
+            
+        if end_time_usecs is not None:
+            
+            _query_params.append(('endTimeUsecs', end_time_usecs))
+            
+        if page_count is not None:
+            
+            _query_params.append(('pageCount', page_count))
+            
+        if pagination_cookie is not None:
+            
+            _query_params.append(('paginationCookie', pagination_cookie))
+            
+        # process the header parameters
+        if request_initiator_type is not None:
+            _header_params['requestInitiatorType'] = request_initiator_type
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/data-protect/policies/{id}/summary',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_policy_template_by_id(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Policy Template to return.")],
@@ -598,7 +979,7 @@ class PolicyApi:
     ) -> PolicyTemplateResponse:
         """List details about a single Policy Template.
 
-        Returns the Policy Template corresponding to the specified Policy Id.
+        **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Returns the Policy Template corresponding to the specified Policy Id.
 
         :param id: Specifies a unique id of the Policy Template to return. (required)
         :type id: str
@@ -665,7 +1046,7 @@ class PolicyApi:
     ) -> ApiResponse[PolicyTemplateResponse]:
         """List details about a single Policy Template.
 
-        Returns the Policy Template corresponding to the specified Policy Id.
+        **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Returns the Policy Template corresponding to the specified Policy Id.
 
         :param id: Specifies a unique id of the Policy Template to return. (required)
         :type id: str
@@ -732,7 +1113,7 @@ class PolicyApi:
     ) -> RESTResponseType:
         """List details about a single Policy Template.
 
-        Returns the Policy Template corresponding to the specified Policy Id.
+        **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Returns the Policy Template corresponding to the specified Policy Id.
 
         :param id: Specifies a unique id of the Policy Template to return. (required)
         :type id: str
@@ -865,7 +1246,7 @@ class PolicyApi:
     ) -> PolicyTemplatesResponseWithPagination:
         """List Policy Templates filtered by query parameters.
 
-        Returns the policy templates based on the filtering parameters. If no parameters are specified, then all the policy templates are returned.
+        **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Returns the policy templates based on the filtering parameters. If no parameters are specified, then all the policy templates are returned.
 
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
@@ -948,7 +1329,7 @@ class PolicyApi:
     ) -> ApiResponse[PolicyTemplatesResponseWithPagination]:
         """List Policy Templates filtered by query parameters.
 
-        Returns the policy templates based on the filtering parameters. If no parameters are specified, then all the policy templates are returned.
+        **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Returns the policy templates based on the filtering parameters. If no parameters are specified, then all the policy templates are returned.
 
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
@@ -1031,7 +1412,7 @@ class PolicyApi:
     ) -> RESTResponseType:
         """List Policy Templates filtered by query parameters.
 
-        Returns the policy templates based on the filtering parameters. If no parameters are specified, then all the policy templates are returned.
+        **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Returns the policy templates based on the filtering parameters. If no parameters are specified, then all the policy templates are returned.
 
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
@@ -1188,6 +1569,7 @@ class PolicyApi:
         exclude_linked_policies: Annotated[Optional[StrictBool], Field(description="If excludeLinkedPolicies is set to true then only local policies created on cluster will be returned. The result will exclude all linked policies created from policy templates.")] = None,
         include_replicated_policies: Annotated[Optional[StrictBool], Field(description="If includeReplicatedPolicies is set to true, then response will also contain replicated policies. By default, replication policies are not included in the response.")] = None,
         include_stats: Annotated[Optional[StrictBool], Field(description="If includeStats is set to true, then response will return number of protection groups and objects. By default, the protection stats are not included in the response.")] = None,
+        vault_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Vault ids. Policies archiving to any of the specified vaults will be returned.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1203,7 +1585,7 @@ class PolicyApi:
     ) -> ProtectionPolicyResponseWithPagination:
         """List Protection Policies based on provided filtering parameters.
 
-        Lists protection policies based on filtering query parameters.
+        **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Lists protection policies based on filtering query parameters.
 
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
@@ -1223,6 +1605,8 @@ class PolicyApi:
         :type include_replicated_policies: bool
         :param include_stats: If includeStats is set to true, then response will return number of protection groups and objects. By default, the protection stats are not included in the response.
         :type include_stats: bool
+        :param vault_ids: Filter by a list of Vault ids. Policies archiving to any of the specified vaults will be returned.
+        :type vault_ids: List[int]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1255,6 +1639,7 @@ class PolicyApi:
             exclude_linked_policies=exclude_linked_policies,
             include_replicated_policies=include_replicated_policies,
             include_stats=include_stats,
+            vault_ids=vault_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1287,6 +1672,7 @@ class PolicyApi:
         exclude_linked_policies: Annotated[Optional[StrictBool], Field(description="If excludeLinkedPolicies is set to true then only local policies created on cluster will be returned. The result will exclude all linked policies created from policy templates.")] = None,
         include_replicated_policies: Annotated[Optional[StrictBool], Field(description="If includeReplicatedPolicies is set to true, then response will also contain replicated policies. By default, replication policies are not included in the response.")] = None,
         include_stats: Annotated[Optional[StrictBool], Field(description="If includeStats is set to true, then response will return number of protection groups and objects. By default, the protection stats are not included in the response.")] = None,
+        vault_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Vault ids. Policies archiving to any of the specified vaults will be returned.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1302,7 +1688,7 @@ class PolicyApi:
     ) -> ApiResponse[ProtectionPolicyResponseWithPagination]:
         """List Protection Policies based on provided filtering parameters.
 
-        Lists protection policies based on filtering query parameters.
+        **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Lists protection policies based on filtering query parameters.
 
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
@@ -1322,6 +1708,8 @@ class PolicyApi:
         :type include_replicated_policies: bool
         :param include_stats: If includeStats is set to true, then response will return number of protection groups and objects. By default, the protection stats are not included in the response.
         :type include_stats: bool
+        :param vault_ids: Filter by a list of Vault ids. Policies archiving to any of the specified vaults will be returned.
+        :type vault_ids: List[int]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1354,6 +1742,7 @@ class PolicyApi:
             exclude_linked_policies=exclude_linked_policies,
             include_replicated_policies=include_replicated_policies,
             include_stats=include_stats,
+            vault_ids=vault_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1386,6 +1775,7 @@ class PolicyApi:
         exclude_linked_policies: Annotated[Optional[StrictBool], Field(description="If excludeLinkedPolicies is set to true then only local policies created on cluster will be returned. The result will exclude all linked policies created from policy templates.")] = None,
         include_replicated_policies: Annotated[Optional[StrictBool], Field(description="If includeReplicatedPolicies is set to true, then response will also contain replicated policies. By default, replication policies are not included in the response.")] = None,
         include_stats: Annotated[Optional[StrictBool], Field(description="If includeStats is set to true, then response will return number of protection groups and objects. By default, the protection stats are not included in the response.")] = None,
+        vault_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Vault ids. Policies archiving to any of the specified vaults will be returned.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1401,7 +1791,7 @@ class PolicyApi:
     ) -> RESTResponseType:
         """List Protection Policies based on provided filtering parameters.
 
-        Lists protection policies based on filtering query parameters.
+        **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Lists protection policies based on filtering query parameters.
 
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
@@ -1421,6 +1811,8 @@ class PolicyApi:
         :type include_replicated_policies: bool
         :param include_stats: If includeStats is set to true, then response will return number of protection groups and objects. By default, the protection stats are not included in the response.
         :type include_stats: bool
+        :param vault_ids: Filter by a list of Vault ids. Policies archiving to any of the specified vaults will be returned.
+        :type vault_ids: List[int]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1453,6 +1845,7 @@ class PolicyApi:
             exclude_linked_policies=exclude_linked_policies,
             include_replicated_policies=include_replicated_policies,
             include_stats=include_stats,
+            vault_ids=vault_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1480,6 +1873,7 @@ class PolicyApi:
         exclude_linked_policies,
         include_replicated_policies,
         include_stats,
+        vault_ids,
         _request_auth,
         _content_type,
         _headers,
@@ -1493,6 +1887,7 @@ class PolicyApi:
             'policyNames': 'csv',
             'tenantIds': 'csv',
             'types': 'csv',
+            'vaultIds': 'csv',
         }
 
         _path_params: Dict[str, str] = {}
@@ -1537,6 +1932,10 @@ class PolicyApi:
         if include_stats is not None:
             
             _query_params.append(('includeStats', include_stats))
+            
+        if vault_ids is not None:
+            
+            _query_params.append(('vaultIds', vault_ids))
             
         # process the header parameters
         if request_initiator_type is not None:
@@ -1599,7 +1998,7 @@ class PolicyApi:
     ) -> ProtectionPolicyResponse:
         """List details about a single Protection Policy.
 
-        Returns the Protection Policy details based on provided Policy Id.
+        **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Returns the Protection Policy details based on provided Policy Id.
 
         :param id: Specifies a unique id of the Protection Policy to return. (required)
         :type id: str
@@ -1670,7 +2069,7 @@ class PolicyApi:
     ) -> ApiResponse[ProtectionPolicyResponse]:
         """List details about a single Protection Policy.
 
-        Returns the Protection Policy details based on provided Policy Id.
+        **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Returns the Protection Policy details based on provided Policy Id.
 
         :param id: Specifies a unique id of the Protection Policy to return. (required)
         :type id: str
@@ -1741,7 +2140,7 @@ class PolicyApi:
     ) -> RESTResponseType:
         """List details about a single Protection Policy.
 
-        Returns the Protection Policy details based on provided Policy Id.
+        **Privileges:** ```PROTECTION_POLICY_VIEW``` <br><br>Returns the Protection Policy details based on provided Policy Id.
 
         :param id: Specifies a unique id of the Protection Policy to return. (required)
         :type id: str
@@ -1877,7 +2276,7 @@ class PolicyApi:
     ) -> ProtectionPolicyResponse:
         """Update a Protection Policy.
 
-        Specifies the request to update the existing Protection Policy. On successful update, returns the updated policy object.
+        **Privileges:** ```PROTECTION_POLICY_MODIFY``` <br><br>Specifies the request to update the existing Protection Policy. On successful update, returns the updated policy object.
 
         :param id: Specifies a unique id of the Protection Policy to update. (required)
         :type id: str
@@ -1948,7 +2347,7 @@ class PolicyApi:
     ) -> ApiResponse[ProtectionPolicyResponse]:
         """Update a Protection Policy.
 
-        Specifies the request to update the existing Protection Policy. On successful update, returns the updated policy object.
+        **Privileges:** ```PROTECTION_POLICY_MODIFY``` <br><br>Specifies the request to update the existing Protection Policy. On successful update, returns the updated policy object.
 
         :param id: Specifies a unique id of the Protection Policy to update. (required)
         :type id: str
@@ -2019,7 +2418,7 @@ class PolicyApi:
     ) -> RESTResponseType:
         """Update a Protection Policy.
 
-        Specifies the request to update the existing Protection Policy. On successful update, returns the updated policy object.
+        **Privileges:** ```PROTECTION_POLICY_MODIFY``` <br><br>Specifies the request to update the existing Protection Policy. On successful update, returns the updated policy object.
 
         :param id: Specifies a unique id of the Protection Policy to update. (required)
         :type id: str

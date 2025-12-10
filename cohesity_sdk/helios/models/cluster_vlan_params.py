@@ -36,17 +36,21 @@ class ClusterVlanParams(BaseModel):
     ecmp_enabled: Optional[StrictBool] = Field(default=False, description="Set to true to enable ECMP in the vlan.", alias="ecmpEnabled")
     fqdn: Optional[StrictStr] = Field(default=None, description="FQDN of the vlan.")
     gateway: Optional[StrictStr] = Field(default=None, description="Subnet gateway of the vlan. This can be Ipv4 or Ipv6 gateway based on the IP addresses type.")
+    gateway_v6: Optional[StrictStr] = Field(default=None, description="Ipv6 gateway of the vlan.", alias="gatewayV6")
+    interface_name: Optional[StrictStr] = Field(default=None, description="Name of the interface.", alias="interfaceName")
     ip_addresses_type: Optional[StrictStr] = Field(default=None, description="Type of IP addresses. The default value is Ipv4.", alias="ipAddressesType")
     ip_pools: Optional[List[IpPool]] = Field(default=None, description="IP pools from the vlan ip addresses, the IPs in a pool goes together. One IP from each pool forms a VIP group.", alias="ipPools")
     ip_ranges: Optional[List[IpRange]] = Field(default=None, description="Vlan IP address ranges, only one of ips or ipRanges parameters should be given.", alias="ipRanges")
     ips: Optional[List[StrictStr]] = Field(default=None, description="Vlan IP addresses, only one of ips or ipRanges parameters should be given.")
+    loopback_interface_group_id: Optional[StrictInt] = Field(default=None, description="Id of the Loopback Interface group. Used only in get, for display", alias="loopbackInterfaceGroupId")
     mtu: Optional[StrictInt] = Field(default=None, description="MTU of the vlan.")
-    subnet: Optional[StrictStr] = Field(default=None, description="IPv6 or IPv6 subnet in CIDR format i.e ip-address/prefix. Examples: IPv4 subnet'192.168.0.101/24', '10.10.1.32/27'. IPv6 subnet '3005:1231:2006:0025::0/96', 3005:1231:2006:0025::0/128")
+    subnet: Optional[StrictStr] = Field(default=None, description="IPv4 or IPv6 subnet in CIDR format i.e ip-address/prefix. Examples: IPv4 subnet'192.168.0.101/24', '10.10.1.32/27'. IPv6 subnet '3005:1231:2006:0025::0/96', 3005:1231:2006:0025::0/128")
+    subnet_v6: Optional[StrictStr] = Field(default=None, description="IPv6 subnet in CIDR format i.e ip-address/prefix", alias="subnetV6")
     tenant_id: Optional[StrictStr] = Field(default=None, description="Tenant id to assign vlan to a tenant.", alias="tenantId")
     vlan_name: Optional[StrictStr] = Field(default=None, description="Name of the Vlan.", alias="vlanName")
-    interface_name: StrictStr = Field(description="Vlan interface name, it should be in interface_group_name.vlan_id format.", alias="interfaceName")
+    vlan_interface_group_name: StrictStr = Field(description="Vlan interface group name, it should be in interface_group_name.vlan_id format.", alias="vlanInterfaceGroupName")
     app_ips_in_use: Optional[StrictBool] = Field(default=None, description="Set to true when vlan app IP addresses are being used by apps. When this is set to true, the vlan interface can't be deleted.", alias="appIpsInUse")
-    __properties: ClassVar[List[str]] = ["allTenantAccess", "appIps", "description", "dnsDelegationZones", "ecmpEnabled", "fqdn", "gateway", "ipAddressesType", "ipPools", "ipRanges", "ips", "mtu", "subnet", "tenantId", "vlanName", "interfaceName", "appIpsInUse"]
+    __properties: ClassVar[List[str]] = ["allTenantAccess", "appIps", "description", "dnsDelegationZones", "ecmpEnabled", "fqdn", "gateway", "gatewayV6", "interfaceName", "ipAddressesType", "ipPools", "ipRanges", "ips", "loopbackInterfaceGroupId", "mtu", "subnet", "subnetV6", "tenantId", "vlanName", "vlanInterfaceGroupName", "appIpsInUse"]
 
     @field_validator('ip_addresses_type')
     def ip_addresses_type_validate_enum(cls, value):
@@ -153,6 +157,16 @@ class ClusterVlanParams(BaseModel):
         if self.gateway is None and "gateway" in self.model_fields_set:
             _dict['gateway'] = None
 
+        # set to None if gateway_v6 (nullable) is None
+        # and model_fields_set contains the field
+        if self.gateway_v6 is None and "gateway_v6" in self.model_fields_set:
+            _dict['gatewayV6'] = None
+
+        # set to None if interface_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.interface_name is None and "interface_name" in self.model_fields_set:
+            _dict['interfaceName'] = None
+
         # set to None if ip_addresses_type (nullable) is None
         # and model_fields_set contains the field
         if self.ip_addresses_type is None and "ip_addresses_type" in self.model_fields_set:
@@ -173,6 +187,11 @@ class ClusterVlanParams(BaseModel):
         if self.ips is None and "ips" in self.model_fields_set:
             _dict['ips'] = None
 
+        # set to None if loopback_interface_group_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.loopback_interface_group_id is None and "loopback_interface_group_id" in self.model_fields_set:
+            _dict['loopbackInterfaceGroupId'] = None
+
         # set to None if mtu (nullable) is None
         # and model_fields_set contains the field
         if self.mtu is None and "mtu" in self.model_fields_set:
@@ -182,6 +201,11 @@ class ClusterVlanParams(BaseModel):
         # and model_fields_set contains the field
         if self.subnet is None and "subnet" in self.model_fields_set:
             _dict['subnet'] = None
+
+        # set to None if subnet_v6 (nullable) is None
+        # and model_fields_set contains the field
+        if self.subnet_v6 is None and "subnet_v6" in self.model_fields_set:
+            _dict['subnetV6'] = None
 
         # set to None if tenant_id (nullable) is None
         # and model_fields_set contains the field
@@ -217,15 +241,19 @@ class ClusterVlanParams(BaseModel):
             "ecmpEnabled": obj.get("ecmpEnabled") if obj.get("ecmpEnabled") is not None else False,
             "fqdn": obj.get("fqdn"),
             "gateway": obj.get("gateway"),
+            "gatewayV6": obj.get("gatewayV6"),
+            "interfaceName": obj.get("interfaceName"),
             "ipAddressesType": obj.get("ipAddressesType"),
             "ipPools": [IpPool.from_dict(_item) for _item in obj["ipPools"]] if obj.get("ipPools") is not None else None,
             "ipRanges": [IpRange.from_dict(_item) for _item in obj["ipRanges"]] if obj.get("ipRanges") is not None else None,
             "ips": obj.get("ips"),
+            "loopbackInterfaceGroupId": obj.get("loopbackInterfaceGroupId"),
             "mtu": obj.get("mtu"),
             "subnet": obj.get("subnet"),
+            "subnetV6": obj.get("subnetV6"),
             "tenantId": obj.get("tenantId"),
             "vlanName": obj.get("vlanName"),
-            "interfaceName": obj.get("interfaceName"),
+            "vlanInterfaceGroupName": obj.get("vlanInterfaceGroupName"),
             "appIpsInUse": obj.get("appIpsInUse")
         })
         return _obj

@@ -19,7 +19,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 from typing import Set
 from typing_extensions import Self
 
@@ -27,8 +26,8 @@ class FirewallIPSet(BaseModel):
     """
     Specifies a firewall IP set information
     """ # noqa: E501
-    name: Optional[StrictStr] = Field(description="Specifies the name of the IP set.")
-    subnets: Annotated[List[StrictStr], Field(min_length=1)] = Field(description="Specifies the subnets in the IP set.")
+    name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the IP set.")
+    subnets: Optional[List[StrictStr]] = Field(default=None, description="Specifies the subnets in the IP set.")
     __properties: ClassVar[List[str]] = ["name", "subnets"]
 
     model_config = ConfigDict(

@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.mount_user_creds import MountUserCreds
 from cohesity_sdk.helios.models.physical_target_params_for_mount_volume import PhysicalTargetParamsForMountVolume
 from typing import Set
 from typing_extensions import Self
@@ -27,9 +28,10 @@ class MountPhysicalVolumeParams(BaseModel):
     """
     Specifies the parameters to Mount Physical Volumes.
     """ # noqa: E501
+    mount_credentials: Optional[MountUserCreds] = Field(default=None, description="Specifies credentials for mounting the SMB share of the view during FLR restore from a block based back up for windows. If not specified either of the options are possible: a. If both the cluster and agent are on same AD, then logged in user credentials from the agent will be used for the mount. b. If cluster and agent are not on same AD, then a cluster local user with appropriate access will be selected automatically.", alias="mountCredentials")
     physical_target_params: Optional[PhysicalTargetParamsForMountVolume] = Field(default=None, description="Specifies the params for recovering to a physical target.", alias="physicalTargetParams")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
-    __properties: ClassVar[List[str]] = ["physicalTargetParams", "targetEnvironment"]
+    __properties: ClassVar[List[str]] = ["mountCredentials", "physicalTargetParams", "targetEnvironment"]
 
     @field_validator('target_environment')
     def target_environment_validate_enum(cls, value):
@@ -77,9 +79,17 @@ class MountPhysicalVolumeParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of mount_credentials
+        if self.mount_credentials:
+            _dict['mountCredentials'] = self.mount_credentials.to_dict()
         # override the default output from pydantic by calling `to_dict()` of physical_target_params
         if self.physical_target_params:
             _dict['physicalTargetParams'] = self.physical_target_params.to_dict()
+        # set to None if mount_credentials (nullable) is None
+        # and model_fields_set contains the field
+        if self.mount_credentials is None and "mount_credentials" in self.model_fields_set:
+            _dict['mountCredentials'] = None
+
         # set to None if physical_target_params (nullable) is None
         # and model_fields_set contains the field
         if self.physical_target_params is None and "physical_target_params" in self.model_fields_set:
@@ -97,6 +107,7 @@ class MountPhysicalVolumeParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "mountCredentials": MountUserCreds.from_dict(obj["mountCredentials"]) if obj.get("mountCredentials") is not None else None,
             "physicalTargetParams": PhysicalTargetParamsForMountVolume.from_dict(obj["physicalTargetParams"]) if obj.get("physicalTargetParams") is not None else None,
             "targetEnvironment": obj.get("targetEnvironment")
         })

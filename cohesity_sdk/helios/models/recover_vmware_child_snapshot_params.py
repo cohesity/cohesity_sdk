@@ -21,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.archival_target_summary_info import ArchivalTargetSummaryInfo
 from cohesity_sdk.helios.models.object_summary import ObjectSummary
+from cohesity_sdk.helios.models.replication_target_summary_info import ReplicationTargetSummaryInfo
 from typing import Set
 from typing_extensions import Self
 
@@ -38,6 +39,7 @@ class RecoverVmwareChildSnapshotParams(BaseModel):
     protection_group_id: Optional[StrictStr] = Field(default=None, description="Specifies the protection group id of the object snapshot.", alias="protectionGroupId")
     protection_group_name: Optional[StrictStr] = Field(default=None, description="Specifies the protection group name of the object snapshot.", alias="protectionGroupName")
     recover_from_standby: Optional[StrictBool] = Field(default=None, description="Specifies that user wants to perform standby restore if it is enabled for this object.", alias="recoverFromStandby")
+    replication_target_info: Optional[ReplicationTargetSummaryInfo] = Field(default=None, description="Specifies the replication target information if the snapshot is a replication snapshot.", alias="replicationTargetInfo")
     snapshot_creation_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the time when the snapshot is created in Unix timestamp epoch in microseconds.", alias="snapshotCreationTimeUsecs")
     snapshot_id: StrictStr = Field(description="Specifies the snapshot id.", alias="snapshotId")
     snapshot_target_type: Optional[StrictStr] = Field(default=None, description="Specifies the snapshot target type.", alias="snapshotTargetType")
@@ -46,7 +48,10 @@ class RecoverVmwareChildSnapshotParams(BaseModel):
     storage_domain_id: Optional[StrictInt] = Field(default=None, description="Specifies the ID of the Storage Domain where this snapshot is stored.", alias="storageDomainId")
     datastore_migration_info: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the info about datastore migration. This is only applicable for RecoverVm.", alias="datastoreMigrationInfo")
     instant_recovery_info: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the info about instant recovery. This is only applicable for RecoverVm.", alias="instantRecoveryInfo")
-    __properties: ClassVar[List[str]] = ["archivalTargetInfo", "bytesRestored", "endTimeUsecs", "messages", "objectInfo", "pointInTimeUsecs", "progressTaskId", "protectionGroupId", "protectionGroupName", "recoverFromStandby", "snapshotCreationTimeUsecs", "snapshotId", "snapshotTargetType", "startTimeUsecs", "status", "storageDomainId", "datastoreMigrationInfo", "instantRecoveryInfo"]
+    restored_object_info: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the info about the restored object", alias="restoredObjectInfo")
+    tear_down_message: Optional[StrictStr] = Field(default=None, description="Specifies the error message about the tear down operation.", alias="tearDownMessage")
+    tear_down_status: Optional[StrictStr] = Field(default=None, description="Indicates the tear down status of the VM. 'DestroyScheduled' indicates that the tear down is ready to schedule. 'Destroying' indicates that the tear down is still running. 'Destroyed' indicates that the tear down succeeded. 'DestroyError' indicates that the tear down failed.", alias="tearDownStatus")
+    __properties: ClassVar[List[str]] = ["archivalTargetInfo", "bytesRestored", "endTimeUsecs", "messages", "objectInfo", "pointInTimeUsecs", "progressTaskId", "protectionGroupId", "protectionGroupName", "recoverFromStandby", "replicationTargetInfo", "snapshotCreationTimeUsecs", "snapshotId", "snapshotTargetType", "startTimeUsecs", "status", "storageDomainId", "datastoreMigrationInfo", "instantRecoveryInfo", "restoredObjectInfo", "tearDownMessage", "tearDownStatus"]
 
     @field_validator('snapshot_target_type')
     def snapshot_target_type_validate_enum(cls, value):
@@ -64,8 +69,18 @@ class RecoverVmwareChildSnapshotParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped']):
-            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped')")
+        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold']):
+            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold')")
+        return value
+
+    @field_validator('tear_down_status')
+    def tear_down_status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['DestroyScheduled', 'Destroying', 'Destroyed', 'DestroySkipped', 'DestroyError']):
+            raise ValueError("must be one of enum values ('DestroyScheduled', 'Destroying', 'Destroyed', 'DestroySkipped', 'DestroyError')")
         return value
 
     model_config = ConfigDict(
@@ -131,6 +146,9 @@ class RecoverVmwareChildSnapshotParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of object_info
         if self.object_info:
             _dict['objectInfo'] = self.object_info.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of replication_target_info
+        if self.replication_target_info:
+            _dict['replicationTargetInfo'] = self.replication_target_info.to_dict()
         # set to None if archival_target_info (nullable) is None
         # and model_fields_set contains the field
         if self.archival_target_info is None and "archival_target_info" in self.model_fields_set:
@@ -181,6 +199,11 @@ class RecoverVmwareChildSnapshotParams(BaseModel):
         if self.recover_from_standby is None and "recover_from_standby" in self.model_fields_set:
             _dict['recoverFromStandby'] = None
 
+        # set to None if replication_target_info (nullable) is None
+        # and model_fields_set contains the field
+        if self.replication_target_info is None and "replication_target_info" in self.model_fields_set:
+            _dict['replicationTargetInfo'] = None
+
         # set to None if snapshot_creation_time_usecs (nullable) is None
         # and model_fields_set contains the field
         if self.snapshot_creation_time_usecs is None and "snapshot_creation_time_usecs" in self.model_fields_set:
@@ -216,6 +239,21 @@ class RecoverVmwareChildSnapshotParams(BaseModel):
         if self.instant_recovery_info is None and "instant_recovery_info" in self.model_fields_set:
             _dict['instantRecoveryInfo'] = None
 
+        # set to None if restored_object_info (nullable) is None
+        # and model_fields_set contains the field
+        if self.restored_object_info is None and "restored_object_info" in self.model_fields_set:
+            _dict['restoredObjectInfo'] = None
+
+        # set to None if tear_down_message (nullable) is None
+        # and model_fields_set contains the field
+        if self.tear_down_message is None and "tear_down_message" in self.model_fields_set:
+            _dict['tearDownMessage'] = None
+
+        # set to None if tear_down_status (nullable) is None
+        # and model_fields_set contains the field
+        if self.tear_down_status is None and "tear_down_status" in self.model_fields_set:
+            _dict['tearDownStatus'] = None
+
         return _dict
 
     @classmethod
@@ -238,6 +276,7 @@ class RecoverVmwareChildSnapshotParams(BaseModel):
             "protectionGroupId": obj.get("protectionGroupId"),
             "protectionGroupName": obj.get("protectionGroupName"),
             "recoverFromStandby": obj.get("recoverFromStandby"),
+            "replicationTargetInfo": ReplicationTargetSummaryInfo.from_dict(obj["replicationTargetInfo"]) if obj.get("replicationTargetInfo") is not None else None,
             "snapshotCreationTimeUsecs": obj.get("snapshotCreationTimeUsecs"),
             "snapshotId": obj.get("snapshotId"),
             "snapshotTargetType": obj.get("snapshotTargetType"),
@@ -245,7 +284,10 @@ class RecoverVmwareChildSnapshotParams(BaseModel):
             "status": obj.get("status"),
             "storageDomainId": obj.get("storageDomainId"),
             "datastoreMigrationInfo": obj.get("datastoreMigrationInfo"),
-            "instantRecoveryInfo": obj.get("instantRecoveryInfo")
+            "instantRecoveryInfo": obj.get("instantRecoveryInfo"),
+            "restoredObjectInfo": obj.get("restoredObjectInfo"),
+            "tearDownMessage": obj.get("tearDownMessage"),
+            "tearDownStatus": obj.get("tearDownStatus")
         })
         return _obj
 

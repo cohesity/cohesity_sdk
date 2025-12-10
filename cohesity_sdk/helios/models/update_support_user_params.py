@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Set
 from typing_extensions import Self
@@ -29,7 +29,8 @@ class UpdateSupportUserParams(BaseModel):
     current_password: Optional[StrictStr] = Field(default=None, description="Specifies the current password of the user. This is required when trying to update the current user's password.", alias="currentPassword")
     enable_sudo_access: Optional[StrictBool] = Field(default=None, description="If set to true, sudo access will be enabled for the user. If null, the endpoint will not attempt to alter sudo access privilege for the support user.", alias="enableSudoAccess")
     new_password: Optional[StrictStr] = Field(default=None, description="Specifies the new password for the support user.", alias="newPassword")
-    __properties: ClassVar[List[str]] = ["currentPassword", "enableSudoAccess", "newPassword"]
+    sudo_access_end_timestamp_msecs: Optional[StrictInt] = Field(default=None, description="Sudo Access End Time in Milli seconds If null, the endpoint will try to use default behavior of 5 days.", alias="sudoAccessEndTimestampMsecs")
+    __properties: ClassVar[List[str]] = ["currentPassword", "enableSudoAccess", "newPassword", "sudoAccessEndTimestampMsecs"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,6 +86,11 @@ class UpdateSupportUserParams(BaseModel):
         if self.new_password is None and "new_password" in self.model_fields_set:
             _dict['newPassword'] = None
 
+        # set to None if sudo_access_end_timestamp_msecs (nullable) is None
+        # and model_fields_set contains the field
+        if self.sudo_access_end_timestamp_msecs is None and "sudo_access_end_timestamp_msecs" in self.model_fields_set:
+            _dict['sudoAccessEndTimestampMsecs'] = None
+
         return _dict
 
     @classmethod
@@ -99,7 +105,8 @@ class UpdateSupportUserParams(BaseModel):
         _obj = cls.model_validate({
             "currentPassword": obj.get("currentPassword"),
             "enableSudoAccess": obj.get("enableSudoAccess"),
-            "newPassword": obj.get("newPassword")
+            "newPassword": obj.get("newPassword"),
+            "sudoAccessEndTimestampMsecs": obj.get("sudoAccessEndTimestampMsecs")
         })
         return _obj
 

@@ -6,8 +6,11 @@ Specifies the interfaces present on a Node.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**chassis_serial** | **str** | Specifies the ip of the node. | [optional] 
 **id** | **int** | Specifies the id of the node. | [optional] 
 **interfaces** | [**List[NetworkInterface]**](NetworkInterface.md) | Specifies the list of network interfaces present on this Node. | [optional] 
+**ip** | **str** | Specifies the ip of the node. | [optional] 
+**slot_number** | **int** | Specifies the slot number. | [optional] 
 
 ## Example
 

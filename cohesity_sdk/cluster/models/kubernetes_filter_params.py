@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.kubernetes_label import KubernetesLabel
+from cohesity_sdk.cluster.models.resource_info import ResourceInfo
 from typing import Set
 from typing_extensions import Self
 
@@ -28,9 +29,11 @@ class KubernetesFilterParams(BaseModel):
     Specifies the parameters to in/exclude objects (e.g.: volumes). An object satisfying any of these criteria will be included by this filter.
     """ # noqa: E501
     label_combination_method: Optional[StrictStr] = Field(default=None, description="Whether to include all the labels or any of them while performing inclusion/exclusion of objects.", alias="labelCombinationMethod")
+    label_filter_entity_type: Optional[StrictStr] = Field(default=None, description="The type of the entity for which the label filters are specified. Example: kPersistentVolumeClaim or kVirtualMachine.", alias="labelFilterEntityType")
     label_vector: Optional[List[Optional[KubernetesLabel]]] = Field(default=None, description="Array of Object to represent Label that Specify Objects (e.g.: Persistent Volumes and Persistent Volume Claims) to Include or Exclude.It will be a two-dimensional array, where each inner array will consist of a key and value representing labels. Using this two dimensional array of Labels, the Cluster generates a list of items to include in the filter, which are derived from intersections or the union of these labels, as decided by operation parameter.", alias="labelVector")
     objects: Optional[List[StrictInt]] = Field(default=None, description="Array of objects that are to be included.")
-    __properties: ClassVar[List[str]] = ["labelCombinationMethod", "labelVector", "objects"]
+    selected_resources: Optional[List[Optional[ResourceInfo]]] = Field(default=None, description="Array of Object which has group, version, kind, etc. as its fields to identify a resource type and a resource list which is essentially the list of instances of that resource type.", alias="selectedResources")
+    __properties: ClassVar[List[str]] = ["labelCombinationMethod", "labelFilterEntityType", "labelVector", "objects", "selectedResources"]
 
     @field_validator('label_combination_method')
     def label_combination_method_validate_enum(cls, value):
@@ -40,6 +43,16 @@ class KubernetesFilterParams(BaseModel):
 
         if value not in set(['AND', 'OR']):
             raise ValueError("must be one of enum values ('AND', 'OR')")
+        return value
+
+    @field_validator('label_filter_entity_type')
+    def label_filter_entity_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['kPersistentVolumeClaim', 'kVirtualMachine']):
+            raise ValueError("must be one of enum values ('kPersistentVolumeClaim', 'kVirtualMachine')")
         return value
 
     model_config = ConfigDict(
@@ -88,10 +101,22 @@ class KubernetesFilterParams(BaseModel):
                 if _item_label_vector:
                     _items.append(_item_label_vector.to_dict())
             _dict['labelVector'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in selected_resources (list)
+        _items = []
+        if self.selected_resources:
+            for _item_selected_resources in self.selected_resources:
+                if _item_selected_resources:
+                    _items.append(_item_selected_resources.to_dict())
+            _dict['selectedResources'] = _items
         # set to None if label_combination_method (nullable) is None
         # and model_fields_set contains the field
         if self.label_combination_method is None and "label_combination_method" in self.model_fields_set:
             _dict['labelCombinationMethod'] = None
+
+        # set to None if label_filter_entity_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.label_filter_entity_type is None and "label_filter_entity_type" in self.model_fields_set:
+            _dict['labelFilterEntityType'] = None
 
         # set to None if label_vector (nullable) is None
         # and model_fields_set contains the field
@@ -102,6 +127,11 @@ class KubernetesFilterParams(BaseModel):
         # and model_fields_set contains the field
         if self.objects is None and "objects" in self.model_fields_set:
             _dict['objects'] = None
+
+        # set to None if selected_resources (nullable) is None
+        # and model_fields_set contains the field
+        if self.selected_resources is None and "selected_resources" in self.model_fields_set:
+            _dict['selectedResources'] = None
 
         return _dict
 
@@ -116,8 +146,10 @@ class KubernetesFilterParams(BaseModel):
 
         _obj = cls.model_validate({
             "labelCombinationMethod": obj.get("labelCombinationMethod"),
+            "labelFilterEntityType": obj.get("labelFilterEntityType"),
             "labelVector": [KubernetesLabel.from_dict(_item) for _item in obj["labelVector"]] if obj.get("labelVector") is not None else None,
-            "objects": obj.get("objects")
+            "objects": obj.get("objects"),
+            "selectedResources": [ResourceInfo.from_dict(_item) for _item in obj["selectedResources"]] if obj.get("selectedResources") is not None else None
         })
         return _obj
 

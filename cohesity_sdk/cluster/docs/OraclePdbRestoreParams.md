@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **pdb_objects** | [**List[OraclePdbObjectInfo]**](OraclePdbObjectInfo.md) | Specifies list of PDB objects to restore. | [optional] 
 **rename_pdb_map** | [**List[KeyValuePair]**](KeyValuePair.md) | Specifies the new PDB name mapping to existing PDBs. | [optional] 
 **restore_to_existing_cdb** | **bool** | Specifies if pdbs should be restored to an existing CDB. | [optional] 
+**source_cdb_keystore_password** | **str** | Specifies the keystore password of the source CDB. | [optional] 
+**target_cdb_keystore_password** | **str** | Specifies the keystore password of the target CDB. | [optional] 
 
 ## Example
 

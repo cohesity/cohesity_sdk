@@ -20,6 +20,8 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.ms_group_param import MsGroupParam
+from cohesity_sdk.cluster.models.recovery_object_identifier import RecoveryObjectIdentifier
+from cohesity_sdk.cluster.models.target_ms_group_param import TargetMsGroupParam
 from typing import Set
 from typing_extensions import Self
 
@@ -29,10 +31,13 @@ class RecoverMsGroupParams(BaseModel):
     """ # noqa: E501
     continue_on_error: Optional[StrictBool] = Field(default=None, description="Specifies whether to continue recovering other MS groups if one of MS groups failed to recover. Default value is false.", alias="continueOnError")
     ms_groups: Optional[List[MsGroupParam]] = Field(description="Specifies a list of groups getting restored.", alias="msGroups")
+    restore_original_owners: Optional[StrictBool] = Field(default=None, description="Specifies whether the original members/owners should be part of the newly created target group. If restoreOriginalOwners is null or false, original group owners are not used.", alias="restoreOriginalOwners")
     restore_to_original: Optional[StrictBool] = Field(default=None, description="Specifies whether or not all groups are restored to original location.", alias="restoreToOriginal")
-    target_group: Optional[StrictStr] = Field(default=None, description="Specifies target group nickname in case restoreToOriginal is false. This needs to be specifid when restoreToOriginal is false.", alias="targetGroup")
-    target_group_name: Optional[StrictStr] = Field(default=None, description="Specifies target group name in case restore_to_original is false. This needs to be specifid when restoreToOriginal is false. However, this will be ignored if restoring to alternate existing group (i.e. to a group the nickname of which is same as the one supplied by the end user).", alias="targetGroupName")
-    __properties: ClassVar[List[str]] = ["continueOnError", "msGroups", "restoreToOriginal", "targetGroup", "targetGroupName"]
+    target_group: Optional[StrictStr] = Field(default=None, description="This field is deprecated. Specifies target group nickname in case restoreToOriginal is false. This needs to be specified when restoreToOriginal is false. Use targetMsGroupParam instead of this field.", alias="targetGroup")
+    target_group_name: Optional[StrictStr] = Field(default=None, description="This field is deprecated. Specifies target group name in case restoreToOriginal is false. This needs to be specified when restoreToOriginal is false. However, this will be ignored if restoring to alternate existing group (i.e. to a group the nickname of which is same as the one supplied by the end user). Use targetMsGroupParam instead of this field.", alias="targetGroupName")
+    target_group_owner: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="targetGroupOwner")
+    target_ms_group_param: Optional[TargetMsGroupParam] = Field(default=None, alias="targetMsGroupParam")
+    __properties: ClassVar[List[str]] = ["continueOnError", "msGroups", "restoreOriginalOwners", "restoreToOriginal", "targetGroup", "targetGroupName", "targetGroupOwner", "targetMsGroupParam"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,6 +85,12 @@ class RecoverMsGroupParams(BaseModel):
                 if _item_ms_groups:
                     _items.append(_item_ms_groups.to_dict())
             _dict['msGroups'] = _items
+        # override the default output from pydantic by calling `to_dict()` of target_group_owner
+        if self.target_group_owner:
+            _dict['targetGroupOwner'] = self.target_group_owner.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of target_ms_group_param
+        if self.target_ms_group_param:
+            _dict['targetMsGroupParam'] = self.target_ms_group_param.to_dict()
         # set to None if continue_on_error (nullable) is None
         # and model_fields_set contains the field
         if self.continue_on_error is None and "continue_on_error" in self.model_fields_set:
@@ -89,6 +100,11 @@ class RecoverMsGroupParams(BaseModel):
         # and model_fields_set contains the field
         if self.ms_groups is None and "ms_groups" in self.model_fields_set:
             _dict['msGroups'] = None
+
+        # set to None if restore_original_owners (nullable) is None
+        # and model_fields_set contains the field
+        if self.restore_original_owners is None and "restore_original_owners" in self.model_fields_set:
+            _dict['restoreOriginalOwners'] = None
 
         # set to None if restore_to_original (nullable) is None
         # and model_fields_set contains the field
@@ -119,9 +135,12 @@ class RecoverMsGroupParams(BaseModel):
         _obj = cls.model_validate({
             "continueOnError": obj.get("continueOnError"),
             "msGroups": [MsGroupParam.from_dict(_item) for _item in obj["msGroups"]] if obj.get("msGroups") is not None else None,
+            "restoreOriginalOwners": obj.get("restoreOriginalOwners"),
             "restoreToOriginal": obj.get("restoreToOriginal"),
             "targetGroup": obj.get("targetGroup"),
-            "targetGroupName": obj.get("targetGroupName")
+            "targetGroupName": obj.get("targetGroupName"),
+            "targetGroupOwner": RecoveryObjectIdentifier.from_dict(obj["targetGroupOwner"]) if obj.get("targetGroupOwner") is not None else None,
+            "targetMsGroupParam": TargetMsGroupParam.from_dict(obj["targetMsGroupParam"]) if obj.get("targetMsGroupParam") is not None else None
         })
         return _obj
 

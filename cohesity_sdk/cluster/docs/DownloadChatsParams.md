@@ -6,7 +6,8 @@ Specifies the Download chat/posts specific parameters.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**channel_ids** | **List[str]** | Specifies channel IDs whose posts needs to be downloaded. If channelIds is nil or empty then full teams&#39; posts will be downloaded. | [optional] 
+**channel_ids** | **List[str]** | Specifies channel IDs whose posts needs to be downloaded. If channelIds is nil or empty then full teams&#39; posts will be downloaded. This is deprecated and clients should now use channelList instead of channelIds. If both are populated, only channelList will be considered for processing. | [optional] 
+**channel_list** | [**List[Channel]**](Channel.md) | Specifies list of channel&#39;s details, whose chats needs to be downloaded | [optional] 
 **download_file_type** | **str** | Specifies the file type for the downloaded content. | 
 **html_template** | **str** | Specifies the html template for the downloaded chats. | [optional] 
 

@@ -6,8 +6,12 @@ Specifies the support channel configuration.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**enable_extension** | **bool** | Specifies if the support channel extension is allowed. | [optional] 
 **end_time_usecs** | **int** | Specifies the support channel expiry time. | 
-**is_enabled** | **bool** | Specifies id the support channel is enabled. | 
+**extension_duration_hours** | **int** | Specifies the support channel extension duration in hours. | [optional] 
+**force_enable_reverse_tunnel** | **bool** | Specifies if SSH reverse tunnel should be initiated with RT server. Use this only if there are connectivity issues with Support Channel server. | [optional] 
+**is_enabled** | **bool** | Specifies if the support channel should be enabled. | 
+**node_ids** | **List[int]** | List of nodes where support channel should be enabled in addition to master node. | [optional] 
 
 ## Example
 

@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **id** | **int** | Id of the node group. | [optional] 
 **name** | **str** | Specifies the name of the Node Group. | 
 **node_ids** | **List[int]** | List of Node Ids that are part of this node group. | [optional] 
+**node_ips** | **List[str]** | Node ips for node group | [optional] 
 **subnet_info** | [**SubnetInfo**](SubnetInfo.md) |  | [optional] 
 **type** | **int** | Type of the node group. | [optional] 
 

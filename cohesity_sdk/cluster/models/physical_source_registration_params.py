@@ -30,8 +30,9 @@ class PhysicalSourceRegistrationParams(BaseModel):
     endpoint: StrictStr = Field(description="Specifies the endpoint IPaddress, URL or hostname of the physical host.")
     force_register: Optional[StrictBool] = Field(default=None, description="The agent running on a physical host will fail the registration if it is already registered as part of another cluster. By setting this option to true, agent can be forced to register with the current cluster.", alias="forceRegister")
     host_type: Optional[StrictStr] = Field(default=None, description="Specifies the type of host.", alias="hostType")
+    name: Optional[StrictStr] = Field(default=None, description="A user specified human-readable name provided for the source. It contains the hostname/ip address of the physical host or the Windows Cluster VIP.")
     physical_type: Optional[StrictStr] = Field(default=None, description="Specifies the type of physical server.", alias="physicalType")
-    __properties: ClassVar[List[str]] = ["applications", "endpoint", "forceRegister", "hostType", "physicalType"]
+    __properties: ClassVar[List[str]] = ["applications", "endpoint", "forceRegister", "hostType", "name", "physicalType"]
 
     @field_validator('applications')
     def applications_validate_enum(cls, value):
@@ -60,8 +61,8 @@ class PhysicalSourceRegistrationParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kGroup', 'kHost', 'kWindowsCluster', 'kOracleRACCluster', 'kOracleAPCluster']):
-            raise ValueError("must be one of enum values ('kGroup', 'kHost', 'kWindowsCluster', 'kOracleRACCluster', 'kOracleAPCluster')")
+        if value not in set(['kGroup', 'kHost', 'kWindowsCluster', 'kOracleRACCluster', 'kOracleAPCluster', 'kUnixCluster', 'kOracleCluster']):
+            raise ValueError("must be one of enum values ('kGroup', 'kHost', 'kWindowsCluster', 'kOracleRACCluster', 'kOracleAPCluster', 'kUnixCluster', 'kOracleCluster')")
         return value
 
     model_config = ConfigDict(
@@ -118,6 +119,11 @@ class PhysicalSourceRegistrationParams(BaseModel):
         if self.host_type is None and "host_type" in self.model_fields_set:
             _dict['hostType'] = None
 
+        # set to None if name (nullable) is None
+        # and model_fields_set contains the field
+        if self.name is None and "name" in self.model_fields_set:
+            _dict['name'] = None
+
         # set to None if physical_type (nullable) is None
         # and model_fields_set contains the field
         if self.physical_type is None and "physical_type" in self.model_fields_set:
@@ -139,6 +145,7 @@ class PhysicalSourceRegistrationParams(BaseModel):
             "endpoint": obj.get("endpoint"),
             "forceRegister": obj.get("forceRegister"),
             "hostType": obj.get("hostType"),
+            "name": obj.get("name"),
             "physicalType": obj.get("physicalType")
         })
         return _obj

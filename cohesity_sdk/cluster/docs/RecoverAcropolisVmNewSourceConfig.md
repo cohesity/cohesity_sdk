@@ -7,6 +7,7 @@ Specifies the new destination Source configuration where the VMs will be recover
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **network_config** | [**RecoverAcropolisVmNewSourceNetworkConfig**](RecoverAcropolisVmNewSourceNetworkConfig.md) |  | [optional] 
+**prism_element** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | [optional] 
 **source** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | 
 **storage_container** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | [optional] 
 

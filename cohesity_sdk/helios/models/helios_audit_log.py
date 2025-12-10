@@ -53,8 +53,8 @@ class HeliosAuditLog(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Dmaas', 'Mcm', 'DataGovern', 'FortKnox', 'SiteContinuity', 'SiteContinuity2', 'DataInsights']):
-            raise ValueError("must be one of enum values ('Dmaas', 'Mcm', 'DataGovern', 'FortKnox', 'SiteContinuity', 'SiteContinuity2', 'DataInsights')")
+        if value not in set(['Dmaas', 'Mcm', 'DataGovern', 'FortKnox', 'SiteContinuity', 'SiteContinuity2', 'Gaia', 'Gms', 'RecoveryAgent']):
+            raise ValueError("must be one of enum values ('Dmaas', 'Mcm', 'DataGovern', 'FortKnox', 'SiteContinuity', 'SiteContinuity2', 'Gaia', 'Gms', 'RecoveryAgent')")
         return value
 
     @field_validator('source_type')

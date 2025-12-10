@@ -17,10 +17,15 @@ from typing_extensions import Annotated
 
 from pydantic import StrictBool
 from cohesity_sdk.cluster.models.create_recovery_request import CreateRecoveryRequest
+from cohesity_sdk.cluster.models.directory_list_result import DirectoryListResult
 from cohesity_sdk.cluster.models.download_files_and_folders_request_params import DownloadFilesAndFoldersRequestParams
+from cohesity_sdk.cluster.models.fetch_directories_params import FetchDirectoriesParams
 from cohesity_sdk.cluster.models.fetch_uptier_data_response import FetchUptierDataResponse
+from cohesity_sdk.cluster.models.get_restore_points_in_time_range_params import GetRestorePointsInTimeRangeParams
+from cohesity_sdk.cluster.models.get_restore_points_in_time_range_response import GetRestorePointsInTimeRangeResponse
 from cohesity_sdk.cluster.models.recoveries import Recoveries
 from cohesity_sdk.cluster.models.recovery import Recovery
+from cohesity_sdk.cluster.models.virtual_disk_information_response_params import VirtualDiskInformationResponseParams
 
 from cohesity_sdk.cluster.api_client import ApiClient, RequestSerialized
 from cohesity_sdk.cluster.api_response import ApiResponse
@@ -59,7 +64,7 @@ class RecoveryApi:
     ) -> None:
         """Cancel Recovery for a given id.
 
-        Cancel Recovery for a given id.
+        **Privileges:** ```RESTORE_MODIFY``` <br><br>Cancel Recovery for a given id.
 
         :param id: Specifies the id of a Recovery. (required)
         :type id: str
@@ -126,7 +131,7 @@ class RecoveryApi:
     ) -> ApiResponse[None]:
         """Cancel Recovery for a given id.
 
-        Cancel Recovery for a given id.
+        **Privileges:** ```RESTORE_MODIFY``` <br><br>Cancel Recovery for a given id.
 
         :param id: Specifies the id of a Recovery. (required)
         :type id: str
@@ -193,7 +198,7 @@ class RecoveryApi:
     ) -> RESTResponseType:
         """Cancel Recovery for a given id.
 
-        Cancel Recovery for a given id.
+        **Privileges:** ```RESTORE_MODIFY``` <br><br>Cancel Recovery for a given id.
 
         :param id: Specifies the id of a Recovery. (required)
         :type id: str
@@ -322,7 +327,7 @@ class RecoveryApi:
     ) -> Recovery:
         """Create a download files and folders recovery.
 
-        Creates a download files and folders recovery.
+        **Privileges:** ```RESTORE_MODIFY``` <br><br>Creates a download files and folders recovery.
 
         :param body: Specifies the parameters to create a download files and folder recovery. (required)
         :type body: DownloadFilesAndFoldersRequestParams
@@ -389,7 +394,7 @@ class RecoveryApi:
     ) -> ApiResponse[Recovery]:
         """Create a download files and folders recovery.
 
-        Creates a download files and folders recovery.
+        **Privileges:** ```RESTORE_MODIFY``` <br><br>Creates a download files and folders recovery.
 
         :param body: Specifies the parameters to create a download files and folder recovery. (required)
         :type body: DownloadFilesAndFoldersRequestParams
@@ -456,7 +461,7 @@ class RecoveryApi:
     ) -> RESTResponseType:
         """Create a download files and folders recovery.
 
-        Creates a download files and folders recovery.
+        **Privileges:** ```RESTORE_MODIFY``` <br><br>Creates a download files and folders recovery.
 
         :param body: Specifies the parameters to create a download files and folder recovery. (required)
         :type body: DownloadFilesAndFoldersRequestParams
@@ -599,7 +604,7 @@ class RecoveryApi:
     ) -> Recovery:
         """Performs a Recovery.
 
-        Performs a Recovery.
+        **Privileges:** ```RESTORE_MODIFY, REMOTE_RESTORE``` <br><br>Performs a Recovery.
 
         :param body: Specifies the parameters to create a Recovery. (required)
         :type body: CreateRecoveryRequest
@@ -670,7 +675,7 @@ class RecoveryApi:
     ) -> ApiResponse[Recovery]:
         """Performs a Recovery.
 
-        Performs a Recovery.
+        **Privileges:** ```RESTORE_MODIFY, REMOTE_RESTORE``` <br><br>Performs a Recovery.
 
         :param body: Specifies the parameters to create a Recovery. (required)
         :type body: CreateRecoveryRequest
@@ -741,7 +746,7 @@ class RecoveryApi:
     ) -> RESTResponseType:
         """Performs a Recovery.
 
-        Performs a Recovery.
+        **Privileges:** ```RESTORE_MODIFY, REMOTE_RESTORE``` <br><br>Performs a Recovery.
 
         :param body: Specifies the parameters to create a Recovery. (required)
         :type body: CreateRecoveryRequest
@@ -871,6 +876,269 @@ class RecoveryApi:
 
 
     @validate_call
+    def delete_recovery_clone_task_by_id(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies a unique id of the Clone Task to delete.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete a restore clone task
+
+        **Privileges:** ```RESTORE_MODIFY``` <br><br>Delete a restore clone task with specified id
+
+        :param id: Specifies a unique id of the Clone Task to delete. (required)
+        :type id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_recovery_clone_task_by_id_serialize(
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def delete_recovery_clone_task_by_id_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies a unique id of the Clone Task to delete.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete a restore clone task
+
+        **Privileges:** ```RESTORE_MODIFY``` <br><br>Delete a restore clone task with specified id
+
+        :param id: Specifies a unique id of the Clone Task to delete. (required)
+        :type id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_recovery_clone_task_by_id_serialize(
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def delete_recovery_clone_task_by_id_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies a unique id of the Clone Task to delete.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete a restore clone task
+
+        **Privileges:** ```RESTORE_MODIFY``` <br><br>Delete a restore clone task with specified id
+
+        :param id: Specifies a unique id of the Clone Task to delete. (required)
+        :type id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_recovery_clone_task_by_id_serialize(
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _delete_recovery_clone_task_by_id_serialize(
+        self,
+        id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/data-protect/recoveries/clone/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def download_files_from_recovery(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id of a Recovery.")],
@@ -880,6 +1148,7 @@ class RecoveryApi:
         source_name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the source on which restore is done")] = None,
         start_time: Annotated[Optional[StrictStr], Field(description="Specifies the start time of restore task")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.")] = None,
+        file_path: Annotated[Optional[StrictStr], Field(description="Specifies the path of the file on the cluster to be downloaded.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -895,7 +1164,7 @@ class RecoveryApi:
     ) -> None:
         """Download files from the given download file recovery.
 
-        Download files from the given download file recovery.
+        **Privileges:** ```RESTORE_DOWNLOAD``` <br><br>Download files from the given download file recovery.
 
         :param id: Specifies the id of a Recovery. (required)
         :type id: str
@@ -911,6 +1180,8 @@ class RecoveryApi:
         :type start_time: str
         :param include_tenants: Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.
         :type include_tenants: bool
+        :param file_path: Specifies the path of the file on the cluster to be downloaded.
+        :type file_path: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -941,6 +1212,7 @@ class RecoveryApi:
             source_name=source_name,
             start_time=start_time,
             include_tenants=include_tenants,
+            file_path=file_path,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -971,6 +1243,7 @@ class RecoveryApi:
         source_name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the source on which restore is done")] = None,
         start_time: Annotated[Optional[StrictStr], Field(description="Specifies the start time of restore task")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.")] = None,
+        file_path: Annotated[Optional[StrictStr], Field(description="Specifies the path of the file on the cluster to be downloaded.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -986,7 +1259,7 @@ class RecoveryApi:
     ) -> ApiResponse[None]:
         """Download files from the given download file recovery.
 
-        Download files from the given download file recovery.
+        **Privileges:** ```RESTORE_DOWNLOAD``` <br><br>Download files from the given download file recovery.
 
         :param id: Specifies the id of a Recovery. (required)
         :type id: str
@@ -1002,6 +1275,8 @@ class RecoveryApi:
         :type start_time: str
         :param include_tenants: Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.
         :type include_tenants: bool
+        :param file_path: Specifies the path of the file on the cluster to be downloaded.
+        :type file_path: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1032,6 +1307,7 @@ class RecoveryApi:
             source_name=source_name,
             start_time=start_time,
             include_tenants=include_tenants,
+            file_path=file_path,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1062,6 +1338,7 @@ class RecoveryApi:
         source_name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the source on which restore is done")] = None,
         start_time: Annotated[Optional[StrictStr], Field(description="Specifies the start time of restore task")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.")] = None,
+        file_path: Annotated[Optional[StrictStr], Field(description="Specifies the path of the file on the cluster to be downloaded.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1077,7 +1354,7 @@ class RecoveryApi:
     ) -> RESTResponseType:
         """Download files from the given download file recovery.
 
-        Download files from the given download file recovery.
+        **Privileges:** ```RESTORE_DOWNLOAD``` <br><br>Download files from the given download file recovery.
 
         :param id: Specifies the id of a Recovery. (required)
         :type id: str
@@ -1093,6 +1370,8 @@ class RecoveryApi:
         :type start_time: str
         :param include_tenants: Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.
         :type include_tenants: bool
+        :param file_path: Specifies the path of the file on the cluster to be downloaded.
+        :type file_path: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1123,6 +1402,7 @@ class RecoveryApi:
             source_name=source_name,
             start_time=start_time,
             include_tenants=include_tenants,
+            file_path=file_path,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1148,6 +1428,7 @@ class RecoveryApi:
         source_name,
         start_time,
         include_tenants,
+        file_path,
         _request_auth,
         _content_type,
         _headers,
@@ -1195,6 +1476,10 @@ class RecoveryApi:
         if include_tenants is not None:
             
             _query_params.append(('includeTenants', include_tenants))
+            
+        if file_path is not None:
+            
+            _query_params.append(('filePath', file_path))
             
         # process the header parameters
         # process the form parameters
@@ -1259,7 +1544,7 @@ class RecoveryApi:
     ) -> None:
         """Download an indexed file.
 
-        Download an indexed file from a snapshot.
+        **Privileges:** ```RESTORE_DOWNLOAD``` <br><br>Download an indexed file from a snapshot.
 
         :param snapshots_id: Specifies the snapshot id to download from. (required)
         :type snapshots_id: str
@@ -1346,7 +1631,7 @@ class RecoveryApi:
     ) -> ApiResponse[None]:
         """Download an indexed file.
 
-        Download an indexed file from a snapshot.
+        **Privileges:** ```RESTORE_DOWNLOAD``` <br><br>Download an indexed file from a snapshot.
 
         :param snapshots_id: Specifies the snapshot id to download from. (required)
         :type snapshots_id: str
@@ -1433,7 +1718,7 @@ class RecoveryApi:
     ) -> RESTResponseType:
         """Download an indexed file.
 
-        Download an indexed file from a snapshot.
+        **Privileges:** ```RESTORE_DOWNLOAD``` <br><br>Download an indexed file from a snapshot.
 
         :param snapshots_id: Specifies the snapshot id to download from. (required)
         :type snapshots_id: str
@@ -1602,7 +1887,7 @@ class RecoveryApi:
     ) -> FetchUptierDataResponse:
         """Fetches the uptier data.
 
-        Fetches the uptier data for a restore job.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Fetches the uptier data for a restore job.
 
         :param archive_uid: Archive UID of the current restore. (required)
         :type archive_uid: str
@@ -1669,7 +1954,7 @@ class RecoveryApi:
     ) -> ApiResponse[FetchUptierDataResponse]:
         """Fetches the uptier data.
 
-        Fetches the uptier data for a restore job.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Fetches the uptier data for a restore job.
 
         :param archive_uid: Archive UID of the current restore. (required)
         :type archive_uid: str
@@ -1736,7 +2021,7 @@ class RecoveryApi:
     ) -> RESTResponseType:
         """Fetches the uptier data.
 
-        Fetches the uptier data for a restore job.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Fetches the uptier data for a restore job.
 
         :param archive_uid: Archive UID of the current restore. (required)
         :type archive_uid: str
@@ -1849,6 +2134,282 @@ class RecoveryApi:
 
 
     @validate_call
+    def get_directories(
+        self,
+        body: Annotated[FetchDirectoriesParams, Field(description="Specifies the parameters to create a download files and folder recovery.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> DirectoryListResult:
+        """Fetches the children of a directory
+
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Retrieves the immediate files and subdirectories of a specified directory within a VM, View, NAS Volume, Physical machine etc. i.e. any adapter that supports browse functionality
+
+        :param body: Specifies the parameters to create a download files and folder recovery. (required)
+        :type body: FetchDirectoriesParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_directories_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "DirectoryListResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_directories_with_http_info(
+        self,
+        body: Annotated[FetchDirectoriesParams, Field(description="Specifies the parameters to create a download files and folder recovery.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[DirectoryListResult]:
+        """Fetches the children of a directory
+
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Retrieves the immediate files and subdirectories of a specified directory within a VM, View, NAS Volume, Physical machine etc. i.e. any adapter that supports browse functionality
+
+        :param body: Specifies the parameters to create a download files and folder recovery. (required)
+        :type body: FetchDirectoriesParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_directories_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "DirectoryListResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_directories_without_preload_content(
+        self,
+        body: Annotated[FetchDirectoriesParams, Field(description="Specifies the parameters to create a download files and folder recovery.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Fetches the children of a directory
+
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Retrieves the immediate files and subdirectories of a specified directory within a VM, View, NAS Volume, Physical machine etc. i.e. any adapter that supports browse functionality
+
+        :param body: Specifies the parameters to create a download files and folder recovery. (required)
+        :type body: FetchDirectoriesParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_directories_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "DirectoryListResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_directories_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/data-protect/recoveries/directories',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_recoveries(
         self,
         ids: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Filter Recoveries for given ids.")] = None,
@@ -1863,6 +2424,9 @@ class RecoveryApi:
         snapshot_environments: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of snapshot environment types to filter Recoveries. If empty, Recoveries related to all environments will be returned.")] = None,
         status: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of run status to filter Recoveries. If empty, Recoveries with all run status will be returned.")] = None,
         recovery_actions: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of recovery actions to filter Recoveries. If empty, Recoveries related to all actions will be returned.")] = None,
+        return_child_tasks: Annotated[Optional[StrictBool], Field(description="If set to true, also allows child tasks created by restore jobs or multi-state restores to be returned.")] = None,
+        fortknox_onprem_recoveries_only: Annotated[Optional[StrictBool], Field(description="Return only recoveries initiated from the snapshots in FortKnox Onprem vaults if it set to true. Otherwise, return all recoveries as default.")] = None,
+        prune_objects: Annotated[Optional[StrictBool], Field(description="Specifies if objects should be excluded from the response.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1878,7 +2442,7 @@ class RecoveryApi:
     ) -> Recoveries:
         """Lists the Recoveries.
 
-        Lists the Recoveries.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Lists the Recoveries.
 
         :param ids: Filter Recoveries for given ids.
         :type ids: List[str]
@@ -1904,6 +2468,12 @@ class RecoveryApi:
         :type status: List[str]
         :param recovery_actions: Specifies the list of recovery actions to filter Recoveries. If empty, Recoveries related to all actions will be returned.
         :type recovery_actions: List[str]
+        :param return_child_tasks: If set to true, also allows child tasks created by restore jobs or multi-state restores to be returned.
+        :type return_child_tasks: bool
+        :param fortknox_onprem_recoveries_only: Return only recoveries initiated from the snapshots in FortKnox Onprem vaults if it set to true. Otherwise, return all recoveries as default.
+        :type fortknox_onprem_recoveries_only: bool
+        :param prune_objects: Specifies if objects should be excluded from the response.
+        :type prune_objects: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1939,6 +2509,9 @@ class RecoveryApi:
             snapshot_environments=snapshot_environments,
             status=status,
             recovery_actions=recovery_actions,
+            return_child_tasks=return_child_tasks,
+            fortknox_onprem_recoveries_only=fortknox_onprem_recoveries_only,
+            prune_objects=prune_objects,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1974,6 +2547,9 @@ class RecoveryApi:
         snapshot_environments: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of snapshot environment types to filter Recoveries. If empty, Recoveries related to all environments will be returned.")] = None,
         status: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of run status to filter Recoveries. If empty, Recoveries with all run status will be returned.")] = None,
         recovery_actions: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of recovery actions to filter Recoveries. If empty, Recoveries related to all actions will be returned.")] = None,
+        return_child_tasks: Annotated[Optional[StrictBool], Field(description="If set to true, also allows child tasks created by restore jobs or multi-state restores to be returned.")] = None,
+        fortknox_onprem_recoveries_only: Annotated[Optional[StrictBool], Field(description="Return only recoveries initiated from the snapshots in FortKnox Onprem vaults if it set to true. Otherwise, return all recoveries as default.")] = None,
+        prune_objects: Annotated[Optional[StrictBool], Field(description="Specifies if objects should be excluded from the response.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1989,7 +2565,7 @@ class RecoveryApi:
     ) -> ApiResponse[Recoveries]:
         """Lists the Recoveries.
 
-        Lists the Recoveries.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Lists the Recoveries.
 
         :param ids: Filter Recoveries for given ids.
         :type ids: List[str]
@@ -2015,6 +2591,12 @@ class RecoveryApi:
         :type status: List[str]
         :param recovery_actions: Specifies the list of recovery actions to filter Recoveries. If empty, Recoveries related to all actions will be returned.
         :type recovery_actions: List[str]
+        :param return_child_tasks: If set to true, also allows child tasks created by restore jobs or multi-state restores to be returned.
+        :type return_child_tasks: bool
+        :param fortknox_onprem_recoveries_only: Return only recoveries initiated from the snapshots in FortKnox Onprem vaults if it set to true. Otherwise, return all recoveries as default.
+        :type fortknox_onprem_recoveries_only: bool
+        :param prune_objects: Specifies if objects should be excluded from the response.
+        :type prune_objects: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2050,6 +2632,9 @@ class RecoveryApi:
             snapshot_environments=snapshot_environments,
             status=status,
             recovery_actions=recovery_actions,
+            return_child_tasks=return_child_tasks,
+            fortknox_onprem_recoveries_only=fortknox_onprem_recoveries_only,
+            prune_objects=prune_objects,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2085,6 +2670,9 @@ class RecoveryApi:
         snapshot_environments: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of snapshot environment types to filter Recoveries. If empty, Recoveries related to all environments will be returned.")] = None,
         status: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of run status to filter Recoveries. If empty, Recoveries with all run status will be returned.")] = None,
         recovery_actions: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of recovery actions to filter Recoveries. If empty, Recoveries related to all actions will be returned.")] = None,
+        return_child_tasks: Annotated[Optional[StrictBool], Field(description="If set to true, also allows child tasks created by restore jobs or multi-state restores to be returned.")] = None,
+        fortknox_onprem_recoveries_only: Annotated[Optional[StrictBool], Field(description="Return only recoveries initiated from the snapshots in FortKnox Onprem vaults if it set to true. Otherwise, return all recoveries as default.")] = None,
+        prune_objects: Annotated[Optional[StrictBool], Field(description="Specifies if objects should be excluded from the response.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2100,7 +2688,7 @@ class RecoveryApi:
     ) -> RESTResponseType:
         """Lists the Recoveries.
 
-        Lists the Recoveries.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Lists the Recoveries.
 
         :param ids: Filter Recoveries for given ids.
         :type ids: List[str]
@@ -2126,6 +2714,12 @@ class RecoveryApi:
         :type status: List[str]
         :param recovery_actions: Specifies the list of recovery actions to filter Recoveries. If empty, Recoveries related to all actions will be returned.
         :type recovery_actions: List[str]
+        :param return_child_tasks: If set to true, also allows child tasks created by restore jobs or multi-state restores to be returned.
+        :type return_child_tasks: bool
+        :param fortknox_onprem_recoveries_only: Return only recoveries initiated from the snapshots in FortKnox Onprem vaults if it set to true. Otherwise, return all recoveries as default.
+        :type fortknox_onprem_recoveries_only: bool
+        :param prune_objects: Specifies if objects should be excluded from the response.
+        :type prune_objects: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2161,6 +2755,9 @@ class RecoveryApi:
             snapshot_environments=snapshot_environments,
             status=status,
             recovery_actions=recovery_actions,
+            return_child_tasks=return_child_tasks,
+            fortknox_onprem_recoveries_only=fortknox_onprem_recoveries_only,
+            prune_objects=prune_objects,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2191,6 +2788,9 @@ class RecoveryApi:
         snapshot_environments,
         status,
         recovery_actions,
+        return_child_tasks,
+        fortknox_onprem_recoveries_only,
+        prune_objects,
         _request_auth,
         _content_type,
         _headers,
@@ -2268,6 +2868,18 @@ class RecoveryApi:
             
             _query_params.append(('recoveryActions', recovery_actions))
             
+        if return_child_tasks is not None:
+            
+            _query_params.append(('returnChildTasks', return_child_tasks))
+            
+        if fortknox_onprem_recoveries_only is not None:
+            
+            _query_params.append(('fortknoxOnpremRecoveriesOnly', fortknox_onprem_recoveries_only))
+            
+        if prune_objects is not None:
+            
+            _query_params.append(('pruneObjects', prune_objects))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -2312,6 +2924,7 @@ class RecoveryApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id of a Recovery.")],
         include_tenants: Annotated[Optional[StrictBool], Field(description="Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.")] = None,
+        return_child_tasks: Annotated[Optional[StrictBool], Field(description="If set to true, also allows child tasks created by restore jobs or multi-state restores to be returned.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2327,12 +2940,14 @@ class RecoveryApi:
     ) -> Recovery:
         """Get Recovery for a given id.
 
-        Get Recovery for a given id.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get Recovery for a given id.
 
         :param id: Specifies the id of a Recovery. (required)
         :type id: str
         :param include_tenants: Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.
         :type include_tenants: bool
+        :param return_child_tasks: If set to true, also allows child tasks created by restore jobs or multi-state restores to be returned.
+        :type return_child_tasks: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2358,6 +2973,7 @@ class RecoveryApi:
         _param = self._get_recovery_by_id_serialize(
             id=id,
             include_tenants=include_tenants,
+            return_child_tasks=return_child_tasks,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2383,6 +2999,7 @@ class RecoveryApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id of a Recovery.")],
         include_tenants: Annotated[Optional[StrictBool], Field(description="Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.")] = None,
+        return_child_tasks: Annotated[Optional[StrictBool], Field(description="If set to true, also allows child tasks created by restore jobs or multi-state restores to be returned.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2398,12 +3015,14 @@ class RecoveryApi:
     ) -> ApiResponse[Recovery]:
         """Get Recovery for a given id.
 
-        Get Recovery for a given id.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get Recovery for a given id.
 
         :param id: Specifies the id of a Recovery. (required)
         :type id: str
         :param include_tenants: Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.
         :type include_tenants: bool
+        :param return_child_tasks: If set to true, also allows child tasks created by restore jobs or multi-state restores to be returned.
+        :type return_child_tasks: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2429,6 +3048,7 @@ class RecoveryApi:
         _param = self._get_recovery_by_id_serialize(
             id=id,
             include_tenants=include_tenants,
+            return_child_tasks=return_child_tasks,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2454,6 +3074,7 @@ class RecoveryApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id of a Recovery.")],
         include_tenants: Annotated[Optional[StrictBool], Field(description="Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.")] = None,
+        return_child_tasks: Annotated[Optional[StrictBool], Field(description="If set to true, also allows child tasks created by restore jobs or multi-state restores to be returned.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2469,12 +3090,14 @@ class RecoveryApi:
     ) -> RESTResponseType:
         """Get Recovery for a given id.
 
-        Get Recovery for a given id.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get Recovery for a given id.
 
         :param id: Specifies the id of a Recovery. (required)
         :type id: str
         :param include_tenants: Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.
         :type include_tenants: bool
+        :param return_child_tasks: If set to true, also allows child tasks created by restore jobs or multi-state restores to be returned.
+        :type return_child_tasks: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2500,6 +3123,7 @@ class RecoveryApi:
         _param = self._get_recovery_by_id_serialize(
             id=id,
             include_tenants=include_tenants,
+            return_child_tasks=return_child_tasks,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2520,6 +3144,7 @@ class RecoveryApi:
         self,
         id,
         include_tenants,
+        return_child_tasks,
         _request_auth,
         _content_type,
         _headers,
@@ -2547,6 +3172,10 @@ class RecoveryApi:
         if include_tenants is not None:
             
             _query_params.append(('includeTenants', include_tenants))
+            
+        if return_child_tasks is not None:
+            
+            _query_params.append(('returnChildTasks', return_child_tasks))
             
         # process the header parameters
         # process the form parameters
@@ -2606,7 +3235,7 @@ class RecoveryApi:
     ) -> None:
         """Get the debug logs for a particular recovery operation.
 
-        Get the debug logs for a particular recovery operation.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get the debug logs for a particular recovery operation.
 
         :param id: Specifies the id of a Recovery job. (required)
         :type id: str
@@ -2673,7 +3302,7 @@ class RecoveryApi:
     ) -> ApiResponse[None]:
         """Get the debug logs for a particular recovery operation.
 
-        Get the debug logs for a particular recovery operation.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get the debug logs for a particular recovery operation.
 
         :param id: Specifies the id of a Recovery job. (required)
         :type id: str
@@ -2740,7 +3369,7 @@ class RecoveryApi:
     ) -> RESTResponseType:
         """Get the debug logs for a particular recovery operation.
 
-        Get the debug logs for a particular recovery operation.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get the debug logs for a particular recovery operation.
 
         :param id: Specifies the id of a Recovery job. (required)
         :type id: str
@@ -2869,7 +3498,7 @@ class RecoveryApi:
     ) -> None:
         """Get the CSV of errors/warnings for a given recovery operation.
 
-        Get a CSV error report for given recovery operation. Each row in CSV report contains the File Path, error/warning code and error/warning message.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get a CSV error report for given recovery operation. Each row in CSV report contains the File Path, error/warning code and error/warning message.
 
         :param id: Specifies a unique ID of a Recovery. (required)
         :type id: str
@@ -2936,7 +3565,7 @@ class RecoveryApi:
     ) -> ApiResponse[None]:
         """Get the CSV of errors/warnings for a given recovery operation.
 
-        Get a CSV error report for given recovery operation. Each row in CSV report contains the File Path, error/warning code and error/warning message.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get a CSV error report for given recovery operation. Each row in CSV report contains the File Path, error/warning code and error/warning message.
 
         :param id: Specifies a unique ID of a Recovery. (required)
         :type id: str
@@ -3003,7 +3632,7 @@ class RecoveryApi:
     ) -> RESTResponseType:
         """Get the CSV of errors/warnings for a given recovery operation.
 
-        Get a CSV error report for given recovery operation. Each row in CSV report contains the File Path, error/warning code and error/warning message.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get a CSV error report for given recovery operation. Each row in CSV report contains the File Path, error/warning code and error/warning message.
 
         :param id: Specifies a unique ID of a Recovery. (required)
         :type id: str
@@ -3114,6 +3743,282 @@ class RecoveryApi:
 
 
     @validate_call
+    def get_restore_points_in_time_range(
+        self,
+        body: Annotated[GetRestorePointsInTimeRangeParams, Field(description="Specifies the request parameters to restore points for time range API")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetRestorePointsInTimeRangeResponse:
+        """List Restore Points in a given time range
+
+        **Privileges:** ```RESTORE_VIEW``` <br><br>List Restore Points i.e. returns the snapshots in in a given time range
+
+        :param body: Specifies the request parameters to restore points for time range API (required)
+        :type body: GetRestorePointsInTimeRangeParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_restore_points_in_time_range_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "GetRestorePointsInTimeRangeResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_restore_points_in_time_range_with_http_info(
+        self,
+        body: Annotated[GetRestorePointsInTimeRangeParams, Field(description="Specifies the request parameters to restore points for time range API")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetRestorePointsInTimeRangeResponse]:
+        """List Restore Points in a given time range
+
+        **Privileges:** ```RESTORE_VIEW``` <br><br>List Restore Points i.e. returns the snapshots in in a given time range
+
+        :param body: Specifies the request parameters to restore points for time range API (required)
+        :type body: GetRestorePointsInTimeRangeParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_restore_points_in_time_range_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "GetRestorePointsInTimeRangeResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_restore_points_in_time_range_without_preload_content(
+        self,
+        body: Annotated[GetRestorePointsInTimeRangeParams, Field(description="Specifies the request parameters to restore points for time range API")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List Restore Points in a given time range
+
+        **Privileges:** ```RESTORE_VIEW``` <br><br>List Restore Points i.e. returns the snapshots in in a given time range
+
+        :param body: Specifies the request parameters to restore points for time range API (required)
+        :type body: GetRestorePointsInTimeRangeParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_restore_points_in_time_range_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "GetRestorePointsInTimeRangeResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_restore_points_in_time_range_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/data-protect/snapshots/restore-points',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def tear_down_recovery_by_id(
         self,
         id: Annotated[str, Field(strict=True, description="Specifies the id of a Recovery.")],
@@ -3132,7 +4037,7 @@ class RecoveryApi:
     ) -> None:
         """Tear down Recovery for a given id.
 
-        Tear down Recovery for a given id.
+        **Privileges:** ```RESTORE_MODIFY``` <br><br>Tear down Recovery for a given id.
 
         :param id: Specifies the id of a Recovery. (required)
         :type id: str
@@ -3199,7 +4104,7 @@ class RecoveryApi:
     ) -> ApiResponse[None]:
         """Tear down Recovery for a given id.
 
-        Tear down Recovery for a given id.
+        **Privileges:** ```RESTORE_MODIFY``` <br><br>Tear down Recovery for a given id.
 
         :param id: Specifies the id of a Recovery. (required)
         :type id: str
@@ -3266,7 +4171,7 @@ class RecoveryApi:
     ) -> RESTResponseType:
         """Tear down Recovery for a given id.
 
-        Tear down Recovery for a given id.
+        **Privileges:** ```RESTORE_MODIFY``` <br><br>Tear down Recovery for a given id.
 
         :param id: Specifies the id of a Recovery. (required)
         :type id: str
@@ -3361,6 +4266,407 @@ class RecoveryApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/data-protect/recoveries/{id}/tear-down',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def virtual_disk_information(
+        self,
+        cluster_id: Annotated[StrictInt, Field(description="Specifies the Cohesity Cluster id where the Job was created.")],
+        cluster_incarnation_id: Annotated[StrictInt, Field(description="Specifies the incarnation id of the Cohesity Cluster where the Job was created.")],
+        job_id: Annotated[StrictInt, Field(description="Specifies the id of the Job that captured the snapshot.")],
+        object_id: Annotated[StrictInt, Field(description="Specifies the Id of the Protection Source object.")],
+        snapshot_id: Annotated[Optional[StrictStr], Field(description="Specifies the snapshot id.")] = None,
+        point_in_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the Id of the vault where snapshot was taken")] = None,
+        vault_id: Annotated[Optional[StrictInt], Field(description="Specifies the Id of the vault where snapshot was taken")] = None,
+        vault_name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the vault where snapshot was taken")] = None,
+        vault_type: Annotated[Optional[StrictStr], Field(description="Specifies the External Target type.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> VirtualDiskInformationResponseParams:
+        """Fetches information of virtual disks
+
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Fetches information of virtual disks of an object such as a VM or a physical server for a given snapshot.
+
+        :param cluster_id: Specifies the Cohesity Cluster id where the Job was created. (required)
+        :type cluster_id: int
+        :param cluster_incarnation_id: Specifies the incarnation id of the Cohesity Cluster where the Job was created. (required)
+        :type cluster_incarnation_id: int
+        :param job_id: Specifies the id of the Job that captured the snapshot. (required)
+        :type job_id: int
+        :param object_id: Specifies the Id of the Protection Source object. (required)
+        :type object_id: int
+        :param snapshot_id: Specifies the snapshot id.
+        :type snapshot_id: str
+        :param point_in_time_usecs: Specifies the Id of the vault where snapshot was taken
+        :type point_in_time_usecs: int
+        :param vault_id: Specifies the Id of the vault where snapshot was taken
+        :type vault_id: int
+        :param vault_name: Specifies the name of the vault where snapshot was taken
+        :type vault_name: str
+        :param vault_type: Specifies the External Target type.
+        :type vault_type: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._virtual_disk_information_serialize(
+            cluster_id=cluster_id,
+            cluster_incarnation_id=cluster_incarnation_id,
+            job_id=job_id,
+            object_id=object_id,
+            snapshot_id=snapshot_id,
+            point_in_time_usecs=point_in_time_usecs,
+            vault_id=vault_id,
+            vault_name=vault_name,
+            vault_type=vault_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "VirtualDiskInformationResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def virtual_disk_information_with_http_info(
+        self,
+        cluster_id: Annotated[StrictInt, Field(description="Specifies the Cohesity Cluster id where the Job was created.")],
+        cluster_incarnation_id: Annotated[StrictInt, Field(description="Specifies the incarnation id of the Cohesity Cluster where the Job was created.")],
+        job_id: Annotated[StrictInt, Field(description="Specifies the id of the Job that captured the snapshot.")],
+        object_id: Annotated[StrictInt, Field(description="Specifies the Id of the Protection Source object.")],
+        snapshot_id: Annotated[Optional[StrictStr], Field(description="Specifies the snapshot id.")] = None,
+        point_in_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the Id of the vault where snapshot was taken")] = None,
+        vault_id: Annotated[Optional[StrictInt], Field(description="Specifies the Id of the vault where snapshot was taken")] = None,
+        vault_name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the vault where snapshot was taken")] = None,
+        vault_type: Annotated[Optional[StrictStr], Field(description="Specifies the External Target type.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[VirtualDiskInformationResponseParams]:
+        """Fetches information of virtual disks
+
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Fetches information of virtual disks of an object such as a VM or a physical server for a given snapshot.
+
+        :param cluster_id: Specifies the Cohesity Cluster id where the Job was created. (required)
+        :type cluster_id: int
+        :param cluster_incarnation_id: Specifies the incarnation id of the Cohesity Cluster where the Job was created. (required)
+        :type cluster_incarnation_id: int
+        :param job_id: Specifies the id of the Job that captured the snapshot. (required)
+        :type job_id: int
+        :param object_id: Specifies the Id of the Protection Source object. (required)
+        :type object_id: int
+        :param snapshot_id: Specifies the snapshot id.
+        :type snapshot_id: str
+        :param point_in_time_usecs: Specifies the Id of the vault where snapshot was taken
+        :type point_in_time_usecs: int
+        :param vault_id: Specifies the Id of the vault where snapshot was taken
+        :type vault_id: int
+        :param vault_name: Specifies the name of the vault where snapshot was taken
+        :type vault_name: str
+        :param vault_type: Specifies the External Target type.
+        :type vault_type: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._virtual_disk_information_serialize(
+            cluster_id=cluster_id,
+            cluster_incarnation_id=cluster_incarnation_id,
+            job_id=job_id,
+            object_id=object_id,
+            snapshot_id=snapshot_id,
+            point_in_time_usecs=point_in_time_usecs,
+            vault_id=vault_id,
+            vault_name=vault_name,
+            vault_type=vault_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "VirtualDiskInformationResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def virtual_disk_information_without_preload_content(
+        self,
+        cluster_id: Annotated[StrictInt, Field(description="Specifies the Cohesity Cluster id where the Job was created.")],
+        cluster_incarnation_id: Annotated[StrictInt, Field(description="Specifies the incarnation id of the Cohesity Cluster where the Job was created.")],
+        job_id: Annotated[StrictInt, Field(description="Specifies the id of the Job that captured the snapshot.")],
+        object_id: Annotated[StrictInt, Field(description="Specifies the Id of the Protection Source object.")],
+        snapshot_id: Annotated[Optional[StrictStr], Field(description="Specifies the snapshot id.")] = None,
+        point_in_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the Id of the vault where snapshot was taken")] = None,
+        vault_id: Annotated[Optional[StrictInt], Field(description="Specifies the Id of the vault where snapshot was taken")] = None,
+        vault_name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the vault where snapshot was taken")] = None,
+        vault_type: Annotated[Optional[StrictStr], Field(description="Specifies the External Target type.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Fetches information of virtual disks
+
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Fetches information of virtual disks of an object such as a VM or a physical server for a given snapshot.
+
+        :param cluster_id: Specifies the Cohesity Cluster id where the Job was created. (required)
+        :type cluster_id: int
+        :param cluster_incarnation_id: Specifies the incarnation id of the Cohesity Cluster where the Job was created. (required)
+        :type cluster_incarnation_id: int
+        :param job_id: Specifies the id of the Job that captured the snapshot. (required)
+        :type job_id: int
+        :param object_id: Specifies the Id of the Protection Source object. (required)
+        :type object_id: int
+        :param snapshot_id: Specifies the snapshot id.
+        :type snapshot_id: str
+        :param point_in_time_usecs: Specifies the Id of the vault where snapshot was taken
+        :type point_in_time_usecs: int
+        :param vault_id: Specifies the Id of the vault where snapshot was taken
+        :type vault_id: int
+        :param vault_name: Specifies the name of the vault where snapshot was taken
+        :type vault_name: str
+        :param vault_type: Specifies the External Target type.
+        :type vault_type: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._virtual_disk_information_serialize(
+            cluster_id=cluster_id,
+            cluster_incarnation_id=cluster_incarnation_id,
+            job_id=job_id,
+            object_id=object_id,
+            snapshot_id=snapshot_id,
+            point_in_time_usecs=point_in_time_usecs,
+            vault_id=vault_id,
+            vault_name=vault_name,
+            vault_type=vault_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "VirtualDiskInformationResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _virtual_disk_information_serialize(
+        self,
+        cluster_id,
+        cluster_incarnation_id,
+        job_id,
+        object_id,
+        snapshot_id,
+        point_in_time_usecs,
+        vault_id,
+        vault_name,
+        vault_type,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if cluster_id is not None:
+            
+            _query_params.append(('clusterId', cluster_id))
+            
+        if cluster_incarnation_id is not None:
+            
+            _query_params.append(('clusterIncarnationId', cluster_incarnation_id))
+            
+        if job_id is not None:
+            
+            _query_params.append(('jobId', job_id))
+            
+        if snapshot_id is not None:
+            
+            _query_params.append(('snapshotId', snapshot_id))
+            
+        if object_id is not None:
+            
+            _query_params.append(('objectId', object_id))
+            
+        if point_in_time_usecs is not None:
+            
+            _query_params.append(('pointInTimeUsecs', point_in_time_usecs))
+            
+        if vault_id is not None:
+            
+            _query_params.append(('vaultId', vault_id))
+            
+        if vault_name is not None:
+            
+            _query_params.append(('vaultName', vault_name))
+            
+        if vault_type is not None:
+            
+            _query_params.append(('vaultType', vault_type))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/data-protect/recoveries/virtual-disks',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

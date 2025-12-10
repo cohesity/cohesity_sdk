@@ -49,8 +49,8 @@ class CreateClusterParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Physical', 'Virtual', 'Cloud', 'Rigel', 'Unknown', 'HeliosOnPremVM']):
-            raise ValueError("must be one of enum values ('Physical', 'Virtual', 'Cloud', 'Rigel', 'Unknown', 'HeliosOnPremVM')")
+        if value not in set(['Physical', 'Virtual', 'Cloud', 'Rigel', 'Cohesion', 'Unknown', 'HeliosOnPremVM']):
+            raise ValueError("must be one of enum values ('Physical', 'Virtual', 'Cloud', 'Rigel', 'Cohesion', 'Unknown', 'HeliosOnPremVM')")
         return value
 
     model_config = ConfigDict(
@@ -110,11 +110,6 @@ class CreateClusterParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of virtual_cluster_params
         if self.virtual_cluster_params:
             _dict['virtualClusterParams'] = self.virtual_cluster_params.to_dict()
-        # set to None if cloud_cluster_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.cloud_cluster_params is None and "cloud_cluster_params" in self.model_fields_set:
-            _dict['cloudClusterParams'] = None
-
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:

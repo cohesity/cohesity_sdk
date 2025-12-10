@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **name** | **str** | Specifies the OneDrive name. | [optional] 
 **recover_entire_drive** | **bool** | Specifies whether to recover the whole OneDrive. This is set to false when excluding recovering specific drive items. | [optional] 
 **recover_items** | [**List[OneDriveItem]**](OneDriveItem.md) | Specifies a list of OneDrive items to recover. | [optional] 
+**site_uuid** | **str** | Sharepoint site uuid to which this Drive belongs. This is needed for Teams and Groups having subsites, as multiple items across different subsites can be selected for granular recovery. | [optional] 
 
 ## Example
 

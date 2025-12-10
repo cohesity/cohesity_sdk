@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.end_point import EndPoint
 from cohesity_sdk.cluster.models.service_version_info import ServiceVersionInfo
@@ -28,23 +28,26 @@ class NodeInfo(BaseModel):
     """
     Specifies general information of a node.
     """ # noqa: E501
-    chassis_model: Optional[StrictStr] = Field(default=None, description="Chassis model.", alias="chassisModel")
-    chassis_serial: Optional[StrictStr] = Field(default=None, description="Chassis serial number programmed by manufacturer.", alias="chassisSerial")
-    cluster_id: Optional[StrictInt] = Field(default=None, description="Specifies the Id of the cluster to which the node belongs.", alias="clusterId")
-    cohesity_chassis_serial: Optional[StrictStr] = Field(default=None, description="Chassis serial number programmed by cohesity software.", alias="cohesityChassisSerial")
-    cohesity_node_serial: Optional[StrictStr] = Field(default=None, description="Node serial number programmed by cohesity software.", alias="cohesityNodeSerial")
-    hostname: Optional[StrictStr] = Field(default=None, description="Host name of the node reported by the kernel.")
-    incarnation_id: Optional[StrictInt] = Field(default=None, description="Specifies the cluster incarnation Id.", alias="incarnationId")
+    chassis_model: StrictStr = Field(description="Chassis model.", alias="chassisModel")
+    chassis_serial: StrictStr = Field(description="Chassis serial number programmed by manufacturer.", alias="chassisSerial")
+    cluster_id: StrictInt = Field(description="Specifies the Id of the cluster to which the node belongs.", alias="clusterId")
+    cohesity_chassis_serial: StrictStr = Field(description="Chassis serial number programmed by cohesity software.", alias="cohesityChassisSerial")
+    cohesity_node_serial: StrictStr = Field(description="Node serial number programmed by cohesity software.", alias="cohesityNodeSerial")
+    cpu: StrictInt = Field(description="Number of CPUs")
+    hostname: StrictStr = Field(description="Host name of the node reported by the kernel.")
+    incarnation_id: StrictInt = Field(description="Specifies the cluster incarnation Id.", alias="incarnationId")
     interface_list: Optional[List[EndPoint]] = Field(default=None, description="List of interfaces in node.", alias="interfaceList")
-    ipmi_ip: Optional[StrictStr] = Field(default=None, description="Ipmi IpAddress", alias="ipmiIp")
-    node_id: Optional[StrictInt] = Field(default=None, description="Specifies the Id of the node.", alias="nodeId")
-    node_model: Optional[StrictStr] = Field(default=None, description="Node model.", alias="nodeModel")
-    node_serial: Optional[StrictStr] = Field(default=None, description="Node serial number programmed by manufacturer.", alias="nodeSerial")
-    product_model: Optional[StrictStr] = Field(default=None, description="Product Model", alias="productModel")
-    services_version_info: Optional[List[ServiceVersionInfo]] = Field(default=None, description="Specifies the version information of the cohesity services.", alias="servicesVersionInfo")
-    slot_number: Optional[StrictStr] = Field(default=None, description="Slot number of the node in the chassis.", alias="slotNumber")
-    software_version: Optional[StrictStr] = Field(default=None, description="Version of the Cohesity software running on the node.", alias="softwareVersion")
-    __properties: ClassVar[List[str]] = ["chassisModel", "chassisSerial", "clusterId", "cohesityChassisSerial", "cohesityNodeSerial", "hostname", "incarnationId", "interfaceList", "ipmiIp", "nodeId", "nodeModel", "nodeSerial", "productModel", "servicesVersionInfo", "slotNumber", "softwareVersion"]
+    ipmi_ip: StrictStr = Field(description="Ipmi IpAddress", alias="ipmiIp")
+    is_node_reachable: StrictBool = Field(description="Specifies whether the node is reachable or not", alias="isNodeReachable")
+    node_id: StrictInt = Field(description="Specifies the Id of the node.", alias="nodeId")
+    node_model: StrictStr = Field(description="Node model.", alias="nodeModel")
+    node_serial: StrictStr = Field(description="Node serial number programmed by manufacturer.", alias="nodeSerial")
+    product_model: StrictStr = Field(description="Product Model", alias="productModel")
+    services_version_info: List[ServiceVersionInfo] = Field(description="Specifies the version information of the cohesity services.", alias="servicesVersionInfo")
+    slot_number: StrictStr = Field(description="Slot number of the node in the chassis.", alias="slotNumber")
+    software_version: StrictStr = Field(description="Version of the Cohesity software running on the node.", alias="softwareVersion")
+    system_memory_bytes: StrictInt = Field(description="System Memory in bytes", alias="systemMemoryBytes")
+    __properties: ClassVar[List[str]] = ["chassisModel", "chassisSerial", "clusterId", "cohesityChassisSerial", "cohesityNodeSerial", "cpu", "hostname", "incarnationId", "interfaceList", "ipmiIp", "isNodeReachable", "nodeId", "nodeModel", "nodeSerial", "productModel", "servicesVersionInfo", "slotNumber", "softwareVersion", "systemMemoryBytes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -116,17 +119,20 @@ class NodeInfo(BaseModel):
             "clusterId": obj.get("clusterId"),
             "cohesityChassisSerial": obj.get("cohesityChassisSerial"),
             "cohesityNodeSerial": obj.get("cohesityNodeSerial"),
+            "cpu": obj.get("cpu"),
             "hostname": obj.get("hostname"),
             "incarnationId": obj.get("incarnationId"),
             "interfaceList": [EndPoint.from_dict(_item) for _item in obj["interfaceList"]] if obj.get("interfaceList") is not None else None,
             "ipmiIp": obj.get("ipmiIp"),
+            "isNodeReachable": obj.get("isNodeReachable"),
             "nodeId": obj.get("nodeId"),
             "nodeModel": obj.get("nodeModel"),
             "nodeSerial": obj.get("nodeSerial"),
             "productModel": obj.get("productModel"),
             "servicesVersionInfo": [ServiceVersionInfo.from_dict(_item) for _item in obj["servicesVersionInfo"]] if obj.get("servicesVersionInfo") is not None else None,
             "slotNumber": obj.get("slotNumber"),
-            "softwareVersion": obj.get("softwareVersion")
+            "softwareVersion": obj.get("softwareVersion"),
+            "systemMemoryBytes": obj.get("systemMemoryBytes")
         })
         return _obj
 

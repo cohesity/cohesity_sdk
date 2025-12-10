@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.cluster.models.ews_exchange_target_param import EwsExchangeTargetParam
 from cohesity_sdk.cluster.models.object_mailbox_param import ObjectMailboxParam
 from cohesity_sdk.cluster.models.pst_param import PstParam
 from cohesity_sdk.cluster.models.target_mailbox_param import TargetMailboxParam
@@ -30,13 +31,15 @@ class RecoverMailboxParams(BaseModel):
     Specifies the parameters to recover an Office 365 Mailbox.
     """ # noqa: E501
     continue_on_error: Optional[StrictBool] = Field(default=None, description="Specifies whether to continue recovering other Mailboxes if one of Mailbox failed to recover. Default value is false.", alias="continueOnError")
+    ews_exchange_target: Optional[EwsExchangeTargetParam] = Field(default=None, alias="ewsExchangeTarget")
     objects: Optional[List[ObjectMailboxParam]] = Field(description="Specifies a list of Mailbox params associated with the objects to recover.")
     pst_params: Optional[PstParam] = Field(default=None, alias="pstParams")
     skip_recover_archive_mailbox: Optional[StrictBool] = Field(default=None, description="Specifies whether to skip the recovery of the archive mailbox and/or items present in the archive mailbox. Default value is true", alias="skipRecoverArchiveMailbox")
     skip_recover_archive_recoverable_items: Optional[StrictBool] = Field(default=None, description="Specifies whether to skip the recovery of the Archive Recoverable Items present in the selected snapshot. Default value is true", alias="skipRecoverArchiveRecoverableItems")
+    skip_recover_primary_mailbox: Optional[StrictBool] = Field(default=None, description="Specifies whether to skip the recovery of items under Top of Information Store, aka the message folder root. Default value is false.", alias="skipRecoverPrimaryMailbox")
     skip_recover_recoverable_items: Optional[StrictBool] = Field(default=None, description="Specifies whether to skip the recovery of the Recoverable Items present in the selected snapshot. Default value is true", alias="skipRecoverRecoverableItems")
     target_mailbox: Optional[TargetMailboxParam] = Field(default=None, alias="targetMailbox")
-    __properties: ClassVar[List[str]] = ["continueOnError", "objects", "pstParams", "skipRecoverArchiveMailbox", "skipRecoverArchiveRecoverableItems", "skipRecoverRecoverableItems", "targetMailbox"]
+    __properties: ClassVar[List[str]] = ["continueOnError", "ewsExchangeTarget", "objects", "pstParams", "skipRecoverArchiveMailbox", "skipRecoverArchiveRecoverableItems", "skipRecoverPrimaryMailbox", "skipRecoverRecoverableItems", "targetMailbox"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,6 +80,9 @@ class RecoverMailboxParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of ews_exchange_target
+        if self.ews_exchange_target:
+            _dict['ewsExchangeTarget'] = self.ews_exchange_target.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in objects (list)
         _items = []
         if self.objects:
@@ -110,6 +116,11 @@ class RecoverMailboxParams(BaseModel):
         if self.skip_recover_archive_recoverable_items is None and "skip_recover_archive_recoverable_items" in self.model_fields_set:
             _dict['skipRecoverArchiveRecoverableItems'] = None
 
+        # set to None if skip_recover_primary_mailbox (nullable) is None
+        # and model_fields_set contains the field
+        if self.skip_recover_primary_mailbox is None and "skip_recover_primary_mailbox" in self.model_fields_set:
+            _dict['skipRecoverPrimaryMailbox'] = None
+
         # set to None if skip_recover_recoverable_items (nullable) is None
         # and model_fields_set contains the field
         if self.skip_recover_recoverable_items is None and "skip_recover_recoverable_items" in self.model_fields_set:
@@ -128,10 +139,12 @@ class RecoverMailboxParams(BaseModel):
 
         _obj = cls.model_validate({
             "continueOnError": obj.get("continueOnError"),
+            "ewsExchangeTarget": EwsExchangeTargetParam.from_dict(obj["ewsExchangeTarget"]) if obj.get("ewsExchangeTarget") is not None else None,
             "objects": [ObjectMailboxParam.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None,
             "pstParams": PstParam.from_dict(obj["pstParams"]) if obj.get("pstParams") is not None else None,
             "skipRecoverArchiveMailbox": obj.get("skipRecoverArchiveMailbox"),
             "skipRecoverArchiveRecoverableItems": obj.get("skipRecoverArchiveRecoverableItems"),
+            "skipRecoverPrimaryMailbox": obj.get("skipRecoverPrimaryMailbox"),
             "skipRecoverRecoverableItems": obj.get("skipRecoverRecoverableItems"),
             "targetMailbox": TargetMailboxParam.from_dict(obj["targetMailbox"]) if obj.get("targetMailbox") is not None else None
         })

@@ -36,8 +36,8 @@ class ObjectPolicy(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kNative', 'kSnapshotManager', 'kPhysical', 'kSQL', 'kOracle']):
-            raise ValueError("must be one of enum values ('kNative', 'kSnapshotManager', 'kPhysical', 'kSQL', 'kOracle')")
+        if value not in set(['kNative', 'kSnapshotManager', 'kPhysical', 'kSQL', 'kOracle', 'kRDSSnapshotManager', 'kRDSPostgresSnapshotManager', 'kRDSMySQLSnapshotManager', 'kRDSMSSQLSnapshotManager', 'kRDSOracleSnapshotManager', 'kRDSMariaDBSnapshotManager', 'kRDSCustomMSSQLSnapshotManager', 'kRDSCustomOracleSnapshotManager', 'kAuroraSnapshotManager', 'kAuroraPostgresSnapshotManager', 'kAuroraMySQLSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsAuroraPostgres', 'kAwsRDSPostgres', 'kAWSMySQL', 'kAWSAuroraMySQL', 'kAWSRdsOracle', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRDSMSSQL', 'kAWSRedshift']):
+            raise ValueError("must be one of enum values ('kNative', 'kSnapshotManager', 'kPhysical', 'kSQL', 'kOracle', 'kRDSSnapshotManager', 'kRDSPostgresSnapshotManager', 'kRDSMySQLSnapshotManager', 'kRDSMSSQLSnapshotManager', 'kRDSOracleSnapshotManager', 'kRDSMariaDBSnapshotManager', 'kRDSCustomMSSQLSnapshotManager', 'kRDSCustomOracleSnapshotManager', 'kAuroraSnapshotManager', 'kAuroraPostgresSnapshotManager', 'kAuroraMySQLSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsAuroraPostgres', 'kAwsRDSPostgres', 'kAWSMySQL', 'kAWSAuroraMySQL', 'kAWSRdsOracle', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRDSMSSQL', 'kAWSRedshift')")
         return value
 
     model_config = ConfigDict(

@@ -1,13 +1,15 @@
 # UserId
 
-Specifies the User Id type. Either sid or unixUid should be set.
+Specifies the User Id type. Either sid or unixUid should be set. If both are set, sid will be used.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**domain** | **str** | Specifies the domain name of the user, where the principal&#39; account is maintained. | [optional] 
 **sid** | **str** | Specifies the user sid. | [optional] 
 **unix_uid** | **int** | Specifies the unix Uid. | [optional] 
+**user_name** | **str** | Specifies the full name of the user | [optional] 
 
 ## Example
 

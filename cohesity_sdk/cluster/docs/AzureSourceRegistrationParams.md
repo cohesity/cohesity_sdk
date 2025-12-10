@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **application_credentials** | [**List[AzureApplicationCredentials]**](AzureApplicationCredentials.md) | Specifies the credentials for a list of applications from azure active directory. | [optional] 
 **azure_tenant_id** | **str** | Specifies Tenant Id of the active directory of Azure account. Accpets both Azure tanant Id and tenant domain name. | [optional] 
+**graph_access_token** | **str** | Specifies the graph access token for using Azure graph API&#39;s. | [optional] 
+**management_access_token** | **str** | Specifies the management access token for using Azure management API&#39;s. | [optional] 
 **registration_level** | **str** | Specifies whether the registration is at tenant level or subscription level. | 
 **registration_workflow** | **str** | Specifies whether the type of registration is express or manual. | 
 **subscription_details** | [**List[AzureSubscription]**](AzureSubscription.md) | Specifies the list subscription ids to be registered. | [optional] 

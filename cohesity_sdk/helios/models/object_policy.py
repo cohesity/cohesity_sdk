@@ -36,8 +36,8 @@ class ObjectPolicy(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kNative', 'kSnapshotManager', 'kPhysical', 'kSQL', 'kOracle']):
-            raise ValueError("must be one of enum values ('kNative', 'kSnapshotManager', 'kPhysical', 'kSQL', 'kOracle')")
+        if value not in set(['kNative', 'kSnapshotManager', 'kPhysical', 'kSQL', 'kOracle', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsAuroraPostgres', 'kAwsRDSPostgres', 'kAWSMySQL']):
+            raise ValueError("must be one of enum values ('kNative', 'kSnapshotManager', 'kPhysical', 'kSQL', 'kOracle', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsAuroraPostgres', 'kAwsRDSPostgres', 'kAWSMySQL')")
         return value
 
     model_config = ConfigDict(

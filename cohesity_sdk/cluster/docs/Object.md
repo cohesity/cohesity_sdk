@@ -34,6 +34,8 @@ Name | Type | Description | Notes
 **mongo_db_params** | [**MongoDBObjectParams**](MongoDBObjectParams.md) |  | [optional] 
 **mssql_params** | [**MssqlObjectEntityParams**](MssqlObjectEntityParams.md) |  | [optional] 
 **netapp_params** | [**NetappObjectParams**](NetappObjectParams.md) |  | [optional] 
+**nutanix_fs_params** | [**NutanixFSObjectParams**](NutanixFSObjectParams.md) |  | [optional] 
+**o365_params** | [**O365ObjectEntityParams**](O365ObjectEntityParams.md) |  | [optional] 
 **oracle_params** | [**OracleObjectEntityParams**](OracleObjectEntityParams.md) |  | [optional] 
 **physical_params** | [**PhysicalObjectEntityParams**](PhysicalObjectEntityParams.md) |  | [optional] 
 **sharepoint_params** | [**SharepointObjectEntityParams**](SharepointObjectEntityParams.md) |  | [optional] 

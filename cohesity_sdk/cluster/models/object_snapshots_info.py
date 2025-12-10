@@ -21,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_v
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.object_archival_snapshot_info import ObjectArchivalSnapshotInfo
 from cohesity_sdk.cluster.models.object_local_snapshot_info import ObjectLocalSnapshotInfo
+from cohesity_sdk.cluster.models.replication_target_summary_info import ReplicationTargetSummaryInfo
 from typing import Set
 from typing_extensions import Self
 
@@ -36,12 +37,13 @@ class ObjectSnapshotsInfo(BaseModel):
     protection_run_end_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the end time of Protection Group Run in Unix timestamp epoch in microseconds.", alias="protectionRunEndTimeUsecs")
     protection_run_id: Optional[StrictStr] = Field(default=None, description="Specifies the id of Protection Group Run.", alias="protectionRunId")
     protection_run_start_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the start time of Protection Group Run in Unix timestamp epoch in microseconds.", alias="protectionRunStartTimeUsecs")
+    replication_snapshot_info: Optional[ReplicationTargetSummaryInfo] = Field(default=None, alias="replicationSnapshotInfo")
     run_instance_id: Optional[StrictInt] = Field(default=None, description="Specifies the instance id of the protection run which create the snapshot.", alias="runInstanceId")
     run_type: Optional[StrictStr] = Field(default=None, description="Specifies the type of protection run created this snapshot.", alias="runType")
     source_group_id: Optional[StrictStr] = Field(default=None, description="Specifies the source protection group id in case of replication.", alias="sourceGroupId")
     storage_domain_id: Optional[StrictInt] = Field(default=None, description="Specifies the Storage Domain id where the backup data of Object is present.", alias="storageDomainId")
     storage_domain_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of Storage Domain id where the backup data of Object is present", alias="storageDomainName")
-    __properties: ClassVar[List[str]] = ["archivalSnapshotsInfo", "indexingStatus", "localSnapshotInfo", "protectionGroupId", "protectionGroupName", "protectionRunEndTimeUsecs", "protectionRunId", "protectionRunStartTimeUsecs", "runInstanceId", "runType", "sourceGroupId", "storageDomainId", "storageDomainName"]
+    __properties: ClassVar[List[str]] = ["archivalSnapshotsInfo", "indexingStatus", "localSnapshotInfo", "protectionGroupId", "protectionGroupName", "protectionRunEndTimeUsecs", "protectionRunId", "protectionRunStartTimeUsecs", "replicationSnapshotInfo", "runInstanceId", "runType", "sourceGroupId", "storageDomainId", "storageDomainName"]
 
     @field_validator('indexing_status')
     def indexing_status_validate_enum(cls, value):
@@ -112,6 +114,9 @@ class ObjectSnapshotsInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of local_snapshot_info
         if self.local_snapshot_info:
             _dict['localSnapshotInfo'] = self.local_snapshot_info.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of replication_snapshot_info
+        if self.replication_snapshot_info:
+            _dict['replicationSnapshotInfo'] = self.replication_snapshot_info.to_dict()
         # set to None if archival_snapshots_info (nullable) is None
         # and model_fields_set contains the field
         if self.archival_snapshots_info is None and "archival_snapshots_info" in self.model_fields_set:
@@ -192,6 +197,7 @@ class ObjectSnapshotsInfo(BaseModel):
             "protectionRunEndTimeUsecs": obj.get("protectionRunEndTimeUsecs"),
             "protectionRunId": obj.get("protectionRunId"),
             "protectionRunStartTimeUsecs": obj.get("protectionRunStartTimeUsecs"),
+            "replicationSnapshotInfo": ReplicationTargetSummaryInfo.from_dict(obj["replicationSnapshotInfo"]) if obj.get("replicationSnapshotInfo") is not None else None,
             "runInstanceId": obj.get("runInstanceId"),
             "runType": obj.get("runType"),
             "sourceGroupId": obj.get("sourceGroupId"),

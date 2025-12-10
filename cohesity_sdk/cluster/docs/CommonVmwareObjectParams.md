@@ -7,6 +7,7 @@ Specifies the common object parameters required for VMware protection.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **exclude_disks** | [**List[DiskInfo]**](DiskInfo.md) | Specifies a list of disks to exclude from being protected. This is only applicable to VM objects. | [optional] 
+**include_disks** | [**List[DiskInfo]**](DiskInfo.md) | Specifies a list of disks to be protected. This is only applicable to VM objects. | [optional] 
 **truncate_exchange_logs** | **bool** | Specifies whether or not to truncate MS Exchange logs while taking an app consistent snapshot of this object. This is only applicable to objects which have a registered MS Exchange app. | [optional] 
 
 ## Example

@@ -28,8 +28,9 @@ class PstParam(BaseModel):
     """ # noqa: E501
     create_pst: Optional[StrictBool] = Field(default=None, description="Specifies if create a PST or MSG for input items.", alias="createPst")
     password: Optional[StrictStr] = Field(description="Specifies Password to be set for generated PSTs.")
+    separate_download_files: Optional[StrictBool] = Field(default=None, description="If true, a separate download file will be made for each snapshot. If false, a single common download file will be used for all snapshots. Default is false.", alias="separateDownloadFiles")
     size_threshold_bytes: Optional[StrictInt] = Field(default=None, description="Specifies PST size threshold in bytes.", alias="sizeThresholdBytes")
-    __properties: ClassVar[List[str]] = ["createPst", "password", "sizeThresholdBytes"]
+    __properties: ClassVar[List[str]] = ["createPst", "password", "separateDownloadFiles", "sizeThresholdBytes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,6 +81,11 @@ class PstParam(BaseModel):
         if self.password is None and "password" in self.model_fields_set:
             _dict['password'] = None
 
+        # set to None if separate_download_files (nullable) is None
+        # and model_fields_set contains the field
+        if self.separate_download_files is None and "separate_download_files" in self.model_fields_set:
+            _dict['separateDownloadFiles'] = None
+
         # set to None if size_threshold_bytes (nullable) is None
         # and model_fields_set contains the field
         if self.size_threshold_bytes is None and "size_threshold_bytes" in self.model_fields_set:
@@ -99,6 +105,7 @@ class PstParam(BaseModel):
         _obj = cls.model_validate({
             "createPst": obj.get("createPst"),
             "password": obj.get("password"),
+            "separateDownloadFiles": obj.get("separateDownloadFiles"),
             "sizeThresholdBytes": obj.get("sizeThresholdBytes")
         })
         return _obj

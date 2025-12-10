@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **name** | **str** | Specifies the name of the Protection Policy. | 
 **remote_target_policy** | [**TargetsConfiguration**](TargetsConfiguration.md) |  | [optional] 
 **retry_options** | [**RetryOptions**](RetryOptions.md) |  | [optional] 
+**rpo_policy_settings** | [**RpoPolicySettings**](RpoPolicySettings.md) |  | [optional] 
+**skip_interval_mins** | **int** | Specifies the period of time before skipping the execution of new group Runs if an existing queued group Run of the same Protection group has not started. For example if this field is set to 30 minutes and a group Run is scheduled to start at 5:00 AM every day but does not start due to conflicts (such as too many groups are running). If the new group Run does not start by 5:30AM, the Cohesity Cluster will skip the new group Run. If the original group Run completes before 5:30AM the next day, a new group Run is created and starts executing. This field is optional. | [optional] 
 **version** | **int** | Specifies the current policy verison. Policy version is incremented for optionally supporting new features and differentialting across releases. | [optional] 
 **template_id** | **str** | Specifies the parent policy template id to which the policy is linked to. | [optional] 
 

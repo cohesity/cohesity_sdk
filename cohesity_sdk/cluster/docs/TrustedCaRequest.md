@@ -6,7 +6,7 @@ Specifies the basic info about CA Root Certificate.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**certificate** | **str** | Specifies the certificate to be imported. Certificate should be in PEM format. | 
+**certificate** | **str** | Specifies the certificate to be imported. Certificate should be in PEM format. | [optional] 
 **description** | **str** | Description of the certificate. | [optional] 
 **name** | **str** | Descriptive name of the certificate. | 
 

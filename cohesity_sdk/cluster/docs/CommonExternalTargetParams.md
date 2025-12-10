@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cloud_domains** | [**List[CloudDomain]**](CloudDomain.md) | Specifies the cloud domain information. | [optional] 
 **compression** | **str** | Specifies whether the type of compression of the External Target | [optional] 
+**enable_object_lock** | **bool** | Whether to enable object lock for this vault. If this field is set, all the objects written to the vault will be object locked until all the archives referring to them expire. | [optional] 
 **error_message** | **str** | Specifies the error message if the event is in failed state. | [optional] [readonly] 
 **global_id** | **str** | Specifies the global identifier of the External Target. | [optional] 
 **id** | **int** | Specifies the ID of the External Target. | [optional] [readonly] 
@@ -18,6 +19,9 @@ Name | Type | Description | Notes
 **status** | **str** | Specifies the registration status of the External Target | [optional] [readonly] 
 **storage_domain_name** | **str** | Specifies the storage domain associated with the target. | [optional] 
 **tenant_ids** | **List[str]** | Specifies the list of tenantIds for the External Target | [optional] 
+**use_for_apollo_mr_store** | **bool** | Specifies whether this external target is used to store apollo mr records. | [optional] 
+**use_rolling_object_lock** | **bool** | Whether the vault should use rolling object lock. | [optional] 
+**worm_lock_in_compliance_mode** | **bool** | Whether archives to this vault should use compliance mode when adding data locks to objects. | [optional] 
 
 ## Example
 

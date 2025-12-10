@@ -19,7 +19,11 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.cluster.models.aws_aurora_entity_metadata import AwsAuroraEntityMetadata
+from cohesity_sdk.cluster.models.aws_document_db_entity_metadata import AwsDocumentDBEntityMetadata
+from cohesity_sdk.cluster.models.aws_entity_child_metadata import AwsEntityChildMetadata
 from cohesity_sdk.cluster.models.aws_postgres_entity_metadata import AwsPostgresEntityMetadata
+from cohesity_sdk.cluster.models.aws_rds_entity_metadata import AwsRdsEntityMetadata
 from typing import Set
 from typing_extensions import Self
 
@@ -27,8 +31,12 @@ class AwsEntityMetadata(BaseModel):
     """
     Specifies the entity metadata of aws entities.
     """ # noqa: E501
+    aurora_params: Optional[AwsAuroraEntityMetadata] = Field(default=None, alias="auroraParams")
+    child_metadata: Optional[AwsEntityChildMetadata] = Field(default=None, alias="childMetadata")
+    document_db_params: Optional[AwsDocumentDBEntityMetadata] = Field(default=None, alias="documentDBParams")
     postgres_params: Optional[AwsPostgresEntityMetadata] = Field(default=None, alias="postgresParams")
-    __properties: ClassVar[List[str]] = ["postgresParams"]
+    rds_params: Optional[AwsRdsEntityMetadata] = Field(default=None, alias="rdsParams")
+    __properties: ClassVar[List[str]] = ["auroraParams", "childMetadata", "documentDBParams", "postgresParams", "rdsParams"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,9 +77,21 @@ class AwsEntityMetadata(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of aurora_params
+        if self.aurora_params:
+            _dict['auroraParams'] = self.aurora_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of child_metadata
+        if self.child_metadata:
+            _dict['childMetadata'] = self.child_metadata.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of document_db_params
+        if self.document_db_params:
+            _dict['documentDBParams'] = self.document_db_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of postgres_params
         if self.postgres_params:
             _dict['postgresParams'] = self.postgres_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of rds_params
+        if self.rds_params:
+            _dict['rdsParams'] = self.rds_params.to_dict()
         return _dict
 
     @classmethod
@@ -84,7 +104,11 @@ class AwsEntityMetadata(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "postgresParams": AwsPostgresEntityMetadata.from_dict(obj["postgresParams"]) if obj.get("postgresParams") is not None else None
+            "auroraParams": AwsAuroraEntityMetadata.from_dict(obj["auroraParams"]) if obj.get("auroraParams") is not None else None,
+            "childMetadata": AwsEntityChildMetadata.from_dict(obj["childMetadata"]) if obj.get("childMetadata") is not None else None,
+            "documentDBParams": AwsDocumentDBEntityMetadata.from_dict(obj["documentDBParams"]) if obj.get("documentDBParams") is not None else None,
+            "postgresParams": AwsPostgresEntityMetadata.from_dict(obj["postgresParams"]) if obj.get("postgresParams") is not None else None,
+            "rdsParams": AwsRdsEntityMetadata.from_dict(obj["rdsParams"]) if obj.get("rdsParams") is not None else None
         })
         return _obj
 

@@ -20,10 +20,18 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.aws_agent_protection_group_params import AwsAgentProtectionGroupParams
+from cohesity_sdk.cluster.models.aws_aurora_postgres_db_protection_group_params import AwsAuroraPostgresDbProtectionGroupParams
 from cohesity_sdk.cluster.models.aws_aurora_protection_group_params import AwsAuroraProtectionGroupParams
+from cohesity_sdk.cluster.models.aws_document_db_protection_group_params import AwsDocumentDBProtectionGroupParams
+from cohesity_sdk.cluster.models.aws_dynamo_db_protection_group_params import AwsDynamoDBProtectionGroupParams
+from cohesity_sdk.cluster.models.aws_mysql_protection_group_params import AwsMysqlProtectionGroupParams
 from cohesity_sdk.cluster.models.aws_native_protection_group_params import AwsNativeProtectionGroupParams
+from cohesity_sdk.cluster.models.aws_rds_ms_sql_protection_group_params import AwsRdsMsSqlProtectionGroupParams
+from cohesity_sdk.cluster.models.aws_rds_oracle_protection_group_params import AwsRDSOracleProtectionGroupParams
+from cohesity_sdk.cluster.models.aws_rds_postgres_db_protection_group_params import AwsRdsPostgresDbProtectionGroupParams
 from cohesity_sdk.cluster.models.aws_rds_postgres_protection_group_params import AwsRdsPostgresProtectionGroupParams
 from cohesity_sdk.cluster.models.aws_rds_protection_group_params import AwsRdsProtectionGroupParams
+from cohesity_sdk.cluster.models.aws_redshift_protection_group_params import AwsRedshiftProtectionGroupParams
 from cohesity_sdk.cluster.models.aws_s3_protection_group_params import AwsS3ProtectionGroupParams
 from cohesity_sdk.cluster.models.aws_snapshot_manager_protection_group_params import AwsSnapshotManagerProtectionGroupParams
 from typing import Set
@@ -34,20 +42,28 @@ class AwsProtectionGroupParams(BaseModel):
     Specifies the parameters which are specific to AWS related Protection Groups.
     """ # noqa: E501
     agent_protection_type_params: Optional[AwsAgentProtectionGroupParams] = Field(default=None, alias="agentProtectionTypeParams")
+    aurora_postgres_db_protection_type_params: Optional[AwsAuroraPostgresDbProtectionGroupParams] = Field(default=None, alias="auroraPostgresDbProtectionTypeParams")
     aurora_protection_type_params: Optional[AwsAuroraProtectionGroupParams] = Field(default=None, alias="auroraProtectionTypeParams")
+    document_db_protection_type_params: Optional[AwsDocumentDBProtectionGroupParams] = Field(default=None, alias="documentDBProtectionTypeParams")
+    dynamo_db_protection_type_params: Optional[AwsDynamoDBProtectionGroupParams] = Field(default=None, alias="dynamoDBProtectionTypeParams")
+    mysql_protection_type_params: Optional[AwsMysqlProtectionGroupParams] = Field(default=None, alias="mysqlProtectionTypeParams")
     native_protection_type_params: Optional[AwsNativeProtectionGroupParams] = Field(default=None, alias="nativeProtectionTypeParams")
+    oracle_protection_type_params: Optional[AwsRDSOracleProtectionGroupParams] = Field(default=None, alias="oracleProtectionTypeParams")
     protection_type: StrictStr = Field(description="Specifies the AWS Protection Group type.", alias="protectionType")
+    rds_ms_sql_protection_type_params: Optional[AwsRdsMsSqlProtectionGroupParams] = Field(default=None, alias="rdsMsSqlProtectionTypeParams")
+    rds_postgres_db_protection_type_params: Optional[AwsRdsPostgresDbProtectionGroupParams] = Field(default=None, alias="rdsPostgresDbProtectionTypeParams")
     rds_postgres_protection_type_params: Optional[AwsRdsPostgresProtectionGroupParams] = Field(default=None, alias="rdsPostgresProtectionTypeParams")
     rds_protection_type_params: Optional[AwsRdsProtectionGroupParams] = Field(default=None, alias="rdsProtectionTypeParams")
+    redshift_protection_type_params: Optional[AwsRedshiftProtectionGroupParams] = Field(default=None, alias="redshiftProtectionTypeParams")
     s3_protection_type_params: Optional[AwsS3ProtectionGroupParams] = Field(default=None, alias="s3ProtectionTypeParams")
     snapshot_manager_protection_type_params: Optional[AwsSnapshotManagerProtectionGroupParams] = Field(default=None, alias="snapshotManagerProtectionTypeParams")
-    __properties: ClassVar[List[str]] = ["agentProtectionTypeParams", "auroraProtectionTypeParams", "nativeProtectionTypeParams", "protectionType", "rdsPostgresProtectionTypeParams", "rdsProtectionTypeParams", "s3ProtectionTypeParams", "snapshotManagerProtectionTypeParams"]
+    __properties: ClassVar[List[str]] = ["agentProtectionTypeParams", "auroraPostgresDbProtectionTypeParams", "auroraProtectionTypeParams", "documentDBProtectionTypeParams", "dynamoDBProtectionTypeParams", "mysqlProtectionTypeParams", "nativeProtectionTypeParams", "oracleProtectionTypeParams", "protectionType", "rdsMsSqlProtectionTypeParams", "rdsPostgresDbProtectionTypeParams", "rdsPostgresProtectionTypeParams", "rdsProtectionTypeParams", "redshiftProtectionTypeParams", "s3ProtectionTypeParams", "snapshotManagerProtectionTypeParams"]
 
     @field_validator('protection_type')
     def protection_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['kAgent', 'kNative', 'kSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup']):
-            raise ValueError("must be one of enum values ('kAgent', 'kNative', 'kSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup')")
+        if value not in set(['kAgent', 'kNative', 'kSnapshotManager', 'kRDSSnapshotManager', 'kRDSPostgresSnapshotManager', 'kRDSMySQLSnapshotManager', 'kRDSMSSQLSnapshotManager', 'kRDSOracleSnapshotManager', 'kRDSMariaDBSnapshotManager', 'kRDSCustomMSSQLSnapshotManager', 'kRDSCustomOracleSnapshotManager', 'kAuroraSnapshotManager', 'kAuroraPostgresSnapshotManager', 'kAuroraMySQLSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup', 'kAwsAuroraPostgres', 'kAwsRDSPostgres', 'kAWSMySQL', 'kAWSSnapshotManager', 'kAwsDynamoDB', 'kAWSAuroraMySQL', 'kAWSRdsOracle', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRDSMSSQL', 'kAWSRedshift']):
+            raise ValueError("must be one of enum values ('kAgent', 'kNative', 'kSnapshotManager', 'kRDSSnapshotManager', 'kRDSPostgresSnapshotManager', 'kRDSMySQLSnapshotManager', 'kRDSMSSQLSnapshotManager', 'kRDSOracleSnapshotManager', 'kRDSMariaDBSnapshotManager', 'kRDSCustomMSSQLSnapshotManager', 'kRDSCustomOracleSnapshotManager', 'kAuroraSnapshotManager', 'kAuroraPostgresSnapshotManager', 'kAuroraMySQLSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup', 'kAwsAuroraPostgres', 'kAwsRDSPostgres', 'kAWSMySQL', 'kAWSSnapshotManager', 'kAwsDynamoDB', 'kAWSAuroraMySQL', 'kAWSRdsOracle', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRDSMSSQL', 'kAWSRedshift')")
         return value
 
     model_config = ConfigDict(
@@ -92,18 +108,42 @@ class AwsProtectionGroupParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of agent_protection_type_params
         if self.agent_protection_type_params:
             _dict['agentProtectionTypeParams'] = self.agent_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of aurora_postgres_db_protection_type_params
+        if self.aurora_postgres_db_protection_type_params:
+            _dict['auroraPostgresDbProtectionTypeParams'] = self.aurora_postgres_db_protection_type_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of aurora_protection_type_params
         if self.aurora_protection_type_params:
             _dict['auroraProtectionTypeParams'] = self.aurora_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of document_db_protection_type_params
+        if self.document_db_protection_type_params:
+            _dict['documentDBProtectionTypeParams'] = self.document_db_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of dynamo_db_protection_type_params
+        if self.dynamo_db_protection_type_params:
+            _dict['dynamoDBProtectionTypeParams'] = self.dynamo_db_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of mysql_protection_type_params
+        if self.mysql_protection_type_params:
+            _dict['mysqlProtectionTypeParams'] = self.mysql_protection_type_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of native_protection_type_params
         if self.native_protection_type_params:
             _dict['nativeProtectionTypeParams'] = self.native_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of oracle_protection_type_params
+        if self.oracle_protection_type_params:
+            _dict['oracleProtectionTypeParams'] = self.oracle_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of rds_ms_sql_protection_type_params
+        if self.rds_ms_sql_protection_type_params:
+            _dict['rdsMsSqlProtectionTypeParams'] = self.rds_ms_sql_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of rds_postgres_db_protection_type_params
+        if self.rds_postgres_db_protection_type_params:
+            _dict['rdsPostgresDbProtectionTypeParams'] = self.rds_postgres_db_protection_type_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of rds_postgres_protection_type_params
         if self.rds_postgres_protection_type_params:
             _dict['rdsPostgresProtectionTypeParams'] = self.rds_postgres_protection_type_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of rds_protection_type_params
         if self.rds_protection_type_params:
             _dict['rdsProtectionTypeParams'] = self.rds_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of redshift_protection_type_params
+        if self.redshift_protection_type_params:
+            _dict['redshiftProtectionTypeParams'] = self.redshift_protection_type_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of s3_protection_type_params
         if self.s3_protection_type_params:
             _dict['s3ProtectionTypeParams'] = self.s3_protection_type_params.to_dict()
@@ -123,11 +163,19 @@ class AwsProtectionGroupParams(BaseModel):
 
         _obj = cls.model_validate({
             "agentProtectionTypeParams": AwsAgentProtectionGroupParams.from_dict(obj["agentProtectionTypeParams"]) if obj.get("agentProtectionTypeParams") is not None else None,
+            "auroraPostgresDbProtectionTypeParams": AwsAuroraPostgresDbProtectionGroupParams.from_dict(obj["auroraPostgresDbProtectionTypeParams"]) if obj.get("auroraPostgresDbProtectionTypeParams") is not None else None,
             "auroraProtectionTypeParams": AwsAuroraProtectionGroupParams.from_dict(obj["auroraProtectionTypeParams"]) if obj.get("auroraProtectionTypeParams") is not None else None,
+            "documentDBProtectionTypeParams": AwsDocumentDBProtectionGroupParams.from_dict(obj["documentDBProtectionTypeParams"]) if obj.get("documentDBProtectionTypeParams") is not None else None,
+            "dynamoDBProtectionTypeParams": AwsDynamoDBProtectionGroupParams.from_dict(obj["dynamoDBProtectionTypeParams"]) if obj.get("dynamoDBProtectionTypeParams") is not None else None,
+            "mysqlProtectionTypeParams": AwsMysqlProtectionGroupParams.from_dict(obj["mysqlProtectionTypeParams"]) if obj.get("mysqlProtectionTypeParams") is not None else None,
             "nativeProtectionTypeParams": AwsNativeProtectionGroupParams.from_dict(obj["nativeProtectionTypeParams"]) if obj.get("nativeProtectionTypeParams") is not None else None,
+            "oracleProtectionTypeParams": AwsRDSOracleProtectionGroupParams.from_dict(obj["oracleProtectionTypeParams"]) if obj.get("oracleProtectionTypeParams") is not None else None,
             "protectionType": obj.get("protectionType"),
+            "rdsMsSqlProtectionTypeParams": AwsRdsMsSqlProtectionGroupParams.from_dict(obj["rdsMsSqlProtectionTypeParams"]) if obj.get("rdsMsSqlProtectionTypeParams") is not None else None,
+            "rdsPostgresDbProtectionTypeParams": AwsRdsPostgresDbProtectionGroupParams.from_dict(obj["rdsPostgresDbProtectionTypeParams"]) if obj.get("rdsPostgresDbProtectionTypeParams") is not None else None,
             "rdsPostgresProtectionTypeParams": AwsRdsPostgresProtectionGroupParams.from_dict(obj["rdsPostgresProtectionTypeParams"]) if obj.get("rdsPostgresProtectionTypeParams") is not None else None,
             "rdsProtectionTypeParams": AwsRdsProtectionGroupParams.from_dict(obj["rdsProtectionTypeParams"]) if obj.get("rdsProtectionTypeParams") is not None else None,
+            "redshiftProtectionTypeParams": AwsRedshiftProtectionGroupParams.from_dict(obj["redshiftProtectionTypeParams"]) if obj.get("redshiftProtectionTypeParams") is not None else None,
             "s3ProtectionTypeParams": AwsS3ProtectionGroupParams.from_dict(obj["s3ProtectionTypeParams"]) if obj.get("s3ProtectionTypeParams") is not None else None,
             "snapshotManagerProtectionTypeParams": AwsSnapshotManagerProtectionGroupParams.from_dict(obj["snapshotManagerProtectionTypeParams"]) if obj.get("snapshotManagerProtectionTypeParams") is not None else None
         })

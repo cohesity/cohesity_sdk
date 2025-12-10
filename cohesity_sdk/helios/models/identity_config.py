@@ -44,8 +44,8 @@ class IdentityConfig(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['OpenIdConnect', 'OAuth2']):
-            raise ValueError("must be one of enum values ('OpenIdConnect', 'OAuth2')")
+        if value not in set(['OpenIdConnect', 'OAuth2', 'IbmId']):
+            raise ValueError("must be one of enum values ('OpenIdConnect', 'OAuth2', 'IbmId')")
         return value
 
     model_config = ConfigDict(

@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.cluster.models.azure_disk_exclusion_params import AzureDiskExclusionParams
 from cohesity_sdk.cluster.models.azure_native_protection_group_object_params import AzureNativeProtectionGroupObjectParams
 from cohesity_sdk.cluster.models.cloud_backup_script_params import CloudBackupScriptParams
 from cohesity_sdk.cluster.models.data_transfer_info import DataTransferInfo
@@ -33,6 +34,7 @@ class AzureNativeProtectionGroupParams(BaseModel):
     cloud_migration: Optional[StrictBool] = Field(default=None, description="Specifies whether or not to move the workload to the cloud.", alias="cloudMigration")
     cloud_pre_post_script: Optional[CloudBackupScriptParams] = Field(default=None, alias="cloudPrePostScript")
     data_transfer_info: Optional[DataTransferInfo] = Field(default=None, alias="dataTransferInfo")
+    disk_exclusion_params: Optional[AzureDiskExclusionParams] = Field(default=None, alias="diskExclusionParams")
     exclude_object_ids: Optional[List[StrictInt]] = Field(default=None, description="Specifies the objects to be excluded in the Protection Group.", alias="excludeObjectIds")
     exclude_vm_tag_ids: Optional[List[List[StrictInt]]] = Field(default=None, description="Array of arrays of VM Tag Ids that Specify VMs to Exclude.", alias="excludeVmTagIds")
     indexing_policy: Optional[IndexingPolicy] = Field(default=None, alias="indexingPolicy")
@@ -40,7 +42,7 @@ class AzureNativeProtectionGroupParams(BaseModel):
     source_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the parent of the objects.", alias="sourceId")
     source_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the parent of the objects.", alias="sourceName")
     vm_tag_ids: Optional[List[List[StrictInt]]] = Field(default=None, description="Array of arrays of VM Tag Ids that Specify VMs to Protect.", alias="vmTagIds")
-    __properties: ClassVar[List[str]] = ["cloudMigration", "cloudPrePostScript", "dataTransferInfo", "excludeObjectIds", "excludeVmTagIds", "indexingPolicy", "objects", "sourceId", "sourceName", "vmTagIds"]
+    __properties: ClassVar[List[str]] = ["cloudMigration", "cloudPrePostScript", "dataTransferInfo", "diskExclusionParams", "excludeObjectIds", "excludeVmTagIds", "indexingPolicy", "objects", "sourceId", "sourceName", "vmTagIds"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,6 +93,9 @@ class AzureNativeProtectionGroupParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of data_transfer_info
         if self.data_transfer_info:
             _dict['dataTransferInfo'] = self.data_transfer_info.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of disk_exclusion_params
+        if self.disk_exclusion_params:
+            _dict['diskExclusionParams'] = self.disk_exclusion_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of indexing_policy
         if self.indexing_policy:
             _dict['indexingPolicy'] = self.indexing_policy.to_dict()
@@ -141,6 +146,7 @@ class AzureNativeProtectionGroupParams(BaseModel):
             "cloudMigration": obj.get("cloudMigration"),
             "cloudPrePostScript": CloudBackupScriptParams.from_dict(obj["cloudPrePostScript"]) if obj.get("cloudPrePostScript") is not None else None,
             "dataTransferInfo": DataTransferInfo.from_dict(obj["dataTransferInfo"]) if obj.get("dataTransferInfo") is not None else None,
+            "diskExclusionParams": AzureDiskExclusionParams.from_dict(obj["diskExclusionParams"]) if obj.get("diskExclusionParams") is not None else None,
             "excludeObjectIds": obj.get("excludeObjectIds"),
             "excludeVmTagIds": obj.get("excludeVmTagIds"),
             "indexingPolicy": IndexingPolicy.from_dict(obj["indexingPolicy"]) if obj.get("indexingPolicy") is not None else None,

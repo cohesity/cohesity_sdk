@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Set
 from typing_extensions import Self
@@ -28,11 +28,13 @@ class AdvancedSettings(BaseModel):
     """ # noqa: E501
     cloned_db_backup_status: Optional[StrictStr] = Field(default=None, description="Whether to report error if SQL database is cloned.", alias="clonedDbBackupStatus")
     db_backup_if_not_online_status: Optional[StrictStr] = Field(default=None, description="Whether to report error if SQL database is not online.", alias="dbBackupIfNotOnlineStatus")
+    log_chain_break_auto_trigger_oob_incr_backup: Optional[StrictBool] = Field(default=None, description="If set to true, out of band incremental backup will be started when the log chain is broken and it would be started at the end of the log backup. Default value is false.", alias="logChainBreakAutoTriggerOobIncrBackup")
     missing_db_backup_status: Optional[StrictStr] = Field(default=None, description="Fail the backup job when the database is missing. The database may be missing if it is deleted or corrupted.", alias="missingDbBackupStatus")
+    new_database_auto_trigger_oob_incr_backup: Optional[StrictBool] = Field(default=None, description="If set to true, out of band incremental backup will be triggered when a new database is found and it would be started at the end of the log backup. Default value is false.", alias="newDatabaseAutoTriggerOobIncrBackup")
     offline_restoring_db_backup_status: Optional[StrictStr] = Field(default=None, description="Fail the backup job when database is offline or restoring.", alias="offlineRestoringDbBackupStatus")
     read_only_db_backup_status: Optional[StrictStr] = Field(default=None, description="Whether to skip backup for read-only SQL databases.", alias="readOnlyDbBackupStatus")
     report_all_non_autoprotect_db_errors: Optional[StrictStr] = Field(default=None, description="Whether to report error for all dbs in non-autoprotect jobs.", alias="reportAllNonAutoprotectDbErrors")
-    __properties: ClassVar[List[str]] = ["clonedDbBackupStatus", "dbBackupIfNotOnlineStatus", "missingDbBackupStatus", "offlineRestoringDbBackupStatus", "readOnlyDbBackupStatus", "reportAllNonAutoprotectDbErrors"]
+    __properties: ClassVar[List[str]] = ["clonedDbBackupStatus", "dbBackupIfNotOnlineStatus", "logChainBreakAutoTriggerOobIncrBackup", "missingDbBackupStatus", "newDatabaseAutoTriggerOobIncrBackup", "offlineRestoringDbBackupStatus", "readOnlyDbBackupStatus", "reportAllNonAutoprotectDbErrors"]
 
     @field_validator('cloned_db_backup_status')
     def cloned_db_backup_status_validate_enum(cls, value):
@@ -143,10 +145,20 @@ class AdvancedSettings(BaseModel):
         if self.db_backup_if_not_online_status is None and "db_backup_if_not_online_status" in self.model_fields_set:
             _dict['dbBackupIfNotOnlineStatus'] = None
 
+        # set to None if log_chain_break_auto_trigger_oob_incr_backup (nullable) is None
+        # and model_fields_set contains the field
+        if self.log_chain_break_auto_trigger_oob_incr_backup is None and "log_chain_break_auto_trigger_oob_incr_backup" in self.model_fields_set:
+            _dict['logChainBreakAutoTriggerOobIncrBackup'] = None
+
         # set to None if missing_db_backup_status (nullable) is None
         # and model_fields_set contains the field
         if self.missing_db_backup_status is None and "missing_db_backup_status" in self.model_fields_set:
             _dict['missingDbBackupStatus'] = None
+
+        # set to None if new_database_auto_trigger_oob_incr_backup (nullable) is None
+        # and model_fields_set contains the field
+        if self.new_database_auto_trigger_oob_incr_backup is None and "new_database_auto_trigger_oob_incr_backup" in self.model_fields_set:
+            _dict['newDatabaseAutoTriggerOobIncrBackup'] = None
 
         # set to None if offline_restoring_db_backup_status (nullable) is None
         # and model_fields_set contains the field
@@ -177,7 +189,9 @@ class AdvancedSettings(BaseModel):
         _obj = cls.model_validate({
             "clonedDbBackupStatus": obj.get("clonedDbBackupStatus"),
             "dbBackupIfNotOnlineStatus": obj.get("dbBackupIfNotOnlineStatus"),
+            "logChainBreakAutoTriggerOobIncrBackup": obj.get("logChainBreakAutoTriggerOobIncrBackup"),
             "missingDbBackupStatus": obj.get("missingDbBackupStatus"),
+            "newDatabaseAutoTriggerOobIncrBackup": obj.get("newDatabaseAutoTriggerOobIncrBackup"),
             "offlineRestoringDbBackupStatus": obj.get("offlineRestoringDbBackupStatus"),
             "readOnlyDbBackupStatus": obj.get("readOnlyDbBackupStatus"),
             "reportAllNonAutoprotectDbErrors": obj.get("reportAllNonAutoprotectDbErrors")

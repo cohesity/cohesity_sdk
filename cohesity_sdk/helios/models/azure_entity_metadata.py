@@ -19,6 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.azure_kubernetes_entity_metadata import AzureKubernetesEntityMetadata
+from cohesity_sdk.helios.models.azure_my_sql_entity_metadata import AzureMySqlEntityMetadata
 from cohesity_sdk.helios.models.azure_sql_entity_metadata import AzureSqlEntityMetadata
 from typing import Set
 from typing_extensions import Self
@@ -27,8 +29,10 @@ class AzureEntityMetadata(BaseModel):
     """
     Specifies the entity metadata of azure entities.
     """ # noqa: E501
+    azure_kubernetes_params: Optional[AzureKubernetesEntityMetadata] = Field(default=None, alias="azureKubernetesParams")
+    azure_my_sql_params: Optional[AzureMySqlEntityMetadata] = Field(default=None, alias="azureMySqlParams")
     azure_sql_params: Optional[AzureSqlEntityMetadata] = Field(default=None, alias="azureSqlParams")
-    __properties: ClassVar[List[str]] = ["azureSqlParams"]
+    __properties: ClassVar[List[str]] = ["azureKubernetesParams", "azureMySqlParams", "azureSqlParams"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,6 +73,12 @@ class AzureEntityMetadata(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of azure_kubernetes_params
+        if self.azure_kubernetes_params:
+            _dict['azureKubernetesParams'] = self.azure_kubernetes_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_my_sql_params
+        if self.azure_my_sql_params:
+            _dict['azureMySqlParams'] = self.azure_my_sql_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of azure_sql_params
         if self.azure_sql_params:
             _dict['azureSqlParams'] = self.azure_sql_params.to_dict()
@@ -84,6 +94,8 @@ class AzureEntityMetadata(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "azureKubernetesParams": AzureKubernetesEntityMetadata.from_dict(obj["azureKubernetesParams"]) if obj.get("azureKubernetesParams") is not None else None,
+            "azureMySqlParams": AzureMySqlEntityMetadata.from_dict(obj["azureMySqlParams"]) if obj.get("azureMySqlParams") is not None else None,
             "azureSqlParams": AzureSqlEntityMetadata.from_dict(obj["azureSqlParams"]) if obj.get("azureSqlParams") is not None else None
         })
         return _obj

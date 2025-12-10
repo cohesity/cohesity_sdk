@@ -33,6 +33,7 @@ class PhysicalFileProtectionGroupParams(BaseModel):
     """ # noqa: E501
     allow_parallel_runs: Optional[StrictBool] = Field(default=None, description="Specifies whether or not this job can have parallel runs.", alias="allowParallelRuns")
     cobmr_backup: Optional[StrictBool] = Field(default=None, description="Specifies whether to take CoBMR backup.", alias="cobmrBackup")
+    continue_on_error: Optional[StrictBool] = Field(default=None, description="Specifies if physical file based backup should be continued or failed immediately on encountering an error.", alias="continueOnError")
     continue_on_quiesce_failure: Optional[StrictBool] = Field(default=None, description="Specifies whether to continue backing up on quiesce failure.", alias="continueOnQuiesceFailure")
     dedup_exclusion_source_ids: Optional[List[StrictInt]] = Field(default=None, description="Specifies ids of sources for which deduplication has to be disabled.", alias="dedupExclusionSourceIds")
     excluded_vss_writers: Optional[List[StrictStr]] = Field(default=None, description="Specifies writer names which should be excluded from physical file based backups.", alias="excludedVssWriters")
@@ -46,7 +47,7 @@ class PhysicalFileProtectionGroupParams(BaseModel):
     pre_post_script: Optional[PrePostScriptParams] = Field(default=None, alias="prePostScript")
     quiesce: Optional[StrictBool] = Field(default=None, description="Specifies Whether to take app-consistent snapshots by quiescing apps and the filesystem before taking a backup.")
     task_timeouts: Optional[List[CancellationTimeoutParams]] = Field(default=None, description="Specifies the timeouts for all the objects inside this Protection Group, for both full and incremental backups.", alias="taskTimeouts")
-    __properties: ClassVar[List[str]] = ["allowParallelRuns", "cobmrBackup", "continueOnQuiesceFailure", "dedupExclusionSourceIds", "excludedVssWriters", "globalExcludeFS", "globalExcludePaths", "ignorableErrors", "indexingPolicy", "objects", "performBrickBasedDeduplication", "performSourceSideDeduplication", "prePostScript", "quiesce", "taskTimeouts"]
+    __properties: ClassVar[List[str]] = ["allowParallelRuns", "cobmrBackup", "continueOnError", "continueOnQuiesceFailure", "dedupExclusionSourceIds", "excludedVssWriters", "globalExcludeFS", "globalExcludePaths", "ignorableErrors", "indexingPolicy", "objects", "performBrickBasedDeduplication", "performSourceSideDeduplication", "prePostScript", "quiesce", "taskTimeouts"]
 
     @field_validator('ignorable_errors')
     def ignorable_errors_validate_enum(cls, value):
@@ -128,6 +129,11 @@ class PhysicalFileProtectionGroupParams(BaseModel):
         if self.cobmr_backup is None and "cobmr_backup" in self.model_fields_set:
             _dict['cobmrBackup'] = None
 
+        # set to None if continue_on_error (nullable) is None
+        # and model_fields_set contains the field
+        if self.continue_on_error is None and "continue_on_error" in self.model_fields_set:
+            _dict['continueOnError'] = None
+
         # set to None if continue_on_quiesce_failure (nullable) is None
         # and model_fields_set contains the field
         if self.continue_on_quiesce_failure is None and "continue_on_quiesce_failure" in self.model_fields_set:
@@ -177,6 +183,7 @@ class PhysicalFileProtectionGroupParams(BaseModel):
         _obj = cls.model_validate({
             "allowParallelRuns": obj.get("allowParallelRuns"),
             "cobmrBackup": obj.get("cobmrBackup"),
+            "continueOnError": obj.get("continueOnError"),
             "continueOnQuiesceFailure": obj.get("continueOnQuiesceFailure"),
             "dedupExclusionSourceIds": obj.get("dedupExclusionSourceIds"),
             "excludedVssWriters": obj.get("excludedVssWriters"),

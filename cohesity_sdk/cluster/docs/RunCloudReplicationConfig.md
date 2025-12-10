@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **aws_target** | [**AWSTargetConfig**](AWSTargetConfig.md) |  | [optional] 
 **azure_target** | [**AzureTargetConfig**](AzureTargetConfig.md) |  | [optional] 
+**on_legal_hold** | **bool** | Specifies if the Run is on legal hold. | [optional] 
 **retention** | [**Retention**](Retention.md) |  | [optional] 
 **target_type** | **str** | Specifies the type of target to which replication need to be performed. | 
 

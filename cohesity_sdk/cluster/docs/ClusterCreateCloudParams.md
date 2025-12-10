@@ -1,12 +1,24 @@
 # ClusterCreateCloudParams
 
-Params for Cloud Edition Cluster Creation
+Params for DataProtect for Cloud Cluster Creation
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**node_ips** | **List[str]** |  | [optional] 
+**cluster_partition_hostname** | **str** | Hostname of the cluster partition. | [optional] 
+**cluster_size** | **str** | Specifies the size of the cloud platforms. | [optional] 
+**disk_all_nodes_reachable** | **List[bool]** | All nodes reachable property of the disks to designate. | [optional] 
+**disk_component_exclusive** | **List[str]** | Component exclusive property of the disks to designate. | [optional] 
+**disk_self_fault_tolerant** | **List[bool]** | Self fault tolerant property of the disks to designate. | [optional] 
+**disk_serials** | **List[str]** | Serial number of the disks to designate properties. | [optional] 
+**disk_tiers** | **List[str]** | Optional field. Tiers of the Disks to designate. | [optional] 
+**enable_cloud_rf1** | **bool** | Specifies whether or not to enable software encryption | [optional] 
+**encryption_config** | [**EncryptionConfigurationParams**](EncryptionConfigurationParams.md) |  | [optional] 
+**ip_preference** | **int** | Specifies IP preference | [optional] 
+**metadata_fault_tolerance** | **int** | Specifies the metadata fault tolerance. | [optional] 
+**node_ips** | **List[str]** |  | 
+**trust_domain** | **str** | Specifies Trust Domain used for Service Identity | [optional] 
 
 ## Example
 

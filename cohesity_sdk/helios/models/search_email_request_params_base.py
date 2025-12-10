@@ -80,8 +80,8 @@ class SearchEmailRequestParamsBase(BaseModel):
             return value
 
         for i in value:
-            if i not in set(['Email', 'Folder', 'Calendar', 'Contact', 'Task', 'Note']):
-                raise ValueError("each list item must be one of ('Email', 'Folder', 'Calendar', 'Contact', 'Task', 'Note')")
+            if i not in set(['Email', 'Folder', 'Calendar', 'Contact', 'Task', 'Note', 'CalendarFolder', 'ContactFolder', 'TaskFolder', 'SearchFolder']):
+                raise ValueError("each list item must be one of ('Email', 'Folder', 'Calendar', 'Contact', 'Task', 'Note', 'CalendarFolder', 'ContactFolder', 'TaskFolder', 'SearchFolder')")
         return value
 
     model_config = ConfigDict(

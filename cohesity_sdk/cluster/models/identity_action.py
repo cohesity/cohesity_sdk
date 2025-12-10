@@ -36,8 +36,8 @@ class IdentityAction(BaseModel):
     @field_validator('identity_provider_type')
     def identity_provider_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['OpenIdConnect', 'OAuth2']):
-            raise ValueError("must be one of enum values ('OpenIdConnect', 'OAuth2')")
+        if value not in set(['OpenIdConnect', 'OAuth2', 'IbmId']):
+            raise ValueError("must be one of enum values ('OpenIdConnect', 'OAuth2', 'IbmId')")
         return value
 
     model_config = ConfigDict(

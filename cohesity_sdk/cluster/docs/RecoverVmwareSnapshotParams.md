@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **protection_group_id** | **str** | Specifies the protection group id of the object snapshot. | [optional] 
 **protection_group_name** | **str** | Specifies the protection group name of the object snapshot. | [optional] 
 **recover_from_standby** | **bool** | Specifies that user wants to perform standby restore if it is enabled for this object. | [optional] 
+**replication_target_info** | [**ReplicationTargetSummaryInfo**](ReplicationTargetSummaryInfo.md) |  | [optional] 
 **snapshot_creation_time_usecs** | **int** | Specifies the time when the snapshot is created in Unix timestamp epoch in microseconds. | [optional] [readonly] 
 **snapshot_id** | **str** | Specifies the snapshot id. | 
 **snapshot_target_type** | **str** | Specifies the snapshot target type. | [optional] [readonly] 
@@ -24,6 +25,9 @@ Name | Type | Description | Notes
 **storage_domain_id** | **int** | Specifies the ID of the Storage Domain where this snapshot is stored. | [optional] [readonly] 
 **datastore_migration_info** | [**RecoveryTaskInfo**](RecoveryTaskInfo.md) |  | [optional] 
 **instant_recovery_info** | [**RecoveryTaskInfo**](RecoveryTaskInfo.md) |  | [optional] 
+**restored_object_info** | [**Object**](Object.md) |  | [optional] 
+**tear_down_message** | **str** | Specifies the error message about the tear down operation. | [optional] 
+**tear_down_status** | **str** | Indicates the tear down status of the VM. &#39;DestroyScheduled&#39; indicates that the tear down is ready to schedule. &#39;Destroying&#39; indicates that the tear down is still running. &#39;Destroyed&#39; indicates that the tear down succeeded. &#39;DestroyError&#39; indicates that the tear down failed. | [optional] 
 **child_snapshots** | [**List[RecoverVmwareChildSnapshotParams]**](RecoverVmwareChildSnapshotParams.md) | Specifies optional information about any child snapshots of this object. For example a VCD snapshot may have child VM information populated here. | [optional] 
 
 ## Example

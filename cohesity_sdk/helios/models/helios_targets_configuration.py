@@ -22,6 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.helios_archival_config import HeliosArchivalConfig
 from cohesity_sdk.helios.models.helios_cloud_spin_config import HeliosCloudSpinConfig
 from cohesity_sdk.helios.models.helios_onprem_deploy_config import HeliosOnpremDeployConfig
+from cohesity_sdk.helios.models.helios_onprem_vault_config import HeliosOnpremVaultConfig
 from cohesity_sdk.helios.models.helios_replication_config import HeliosReplicationConfig
 from cohesity_sdk.helios.models.helios_rpaas_config import HeliosRpaasConfig
 from typing import Set
@@ -34,9 +35,10 @@ class HeliosTargetsConfiguration(BaseModel):
     archival_targets: Optional[List[HeliosArchivalConfig]] = Field(default=None, alias="archivalTargets")
     cloud_spin_targets: Optional[List[HeliosCloudSpinConfig]] = Field(default=None, alias="cloudSpinTargets")
     onprem_deploy_targets: Optional[List[HeliosOnpremDeployConfig]] = Field(default=None, alias="onpremDeployTargets")
+    onprem_vault_targets: Optional[List[HeliosOnpremVaultConfig]] = Field(default=None, alias="onpremVaultTargets")
     replication_targets: Optional[List[HeliosReplicationConfig]] = Field(default=None, alias="replicationTargets")
     rpaas_targets: Optional[List[HeliosRpaasConfig]] = Field(default=None, alias="rpaasTargets")
-    __properties: ClassVar[List[str]] = ["archivalTargets", "cloudSpinTargets", "onpremDeployTargets", "replicationTargets", "rpaasTargets"]
+    __properties: ClassVar[List[str]] = ["archivalTargets", "cloudSpinTargets", "onpremDeployTargets", "onpremVaultTargets", "replicationTargets", "rpaasTargets"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -98,6 +100,13 @@ class HeliosTargetsConfiguration(BaseModel):
                 if _item_onprem_deploy_targets:
                     _items.append(_item_onprem_deploy_targets.to_dict())
             _dict['onpremDeployTargets'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in onprem_vault_targets (list)
+        _items = []
+        if self.onprem_vault_targets:
+            for _item_onprem_vault_targets in self.onprem_vault_targets:
+                if _item_onprem_vault_targets:
+                    _items.append(_item_onprem_vault_targets.to_dict())
+            _dict['onpremVaultTargets'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in replication_targets (list)
         _items = []
         if self.replication_targets:
@@ -127,6 +136,7 @@ class HeliosTargetsConfiguration(BaseModel):
             "archivalTargets": [HeliosArchivalConfig.from_dict(_item) for _item in obj["archivalTargets"]] if obj.get("archivalTargets") is not None else None,
             "cloudSpinTargets": [HeliosCloudSpinConfig.from_dict(_item) for _item in obj["cloudSpinTargets"]] if obj.get("cloudSpinTargets") is not None else None,
             "onpremDeployTargets": [HeliosOnpremDeployConfig.from_dict(_item) for _item in obj["onpremDeployTargets"]] if obj.get("onpremDeployTargets") is not None else None,
+            "onpremVaultTargets": [HeliosOnpremVaultConfig.from_dict(_item) for _item in obj["onpremVaultTargets"]] if obj.get("onpremVaultTargets") is not None else None,
             "replicationTargets": [HeliosReplicationConfig.from_dict(_item) for _item in obj["replicationTargets"]] if obj.get("replicationTargets") is not None else None,
             "rpaasTargets": [HeliosRpaasConfig.from_dict(_item) for _item in obj["rpaasTargets"]] if obj.get("rpaasTargets") is not None else None
         })

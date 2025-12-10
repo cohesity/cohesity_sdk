@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **name** | **str** | Name of the KMS. | 
 **storage_domain_ids** | **List[int]** | Ids of storage domains used to assign the KMS for encryption. Once an external KMS (AWS KMS or KIMP KMS) is assigned to a storage domain, it cannot be changed. | [optional] 
 **aws_kms_params** | [**AwsKmsConfigurationUpdateParams**](AwsKmsConfigurationUpdateParams.md) |  | [optional] 
+**gcp_kms_params** | [**GcpKmsConfigurationUpdateParams**](GcpKmsConfigurationUpdateParams.md) |  | [optional] 
+**ibm_kms_params** | [**IbmKmsConfigurationUpdateParams**](IbmKmsConfigurationUpdateParams.md) |  | [optional] 
 
 ## Example
 

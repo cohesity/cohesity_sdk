@@ -20,7 +20,7 @@ from cohesity_sdk.cluster.models.capacity_trend_analysis import CapacityTrendAna
 from cohesity_sdk.cluster.models.common_data_tiering_analysis_group_params import CommonDataTieringAnalysisGroupParams
 from cohesity_sdk.cluster.models.create_or_update_data_tiering_task_request import CreateOrUpdateDataTieringTaskRequest
 from cohesity_sdk.cluster.models.data_tiering_analysis_group import DataTieringAnalysisGroup
-from cohesity_sdk.cluster.models.data_tiering_analysis_group_run import DataTieringAnalysisGroupRun
+from cohesity_sdk.cluster.models.data_tiering_analysis_group_runs import DataTieringAnalysisGroupRuns
 from cohesity_sdk.cluster.models.data_tiering_analysis_run_request import DataTieringAnalysisRunRequest
 from cohesity_sdk.cluster.models.data_tiering_tag_config import DataTieringTagConfig
 from cohesity_sdk.cluster.models.data_tiering_task import DataTieringTask
@@ -66,7 +66,7 @@ class DataTieringApi:
     ) -> None:
         """Cancel data tiering analysis run.
 
-        Cancel data tiering analysis run for given analysis group ID and run ID
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Cancel data tiering analysis run for given analysis group ID and run ID
 
         :param id: Specifies a unique id of data tiering group. (required)
         :type id: str
@@ -137,7 +137,7 @@ class DataTieringApi:
     ) -> ApiResponse[None]:
         """Cancel data tiering analysis run.
 
-        Cancel data tiering analysis run for given analysis group ID and run ID
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Cancel data tiering analysis run for given analysis group ID and run ID
 
         :param id: Specifies a unique id of data tiering group. (required)
         :type id: str
@@ -208,7 +208,7 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """Cancel data tiering analysis run.
 
-        Cancel data tiering analysis run for given analysis group ID and run ID
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Cancel data tiering analysis run for given analysis group ID and run ID
 
         :param id: Specifies a unique id of data tiering group. (required)
         :type id: str
@@ -344,7 +344,7 @@ class DataTieringApi:
     ) -> None:
         """Cancel data tiering task.
 
-        Cancel data tiering task run for given data tiering task id and run id.
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Cancel data tiering task run for given data tiering task id and run id.
 
         :param id: Specifies a unique id of data tiering task. (required)
         :type id: str
@@ -415,7 +415,7 @@ class DataTieringApi:
     ) -> ApiResponse[None]:
         """Cancel data tiering task.
 
-        Cancel data tiering task run for given data tiering task id and run id.
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Cancel data tiering task run for given data tiering task id and run id.
 
         :param id: Specifies a unique id of data tiering task. (required)
         :type id: str
@@ -486,7 +486,7 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """Cancel data tiering task.
 
-        Cancel data tiering task run for given data tiering task id and run id.
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Cancel data tiering task run for given data tiering task id and run id.
 
         :param id: Specifies a unique id of data tiering task. (required)
         :type id: str
@@ -621,7 +621,7 @@ class DataTieringApi:
     ) -> DataTieringAnalysisGroup:
         """Create a data tiering analysis group.
 
-        Create a data tiering analysis group.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Create a data tiering analysis group.
 
         :param body: Specifies the data tiering analysis group. (required)
         :type body: CommonDataTieringAnalysisGroupParams
@@ -688,7 +688,7 @@ class DataTieringApi:
     ) -> ApiResponse[DataTieringAnalysisGroup]:
         """Create a data tiering analysis group.
 
-        Create a data tiering analysis group.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Create a data tiering analysis group.
 
         :param body: Specifies the data tiering analysis group. (required)
         :type body: CommonDataTieringAnalysisGroupParams
@@ -755,7 +755,7 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """Create a data tiering analysis group.
 
-        Create a data tiering analysis group.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Create a data tiering analysis group.
 
         :param body: Specifies the data tiering analysis group. (required)
         :type body: CommonDataTieringAnalysisGroupParams
@@ -898,7 +898,7 @@ class DataTieringApi:
     ) -> None:
         """Create a data tiering analysis group run.
 
-        Create a data tiering analysis group run.
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Create a data tiering analysis group run.
 
         :param id: Specifies the id of the data tiering analysis group. (required)
         :type id: str
@@ -969,7 +969,7 @@ class DataTieringApi:
     ) -> ApiResponse[None]:
         """Create a data tiering analysis group run.
 
-        Create a data tiering analysis group run.
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Create a data tiering analysis group run.
 
         :param id: Specifies the id of the data tiering analysis group. (required)
         :type id: str
@@ -1040,7 +1040,7 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """Create a data tiering analysis group run.
 
-        Create a data tiering analysis group run.
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Create a data tiering analysis group run.
 
         :param id: Specifies the id of the data tiering analysis group. (required)
         :type id: str
@@ -1188,7 +1188,7 @@ class DataTieringApi:
     ) -> DataTieringTask:
         """Create a data tiering task.
 
-        Create a data tiering task.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Create a data tiering task.
 
         :param body: Specifies the parameters to create a data tiering task. (required)
         :type body: CreateOrUpdateDataTieringTaskRequest
@@ -1255,7 +1255,7 @@ class DataTieringApi:
     ) -> ApiResponse[DataTieringTask]:
         """Create a data tiering task.
 
-        Create a data tiering task.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Create a data tiering task.
 
         :param body: Specifies the parameters to create a data tiering task. (required)
         :type body: CreateOrUpdateDataTieringTaskRequest
@@ -1322,7 +1322,7 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """Create a data tiering task.
 
-        Create a data tiering task.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Create a data tiering task.
 
         :param body: Specifies the parameters to create a data tiering task. (required)
         :type body: CreateOrUpdateDataTieringTaskRequest
@@ -1465,7 +1465,7 @@ class DataTieringApi:
     ) -> None:
         """Create a data tiering tasks run.
 
-        Create a data tiering tasks run.
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Create a data tiering tasks run.
 
         :param id: Specifies the id of the data tiering tasks. (required)
         :type id: str
@@ -1536,7 +1536,7 @@ class DataTieringApi:
     ) -> ApiResponse[None]:
         """Create a data tiering tasks run.
 
-        Create a data tiering tasks run.
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Create a data tiering tasks run.
 
         :param id: Specifies the id of the data tiering tasks. (required)
         :type id: str
@@ -1607,7 +1607,7 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """Create a data tiering tasks run.
 
-        Create a data tiering tasks run.
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Create a data tiering tasks run.
 
         :param id: Specifies the id of the data tiering tasks. (required)
         :type id: str
@@ -1755,7 +1755,7 @@ class DataTieringApi:
     ) -> None:
         """Delete data tiering analysis group.
 
-        Returns NoContentResponse if the data tiering analysis group is deleted.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Returns NoContentResponse if the data tiering analysis group is deleted.
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
@@ -1822,7 +1822,7 @@ class DataTieringApi:
     ) -> ApiResponse[None]:
         """Delete data tiering analysis group.
 
-        Returns NoContentResponse if the data tiering analysis group is deleted.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Returns NoContentResponse if the data tiering analysis group is deleted.
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
@@ -1889,7 +1889,7 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """Delete data tiering analysis group.
 
-        Returns NoContentResponse if the data tiering analysis group is deleted.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Returns NoContentResponse if the data tiering analysis group is deleted.
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
@@ -2018,7 +2018,7 @@ class DataTieringApi:
     ) -> None:
         """delete the data tiering task.
 
-        Returns Success if the data tiering task is deleted.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Returns Success if the data tiering task is deleted.
 
         :param id: Specifies the id of the data tiering task. (required)
         :type id: str
@@ -2085,7 +2085,7 @@ class DataTieringApi:
     ) -> ApiResponse[None]:
         """delete the data tiering task.
 
-        Returns Success if the data tiering task is deleted.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Returns Success if the data tiering task is deleted.
 
         :param id: Specifies the id of the data tiering task. (required)
         :type id: str
@@ -2152,7 +2152,7 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """delete the data tiering task.
 
-        Returns Success if the data tiering task is deleted.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Returns Success if the data tiering task is deleted.
 
         :param id: Specifies the id of the data tiering task. (required)
         :type id: str
@@ -2263,11 +2263,324 @@ class DataTieringApi:
 
 
     @validate_call
+    def download_tiering_reports(
+        self,
+        id: Annotated[str, Field(strict=True, description="Specifies a unique id of data tiering task.")],
+        run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of data tiering task.")],
+        target_view_name: Annotated[StrictStr, Field(description="Specifies the View name from which the tiering job report file should be read from.")],
+        file_path: Annotated[StrictStr, Field(description="Specifies the file path in the targetView.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Download Tiering reports.
+
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Specifies the API to download the tiering run report.
+
+        :param id: Specifies a unique id of data tiering task. (required)
+        :type id: str
+        :param run_id: Specifies a unique run id of data tiering task. (required)
+        :type run_id: str
+        :param target_view_name: Specifies the View name from which the tiering job report file should be read from. (required)
+        :type target_view_name: str
+        :param file_path: Specifies the file path in the targetView. (required)
+        :type file_path: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._download_tiering_reports_serialize(
+            id=id,
+            run_id=run_id,
+            target_view_name=target_view_name,
+            file_path=file_path,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def download_tiering_reports_with_http_info(
+        self,
+        id: Annotated[str, Field(strict=True, description="Specifies a unique id of data tiering task.")],
+        run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of data tiering task.")],
+        target_view_name: Annotated[StrictStr, Field(description="Specifies the View name from which the tiering job report file should be read from.")],
+        file_path: Annotated[StrictStr, Field(description="Specifies the file path in the targetView.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Download Tiering reports.
+
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Specifies the API to download the tiering run report.
+
+        :param id: Specifies a unique id of data tiering task. (required)
+        :type id: str
+        :param run_id: Specifies a unique run id of data tiering task. (required)
+        :type run_id: str
+        :param target_view_name: Specifies the View name from which the tiering job report file should be read from. (required)
+        :type target_view_name: str
+        :param file_path: Specifies the file path in the targetView. (required)
+        :type file_path: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._download_tiering_reports_serialize(
+            id=id,
+            run_id=run_id,
+            target_view_name=target_view_name,
+            file_path=file_path,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def download_tiering_reports_without_preload_content(
+        self,
+        id: Annotated[str, Field(strict=True, description="Specifies a unique id of data tiering task.")],
+        run_id: Annotated[str, Field(strict=True, description="Specifies a unique run id of data tiering task.")],
+        target_view_name: Annotated[StrictStr, Field(description="Specifies the View name from which the tiering job report file should be read from.")],
+        file_path: Annotated[StrictStr, Field(description="Specifies the file path in the targetView.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Download Tiering reports.
+
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Specifies the API to download the tiering run report.
+
+        :param id: Specifies a unique id of data tiering task. (required)
+        :type id: str
+        :param run_id: Specifies a unique run id of data tiering task. (required)
+        :type run_id: str
+        :param target_view_name: Specifies the View name from which the tiering job report file should be read from. (required)
+        :type target_view_name: str
+        :param file_path: Specifies the file path in the targetView. (required)
+        :type file_path: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._download_tiering_reports_serialize(
+            id=id,
+            run_id=run_id,
+            target_view_name=target_view_name,
+            file_path=file_path,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _download_tiering_reports_serialize(
+        self,
+        id,
+        run_id,
+        target_view_name,
+        file_path,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        if run_id is not None:
+            _path_params['runId'] = run_id
+        # process the query parameters
+        if target_view_name is not None:
+            
+            _query_params.append(('targetViewName', target_view_name))
+            
+        if file_path is not None:
+            
+            _query_params.append(('filePath', file_path))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/data-tiering/tasks/{id}/runs/{runId}/download-report',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_capacity_trend_analysis(
         self,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds).")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a end time. Specify the end time as a Unix epoch Timestamp (in microseconds).")] = None,
         source_id: Annotated[Optional[StrictInt], Field(description="Filter by source id. If specified, this will only return the capacity trend analysis of the specific source.")] = None,
+        truncate_response: Annotated[Optional[StrictBool], Field(description="If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2283,7 +2596,7 @@ class DataTieringApi:
     ) -> CapacityTrendAnalysis:
         """Get capacity trend analysis for all sources or a specific source.
 
-        Get capacity trend analysis for the given time range, and for the given source or set of sources.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get capacity trend analysis for the given time range, and for the given source or set of sources.
 
         :param start_time_usecs: Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds).
         :type start_time_usecs: int
@@ -2291,6 +2604,8 @@ class DataTieringApi:
         :type end_time_usecs: int
         :param source_id: Filter by source id. If specified, this will only return the capacity trend analysis of the specific source.
         :type source_id: int
+        :param truncate_response: If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes
+        :type truncate_response: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2317,6 +2632,7 @@ class DataTieringApi:
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             source_id=source_id,
+            truncate_response=truncate_response,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2343,6 +2659,7 @@ class DataTieringApi:
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds).")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a end time. Specify the end time as a Unix epoch Timestamp (in microseconds).")] = None,
         source_id: Annotated[Optional[StrictInt], Field(description="Filter by source id. If specified, this will only return the capacity trend analysis of the specific source.")] = None,
+        truncate_response: Annotated[Optional[StrictBool], Field(description="If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2358,7 +2675,7 @@ class DataTieringApi:
     ) -> ApiResponse[CapacityTrendAnalysis]:
         """Get capacity trend analysis for all sources or a specific source.
 
-        Get capacity trend analysis for the given time range, and for the given source or set of sources.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get capacity trend analysis for the given time range, and for the given source or set of sources.
 
         :param start_time_usecs: Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds).
         :type start_time_usecs: int
@@ -2366,6 +2683,8 @@ class DataTieringApi:
         :type end_time_usecs: int
         :param source_id: Filter by source id. If specified, this will only return the capacity trend analysis of the specific source.
         :type source_id: int
+        :param truncate_response: If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes
+        :type truncate_response: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2392,6 +2711,7 @@ class DataTieringApi:
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             source_id=source_id,
+            truncate_response=truncate_response,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2418,6 +2738,7 @@ class DataTieringApi:
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds).")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by a end time. Specify the end time as a Unix epoch Timestamp (in microseconds).")] = None,
         source_id: Annotated[Optional[StrictInt], Field(description="Filter by source id. If specified, this will only return the capacity trend analysis of the specific source.")] = None,
+        truncate_response: Annotated[Optional[StrictBool], Field(description="If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2433,7 +2754,7 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """Get capacity trend analysis for all sources or a specific source.
 
-        Get capacity trend analysis for the given time range, and for the given source or set of sources.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get capacity trend analysis for the given time range, and for the given source or set of sources.
 
         :param start_time_usecs: Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds).
         :type start_time_usecs: int
@@ -2441,6 +2762,8 @@ class DataTieringApi:
         :type end_time_usecs: int
         :param source_id: Filter by source id. If specified, this will only return the capacity trend analysis of the specific source.
         :type source_id: int
+        :param truncate_response: If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes
+        :type truncate_response: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2467,6 +2790,7 @@ class DataTieringApi:
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             source_id=source_id,
+            truncate_response=truncate_response,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2488,6 +2812,7 @@ class DataTieringApi:
         start_time_usecs,
         end_time_usecs,
         source_id,
+        truncate_response,
         _request_auth,
         _content_type,
         _headers,
@@ -2521,6 +2846,10 @@ class DataTieringApi:
         if source_id is not None:
             
             _query_params.append(('sourceId', source_id))
+            
+        if truncate_response is not None:
+            
+            _query_params.append(('truncateResponse', truncate_response))
             
         # process the header parameters
         # process the form parameters
@@ -2580,7 +2909,7 @@ class DataTieringApi:
     ) -> DataTieringAnalysisGroup:
         """Get data tiering analysis group by id.
 
-        Get data tiering analysis group by id.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get data tiering analysis group by id.
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
@@ -2647,7 +2976,7 @@ class DataTieringApi:
     ) -> ApiResponse[DataTieringAnalysisGroup]:
         """Get data tiering analysis group by id.
 
-        Get data tiering analysis group by id.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get data tiering analysis group by id.
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
@@ -2714,7 +3043,7 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """Get data tiering analysis group by id.
 
-        Get data tiering analysis group by id.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get data tiering analysis group by id.
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
@@ -2829,6 +3158,7 @@ class DataTieringApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the data tiering analysis group.")],
         run_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of analysis group run ids.")] = None,
+        truncate_response: Annotated[Optional[StrictBool], Field(description="If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2841,15 +3171,17 @@ class DataTieringApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[DataTieringAnalysisGroupRun]:
+    ) -> DataTieringAnalysisGroupRuns:
         """Get data tiering analysis group runs.
 
-        Get data tiering analysis group runs for an analysis group.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get data tiering analysis group runs for an analysis group.
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
         :param run_ids: Filter by a list of analysis group run ids.
         :type run_ids: List[str]
+        :param truncate_response: If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes
+        :type truncate_response: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2875,6 +3207,7 @@ class DataTieringApi:
         _param = self._get_data_tiering_analysis_group_runs_serialize(
             id=id,
             run_ids=run_ids,
+            truncate_response=truncate_response,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2882,7 +3215,7 @@ class DataTieringApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[DataTieringAnalysisGroupRun]",
+            '200': "DataTieringAnalysisGroupRuns",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2900,6 +3233,7 @@ class DataTieringApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the data tiering analysis group.")],
         run_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of analysis group run ids.")] = None,
+        truncate_response: Annotated[Optional[StrictBool], Field(description="If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2912,15 +3246,17 @@ class DataTieringApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[DataTieringAnalysisGroupRun]]:
+    ) -> ApiResponse[DataTieringAnalysisGroupRuns]:
         """Get data tiering analysis group runs.
 
-        Get data tiering analysis group runs for an analysis group.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get data tiering analysis group runs for an analysis group.
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
         :param run_ids: Filter by a list of analysis group run ids.
         :type run_ids: List[str]
+        :param truncate_response: If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes
+        :type truncate_response: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2946,6 +3282,7 @@ class DataTieringApi:
         _param = self._get_data_tiering_analysis_group_runs_serialize(
             id=id,
             run_ids=run_ids,
+            truncate_response=truncate_response,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2953,7 +3290,7 @@ class DataTieringApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[DataTieringAnalysisGroupRun]",
+            '200': "DataTieringAnalysisGroupRuns",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2971,6 +3308,7 @@ class DataTieringApi:
         self,
         id: Annotated[str, Field(strict=True, description="Specifies a unique id of the data tiering analysis group.")],
         run_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of analysis group run ids.")] = None,
+        truncate_response: Annotated[Optional[StrictBool], Field(description="If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2986,12 +3324,14 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """Get data tiering analysis group runs.
 
-        Get data tiering analysis group runs for an analysis group.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get data tiering analysis group runs for an analysis group.
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
         :param run_ids: Filter by a list of analysis group run ids.
         :type run_ids: List[str]
+        :param truncate_response: If set, magneto will truncate the response if it exceeds max size limit governed by magneto_http_rpc_response_size_limit_bytes
+        :type truncate_response: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3017,6 +3357,7 @@ class DataTieringApi:
         _param = self._get_data_tiering_analysis_group_runs_serialize(
             id=id,
             run_ids=run_ids,
+            truncate_response=truncate_response,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3024,7 +3365,7 @@ class DataTieringApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[DataTieringAnalysisGroupRun]",
+            '200': "DataTieringAnalysisGroupRuns",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3037,6 +3378,7 @@ class DataTieringApi:
         self,
         id,
         run_ids,
+        truncate_response,
         _request_auth,
         _content_type,
         _headers,
@@ -3065,6 +3407,10 @@ class DataTieringApi:
         if run_ids is not None:
             
             _query_params.append(('runIds', run_ids))
+            
+        if truncate_response is not None:
+            
+            _query_params.append(('truncateResponse', truncate_response))
             
         # process the header parameters
         # process the form parameters
@@ -3125,7 +3471,7 @@ class DataTieringApi:
     ) -> List[DataTieringAnalysisGroup]:
         """Get the list of data tiering analysis groups.
 
-        Get list of all data tiering analysis groups.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get list of all data tiering analysis groups.
 
         :param ids: Filter by a list of Analysis Group IDs.
         :type ids: List[str]
@@ -3196,7 +3542,7 @@ class DataTieringApi:
     ) -> ApiResponse[List[DataTieringAnalysisGroup]]:
         """Get the list of data tiering analysis groups.
 
-        Get list of all data tiering analysis groups.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get list of all data tiering analysis groups.
 
         :param ids: Filter by a list of Analysis Group IDs.
         :type ids: List[str]
@@ -3267,7 +3613,7 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """Get the list of data tiering analysis groups.
 
-        Get list of all data tiering analysis groups.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get list of all data tiering analysis groups.
 
         :param ids: Filter by a list of Analysis Group IDs.
         :type ids: List[str]
@@ -3406,7 +3752,7 @@ class DataTieringApi:
     ) -> DataTieringTagConfig:
         """Get the default config of data tiering analysis groups.
 
-        Get default grouping configuration for data tiering analysis groups.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get default grouping configuration for data tiering analysis groups.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3469,7 +3815,7 @@ class DataTieringApi:
     ) -> ApiResponse[DataTieringTagConfig]:
         """Get the default config of data tiering analysis groups.
 
-        Get default grouping configuration for data tiering analysis groups.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get default grouping configuration for data tiering analysis groups.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3532,7 +3878,7 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """Get the default config of data tiering analysis groups.
 
-        Get default grouping configuration for data tiering analysis groups.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get default grouping configuration for data tiering analysis groups.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3655,7 +4001,7 @@ class DataTieringApi:
     ) -> DataTieringTask:
         """Get data tiering task by id.
 
-        Get data tiering task by id.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get data tiering task by id.
 
         :param id: Specifies the id of the data tiering task. (required)
         :type id: str
@@ -3722,7 +4068,7 @@ class DataTieringApi:
     ) -> ApiResponse[DataTieringTask]:
         """Get data tiering task by id.
 
-        Get data tiering task by id.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get data tiering task by id.
 
         :param id: Specifies the id of the data tiering task. (required)
         :type id: str
@@ -3789,7 +4135,7 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """Get data tiering task by id.
 
-        Get data tiering task by id.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get data tiering task by id.
 
         :param id: Specifies the id of the data tiering task. (required)
         :type id: str
@@ -3919,7 +4265,7 @@ class DataTieringApi:
     ) -> List[DataTieringTask]:
         """Get the list of data tiering tasks.
 
-        Get the list of data tiering tasks.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get the list of data tiering tasks.
 
         :param ids: Filter by a list of data tiering task ids.
         :type ids: List[str]
@@ -3990,7 +4336,7 @@ class DataTieringApi:
     ) -> ApiResponse[List[DataTieringTask]]:
         """Get the list of data tiering tasks.
 
-        Get the list of data tiering tasks.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get the list of data tiering tasks.
 
         :param ids: Filter by a list of data tiering task ids.
         :type ids: List[str]
@@ -4061,7 +4407,7 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """Get the list of data tiering tasks.
 
-        Get the list of data tiering tasks.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get the list of data tiering tasks.
 
         :param ids: Filter by a list of data tiering task ids.
         :type ids: List[str]
@@ -4202,7 +4548,7 @@ class DataTieringApi:
     ) -> DataTieringAnalysisGroup:
         """Update a data tiering analysis group. Currently, it supports updating sources and schedule only.
 
-        Update a data tiering analysis group.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Update a data tiering analysis group.
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
@@ -4273,7 +4619,7 @@ class DataTieringApi:
     ) -> ApiResponse[DataTieringAnalysisGroup]:
         """Update a data tiering analysis group. Currently, it supports updating sources and schedule only.
 
-        Update a data tiering analysis group.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Update a data tiering analysis group.
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
@@ -4344,7 +4690,7 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """Update a data tiering analysis group. Currently, it supports updating sources and schedule only.
 
-        Update a data tiering analysis group.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Update a data tiering analysis group.
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
@@ -4493,7 +4839,7 @@ class DataTieringApi:
     ) -> DataTieringTagConfig:
         """Update data tiering analysis group config.
 
-        Update data tiering analysis group config.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Update data tiering analysis group config.
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
@@ -4564,7 +4910,7 @@ class DataTieringApi:
     ) -> ApiResponse[DataTieringTagConfig]:
         """Update data tiering analysis group config.
 
-        Update data tiering analysis group config.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Update data tiering analysis group config.
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
@@ -4635,7 +4981,7 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """Update data tiering analysis group config.
 
-        Update data tiering analysis group config.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Update data tiering analysis group config.
 
         :param id: Specifies a unique id of the data tiering analysis group. (required)
         :type id: str
@@ -4783,7 +5129,7 @@ class DataTieringApi:
     ) -> UpdateDataTieringState:
         """Update data tiering analysis groups state.
 
-        Perform actions like pause or resume on the data tiering analysis groups for the specified sources.
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Perform actions like pause or resume on the data tiering analysis groups for the specified sources.
 
         :param body: Specifies the parameters to perform an action of list of data tiering analysis groups. (required)
         :type body: UpdateDataTieringStateRequest
@@ -4850,7 +5196,7 @@ class DataTieringApi:
     ) -> ApiResponse[UpdateDataTieringState]:
         """Update data tiering analysis groups state.
 
-        Perform actions like pause or resume on the data tiering analysis groups for the specified sources.
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Perform actions like pause or resume on the data tiering analysis groups for the specified sources.
 
         :param body: Specifies the parameters to perform an action of list of data tiering analysis groups. (required)
         :type body: UpdateDataTieringStateRequest
@@ -4917,7 +5263,7 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """Update data tiering analysis groups state.
 
-        Perform actions like pause or resume on the data tiering analysis groups for the specified sources.
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Perform actions like pause or resume on the data tiering analysis groups for the specified sources.
 
         :param body: Specifies the parameters to perform an action of list of data tiering analysis groups. (required)
         :type body: UpdateDataTieringStateRequest
@@ -5060,7 +5406,7 @@ class DataTieringApi:
     ) -> DataTieringTask:
         """Update a data tiering task.
 
-        Update a data tiering task.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Update a data tiering task.
 
         :param id: Specifies the id of the data tiering task. (required)
         :type id: str
@@ -5131,7 +5477,7 @@ class DataTieringApi:
     ) -> ApiResponse[DataTieringTask]:
         """Update a data tiering task.
 
-        Update a data tiering task.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Update a data tiering task.
 
         :param id: Specifies the id of the data tiering task. (required)
         :type id: str
@@ -5202,7 +5548,7 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """Update a data tiering task.
 
-        Update a data tiering task.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Update a data tiering task.
 
         :param id: Specifies the id of the data tiering task. (required)
         :type id: str
@@ -5350,7 +5696,7 @@ class DataTieringApi:
     ) -> UpdateDataTieringState:
         """Update data tiering source analysis tasks state.
 
-        Perform actions like pause or resume on the data tiering tasks.
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Perform actions like pause or resume on the data tiering tasks.
 
         :param body: Specifies the parameters to perform an action of list of data tiering tasks. (required)
         :type body: UpdateDataTieringStateRequest
@@ -5417,7 +5763,7 @@ class DataTieringApi:
     ) -> ApiResponse[UpdateDataTieringState]:
         """Update data tiering source analysis tasks state.
 
-        Perform actions like pause or resume on the data tiering tasks.
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Perform actions like pause or resume on the data tiering tasks.
 
         :param body: Specifies the parameters to perform an action of list of data tiering tasks. (required)
         :type body: UpdateDataTieringStateRequest
@@ -5484,7 +5830,7 @@ class DataTieringApi:
     ) -> RESTResponseType:
         """Update data tiering source analysis tasks state.
 
-        Perform actions like pause or resume on the data tiering tasks.
+        **Privileges:** ```PROTECTION_JOB_OPERATE``` <br><br>Perform actions like pause or resume on the data tiering tasks.
 
         :param body: Specifies the parameters to perform an action of list of data tiering tasks. (required)
         :type body: UpdateDataTieringStateRequest

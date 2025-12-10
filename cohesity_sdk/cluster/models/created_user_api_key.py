@@ -27,6 +27,7 @@ class CreatedUserAPIKey(BaseModel):
     Response instance after creating/rotating user API Keys.
     """ # noqa: E501
     created_by_user_sid: Optional[StrictStr] = Field(default=None, description="Specifies the user SID who created the API key.", alias="createdByUserSid")
+    created_by_username: Optional[StrictStr] = Field(default=None, description="Specifies the username of the user who created the API key.", alias="createdByUsername")
     created_time_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the time in milliseconds when the API key was created.", alias="createdTimeMsecs")
     expiry_time_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the time in milliseconds when the API key will expire. null signifies no-expiry.", alias="expiryTimeMsecs")
     id: Optional[StrictStr] = Field(default=None, description="Specifies the unique id of the API key.")
@@ -34,9 +35,10 @@ class CreatedUserAPIKey(BaseModel):
     is_expired: Optional[StrictBool] = Field(default=None, description="Specifies if the API key has expired.", alias="isExpired")
     last_rotated_time_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the time in milliseconds when the API key was last rotated.", alias="lastRotatedTimeMsecs")
     name: Optional[StrictStr] = Field(default=None, description="Specifies the API key name.")
+    owner_username: Optional[StrictStr] = Field(default=None, description="Specifies the username of the user who owns the API key.", alias="ownerUsername")
     user_sid: Optional[StrictStr] = Field(default=None, description="Specifies the user who owns the API key.", alias="userSid")
     api_key: Optional[StrictStr] = Field(default=None, description="Specifies the API key.", alias="apiKey")
-    __properties: ClassVar[List[str]] = ["createdByUserSid", "createdTimeMsecs", "expiryTimeMsecs", "id", "isActive", "isExpired", "lastRotatedTimeMsecs", "name", "userSid", "apiKey"]
+    __properties: ClassVar[List[str]] = ["createdByUserSid", "createdByUsername", "createdTimeMsecs", "expiryTimeMsecs", "id", "isActive", "isExpired", "lastRotatedTimeMsecs", "name", "ownerUsername", "userSid", "apiKey"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,9 +80,12 @@ class CreatedUserAPIKey(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "created_by_user_sid",
+            "created_by_username",
             "created_time_msecs",
             "expiry_time_msecs",
             "id",
@@ -88,6 +93,7 @@ class CreatedUserAPIKey(BaseModel):
             "is_expired",
             "last_rotated_time_msecs",
             "name",
+            "owner_username",
             "user_sid",
             "api_key",
         ])
@@ -101,6 +107,11 @@ class CreatedUserAPIKey(BaseModel):
         # and model_fields_set contains the field
         if self.created_by_user_sid is None and "created_by_user_sid" in self.model_fields_set:
             _dict['createdByUserSid'] = None
+
+        # set to None if created_by_username (nullable) is None
+        # and model_fields_set contains the field
+        if self.created_by_username is None and "created_by_username" in self.model_fields_set:
+            _dict['createdByUsername'] = None
 
         # set to None if created_time_msecs (nullable) is None
         # and model_fields_set contains the field
@@ -137,6 +148,11 @@ class CreatedUserAPIKey(BaseModel):
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
 
+        # set to None if owner_username (nullable) is None
+        # and model_fields_set contains the field
+        if self.owner_username is None and "owner_username" in self.model_fields_set:
+            _dict['ownerUsername'] = None
+
         # set to None if user_sid (nullable) is None
         # and model_fields_set contains the field
         if self.user_sid is None and "user_sid" in self.model_fields_set:
@@ -160,6 +176,7 @@ class CreatedUserAPIKey(BaseModel):
 
         _obj = cls.model_validate({
             "createdByUserSid": obj.get("createdByUserSid"),
+            "createdByUsername": obj.get("createdByUsername"),
             "createdTimeMsecs": obj.get("createdTimeMsecs"),
             "expiryTimeMsecs": obj.get("expiryTimeMsecs"),
             "id": obj.get("id"),
@@ -167,6 +184,7 @@ class CreatedUserAPIKey(BaseModel):
             "isExpired": obj.get("isExpired"),
             "lastRotatedTimeMsecs": obj.get("lastRotatedTimeMsecs"),
             "name": obj.get("name"),
+            "ownerUsername": obj.get("ownerUsername"),
             "userSid": obj.get("userSid"),
             "apiKey": obj.get("apiKey")
         })

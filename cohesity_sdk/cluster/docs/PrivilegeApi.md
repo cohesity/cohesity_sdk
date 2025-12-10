@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 Get Privileges.
 
-Get Privileges.
+**Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Privileges.
 
 ### Example
 

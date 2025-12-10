@@ -6,9 +6,9 @@ Specifies S3 Account parameters for User.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**s3_access_key_id** | **str** | Specifies the S3 Account Access Key ID. | [optional] 
+**s3_access_key_id** | **str** | Specifies the S3 Account Access Key ID. Allowed characters are: AlphaNumeric(a-zA-z0-9), underscore(_) and hyphen(-). Key should contain exactly 43 characters. | [optional] 
+**s3_secret_key** | **str** | Specifies the S3 Account Secret Key. Allowed characters are: AlphaNumeric(a-zA-z0-9), underscore(_) and hyphen(-). Key should contain exactly 43 characters. | [optional] 
 **s3_account_id** | **str** | Specifies the S3 Account Canonical User ID. | [optional] 
-**s3_secret_key** | **str** | Specifies the S3 Account Secret Key. | [optional] 
 
 ## Example
 

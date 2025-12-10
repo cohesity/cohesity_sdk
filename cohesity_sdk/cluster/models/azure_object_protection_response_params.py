@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.cluster.models.azure_entra_id_object_protection_params import AzureEntraIDObjectProtectionParams
 from cohesity_sdk.cluster.models.azure_native_object_protection_params import AzureNativeObjectProtectionParams
 from cohesity_sdk.cluster.models.azure_sql_object_protection_params import AzureSqlObjectProtectionParams
 from typing import Set
@@ -29,9 +30,10 @@ class AzureObjectProtectionResponseParams(BaseModel):
     Specifies the parameters which are specific to Azure related Object Protection response.
     """ # noqa: E501
     protection_type: Optional[StrictStr] = Field(default=None, description="Specifies the Azure Protection Job type.", alias="protectionType")
+    azure_entra_id_protection_type_params: Optional[AzureEntraIDObjectProtectionParams] = Field(default=None, alias="azureEntraIdProtectionTypeParams")
     azure_sql_protection_type_params: Optional[AzureSqlObjectProtectionParams] = Field(default=None, alias="azureSqlProtectionTypeParams")
     native_protection_type_params: Optional[AzureNativeObjectProtectionParams] = Field(default=None, alias="nativeProtectionTypeParams")
-    __properties: ClassVar[List[str]] = ["protectionType", "azureSqlProtectionTypeParams", "nativeProtectionTypeParams"]
+    __properties: ClassVar[List[str]] = ["protectionType", "azureEntraIdProtectionTypeParams", "azureSqlProtectionTypeParams", "nativeProtectionTypeParams"]
 
     @field_validator('protection_type')
     def protection_type_validate_enum(cls, value):
@@ -39,8 +41,8 @@ class AzureObjectProtectionResponseParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL']):
-            raise ValueError("must be one of enum values ('kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL')")
+        if value not in set(['kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzureBlobStorage', 'kAzurePostgreSQLServer', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureTableAPI', 'kKubernetes']):
+            raise ValueError("must be one of enum values ('kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzureBlobStorage', 'kAzurePostgreSQLServer', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureTableAPI', 'kKubernetes')")
         return value
 
     model_config = ConfigDict(
@@ -82,6 +84,9 @@ class AzureObjectProtectionResponseParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of azure_entra_id_protection_type_params
+        if self.azure_entra_id_protection_type_params:
+            _dict['azureEntraIdProtectionTypeParams'] = self.azure_entra_id_protection_type_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of azure_sql_protection_type_params
         if self.azure_sql_protection_type_params:
             _dict['azureSqlProtectionTypeParams'] = self.azure_sql_protection_type_params.to_dict()
@@ -101,6 +106,7 @@ class AzureObjectProtectionResponseParams(BaseModel):
 
         _obj = cls.model_validate({
             "protectionType": obj.get("protectionType"),
+            "azureEntraIdProtectionTypeParams": AzureEntraIDObjectProtectionParams.from_dict(obj["azureEntraIdProtectionTypeParams"]) if obj.get("azureEntraIdProtectionTypeParams") is not None else None,
             "azureSqlProtectionTypeParams": AzureSqlObjectProtectionParams.from_dict(obj["azureSqlProtectionTypeParams"]) if obj.get("azureSqlProtectionTypeParams") is not None else None,
             "nativeProtectionTypeParams": AzureNativeObjectProtectionParams.from_dict(obj["nativeProtectionTypeParams"]) if obj.get("nativeProtectionTypeParams") is not None else None
         })

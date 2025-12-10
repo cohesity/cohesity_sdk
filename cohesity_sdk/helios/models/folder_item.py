@@ -26,10 +26,11 @@ class FolderItem(BaseModel):
     """
     Specifies an email folder to recover.
     """ # noqa: E501
+    folder_id: Optional[StrictStr] = Field(default=None, description="Specifies the email folder id.", alias="folderId")
     item_ids: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of item ids to recover. This field is applicable only if 'recoverEntireFolder' is false.", alias="itemIds")
-    key: Optional[StrictInt] = Field(description="Specifies the email folder key.")
+    key: Optional[StrictInt] = Field(default=None, description="Specifies the email folder key.")
     recover_entire_folder: Optional[StrictBool] = Field(default=None, description="Specifies whether to recover the whole email folder.", alias="recoverEntireFolder")
-    __properties: ClassVar[List[str]] = ["itemIds", "key", "recoverEntireFolder"]
+    __properties: ClassVar[List[str]] = ["folderId", "itemIds", "key", "recoverEntireFolder"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,6 +71,11 @@ class FolderItem(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if folder_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.folder_id is None and "folder_id" in self.model_fields_set:
+            _dict['folderId'] = None
+
         # set to None if item_ids (nullable) is None
         # and model_fields_set contains the field
         if self.item_ids is None and "item_ids" in self.model_fields_set:
@@ -97,6 +103,7 @@ class FolderItem(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "folderId": obj.get("folderId"),
             "itemIds": obj.get("itemIds"),
             "key": obj.get("key"),
             "recoverEntireFolder": obj.get("recoverEntireFolder")

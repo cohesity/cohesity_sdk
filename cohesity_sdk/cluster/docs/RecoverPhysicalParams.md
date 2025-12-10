@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **mount_volume_params** | [**MountPhysicalVolumeParams**](MountPhysicalVolumeParams.md) |  | [optional] 
 **objects** | [**List[CommonRecoverObjectSnapshotParams]**](CommonRecoverObjectSnapshotParams.md) | Specifies the list of Recover Object parameters. For recovering files, specifies the object contains the file to recover. | 
 **recover_file_and_folder_params** | [**RecoverPhysicalFileAndFolderParams**](RecoverPhysicalFileAndFolderParams.md) |  | [optional] 
+**recover_snapshot_to_view_params** | [**RecoverPhysicalSnapshotToViewParams**](RecoverPhysicalSnapshotToViewParams.md) |  | [optional] 
 **recover_volume_params** | [**RecoverPhysicalVolumeParams**](RecoverPhysicalVolumeParams.md) |  | [optional] 
 **recovery_action** | **str** | Specifies the type of recover action to be performed. | 
 **system_recovery_params** | [**SystemRecoveryParams**](SystemRecoveryParams.md) |  | [optional] 

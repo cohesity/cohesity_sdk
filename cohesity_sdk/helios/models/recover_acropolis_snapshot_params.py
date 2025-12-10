@@ -21,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.archival_target_summary_info import ArchivalTargetSummaryInfo
 from cohesity_sdk.helios.models.object_summary import ObjectSummary
+from cohesity_sdk.helios.models.replication_target_summary_info import ReplicationTargetSummaryInfo
 from typing import Set
 from typing_extensions import Self
 
@@ -38,6 +39,7 @@ class RecoverAcropolisSnapshotParams(BaseModel):
     protection_group_id: Optional[StrictStr] = Field(default=None, description="Specifies the protection group id of the object snapshot.", alias="protectionGroupId")
     protection_group_name: Optional[StrictStr] = Field(default=None, description="Specifies the protection group name of the object snapshot.", alias="protectionGroupName")
     recover_from_standby: Optional[StrictBool] = Field(default=None, description="Specifies that user wants to perform standby restore if it is enabled for this object.", alias="recoverFromStandby")
+    replication_target_info: Optional[ReplicationTargetSummaryInfo] = Field(default=None, description="Specifies the replication target information if the snapshot is a replication snapshot.", alias="replicationTargetInfo")
     snapshot_creation_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the time when the snapshot is created in Unix timestamp epoch in microseconds.", alias="snapshotCreationTimeUsecs")
     snapshot_id: StrictStr = Field(description="Specifies the snapshot id.", alias="snapshotId")
     snapshot_target_type: Optional[StrictStr] = Field(default=None, description="Specifies the snapshot target type.", alias="snapshotTargetType")
@@ -46,7 +48,7 @@ class RecoverAcropolisSnapshotParams(BaseModel):
     storage_domain_id: Optional[StrictInt] = Field(default=None, description="Specifies the ID of the Storage Domain where this snapshot is stored.", alias="storageDomainId")
     datastore_migration_info: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the info about datastore migration. This is only applicable for AcropolisVm.", alias="datastoreMigrationInfo")
     instant_recovery_info: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the info about instant recovery. This is only applicable for AcropolisVm.", alias="instantRecoveryInfo")
-    __properties: ClassVar[List[str]] = ["archivalTargetInfo", "bytesRestored", "endTimeUsecs", "messages", "objectInfo", "pointInTimeUsecs", "progressTaskId", "protectionGroupId", "protectionGroupName", "recoverFromStandby", "snapshotCreationTimeUsecs", "snapshotId", "snapshotTargetType", "startTimeUsecs", "status", "storageDomainId", "datastoreMigrationInfo", "instantRecoveryInfo"]
+    __properties: ClassVar[List[str]] = ["archivalTargetInfo", "bytesRestored", "endTimeUsecs", "messages", "objectInfo", "pointInTimeUsecs", "progressTaskId", "protectionGroupId", "protectionGroupName", "recoverFromStandby", "replicationTargetInfo", "snapshotCreationTimeUsecs", "snapshotId", "snapshotTargetType", "startTimeUsecs", "status", "storageDomainId", "datastoreMigrationInfo", "instantRecoveryInfo"]
 
     @field_validator('snapshot_target_type')
     def snapshot_target_type_validate_enum(cls, value):
@@ -64,8 +66,8 @@ class RecoverAcropolisSnapshotParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped']):
-            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped')")
+        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold']):
+            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold')")
         return value
 
     model_config = ConfigDict(
@@ -131,6 +133,9 @@ class RecoverAcropolisSnapshotParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of object_info
         if self.object_info:
             _dict['objectInfo'] = self.object_info.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of replication_target_info
+        if self.replication_target_info:
+            _dict['replicationTargetInfo'] = self.replication_target_info.to_dict()
         # set to None if archival_target_info (nullable) is None
         # and model_fields_set contains the field
         if self.archival_target_info is None and "archival_target_info" in self.model_fields_set:
@@ -180,6 +185,11 @@ class RecoverAcropolisSnapshotParams(BaseModel):
         # and model_fields_set contains the field
         if self.recover_from_standby is None and "recover_from_standby" in self.model_fields_set:
             _dict['recoverFromStandby'] = None
+
+        # set to None if replication_target_info (nullable) is None
+        # and model_fields_set contains the field
+        if self.replication_target_info is None and "replication_target_info" in self.model_fields_set:
+            _dict['replicationTargetInfo'] = None
 
         # set to None if snapshot_creation_time_usecs (nullable) is None
         # and model_fields_set contains the field
@@ -238,6 +248,7 @@ class RecoverAcropolisSnapshotParams(BaseModel):
             "protectionGroupId": obj.get("protectionGroupId"),
             "protectionGroupName": obj.get("protectionGroupName"),
             "recoverFromStandby": obj.get("recoverFromStandby"),
+            "replicationTargetInfo": ReplicationTargetSummaryInfo.from_dict(obj["replicationTargetInfo"]) if obj.get("replicationTargetInfo") is not None else None,
             "snapshotCreationTimeUsecs": obj.get("snapshotCreationTimeUsecs"),
             "snapshotId": obj.get("snapshotId"),
             "snapshotTargetType": obj.get("snapshotTargetType"),

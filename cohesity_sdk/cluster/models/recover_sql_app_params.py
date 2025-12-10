@@ -24,6 +24,7 @@ from cohesity_sdk.cluster.models.archival_target_summary_info import ArchivalTar
 from cohesity_sdk.cluster.models.common_recover_sql_app_target_params import CommonRecoverSqlAppTargetParams
 from cohesity_sdk.cluster.models.host_information import HostInformation
 from cohesity_sdk.cluster.models.object_summary import ObjectSummary
+from cohesity_sdk.cluster.models.replication_target_summary_info import ReplicationTargetSummaryInfo
 from typing import Set
 from typing_extensions import Self
 
@@ -41,6 +42,7 @@ class RecoverSqlAppParams(BaseModel):
     protection_group_id: Optional[StrictStr] = Field(default=None, description="Specifies the protection group id of the object snapshot.", alias="protectionGroupId")
     protection_group_name: Optional[StrictStr] = Field(default=None, description="Specifies the protection group name of the object snapshot.", alias="protectionGroupName")
     recover_from_standby: Optional[StrictBool] = Field(default=None, description="Specifies that user wants to perform standby restore if it is enabled for this object.", alias="recoverFromStandby")
+    replication_target_info: Optional[ReplicationTargetSummaryInfo] = Field(default=None, alias="replicationTargetInfo")
     snapshot_creation_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the time when the snapshot is created in Unix timestamp epoch in microseconds.", alias="snapshotCreationTimeUsecs")
     snapshot_id: StrictStr = Field(description="Specifies the snapshot id.", alias="snapshotId")
     snapshot_target_type: Optional[StrictStr] = Field(default=None, description="Specifies the snapshot target type.", alias="snapshotTargetType")
@@ -52,7 +54,7 @@ class RecoverSqlAppParams(BaseModel):
     is_encrypted: Optional[StrictBool] = Field(default=None, description="Specifies whether the database is TDE enabled.", alias="isEncrypted")
     sql_target_params: Optional[CommonRecoverSqlAppTargetParams] = Field(default=None, alias="sqlTargetParams")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
-    __properties: ClassVar[List[str]] = ["archivalTargetInfo", "bytesRestored", "endTimeUsecs", "messages", "objectInfo", "pointInTimeUsecs", "progressTaskId", "protectionGroupId", "protectionGroupName", "recoverFromStandby", "snapshotCreationTimeUsecs", "snapshotId", "snapshotTargetType", "startTimeUsecs", "status", "storageDomainId", "aagInfo", "hostInfo", "isEncrypted", "sqlTargetParams", "targetEnvironment"]
+    __properties: ClassVar[List[str]] = ["archivalTargetInfo", "bytesRestored", "endTimeUsecs", "messages", "objectInfo", "pointInTimeUsecs", "progressTaskId", "protectionGroupId", "protectionGroupName", "recoverFromStandby", "replicationTargetInfo", "snapshotCreationTimeUsecs", "snapshotId", "snapshotTargetType", "startTimeUsecs", "status", "storageDomainId", "aagInfo", "hostInfo", "isEncrypted", "sqlTargetParams", "targetEnvironment"]
 
     @field_validator('snapshot_target_type')
     def snapshot_target_type_validate_enum(cls, value):
@@ -70,8 +72,8 @@ class RecoverSqlAppParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped']):
-            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped')")
+        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold']):
+            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold')")
         return value
 
     @field_validator('target_environment')
@@ -144,6 +146,9 @@ class RecoverSqlAppParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of object_info
         if self.object_info:
             _dict['objectInfo'] = self.object_info.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of replication_target_info
+        if self.replication_target_info:
+            _dict['replicationTargetInfo'] = self.replication_target_info.to_dict()
         # override the default output from pydantic by calling `to_dict()` of aag_info
         if self.aag_info:
             _dict['aagInfo'] = self.aag_info.to_dict()
@@ -245,6 +250,7 @@ class RecoverSqlAppParams(BaseModel):
             "protectionGroupId": obj.get("protectionGroupId"),
             "protectionGroupName": obj.get("protectionGroupName"),
             "recoverFromStandby": obj.get("recoverFromStandby"),
+            "replicationTargetInfo": ReplicationTargetSummaryInfo.from_dict(obj["replicationTargetInfo"]) if obj.get("replicationTargetInfo") is not None else None,
             "snapshotCreationTimeUsecs": obj.get("snapshotCreationTimeUsecs"),
             "snapshotId": obj.get("snapshotId"),
             "snapshotTargetType": obj.get("snapshotTargetType"),

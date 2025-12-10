@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.mcm_object_archival_run_activity_params import McmObjectArchivalRunActivityParams
 from cohesity_sdk.helios.models.mcm_object_backup_run_activity_params import McmObjectBackupRunActivityParams
@@ -36,12 +36,13 @@ class McmObjectActivity(BaseModel):
     cluster_incarnation_id: Optional[StrictInt] = Field(default=None, description="Specifies the cluster incarnation id.", alias="clusterIncarnationId")
     id: Optional[StrictStr] = Field(default=None, description="Specifies the unique id of the activity event.")
     object: Optional[ObjectSummary] = None
+    on_legal_hold: Optional[StrictBool] = Field(default=None, description="Specifies if the backup run is on legal hold.", alias="onLegalHold")
     recovery_params: Optional[McmObjectRecoverActivityParams] = Field(default=None, alias="recoveryParams")
     region_id: Optional[StrictStr] = Field(default=None, description="Specifies the region id. Applicable only in case of DMaaS.", alias="regionId")
     source_info: Optional[ObjectSummary] = Field(default=None, alias="sourceInfo")
     timestamp_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp in Unix timestamp epoch in microseconds at which this activity occured.", alias="timestampUsecs")
     type: Optional[StrictStr] = Field(default=None, description="Specifies the type of activity event.")
-    __properties: ClassVar[List[str]] = ["archivalRunParams", "backupRunParams", "clusterId", "clusterIncarnationId", "id", "object", "recoveryParams", "regionId", "sourceInfo", "timestampUsecs", "type"]
+    __properties: ClassVar[List[str]] = ["archivalRunParams", "backupRunParams", "clusterId", "clusterIncarnationId", "id", "object", "onLegalHold", "recoveryParams", "regionId", "sourceInfo", "timestampUsecs", "type"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -49,8 +50,8 @@ class McmObjectActivity(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['BackupRun', 'Restore', 'ArchivalRun']):
-            raise ValueError("must be one of enum values ('BackupRun', 'Restore', 'ArchivalRun')")
+        if value not in set(['BackupRun', 'Restore', 'ArchivalRun', 'Browse']):
+            raise ValueError("must be one of enum values ('BackupRun', 'Restore', 'ArchivalRun', 'Browse')")
         return value
 
     model_config = ConfigDict(
@@ -86,10 +87,12 @@ class McmObjectActivity(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "cluster_id",
             "cluster_incarnation_id",
+            "on_legal_hold",
             "region_id",
         ])
 
@@ -128,6 +131,11 @@ class McmObjectActivity(BaseModel):
         if self.id is None and "id" in self.model_fields_set:
             _dict['id'] = None
 
+        # set to None if on_legal_hold (nullable) is None
+        # and model_fields_set contains the field
+        if self.on_legal_hold is None and "on_legal_hold" in self.model_fields_set:
+            _dict['onLegalHold'] = None
+
         # set to None if region_id (nullable) is None
         # and model_fields_set contains the field
         if self.region_id is None and "region_id" in self.model_fields_set:
@@ -161,6 +169,7 @@ class McmObjectActivity(BaseModel):
             "clusterIncarnationId": obj.get("clusterIncarnationId"),
             "id": obj.get("id"),
             "object": ObjectSummary.from_dict(obj["object"]) if obj.get("object") is not None else None,
+            "onLegalHold": obj.get("onLegalHold"),
             "recoveryParams": McmObjectRecoverActivityParams.from_dict(obj["recoveryParams"]) if obj.get("recoveryParams") is not None else None,
             "regionId": obj.get("regionId"),
             "sourceInfo": ObjectSummary.from_dict(obj["sourceInfo"]) if obj.get("sourceInfo") is not None else None,

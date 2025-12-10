@@ -35,7 +35,7 @@ class AliasSmbConfig(BaseModel):
     is_share_level_permission_empty: Optional[StrictBool] = Field(default=None, description="Indicate if share level permission is cleared by user.", alias="isShareLevelPermissionEmpty")
     oplock_enabled: Optional[StrictBool] = Field(default=None, description="Indicate the operation lock is enabled by this view.", alias="oplockEnabled")
     permissions: Optional[List[SmbPermission]] = Field(default=None, description="Share level permissions. Note: Supported Access: FullControl, Modify, ReadOnly. Supported type: Allow, Deny.")
-    super_user_sids: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of super user sids.", alias="superUserSids")
+    super_user_sids: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of super user sids. Duplicate SIDs are not allowed.", alias="superUserSids")
     __properties: ClassVar[List[str]] = ["cachingEnabled", "continuousAvailability", "discoveryEnabled", "encryptionEnabled", "encryptionRequired", "isShareLevelPermissionEmpty", "oplockEnabled", "permissions", "superUserSids"]
 
     model_config = ConfigDict(
@@ -68,8 +68,10 @@ class AliasSmbConfig(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
+            "continuous_availability",
         ])
 
         _dict = self.model_dump(

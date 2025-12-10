@@ -39,13 +39,16 @@ class Node(BaseModel):
     cluster_partition_id: Optional[StrictInt] = Field(default=None, description="ClusterPartitionId is the Id of the cluster partition to which the Node belongs.", alias="clusterPartitionId")
     cluster_partition_name: Optional[StrictStr] = Field(default=None, description="ClusterPartitionName is the name of the cluster to which the Node belongs.", alias="clusterPartitionName")
     cohesity_node_serial: Optional[StrictStr] = Field(default=None, description="Cohesity Node Serial Number of the Node.", alias="cohesityNodeSerial")
+    disk_count: Optional[StrictInt] = Field(default=None, description="DiskCount is the number of disks in a node.", alias="diskCount")
     disk_count_by_tier: Optional[List[CountByTier]] = Field(default=None, description="DiskCountByTier describes the disk number of each storage tier.", alias="diskCountByTier")
     hardware_model: Optional[StrictStr] = Field(default=None, description="Specifies the hardware model of the node.", alias="hardwareModel")
     host_name: Optional[StrictStr] = Field(default=None, description="Specifies the hostname of the node.", alias="hostName")
     id: Optional[StrictInt] = Field(default=None, description="Id is the Id of the Node.")
+    in_maintenance_mode: Optional[StrictBool] = Field(default=None, description="InMaintnenanceMode is used to mark a node in maintenance mode.", alias="inMaintenanceMode")
     ip: Optional[StrictStr] = Field(default=None, description="Ip is the IP address of the Node.")
     is_app_node: Optional[StrictBool] = Field(default=None, description="Whether node is app node.", alias="isAppNode")
     is_marked_for_removal: Optional[StrictBool] = Field(default=None, description="IsMarkedForRemoval specifies whether the node has been marked for removal.", alias="isMarkedForRemoval")
+    is_upgrade_in_progress: Optional[StrictBool] = Field(default=None, description="isUpgradeInProgress is used to mark a node being upgraded.", alias="isUpgradeInProgress")
     max_physical_capacity_bytes: Optional[StrictInt] = Field(default=None, description="MaxPhysicalCapacityBytes specifies the maximum physical capacity of the node in bytes.", alias="maxPhysicalCapacityBytes")
     node_hardware_info: Optional[NodeHardwareInfo] = Field(default=None, alias="nodeHardwareInfo")
     node_incarnation_id: Optional[StrictInt] = Field(default=None, description="NodeIncarnationId is the incarnation id  of this node. The incarnation id is changed every time the data is wiped from the node. Various services on a node is only run if incarnation id of the node matches the incarnation id of the cluster. Whenever a mismatch is detected, Nexus will stop all services and clean the data from the node. After clean operation is completed, Nexus will set the node incarnation id to cluster incarnation id and start the services.", alias="nodeIncarnationId")
@@ -53,12 +56,13 @@ class Node(BaseModel):
     node_type: Optional[StrictStr] = Field(default=None, description="Node type: StorageNode, AllFlashNode, RoboNode, AppNode, etc.", alias="nodeType")
     offline_disk_count: Optional[StrictInt] = Field(default=None, description="OfflineDiskCount is the number of offline disks in a node.", alias="offlineDiskCount")
     offline_mount_paths_of_disks: Optional[List[StrictStr]] = Field(default=None, description="OfflineMountPathsOfDisks provides the corresponding mount paths for direct attached disks that are currently offline - access to these were detected to hang sometime in the past. After these disks have been fixed, their mount paths needs to be removed from the following list before these will be accessed again.", alias="offlineMountPathsOfDisks")
+    patch_software_version: Optional[StrictStr] = Field(default=None, description="PatchSoftwareVersion is the current version of patch applied on a node.", alias="patchSoftwareVersion")
     precheck_timestamp_secs: Optional[StrictInt] = Field(default=None, description="Specifies the last run time of the pre-checks execution in Unix epoch timestamp (in seconds).", alias="precheckTimestampSecs")
     product_model: Optional[StrictStr] = Field(default=None, description="Specifies the product model of the node.", alias="productModel")
     progress_percentage: Optional[StrictInt] = Field(default=None, description="Specifies the overall progress percentage in removing the Node.", alias="progressPercentage")
     removal_progress_list: Optional[List[ComponentRemovalProgress]] = Field(default=None, description="Specifies the removal progress details for services that are not acked yet.", alias="removalProgressList")
-    removal_reason: Optional[List[StrictStr]] = Field(default=None, description="RemovalReason specifies the removal reason of the node. 'kAutoHealthCheck' means the entity health is bad. 'kUserGracefulRemoval' means user initiated a graceful removal. 'kUserAvoidAccess' means user initiated a mark offline. 'kUserGracefulNodeRemoval' mean users initiated graceful node removal. 'kUserRemoveDownNode' mean user initiated graceful removal of down node. 'kBridgeDataUnavailable' Bridge requested a graceful removal of a disk when it is not available.", alias="removalReason")
-    removal_state: Optional[StrictStr] = Field(default=None, description="RemovalState specifies the removal state of the node. 'kDontRemove' means the state of object is functional and it is not being removed. 'kMarkedForRemoval' means the object is being removed. 'kOkToRemove' means the object has been removed on the Cohesity Cluster and if the object is physical, it can be removed from the Cohesity Cluster.", alias="removalState")
+    removal_reason: Optional[List[StrictStr]] = Field(default=None, description="RemovalReason specifies the removal reason of the node. 'AutoHealthCheck' means the entity health is bad. 'UserGracefulRemoval' means user initiated a graceful removal. 'UserAvoidAccess' means user initiated a mark offline. 'UserGracefulNodeRemoval' mean users initiated graceful node removal. 'UserRemoveDownNode' mean user initiated graceful removal of down node. 'BridgeDataUnavailable' Bridge requested a graceful removal of a disk when it is not available.", alias="removalReason")
+    removal_state: Optional[StrictStr] = Field(default=None, description="RemovalState specifies the removal state of the node. 'DontRemove' means the state of object is functional and it is not being removed. 'MarkedForRemoval' means the object is being removed. 'OkToRemove' means the object has been removed on the Cohesity Cluster and if the object is physical, it can be removed from the Cohesity Cluster.", alias="removalState")
     removal_timestamp_secs: Optional[StrictInt] = Field(default=None, description="Specifies the Unix epoch timestamp (in seconds) when the Node was marked for removal.", alias="removalTimestampSecs")
     services_acked_list: Optional[List[StrictStr]] = Field(default=None, description="Specifies the services already ACKed for removal of this entity.", alias="servicesAckedList")
     services_not_acked: Optional[StrictStr] = Field(default=None, description="Specifies the services that are not ACKed after node is marked for removal.", alias="servicesNotAcked")
@@ -67,9 +71,11 @@ class Node(BaseModel):
     stats: Optional[NodeStats] = None
     system_disks: Optional[List[NodeSystemDiskInfo]] = Field(default=None, description="SystemDisk describes the node system disks.", alias="systemDisks")
     time_remaining: Optional[StrictInt] = Field(default=None, description="Specifies the total duration in seconds left to remove the Node.", alias="timeRemaining")
+    total_disk_bytes: Optional[StrictInt] = Field(default=None, description="TotalDiskBytes specifies the total disk capacity of the node in bytes.", alias="totalDiskBytes")
+    used_disk_bytes: Optional[StrictInt] = Field(default=None, description="UsedDiskBytes specifies the used disk capacity of the node in bytes.", alias="usedDiskBytes")
     validation_checks: Optional[List[PreCheckValidation]] = Field(default=None, description="Specifies the pre-check validations results.", alias="validationChecks")
     vendor: Optional[StrictStr] = Field(default=None, description="Specifies the vendor model of the node")
-    __properties: ClassVar[List[str]] = ["capacityByTier", "chassisInfo", "clusterPartitionId", "clusterPartitionName", "cohesityNodeSerial", "diskCountByTier", "hardwareModel", "hostName", "id", "ip", "isAppNode", "isMarkedForRemoval", "maxPhysicalCapacityBytes", "nodeHardwareInfo", "nodeIncarnationId", "nodeSoftwareVersion", "nodeType", "offlineDiskCount", "offlineMountPathsOfDisks", "precheckTimestampSecs", "productModel", "progressPercentage", "removalProgressList", "removalReason", "removalState", "removalTimestampSecs", "servicesAckedList", "servicesNotAcked", "servicesNotAckedList", "slotNumber", "stats", "systemDisks", "timeRemaining", "validationChecks", "vendor"]
+    __properties: ClassVar[List[str]] = ["capacityByTier", "chassisInfo", "clusterPartitionId", "clusterPartitionName", "cohesityNodeSerial", "diskCount", "diskCountByTier", "hardwareModel", "hostName", "id", "inMaintenanceMode", "ip", "isAppNode", "isMarkedForRemoval", "isUpgradeInProgress", "maxPhysicalCapacityBytes", "nodeHardwareInfo", "nodeIncarnationId", "nodeSoftwareVersion", "nodeType", "offlineDiskCount", "offlineMountPathsOfDisks", "patchSoftwareVersion", "precheckTimestampSecs", "productModel", "progressPercentage", "removalProgressList", "removalReason", "removalState", "removalTimestampSecs", "servicesAckedList", "servicesNotAcked", "servicesNotAckedList", "slotNumber", "stats", "systemDisks", "timeRemaining", "totalDiskBytes", "usedDiskBytes", "validationChecks", "vendor"]
 
     @field_validator('removal_reason')
     def removal_reason_validate_enum(cls, value):
@@ -215,6 +221,11 @@ class Node(BaseModel):
         if self.id is None and "id" in self.model_fields_set:
             _dict['id'] = None
 
+        # set to None if in_maintenance_mode (nullable) is None
+        # and model_fields_set contains the field
+        if self.in_maintenance_mode is None and "in_maintenance_mode" in self.model_fields_set:
+            _dict['inMaintenanceMode'] = None
+
         # set to None if ip (nullable) is None
         # and model_fields_set contains the field
         if self.ip is None and "ip" in self.model_fields_set:
@@ -229,6 +240,11 @@ class Node(BaseModel):
         # and model_fields_set contains the field
         if self.is_marked_for_removal is None and "is_marked_for_removal" in self.model_fields_set:
             _dict['isMarkedForRemoval'] = None
+
+        # set to None if is_upgrade_in_progress (nullable) is None
+        # and model_fields_set contains the field
+        if self.is_upgrade_in_progress is None and "is_upgrade_in_progress" in self.model_fields_set:
+            _dict['isUpgradeInProgress'] = None
 
         # set to None if max_physical_capacity_bytes (nullable) is None
         # and model_fields_set contains the field
@@ -259,6 +275,11 @@ class Node(BaseModel):
         # and model_fields_set contains the field
         if self.offline_mount_paths_of_disks is None and "offline_mount_paths_of_disks" in self.model_fields_set:
             _dict['offlineMountPathsOfDisks'] = None
+
+        # set to None if patch_software_version (nullable) is None
+        # and model_fields_set contains the field
+        if self.patch_software_version is None and "patch_software_version" in self.model_fields_set:
+            _dict['patchSoftwareVersion'] = None
 
         # set to None if precheck_timestamp_secs (nullable) is None
         # and model_fields_set contains the field
@@ -325,6 +346,16 @@ class Node(BaseModel):
         if self.time_remaining is None and "time_remaining" in self.model_fields_set:
             _dict['timeRemaining'] = None
 
+        # set to None if total_disk_bytes (nullable) is None
+        # and model_fields_set contains the field
+        if self.total_disk_bytes is None and "total_disk_bytes" in self.model_fields_set:
+            _dict['totalDiskBytes'] = None
+
+        # set to None if used_disk_bytes (nullable) is None
+        # and model_fields_set contains the field
+        if self.used_disk_bytes is None and "used_disk_bytes" in self.model_fields_set:
+            _dict['usedDiskBytes'] = None
+
         # set to None if validation_checks (nullable) is None
         # and model_fields_set contains the field
         if self.validation_checks is None and "validation_checks" in self.model_fields_set:
@@ -352,13 +383,16 @@ class Node(BaseModel):
             "clusterPartitionId": obj.get("clusterPartitionId"),
             "clusterPartitionName": obj.get("clusterPartitionName"),
             "cohesityNodeSerial": obj.get("cohesityNodeSerial"),
+            "diskCount": obj.get("diskCount"),
             "diskCountByTier": [CountByTier.from_dict(_item) for _item in obj["diskCountByTier"]] if obj.get("diskCountByTier") is not None else None,
             "hardwareModel": obj.get("hardwareModel"),
             "hostName": obj.get("hostName"),
             "id": obj.get("id"),
+            "inMaintenanceMode": obj.get("inMaintenanceMode"),
             "ip": obj.get("ip"),
             "isAppNode": obj.get("isAppNode"),
             "isMarkedForRemoval": obj.get("isMarkedForRemoval"),
+            "isUpgradeInProgress": obj.get("isUpgradeInProgress"),
             "maxPhysicalCapacityBytes": obj.get("maxPhysicalCapacityBytes"),
             "nodeHardwareInfo": NodeHardwareInfo.from_dict(obj["nodeHardwareInfo"]) if obj.get("nodeHardwareInfo") is not None else None,
             "nodeIncarnationId": obj.get("nodeIncarnationId"),
@@ -366,6 +400,7 @@ class Node(BaseModel):
             "nodeType": obj.get("nodeType"),
             "offlineDiskCount": obj.get("offlineDiskCount"),
             "offlineMountPathsOfDisks": obj.get("offlineMountPathsOfDisks"),
+            "patchSoftwareVersion": obj.get("patchSoftwareVersion"),
             "precheckTimestampSecs": obj.get("precheckTimestampSecs"),
             "productModel": obj.get("productModel"),
             "progressPercentage": obj.get("progressPercentage"),
@@ -380,6 +415,8 @@ class Node(BaseModel):
             "stats": NodeStats.from_dict(obj["stats"]) if obj.get("stats") is not None else None,
             "systemDisks": [NodeSystemDiskInfo.from_dict(_item) for _item in obj["systemDisks"]] if obj.get("systemDisks") is not None else None,
             "timeRemaining": obj.get("timeRemaining"),
+            "totalDiskBytes": obj.get("totalDiskBytes"),
+            "usedDiskBytes": obj.get("usedDiskBytes"),
             "validationChecks": [PreCheckValidation.from_dict(_item) for _item in obj["validationChecks"]] if obj.get("validationChecks") is not None else None,
             "vendor": obj.get("vendor")
         })

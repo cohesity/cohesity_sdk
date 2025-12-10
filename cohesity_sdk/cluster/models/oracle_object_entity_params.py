@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.database_entity_info import DatabaseEntityInfo
 from cohesity_sdk.cluster.models.host_information import HostInformation
@@ -30,7 +30,18 @@ class OracleObjectEntityParams(BaseModel):
     """ # noqa: E501
     database_entity_info: Optional[DatabaseEntityInfo] = Field(default=None, alias="databaseEntityInfo")
     host_info: Optional[HostInformation] = Field(default=None, alias="hostInfo")
-    __properties: ClassVar[List[str]] = ["databaseEntityInfo", "hostInfo"]
+    rman_backup_type: Optional[StrictStr] = Field(default=None, description="Specifies the type of Oracle RMAN backup type.", alias="rmanBackupType")
+    __properties: ClassVar[List[str]] = ["databaseEntityInfo", "hostInfo", "rmanBackupType"]
+
+    @field_validator('rman_backup_type')
+    def rman_backup_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['kImageCopy', 'kBackupSets', 'kSbt']):
+            raise ValueError("must be one of enum values ('kImageCopy', 'kBackupSets', 'kSbt')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -62,8 +73,10 @@ class OracleObjectEntityParams(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
+            "rman_backup_type",
         ])
 
         _dict = self.model_dump(
@@ -77,6 +90,11 @@ class OracleObjectEntityParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of host_info
         if self.host_info:
             _dict['hostInfo'] = self.host_info.to_dict()
+        # set to None if rman_backup_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.rman_backup_type is None and "rman_backup_type" in self.model_fields_set:
+            _dict['rmanBackupType'] = None
+
         return _dict
 
     @classmethod
@@ -90,7 +108,8 @@ class OracleObjectEntityParams(BaseModel):
 
         _obj = cls.model_validate({
             "databaseEntityInfo": DatabaseEntityInfo.from_dict(obj["databaseEntityInfo"]) if obj.get("databaseEntityInfo") is not None else None,
-            "hostInfo": HostInformation.from_dict(obj["hostInfo"]) if obj.get("hostInfo") is not None else None
+            "hostInfo": HostInformation.from_dict(obj["hostInfo"]) if obj.get("hostInfo") is not None else None,
+            "rmanBackupType": obj.get("rmanBackupType")
         })
         return _obj
 

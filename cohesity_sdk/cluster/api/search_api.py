@@ -58,7 +58,7 @@ class SearchApi:
     ) -> SearchIndexedObjectsResponseBody:
         """List indexed objects.
 
-        List all the indexed objects like files and folders, emails, mailboxes etc., that match the specified search and filter criteria from protected objects.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>List all the indexed objects like files and folders, emails, mailboxes etc., that match the specified search and filter criteria from protected objects.
 
         :param body: Specifies the parameters to search for indexed objects. (required)
         :type body: SearchIndexedObjectsRequest
@@ -125,7 +125,7 @@ class SearchApi:
     ) -> ApiResponse[SearchIndexedObjectsResponseBody]:
         """List indexed objects.
 
-        List all the indexed objects like files and folders, emails, mailboxes etc., that match the specified search and filter criteria from protected objects.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>List all the indexed objects like files and folders, emails, mailboxes etc., that match the specified search and filter criteria from protected objects.
 
         :param body: Specifies the parameters to search for indexed objects. (required)
         :type body: SearchIndexedObjectsRequest
@@ -192,7 +192,7 @@ class SearchApi:
     ) -> RESTResponseType:
         """List indexed objects.
 
-        List all the indexed objects like files and folders, emails, mailboxes etc., that match the specified search and filter criteria from protected objects.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>List all the indexed objects like files and folders, emails, mailboxes etc., that match the specified search and filter criteria from protected objects.
 
         :param body: Specifies the parameters to search for indexed objects. (required)
         :type body: SearchIndexedObjectsRequest
@@ -329,10 +329,14 @@ class SearchApi:
         os_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the operating system types to filter objects on.")] = None,
         o365_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the object types to filter objects on. Only applicable if the environment is o365.")] = None,
         azure_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the object types to filter objects on. Only applicable if the environment is Azure.")] = None,
+        aws_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the object types to filter objects on. Only applicable if the environment is AWS.")] = None,
+        azure_uuids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Azure UUID for the Microsoft365 objects. If specified, the objects with the matching Azure UUIDs will be returned.")] = None,
         source_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of Protection Source object ids to filter the objects. If specified, the object which are present in those Sources will be returned.")] = None,
         source_uuids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of Protection Source object uuids to filter the objects. If specified, the object which are present in those Sources will be returned.")] = None,
+        object_uuids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of object uuids to filter the object, based on the object uuid. These uuid are vendor specific and should be of the form, <sourceUuid_uuid>.")] = None,
         is_protected: Annotated[Optional[StrictBool], Field(description="Specifies the protection status of objects. If set to true, only protected objects will be returned. If set to false, only unprotected objects will be returned. If not specified, all objects will be returned.")] = None,
         is_deleted: Annotated[Optional[StrictBool], Field(description="If set to true, then objects which are deleted on atleast one cluster will be returned. If not set or set to false then objects which are registered on atleast one cluster are returned.")] = None,
+        only_deleted: Annotated[Optional[StrictBool], Field(description="If set to true, then only the objects which are deleted on atleast one cluster will be returned.")] = None,
         last_run_status_list: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of status of the object's last protection run. Only objects with last run status of these will be returned.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of region ids. Only records from clusters having these region ids will be returned.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.")] = None,
@@ -344,6 +348,17 @@ class SearchApi:
         might_have_tag_ids: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies list of tags, one or more of which might be present in the document. These are OR'ed together and the resulting criteria AND'ed with the rest of the query.")] = None,
         must_have_snapshot_tag_ids: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies snapshot tags which must be all present in the document.")] = None,
         might_have_snapshot_tag_ids: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies list of snapshot tags, one or more of which might be present in the document. These are OR'ed together and the resulting criteria AND'ed with the rest of the query.")] = None,
+        tag_search_name: Annotated[Optional[StrictStr], Field(description="Specifies the tag name to filter the tagged objects and snapshots. User can specify a wildcard character '*' as a suffix to a string where all object's tag names are matched with the prefix string.")] = None,
+        tag_names: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tag names to filter the tagged objects and snapshots only for non system tags")] = None,
+        anomaly_tags: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Anomaly's tag names to filter the tagged snapshots")] = None,
+        data_classification_tags: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Data classification's tag names to filter the tagged snapshots")] = None,
+        threat_tags: Annotated[Optional[List[StrictStr]], Field(description="Specifies the threat tag's names to filter the tagged snapshots")] = None,
+        tag_names_excluded: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tag names to not include in the tagged snapshots response")] = None,
+        tag_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tag type to filter the objects and snapshots.")] = None,
+        tag_categories: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tag category to filter the objects and snapshots.")] = None,
+        tag_sub_categories: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tag subcategory to filter the objects and snapshots")] = None,
+        include_helios_tag_info_for_objects: Annotated[Optional[StrictBool], Field(description="Specifies whether to include helios tags information for objects in response. Default value is false")] = None,
+        external_filters: Annotated[Optional[List[StrictStr]], Field(description="Specifies the key-value pairs to filtering the results for the search. Each filter is of the form 'key:value'. The filter 'externalFilters:k1:v1&externalFilters:k2:v2&externalFilters:k2:v3' returns the documents where each document will match the query (k1=v1) AND (k2=v2 OR k2 = v3). Allowed keys: - vmBiosUuid - graphUuid - arn - instanceId - bucketName - azureId")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -359,7 +374,7 @@ class SearchApi:
     ) -> ObjectsSearchResponseBody:
         """List Objects.
 
-        List objects.
+        **Privileges:** ```OBJECT_SEARCH``` <br><br>List objects.
 
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
@@ -383,14 +398,22 @@ class SearchApi:
         :type o365_object_types: List[str]
         :param azure_object_types: Specifies the object types to filter objects on. Only applicable if the environment is Azure.
         :type azure_object_types: List[str]
+        :param aws_object_types: Specifies the object types to filter objects on. Only applicable if the environment is AWS.
+        :type aws_object_types: List[str]
+        :param azure_uuids: Specifies the Azure UUID for the Microsoft365 objects. If specified, the objects with the matching Azure UUIDs will be returned.
+        :type azure_uuids: List[str]
         :param source_ids: Specifies a list of Protection Source object ids to filter the objects. If specified, the object which are present in those Sources will be returned.
         :type source_ids: List[int]
         :param source_uuids: Specifies a list of Protection Source object uuids to filter the objects. If specified, the object which are present in those Sources will be returned.
         :type source_uuids: List[str]
+        :param object_uuids: Specifies a list of object uuids to filter the object, based on the object uuid. These uuid are vendor specific and should be of the form, <sourceUuid_uuid>.
+        :type object_uuids: List[str]
         :param is_protected: Specifies the protection status of objects. If set to true, only protected objects will be returned. If set to false, only unprotected objects will be returned. If not specified, all objects will be returned.
         :type is_protected: bool
         :param is_deleted: If set to true, then objects which are deleted on atleast one cluster will be returned. If not set or set to false then objects which are registered on atleast one cluster are returned.
         :type is_deleted: bool
+        :param only_deleted: If set to true, then only the objects which are deleted on atleast one cluster will be returned.
+        :type only_deleted: bool
         :param last_run_status_list: Specifies a list of status of the object's last protection run. Only objects with last run status of these will be returned.
         :type last_run_status_list: List[str]
         :param region_ids: Specifies a list of region ids. Only records from clusters having these region ids will be returned.
@@ -413,6 +436,28 @@ class SearchApi:
         :type must_have_snapshot_tag_ids: List[str]
         :param might_have_snapshot_tag_ids: Specifies list of snapshot tags, one or more of which might be present in the document. These are OR'ed together and the resulting criteria AND'ed with the rest of the query.
         :type might_have_snapshot_tag_ids: List[str]
+        :param tag_search_name: Specifies the tag name to filter the tagged objects and snapshots. User can specify a wildcard character '*' as a suffix to a string where all object's tag names are matched with the prefix string.
+        :type tag_search_name: str
+        :param tag_names: Specifies the tag names to filter the tagged objects and snapshots only for non system tags
+        :type tag_names: List[str]
+        :param anomaly_tags: Specifies the Anomaly's tag names to filter the tagged snapshots
+        :type anomaly_tags: List[str]
+        :param data_classification_tags: Specifies the Data classification's tag names to filter the tagged snapshots
+        :type data_classification_tags: List[str]
+        :param threat_tags: Specifies the threat tag's names to filter the tagged snapshots
+        :type threat_tags: List[str]
+        :param tag_names_excluded: Specifies the tag names to not include in the tagged snapshots response
+        :type tag_names_excluded: List[str]
+        :param tag_types: Specifies the tag type to filter the objects and snapshots.
+        :type tag_types: List[str]
+        :param tag_categories: Specifies the tag category to filter the objects and snapshots.
+        :type tag_categories: List[str]
+        :param tag_sub_categories: Specifies the tag subcategory to filter the objects and snapshots
+        :type tag_sub_categories: List[str]
+        :param include_helios_tag_info_for_objects: Specifies whether to include helios tags information for objects in response. Default value is false
+        :type include_helios_tag_info_for_objects: bool
+        :param external_filters: Specifies the key-value pairs to filtering the results for the search. Each filter is of the form 'key:value'. The filter 'externalFilters:k1:v1&externalFilters:k2:v2&externalFilters:k2:v3' returns the documents where each document will match the query (k1=v1) AND (k2=v2 OR k2 = v3). Allowed keys: - vmBiosUuid - graphUuid - arn - instanceId - bucketName - azureId
+        :type external_filters: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -447,10 +492,14 @@ class SearchApi:
             os_types=os_types,
             o365_object_types=o365_object_types,
             azure_object_types=azure_object_types,
+            aws_object_types=aws_object_types,
+            azure_uuids=azure_uuids,
             source_ids=source_ids,
             source_uuids=source_uuids,
+            object_uuids=object_uuids,
             is_protected=is_protected,
             is_deleted=is_deleted,
+            only_deleted=only_deleted,
             last_run_status_list=last_run_status_list,
             region_ids=region_ids,
             cluster_identifiers=cluster_identifiers,
@@ -462,6 +511,17 @@ class SearchApi:
             might_have_tag_ids=might_have_tag_ids,
             must_have_snapshot_tag_ids=must_have_snapshot_tag_ids,
             might_have_snapshot_tag_ids=might_have_snapshot_tag_ids,
+            tag_search_name=tag_search_name,
+            tag_names=tag_names,
+            anomaly_tags=anomaly_tags,
+            data_classification_tags=data_classification_tags,
+            threat_tags=threat_tags,
+            tag_names_excluded=tag_names_excluded,
+            tag_types=tag_types,
+            tag_categories=tag_categories,
+            tag_sub_categories=tag_sub_categories,
+            include_helios_tag_info_for_objects=include_helios_tag_info_for_objects,
+            external_filters=external_filters,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -496,10 +556,14 @@ class SearchApi:
         os_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the operating system types to filter objects on.")] = None,
         o365_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the object types to filter objects on. Only applicable if the environment is o365.")] = None,
         azure_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the object types to filter objects on. Only applicable if the environment is Azure.")] = None,
+        aws_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the object types to filter objects on. Only applicable if the environment is AWS.")] = None,
+        azure_uuids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Azure UUID for the Microsoft365 objects. If specified, the objects with the matching Azure UUIDs will be returned.")] = None,
         source_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of Protection Source object ids to filter the objects. If specified, the object which are present in those Sources will be returned.")] = None,
         source_uuids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of Protection Source object uuids to filter the objects. If specified, the object which are present in those Sources will be returned.")] = None,
+        object_uuids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of object uuids to filter the object, based on the object uuid. These uuid are vendor specific and should be of the form, <sourceUuid_uuid>.")] = None,
         is_protected: Annotated[Optional[StrictBool], Field(description="Specifies the protection status of objects. If set to true, only protected objects will be returned. If set to false, only unprotected objects will be returned. If not specified, all objects will be returned.")] = None,
         is_deleted: Annotated[Optional[StrictBool], Field(description="If set to true, then objects which are deleted on atleast one cluster will be returned. If not set or set to false then objects which are registered on atleast one cluster are returned.")] = None,
+        only_deleted: Annotated[Optional[StrictBool], Field(description="If set to true, then only the objects which are deleted on atleast one cluster will be returned.")] = None,
         last_run_status_list: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of status of the object's last protection run. Only objects with last run status of these will be returned.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of region ids. Only records from clusters having these region ids will be returned.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.")] = None,
@@ -511,6 +575,17 @@ class SearchApi:
         might_have_tag_ids: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies list of tags, one or more of which might be present in the document. These are OR'ed together and the resulting criteria AND'ed with the rest of the query.")] = None,
         must_have_snapshot_tag_ids: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies snapshot tags which must be all present in the document.")] = None,
         might_have_snapshot_tag_ids: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies list of snapshot tags, one or more of which might be present in the document. These are OR'ed together and the resulting criteria AND'ed with the rest of the query.")] = None,
+        tag_search_name: Annotated[Optional[StrictStr], Field(description="Specifies the tag name to filter the tagged objects and snapshots. User can specify a wildcard character '*' as a suffix to a string where all object's tag names are matched with the prefix string.")] = None,
+        tag_names: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tag names to filter the tagged objects and snapshots only for non system tags")] = None,
+        anomaly_tags: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Anomaly's tag names to filter the tagged snapshots")] = None,
+        data_classification_tags: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Data classification's tag names to filter the tagged snapshots")] = None,
+        threat_tags: Annotated[Optional[List[StrictStr]], Field(description="Specifies the threat tag's names to filter the tagged snapshots")] = None,
+        tag_names_excluded: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tag names to not include in the tagged snapshots response")] = None,
+        tag_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tag type to filter the objects and snapshots.")] = None,
+        tag_categories: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tag category to filter the objects and snapshots.")] = None,
+        tag_sub_categories: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tag subcategory to filter the objects and snapshots")] = None,
+        include_helios_tag_info_for_objects: Annotated[Optional[StrictBool], Field(description="Specifies whether to include helios tags information for objects in response. Default value is false")] = None,
+        external_filters: Annotated[Optional[List[StrictStr]], Field(description="Specifies the key-value pairs to filtering the results for the search. Each filter is of the form 'key:value'. The filter 'externalFilters:k1:v1&externalFilters:k2:v2&externalFilters:k2:v3' returns the documents where each document will match the query (k1=v1) AND (k2=v2 OR k2 = v3). Allowed keys: - vmBiosUuid - graphUuid - arn - instanceId - bucketName - azureId")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -526,7 +601,7 @@ class SearchApi:
     ) -> ApiResponse[ObjectsSearchResponseBody]:
         """List Objects.
 
-        List objects.
+        **Privileges:** ```OBJECT_SEARCH``` <br><br>List objects.
 
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
@@ -550,14 +625,22 @@ class SearchApi:
         :type o365_object_types: List[str]
         :param azure_object_types: Specifies the object types to filter objects on. Only applicable if the environment is Azure.
         :type azure_object_types: List[str]
+        :param aws_object_types: Specifies the object types to filter objects on. Only applicable if the environment is AWS.
+        :type aws_object_types: List[str]
+        :param azure_uuids: Specifies the Azure UUID for the Microsoft365 objects. If specified, the objects with the matching Azure UUIDs will be returned.
+        :type azure_uuids: List[str]
         :param source_ids: Specifies a list of Protection Source object ids to filter the objects. If specified, the object which are present in those Sources will be returned.
         :type source_ids: List[int]
         :param source_uuids: Specifies a list of Protection Source object uuids to filter the objects. If specified, the object which are present in those Sources will be returned.
         :type source_uuids: List[str]
+        :param object_uuids: Specifies a list of object uuids to filter the object, based on the object uuid. These uuid are vendor specific and should be of the form, <sourceUuid_uuid>.
+        :type object_uuids: List[str]
         :param is_protected: Specifies the protection status of objects. If set to true, only protected objects will be returned. If set to false, only unprotected objects will be returned. If not specified, all objects will be returned.
         :type is_protected: bool
         :param is_deleted: If set to true, then objects which are deleted on atleast one cluster will be returned. If not set or set to false then objects which are registered on atleast one cluster are returned.
         :type is_deleted: bool
+        :param only_deleted: If set to true, then only the objects which are deleted on atleast one cluster will be returned.
+        :type only_deleted: bool
         :param last_run_status_list: Specifies a list of status of the object's last protection run. Only objects with last run status of these will be returned.
         :type last_run_status_list: List[str]
         :param region_ids: Specifies a list of region ids. Only records from clusters having these region ids will be returned.
@@ -580,6 +663,28 @@ class SearchApi:
         :type must_have_snapshot_tag_ids: List[str]
         :param might_have_snapshot_tag_ids: Specifies list of snapshot tags, one or more of which might be present in the document. These are OR'ed together and the resulting criteria AND'ed with the rest of the query.
         :type might_have_snapshot_tag_ids: List[str]
+        :param tag_search_name: Specifies the tag name to filter the tagged objects and snapshots. User can specify a wildcard character '*' as a suffix to a string where all object's tag names are matched with the prefix string.
+        :type tag_search_name: str
+        :param tag_names: Specifies the tag names to filter the tagged objects and snapshots only for non system tags
+        :type tag_names: List[str]
+        :param anomaly_tags: Specifies the Anomaly's tag names to filter the tagged snapshots
+        :type anomaly_tags: List[str]
+        :param data_classification_tags: Specifies the Data classification's tag names to filter the tagged snapshots
+        :type data_classification_tags: List[str]
+        :param threat_tags: Specifies the threat tag's names to filter the tagged snapshots
+        :type threat_tags: List[str]
+        :param tag_names_excluded: Specifies the tag names to not include in the tagged snapshots response
+        :type tag_names_excluded: List[str]
+        :param tag_types: Specifies the tag type to filter the objects and snapshots.
+        :type tag_types: List[str]
+        :param tag_categories: Specifies the tag category to filter the objects and snapshots.
+        :type tag_categories: List[str]
+        :param tag_sub_categories: Specifies the tag subcategory to filter the objects and snapshots
+        :type tag_sub_categories: List[str]
+        :param include_helios_tag_info_for_objects: Specifies whether to include helios tags information for objects in response. Default value is false
+        :type include_helios_tag_info_for_objects: bool
+        :param external_filters: Specifies the key-value pairs to filtering the results for the search. Each filter is of the form 'key:value'. The filter 'externalFilters:k1:v1&externalFilters:k2:v2&externalFilters:k2:v3' returns the documents where each document will match the query (k1=v1) AND (k2=v2 OR k2 = v3). Allowed keys: - vmBiosUuid - graphUuid - arn - instanceId - bucketName - azureId
+        :type external_filters: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -614,10 +719,14 @@ class SearchApi:
             os_types=os_types,
             o365_object_types=o365_object_types,
             azure_object_types=azure_object_types,
+            aws_object_types=aws_object_types,
+            azure_uuids=azure_uuids,
             source_ids=source_ids,
             source_uuids=source_uuids,
+            object_uuids=object_uuids,
             is_protected=is_protected,
             is_deleted=is_deleted,
+            only_deleted=only_deleted,
             last_run_status_list=last_run_status_list,
             region_ids=region_ids,
             cluster_identifiers=cluster_identifiers,
@@ -629,6 +738,17 @@ class SearchApi:
             might_have_tag_ids=might_have_tag_ids,
             must_have_snapshot_tag_ids=must_have_snapshot_tag_ids,
             might_have_snapshot_tag_ids=might_have_snapshot_tag_ids,
+            tag_search_name=tag_search_name,
+            tag_names=tag_names,
+            anomaly_tags=anomaly_tags,
+            data_classification_tags=data_classification_tags,
+            threat_tags=threat_tags,
+            tag_names_excluded=tag_names_excluded,
+            tag_types=tag_types,
+            tag_categories=tag_categories,
+            tag_sub_categories=tag_sub_categories,
+            include_helios_tag_info_for_objects=include_helios_tag_info_for_objects,
+            external_filters=external_filters,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -663,10 +783,14 @@ class SearchApi:
         os_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the operating system types to filter objects on.")] = None,
         o365_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the object types to filter objects on. Only applicable if the environment is o365.")] = None,
         azure_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the object types to filter objects on. Only applicable if the environment is Azure.")] = None,
+        aws_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the object types to filter objects on. Only applicable if the environment is AWS.")] = None,
+        azure_uuids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Azure UUID for the Microsoft365 objects. If specified, the objects with the matching Azure UUIDs will be returned.")] = None,
         source_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies a list of Protection Source object ids to filter the objects. If specified, the object which are present in those Sources will be returned.")] = None,
         source_uuids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of Protection Source object uuids to filter the objects. If specified, the object which are present in those Sources will be returned.")] = None,
+        object_uuids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of object uuids to filter the object, based on the object uuid. These uuid are vendor specific and should be of the form, <sourceUuid_uuid>.")] = None,
         is_protected: Annotated[Optional[StrictBool], Field(description="Specifies the protection status of objects. If set to true, only protected objects will be returned. If set to false, only unprotected objects will be returned. If not specified, all objects will be returned.")] = None,
         is_deleted: Annotated[Optional[StrictBool], Field(description="If set to true, then objects which are deleted on atleast one cluster will be returned. If not set or set to false then objects which are registered on atleast one cluster are returned.")] = None,
+        only_deleted: Annotated[Optional[StrictBool], Field(description="If set to true, then only the objects which are deleted on atleast one cluster will be returned.")] = None,
         last_run_status_list: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of status of the object's last protection run. Only objects with last run status of these will be returned.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of region ids. Only records from clusters having these region ids will be returned.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.")] = None,
@@ -678,6 +802,17 @@ class SearchApi:
         might_have_tag_ids: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies list of tags, one or more of which might be present in the document. These are OR'ed together and the resulting criteria AND'ed with the rest of the query.")] = None,
         must_have_snapshot_tag_ids: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies snapshot tags which must be all present in the document.")] = None,
         might_have_snapshot_tag_ids: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies list of snapshot tags, one or more of which might be present in the document. These are OR'ed together and the resulting criteria AND'ed with the rest of the query.")] = None,
+        tag_search_name: Annotated[Optional[StrictStr], Field(description="Specifies the tag name to filter the tagged objects and snapshots. User can specify a wildcard character '*' as a suffix to a string where all object's tag names are matched with the prefix string.")] = None,
+        tag_names: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tag names to filter the tagged objects and snapshots only for non system tags")] = None,
+        anomaly_tags: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Anomaly's tag names to filter the tagged snapshots")] = None,
+        data_classification_tags: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Data classification's tag names to filter the tagged snapshots")] = None,
+        threat_tags: Annotated[Optional[List[StrictStr]], Field(description="Specifies the threat tag's names to filter the tagged snapshots")] = None,
+        tag_names_excluded: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tag names to not include in the tagged snapshots response")] = None,
+        tag_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tag type to filter the objects and snapshots.")] = None,
+        tag_categories: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tag category to filter the objects and snapshots.")] = None,
+        tag_sub_categories: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tag subcategory to filter the objects and snapshots")] = None,
+        include_helios_tag_info_for_objects: Annotated[Optional[StrictBool], Field(description="Specifies whether to include helios tags information for objects in response. Default value is false")] = None,
+        external_filters: Annotated[Optional[List[StrictStr]], Field(description="Specifies the key-value pairs to filtering the results for the search. Each filter is of the form 'key:value'. The filter 'externalFilters:k1:v1&externalFilters:k2:v2&externalFilters:k2:v3' returns the documents where each document will match the query (k1=v1) AND (k2=v2 OR k2 = v3). Allowed keys: - vmBiosUuid - graphUuid - arn - instanceId - bucketName - azureId")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -693,7 +828,7 @@ class SearchApi:
     ) -> RESTResponseType:
         """List Objects.
 
-        List objects.
+        **Privileges:** ```OBJECT_SEARCH``` <br><br>List objects.
 
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
@@ -717,14 +852,22 @@ class SearchApi:
         :type o365_object_types: List[str]
         :param azure_object_types: Specifies the object types to filter objects on. Only applicable if the environment is Azure.
         :type azure_object_types: List[str]
+        :param aws_object_types: Specifies the object types to filter objects on. Only applicable if the environment is AWS.
+        :type aws_object_types: List[str]
+        :param azure_uuids: Specifies the Azure UUID for the Microsoft365 objects. If specified, the objects with the matching Azure UUIDs will be returned.
+        :type azure_uuids: List[str]
         :param source_ids: Specifies a list of Protection Source object ids to filter the objects. If specified, the object which are present in those Sources will be returned.
         :type source_ids: List[int]
         :param source_uuids: Specifies a list of Protection Source object uuids to filter the objects. If specified, the object which are present in those Sources will be returned.
         :type source_uuids: List[str]
+        :param object_uuids: Specifies a list of object uuids to filter the object, based on the object uuid. These uuid are vendor specific and should be of the form, <sourceUuid_uuid>.
+        :type object_uuids: List[str]
         :param is_protected: Specifies the protection status of objects. If set to true, only protected objects will be returned. If set to false, only unprotected objects will be returned. If not specified, all objects will be returned.
         :type is_protected: bool
         :param is_deleted: If set to true, then objects which are deleted on atleast one cluster will be returned. If not set or set to false then objects which are registered on atleast one cluster are returned.
         :type is_deleted: bool
+        :param only_deleted: If set to true, then only the objects which are deleted on atleast one cluster will be returned.
+        :type only_deleted: bool
         :param last_run_status_list: Specifies a list of status of the object's last protection run. Only objects with last run status of these will be returned.
         :type last_run_status_list: List[str]
         :param region_ids: Specifies a list of region ids. Only records from clusters having these region ids will be returned.
@@ -747,6 +890,28 @@ class SearchApi:
         :type must_have_snapshot_tag_ids: List[str]
         :param might_have_snapshot_tag_ids: Specifies list of snapshot tags, one or more of which might be present in the document. These are OR'ed together and the resulting criteria AND'ed with the rest of the query.
         :type might_have_snapshot_tag_ids: List[str]
+        :param tag_search_name: Specifies the tag name to filter the tagged objects and snapshots. User can specify a wildcard character '*' as a suffix to a string where all object's tag names are matched with the prefix string.
+        :type tag_search_name: str
+        :param tag_names: Specifies the tag names to filter the tagged objects and snapshots only for non system tags
+        :type tag_names: List[str]
+        :param anomaly_tags: Specifies the Anomaly's tag names to filter the tagged snapshots
+        :type anomaly_tags: List[str]
+        :param data_classification_tags: Specifies the Data classification's tag names to filter the tagged snapshots
+        :type data_classification_tags: List[str]
+        :param threat_tags: Specifies the threat tag's names to filter the tagged snapshots
+        :type threat_tags: List[str]
+        :param tag_names_excluded: Specifies the tag names to not include in the tagged snapshots response
+        :type tag_names_excluded: List[str]
+        :param tag_types: Specifies the tag type to filter the objects and snapshots.
+        :type tag_types: List[str]
+        :param tag_categories: Specifies the tag category to filter the objects and snapshots.
+        :type tag_categories: List[str]
+        :param tag_sub_categories: Specifies the tag subcategory to filter the objects and snapshots
+        :type tag_sub_categories: List[str]
+        :param include_helios_tag_info_for_objects: Specifies whether to include helios tags information for objects in response. Default value is false
+        :type include_helios_tag_info_for_objects: bool
+        :param external_filters: Specifies the key-value pairs to filtering the results for the search. Each filter is of the form 'key:value'. The filter 'externalFilters:k1:v1&externalFilters:k2:v2&externalFilters:k2:v3' returns the documents where each document will match the query (k1=v1) AND (k2=v2 OR k2 = v3). Allowed keys: - vmBiosUuid - graphUuid - arn - instanceId - bucketName - azureId
+        :type external_filters: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -781,10 +946,14 @@ class SearchApi:
             os_types=os_types,
             o365_object_types=o365_object_types,
             azure_object_types=azure_object_types,
+            aws_object_types=aws_object_types,
+            azure_uuids=azure_uuids,
             source_ids=source_ids,
             source_uuids=source_uuids,
+            object_uuids=object_uuids,
             is_protected=is_protected,
             is_deleted=is_deleted,
+            only_deleted=only_deleted,
             last_run_status_list=last_run_status_list,
             region_ids=region_ids,
             cluster_identifiers=cluster_identifiers,
@@ -796,6 +965,17 @@ class SearchApi:
             might_have_tag_ids=might_have_tag_ids,
             must_have_snapshot_tag_ids=must_have_snapshot_tag_ids,
             might_have_snapshot_tag_ids=might_have_snapshot_tag_ids,
+            tag_search_name=tag_search_name,
+            tag_names=tag_names,
+            anomaly_tags=anomaly_tags,
+            data_classification_tags=data_classification_tags,
+            threat_tags=threat_tags,
+            tag_names_excluded=tag_names_excluded,
+            tag_types=tag_types,
+            tag_categories=tag_categories,
+            tag_sub_categories=tag_sub_categories,
+            include_helios_tag_info_for_objects=include_helios_tag_info_for_objects,
+            external_filters=external_filters,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -825,10 +1005,14 @@ class SearchApi:
         os_types,
         o365_object_types,
         azure_object_types,
+        aws_object_types,
+        azure_uuids,
         source_ids,
         source_uuids,
+        object_uuids,
         is_protected,
         is_deleted,
+        only_deleted,
         last_run_status_list,
         region_ids,
         cluster_identifiers,
@@ -840,6 +1024,17 @@ class SearchApi:
         might_have_tag_ids,
         must_have_snapshot_tag_ids,
         might_have_snapshot_tag_ids,
+        tag_search_name,
+        tag_names,
+        anomaly_tags,
+        data_classification_tags,
+        threat_tags,
+        tag_names_excluded,
+        tag_types,
+        tag_categories,
+        tag_sub_categories,
+        include_helios_tag_info_for_objects,
+        external_filters,
         _request_auth,
         _content_type,
         _headers,
@@ -857,8 +1052,11 @@ class SearchApi:
             'osTypes': 'csv',
             'o365ObjectTypes': 'csv',
             'azureObjectTypes': 'csv',
+            'awsObjectTypes': 'csv',
+            'azureUuids': 'csv',
             'sourceIds': 'csv',
             'sourceUuids': 'csv',
+            'objectUuids': 'csv',
             'lastRunStatusList': 'csv',
             'regionIds': 'csv',
             'clusterIdentifiers': 'csv',
@@ -867,6 +1065,15 @@ class SearchApi:
             'mightHaveTagIds': 'csv',
             'mustHaveSnapshotTagIds': 'csv',
             'mightHaveSnapshotTagIds': 'csv',
+            'tagNames': 'csv',
+            'anomalyTags': 'csv',
+            'dataClassificationTags': 'csv',
+            'threatTags': 'csv',
+            'tagNamesExcluded': 'csv',
+            'tagTypes': 'csv',
+            'tagCategories': 'csv',
+            'tagSubCategories': 'csv',
+            'externalFilters': 'multi',
         }
 
         _path_params: Dict[str, str] = {}
@@ -920,6 +1127,14 @@ class SearchApi:
             
             _query_params.append(('azureObjectTypes', azure_object_types))
             
+        if aws_object_types is not None:
+            
+            _query_params.append(('awsObjectTypes', aws_object_types))
+            
+        if azure_uuids is not None:
+            
+            _query_params.append(('azureUuids', azure_uuids))
+            
         if source_ids is not None:
             
             _query_params.append(('sourceIds', source_ids))
@@ -928,6 +1143,10 @@ class SearchApi:
             
             _query_params.append(('sourceUuids', source_uuids))
             
+        if object_uuids is not None:
+            
+            _query_params.append(('objectUuids', object_uuids))
+            
         if is_protected is not None:
             
             _query_params.append(('isProtected', is_protected))
@@ -935,6 +1154,10 @@ class SearchApi:
         if is_deleted is not None:
             
             _query_params.append(('isDeleted', is_deleted))
+            
+        if only_deleted is not None:
+            
+            _query_params.append(('onlyDeleted', only_deleted))
             
         if last_run_status_list is not None:
             
@@ -979,6 +1202,50 @@ class SearchApi:
         if might_have_snapshot_tag_ids is not None:
             
             _query_params.append(('mightHaveSnapshotTagIds', might_have_snapshot_tag_ids))
+            
+        if tag_search_name is not None:
+            
+            _query_params.append(('tagSearchName', tag_search_name))
+            
+        if tag_names is not None:
+            
+            _query_params.append(('tagNames', tag_names))
+            
+        if anomaly_tags is not None:
+            
+            _query_params.append(('anomalyTags', anomaly_tags))
+            
+        if data_classification_tags is not None:
+            
+            _query_params.append(('dataClassificationTags', data_classification_tags))
+            
+        if threat_tags is not None:
+            
+            _query_params.append(('threatTags', threat_tags))
+            
+        if tag_names_excluded is not None:
+            
+            _query_params.append(('tagNamesExcluded', tag_names_excluded))
+            
+        if tag_types is not None:
+            
+            _query_params.append(('tagTypes', tag_types))
+            
+        if tag_categories is not None:
+            
+            _query_params.append(('tagCategories', tag_categories))
+            
+        if tag_sub_categories is not None:
+            
+            _query_params.append(('tagSubCategories', tag_sub_categories))
+            
+        if include_helios_tag_info_for_objects is not None:
+            
+            _query_params.append(('includeHeliosTagInfoForObjects', include_helios_tag_info_for_objects))
+            
+        if external_filters is not None:
+            
+            _query_params.append(('externalFilters', external_filters))
             
         # process the header parameters
         if request_initiator_type is not None:
@@ -1058,7 +1325,7 @@ class SearchApi:
     ) -> ProtectedObjectsSearchResponseBody:
         """List Protected Objects.
 
-        List protected objects and corresponding detail information from registered sources filtered by specified query parameters. If no search pattern or filter parameters are specified, all protected objects currently found are returned.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>List protected objects and corresponding detail information from registered sources filtered by specified query parameters. If no search pattern or filter parameters are specified, all protected objects currently found are returned.
 
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
@@ -1197,7 +1464,7 @@ class SearchApi:
     ) -> ApiResponse[ProtectedObjectsSearchResponseBody]:
         """List Protected Objects.
 
-        List protected objects and corresponding detail information from registered sources filtered by specified query parameters. If no search pattern or filter parameters are specified, all protected objects currently found are returned.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>List protected objects and corresponding detail information from registered sources filtered by specified query parameters. If no search pattern or filter parameters are specified, all protected objects currently found are returned.
 
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
@@ -1336,7 +1603,7 @@ class SearchApi:
     ) -> RESTResponseType:
         """List Protected Objects.
 
-        List protected objects and corresponding detail information from registered sources filtered by specified query parameters. If no search pattern or filter parameters are specified, all protected objects currently found are returned.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>List protected objects and corresponding detail information from registered sources filtered by specified query parameters. If no search pattern or filter parameters are specified, all protected objects currently found are returned.
 
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str

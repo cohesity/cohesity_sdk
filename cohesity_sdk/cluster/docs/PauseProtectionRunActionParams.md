@@ -6,6 +6,7 @@ Specifies the request to pause a protection run.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**paused_note** | **str** | A note from the current user explaining the reason for pausing runs, if applicable. | [optional] 
 **run_id** | **str** | Specifies a unique run id of the Protection Group run. | 
 
 ## Example

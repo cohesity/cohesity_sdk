@@ -19,7 +19,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.acropolis_disk_info import AcropolisDiskInfo
 from cohesity_sdk.cluster.models.acropolis_protection_group_object_params import AcropolisProtectionGroupObjectParams
 from cohesity_sdk.cluster.models.indexing_policy import IndexingPolicy
@@ -33,13 +32,15 @@ class AcropolisProtectionGroupParams(BaseModel):
     app_consistent_snapshot: Optional[StrictBool] = Field(default=None, description="Specifies whether or not to quiesce apps and the file system in order to take app consistent snapshots. If not specified or false then snapshots will not be app consistent.", alias="appConsistentSnapshot")
     continue_on_quiesce_failure: Optional[StrictBool] = Field(default=None, description="Specifies whether to continue backing up on quiesce failure", alias="continueOnQuiesceFailure")
     exclude_object_ids: Optional[List[StrictInt]] = Field(default=None, description="Specifies the object ids to be excluded in the Protection Group.", alias="excludeObjectIds")
+    exclude_vm_tag_ids: Optional[List[List[StrictInt]]] = Field(default=None, description="Array of Arrays of VM Tag Ids that Specify VMs to Exclude. Optionally specify a list of VMs to exclude from protecting by listing Protection Source ids of VM Tags in this two dimensional array. Using this two dimensional array of Tag ids, the Cluster generates a list of VMs to exclude from protecting, which are derived from intersections of the inner arrays and union of the outer array, as shown by the following example. For example a Datacenter is selected to be protected but you want to exclude all the 'Former Employees' VMs in the East and West but keep all the VMs for 'Former Employees' in the South which are also stored in this Datacenter, by specifying the following tag id array: [ [1000, 2221], [1000, 3031] ], where 1000 is the 'Former Employee' VM Tag id, 2221 is the 'East' VM Tag id and 3031 is the 'West' VM Tag id. The first inner array [1000, 2221] produces a list of VMs that are both tagged with 'Former Employees' and 'East' (an intersection). The second inner array [1000, 3031] produces a list of VMs that are both tagged with 'Former Employees' and 'West' (an intersection). The outer array combines the list of VMs from the two inner arrays. The list of resulting VMs are excluded from being protected this Job.", alias="excludeVmTagIds")
     global_exclude_disks: Optional[List[AcropolisDiskInfo]] = Field(default=None, description="Specifies a list of disks to exclude from the backup.", alias="globalExcludeDisks")
     global_include_disks: Optional[List[AcropolisDiskInfo]] = Field(default=None, description="Specifies a list of disks to include in the backup.", alias="globalIncludeDisks")
     indexing_policy: Optional[IndexingPolicy] = Field(default=None, alias="indexingPolicy")
-    objects: Annotated[List[AcropolisProtectionGroupObjectParams], Field(min_length=1)] = Field(description="Specifies the objects included in the Protection Group.")
+    objects: List[AcropolisProtectionGroupObjectParams] = Field(description="Specifies the objects included in the Protection Group.")
     source_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the parent of the objects.", alias="sourceId")
     source_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the parent of the objects.", alias="sourceName")
-    __properties: ClassVar[List[str]] = ["appConsistentSnapshot", "continueOnQuiesceFailure", "excludeObjectIds", "globalExcludeDisks", "globalIncludeDisks", "indexingPolicy", "objects", "sourceId", "sourceName"]
+    vm_tag_ids: Optional[List[List[StrictInt]]] = Field(default=None, description="Array of Array of VM Tag Ids that Specify VMs to Protect. Optionally specify a list of VMs to protect by listing Protection Source ids of VM Tags in this two dimensional array. Using this two dimensional array of Tag ids, the Cluster generates a list of VMs to protect which are derived from intersections of the inner arrays and union of the outer array, as shown by the following example. To protect only 'Eng' VMs in the East and all the VMs in the West, specify the following tag id array: [ [1101, 2221], [3031] ], where 1101 is the 'Eng' VM Tag id, 2221 is the 'East' VM Tag id and 3031 is the 'West' VM Tag id. The inner array [1101, 2221] produces a list of VMs that are both tagged with 'Eng' and 'East' (an intersection). The outer array combines the list from the inner array with list of VMs tagged with 'West' (a union). The list of resulting VMs are protected by this Protection Group.", alias="vmTagIds")
+    __properties: ClassVar[List[str]] = ["appConsistentSnapshot", "continueOnQuiesceFailure", "excludeObjectIds", "excludeVmTagIds", "globalExcludeDisks", "globalIncludeDisks", "indexingPolicy", "objects", "sourceId", "sourceName", "vmTagIds"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -123,6 +124,11 @@ class AcropolisProtectionGroupParams(BaseModel):
         if self.exclude_object_ids is None and "exclude_object_ids" in self.model_fields_set:
             _dict['excludeObjectIds'] = None
 
+        # set to None if exclude_vm_tag_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.exclude_vm_tag_ids is None and "exclude_vm_tag_ids" in self.model_fields_set:
+            _dict['excludeVmTagIds'] = None
+
         # set to None if global_exclude_disks (nullable) is None
         # and model_fields_set contains the field
         if self.global_exclude_disks is None and "global_exclude_disks" in self.model_fields_set:
@@ -143,6 +149,11 @@ class AcropolisProtectionGroupParams(BaseModel):
         if self.source_name is None and "source_name" in self.model_fields_set:
             _dict['sourceName'] = None
 
+        # set to None if vm_tag_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.vm_tag_ids is None and "vm_tag_ids" in self.model_fields_set:
+            _dict['vmTagIds'] = None
+
         return _dict
 
     @classmethod
@@ -158,12 +169,14 @@ class AcropolisProtectionGroupParams(BaseModel):
             "appConsistentSnapshot": obj.get("appConsistentSnapshot"),
             "continueOnQuiesceFailure": obj.get("continueOnQuiesceFailure"),
             "excludeObjectIds": obj.get("excludeObjectIds"),
+            "excludeVmTagIds": obj.get("excludeVmTagIds"),
             "globalExcludeDisks": [AcropolisDiskInfo.from_dict(_item) for _item in obj["globalExcludeDisks"]] if obj.get("globalExcludeDisks") is not None else None,
             "globalIncludeDisks": [AcropolisDiskInfo.from_dict(_item) for _item in obj["globalIncludeDisks"]] if obj.get("globalIncludeDisks") is not None else None,
             "indexingPolicy": IndexingPolicy.from_dict(obj["indexingPolicy"]) if obj.get("indexingPolicy") is not None else None,
             "objects": [AcropolisProtectionGroupObjectParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None,
             "sourceId": obj.get("sourceId"),
-            "sourceName": obj.get("sourceName")
+            "sourceName": obj.get("sourceName"),
+            "vmTagIds": obj.get("vmTagIds")
         })
         return _obj
 

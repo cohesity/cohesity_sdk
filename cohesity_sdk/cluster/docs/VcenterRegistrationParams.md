@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **min_free_datastore_space_for_backup_gb** | **int** | Specifies the minimum free space (in GB) expected to be available in the datastore where the virtual disks of the VM being backed up reside. If the space available is lower than the specified value, backup will be aborted. | [optional] 
 **min_free_datastore_space_for_backup_percentage** | **int** | Specifies the minimum free space (in percentage) expected to be available in the datastore where the virtual disks of the VM being backed up reside. If the space available is lower than the specified value, backup will be aborted. | [optional] 
 **throttling_params** | [**VmwareThrottlingParams**](VmwareThrottlingParams.md) |  | [optional] 
+**update_last_backup_details** | **bool** | Specifies whether to update the last backup details, including the time of the backup attempt and backup status, for the virtual machines on the vCenter. | [optional] 
 **use_vm_bios_uuid** | **bool** | Specifies to use VM BIOS UUID to track virtual machines in the host. | [optional] 
 
 ## Example

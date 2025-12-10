@@ -1,15 +1,16 @@
 # ObjectProtectionStatsSummary
 
-Specifies the count and size of protected and unprotected objects for a given environment.
+Specifies the count and size of protected and unprotected objects for a given source environment/protection environment type.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **deleted_protected_count** | **int** | Specifies the count of protected leaf objects which were deleted from the source after being protected. | [optional] 
-**environment** | **str** | Specifies the environment of the object. | [optional] 
+**environment** | **str** | Specifies the source environment of the object. | [optional] 
 **protected_count** | **int** | Specifies the count of the protected leaf objects. | [optional] 
 **protected_size_bytes** | **int** | Specifies the protected logical size in bytes. | [optional] 
+**protection_env_type** | **str** | Specifies the protection environment type. | [optional] 
 **unprotected_count** | **int** | Specifies the count of the unprotected leaf objects. | [optional] 
 **unprotected_size_bytes** | **int** | Specifies the unprotected logical size in bytes. | [optional] 
 

@@ -6,6 +6,7 @@ Protection runs.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**is_response_truncated** | **bool** | Indicates whether the result is truncated due to hitting maximum size limit governed by magneto_http_rpc_response_size_limit_bytes | [optional] 
 **pagination_cookie** | **str** | Specifies the information needed in order to support pagination. This will not be included for the last page of results. | [optional] 
 **runs** | [**List[CommonProtectionGroupRunResponseParameters]**](CommonProtectionGroupRunResponseParameters.md) | Specifies the list of Protection Group runs. | [optional] 
 **total_runs** | **int** | Specifies the count of total runs exist for the given set of filters. The number of runs in single API call are limited and this count can be used to estimate query filter values to get next set of remaining runs. Please note that this field will only be populated if startTimeUsecs or endTimeUsecs or both are specified in query parameters. | [optional] 

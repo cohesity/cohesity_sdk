@@ -18,27 +18,24 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
-from typing import Set
+from typing import Any, ClassVar, Dict, List
+from typing import Optional, Set
 from typing_extensions import Self
 
 class UpgradeCheckTestResult(BaseModel):
     """
     The healthcheck test result
     """ # noqa: E501
-    test_id: Optional[StrictStr] = Field(default=None, description="The healthcheck test id", alias="testId")
-    test_kb_link: Optional[StrictStr] = Field(default=None, description="The kb link for diagnosing test failure", alias="testKbLink")
-    test_name: Optional[StrictStr] = Field(default=None, description="The healthcheck test name", alias="testName")
-    test_output: Optional[StrictStr] = Field(default=None, description="The healthcheck test output", alias="testOutput")
-    test_result: Optional[StrictStr] = Field(default=None, description="The healthcheck test result", alias="testResult")
+    test_id: StrictStr = Field(description="The healthcheck test id", alias="testId")
+    test_kb_link: StrictStr = Field(description="The kb link for diagnosing test failure", alias="testKbLink")
+    test_name: StrictStr = Field(description="The healthcheck test name", alias="testName")
+    test_output: StrictStr = Field(description="The healthcheck test output", alias="testOutput")
+    test_result: StrictStr = Field(description="The healthcheck test result", alias="testResult")
     __properties: ClassVar[List[str]] = ["testId", "testKbLink", "testName", "testOutput", "testResult"]
 
     @field_validator('test_result')
     def test_result_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
         if value not in set(['Passed', 'Failed', 'Warning', 'Skipped', 'Error', 'Timeout', 'Unknown']):
             raise ValueError("must be one of enum values ('Passed', 'Failed', 'Warning', 'Skipped', 'Error', 'Timeout', 'Unknown')")
         return value

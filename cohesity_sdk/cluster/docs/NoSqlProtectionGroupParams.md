@@ -11,7 +11,11 @@ Name | Type | Description | Notes
 **concurrency** | **int** | Specifies the maximum number of concurrent IO Streams that will be created to exchange data with the cluster. | [optional] 
 **custom_source_name** | **str** | The user specified name for the Source on which this protection was run. | [optional] [readonly] 
 **exclude_object_ids** | **List[int]** | Specifies the objects to be excluded in the Protection Group. | [optional] 
+**exclude_objectlist** | **List[str]** | Specifies the list of fully qualified name of the entities to exclude for protection. | [optional] 
+**include_objectlist** | **List[str]** | Specifies the list of fully qualified name of the entities to include for protection. | [optional] 
 **objects** | [**List[NoSqlProtectionGroupObjectParams]**](NoSqlProtectionGroupObjectParams.md) | Specifies the objects to be included in the Protection Group. | [optional] 
+**overwrite_exclude_objectlist** | **bool** | If disabled - The excludeObjectlist is merged with the existing exclude_sources_vec, preserving any existing elements while incorporating new ones. | [optional] [default to True]
+**overwrite_include_objectlist** | **bool** | If disabled - The includeObjectlist is merged with the existing sources_vec, preserving any existing elements while incorporating new ones. | [optional] [default to True]
 **source_id** | **int** | Object ID of the Source on which this protection was run . | [optional] [readonly] 
 **source_name** | **str** | Specifies the name of the Source on which this protection was run. | [optional] [readonly] 
 

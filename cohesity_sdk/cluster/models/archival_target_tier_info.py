@@ -54,8 +54,8 @@ class ArchivalTargetTierInfo(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kAmazonS3Standard', 'kAmazonS3StandardIA', 'kAmazonS3OneZoneIA', 'kAmazonS3IntelligentTiering', 'kAmazonS3Glacier', 'kAmazonS3GlacierDeepArchive', 'kAzureTierHot', 'kAzureTierCool', 'kAzureTierArchive', 'kGoogleStandard', 'kGoogleRegional', 'kGoogleMultiRegional', 'kGoogleNearline', 'kGoogleColdline', 'kOracleTierStandard', 'kOracleTierArchive']):
-            raise ValueError("must be one of enum values ('kAmazonS3Standard', 'kAmazonS3StandardIA', 'kAmazonS3OneZoneIA', 'kAmazonS3IntelligentTiering', 'kAmazonS3Glacier', 'kAmazonS3GlacierDeepArchive', 'kAzureTierHot', 'kAzureTierCool', 'kAzureTierArchive', 'kGoogleStandard', 'kGoogleRegional', 'kGoogleMultiRegional', 'kGoogleNearline', 'kGoogleColdline', 'kOracleTierStandard', 'kOracleTierArchive')")
+        if value not in set(['kAmazonS3Standard', 'kAmazonS3StandardIA', 'kAmazonS3OneZoneIA', 'kAmazonS3IntelligentTiering', 'kAmazonS3Glacier', 'kAmazonS3GlacierDeepArchive', 'kAzureTierHot', 'kAzureTierCool', 'kAzureTierArchive', 'kAzureTierCold', 'kGoogleStandard', 'kGoogleRegional', 'kGoogleMultiRegional', 'kGoogleNearline', 'kGoogleColdline', 'kOracleTierStandard', 'kOracleTierArchive']):
+            raise ValueError("must be one of enum values ('kAmazonS3Standard', 'kAmazonS3StandardIA', 'kAmazonS3OneZoneIA', 'kAmazonS3IntelligentTiering', 'kAmazonS3Glacier', 'kAmazonS3GlacierDeepArchive', 'kAzureTierHot', 'kAzureTierCool', 'kAzureTierArchive', 'kAzureTierCold', 'kGoogleStandard', 'kGoogleRegional', 'kGoogleMultiRegional', 'kGoogleNearline', 'kGoogleColdline', 'kOracleTierStandard', 'kOracleTierArchive')")
         return value
 
     model_config = ConfigDict(

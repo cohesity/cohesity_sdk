@@ -16,11 +16,20 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictBool
+from cohesity_sdk.helios.models.active_alerts_stats import ActiveAlertsStats
+from cohesity_sdk.helios.models.alert_categories import AlertCategories
+from cohesity_sdk.helios.models.alert_list import AlertList
 from cohesity_sdk.helios.models.alert_resolution import AlertResolution
+from cohesity_sdk.helios.models.alert_resolution_on_prem import AlertResolutionOnPrem
 from cohesity_sdk.helios.models.alert_resolutions_list import AlertResolutionsList
+from cohesity_sdk.helios.models.alert_type import AlertType
 from cohesity_sdk.helios.models.alerts_list import AlertsList
 from cohesity_sdk.helios.models.alerts_summary_response import AlertsSummaryResponse
 from cohesity_sdk.helios.models.create_helios_alert_resolution_params import CreateHeliosAlertResolutionParams
+from cohesity_sdk.helios.models.helios_snmp_alerts_config import HeliosSnmpAlertsConfig
+from cohesity_sdk.helios.models.mcm_active_alerts_stats import McmActiveAlertsStats
+from cohesity_sdk.helios.models.notification_rule import NotificationRule
+from cohesity_sdk.helios.models.update_alert_resolution_request import UpdateAlertResolutionRequest
 
 from cohesity_sdk.helios.api_client import ApiClient, RequestSerialized
 from cohesity_sdk.helios.api_response import ApiResponse
@@ -41,10 +50,618 @@ class AlertApi:
 
 
     @validate_call
+    def create_alert_notification_rule(
+        self,
+        body: Annotated[NotificationRule, Field(description="Specifies the alert notification rule config.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> NotificationRule:
+        """Add a notification rule
+
+        Create a new notification rule rules that send emails, SNMP, Syslog, and/or cURL HTTP POST requests to a webhook URL based on the alert categories, severities, and names.
+
+        :param body: Specifies the alert notification rule config. (required)
+        :type body: NotificationRule
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_alert_notification_rule_serialize(
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "NotificationRule",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def create_alert_notification_rule_with_http_info(
+        self,
+        body: Annotated[NotificationRule, Field(description="Specifies the alert notification rule config.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[NotificationRule]:
+        """Add a notification rule
+
+        Create a new notification rule rules that send emails, SNMP, Syslog, and/or cURL HTTP POST requests to a webhook URL based on the alert categories, severities, and names.
+
+        :param body: Specifies the alert notification rule config. (required)
+        :type body: NotificationRule
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_alert_notification_rule_serialize(
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "NotificationRule",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def create_alert_notification_rule_without_preload_content(
+        self,
+        body: Annotated[NotificationRule, Field(description="Specifies the alert notification rule config.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Add a notification rule
+
+        Create a new notification rule rules that send emails, SNMP, Syslog, and/or cURL HTTP POST requests to a webhook URL based on the alert categories, severities, and names.
+
+        :param body: Specifies the alert notification rule config. (required)
+        :type body: NotificationRule
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_alert_notification_rule_serialize(
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "NotificationRule",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _create_alert_notification_rule_serialize(
+        self,
+        body,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/alerts/config/notification-rules',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def create_alert_resolution(
+        self,
+        body: Annotated[Optional[AlertResolutionOnPrem], Field(description="\"Provides Resolution details and the list of Alerts resolved\" \"by a Resolution which are specified by Alert Ids.\" ")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AlertResolutionOnPrem:
+        """Create alert resolution.
+
+        Create alert resolution.
+
+        :param body: \"Provides Resolution details and the list of Alerts resolved\" \"by a Resolution which are specified by Alert Ids.\"  (required)
+        :type body: AlertResolutionOnPrem
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_alert_resolution_serialize(
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "AlertResolutionOnPrem",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def create_alert_resolution_with_http_info(
+        self,
+        body: Annotated[Optional[AlertResolutionOnPrem], Field(description="\"Provides Resolution details and the list of Alerts resolved\" \"by a Resolution which are specified by Alert Ids.\" ")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AlertResolutionOnPrem]:
+        """Create alert resolution.
+
+        Create alert resolution.
+
+        :param body: \"Provides Resolution details and the list of Alerts resolved\" \"by a Resolution which are specified by Alert Ids.\"  (required)
+        :type body: AlertResolutionOnPrem
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_alert_resolution_serialize(
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "AlertResolutionOnPrem",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def create_alert_resolution_without_preload_content(
+        self,
+        body: Annotated[Optional[AlertResolutionOnPrem], Field(description="\"Provides Resolution details and the list of Alerts resolved\" \"by a Resolution which are specified by Alert Ids.\" ")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create alert resolution.
+
+        Create alert resolution.
+
+        :param body: \"Provides Resolution details and the list of Alerts resolved\" \"by a Resolution which are specified by Alert Ids.\"  (required)
+        :type body: AlertResolutionOnPrem
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_alert_resolution_serialize(
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "AlertResolutionOnPrem",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _create_alert_resolution_serialize(
+        self,
+        body,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/alerts/resolutions',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def create_helios_alert_resolution(
         self,
         body: Annotated[CreateHeliosAlertResolutionParams, Field(description="Helios Alert resolution to be created, with alerts to resolve. Alerts.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -64,7 +681,7 @@ class AlertApi:
 
         :param body: Helios Alert resolution to be created, with alerts to resolve. Alerts. (required)
         :type body: CreateHeliosAlertResolutionParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -115,7 +732,7 @@ class AlertApi:
     def create_helios_alert_resolution_with_http_info(
         self,
         body: Annotated[CreateHeliosAlertResolutionParams, Field(description="Helios Alert resolution to be created, with alerts to resolve. Alerts.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -135,7 +752,7 @@ class AlertApi:
 
         :param body: Helios Alert resolution to be created, with alerts to resolve. Alerts. (required)
         :type body: CreateHeliosAlertResolutionParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -186,7 +803,7 @@ class AlertApi:
     def create_helios_alert_resolution_without_preload_content(
         self,
         body: Annotated[CreateHeliosAlertResolutionParams, Field(description="Helios Alert resolution to be created, with alerts to resolve. Alerts.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -206,7 +823,7 @@ class AlertApi:
 
         :param body: Helios Alert resolution to be created, with alerts to resolve. Alerts. (required)
         :type body: CreateHeliosAlertResolutionParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -312,8 +929,1577 @@ class AlertApi:
         ]
 
         return self.api_client.param_serialize(
-            method='PUT',
+            method='POST',
             resource_path='/mcm/alerts/resolutions',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_active_alert_stats(
+        self,
+        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the start time in miliseconds to filter the alert statistics.")] = None,
+        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the end time in miliseconds to filter the alert statistics..")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ActiveAlertsStats:
+        """Get active alert statistics.
+
+        Get statistics of active alerts. If no query parameters are provided, defaults to the last 10 days.
+
+        :param start_time_usecs: Specifies the start time in miliseconds to filter the alert statistics.
+        :type start_time_usecs: int
+        :param end_time_usecs: Specifies the end time in miliseconds to filter the alert statistics..
+        :type end_time_usecs: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_active_alert_stats_serialize(
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ActiveAlertsStats",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_active_alert_stats_with_http_info(
+        self,
+        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the start time in miliseconds to filter the alert statistics.")] = None,
+        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the end time in miliseconds to filter the alert statistics..")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ActiveAlertsStats]:
+        """Get active alert statistics.
+
+        Get statistics of active alerts. If no query parameters are provided, defaults to the last 10 days.
+
+        :param start_time_usecs: Specifies the start time in miliseconds to filter the alert statistics.
+        :type start_time_usecs: int
+        :param end_time_usecs: Specifies the end time in miliseconds to filter the alert statistics..
+        :type end_time_usecs: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_active_alert_stats_serialize(
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ActiveAlertsStats",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_active_alert_stats_without_preload_content(
+        self,
+        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the start time in miliseconds to filter the alert statistics.")] = None,
+        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the end time in miliseconds to filter the alert statistics..")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get active alert statistics.
+
+        Get statistics of active alerts. If no query parameters are provided, defaults to the last 10 days.
+
+        :param start_time_usecs: Specifies the start time in miliseconds to filter the alert statistics.
+        :type start_time_usecs: int
+        :param end_time_usecs: Specifies the end time in miliseconds to filter the alert statistics..
+        :type end_time_usecs: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_active_alert_stats_serialize(
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ActiveAlertsStats",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_active_alert_stats_serialize(
+        self,
+        start_time_usecs,
+        end_time_usecs,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if start_time_usecs is not None:
+            
+            _query_params.append(('startTimeUsecs', start_time_usecs))
+            
+        if end_time_usecs is not None:
+            
+            _query_params.append(('endTimeUsecs', end_time_usecs))
+            
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/stats/alerts',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_alert_categories(
+        self,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[AlertCategories]:
+        """Get alert categories.
+
+        Get all alert categories.
+
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_alert_categories_serialize(
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[AlertCategories]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_alert_categories_with_http_info(
+        self,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[AlertCategories]]:
+        """Get alert categories.
+
+        Get all alert categories.
+
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_alert_categories_serialize(
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[AlertCategories]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_alert_categories_without_preload_content(
+        self,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get alert categories.
+
+        Get all alert categories.
+
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_alert_categories_serialize(
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[AlertCategories]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_alert_categories_serialize(
+        self,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/alert-categories',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_alert_notification_rules(
+        self,
+        ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies the ids of the notification rules. If this is not specified, all the notification rules will be returned. ")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[NotificationRule]:
+        """List all notification rules
+
+        List all notification rules configured.
+
+        :param ids: Specifies the ids of the notification rules. If this is not specified, all the notification rules will be returned. 
+        :type ids: List[int]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_alert_notification_rules_serialize(
+            ids=ids,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[NotificationRule]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_alert_notification_rules_with_http_info(
+        self,
+        ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies the ids of the notification rules. If this is not specified, all the notification rules will be returned. ")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[NotificationRule]]:
+        """List all notification rules
+
+        List all notification rules configured.
+
+        :param ids: Specifies the ids of the notification rules. If this is not specified, all the notification rules will be returned. 
+        :type ids: List[int]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_alert_notification_rules_serialize(
+            ids=ids,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[NotificationRule]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_alert_notification_rules_without_preload_content(
+        self,
+        ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies the ids of the notification rules. If this is not specified, all the notification rules will be returned. ")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List all notification rules
+
+        List all notification rules configured.
+
+        :param ids: Specifies the ids of the notification rules. If this is not specified, all the notification rules will be returned. 
+        :type ids: List[int]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_alert_notification_rules_serialize(
+            ids=ids,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[NotificationRule]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_alert_notification_rules_serialize(
+        self,
+        ids,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+            'ids': 'csv',
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if ids is not None:
+            
+            _query_params.append(('ids', ids))
+            
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/alerts/config/notification-rules',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_alert_resolution(
+        self,
+        id: Annotated[StrictInt, Field(description="Unique Id of the Alert Resolution.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AlertResolutionOnPrem:
+        """Get alert resolution by resolution Id
+
+        Get alert resolution.
+
+        :param id: Unique Id of the Alert Resolution. (required)
+        :type id: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_alert_resolution_serialize(
+            id=id,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AlertResolutionOnPrem",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_alert_resolution_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="Unique Id of the Alert Resolution.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AlertResolutionOnPrem]:
+        """Get alert resolution by resolution Id
+
+        Get alert resolution.
+
+        :param id: Unique Id of the Alert Resolution. (required)
+        :type id: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_alert_resolution_serialize(
+            id=id,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AlertResolutionOnPrem",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_alert_resolution_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="Unique Id of the Alert Resolution.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get alert resolution by resolution Id
+
+        Get alert resolution.
+
+        :param id: Unique Id of the Alert Resolution. (required)
+        :type id: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_alert_resolution_serialize(
+            id=id,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AlertResolutionOnPrem",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_alert_resolution_serialize(
+        self,
+        id,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/alerts/resolutions/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_alert_resolutions(
+        self,
+        resolution_id_list: Annotated[Optional[List[StrictInt]], Field(description="Specifies list of Alert Resolution ids to filter resolutions by. ")] = None,
+        alert_id_list: Annotated[Optional[List[StrictStr]], Field(description="Specifies list of Alert ids to filter resolutions by.")] = None,
+        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies Start Time Unix epoch in microseconds to filter resolutions by. ")] = None,
+        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies End Time Unix epoch in microseconds to filter resolutions by. ")] = None,
+        max_resolutions: Annotated[Optional[StrictInt], Field(description="Specifies the number of resolutions to be returned in reverse chronological order. ")] = None,
+        tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tenant ids to filter resolutions ")] = None,
+        all_under_hierarchy: Annotated[Optional[StrictBool], Field(description="Specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. ")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[AlertResolutionOnPrem]:
+        """Get alert resolutions.
+
+        Get alert resolutions.
+
+        :param resolution_id_list: Specifies list of Alert Resolution ids to filter resolutions by. 
+        :type resolution_id_list: List[int]
+        :param alert_id_list: Specifies list of Alert ids to filter resolutions by.
+        :type alert_id_list: List[str]
+        :param start_time_usecs: Specifies Start Time Unix epoch in microseconds to filter resolutions by. 
+        :type start_time_usecs: int
+        :param end_time_usecs: Specifies End Time Unix epoch in microseconds to filter resolutions by. 
+        :type end_time_usecs: int
+        :param max_resolutions: Specifies the number of resolutions to be returned in reverse chronological order. 
+        :type max_resolutions: int
+        :param tenant_ids: Specifies the tenant ids to filter resolutions 
+        :type tenant_ids: List[str]
+        :param all_under_hierarchy: Specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. 
+        :type all_under_hierarchy: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_alert_resolutions_serialize(
+            resolution_id_list=resolution_id_list,
+            alert_id_list=alert_id_list,
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            max_resolutions=max_resolutions,
+            tenant_ids=tenant_ids,
+            all_under_hierarchy=all_under_hierarchy,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[AlertResolutionOnPrem]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_alert_resolutions_with_http_info(
+        self,
+        resolution_id_list: Annotated[Optional[List[StrictInt]], Field(description="Specifies list of Alert Resolution ids to filter resolutions by. ")] = None,
+        alert_id_list: Annotated[Optional[List[StrictStr]], Field(description="Specifies list of Alert ids to filter resolutions by.")] = None,
+        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies Start Time Unix epoch in microseconds to filter resolutions by. ")] = None,
+        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies End Time Unix epoch in microseconds to filter resolutions by. ")] = None,
+        max_resolutions: Annotated[Optional[StrictInt], Field(description="Specifies the number of resolutions to be returned in reverse chronological order. ")] = None,
+        tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tenant ids to filter resolutions ")] = None,
+        all_under_hierarchy: Annotated[Optional[StrictBool], Field(description="Specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. ")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[AlertResolutionOnPrem]]:
+        """Get alert resolutions.
+
+        Get alert resolutions.
+
+        :param resolution_id_list: Specifies list of Alert Resolution ids to filter resolutions by. 
+        :type resolution_id_list: List[int]
+        :param alert_id_list: Specifies list of Alert ids to filter resolutions by.
+        :type alert_id_list: List[str]
+        :param start_time_usecs: Specifies Start Time Unix epoch in microseconds to filter resolutions by. 
+        :type start_time_usecs: int
+        :param end_time_usecs: Specifies End Time Unix epoch in microseconds to filter resolutions by. 
+        :type end_time_usecs: int
+        :param max_resolutions: Specifies the number of resolutions to be returned in reverse chronological order. 
+        :type max_resolutions: int
+        :param tenant_ids: Specifies the tenant ids to filter resolutions 
+        :type tenant_ids: List[str]
+        :param all_under_hierarchy: Specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. 
+        :type all_under_hierarchy: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_alert_resolutions_serialize(
+            resolution_id_list=resolution_id_list,
+            alert_id_list=alert_id_list,
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            max_resolutions=max_resolutions,
+            tenant_ids=tenant_ids,
+            all_under_hierarchy=all_under_hierarchy,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[AlertResolutionOnPrem]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_alert_resolutions_without_preload_content(
+        self,
+        resolution_id_list: Annotated[Optional[List[StrictInt]], Field(description="Specifies list of Alert Resolution ids to filter resolutions by. ")] = None,
+        alert_id_list: Annotated[Optional[List[StrictStr]], Field(description="Specifies list of Alert ids to filter resolutions by.")] = None,
+        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies Start Time Unix epoch in microseconds to filter resolutions by. ")] = None,
+        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies End Time Unix epoch in microseconds to filter resolutions by. ")] = None,
+        max_resolutions: Annotated[Optional[StrictInt], Field(description="Specifies the number of resolutions to be returned in reverse chronological order. ")] = None,
+        tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tenant ids to filter resolutions ")] = None,
+        all_under_hierarchy: Annotated[Optional[StrictBool], Field(description="Specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. ")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get alert resolutions.
+
+        Get alert resolutions.
+
+        :param resolution_id_list: Specifies list of Alert Resolution ids to filter resolutions by. 
+        :type resolution_id_list: List[int]
+        :param alert_id_list: Specifies list of Alert ids to filter resolutions by.
+        :type alert_id_list: List[str]
+        :param start_time_usecs: Specifies Start Time Unix epoch in microseconds to filter resolutions by. 
+        :type start_time_usecs: int
+        :param end_time_usecs: Specifies End Time Unix epoch in microseconds to filter resolutions by. 
+        :type end_time_usecs: int
+        :param max_resolutions: Specifies the number of resolutions to be returned in reverse chronological order. 
+        :type max_resolutions: int
+        :param tenant_ids: Specifies the tenant ids to filter resolutions 
+        :type tenant_ids: List[str]
+        :param all_under_hierarchy: Specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. 
+        :type all_under_hierarchy: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_alert_resolutions_serialize(
+            resolution_id_list=resolution_id_list,
+            alert_id_list=alert_id_list,
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            max_resolutions=max_resolutions,
+            tenant_ids=tenant_ids,
+            all_under_hierarchy=all_under_hierarchy,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[AlertResolutionOnPrem]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_alert_resolutions_serialize(
+        self,
+        resolution_id_list,
+        alert_id_list,
+        start_time_usecs,
+        end_time_usecs,
+        max_resolutions,
+        tenant_ids,
+        all_under_hierarchy,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+            'resolutionIdList': 'csv',
+            'alertIdList': 'csv',
+            'tenantIds': 'csv',
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if resolution_id_list is not None:
+            
+            _query_params.append(('resolutionIdList', resolution_id_list))
+            
+        if alert_id_list is not None:
+            
+            _query_params.append(('alertIdList', alert_id_list))
+            
+        if start_time_usecs is not None:
+            
+            _query_params.append(('startTimeUsecs', start_time_usecs))
+            
+        if end_time_usecs is not None:
+            
+            _query_params.append(('endTimeUsecs', end_time_usecs))
+            
+        if max_resolutions is not None:
+            
+            _query_params.append(('maxResolutions', max_resolutions))
+            
+        if tenant_ids is not None:
+            
+            _query_params.append(('tenantIds', tenant_ids))
+            
+        if all_under_hierarchy is not None:
+            
+            _query_params.append(('allUnderHierarchy', all_under_hierarchy))
+            
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/alerts/resolutions',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -332,13 +2518,13 @@ class AlertApi:
     @validate_call
     def get_alert_summary(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="IncludeTenants specifies if alerts of all the tenants under the hierarchy of the logged in user's organization should be used to compute summary.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which alerts are to be used to compute summary.")] = None,
         states_list: Annotated[Optional[List[StrictStr]], Field(description="Specifies list of alert states to filter alerts by. If not specified, only open alerts will be used to get summary.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -356,10 +2542,6 @@ class AlertApi:
 
         Get alerts summary grouped by category.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param start_time_usecs: Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.
         :type start_time_usecs: int
         :param end_time_usecs: Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time.
@@ -370,6 +2552,10 @@ class AlertApi:
         :type tenant_ids: List[str]
         :param states_list: Specifies list of alert states to filter alerts by. If not specified, only open alerts will be used to get summary.
         :type states_list: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -393,13 +2579,13 @@ class AlertApi:
         """ # noqa: E501
 
         _param = self._get_alert_summary_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             include_tenants=include_tenants,
             tenant_ids=tenant_ids,
             states_list=states_list,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -423,13 +2609,13 @@ class AlertApi:
     @validate_call
     def get_alert_summary_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="IncludeTenants specifies if alerts of all the tenants under the hierarchy of the logged in user's organization should be used to compute summary.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which alerts are to be used to compute summary.")] = None,
         states_list: Annotated[Optional[List[StrictStr]], Field(description="Specifies list of alert states to filter alerts by. If not specified, only open alerts will be used to get summary.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -447,10 +2633,6 @@ class AlertApi:
 
         Get alerts summary grouped by category.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param start_time_usecs: Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.
         :type start_time_usecs: int
         :param end_time_usecs: Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time.
@@ -461,6 +2643,10 @@ class AlertApi:
         :type tenant_ids: List[str]
         :param states_list: Specifies list of alert states to filter alerts by. If not specified, only open alerts will be used to get summary.
         :type states_list: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -484,13 +2670,13 @@ class AlertApi:
         """ # noqa: E501
 
         _param = self._get_alert_summary_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             include_tenants=include_tenants,
             tenant_ids=tenant_ids,
             states_list=states_list,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -514,13 +2700,13 @@ class AlertApi:
     @validate_call
     def get_alert_summary_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="IncludeTenants specifies if alerts of all the tenants under the hierarchy of the logged in user's organization should be used to compute summary.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which alerts are to be used to compute summary.")] = None,
         states_list: Annotated[Optional[List[StrictStr]], Field(description="Specifies list of alert states to filter alerts by. If not specified, only open alerts will be used to get summary.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -538,10 +2724,6 @@ class AlertApi:
 
         Get alerts summary grouped by category.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param start_time_usecs: Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.
         :type start_time_usecs: int
         :param end_time_usecs: Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time.
@@ -552,6 +2734,10 @@ class AlertApi:
         :type tenant_ids: List[str]
         :param states_list: Specifies list of alert states to filter alerts by. If not specified, only open alerts will be used to get summary.
         :type states_list: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -575,13 +2761,13 @@ class AlertApi:
         """ # noqa: E501
 
         _param = self._get_alert_summary_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             include_tenants=include_tenants,
             tenant_ids=tenant_ids,
             states_list=states_list,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -600,13 +2786,13 @@ class AlertApi:
 
     def _get_alert_summary_serialize(
         self,
-        access_cluster_id,
-        region_id,
         start_time_usecs,
         end_time_usecs,
         include_tenants,
         tenant_ids,
         states_list,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -693,12 +2879,842 @@ class AlertApi:
 
 
     @validate_call
+    def get_alert_types(
+        self,
+        categories: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert categories. Provide as comma-separated values.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[AlertType]:
+        """Get alert types.
+
+        Get all defined alert types.
+
+        :param categories: Filter by list of alert categories. Provide as comma-separated values.
+        :type categories: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_alert_types_serialize(
+            categories=categories,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[AlertType]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_alert_types_with_http_info(
+        self,
+        categories: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert categories. Provide as comma-separated values.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[AlertType]]:
+        """Get alert types.
+
+        Get all defined alert types.
+
+        :param categories: Filter by list of alert categories. Provide as comma-separated values.
+        :type categories: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_alert_types_serialize(
+            categories=categories,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[AlertType]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_alert_types_without_preload_content(
+        self,
+        categories: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert categories. Provide as comma-separated values.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get alert types.
+
+        Get all defined alert types.
+
+        :param categories: Filter by list of alert categories. Provide as comma-separated values.
+        :type categories: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_alert_types_serialize(
+            categories=categories,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[AlertType]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_alert_types_serialize(
+        self,
+        categories,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+            'categories': 'csv',
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if categories is not None:
+            
+            _query_params.append(('categories', categories))
+            
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/alert-types',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_alerts(
+        self,
+        alert_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert ids.")] = None,
+        alert_types: Annotated[Optional[List[StrictInt]], Field(description="Filter by list of alert types.")] = None,
+        alert_categories: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert categories.")] = None,
+        alert_states: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert states.")] = None,
+        alert_severities: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert severity types.")] = None,
+        alert_type_buckets: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert type buckets.")] = None,
+        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies start time Unix epoch time in microseconds to filter alerts by.")] = None,
+        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies end time Unix epoch time in microseconds to filter alerts by.")] = None,
+        max_alerts: Annotated[Optional[StrictInt], Field(description="Specifies maximum number of alerts to return.The default value is 100 and maximum allowed value is 1000")] = None,
+        property_key: Annotated[Optional[StrictStr], Field(description="Specifies name of the property to filter alerts by.")] = None,
+        property_value: Annotated[Optional[StrictStr], Field(description="Specifies value of the property to filter alerts by.")] = None,
+        alert_name: Annotated[Optional[StrictStr], Field(description="Specifies name of alert to filter alerts by.")] = None,
+        resolution_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies alert resolution ids to filter alerts by.")] = None,
+        tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by tenant ids.")] = None,
+        all_under_hierarchy: Annotated[Optional[StrictBool], Field(description="Filter by objects of all the tenants under the hierarchy of the logged in user's organization.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AlertList:
+        """Get alerts.
+
+
+        :param alert_ids: Filter by list of alert ids.
+        :type alert_ids: List[str]
+        :param alert_types: Filter by list of alert types.
+        :type alert_types: List[int]
+        :param alert_categories: Filter by list of alert categories.
+        :type alert_categories: List[str]
+        :param alert_states: Filter by list of alert states.
+        :type alert_states: List[str]
+        :param alert_severities: Filter by list of alert severity types.
+        :type alert_severities: List[str]
+        :param alert_type_buckets: Filter by list of alert type buckets.
+        :type alert_type_buckets: List[str]
+        :param start_time_usecs: Specifies start time Unix epoch time in microseconds to filter alerts by.
+        :type start_time_usecs: int
+        :param end_time_usecs: Specifies end time Unix epoch time in microseconds to filter alerts by.
+        :type end_time_usecs: int
+        :param max_alerts: Specifies maximum number of alerts to return.The default value is 100 and maximum allowed value is 1000
+        :type max_alerts: int
+        :param property_key: Specifies name of the property to filter alerts by.
+        :type property_key: str
+        :param property_value: Specifies value of the property to filter alerts by.
+        :type property_value: str
+        :param alert_name: Specifies name of alert to filter alerts by.
+        :type alert_name: str
+        :param resolution_ids: Specifies alert resolution ids to filter alerts by.
+        :type resolution_ids: List[int]
+        :param tenant_ids: Filter by tenant ids.
+        :type tenant_ids: List[str]
+        :param all_under_hierarchy: Filter by objects of all the tenants under the hierarchy of the logged in user's organization.
+        :type all_under_hierarchy: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_alerts_serialize(
+            alert_ids=alert_ids,
+            alert_types=alert_types,
+            alert_categories=alert_categories,
+            alert_states=alert_states,
+            alert_severities=alert_severities,
+            alert_type_buckets=alert_type_buckets,
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            max_alerts=max_alerts,
+            property_key=property_key,
+            property_value=property_value,
+            alert_name=alert_name,
+            resolution_ids=resolution_ids,
+            tenant_ids=tenant_ids,
+            all_under_hierarchy=all_under_hierarchy,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AlertList",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_alerts_with_http_info(
+        self,
+        alert_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert ids.")] = None,
+        alert_types: Annotated[Optional[List[StrictInt]], Field(description="Filter by list of alert types.")] = None,
+        alert_categories: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert categories.")] = None,
+        alert_states: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert states.")] = None,
+        alert_severities: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert severity types.")] = None,
+        alert_type_buckets: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert type buckets.")] = None,
+        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies start time Unix epoch time in microseconds to filter alerts by.")] = None,
+        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies end time Unix epoch time in microseconds to filter alerts by.")] = None,
+        max_alerts: Annotated[Optional[StrictInt], Field(description="Specifies maximum number of alerts to return.The default value is 100 and maximum allowed value is 1000")] = None,
+        property_key: Annotated[Optional[StrictStr], Field(description="Specifies name of the property to filter alerts by.")] = None,
+        property_value: Annotated[Optional[StrictStr], Field(description="Specifies value of the property to filter alerts by.")] = None,
+        alert_name: Annotated[Optional[StrictStr], Field(description="Specifies name of alert to filter alerts by.")] = None,
+        resolution_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies alert resolution ids to filter alerts by.")] = None,
+        tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by tenant ids.")] = None,
+        all_under_hierarchy: Annotated[Optional[StrictBool], Field(description="Filter by objects of all the tenants under the hierarchy of the logged in user's organization.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AlertList]:
+        """Get alerts.
+
+
+        :param alert_ids: Filter by list of alert ids.
+        :type alert_ids: List[str]
+        :param alert_types: Filter by list of alert types.
+        :type alert_types: List[int]
+        :param alert_categories: Filter by list of alert categories.
+        :type alert_categories: List[str]
+        :param alert_states: Filter by list of alert states.
+        :type alert_states: List[str]
+        :param alert_severities: Filter by list of alert severity types.
+        :type alert_severities: List[str]
+        :param alert_type_buckets: Filter by list of alert type buckets.
+        :type alert_type_buckets: List[str]
+        :param start_time_usecs: Specifies start time Unix epoch time in microseconds to filter alerts by.
+        :type start_time_usecs: int
+        :param end_time_usecs: Specifies end time Unix epoch time in microseconds to filter alerts by.
+        :type end_time_usecs: int
+        :param max_alerts: Specifies maximum number of alerts to return.The default value is 100 and maximum allowed value is 1000
+        :type max_alerts: int
+        :param property_key: Specifies name of the property to filter alerts by.
+        :type property_key: str
+        :param property_value: Specifies value of the property to filter alerts by.
+        :type property_value: str
+        :param alert_name: Specifies name of alert to filter alerts by.
+        :type alert_name: str
+        :param resolution_ids: Specifies alert resolution ids to filter alerts by.
+        :type resolution_ids: List[int]
+        :param tenant_ids: Filter by tenant ids.
+        :type tenant_ids: List[str]
+        :param all_under_hierarchy: Filter by objects of all the tenants under the hierarchy of the logged in user's organization.
+        :type all_under_hierarchy: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_alerts_serialize(
+            alert_ids=alert_ids,
+            alert_types=alert_types,
+            alert_categories=alert_categories,
+            alert_states=alert_states,
+            alert_severities=alert_severities,
+            alert_type_buckets=alert_type_buckets,
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            max_alerts=max_alerts,
+            property_key=property_key,
+            property_value=property_value,
+            alert_name=alert_name,
+            resolution_ids=resolution_ids,
+            tenant_ids=tenant_ids,
+            all_under_hierarchy=all_under_hierarchy,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AlertList",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_alerts_without_preload_content(
+        self,
+        alert_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert ids.")] = None,
+        alert_types: Annotated[Optional[List[StrictInt]], Field(description="Filter by list of alert types.")] = None,
+        alert_categories: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert categories.")] = None,
+        alert_states: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert states.")] = None,
+        alert_severities: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert severity types.")] = None,
+        alert_type_buckets: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert type buckets.")] = None,
+        start_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies start time Unix epoch time in microseconds to filter alerts by.")] = None,
+        end_time_usecs: Annotated[Optional[StrictInt], Field(description="Specifies end time Unix epoch time in microseconds to filter alerts by.")] = None,
+        max_alerts: Annotated[Optional[StrictInt], Field(description="Specifies maximum number of alerts to return.The default value is 100 and maximum allowed value is 1000")] = None,
+        property_key: Annotated[Optional[StrictStr], Field(description="Specifies name of the property to filter alerts by.")] = None,
+        property_value: Annotated[Optional[StrictStr], Field(description="Specifies value of the property to filter alerts by.")] = None,
+        alert_name: Annotated[Optional[StrictStr], Field(description="Specifies name of alert to filter alerts by.")] = None,
+        resolution_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies alert resolution ids to filter alerts by.")] = None,
+        tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by tenant ids.")] = None,
+        all_under_hierarchy: Annotated[Optional[StrictBool], Field(description="Filter by objects of all the tenants under the hierarchy of the logged in user's organization.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get alerts.
+
+
+        :param alert_ids: Filter by list of alert ids.
+        :type alert_ids: List[str]
+        :param alert_types: Filter by list of alert types.
+        :type alert_types: List[int]
+        :param alert_categories: Filter by list of alert categories.
+        :type alert_categories: List[str]
+        :param alert_states: Filter by list of alert states.
+        :type alert_states: List[str]
+        :param alert_severities: Filter by list of alert severity types.
+        :type alert_severities: List[str]
+        :param alert_type_buckets: Filter by list of alert type buckets.
+        :type alert_type_buckets: List[str]
+        :param start_time_usecs: Specifies start time Unix epoch time in microseconds to filter alerts by.
+        :type start_time_usecs: int
+        :param end_time_usecs: Specifies end time Unix epoch time in microseconds to filter alerts by.
+        :type end_time_usecs: int
+        :param max_alerts: Specifies maximum number of alerts to return.The default value is 100 and maximum allowed value is 1000
+        :type max_alerts: int
+        :param property_key: Specifies name of the property to filter alerts by.
+        :type property_key: str
+        :param property_value: Specifies value of the property to filter alerts by.
+        :type property_value: str
+        :param alert_name: Specifies name of alert to filter alerts by.
+        :type alert_name: str
+        :param resolution_ids: Specifies alert resolution ids to filter alerts by.
+        :type resolution_ids: List[int]
+        :param tenant_ids: Filter by tenant ids.
+        :type tenant_ids: List[str]
+        :param all_under_hierarchy: Filter by objects of all the tenants under the hierarchy of the logged in user's organization.
+        :type all_under_hierarchy: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_alerts_serialize(
+            alert_ids=alert_ids,
+            alert_types=alert_types,
+            alert_categories=alert_categories,
+            alert_states=alert_states,
+            alert_severities=alert_severities,
+            alert_type_buckets=alert_type_buckets,
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            max_alerts=max_alerts,
+            property_key=property_key,
+            property_value=property_value,
+            alert_name=alert_name,
+            resolution_ids=resolution_ids,
+            tenant_ids=tenant_ids,
+            all_under_hierarchy=all_under_hierarchy,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AlertList",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_alerts_serialize(
+        self,
+        alert_ids,
+        alert_types,
+        alert_categories,
+        alert_states,
+        alert_severities,
+        alert_type_buckets,
+        start_time_usecs,
+        end_time_usecs,
+        max_alerts,
+        property_key,
+        property_value,
+        alert_name,
+        resolution_ids,
+        tenant_ids,
+        all_under_hierarchy,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+            'alertIds': 'csv',
+            'alertTypes': 'csv',
+            'alertCategories': 'csv',
+            'alertStates': 'csv',
+            'alertSeverities': 'csv',
+            'alertTypeBuckets': 'csv',
+            'resolutionIds': 'csv',
+            'tenantIds': 'csv',
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if alert_ids is not None:
+            
+            _query_params.append(('alertIds', alert_ids))
+            
+        if alert_types is not None:
+            
+            _query_params.append(('alertTypes', alert_types))
+            
+        if alert_categories is not None:
+            
+            _query_params.append(('alertCategories', alert_categories))
+            
+        if alert_states is not None:
+            
+            _query_params.append(('alertStates', alert_states))
+            
+        if alert_severities is not None:
+            
+            _query_params.append(('alertSeverities', alert_severities))
+            
+        if alert_type_buckets is not None:
+            
+            _query_params.append(('alertTypeBuckets', alert_type_buckets))
+            
+        if start_time_usecs is not None:
+            
+            _query_params.append(('startTimeUsecs', start_time_usecs))
+            
+        if end_time_usecs is not None:
+            
+            _query_params.append(('endTimeUsecs', end_time_usecs))
+            
+        if max_alerts is not None:
+            
+            _query_params.append(('maxAlerts', max_alerts))
+            
+        if property_key is not None:
+            
+            _query_params.append(('propertyKey', property_key))
+            
+        if property_value is not None:
+            
+            _query_params.append(('propertyValue', property_value))
+            
+        if alert_name is not None:
+            
+            _query_params.append(('alertName', alert_name))
+            
+        if resolution_ids is not None:
+            
+            _query_params.append(('resolutionIds', resolution_ids))
+            
+        if tenant_ids is not None:
+            
+            _query_params.append(('tenantIds', tenant_ids))
+            
+        if all_under_hierarchy is not None:
+            
+            _query_params.append(('allUnderHierarchy', all_under_hierarchy))
+            
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/alerts',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_helios_alert_resolution(
         self,
         max_resolutions: Annotated[StrictInt, Field(description="Specifies the max number of Resolutions to be returned, from the latest created to the earliest created")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         resolution_name: Annotated[Optional[StrictStr], Field(description="Specifies Alert Resolution Name to query.")] = None,
         resolution_id: Annotated[Optional[StrictStr], Field(description="Specifies Alert Resolution id to query.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -718,12 +3734,12 @@ class AlertApi:
 
         :param max_resolutions: Specifies the max number of Resolutions to be returned, from the latest created to the earliest created (required)
         :type max_resolutions: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param resolution_name: Specifies Alert Resolution Name to query.
         :type resolution_name: str
         :param resolution_id: Specifies Alert Resolution id to query.
         :type resolution_id: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -748,9 +3764,9 @@ class AlertApi:
 
         _param = self._get_helios_alert_resolution_serialize(
             max_resolutions=max_resolutions,
-            region_id=region_id,
             resolution_name=resolution_name,
             resolution_id=resolution_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -775,9 +3791,9 @@ class AlertApi:
     def get_helios_alert_resolution_with_http_info(
         self,
         max_resolutions: Annotated[StrictInt, Field(description="Specifies the max number of Resolutions to be returned, from the latest created to the earliest created")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         resolution_name: Annotated[Optional[StrictStr], Field(description="Specifies Alert Resolution Name to query.")] = None,
         resolution_id: Annotated[Optional[StrictStr], Field(description="Specifies Alert Resolution id to query.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -797,12 +3813,12 @@ class AlertApi:
 
         :param max_resolutions: Specifies the max number of Resolutions to be returned, from the latest created to the earliest created (required)
         :type max_resolutions: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param resolution_name: Specifies Alert Resolution Name to query.
         :type resolution_name: str
         :param resolution_id: Specifies Alert Resolution id to query.
         :type resolution_id: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -827,9 +3843,9 @@ class AlertApi:
 
         _param = self._get_helios_alert_resolution_serialize(
             max_resolutions=max_resolutions,
-            region_id=region_id,
             resolution_name=resolution_name,
             resolution_id=resolution_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -854,9 +3870,9 @@ class AlertApi:
     def get_helios_alert_resolution_without_preload_content(
         self,
         max_resolutions: Annotated[StrictInt, Field(description="Specifies the max number of Resolutions to be returned, from the latest created to the earliest created")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         resolution_name: Annotated[Optional[StrictStr], Field(description="Specifies Alert Resolution Name to query.")] = None,
         resolution_id: Annotated[Optional[StrictStr], Field(description="Specifies Alert Resolution id to query.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -876,12 +3892,12 @@ class AlertApi:
 
         :param max_resolutions: Specifies the max number of Resolutions to be returned, from the latest created to the earliest created (required)
         :type max_resolutions: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param resolution_name: Specifies Alert Resolution Name to query.
         :type resolution_name: str
         :param resolution_id: Specifies Alert Resolution id to query.
         :type resolution_id: str
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -906,9 +3922,9 @@ class AlertApi:
 
         _param = self._get_helios_alert_resolution_serialize(
             max_resolutions=max_resolutions,
-            region_id=region_id,
             resolution_name=resolution_name,
             resolution_id=resolution_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -928,9 +3944,9 @@ class AlertApi:
     def _get_helios_alert_resolution_serialize(
         self,
         max_resolutions,
-        region_id,
         resolution_name,
         resolution_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1007,7 +4023,6 @@ class AlertApi:
     @validate_call
     def get_helios_alerts(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         alert_id_list: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert ids.")] = None,
         alert_state_list: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert states.")] = None,
         alert_type_list: Annotated[Optional[List[StrictInt]], Field(description="Filter by list of alert types.")] = None,
@@ -1018,9 +4033,13 @@ class AlertApi:
         end_date_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the end time of the alerts to be returned. All the alerts returned are raised before the specified end time. This value should be in Unix timestamp epoch in microseconds.")] = None,
         max_alerts: Annotated[Optional[StrictInt], Field(description="Specifies maximum number of alerts to return")] = None,
         alert_category_list: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by list of alert categories.")] = None,
+        tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by tenant ids.")] = None,
         alert_type_bucket_list: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by list of alert type buckets.")] = None,
         alert_property_key_list: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Specifies list of the alert property keys to query.")] = None,
         alert_property_value_list: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Specifies list of the alert property value, multiple values for one key should be joined by '|'.")] = None,
+        alert_name: Annotated[Optional[StrictStr], Field(description="Specifies name of alert to filter alerts by.")] = None,
+        service_instance_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies services instance ids to filter alerts for IBM customers.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1038,8 +4057,6 @@ class AlertApi:
 
         Get the list of helios alerts.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param alert_id_list: Filter by list of alert ids.
         :type alert_id_list: List[str]
         :param alert_state_list: Filter by list of alert states.
@@ -1060,12 +4077,20 @@ class AlertApi:
         :type max_alerts: int
         :param alert_category_list: Filter by list of alert categories.
         :type alert_category_list: List[Optional[str]]
+        :param tenant_ids: Filter by tenant ids.
+        :type tenant_ids: List[str]
         :param alert_type_bucket_list: Filter by list of alert type buckets.
         :type alert_type_bucket_list: List[Optional[str]]
         :param alert_property_key_list: Specifies list of the alert property keys to query.
         :type alert_property_key_list: List[Optional[str]]
         :param alert_property_value_list: Specifies list of the alert property value, multiple values for one key should be joined by '|'.
         :type alert_property_value_list: List[Optional[str]]
+        :param alert_name: Specifies name of alert to filter alerts by.
+        :type alert_name: str
+        :param service_instance_ids: Specifies services instance ids to filter alerts for IBM customers.
+        :type service_instance_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1089,7 +4114,6 @@ class AlertApi:
         """ # noqa: E501
 
         _param = self._get_helios_alerts_serialize(
-            region_id=region_id,
             alert_id_list=alert_id_list,
             alert_state_list=alert_state_list,
             alert_type_list=alert_type_list,
@@ -1100,9 +4124,13 @@ class AlertApi:
             end_date_usecs=end_date_usecs,
             max_alerts=max_alerts,
             alert_category_list=alert_category_list,
+            tenant_ids=tenant_ids,
             alert_type_bucket_list=alert_type_bucket_list,
             alert_property_key_list=alert_property_key_list,
             alert_property_value_list=alert_property_value_list,
+            alert_name=alert_name,
+            service_instance_ids=service_instance_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1126,7 +4154,6 @@ class AlertApi:
     @validate_call
     def get_helios_alerts_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         alert_id_list: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert ids.")] = None,
         alert_state_list: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert states.")] = None,
         alert_type_list: Annotated[Optional[List[StrictInt]], Field(description="Filter by list of alert types.")] = None,
@@ -1137,9 +4164,13 @@ class AlertApi:
         end_date_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the end time of the alerts to be returned. All the alerts returned are raised before the specified end time. This value should be in Unix timestamp epoch in microseconds.")] = None,
         max_alerts: Annotated[Optional[StrictInt], Field(description="Specifies maximum number of alerts to return")] = None,
         alert_category_list: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by list of alert categories.")] = None,
+        tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by tenant ids.")] = None,
         alert_type_bucket_list: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by list of alert type buckets.")] = None,
         alert_property_key_list: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Specifies list of the alert property keys to query.")] = None,
         alert_property_value_list: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Specifies list of the alert property value, multiple values for one key should be joined by '|'.")] = None,
+        alert_name: Annotated[Optional[StrictStr], Field(description="Specifies name of alert to filter alerts by.")] = None,
+        service_instance_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies services instance ids to filter alerts for IBM customers.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1157,8 +4188,6 @@ class AlertApi:
 
         Get the list of helios alerts.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param alert_id_list: Filter by list of alert ids.
         :type alert_id_list: List[str]
         :param alert_state_list: Filter by list of alert states.
@@ -1179,12 +4208,20 @@ class AlertApi:
         :type max_alerts: int
         :param alert_category_list: Filter by list of alert categories.
         :type alert_category_list: List[Optional[str]]
+        :param tenant_ids: Filter by tenant ids.
+        :type tenant_ids: List[str]
         :param alert_type_bucket_list: Filter by list of alert type buckets.
         :type alert_type_bucket_list: List[Optional[str]]
         :param alert_property_key_list: Specifies list of the alert property keys to query.
         :type alert_property_key_list: List[Optional[str]]
         :param alert_property_value_list: Specifies list of the alert property value, multiple values for one key should be joined by '|'.
         :type alert_property_value_list: List[Optional[str]]
+        :param alert_name: Specifies name of alert to filter alerts by.
+        :type alert_name: str
+        :param service_instance_ids: Specifies services instance ids to filter alerts for IBM customers.
+        :type service_instance_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1208,7 +4245,6 @@ class AlertApi:
         """ # noqa: E501
 
         _param = self._get_helios_alerts_serialize(
-            region_id=region_id,
             alert_id_list=alert_id_list,
             alert_state_list=alert_state_list,
             alert_type_list=alert_type_list,
@@ -1219,9 +4255,13 @@ class AlertApi:
             end_date_usecs=end_date_usecs,
             max_alerts=max_alerts,
             alert_category_list=alert_category_list,
+            tenant_ids=tenant_ids,
             alert_type_bucket_list=alert_type_bucket_list,
             alert_property_key_list=alert_property_key_list,
             alert_property_value_list=alert_property_value_list,
+            alert_name=alert_name,
+            service_instance_ids=service_instance_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1245,7 +4285,6 @@ class AlertApi:
     @validate_call
     def get_helios_alerts_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         alert_id_list: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert ids.")] = None,
         alert_state_list: Annotated[Optional[List[StrictStr]], Field(description="Filter by list of alert states.")] = None,
         alert_type_list: Annotated[Optional[List[StrictInt]], Field(description="Filter by list of alert types.")] = None,
@@ -1256,9 +4295,13 @@ class AlertApi:
         end_date_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the end time of the alerts to be returned. All the alerts returned are raised before the specified end time. This value should be in Unix timestamp epoch in microseconds.")] = None,
         max_alerts: Annotated[Optional[StrictInt], Field(description="Specifies maximum number of alerts to return")] = None,
         alert_category_list: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by list of alert categories.")] = None,
+        tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by tenant ids.")] = None,
         alert_type_bucket_list: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by list of alert type buckets.")] = None,
         alert_property_key_list: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Specifies list of the alert property keys to query.")] = None,
         alert_property_value_list: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Specifies list of the alert property value, multiple values for one key should be joined by '|'.")] = None,
+        alert_name: Annotated[Optional[StrictStr], Field(description="Specifies name of alert to filter alerts by.")] = None,
+        service_instance_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies services instance ids to filter alerts for IBM customers.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1276,8 +4319,6 @@ class AlertApi:
 
         Get the list of helios alerts.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param alert_id_list: Filter by list of alert ids.
         :type alert_id_list: List[str]
         :param alert_state_list: Filter by list of alert states.
@@ -1298,12 +4339,20 @@ class AlertApi:
         :type max_alerts: int
         :param alert_category_list: Filter by list of alert categories.
         :type alert_category_list: List[Optional[str]]
+        :param tenant_ids: Filter by tenant ids.
+        :type tenant_ids: List[str]
         :param alert_type_bucket_list: Filter by list of alert type buckets.
         :type alert_type_bucket_list: List[Optional[str]]
         :param alert_property_key_list: Specifies list of the alert property keys to query.
         :type alert_property_key_list: List[Optional[str]]
         :param alert_property_value_list: Specifies list of the alert property value, multiple values for one key should be joined by '|'.
         :type alert_property_value_list: List[Optional[str]]
+        :param alert_name: Specifies name of alert to filter alerts by.
+        :type alert_name: str
+        :param service_instance_ids: Specifies services instance ids to filter alerts for IBM customers.
+        :type service_instance_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1327,7 +4376,6 @@ class AlertApi:
         """ # noqa: E501
 
         _param = self._get_helios_alerts_serialize(
-            region_id=region_id,
             alert_id_list=alert_id_list,
             alert_state_list=alert_state_list,
             alert_type_list=alert_type_list,
@@ -1338,9 +4386,13 @@ class AlertApi:
             end_date_usecs=end_date_usecs,
             max_alerts=max_alerts,
             alert_category_list=alert_category_list,
+            tenant_ids=tenant_ids,
             alert_type_bucket_list=alert_type_bucket_list,
             alert_property_key_list=alert_property_key_list,
             alert_property_value_list=alert_property_value_list,
+            alert_name=alert_name,
+            service_instance_ids=service_instance_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1359,7 +4411,6 @@ class AlertApi:
 
     def _get_helios_alerts_serialize(
         self,
-        region_id,
         alert_id_list,
         alert_state_list,
         alert_type_list,
@@ -1370,9 +4421,13 @@ class AlertApi:
         end_date_usecs,
         max_alerts,
         alert_category_list,
+        tenant_ids,
         alert_type_bucket_list,
         alert_property_key_list,
         alert_property_value_list,
+        alert_name,
+        service_instance_ids,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1389,9 +4444,11 @@ class AlertApi:
             'regionIds': 'csv',
             'clusterIdentifiers': 'csv',
             'alertCategoryList': 'csv',
+            'tenantIds': 'csv',
             'alertTypeBucketList': 'csv',
             'alertPropertyKeyList': 'csv',
             'alertPropertyValueList': 'csv',
+            'serviceInstanceIds': 'csv',
         }
 
         _path_params: Dict[str, str] = {}
@@ -1445,6 +4502,10 @@ class AlertApi:
             
             _query_params.append(('alertCategoryList', alert_category_list))
             
+        if tenant_ids is not None:
+            
+            _query_params.append(('tenantIds', tenant_ids))
+            
         if alert_type_bucket_list is not None:
             
             _query_params.append(('alertTypeBucketList', alert_type_bucket_list))
@@ -1456,6 +4517,14 @@ class AlertApi:
         if alert_property_value_list is not None:
             
             _query_params.append(('alertPropertyValueList', alert_property_value_list))
+            
+        if alert_name is not None:
+            
+            _query_params.append(('alertName', alert_name))
+            
+        if service_instance_ids is not None:
+            
+            _query_params.append(('serviceInstanceIds', service_instance_ids))
             
         # process the header parameters
         if region_id is not None:
@@ -1497,13 +4566,414 @@ class AlertApi:
 
 
     @validate_call
+    def get_helios_alerts_stats(
+        self,
+        start_time_usecs: Annotated[StrictInt, Field(description="Specifies the start time Unix time epoch in microseconds from which the active alerts stats are computed.")],
+        end_time_usecs: Annotated[StrictInt, Field(description="Specifies the end time Unix time epoch in microseconds to which the active alerts stats are computed.")],
+        cluster_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies the list of cluster IDs.")] = None,
+        service_instance_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies list of service instance ids to filter alert stats by")] = None,
+        region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
+        exclude_stats_by_cluster: Annotated[Optional[StrictBool], Field(description="Specifies if stats of active alerts per cluster needs to be excluded. If set to false (default value), stats of active alerts per cluster is included in the response. If set to true, only aggregated stats summary will be present in the response.")] = None,
+        alert_source: Annotated[Optional[StrictStr], Field(description="Specifies a list of alert origination source. If not specified, all alerts from all the sources are considered in the response.")] = None,
+        tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of tenants.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> McmActiveAlertsStats:
+        """Compute the stats on active alerts.
+
+        Compute the stats on active alerts.
+
+        :param start_time_usecs: Specifies the start time Unix time epoch in microseconds from which the active alerts stats are computed. (required)
+        :type start_time_usecs: int
+        :param end_time_usecs: Specifies the end time Unix time epoch in microseconds to which the active alerts stats are computed. (required)
+        :type end_time_usecs: int
+        :param cluster_ids: Specifies the list of cluster IDs.
+        :type cluster_ids: List[int]
+        :param service_instance_ids: Specifies list of service instance ids to filter alert stats by
+        :type service_instance_ids: List[str]
+        :param region_ids: Filter by a list of region ids.
+        :type region_ids: List[str]
+        :param exclude_stats_by_cluster: Specifies if stats of active alerts per cluster needs to be excluded. If set to false (default value), stats of active alerts per cluster is included in the response. If set to true, only aggregated stats summary will be present in the response.
+        :type exclude_stats_by_cluster: bool
+        :param alert_source: Specifies a list of alert origination source. If not specified, all alerts from all the sources are considered in the response.
+        :type alert_source: str
+        :param tenant_ids: Specifies a list of tenants.
+        :type tenant_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_helios_alerts_stats_serialize(
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            cluster_ids=cluster_ids,
+            service_instance_ids=service_instance_ids,
+            region_ids=region_ids,
+            exclude_stats_by_cluster=exclude_stats_by_cluster,
+            alert_source=alert_source,
+            tenant_ids=tenant_ids,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "McmActiveAlertsStats",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_helios_alerts_stats_with_http_info(
+        self,
+        start_time_usecs: Annotated[StrictInt, Field(description="Specifies the start time Unix time epoch in microseconds from which the active alerts stats are computed.")],
+        end_time_usecs: Annotated[StrictInt, Field(description="Specifies the end time Unix time epoch in microseconds to which the active alerts stats are computed.")],
+        cluster_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies the list of cluster IDs.")] = None,
+        service_instance_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies list of service instance ids to filter alert stats by")] = None,
+        region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
+        exclude_stats_by_cluster: Annotated[Optional[StrictBool], Field(description="Specifies if stats of active alerts per cluster needs to be excluded. If set to false (default value), stats of active alerts per cluster is included in the response. If set to true, only aggregated stats summary will be present in the response.")] = None,
+        alert_source: Annotated[Optional[StrictStr], Field(description="Specifies a list of alert origination source. If not specified, all alerts from all the sources are considered in the response.")] = None,
+        tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of tenants.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[McmActiveAlertsStats]:
+        """Compute the stats on active alerts.
+
+        Compute the stats on active alerts.
+
+        :param start_time_usecs: Specifies the start time Unix time epoch in microseconds from which the active alerts stats are computed. (required)
+        :type start_time_usecs: int
+        :param end_time_usecs: Specifies the end time Unix time epoch in microseconds to which the active alerts stats are computed. (required)
+        :type end_time_usecs: int
+        :param cluster_ids: Specifies the list of cluster IDs.
+        :type cluster_ids: List[int]
+        :param service_instance_ids: Specifies list of service instance ids to filter alert stats by
+        :type service_instance_ids: List[str]
+        :param region_ids: Filter by a list of region ids.
+        :type region_ids: List[str]
+        :param exclude_stats_by_cluster: Specifies if stats of active alerts per cluster needs to be excluded. If set to false (default value), stats of active alerts per cluster is included in the response. If set to true, only aggregated stats summary will be present in the response.
+        :type exclude_stats_by_cluster: bool
+        :param alert_source: Specifies a list of alert origination source. If not specified, all alerts from all the sources are considered in the response.
+        :type alert_source: str
+        :param tenant_ids: Specifies a list of tenants.
+        :type tenant_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_helios_alerts_stats_serialize(
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            cluster_ids=cluster_ids,
+            service_instance_ids=service_instance_ids,
+            region_ids=region_ids,
+            exclude_stats_by_cluster=exclude_stats_by_cluster,
+            alert_source=alert_source,
+            tenant_ids=tenant_ids,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "McmActiveAlertsStats",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_helios_alerts_stats_without_preload_content(
+        self,
+        start_time_usecs: Annotated[StrictInt, Field(description="Specifies the start time Unix time epoch in microseconds from which the active alerts stats are computed.")],
+        end_time_usecs: Annotated[StrictInt, Field(description="Specifies the end time Unix time epoch in microseconds to which the active alerts stats are computed.")],
+        cluster_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies the list of cluster IDs.")] = None,
+        service_instance_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies list of service instance ids to filter alert stats by")] = None,
+        region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
+        exclude_stats_by_cluster: Annotated[Optional[StrictBool], Field(description="Specifies if stats of active alerts per cluster needs to be excluded. If set to false (default value), stats of active alerts per cluster is included in the response. If set to true, only aggregated stats summary will be present in the response.")] = None,
+        alert_source: Annotated[Optional[StrictStr], Field(description="Specifies a list of alert origination source. If not specified, all alerts from all the sources are considered in the response.")] = None,
+        tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of tenants.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Compute the stats on active alerts.
+
+        Compute the stats on active alerts.
+
+        :param start_time_usecs: Specifies the start time Unix time epoch in microseconds from which the active alerts stats are computed. (required)
+        :type start_time_usecs: int
+        :param end_time_usecs: Specifies the end time Unix time epoch in microseconds to which the active alerts stats are computed. (required)
+        :type end_time_usecs: int
+        :param cluster_ids: Specifies the list of cluster IDs.
+        :type cluster_ids: List[int]
+        :param service_instance_ids: Specifies list of service instance ids to filter alert stats by
+        :type service_instance_ids: List[str]
+        :param region_ids: Filter by a list of region ids.
+        :type region_ids: List[str]
+        :param exclude_stats_by_cluster: Specifies if stats of active alerts per cluster needs to be excluded. If set to false (default value), stats of active alerts per cluster is included in the response. If set to true, only aggregated stats summary will be present in the response.
+        :type exclude_stats_by_cluster: bool
+        :param alert_source: Specifies a list of alert origination source. If not specified, all alerts from all the sources are considered in the response.
+        :type alert_source: str
+        :param tenant_ids: Specifies a list of tenants.
+        :type tenant_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_helios_alerts_stats_serialize(
+            start_time_usecs=start_time_usecs,
+            end_time_usecs=end_time_usecs,
+            cluster_ids=cluster_ids,
+            service_instance_ids=service_instance_ids,
+            region_ids=region_ids,
+            exclude_stats_by_cluster=exclude_stats_by_cluster,
+            alert_source=alert_source,
+            tenant_ids=tenant_ids,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "McmActiveAlertsStats",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_helios_alerts_stats_serialize(
+        self,
+        start_time_usecs,
+        end_time_usecs,
+        cluster_ids,
+        service_instance_ids,
+        region_ids,
+        exclude_stats_by_cluster,
+        alert_source,
+        tenant_ids,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+            'clusterIds': 'csv',
+            'serviceInstanceIds': 'csv',
+            'regionIds': 'csv',
+            'tenantIds': 'csv',
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if cluster_ids is not None:
+            
+            _query_params.append(('clusterIds', cluster_ids))
+            
+        if service_instance_ids is not None:
+            
+            _query_params.append(('serviceInstanceIds', service_instance_ids))
+            
+        if region_ids is not None:
+            
+            _query_params.append(('regionIds', region_ids))
+            
+        if exclude_stats_by_cluster is not None:
+            
+            _query_params.append(('excludeStatsByCluster', exclude_stats_by_cluster))
+            
+        if start_time_usecs is not None:
+            
+            _query_params.append(('startTimeUsecs', start_time_usecs))
+            
+        if end_time_usecs is not None:
+            
+            _query_params.append(('endTimeUsecs', end_time_usecs))
+            
+        if alert_source is not None:
+            
+            _query_params.append(('alertSource', alert_source))
+            
+        if tenant_ids is not None:
+            
+            _query_params.append(('tenantIds', tenant_ids))
+            
+        # process the header parameters
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/mcm/stats/alerts',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_helios_alerts_summary(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time.")] = None,
         states_list: Annotated[Optional[List[StrictStr]], Field(description="Specifies list of alert states to filter alerts by. If not specified, only open alerts will be used to get summary.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1521,8 +4991,6 @@ class AlertApi:
 
         Get alerts summary grouped by category.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param cluster_identifiers: Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId.
         :type cluster_identifiers: List[str]
         :param start_time_usecs: Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.
@@ -1531,6 +4999,8 @@ class AlertApi:
         :type end_time_usecs: int
         :param states_list: Specifies list of alert states to filter alerts by. If not specified, only open alerts will be used to get summary.
         :type states_list: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1554,11 +5024,11 @@ class AlertApi:
         """ # noqa: E501
 
         _param = self._get_helios_alerts_summary_serialize(
-            region_id=region_id,
             cluster_identifiers=cluster_identifiers,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             states_list=states_list,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1582,11 +5052,11 @@ class AlertApi:
     @validate_call
     def get_helios_alerts_summary_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time.")] = None,
         states_list: Annotated[Optional[List[StrictStr]], Field(description="Specifies list of alert states to filter alerts by. If not specified, only open alerts will be used to get summary.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1604,8 +5074,6 @@ class AlertApi:
 
         Get alerts summary grouped by category.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param cluster_identifiers: Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId.
         :type cluster_identifiers: List[str]
         :param start_time_usecs: Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.
@@ -1614,6 +5082,8 @@ class AlertApi:
         :type end_time_usecs: int
         :param states_list: Specifies list of alert states to filter alerts by. If not specified, only open alerts will be used to get summary.
         :type states_list: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1637,11 +5107,11 @@ class AlertApi:
         """ # noqa: E501
 
         _param = self._get_helios_alerts_summary_serialize(
-            region_id=region_id,
             cluster_identifiers=cluster_identifiers,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             states_list=states_list,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1665,11 +5135,11 @@ class AlertApi:
     @validate_call
     def get_helios_alerts_summary_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         cluster_identifiers: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId.")] = None,
         start_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.")] = None,
         end_time_usecs: Annotated[Optional[StrictInt], Field(description="Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time.")] = None,
         states_list: Annotated[Optional[List[StrictStr]], Field(description="Specifies list of alert states to filter alerts by. If not specified, only open alerts will be used to get summary.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1687,8 +5157,6 @@ class AlertApi:
 
         Get alerts summary grouped by category.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param cluster_identifiers: Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId.
         :type cluster_identifiers: List[str]
         :param start_time_usecs: Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.
@@ -1697,6 +5165,8 @@ class AlertApi:
         :type end_time_usecs: int
         :param states_list: Specifies list of alert states to filter alerts by. If not specified, only open alerts will be used to get summary.
         :type states_list: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1720,11 +5190,11 @@ class AlertApi:
         """ # noqa: E501
 
         _param = self._get_helios_alerts_summary_serialize(
-            region_id=region_id,
             cluster_identifiers=cluster_identifiers,
             start_time_usecs=start_time_usecs,
             end_time_usecs=end_time_usecs,
             states_list=states_list,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1743,11 +5213,11 @@ class AlertApi:
 
     def _get_helios_alerts_summary_serialize(
         self,
-        region_id,
         cluster_identifiers,
         start_time_usecs,
         end_time_usecs,
         states_list,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1812,6 +5282,1196 @@ class AlertApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/mcm/stats/alerts-summary',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_helios_snmp_alerts_config(
+        self,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> HeliosSnmpAlertsConfig:
+        """Returns if SNMP is configured and supported SNMP alerts on Helios.
+
+        Returns whether SNMP config is configured on Helios. And a list of supported alerts.
+
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_helios_snmp_alerts_config_serialize(
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "HeliosSnmpAlertsConfig",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_helios_snmp_alerts_config_with_http_info(
+        self,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[HeliosSnmpAlertsConfig]:
+        """Returns if SNMP is configured and supported SNMP alerts on Helios.
+
+        Returns whether SNMP config is configured on Helios. And a list of supported alerts.
+
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_helios_snmp_alerts_config_serialize(
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "HeliosSnmpAlertsConfig",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_helios_snmp_alerts_config_without_preload_content(
+        self,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Returns if SNMP is configured and supported SNMP alerts on Helios.
+
+        Returns whether SNMP config is configured on Helios. And a list of supported alerts.
+
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_helios_snmp_alerts_config_serialize(
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "HeliosSnmpAlertsConfig",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_helios_snmp_alerts_config_serialize(
+        self,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/mcm/alerts/snmp-config',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def remove_alert_notification_rule(
+        self,
+        id: Annotated[StrictInt, Field(description="Unique Id of the notification rule.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Remove a notification rule
+
+        Remove an alert notification rule specified by id.
+
+        :param id: Unique Id of the notification rule. (required)
+        :type id: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_alert_notification_rule_serialize(
+            id=id,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def remove_alert_notification_rule_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="Unique Id of the notification rule.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Remove a notification rule
+
+        Remove an alert notification rule specified by id.
+
+        :param id: Unique Id of the notification rule. (required)
+        :type id: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_alert_notification_rule_serialize(
+            id=id,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def remove_alert_notification_rule_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="Unique Id of the notification rule.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Remove a notification rule
+
+        Remove an alert notification rule specified by id.
+
+        :param id: Unique Id of the notification rule. (required)
+        :type id: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_alert_notification_rule_serialize(
+            id=id,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _remove_alert_notification_rule_serialize(
+        self,
+        id,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/alerts/config/notification-rules/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_alert_notification_rule(
+        self,
+        id: Annotated[StrictInt, Field(description="Unique Id of the notification rule.")],
+        body: Annotated[NotificationRule, Field(description="Specifies the parameters to update notification rule.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> NotificationRule:
+        """Update a notification rule
+
+        Update Notification rule specified by id.
+
+        :param id: Unique Id of the notification rule. (required)
+        :type id: int
+        :param body: Specifies the parameters to update notification rule. (required)
+        :type body: NotificationRule
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_alert_notification_rule_serialize(
+            id=id,
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "NotificationRule",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_alert_notification_rule_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="Unique Id of the notification rule.")],
+        body: Annotated[NotificationRule, Field(description="Specifies the parameters to update notification rule.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[NotificationRule]:
+        """Update a notification rule
+
+        Update Notification rule specified by id.
+
+        :param id: Unique Id of the notification rule. (required)
+        :type id: int
+        :param body: Specifies the parameters to update notification rule. (required)
+        :type body: NotificationRule
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_alert_notification_rule_serialize(
+            id=id,
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "NotificationRule",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_alert_notification_rule_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="Unique Id of the notification rule.")],
+        body: Annotated[NotificationRule, Field(description="Specifies the parameters to update notification rule.")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update a notification rule
+
+        Update Notification rule specified by id.
+
+        :param id: Unique Id of the notification rule. (required)
+        :type id: int
+        :param body: Specifies the parameters to update notification rule. (required)
+        :type body: NotificationRule
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_alert_notification_rule_serialize(
+            id=id,
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "NotificationRule",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_alert_notification_rule_serialize(
+        self,
+        id,
+        body,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/alerts/config/notification-rules/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_alert_resolution(
+        self,
+        id: Annotated[StrictInt, Field(description="Unique Id of the Alert Resolution.")],
+        body: Annotated[UpdateAlertResolutionRequest, Field(description="Provides Resolution details and the list of Alerts resolved by a Resolution which are specified by Alert Ids. ")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AlertResolutionOnPrem:
+        """Update alert resolution.
+
+        Update alert resolution.
+
+        :param id: Unique Id of the Alert Resolution. (required)
+        :type id: int
+        :param body: Provides Resolution details and the list of Alerts resolved by a Resolution which are specified by Alert Ids.  (required)
+        :type body: UpdateAlertResolutionRequest
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_alert_resolution_serialize(
+            id=id,
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "AlertResolutionOnPrem",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_alert_resolution_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="Unique Id of the Alert Resolution.")],
+        body: Annotated[UpdateAlertResolutionRequest, Field(description="Provides Resolution details and the list of Alerts resolved by a Resolution which are specified by Alert Ids. ")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AlertResolutionOnPrem]:
+        """Update alert resolution.
+
+        Update alert resolution.
+
+        :param id: Unique Id of the Alert Resolution. (required)
+        :type id: int
+        :param body: Provides Resolution details and the list of Alerts resolved by a Resolution which are specified by Alert Ids.  (required)
+        :type body: UpdateAlertResolutionRequest
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_alert_resolution_serialize(
+            id=id,
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "AlertResolutionOnPrem",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_alert_resolution_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="Unique Id of the Alert Resolution.")],
+        body: Annotated[UpdateAlertResolutionRequest, Field(description="Provides Resolution details and the list of Alerts resolved by a Resolution which are specified by Alert Ids. ")],
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update alert resolution.
+
+        Update alert resolution.
+
+        :param id: Unique Id of the Alert Resolution. (required)
+        :type id: int
+        :param body: Provides Resolution details and the list of Alerts resolved by a Resolution which are specified by Alert Ids.  (required)
+        :type body: UpdateAlertResolutionRequest
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_alert_resolution_serialize(
+            id=id,
+            body=body,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "AlertResolutionOnPrem",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_alert_resolution_serialize(
+        self,
+        id,
+        body,
+        access_cluster_id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if access_cluster_id is not None:
+            _header_params['accessClusterId'] = access_cluster_id
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/alerts/resolutions/{id}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

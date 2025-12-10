@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.aws_iam_role_params import AwsIAmRoleParams
+from cohesity_sdk.cluster.models.aws_iam_roles_anywhere_params import AwsIAmRolesAnywhereParams
 from cohesity_sdk.cluster.models.aws_iam_user_params import AwsIAmUserParams
 from cohesity_sdk.cluster.models.aws_use_sts_params import AwsUseSTSParams
 from typing import Set
@@ -31,9 +32,10 @@ class AwsAuthenticationMethodsParams(BaseModel):
     """ # noqa: E501
     authentication_type: Optional[StrictStr] = Field(description="Specifies the AWS External Target Authentication type.", alias="authenticationType")
     i_am_role_params: Optional[AwsIAmRoleParams] = Field(default=None, alias="iAmRoleParams")
+    i_am_roles_anywhere_params: Optional[AwsIAmRolesAnywhereParams] = Field(default=None, alias="iAmRolesAnywhereParams")
     i_am_user_params: Optional[AwsIAmUserParams] = Field(default=None, alias="iAmUserParams")
     use_sts_params: Optional[AwsUseSTSParams] = Field(default=None, alias="useSTSParams")
-    __properties: ClassVar[List[str]] = ["authenticationType", "iAmRoleParams", "iAmUserParams", "useSTSParams"]
+    __properties: ClassVar[List[str]] = ["authenticationType", "iAmRoleParams", "iAmRolesAnywhereParams", "iAmUserParams", "useSTSParams"]
 
     @field_validator('authentication_type')
     def authentication_type_validate_enum(cls, value):
@@ -41,8 +43,8 @@ class AwsAuthenticationMethodsParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kUseIAMUser', 'kUseIAMRole', 'kUseSTS', 'kUseHelios']):
-            raise ValueError("must be one of enum values ('kUseIAMUser', 'kUseIAMRole', 'kUseSTS', 'kUseHelios')")
+        if value not in set(['kUseIAMUser', 'kUseIAMRole', 'kUseIAMRolesAnywhere', 'kUseSTS', 'kUseHelios', 'kUseInstanceProfile']):
+            raise ValueError("must be one of enum values ('kUseIAMUser', 'kUseIAMRole', 'kUseIAMRolesAnywhere', 'kUseSTS', 'kUseHelios', 'kUseInstanceProfile')")
         return value
 
     model_config = ConfigDict(
@@ -87,6 +89,9 @@ class AwsAuthenticationMethodsParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of i_am_role_params
         if self.i_am_role_params:
             _dict['iAmRoleParams'] = self.i_am_role_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of i_am_roles_anywhere_params
+        if self.i_am_roles_anywhere_params:
+            _dict['iAmRolesAnywhereParams'] = self.i_am_roles_anywhere_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of i_am_user_params
         if self.i_am_user_params:
             _dict['iAmUserParams'] = self.i_am_user_params.to_dict()
@@ -112,6 +117,7 @@ class AwsAuthenticationMethodsParams(BaseModel):
         _obj = cls.model_validate({
             "authenticationType": obj.get("authenticationType"),
             "iAmRoleParams": AwsIAmRoleParams.from_dict(obj["iAmRoleParams"]) if obj.get("iAmRoleParams") is not None else None,
+            "iAmRolesAnywhereParams": AwsIAmRolesAnywhereParams.from_dict(obj["iAmRolesAnywhereParams"]) if obj.get("iAmRolesAnywhereParams") is not None else None,
             "iAmUserParams": AwsIAmUserParams.from_dict(obj["iAmUserParams"]) if obj.get("iAmUserParams") is not None else None,
             "useSTSParams": AwsUseSTSParams.from_dict(obj["useSTSParams"]) if obj.get("useSTSParams") is not None else None
         })

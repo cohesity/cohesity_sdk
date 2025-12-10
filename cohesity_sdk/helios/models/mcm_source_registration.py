@@ -25,15 +25,18 @@ from cohesity_sdk.helios.models.cassandra_source_registration_params import Cass
 from cohesity_sdk.helios.models.connection_config import ConnectionConfig
 from cohesity_sdk.helios.models.couchbase_source_registration_params import CouchbaseSourceRegistrationParams
 from cohesity_sdk.helios.models.generic_nas_registration_params import GenericNasRegistrationParams
+from cohesity_sdk.helios.models.google_workspace_source_registration_params import GoogleWorkspaceSourceRegistrationParams
 from cohesity_sdk.helios.models.hbase_source_registration_params import HbaseSourceRegistrationParams
 from cohesity_sdk.helios.models.hdfs_source_registration_params import HdfsSourceRegistrationParams
 from cohesity_sdk.helios.models.hive_source_registration_params import HiveSourceRegistrationParams
 from cohesity_sdk.helios.models.hyper_v_source_registration_params import HyperVSourceRegistrationParams
 from cohesity_sdk.helios.models.isilon_registration_params import IsilonRegistrationParams
+from cohesity_sdk.helios.models.kubernetes_source_registration_params import KubernetesSourceRegistrationParams
 from cohesity_sdk.helios.models.mongo_db_source_registration_params import MongoDBSourceRegistrationParams
 from cohesity_sdk.helios.models.netapp_registration_params import NetappRegistrationParams
 from cohesity_sdk.helios.models.office365_source_registration_params import Office365SourceRegistrationParams
 from cohesity_sdk.helios.models.physical_source_registration_params import PhysicalSourceRegistrationParams
+from cohesity_sdk.helios.models.sap_hana_source_registration_params import SapHanaSourceRegistrationParams
 from cohesity_sdk.helios.models.sfdc_source_registration_params import SfdcSourceRegistrationParams
 from cohesity_sdk.helios.models.uda_source_registration_params import UdaSourceRegistrationParams
 from cohesity_sdk.helios.models.vmware_source_registration_params import VmwareSourceRegistrationParams
@@ -59,19 +62,22 @@ class McmSourceRegistration(BaseModel):
     cassandra_params: Optional[CassandraSourceRegistrationParams] = Field(default=None, alias="cassandraParams")
     couchbase_params: Optional[CouchbaseSourceRegistrationParams] = Field(default=None, alias="couchbaseParams")
     generic_nas_params: Optional[GenericNasRegistrationParams] = Field(default=None, alias="genericNasParams")
+    google_workspace_params: Optional[GoogleWorkspaceSourceRegistrationParams] = Field(default=None, alias="googleWorkspaceParams")
     hbase_params: Optional[HbaseSourceRegistrationParams] = Field(default=None, alias="hbaseParams")
     hdfs_params: Optional[HdfsSourceRegistrationParams] = Field(default=None, alias="hdfsParams")
     hive_params: Optional[HiveSourceRegistrationParams] = Field(default=None, alias="hiveParams")
     hyperv_params: Optional[HyperVSourceRegistrationParams] = Field(default=None, alias="hypervParams")
     isilon_params: Optional[IsilonRegistrationParams] = Field(default=None, alias="isilonParams")
+    kubernetes_params: Optional[KubernetesSourceRegistrationParams] = Field(default=None, alias="kubernetesParams")
     mongodb_params: Optional[MongoDBSourceRegistrationParams] = Field(default=None, alias="mongodbParams")
     netapp_params: Optional[NetappRegistrationParams] = Field(default=None, alias="netappParams")
     office365_params: Optional[Office365SourceRegistrationParams] = Field(default=None, alias="office365Params")
     physical_params: Optional[PhysicalSourceRegistrationParams] = Field(default=None, alias="physicalParams")
+    sap_hana_params: Optional[SapHanaSourceRegistrationParams] = Field(default=None, alias="sapHanaParams")
     sfdc_params: Optional[SfdcSourceRegistrationParams] = Field(default=None, alias="sfdcParams")
     uda_params: Optional[UdaSourceRegistrationParams] = Field(default=None, alias="udaParams")
     vmware_params: Optional[VmwareSourceRegistrationParams] = Field(default=None, alias="vmwareParams")
-    __properties: ClassVar[List[str]] = ["clusterId", "clusterIncarnationId", "connectionId", "connections", "connectorGroupId", "environment", "id", "name", "regionId", "sourceId", "awsParams", "azureParams", "cassandraParams", "couchbaseParams", "genericNasParams", "hbaseParams", "hdfsParams", "hiveParams", "hypervParams", "isilonParams", "mongodbParams", "netappParams", "office365Params", "physicalParams", "sfdcParams", "udaParams", "vmwareParams"]
+    __properties: ClassVar[List[str]] = ["clusterId", "clusterIncarnationId", "connectionId", "connections", "connectorGroupId", "environment", "id", "name", "regionId", "sourceId", "awsParams", "azureParams", "cassandraParams", "couchbaseParams", "genericNasParams", "googleWorkspaceParams", "hbaseParams", "hdfsParams", "hiveParams", "hypervParams", "isilonParams", "kubernetesParams", "mongodbParams", "netappParams", "office365Params", "physicalParams", "sapHanaParams", "sfdcParams", "udaParams", "vmwareParams"]
 
     @field_validator('environment')
     def environment_validate_enum(cls, value):
@@ -79,8 +85,8 @@ class McmSourceRegistration(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kVMware', 'kHyperV', 'kAcropolis', 'kKVM', 'kAWS', 'kGCP', 'kAzure', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kGPFS', 'kElastifile', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSQL', 'kOracle', 'kSfdc']):
-            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAcropolis', 'kKVM', 'kAWS', 'kGCP', 'kAzure', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kGPFS', 'kElastifile', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSQL', 'kOracle', 'kSfdc')")
+        if value not in set(['kVMware', 'kHyperV', 'kAcropolis', 'kKVM', 'kAWS', 'kGCP', 'kAzure', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kGPFS', 'kElastifile', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kSQL', 'kOracle', 'kS3Compatible', 'kSfdc', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kEwsExchange', 'kServiceNow', 'kSalesforce']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAcropolis', 'kKVM', 'kAWS', 'kGCP', 'kAzure', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kGPFS', 'kElastifile', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kSQL', 'kOracle', 'kS3Compatible', 'kSfdc', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kEwsExchange', 'kServiceNow', 'kSalesforce')")
         return value
 
     model_config = ConfigDict(
@@ -156,6 +162,9 @@ class McmSourceRegistration(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of generic_nas_params
         if self.generic_nas_params:
             _dict['genericNasParams'] = self.generic_nas_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of google_workspace_params
+        if self.google_workspace_params:
+            _dict['googleWorkspaceParams'] = self.google_workspace_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of hbase_params
         if self.hbase_params:
             _dict['hbaseParams'] = self.hbase_params.to_dict()
@@ -171,6 +180,9 @@ class McmSourceRegistration(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of isilon_params
         if self.isilon_params:
             _dict['isilonParams'] = self.isilon_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of kubernetes_params
+        if self.kubernetes_params:
+            _dict['kubernetesParams'] = self.kubernetes_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of mongodb_params
         if self.mongodb_params:
             _dict['mongodbParams'] = self.mongodb_params.to_dict()
@@ -183,6 +195,9 @@ class McmSourceRegistration(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of physical_params
         if self.physical_params:
             _dict['physicalParams'] = self.physical_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of sap_hana_params
+        if self.sap_hana_params:
+            _dict['sapHanaParams'] = self.sap_hana_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of sfdc_params
         if self.sfdc_params:
             _dict['sfdcParams'] = self.sfdc_params.to_dict()
@@ -269,15 +284,18 @@ class McmSourceRegistration(BaseModel):
             "cassandraParams": CassandraSourceRegistrationParams.from_dict(obj["cassandraParams"]) if obj.get("cassandraParams") is not None else None,
             "couchbaseParams": CouchbaseSourceRegistrationParams.from_dict(obj["couchbaseParams"]) if obj.get("couchbaseParams") is not None else None,
             "genericNasParams": GenericNasRegistrationParams.from_dict(obj["genericNasParams"]) if obj.get("genericNasParams") is not None else None,
+            "googleWorkspaceParams": GoogleWorkspaceSourceRegistrationParams.from_dict(obj["googleWorkspaceParams"]) if obj.get("googleWorkspaceParams") is not None else None,
             "hbaseParams": HbaseSourceRegistrationParams.from_dict(obj["hbaseParams"]) if obj.get("hbaseParams") is not None else None,
             "hdfsParams": HdfsSourceRegistrationParams.from_dict(obj["hdfsParams"]) if obj.get("hdfsParams") is not None else None,
             "hiveParams": HiveSourceRegistrationParams.from_dict(obj["hiveParams"]) if obj.get("hiveParams") is not None else None,
             "hypervParams": HyperVSourceRegistrationParams.from_dict(obj["hypervParams"]) if obj.get("hypervParams") is not None else None,
             "isilonParams": IsilonRegistrationParams.from_dict(obj["isilonParams"]) if obj.get("isilonParams") is not None else None,
+            "kubernetesParams": KubernetesSourceRegistrationParams.from_dict(obj["kubernetesParams"]) if obj.get("kubernetesParams") is not None else None,
             "mongodbParams": MongoDBSourceRegistrationParams.from_dict(obj["mongodbParams"]) if obj.get("mongodbParams") is not None else None,
             "netappParams": NetappRegistrationParams.from_dict(obj["netappParams"]) if obj.get("netappParams") is not None else None,
             "office365Params": Office365SourceRegistrationParams.from_dict(obj["office365Params"]) if obj.get("office365Params") is not None else None,
             "physicalParams": PhysicalSourceRegistrationParams.from_dict(obj["physicalParams"]) if obj.get("physicalParams") is not None else None,
+            "sapHanaParams": SapHanaSourceRegistrationParams.from_dict(obj["sapHanaParams"]) if obj.get("sapHanaParams") is not None else None,
             "sfdcParams": SfdcSourceRegistrationParams.from_dict(obj["sfdcParams"]) if obj.get("sfdcParams") is not None else None,
             "udaParams": UdaSourceRegistrationParams.from_dict(obj["udaParams"]) if obj.get("udaParams") is not None else None,
             "vmwareParams": VmwareSourceRegistrationParams.from_dict(obj["vmwareParams"]) if obj.get("vmwareParams") is not None else None

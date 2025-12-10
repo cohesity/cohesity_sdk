@@ -7,7 +7,7 @@ CapacityByTier provides the physical capacity in bytes of each storage tier.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **max_physical_capacity_bytes_tier** | **int** | maxPhysicalCapacityBytesTier is the maximum physical capacity in bytes of the storage tier. | [optional] 
-**storage_tier** | **str** | StorageTier is the type of StorageTier. StorageTierType represents the various values for the Storage Tier. &#39;kPCIeSSD&#39; indicates storage tier type of Pci Solid State Drive. &#39;kSATAHDD&#39; indicates storage tier type of SATA Solid State Drive. &#39;kSATAHDD&#39; indicates storage tier type of SATA Hard Disk Drive. &#39;kCLOUD&#39; indicates storage tier type of Cloud. | [optional] 
+**storage_tier** | **str** | StorageTier is the type of StorageTier. StorageTierType represents the various values for the Storage Tier. &#39;PCIeSSD&#39; indicates storage tier type of Pci Solid State Drive. &#39;SATASSD&#39; indicates storage tier type of SATA Solid State Drive. &#39;SATAHDD&#39; indicates storage tier type of SATA Hard Disk Drive. &#39;CLOUD&#39; indicates storage tier type of Cloud. | [optional] 
 
 ## Example
 

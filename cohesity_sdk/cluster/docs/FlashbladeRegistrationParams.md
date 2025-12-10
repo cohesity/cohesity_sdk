@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **api_token** | **str** | Specifies the API Token of the Flashblade Source | 
 **back_up_smb_volumes** | **bool** | Specifies whether or not to back up SMB Volumes. | [optional] 
 **endpoint** | **str** | Specifies the Hostname or IP Address Endpoint for the Flashblade Source. | 
+**filter_ip_config** | [**FilterIpConfig**](FilterIpConfig.md) |  | [optional] 
 **smb_credentials** | [**Credentials**](Credentials.md) |  | [optional] 
 **throttling_config** | [**NasThrottlingConfig**](NasThrottlingConfig.md) |  | [optional] 
 

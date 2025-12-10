@@ -21,8 +21,19 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.common_download_file_and_folder_params import CommonDownloadFileAndFolderParams
 from cohesity_sdk.cluster.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
+from cohesity_sdk.cluster.models.recover_azure_blob_storage_params import RecoverAzureBlobStorageParams
+from cohesity_sdk.cluster.models.recover_azure_cosmos_db_cassandra_params import RecoverAzureCosmosDBCassandraParams
+from cohesity_sdk.cluster.models.recover_azure_cosmos_db_mongo_db_params import RecoverAzureCosmosDBMongoDBParams
+from cohesity_sdk.cluster.models.recover_azure_cosmos_dbno_sql_params import RecoverAzureCosmosDBNoSQLParams
+from cohesity_sdk.cluster.models.recover_azure_entra_id_params import RecoverAzureEntraIdParams
 from cohesity_sdk.cluster.models.recover_azure_file_and_folder_params import RecoverAzureFileAndFolderParams
+from cohesity_sdk.cluster.models.recover_azure_my_sql_params import RecoverAzureMySQLParams
+from cohesity_sdk.cluster.models.recover_azure_postgre_sql_params import RecoverAzurePostgreSQLParams
 from cohesity_sdk.cluster.models.recover_azure_sql_params import RecoverAzureSqlParams
+from cohesity_sdk.cluster.models.recover_azure_sqldb_params import RecoverAzureSQLDBParams
+from cohesity_sdk.cluster.models.recover_azure_sqlmi_params import RecoverAzureSQLMIParams
+from cohesity_sdk.cluster.models.recover_azure_table_api_params import RecoverAzureTableAPIParams
+from cohesity_sdk.cluster.models.recover_azure_table_storage_params import RecoverAzureTableStorageParams
 from cohesity_sdk.cluster.models.recover_azure_vm_params import RecoverAzureVmParams
 from typing import Set
 from typing_extensions import Self
@@ -31,19 +42,30 @@ class RecoverAzureParams(BaseModel):
     """
     Specifies the recovery options specific to Azure environment.
     """ # noqa: E501
+    azure_blob_storage_params: Optional[RecoverAzureBlobStorageParams] = Field(default=None, alias="azureBlobStorageParams")
+    azure_cosmos_db_cassandra_params: Optional[RecoverAzureCosmosDBCassandraParams] = Field(default=None, alias="azureCosmosDBCassandraParams")
+    azure_cosmos_db_mongo_db_params: Optional[RecoverAzureCosmosDBMongoDBParams] = Field(default=None, alias="azureCosmosDBMongoDBParams")
+    azure_cosmos_dbno_sql_params: Optional[RecoverAzureCosmosDBNoSQLParams] = Field(default=None, alias="azureCosmosDBNoSQLParams")
+    azure_entra_id_params: Optional[RecoverAzureEntraIdParams] = Field(default=None, alias="azureEntraIdParams")
+    azure_mysql_params: Optional[RecoverAzureMySQLParams] = Field(default=None, alias="azureMysqlParams")
+    azure_postgre_sql_params: Optional[RecoverAzurePostgreSQLParams] = Field(default=None, alias="azurePostgreSQLParams")
+    azure_sqldb_params: Optional[RecoverAzureSQLDBParams] = Field(default=None, alias="azureSQLDBParams")
+    azure_sqlmi_params: Optional[RecoverAzureSQLMIParams] = Field(default=None, alias="azureSQLMIParams")
     azure_sql_params: Optional[RecoverAzureSqlParams] = Field(default=None, alias="azureSqlParams")
+    azure_table_api_params: Optional[RecoverAzureTableAPIParams] = Field(default=None, alias="azureTableAPIParams")
+    azure_table_storage_params: Optional[RecoverAzureTableStorageParams] = Field(default=None, alias="azureTableStorageParams")
     download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, alias="downloadFileAndFolderParams")
     objects: Optional[List[CommonRecoverObjectSnapshotParams]] = Field(default=None, description="Specifies the list of recover Object parameters. This property is mandatory for all recovery action types except recover vms. While recovering VMs, a user can specify snapshots of VM's or a Protection Group Run details to recover all the VM's that are backed up by that Run. For recovering files, specifies the object contains the file to recover.")
     recover_file_and_folder_params: Optional[RecoverAzureFileAndFolderParams] = Field(default=None, alias="recoverFileAndFolderParams")
     recover_vm_params: Optional[RecoverAzureVmParams] = Field(default=None, alias="recoverVmParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recover action to be performed.", alias="recoveryAction")
-    __properties: ClassVar[List[str]] = ["azureSqlParams", "downloadFileAndFolderParams", "objects", "recoverFileAndFolderParams", "recoverVmParams", "recoveryAction"]
+    __properties: ClassVar[List[str]] = ["azureBlobStorageParams", "azureCosmosDBCassandraParams", "azureCosmosDBMongoDBParams", "azureCosmosDBNoSQLParams", "azureEntraIdParams", "azureMysqlParams", "azurePostgreSQLParams", "azureSQLDBParams", "azureSQLMIParams", "azureSqlParams", "azureTableAPIParams", "azureTableStorageParams", "downloadFileAndFolderParams", "objects", "recoverFileAndFolderParams", "recoverVmParams", "recoveryAction"]
 
     @field_validator('recovery_action')
     def recovery_action_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['RecoverVMs', 'RecoverFiles', 'RecoverAzureSQL']):
-            raise ValueError("must be one of enum values ('RecoverVMs', 'RecoverFiles', 'RecoverAzureSQL')")
+        if value not in set(['RecoverVMs', 'RecoverFiles', 'RecoverAzureSQL', 'RecoverAzureEntraID', 'RecoverAzureMySQL', 'RecoverNamespaces', 'RecoverAzureCosmosDBCassandra', 'RecoverAzurePostgreSQL', 'RecoverAzureCosmosDBNoSQL', 'RecoverAzureCosmosDBMongoDB', 'RecoverAzureBlobStorage', 'RecoverAzureSQLDB', 'RecoverAzureSQLMI', 'RecoverAzureTableStorage', 'RecoverAzureTableAPI']):
+            raise ValueError("must be one of enum values ('RecoverVMs', 'RecoverFiles', 'RecoverAzureSQL', 'RecoverAzureEntraID', 'RecoverAzureMySQL', 'RecoverNamespaces', 'RecoverAzureCosmosDBCassandra', 'RecoverAzurePostgreSQL', 'RecoverAzureCosmosDBNoSQL', 'RecoverAzureCosmosDBMongoDB', 'RecoverAzureBlobStorage', 'RecoverAzureSQLDB', 'RecoverAzureSQLMI', 'RecoverAzureTableStorage', 'RecoverAzureTableAPI')")
         return value
 
     model_config = ConfigDict(
@@ -85,9 +107,42 @@ class RecoverAzureParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of azure_blob_storage_params
+        if self.azure_blob_storage_params:
+            _dict['azureBlobStorageParams'] = self.azure_blob_storage_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_cosmos_db_cassandra_params
+        if self.azure_cosmos_db_cassandra_params:
+            _dict['azureCosmosDBCassandraParams'] = self.azure_cosmos_db_cassandra_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_cosmos_db_mongo_db_params
+        if self.azure_cosmos_db_mongo_db_params:
+            _dict['azureCosmosDBMongoDBParams'] = self.azure_cosmos_db_mongo_db_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_cosmos_dbno_sql_params
+        if self.azure_cosmos_dbno_sql_params:
+            _dict['azureCosmosDBNoSQLParams'] = self.azure_cosmos_dbno_sql_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_entra_id_params
+        if self.azure_entra_id_params:
+            _dict['azureEntraIdParams'] = self.azure_entra_id_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_mysql_params
+        if self.azure_mysql_params:
+            _dict['azureMysqlParams'] = self.azure_mysql_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_postgre_sql_params
+        if self.azure_postgre_sql_params:
+            _dict['azurePostgreSQLParams'] = self.azure_postgre_sql_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_sqldb_params
+        if self.azure_sqldb_params:
+            _dict['azureSQLDBParams'] = self.azure_sqldb_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_sqlmi_params
+        if self.azure_sqlmi_params:
+            _dict['azureSQLMIParams'] = self.azure_sqlmi_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of azure_sql_params
         if self.azure_sql_params:
             _dict['azureSqlParams'] = self.azure_sql_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_table_api_params
+        if self.azure_table_api_params:
+            _dict['azureTableAPIParams'] = self.azure_table_api_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_table_storage_params
+        if self.azure_table_storage_params:
+            _dict['azureTableStorageParams'] = self.azure_table_storage_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of download_file_and_folder_params
         if self.download_file_and_folder_params:
             _dict['downloadFileAndFolderParams'] = self.download_file_and_folder_params.to_dict()
@@ -121,7 +176,18 @@ class RecoverAzureParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "azureBlobStorageParams": RecoverAzureBlobStorageParams.from_dict(obj["azureBlobStorageParams"]) if obj.get("azureBlobStorageParams") is not None else None,
+            "azureCosmosDBCassandraParams": RecoverAzureCosmosDBCassandraParams.from_dict(obj["azureCosmosDBCassandraParams"]) if obj.get("azureCosmosDBCassandraParams") is not None else None,
+            "azureCosmosDBMongoDBParams": RecoverAzureCosmosDBMongoDBParams.from_dict(obj["azureCosmosDBMongoDBParams"]) if obj.get("azureCosmosDBMongoDBParams") is not None else None,
+            "azureCosmosDBNoSQLParams": RecoverAzureCosmosDBNoSQLParams.from_dict(obj["azureCosmosDBNoSQLParams"]) if obj.get("azureCosmosDBNoSQLParams") is not None else None,
+            "azureEntraIdParams": RecoverAzureEntraIdParams.from_dict(obj["azureEntraIdParams"]) if obj.get("azureEntraIdParams") is not None else None,
+            "azureMysqlParams": RecoverAzureMySQLParams.from_dict(obj["azureMysqlParams"]) if obj.get("azureMysqlParams") is not None else None,
+            "azurePostgreSQLParams": RecoverAzurePostgreSQLParams.from_dict(obj["azurePostgreSQLParams"]) if obj.get("azurePostgreSQLParams") is not None else None,
+            "azureSQLDBParams": RecoverAzureSQLDBParams.from_dict(obj["azureSQLDBParams"]) if obj.get("azureSQLDBParams") is not None else None,
+            "azureSQLMIParams": RecoverAzureSQLMIParams.from_dict(obj["azureSQLMIParams"]) if obj.get("azureSQLMIParams") is not None else None,
             "azureSqlParams": RecoverAzureSqlParams.from_dict(obj["azureSqlParams"]) if obj.get("azureSqlParams") is not None else None,
+            "azureTableAPIParams": RecoverAzureTableAPIParams.from_dict(obj["azureTableAPIParams"]) if obj.get("azureTableAPIParams") is not None else None,
+            "azureTableStorageParams": RecoverAzureTableStorageParams.from_dict(obj["azureTableStorageParams"]) if obj.get("azureTableStorageParams") is not None else None,
             "downloadFileAndFolderParams": CommonDownloadFileAndFolderParams.from_dict(obj["downloadFileAndFolderParams"]) if obj.get("downloadFileAndFolderParams") is not None else None,
             "objects": [CommonRecoverObjectSnapshotParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None,
             "recoverFileAndFolderParams": RecoverAzureFileAndFolderParams.from_dict(obj["recoverFileAndFolderParams"]) if obj.get("recoverFileAndFolderParams") is not None else None,

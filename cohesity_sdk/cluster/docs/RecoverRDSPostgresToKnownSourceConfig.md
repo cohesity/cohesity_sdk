@@ -1,6 +1,6 @@
 # RecoverRDSPostgresToKnownSourceConfig
 
-Specifies the configuration for recovering RDS Postgres instance to the known target.
+Specifies the configuration for recovering RDS Postgres objects to the known target.
 
 ## Properties
 

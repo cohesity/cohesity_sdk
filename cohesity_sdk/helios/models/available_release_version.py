@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.available_patch_release import AvailablePatchRelease
 from typing import Set
 from typing_extensions import Self
 
@@ -27,10 +28,22 @@ class AvailableReleaseVersion(BaseModel):
     Specifies release information like release version, release notes and release upgrade URL
     """ # noqa: E501
     notes: Optional[StrictStr] = Field(default=None, description="Specifies release's notes.")
+    patch_details: Optional[AvailablePatchRelease] = Field(default=None, alias="patchDetails")
     release_stage: Optional[StrictStr] = Field(default=None, description="Specifies the stage of a release.", alias="releaseStage")
     release_type: Optional[StrictStr] = Field(default=None, description="Release's type e.g, LTS, Feature, Patch, MCM.", alias="releaseType")
+    type: Optional[StrictStr] = Field(default=None, description="Specifies the type of package or release.")
     version: Optional[StrictStr] = Field(default=None, description="Specifies release's version.")
-    __properties: ClassVar[List[str]] = ["notes", "releaseStage", "releaseType", "version"]
+    __properties: ClassVar[List[str]] = ["notes", "patchDetails", "releaseStage", "releaseType", "type", "version"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['Upgrade', 'Patch', 'UpgradePatch']):
+            raise ValueError("must be one of enum values ('Upgrade', 'Patch', 'UpgradePatch')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,6 +84,9 @@ class AvailableReleaseVersion(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of patch_details
+        if self.patch_details:
+            _dict['patchDetails'] = self.patch_details.to_dict()
         # set to None if notes (nullable) is None
         # and model_fields_set contains the field
         if self.notes is None and "notes" in self.model_fields_set:
@@ -85,6 +101,11 @@ class AvailableReleaseVersion(BaseModel):
         # and model_fields_set contains the field
         if self.release_type is None and "release_type" in self.model_fields_set:
             _dict['releaseType'] = None
+
+        # set to None if type (nullable) is None
+        # and model_fields_set contains the field
+        if self.type is None and "type" in self.model_fields_set:
+            _dict['type'] = None
 
         # set to None if version (nullable) is None
         # and model_fields_set contains the field
@@ -104,8 +125,10 @@ class AvailableReleaseVersion(BaseModel):
 
         _obj = cls.model_validate({
             "notes": obj.get("notes"),
+            "patchDetails": AvailablePatchRelease.from_dict(obj["patchDetails"]) if obj.get("patchDetails") is not None else None,
             "releaseStage": obj.get("releaseStage"),
             "releaseType": obj.get("releaseType"),
+            "type": obj.get("type"),
             "version": obj.get("version")
         })
         return _obj

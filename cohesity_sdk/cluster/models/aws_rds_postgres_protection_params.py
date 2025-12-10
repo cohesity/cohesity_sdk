@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.cluster.models.aws_rds_postgres_object_level_params import AwsRdsPostgresObjectLevelParams
+from cohesity_sdk.cluster.models.aws_object_level_params import AwsObjectLevelParams
 from typing import Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class AwsRdsPostgresProtectionParams(BaseModel):
     """
     Specifies the parameters which are specific to AWS RDS Postgres related Object protection.
     """ # noqa: E501
-    objects: Optional[List[AwsRdsPostgresObjectLevelParams]] = Field(default=None, description="Specifies the objects to be protected.")
+    objects: Optional[List[AwsObjectLevelParams]] = Field(default=None, description="Specifies the objects to be protected.")
     source_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the source of the objects.", alias="sourceId")
     __properties: ClassVar[List[str]] = ["objects", "sourceId"]
 
@@ -96,7 +96,7 @@ class AwsRdsPostgresProtectionParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "objects": [AwsRdsPostgresObjectLevelParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None,
+            "objects": [AwsObjectLevelParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None,
             "sourceId": obj.get("sourceId")
         })
         return _obj

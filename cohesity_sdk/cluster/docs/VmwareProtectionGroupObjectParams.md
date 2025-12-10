@@ -7,6 +7,7 @@ Specifies the input for a protection object in the VMware environment.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **exclude_disks** | [**List[DiskInfo]**](DiskInfo.md) | Specifies a list of disks to exclude from being protected. This is only applicable to VM objects. | [optional] 
+**include_disks** | [**List[DiskInfo]**](DiskInfo.md) | Specifies a list of disks to be protected. This is only applicable to VM objects. | [optional] 
 **truncate_exchange_logs** | **bool** | Specifies whether or not to truncate MS Exchange logs while taking an app consistent snapshot of this object. This is only applicable to objects which have a registered MS Exchange app. | [optional] 
 **cdp_info** | [**VmwareCdpObject**](VmwareCdpObject.md) |  | [optional] 
 **id** | **int** | Specifies the id of the object being protected. This can be a leaf level or non leaf level object. | 

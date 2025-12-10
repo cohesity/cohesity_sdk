@@ -39,10 +39,10 @@ class HeliosDataProtectStatsApi:
     @validate_call
     def get_data_protect_usage(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         from_usecs: Annotated[Optional[StrictInt], Field(description="Start time to query for consumption of the current month")] = None,
         to_usecs: Annotated[Optional[StrictInt], Field(description="End time to query for consumption of the current month")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of region ids. Only applicable in case of DMaaS.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -60,14 +60,14 @@ class HeliosDataProtectStatsApi:
 
         Returns the current months usage for DMaaS. This internal api is to be used for display stats on DMaaS.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param from_usecs: Start time to query for consumption of the current month
         :type from_usecs: int
         :param to_usecs: End time to query for consumption of the current month
         :type to_usecs: int
         :param region_ids: Specifies the list of region ids. Only applicable in case of DMaaS.
         :type region_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -91,10 +91,10 @@ class HeliosDataProtectStatsApi:
         """ # noqa: E501
 
         _param = self._get_data_protect_usage_serialize(
-            region_id=region_id,
             from_usecs=from_usecs,
             to_usecs=to_usecs,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -118,10 +118,10 @@ class HeliosDataProtectStatsApi:
     @validate_call
     def get_data_protect_usage_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         from_usecs: Annotated[Optional[StrictInt], Field(description="Start time to query for consumption of the current month")] = None,
         to_usecs: Annotated[Optional[StrictInt], Field(description="End time to query for consumption of the current month")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of region ids. Only applicable in case of DMaaS.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -139,14 +139,14 @@ class HeliosDataProtectStatsApi:
 
         Returns the current months usage for DMaaS. This internal api is to be used for display stats on DMaaS.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param from_usecs: Start time to query for consumption of the current month
         :type from_usecs: int
         :param to_usecs: End time to query for consumption of the current month
         :type to_usecs: int
         :param region_ids: Specifies the list of region ids. Only applicable in case of DMaaS.
         :type region_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -170,10 +170,10 @@ class HeliosDataProtectStatsApi:
         """ # noqa: E501
 
         _param = self._get_data_protect_usage_serialize(
-            region_id=region_id,
             from_usecs=from_usecs,
             to_usecs=to_usecs,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -197,10 +197,10 @@ class HeliosDataProtectStatsApi:
     @validate_call
     def get_data_protect_usage_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         from_usecs: Annotated[Optional[StrictInt], Field(description="Start time to query for consumption of the current month")] = None,
         to_usecs: Annotated[Optional[StrictInt], Field(description="End time to query for consumption of the current month")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of region ids. Only applicable in case of DMaaS.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -218,14 +218,14 @@ class HeliosDataProtectStatsApi:
 
         Returns the current months usage for DMaaS. This internal api is to be used for display stats on DMaaS.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param from_usecs: Start time to query for consumption of the current month
         :type from_usecs: int
         :param to_usecs: End time to query for consumption of the current month
         :type to_usecs: int
         :param region_ids: Specifies the list of region ids. Only applicable in case of DMaaS.
         :type region_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -249,10 +249,10 @@ class HeliosDataProtectStatsApi:
         """ # noqa: E501
 
         _param = self._get_data_protect_usage_serialize(
-            region_id=region_id,
             from_usecs=from_usecs,
             to_usecs=to_usecs,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -271,10 +271,10 @@ class HeliosDataProtectStatsApi:
 
     def _get_data_protect_usage_serialize(
         self,
-        region_id,
         from_usecs,
         to_usecs,
         region_ids,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -352,10 +352,10 @@ class HeliosDataProtectStatsApi:
     @validate_call
     def get_rpaas_usage(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="Start time in microseconds to query for RPaaS data consumption.")] = None,
         to_time_usecs: Annotated[Optional[StrictInt], Field(description="End time in microseconds to query for RPaaS data consumption.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of region ids.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -373,14 +373,14 @@ class HeliosDataProtectStatsApi:
 
         Returns the data usage for RPaaS.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param from_time_usecs: Start time in microseconds to query for RPaaS data consumption.
         :type from_time_usecs: int
         :param to_time_usecs: End time in microseconds to query for RPaaS data consumption.
         :type to_time_usecs: int
         :param region_ids: Specifies the list of region ids.
         :type region_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -404,10 +404,10 @@ class HeliosDataProtectStatsApi:
         """ # noqa: E501
 
         _param = self._get_rpaas_usage_serialize(
-            region_id=region_id,
             from_time_usecs=from_time_usecs,
             to_time_usecs=to_time_usecs,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -431,10 +431,10 @@ class HeliosDataProtectStatsApi:
     @validate_call
     def get_rpaas_usage_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="Start time in microseconds to query for RPaaS data consumption.")] = None,
         to_time_usecs: Annotated[Optional[StrictInt], Field(description="End time in microseconds to query for RPaaS data consumption.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of region ids.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -452,14 +452,14 @@ class HeliosDataProtectStatsApi:
 
         Returns the data usage for RPaaS.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param from_time_usecs: Start time in microseconds to query for RPaaS data consumption.
         :type from_time_usecs: int
         :param to_time_usecs: End time in microseconds to query for RPaaS data consumption.
         :type to_time_usecs: int
         :param region_ids: Specifies the list of region ids.
         :type region_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -483,10 +483,10 @@ class HeliosDataProtectStatsApi:
         """ # noqa: E501
 
         _param = self._get_rpaas_usage_serialize(
-            region_id=region_id,
             from_time_usecs=from_time_usecs,
             to_time_usecs=to_time_usecs,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -510,10 +510,10 @@ class HeliosDataProtectStatsApi:
     @validate_call
     def get_rpaas_usage_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         from_time_usecs: Annotated[Optional[StrictInt], Field(description="Start time in microseconds to query for RPaaS data consumption.")] = None,
         to_time_usecs: Annotated[Optional[StrictInt], Field(description="End time in microseconds to query for RPaaS data consumption.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the list of region ids.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -531,14 +531,14 @@ class HeliosDataProtectStatsApi:
 
         Returns the data usage for RPaaS.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param from_time_usecs: Start time in microseconds to query for RPaaS data consumption.
         :type from_time_usecs: int
         :param to_time_usecs: End time in microseconds to query for RPaaS data consumption.
         :type to_time_usecs: int
         :param region_ids: Specifies the list of region ids.
         :type region_ids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -562,10 +562,10 @@ class HeliosDataProtectStatsApi:
         """ # noqa: E501
 
         _param = self._get_rpaas_usage_serialize(
-            region_id=region_id,
             from_time_usecs=from_time_usecs,
             to_time_usecs=to_time_usecs,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -584,10 +584,10 @@ class HeliosDataProtectStatsApi:
 
     def _get_rpaas_usage_serialize(
         self,
-        region_id,
         from_time_usecs,
         to_time_usecs,
         region_ids,
+        region_id,
         _request_auth,
         _content_type,
         _headers,

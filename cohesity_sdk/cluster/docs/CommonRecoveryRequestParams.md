@@ -6,7 +6,9 @@ Specifies the common request parameters to create a Recovery.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**filter_params** | [**CommonFilterExpression**](CommonFilterExpression.md) |  | [optional] 
 **name** | **str** | Specifies the name of the Recovery. | 
+**nfs_protocol** | **str** | Specifies NFS protocol version. This protocol will be employed if the recovery request mounts the Cohesity storage via NFS on the primary source. | [optional] 
 **snapshot_environment** | **str** | Specifies the type of environment of snapshots for which the Recovery has to be performed. | 
 
 ## Example

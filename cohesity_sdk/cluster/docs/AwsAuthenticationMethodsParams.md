@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **authentication_type** | **str** | Specifies the AWS External Target Authentication type. | 
 **i_am_role_params** | [**AwsIAmRoleParams**](AwsIAmRoleParams.md) |  | [optional] 
+**i_am_roles_anywhere_params** | [**AwsIAmRolesAnywhereParams**](AwsIAmRolesAnywhereParams.md) |  | [optional] 
 **i_am_user_params** | [**AwsIAmUserParams**](AwsIAmUserParams.md) |  | [optional] 
 **use_sts_params** | [**AwsUseSTSParams**](AwsUseSTSParams.md) |  | [optional] 
 

@@ -12,6 +12,11 @@ Name | Type | Description | Notes
 **lifecycle_management** | [**S3LifecycleManagement**](S3LifecycleManagement.md) |  | [optional] 
 **owner_info** | [**S3ConfigOwnerInfo**](S3ConfigOwnerInfo.md) |  | [optional] 
 **s3_access_path** | **str** | Specifies the path to access this View as an S3 share. | [optional] [readonly] 
+**s3_efficient_mpu_max_subfiles** | **int** | Specifies if this View has S3 MPU 2.0 enabled. This can set while editing a view.  | [optional] 
+**s3_enable_efficient_mpu** | **bool** | Specifies if this View has S3 MPU 2.0 enabled. This can set while editing a view.  | [optional] 
+**s3_migration_action** | **str** | Specifies the S3 migration action to be performed on this View. Supported migration actions are: [Enable, Cancel, Pause, Resume]. | [optional] 
+**s3_migration_progress** | **int** | Specifies the S3 migration progress in percentage for a view. | [optional] 
+**s3_migration_state** | **str** | Specifies the current S3 migration state for this View. A View can be under following migration states: [Eligible, Enable, Pause, Complete, UnderMigration]. | [optional] 
 **versioning** | **str** | Specifies the versioning state of S3 bucket. Buckets can be in one of three states: UnVersioned (default), VersioningEnabled, or VersioningSuspended. Once versioning is enabled for a bucket, it can never return to an UnVersioned state. However, versioning on the bucket can be suspended. | [optional] 
 
 ## Example

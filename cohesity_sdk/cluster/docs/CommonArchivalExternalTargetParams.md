@@ -6,6 +6,7 @@ Specifies the common parameters which are specific to Archival purpose type Exte
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**cad_config** | [**CloudArchivalDirectConfig**](CloudArchivalDirectConfig.md) |  | [optional] 
 **encryption** | [**EncryptionSettings**](EncryptionSettings.md) |  | 
 **storage_type** | **str** | Specifies the Storage type of the External Target. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead. | 
 **target_bandwidth_throttlings** | [**TargetBandwidthThrottlings**](TargetBandwidthThrottlings.md) |  | [optional] 

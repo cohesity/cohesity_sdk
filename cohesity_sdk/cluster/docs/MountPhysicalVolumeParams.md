@@ -6,6 +6,7 @@ Specifies the parameters to Mount Physical Volumes.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**mount_credentials** | [**MountUserCreds**](MountUserCreds.md) |  | [optional] 
 **physical_target_params** | [**PhysicalTargetParamsForMountVolume**](PhysicalTargetParamsForMountVolume.md) |  | [optional] 
 **target_environment** | **str** | Specifies the environment of the recovery target. The corresponding params below must be filled out. | 
 

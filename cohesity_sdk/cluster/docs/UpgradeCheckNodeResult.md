@@ -6,9 +6,9 @@ The healthcheck results for node
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**node_ip** | **str** | The node ip | [optional] 
+**node_ip** | **str** | The node ip | 
 **node_test_results** | [**List[UpgradeCheckTestResult]**](UpgradeCheckTestResult.md) | The healthcheck test results for node | [optional] 
-**node_test_status** | **str** | The healthcheck run status for node | [optional] 
+**node_test_status** | **str** | The healthcheck run status for node | 
 
 ## Example
 

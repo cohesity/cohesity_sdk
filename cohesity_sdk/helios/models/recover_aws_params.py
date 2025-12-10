@@ -23,9 +23,12 @@ from cohesity_sdk.helios.models.common_download_file_and_folder_params import Co
 from cohesity_sdk.helios.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
 from cohesity_sdk.helios.models.recover_aws_aurora_params import RecoverAwsAuroraParams
 from cohesity_sdk.helios.models.recover_aws_file_and_folder_params import RecoverAwsFileAndFolderParams
+from cohesity_sdk.helios.models.recover_aws_rds_aurora_my_sql_params import RecoverAwsRdsAuroraMySqlParams
+from cohesity_sdk.helios.models.recover_aws_rds_my_sql_params import RecoverAwsRdsMySqlParams
 from cohesity_sdk.helios.models.recover_aws_rds_params import RecoverAwsRdsParams
 from cohesity_sdk.helios.models.recover_aws_s3_bucket_params import RecoverAwsS3BucketParams
 from cohesity_sdk.helios.models.recover_aws_vm_params import RecoverAwsVmParams
+from cohesity_sdk.helios.models.recover_dynamo_db_params import RecoverDynamoDBParams
 from cohesity_sdk.helios.models.recover_rds_postgres_params import RecoverRDSPostgresParams
 from typing import Set
 from typing_extensions import Self
@@ -37,19 +40,22 @@ class RecoverAwsParams(BaseModel):
     download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, description="Specifies the parameters to download files and folders.", alias="downloadFileAndFolderParams")
     objects: Optional[List[CommonRecoverObjectSnapshotParams]] = Field(default=None, description="Specifies the list of recover Object parameters. This property is mandatory for all recovery action types except recover vms. While recovering VMs, a user can specify snapshots of VM's or a Protection Group Run details to recover all the VM's that are backed up by that Run. For recovering files, specifies the object contains the file to recover.")
     recover_aurora_params: Optional[RecoverAwsAuroraParams] = Field(default=None, description="Specifies the parameters to recover AWS Aurora.", alias="recoverAuroraParams")
+    recover_dynamo_db_params: Optional[RecoverDynamoDBParams] = Field(default=None, description="Specifies the parameters to recover AWS Dynamo DB.", alias="recoverDynamoDBParams")
     recover_file_and_folder_params: Optional[RecoverAwsFileAndFolderParams] = Field(default=None, description="Specifies the parameters to recover files and folders.", alias="recoverFileAndFolderParams")
+    recover_rds_aurora_my_sql_params: Optional[RecoverAwsRdsAuroraMySqlParams] = Field(default=None, alias="recoverRdsAuroraMySqlParams")
     recover_rds_ingest_params: Optional[RecoverRDSPostgresParams] = Field(default=None, description="Specifies the parameters to recover AWS RDS Ingest.", alias="recoverRdsIngestParams")
+    recover_rds_my_sql_params: Optional[RecoverAwsRdsMySqlParams] = Field(default=None, alias="recoverRdsMySqlParams")
     recover_rds_params: Optional[RecoverAwsRdsParams] = Field(default=None, description="Specifies the parameters to recover AWS RDS.", alias="recoverRdsParams")
     recover_s3_bucket_params: Optional[RecoverAwsS3BucketParams] = Field(default=None, description="Specifies the parameters to recover AWS S3 Buckets.", alias="recoverS3BucketParams")
     recover_vm_params: Optional[RecoverAwsVmParams] = Field(default=None, description="Specifies the parameters to recover AWS VM.", alias="recoverVmParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recover action to be performed.", alias="recoveryAction")
-    __properties: ClassVar[List[str]] = ["downloadFileAndFolderParams", "objects", "recoverAuroraParams", "recoverFileAndFolderParams", "recoverRdsIngestParams", "recoverRdsParams", "recoverS3BucketParams", "recoverVmParams", "recoveryAction"]
+    __properties: ClassVar[List[str]] = ["downloadFileAndFolderParams", "objects", "recoverAuroraParams", "recoverDynamoDBParams", "recoverFileAndFolderParams", "recoverRdsAuroraMySqlParams", "recoverRdsIngestParams", "recoverRdsMySqlParams", "recoverRdsParams", "recoverS3BucketParams", "recoverVmParams", "recoveryAction"]
 
     @field_validator('recovery_action')
     def recovery_action_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['RecoverVMs', 'RecoverRDS', 'RecoverAurora', 'RecoverFiles', 'RecoverS3Buckets', 'RecoverRDSPostgres']):
-            raise ValueError("must be one of enum values ('RecoverVMs', 'RecoverRDS', 'RecoverAurora', 'RecoverFiles', 'RecoverS3Buckets', 'RecoverRDSPostgres')")
+        if value not in set(['RecoverVMs', 'RecoverRDS', 'RecoverAurora', 'RecoverFiles', 'RecoverS3Buckets', 'RecoverRDSPostgres', 'RecoverAwsDynamoDB', 'RecoverRDSMySQL', 'RecoverRDSAuroraMySQL']):
+            raise ValueError("must be one of enum values ('RecoverVMs', 'RecoverRDS', 'RecoverAurora', 'RecoverFiles', 'RecoverS3Buckets', 'RecoverRDSPostgres', 'RecoverAwsDynamoDB', 'RecoverRDSMySQL', 'RecoverRDSAuroraMySQL')")
         return value
 
     model_config = ConfigDict(
@@ -104,12 +110,21 @@ class RecoverAwsParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of recover_aurora_params
         if self.recover_aurora_params:
             _dict['recoverAuroraParams'] = self.recover_aurora_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of recover_dynamo_db_params
+        if self.recover_dynamo_db_params:
+            _dict['recoverDynamoDBParams'] = self.recover_dynamo_db_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of recover_file_and_folder_params
         if self.recover_file_and_folder_params:
             _dict['recoverFileAndFolderParams'] = self.recover_file_and_folder_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of recover_rds_aurora_my_sql_params
+        if self.recover_rds_aurora_my_sql_params:
+            _dict['recoverRdsAuroraMySqlParams'] = self.recover_rds_aurora_my_sql_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of recover_rds_ingest_params
         if self.recover_rds_ingest_params:
             _dict['recoverRdsIngestParams'] = self.recover_rds_ingest_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of recover_rds_my_sql_params
+        if self.recover_rds_my_sql_params:
+            _dict['recoverRdsMySqlParams'] = self.recover_rds_my_sql_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of recover_rds_params
         if self.recover_rds_params:
             _dict['recoverRdsParams'] = self.recover_rds_params.to_dict()
@@ -133,6 +148,11 @@ class RecoverAwsParams(BaseModel):
         # and model_fields_set contains the field
         if self.recover_aurora_params is None and "recover_aurora_params" in self.model_fields_set:
             _dict['recoverAuroraParams'] = None
+
+        # set to None if recover_dynamo_db_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_dynamo_db_params is None and "recover_dynamo_db_params" in self.model_fields_set:
+            _dict['recoverDynamoDBParams'] = None
 
         # set to None if recover_file_and_folder_params (nullable) is None
         # and model_fields_set contains the field
@@ -174,8 +194,11 @@ class RecoverAwsParams(BaseModel):
             "downloadFileAndFolderParams": CommonDownloadFileAndFolderParams.from_dict(obj["downloadFileAndFolderParams"]) if obj.get("downloadFileAndFolderParams") is not None else None,
             "objects": [CommonRecoverObjectSnapshotParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None,
             "recoverAuroraParams": RecoverAwsAuroraParams.from_dict(obj["recoverAuroraParams"]) if obj.get("recoverAuroraParams") is not None else None,
+            "recoverDynamoDBParams": RecoverDynamoDBParams.from_dict(obj["recoverDynamoDBParams"]) if obj.get("recoverDynamoDBParams") is not None else None,
             "recoverFileAndFolderParams": RecoverAwsFileAndFolderParams.from_dict(obj["recoverFileAndFolderParams"]) if obj.get("recoverFileAndFolderParams") is not None else None,
+            "recoverRdsAuroraMySqlParams": RecoverAwsRdsAuroraMySqlParams.from_dict(obj["recoverRdsAuroraMySqlParams"]) if obj.get("recoverRdsAuroraMySqlParams") is not None else None,
             "recoverRdsIngestParams": RecoverRDSPostgresParams.from_dict(obj["recoverRdsIngestParams"]) if obj.get("recoverRdsIngestParams") is not None else None,
+            "recoverRdsMySqlParams": RecoverAwsRdsMySqlParams.from_dict(obj["recoverRdsMySqlParams"]) if obj.get("recoverRdsMySqlParams") is not None else None,
             "recoverRdsParams": RecoverAwsRdsParams.from_dict(obj["recoverRdsParams"]) if obj.get("recoverRdsParams") is not None else None,
             "recoverS3BucketParams": RecoverAwsS3BucketParams.from_dict(obj["recoverS3BucketParams"]) if obj.get("recoverS3BucketParams") is not None else None,
             "recoverVmParams": RecoverAwsVmParams.from_dict(obj["recoverVmParams"]) if obj.get("recoverVmParams") is not None else None,

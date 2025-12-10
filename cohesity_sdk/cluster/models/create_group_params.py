@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.local_group_params import LocalGroupParams
 from typing import Set
@@ -29,12 +29,20 @@ class CreateGroupParams(BaseModel):
     """ # noqa: E501
     description: Optional[StrictStr] = Field(default=None, description="Specifies the description of the group.")
     domain: StrictStr = Field(description="Specifies the domain of the group. For active directories, this is the fully qualified domain name (FQDN). It is 'LOCAL' for local groups on the Cohesity Cluster. A group is uniquely identified by combination of the name and the domain.")
-    local_group_params: Optional[LocalGroupParams] = Field(default=None, alias="localGroupParams")
+    group_type: StrictStr = Field(description="Specifies the type of group: local, ad, or idp.", alias="groupType")
     name: StrictStr = Field(description="Specifies the name of the group.")
     restricted: Optional[StrictBool] = Field(default=None, description="Specifies whether the Group is restricted. A restricted group can only view & manage the objects it has permissions to.")
     roles: Optional[List[StrictStr]] = Field(default=None, description="Specifies the Cohesity roles to associate with the group. The Cohesity roles determine privileges on the Cohesity Cluster for this group.")
     tenant_ids: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of tenant ids who can access this group.", alias="tenantIds")
-    __properties: ClassVar[List[str]] = ["description", "domain", "localGroupParams", "name", "restricted", "roles", "tenantIds"]
+    local_group_params: Optional[LocalGroupParams] = Field(default=None, alias="localGroupParams")
+    __properties: ClassVar[List[str]] = ["description", "domain", "groupType", "name", "restricted", "roles", "tenantIds", "localGroupParams"]
+
+    @field_validator('group_type')
+    def group_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['Local', 'AD', 'IDP']):
+            raise ValueError("must be one of enum values ('Local', 'AD', 'IDP')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -102,11 +110,12 @@ class CreateGroupParams(BaseModel):
         _obj = cls.model_validate({
             "description": obj.get("description"),
             "domain": obj.get("domain"),
-            "localGroupParams": LocalGroupParams.from_dict(obj["localGroupParams"]) if obj.get("localGroupParams") is not None else None,
+            "groupType": obj.get("groupType"),
             "name": obj.get("name"),
             "restricted": obj.get("restricted"),
             "roles": obj.get("roles"),
-            "tenantIds": obj.get("tenantIds")
+            "tenantIds": obj.get("tenantIds"),
+            "localGroupParams": LocalGroupParams.from_dict(obj["localGroupParams"]) if obj.get("localGroupParams") is not None else None
         })
         return _obj
 

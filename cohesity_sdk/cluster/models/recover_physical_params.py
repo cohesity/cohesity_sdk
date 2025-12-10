@@ -23,6 +23,7 @@ from cohesity_sdk.cluster.models.common_download_file_and_folder_params import C
 from cohesity_sdk.cluster.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
 from cohesity_sdk.cluster.models.mount_physical_volume_params import MountPhysicalVolumeParams
 from cohesity_sdk.cluster.models.recover_physical_file_and_folder_params import RecoverPhysicalFileAndFolderParams
+from cohesity_sdk.cluster.models.recover_physical_snapshot_to_view_params import RecoverPhysicalSnapshotToViewParams
 from cohesity_sdk.cluster.models.recover_physical_volume_params import RecoverPhysicalVolumeParams
 from cohesity_sdk.cluster.models.system_recovery_params import SystemRecoveryParams
 from typing import Set
@@ -36,16 +37,17 @@ class RecoverPhysicalParams(BaseModel):
     mount_volume_params: Optional[MountPhysicalVolumeParams] = Field(default=None, alias="mountVolumeParams")
     objects: Optional[List[CommonRecoverObjectSnapshotParams]] = Field(description="Specifies the list of Recover Object parameters. For recovering files, specifies the object contains the file to recover.")
     recover_file_and_folder_params: Optional[RecoverPhysicalFileAndFolderParams] = Field(default=None, alias="recoverFileAndFolderParams")
+    recover_snapshot_to_view_params: Optional[RecoverPhysicalSnapshotToViewParams] = Field(default=None, alias="recoverSnapshotToViewParams")
     recover_volume_params: Optional[RecoverPhysicalVolumeParams] = Field(default=None, alias="recoverVolumeParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recover action to be performed.", alias="recoveryAction")
     system_recovery_params: Optional[SystemRecoveryParams] = Field(default=None, alias="systemRecoveryParams")
-    __properties: ClassVar[List[str]] = ["downloadFileAndFolderParams", "mountVolumeParams", "objects", "recoverFileAndFolderParams", "recoverVolumeParams", "recoveryAction", "systemRecoveryParams"]
+    __properties: ClassVar[List[str]] = ["downloadFileAndFolderParams", "mountVolumeParams", "objects", "recoverFileAndFolderParams", "recoverSnapshotToViewParams", "recoverVolumeParams", "recoveryAction", "systemRecoveryParams"]
 
     @field_validator('recovery_action')
     def recovery_action_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['RecoverPhysicalVolumes', 'InstantVolumeMount', 'RecoverFiles', 'RecoverSystem']):
-            raise ValueError("must be one of enum values ('RecoverPhysicalVolumes', 'InstantVolumeMount', 'RecoverFiles', 'RecoverSystem')")
+        if value not in set(['RecoverPhysicalVolumes', 'InstantVolumeMount', 'RecoverFiles', 'RecoverSystem', 'RecoverSnapshotToView']):
+            raise ValueError("must be one of enum values ('RecoverPhysicalVolumes', 'InstantVolumeMount', 'RecoverFiles', 'RecoverSystem', 'RecoverSnapshotToView')")
         return value
 
     model_config = ConfigDict(
@@ -103,6 +105,9 @@ class RecoverPhysicalParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of recover_file_and_folder_params
         if self.recover_file_and_folder_params:
             _dict['recoverFileAndFolderParams'] = self.recover_file_and_folder_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of recover_snapshot_to_view_params
+        if self.recover_snapshot_to_view_params:
+            _dict['recoverSnapshotToViewParams'] = self.recover_snapshot_to_view_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of recover_volume_params
         if self.recover_volume_params:
             _dict['recoverVolumeParams'] = self.recover_volume_params.to_dict()
@@ -130,6 +135,7 @@ class RecoverPhysicalParams(BaseModel):
             "mountVolumeParams": MountPhysicalVolumeParams.from_dict(obj["mountVolumeParams"]) if obj.get("mountVolumeParams") is not None else None,
             "objects": [CommonRecoverObjectSnapshotParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None,
             "recoverFileAndFolderParams": RecoverPhysicalFileAndFolderParams.from_dict(obj["recoverFileAndFolderParams"]) if obj.get("recoverFileAndFolderParams") is not None else None,
+            "recoverSnapshotToViewParams": RecoverPhysicalSnapshotToViewParams.from_dict(obj["recoverSnapshotToViewParams"]) if obj.get("recoverSnapshotToViewParams") is not None else None,
             "recoverVolumeParams": RecoverPhysicalVolumeParams.from_dict(obj["recoverVolumeParams"]) if obj.get("recoverVolumeParams") is not None else None,
             "recoveryAction": obj.get("recoveryAction"),
             "systemRecoveryParams": SystemRecoveryParams.from_dict(obj["systemRecoveryParams"]) if obj.get("systemRecoveryParams") is not None else None

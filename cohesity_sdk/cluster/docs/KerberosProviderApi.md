@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 Get the Registered Kerberos Provider by id.
 
-Get the Registered Kerberos Provider by id.
+**Privileges:** ```KERBEROS_VIEW``` <br><br>Get the Registered Kerberos Provider by id.
 
 ### Example
 
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 Get the list of Kerberos Providers.
 
-Get the list of Kerberos Authentication Providers.
+**Privileges:** ```KERBEROS_VIEW``` <br><br>Get the list of Kerberos Authentication Providers.
 
 ### Example
 
@@ -210,7 +210,7 @@ Name | Type | Description  | Notes
 
 Register a Kerberos Authentication Provider.
 
-Register a Kerberos Authentication Provider.
+**Privileges:** ```KERBEROS_MODIFY``` <br><br>Register a Kerberos Authentication Provider.
 
 ### Example
 
@@ -305,7 +305,7 @@ Name | Type | Description  | Notes
 
 Unregister a Kerberos Provider.
 
-Unregister a Kerberos Provider.
+**Privileges:** ```KERBEROS_MODIFY``` <br><br>Unregister a Kerberos Provider.
 
 ### Example
 
@@ -402,7 +402,7 @@ Name | Type | Description  | Notes
 
 Update the Kerberos Provider Registration.
 
-Update the Kerberos Provider Registration.
+**Privileges:** ```KERBEROS_MODIFY``` <br><br>Update the Kerberos Provider Registration.
 
 ### Example
 

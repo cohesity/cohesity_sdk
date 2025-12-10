@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **tags** | [**List[TagInfo]**](TagInfo.md) | Specifies tag applied to the object. | [optional] 
 **channel_item** | [**ChannelItem**](ChannelItem.md) |  | [optional] 
 **file_item** | [**TeamsFileItem**](TeamsFileItem.md) |  | [optional] 
+**subsite_item** | [**SubsiteItem**](SubsiteItem.md) |  | [optional] 
 **type** | **str** | Specifies the M365 Teams item type. | [optional] 
 
 ## Example

@@ -7,7 +7,7 @@ Specifies the parameters to recover Kubernetes Namespaces.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **kubernetes_target_params** | [**KubernetesTargetParamsForRecoverKubernetesNamespace**](KubernetesTargetParamsForRecoverKubernetesNamespace.md) |  | [optional] 
-**target_environment** | **str** | Specifies the environment of the recovery target. The corresponding params below must be filled out. | 
+**target_environment** | **str** | Specifies the environment of the recovery target. The corresponding params below must be filled out. As of now only kubernetes target environment is supported. | 
 **vlan_config** | [**RecoveryVlanConfig**](RecoveryVlanConfig.md) |  | [optional] 
 
 ## Example

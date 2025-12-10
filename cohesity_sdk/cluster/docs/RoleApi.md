@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Create a Role.
 
-Create a Role.
+**Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Create a Role.
 
 ### Example
 
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 Delete a Role.
 
-Delete a Role.
+**Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete a Role.
 
 ### Example
 
@@ -201,7 +201,7 @@ void (empty response body)
 
 Get Roles.
 
-Get Roles.
+**Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Roles.
 
 ### Example
 
@@ -299,7 +299,7 @@ Name | Type | Description  | Notes
 
 Update a Role.
 
-Update a Role.
+**Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Update a Role.
 
 ### Example
 

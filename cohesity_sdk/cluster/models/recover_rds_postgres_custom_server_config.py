@@ -26,13 +26,14 @@ from typing_extensions import Self
 
 class RecoverRDSPostgresCustomServerConfig(BaseModel):
     """
-    Specifies the configuration for recovering RDS Postgres instance to the known target.
+    Specifies the configuration for recovering RDS Objects to the custom target.
     """ # noqa: E501
-    ip: StrictStr = Field(description="Specifies the Ip in which to deploy the Rds instance.")
+    ip: StrictStr = Field(description="Specifies the Ip in which to deploy the Rds objects.")
     port: Optional[StrictInt] = Field(description="Specifies the port to use to connect to the server.")
     region: RecoveryObjectIdentifier
+    source: Optional[RecoveryObjectIdentifier] = None
     standard_credentials: Credentials = Field(alias="standardCredentials")
-    __properties: ClassVar[List[str]] = ["ip", "port", "region", "standardCredentials"]
+    __properties: ClassVar[List[str]] = ["ip", "port", "region", "source", "standardCredentials"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,6 +77,9 @@ class RecoverRDSPostgresCustomServerConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of region
         if self.region:
             _dict['region'] = self.region.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of source
+        if self.source:
+            _dict['source'] = self.source.to_dict()
         # override the default output from pydantic by calling `to_dict()` of standard_credentials
         if self.standard_credentials:
             _dict['standardCredentials'] = self.standard_credentials.to_dict()
@@ -99,6 +103,7 @@ class RecoverRDSPostgresCustomServerConfig(BaseModel):
             "ip": obj.get("ip"),
             "port": obj.get("port"),
             "region": RecoveryObjectIdentifier.from_dict(obj["region"]) if obj.get("region") is not None else None,
+            "source": RecoveryObjectIdentifier.from_dict(obj["source"]) if obj.get("source") is not None else None,
             "standardCredentials": Credentials.from_dict(obj["standardCredentials"]) if obj.get("standardCredentials") is not None else None
         })
         return _obj

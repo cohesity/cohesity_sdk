@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **host** | **str** | Specifies the host of the NAS external target. | 
 **is_forever_incremental_archival_enabled** | **bool** | Specifies if Forever Incremental Archival setting is enabled or not. | [optional] 
 **is_incremental_archival_enabled** | **bool** | Specifies if Incremental Archival setting is enabled or not. | [optional] 
+**is_network_optimized_gc** | **bool** | Specifies whether the garbage collection mode is network optimized or storage optimized. If this field is set to true, it refers to network optimized GC and if set to false, it refers to storage optimized GC. | [optional] 
 **kerberos_realm_name** | **str** | Specifies the Kerberos realm name for a Kerberos-secured target. | [optional] 
 **mount_path** | **str** | Specifies the mount path of the NAS external target. | 
 **nfs_security_type** | **str** | Specifies the NFS security type of the target. | [optional] 

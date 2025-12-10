@@ -6,6 +6,7 @@ Specifies the Helios Registration Config.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**cohesion_reg_config** | [**CohesionRegistrationConfig**](CohesionRegistrationConfig.md) |  | [optional] 
 **entity_type** | **str** | Specifies the type of entity that is registered on Helios. | [optional] 
 **rigel_reg_config** | [**RigelRegConfig**](RigelRegConfig.md) |  | [optional] 
 

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **pre_post_script** | [**PrePostScriptParams**](PrePostScriptParams.md) |  | [optional] 
 **skip_physical_rdm_disks** | **bool** | Specifies whether or not to skip backing up physical RDM disks. Physical RDM disks cannot be backed up, so if you attempt to backup a VM with physical RDM disks and this value is set to &#39;false&#39;, then those VM backups will fail. | [optional] 
 **global_exclude_disks** | [**List[DiskInfo]**](DiskInfo.md) | Specifies a list of disks to exclude from the backup. | [optional] 
+**global_include_disks** | [**List[DiskInfo]**](DiskInfo.md) | Specifies a list of disks to include in the backup. | [optional] 
 **objects** | [**List[VmwareObjectProtectionRequest]**](VmwareObjectProtectionRequest.md) | Specifies the objects to include in the backup. | 
 
 ## Example

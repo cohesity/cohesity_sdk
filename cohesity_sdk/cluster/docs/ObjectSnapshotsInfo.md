@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **protection_run_end_time_usecs** | **int** | Specifies the end time of Protection Group Run in Unix timestamp epoch in microseconds. | [optional] 
 **protection_run_id** | **str** | Specifies the id of Protection Group Run. | [optional] 
 **protection_run_start_time_usecs** | **int** | Specifies the start time of Protection Group Run in Unix timestamp epoch in microseconds. | [optional] 
+**replication_snapshot_info** | [**ReplicationTargetSummaryInfo**](ReplicationTargetSummaryInfo.md) |  | [optional] 
 **run_instance_id** | **int** | Specifies the instance id of the protection run which create the snapshot. | [optional] 
 **run_type** | **str** | Specifies the type of protection run created this snapshot. | [optional] 
 **source_group_id** | **str** | Specifies the source protection group id in case of replication. | [optional] 

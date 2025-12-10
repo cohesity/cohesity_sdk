@@ -6,9 +6,11 @@ Specifies the paramaters to register an AWS source.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**dynamo_db_params** | [**DynamoDBSpecificParams**](DynamoDBSpecificParams.md) |  | [optional] 
 **s3_params** | [**S3SpecificParams**](S3SpecificParams.md) |  | [optional] 
 **standard_params** | [**StandardParams**](StandardParams.md) |  | [optional] 
 **subscription_type** | **str** | Specifies the AWS Subscription type (Commercial/Gov). | 
+**use_cases** | **List[str]** | The use cases for which the source is to be registered. | [optional] 
 
 ## Example
 

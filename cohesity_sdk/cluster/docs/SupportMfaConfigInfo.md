@@ -6,11 +6,15 @@ Holds the MFA configuration to be returned or stored.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **str** | Specifies email address of the support user. Used when MFA mode is email. | [optional] 
+**current_password** | **str** | Specifies the current password of the support user, required for making updates to the configuration. | [optional] 
+**email** | **str** | This field is deprecated, use PUT /v2/support-user/mfa. Specifies email address of the support user. Used when MFA mode is email. | [optional] 
 **enabled** | **bool** | Specifies whether MFA is enabled for support user. | [optional] [default to False]
+**is_quorum_managed** | **bool** | Specifies whether the MFA configuration is managed by quorum. | [optional] [readonly] [default to False]
 **mfa_code** | **str** | MFA code that needs to be passed when disabling MFA or changing email address when email based MFA is configured. | [optional] 
-**mfa_type** | **str** | Specifies the mechanism to receive the OTP code. | [optional] 
+**mfa_type** | **str** | This field is deprecated, use PUT /v2/support-user/mfa. Specifies the mechanism to receive the OTP code. | [optional] 
 **otp_verification_state** | **str** | Specifies the status of otp verification. | [optional] 
+**reference_id** | **str** | Specifies a reference ID of OTP verification, required if mfaCode is not specified | [optional] 
+**requires_password_auth** | **bool** | Specifies that this API requires current support user password for enabling/disabling MFA, and for updating mfaType and email. | [optional] [readonly] [default to True]
 
 ## Example
 

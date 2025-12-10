@@ -24,11 +24,14 @@ from cohesity_sdk.cluster.models.ad_protection_group_params import ADProtectionG
 from cohesity_sdk.cluster.models.aws_protection_group_params import AwsProtectionGroupParams
 from cohesity_sdk.cluster.models.azure_protection_group_params import AzureProtectionGroupParams
 from cohesity_sdk.cluster.models.cassandra_protection_group_params import CassandraProtectionGroupParams
+from cohesity_sdk.cluster.models.db2_protection_group_params import DB2ProtectionGroupParams
 from cohesity_sdk.cluster.models.elastifile_protection_group_params import ElastifileProtectionGroupParams
 from cohesity_sdk.cluster.models.exchange_protection_group_params import ExchangeProtectionGroupParams
+from cohesity_sdk.cluster.models.experimental_adapter_protection_group_params import ExperimentalAdapterProtectionGroupParams
 from cohesity_sdk.cluster.models.flashblade_protection_group_params import FlashbladeProtectionGroupParams
 from cohesity_sdk.cluster.models.gcp_protection_group_params import GcpProtectionGroupParams
 from cohesity_sdk.cluster.models.generic_nas_protection_group_params import GenericNasProtectionGroupParams
+from cohesity_sdk.cluster.models.google_workspace_protection_group_params import GoogleWorkspaceProtectionGroupParams
 from cohesity_sdk.cluster.models.gpfs_protection_group_params import GpfsProtectionGroupParams
 from cohesity_sdk.cluster.models.hdfs_protection_group_params import HdfsProtectionGroupParams
 from cohesity_sdk.cluster.models.hyper_v_protection_group_params import HyperVProtectionGroupParams
@@ -37,17 +40,22 @@ from cohesity_sdk.cluster.models.isilon_protection_group_params import IsilonPro
 from cohesity_sdk.cluster.models.key_value_pair import KeyValuePair
 from cohesity_sdk.cluster.models.kubernetes_protection_group_params import KubernetesProtectionGroupParams
 from cohesity_sdk.cluster.models.kvm_protection_group_params import KvmProtectionGroupParams
+from cohesity_sdk.cluster.models.mongo_db_ops_manager_protection_group_params import MongoDBOpsManagerProtectionGroupParams
 from cohesity_sdk.cluster.models.mongo_db_protection_group_params import MongoDBProtectionGroupParams
 from cohesity_sdk.cluster.models.mssql_protection_group_params import MSSQLProtectionGroupParams
 from cohesity_sdk.cluster.models.netapp_protection_group_params import NetappProtectionGroupParams
 from cohesity_sdk.cluster.models.nimble_protection_group_params import NimbleProtectionGroupParams
 from cohesity_sdk.cluster.models.no_sql_protection_group_params import NoSqlProtectionGroupParams
+from cohesity_sdk.cluster.models.nutanix_fs_protection_group_params import NutanixFSProtectionGroupParams
 from cohesity_sdk.cluster.models.office365_protection_group_params import Office365ProtectionGroupParams
 from cohesity_sdk.cluster.models.oracle_protection_group_params import OracleProtectionGroupParams
 from cohesity_sdk.cluster.models.physical_protection_group_params import PhysicalProtectionGroupParams
+from cohesity_sdk.cluster.models.postgres_protection_group_params import PostgresProtectionGroupParams
 from cohesity_sdk.cluster.models.protection_group_alerting_policy import ProtectionGroupAlertingPolicy
 from cohesity_sdk.cluster.models.pure_protection_group_params import PureProtectionGroupParams
 from cohesity_sdk.cluster.models.remote_adapter_protection_group_params import RemoteAdapterProtectionGroupParams
+from cohesity_sdk.cluster.models.s3_compatible_protection_group_params import S3CompatibleProtectionGroupParams
+from cohesity_sdk.cluster.models.sap_hana_protection_group_params import SapHanaProtectionGroupParams
 from cohesity_sdk.cluster.models.sfdc_protection_group_params import SfdcProtectionGroupParams
 from cohesity_sdk.cluster.models.sla_rule import SlaRule
 from cohesity_sdk.cluster.models.time_of_day import TimeOfDay
@@ -71,6 +79,7 @@ class CreateOrUpdateProtectionGroupRequest(BaseModel):
     last_modified_timestamp_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the last time this protection group was updated. If this is passed into a PUT request, then the backend will validate that the timestamp passed in matches the time that the protection group was actually last modified. If the two timestamps do not match, then the request will be rejected with a stale error.", alias="lastModifiedTimestampUsecs")
     name: Optional[StrictStr] = Field(description="Specifies the name of the Protection Group.")
     pause_in_blackouts: Optional[StrictBool] = Field(default=None, description="Specifies whether currently executing jobs should be paused if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if 'abortInBlackouts' is sent as true.", alias="pauseInBlackouts")
+    paused_note: Optional[StrictStr] = Field(default=None, description="A note from the current user explaining the reason for pausing future runs, if applicable.", alias="pausedNote")
     policy_id: Optional[StrictStr] = Field(description="Specifies the unique id of the Protection Policy associated with the Protection Group. The Policy provides retry settings Protection Schedules, Priority, SLA, etc.", alias="policyId")
     priority: Optional[StrictStr] = Field(default=None, description="Specifies the priority of the Protection Group.")
     qos_policy: Optional[StrictStr] = Field(default=None, description="Specifies whether the Protection Group will be written to HDD or SSD.", alias="qosPolicy")
@@ -83,11 +92,14 @@ class CreateOrUpdateProtectionGroupRequest(BaseModel):
     azure_params: Optional[AzureProtectionGroupParams] = Field(default=None, alias="azureParams")
     cassandra_params: Optional[CassandraProtectionGroupParams] = Field(default=None, alias="cassandraParams")
     couchbase_params: Optional[NoSqlProtectionGroupParams] = Field(default=None, alias="couchbaseParams")
+    db2_params: Optional[DB2ProtectionGroupParams] = Field(default=None, alias="db2Params")
     elastifile_params: Optional[ElastifileProtectionGroupParams] = Field(default=None, alias="elastifileParams")
     exchange_params: Optional[ExchangeProtectionGroupParams] = Field(default=None, alias="exchangeParams")
+    experimental_adapter_params: Optional[ExperimentalAdapterProtectionGroupParams] = Field(default=None, alias="experimentalAdapterParams")
     flashblade_params: Optional[FlashbladeProtectionGroupParams] = Field(default=None, alias="flashbladeParams")
     gcp_params: Optional[GcpProtectionGroupParams] = Field(default=None, alias="gcpParams")
     generic_nas_params: Optional[GenericNasProtectionGroupParams] = Field(default=None, alias="genericNasParams")
+    google_workspace_params: Optional[GoogleWorkspaceProtectionGroupParams] = Field(default=None, alias="googleWorkspaceParams")
     gpfs_params: Optional[GpfsProtectionGroupParams] = Field(default=None, alias="gpfsParams")
     hbase_params: Optional[NoSqlProtectionGroupParams] = Field(default=None, alias="hbaseParams")
     hdfs_params: Optional[HdfsProtectionGroupParams] = Field(default=None, alias="hdfsParams")
@@ -97,20 +109,25 @@ class CreateOrUpdateProtectionGroupRequest(BaseModel):
     isilon_params: Optional[IsilonProtectionGroupParams] = Field(default=None, alias="isilonParams")
     kubernetes_params: Optional[KubernetesProtectionGroupParams] = Field(default=None, alias="kubernetesParams")
     kvm_params: Optional[KvmProtectionGroupParams] = Field(default=None, alias="kvmParams")
+    mongodb_ops_params: Optional[MongoDBOpsManagerProtectionGroupParams] = Field(default=None, alias="mongodbOpsParams")
     mongodb_params: Optional[MongoDBProtectionGroupParams] = Field(default=None, alias="mongodbParams")
     mssql_params: Optional[MSSQLProtectionGroupParams] = Field(default=None, alias="mssqlParams")
     netapp_params: Optional[NetappProtectionGroupParams] = Field(default=None, alias="netappParams")
     nimble_params: Optional[NimbleProtectionGroupParams] = Field(default=None, alias="nimbleParams")
+    nutanix_fs_params: Optional[NutanixFSProtectionGroupParams] = Field(default=None, alias="nutanixFSParams")
     office365_params: Optional[Office365ProtectionGroupParams] = Field(default=None, alias="office365Params")
     oracle_params: Optional[OracleProtectionGroupParams] = Field(default=None, alias="oracleParams")
     physical_params: Optional[PhysicalProtectionGroupParams] = Field(default=None, alias="physicalParams")
+    postgres_params: Optional[PostgresProtectionGroupParams] = Field(default=None, alias="postgresParams")
     pure_params: Optional[PureProtectionGroupParams] = Field(default=None, alias="pureParams")
     remote_adapter_params: Optional[RemoteAdapterProtectionGroupParams] = Field(default=None, alias="remoteAdapterParams")
+    s3_compatible_params: Optional[S3CompatibleProtectionGroupParams] = Field(default=None, alias="s3CompatibleParams")
+    sap_hana_params: Optional[SapHanaProtectionGroupParams] = Field(default=None, alias="sapHanaParams")
     sfdc_params: Optional[SfdcProtectionGroupParams] = Field(default=None, alias="sfdcParams")
     uda_params: Optional[UdaProtectionGroupParams] = Field(default=None, alias="udaParams")
     view_params: Optional[ViewProtectionGroupParams] = Field(default=None, alias="viewParams")
     vmware_params: Optional[VmwareProtectionGroupParams] = Field(default=None, alias="vmwareParams")
-    __properties: ClassVar[List[str]] = ["abortInBlackouts", "advancedConfigs", "alertPolicy", "description", "endTimeUsecs", "environment", "isPaused", "lastModifiedTimestampUsecs", "name", "pauseInBlackouts", "policyId", "priority", "qosPolicy", "sla", "startTime", "storageDomainId", "acropolisParams", "adParams", "awsParams", "azureParams", "cassandraParams", "couchbaseParams", "elastifileParams", "exchangeParams", "flashbladeParams", "gcpParams", "genericNasParams", "gpfsParams", "hbaseParams", "hdfsParams", "hiveParams", "hypervParams", "ibmFlashSystemParams", "isilonParams", "kubernetesParams", "kvmParams", "mongodbParams", "mssqlParams", "netappParams", "nimbleParams", "office365Params", "oracleParams", "physicalParams", "pureParams", "remoteAdapterParams", "sfdcParams", "udaParams", "viewParams", "vmwareParams"]
+    __properties: ClassVar[List[str]] = ["abortInBlackouts", "advancedConfigs", "alertPolicy", "description", "endTimeUsecs", "environment", "isPaused", "lastModifiedTimestampUsecs", "name", "pauseInBlackouts", "pausedNote", "policyId", "priority", "qosPolicy", "sla", "startTime", "storageDomainId", "acropolisParams", "adParams", "awsParams", "azureParams", "cassandraParams", "couchbaseParams", "db2Params", "elastifileParams", "exchangeParams", "experimentalAdapterParams", "flashbladeParams", "gcpParams", "genericNasParams", "googleWorkspaceParams", "gpfsParams", "hbaseParams", "hdfsParams", "hiveParams", "hypervParams", "ibmFlashSystemParams", "isilonParams", "kubernetesParams", "kvmParams", "mongodbOpsParams", "mongodbParams", "mssqlParams", "netappParams", "nimbleParams", "nutanixFSParams", "office365Params", "oracleParams", "physicalParams", "postgresParams", "pureParams", "remoteAdapterParams", "s3CompatibleParams", "sapHanaParams", "sfdcParams", "udaParams", "viewParams", "vmwareParams"]
 
     @field_validator('environment')
     def environment_validate_enum(cls, value):
@@ -118,8 +135,8 @@ class CreateOrUpdateProtectionGroupRequest(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAzureNative', 'kAzureSQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc']):
-            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAzureNative', 'kAzureSQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc')")
+        if value not in set(['kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kGCPBigQuery', 'kGCPMySQL', 'kGoogleSpanner', 'kGCPPostgreSQL', 'kGCPAlloyDBPostgreSQL', 'kGCPSQLServer', 'kGCPFirestore', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kRDSPostgresSnapshotManager', 'kRDSMySQLSnapshotManager', 'kRDSMSSQLSnapshotManager', 'kRDSOracleSnapshotManager', 'kRDSMariaDBSnapshotManager', 'kRDSCustomMSSQLSnapshotManager', 'kRDSCustomOracleSnapshotManager', 'kAuroraSnapshotManager', 'kAuroraPostgresSnapshotManager', 'kAuroraMySQLSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAWSAuroraMySQL', 'kAwsDynamoDB', 'kAWSRdsOracle', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRDSMSSQL', 'kAWSRedshift', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzurePostgreSQLServer', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureBlobStorage', 'kAzureTableAPI', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kNutanixFS', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kS3Compatible', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kServiceNow', 'kPostgres']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kGCPBigQuery', 'kGCPMySQL', 'kGoogleSpanner', 'kGCPPostgreSQL', 'kGCPAlloyDBPostgreSQL', 'kGCPSQLServer', 'kGCPFirestore', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kRDSPostgresSnapshotManager', 'kRDSMySQLSnapshotManager', 'kRDSMSSQLSnapshotManager', 'kRDSOracleSnapshotManager', 'kRDSMariaDBSnapshotManager', 'kRDSCustomMSSQLSnapshotManager', 'kRDSCustomOracleSnapshotManager', 'kAuroraSnapshotManager', 'kAuroraPostgresSnapshotManager', 'kAuroraMySQLSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAWSAuroraMySQL', 'kAwsDynamoDB', 'kAWSRdsOracle', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRDSMSSQL', 'kAWSRedshift', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzurePostgreSQLServer', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureBlobStorage', 'kAzureTableAPI', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kNutanixFS', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kS3Compatible', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kServiceNow', 'kPostgres')")
         return value
 
     @field_validator('priority')
@@ -219,12 +236,18 @@ class CreateOrUpdateProtectionGroupRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of couchbase_params
         if self.couchbase_params:
             _dict['couchbaseParams'] = self.couchbase_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of db2_params
+        if self.db2_params:
+            _dict['db2Params'] = self.db2_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of elastifile_params
         if self.elastifile_params:
             _dict['elastifileParams'] = self.elastifile_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of exchange_params
         if self.exchange_params:
             _dict['exchangeParams'] = self.exchange_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of experimental_adapter_params
+        if self.experimental_adapter_params:
+            _dict['experimentalAdapterParams'] = self.experimental_adapter_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of flashblade_params
         if self.flashblade_params:
             _dict['flashbladeParams'] = self.flashblade_params.to_dict()
@@ -234,6 +257,9 @@ class CreateOrUpdateProtectionGroupRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of generic_nas_params
         if self.generic_nas_params:
             _dict['genericNasParams'] = self.generic_nas_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of google_workspace_params
+        if self.google_workspace_params:
+            _dict['googleWorkspaceParams'] = self.google_workspace_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of gpfs_params
         if self.gpfs_params:
             _dict['gpfsParams'] = self.gpfs_params.to_dict()
@@ -261,6 +287,9 @@ class CreateOrUpdateProtectionGroupRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of kvm_params
         if self.kvm_params:
             _dict['kvmParams'] = self.kvm_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of mongodb_ops_params
+        if self.mongodb_ops_params:
+            _dict['mongodbOpsParams'] = self.mongodb_ops_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of mongodb_params
         if self.mongodb_params:
             _dict['mongodbParams'] = self.mongodb_params.to_dict()
@@ -273,6 +302,9 @@ class CreateOrUpdateProtectionGroupRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of nimble_params
         if self.nimble_params:
             _dict['nimbleParams'] = self.nimble_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of nutanix_fs_params
+        if self.nutanix_fs_params:
+            _dict['nutanixFSParams'] = self.nutanix_fs_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of office365_params
         if self.office365_params:
             _dict['office365Params'] = self.office365_params.to_dict()
@@ -282,12 +314,21 @@ class CreateOrUpdateProtectionGroupRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of physical_params
         if self.physical_params:
             _dict['physicalParams'] = self.physical_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of postgres_params
+        if self.postgres_params:
+            _dict['postgresParams'] = self.postgres_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of pure_params
         if self.pure_params:
             _dict['pureParams'] = self.pure_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of remote_adapter_params
         if self.remote_adapter_params:
             _dict['remoteAdapterParams'] = self.remote_adapter_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of s3_compatible_params
+        if self.s3_compatible_params:
+            _dict['s3CompatibleParams'] = self.s3_compatible_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of sap_hana_params
+        if self.sap_hana_params:
+            _dict['sapHanaParams'] = self.sap_hana_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of sfdc_params
         if self.sfdc_params:
             _dict['sfdcParams'] = self.sfdc_params.to_dict()
@@ -344,6 +385,11 @@ class CreateOrUpdateProtectionGroupRequest(BaseModel):
         # and model_fields_set contains the field
         if self.pause_in_blackouts is None and "pause_in_blackouts" in self.model_fields_set:
             _dict['pauseInBlackouts'] = None
+
+        # set to None if paused_note (nullable) is None
+        # and model_fields_set contains the field
+        if self.paused_note is None and "paused_note" in self.model_fields_set:
+            _dict['pausedNote'] = None
 
         # set to None if policy_id (nullable) is None
         # and model_fields_set contains the field
@@ -410,6 +456,11 @@ class CreateOrUpdateProtectionGroupRequest(BaseModel):
         if self.nimble_params is None and "nimble_params" in self.model_fields_set:
             _dict['nimbleParams'] = None
 
+        # set to None if nutanix_fs_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.nutanix_fs_params is None and "nutanix_fs_params" in self.model_fields_set:
+            _dict['nutanixFSParams'] = None
+
         # set to None if pure_params (nullable) is None
         # and model_fields_set contains the field
         if self.pure_params is None and "pure_params" in self.model_fields_set:
@@ -447,6 +498,7 @@ class CreateOrUpdateProtectionGroupRequest(BaseModel):
             "lastModifiedTimestampUsecs": obj.get("lastModifiedTimestampUsecs"),
             "name": obj.get("name"),
             "pauseInBlackouts": obj.get("pauseInBlackouts"),
+            "pausedNote": obj.get("pausedNote"),
             "policyId": obj.get("policyId"),
             "priority": obj.get("priority"),
             "qosPolicy": obj.get("qosPolicy"),
@@ -459,11 +511,14 @@ class CreateOrUpdateProtectionGroupRequest(BaseModel):
             "azureParams": AzureProtectionGroupParams.from_dict(obj["azureParams"]) if obj.get("azureParams") is not None else None,
             "cassandraParams": CassandraProtectionGroupParams.from_dict(obj["cassandraParams"]) if obj.get("cassandraParams") is not None else None,
             "couchbaseParams": NoSqlProtectionGroupParams.from_dict(obj["couchbaseParams"]) if obj.get("couchbaseParams") is not None else None,
+            "db2Params": DB2ProtectionGroupParams.from_dict(obj["db2Params"]) if obj.get("db2Params") is not None else None,
             "elastifileParams": ElastifileProtectionGroupParams.from_dict(obj["elastifileParams"]) if obj.get("elastifileParams") is not None else None,
             "exchangeParams": ExchangeProtectionGroupParams.from_dict(obj["exchangeParams"]) if obj.get("exchangeParams") is not None else None,
+            "experimentalAdapterParams": ExperimentalAdapterProtectionGroupParams.from_dict(obj["experimentalAdapterParams"]) if obj.get("experimentalAdapterParams") is not None else None,
             "flashbladeParams": FlashbladeProtectionGroupParams.from_dict(obj["flashbladeParams"]) if obj.get("flashbladeParams") is not None else None,
             "gcpParams": GcpProtectionGroupParams.from_dict(obj["gcpParams"]) if obj.get("gcpParams") is not None else None,
             "genericNasParams": GenericNasProtectionGroupParams.from_dict(obj["genericNasParams"]) if obj.get("genericNasParams") is not None else None,
+            "googleWorkspaceParams": GoogleWorkspaceProtectionGroupParams.from_dict(obj["googleWorkspaceParams"]) if obj.get("googleWorkspaceParams") is not None else None,
             "gpfsParams": GpfsProtectionGroupParams.from_dict(obj["gpfsParams"]) if obj.get("gpfsParams") is not None else None,
             "hbaseParams": NoSqlProtectionGroupParams.from_dict(obj["hbaseParams"]) if obj.get("hbaseParams") is not None else None,
             "hdfsParams": HdfsProtectionGroupParams.from_dict(obj["hdfsParams"]) if obj.get("hdfsParams") is not None else None,
@@ -473,15 +528,20 @@ class CreateOrUpdateProtectionGroupRequest(BaseModel):
             "isilonParams": IsilonProtectionGroupParams.from_dict(obj["isilonParams"]) if obj.get("isilonParams") is not None else None,
             "kubernetesParams": KubernetesProtectionGroupParams.from_dict(obj["kubernetesParams"]) if obj.get("kubernetesParams") is not None else None,
             "kvmParams": KvmProtectionGroupParams.from_dict(obj["kvmParams"]) if obj.get("kvmParams") is not None else None,
+            "mongodbOpsParams": MongoDBOpsManagerProtectionGroupParams.from_dict(obj["mongodbOpsParams"]) if obj.get("mongodbOpsParams") is not None else None,
             "mongodbParams": MongoDBProtectionGroupParams.from_dict(obj["mongodbParams"]) if obj.get("mongodbParams") is not None else None,
             "mssqlParams": MSSQLProtectionGroupParams.from_dict(obj["mssqlParams"]) if obj.get("mssqlParams") is not None else None,
             "netappParams": NetappProtectionGroupParams.from_dict(obj["netappParams"]) if obj.get("netappParams") is not None else None,
             "nimbleParams": NimbleProtectionGroupParams.from_dict(obj["nimbleParams"]) if obj.get("nimbleParams") is not None else None,
+            "nutanixFSParams": NutanixFSProtectionGroupParams.from_dict(obj["nutanixFSParams"]) if obj.get("nutanixFSParams") is not None else None,
             "office365Params": Office365ProtectionGroupParams.from_dict(obj["office365Params"]) if obj.get("office365Params") is not None else None,
             "oracleParams": OracleProtectionGroupParams.from_dict(obj["oracleParams"]) if obj.get("oracleParams") is not None else None,
             "physicalParams": PhysicalProtectionGroupParams.from_dict(obj["physicalParams"]) if obj.get("physicalParams") is not None else None,
+            "postgresParams": PostgresProtectionGroupParams.from_dict(obj["postgresParams"]) if obj.get("postgresParams") is not None else None,
             "pureParams": PureProtectionGroupParams.from_dict(obj["pureParams"]) if obj.get("pureParams") is not None else None,
             "remoteAdapterParams": RemoteAdapterProtectionGroupParams.from_dict(obj["remoteAdapterParams"]) if obj.get("remoteAdapterParams") is not None else None,
+            "s3CompatibleParams": S3CompatibleProtectionGroupParams.from_dict(obj["s3CompatibleParams"]) if obj.get("s3CompatibleParams") is not None else None,
+            "sapHanaParams": SapHanaProtectionGroupParams.from_dict(obj["sapHanaParams"]) if obj.get("sapHanaParams") is not None else None,
             "sfdcParams": SfdcProtectionGroupParams.from_dict(obj["sfdcParams"]) if obj.get("sfdcParams") is not None else None,
             "udaParams": UdaProtectionGroupParams.from_dict(obj["udaParams"]) if obj.get("udaParams") is not None else None,
             "viewParams": ViewProtectionGroupParams.from_dict(obj["viewParams"]) if obj.get("viewParams") is not None else None,

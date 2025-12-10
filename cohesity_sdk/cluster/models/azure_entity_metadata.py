@@ -19,7 +19,15 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.cluster.models.azure_cosmos_db_cassandra_entity_metadata import AzureCosmosDBCassandraEntityMetadata
+from cohesity_sdk.cluster.models.azure_cosmos_db_mongo_db_entity_metadata import AzureCosmosDBMongoDBEntityMetadata
+from cohesity_sdk.cluster.models.azure_cosmos_dbno_sql_entity_metadata import AzureCosmosDBNoSQLEntityMetadata
+from cohesity_sdk.cluster.models.azure_kubernetes_entity_metadata import AzureKubernetesEntityMetadata
+from cohesity_sdk.cluster.models.azure_my_sql_entity_metadata import AzureMySqlEntityMetadata
+from cohesity_sdk.cluster.models.azure_postgre_sql_entity_metadata import AzurePostgreSQLEntityMetadata
+from cohesity_sdk.cluster.models.azure_sql_db_entity_metadata import AzureSqlDBEntityMetadata
 from cohesity_sdk.cluster.models.azure_sql_entity_metadata import AzureSqlEntityMetadata
+from cohesity_sdk.cluster.models.azure_sql_mi_entity_metadata import AzureSqlMIEntityMetadata
 from typing import Set
 from typing_extensions import Self
 
@@ -27,8 +35,16 @@ class AzureEntityMetadata(BaseModel):
     """
     Specifies the entity metadata of azure entities.
     """ # noqa: E501
+    azure_cosmos_db_cassandra_params: Optional[AzureCosmosDBCassandraEntityMetadata] = Field(default=None, alias="azureCosmosDBCassandraParams")
+    azure_cosmos_db_mongo_db_params: Optional[AzureCosmosDBMongoDBEntityMetadata] = Field(default=None, alias="azureCosmosDBMongoDBParams")
+    azure_cosmos_dbno_sql_params: Optional[AzureCosmosDBNoSQLEntityMetadata] = Field(default=None, alias="azureCosmosDBNoSQLParams")
+    azure_kubernetes_params: Optional[AzureKubernetesEntityMetadata] = Field(default=None, alias="azureKubernetesParams")
+    azure_my_sql_params: Optional[AzureMySqlEntityMetadata] = Field(default=None, alias="azureMySqlParams")
+    azure_postgre_sql_params: Optional[AzurePostgreSQLEntityMetadata] = Field(default=None, alias="azurePostgreSQLParams")
+    azure_sql_db_params: Optional[AzureSqlDBEntityMetadata] = Field(default=None, alias="azureSqlDBParams")
+    azure_sql_mi_params: Optional[AzureSqlMIEntityMetadata] = Field(default=None, alias="azureSqlMIParams")
     azure_sql_params: Optional[AzureSqlEntityMetadata] = Field(default=None, alias="azureSqlParams")
-    __properties: ClassVar[List[str]] = ["azureSqlParams"]
+    __properties: ClassVar[List[str]] = ["azureCosmosDBCassandraParams", "azureCosmosDBMongoDBParams", "azureCosmosDBNoSQLParams", "azureKubernetesParams", "azureMySqlParams", "azurePostgreSQLParams", "azureSqlDBParams", "azureSqlMIParams", "azureSqlParams"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,6 +85,30 @@ class AzureEntityMetadata(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of azure_cosmos_db_cassandra_params
+        if self.azure_cosmos_db_cassandra_params:
+            _dict['azureCosmosDBCassandraParams'] = self.azure_cosmos_db_cassandra_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_cosmos_db_mongo_db_params
+        if self.azure_cosmos_db_mongo_db_params:
+            _dict['azureCosmosDBMongoDBParams'] = self.azure_cosmos_db_mongo_db_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_cosmos_dbno_sql_params
+        if self.azure_cosmos_dbno_sql_params:
+            _dict['azureCosmosDBNoSQLParams'] = self.azure_cosmos_dbno_sql_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_kubernetes_params
+        if self.azure_kubernetes_params:
+            _dict['azureKubernetesParams'] = self.azure_kubernetes_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_my_sql_params
+        if self.azure_my_sql_params:
+            _dict['azureMySqlParams'] = self.azure_my_sql_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_postgre_sql_params
+        if self.azure_postgre_sql_params:
+            _dict['azurePostgreSQLParams'] = self.azure_postgre_sql_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_sql_db_params
+        if self.azure_sql_db_params:
+            _dict['azureSqlDBParams'] = self.azure_sql_db_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of azure_sql_mi_params
+        if self.azure_sql_mi_params:
+            _dict['azureSqlMIParams'] = self.azure_sql_mi_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of azure_sql_params
         if self.azure_sql_params:
             _dict['azureSqlParams'] = self.azure_sql_params.to_dict()
@@ -84,6 +124,14 @@ class AzureEntityMetadata(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "azureCosmosDBCassandraParams": AzureCosmosDBCassandraEntityMetadata.from_dict(obj["azureCosmosDBCassandraParams"]) if obj.get("azureCosmosDBCassandraParams") is not None else None,
+            "azureCosmosDBMongoDBParams": AzureCosmosDBMongoDBEntityMetadata.from_dict(obj["azureCosmosDBMongoDBParams"]) if obj.get("azureCosmosDBMongoDBParams") is not None else None,
+            "azureCosmosDBNoSQLParams": AzureCosmosDBNoSQLEntityMetadata.from_dict(obj["azureCosmosDBNoSQLParams"]) if obj.get("azureCosmosDBNoSQLParams") is not None else None,
+            "azureKubernetesParams": AzureKubernetesEntityMetadata.from_dict(obj["azureKubernetesParams"]) if obj.get("azureKubernetesParams") is not None else None,
+            "azureMySqlParams": AzureMySqlEntityMetadata.from_dict(obj["azureMySqlParams"]) if obj.get("azureMySqlParams") is not None else None,
+            "azurePostgreSQLParams": AzurePostgreSQLEntityMetadata.from_dict(obj["azurePostgreSQLParams"]) if obj.get("azurePostgreSQLParams") is not None else None,
+            "azureSqlDBParams": AzureSqlDBEntityMetadata.from_dict(obj["azureSqlDBParams"]) if obj.get("azureSqlDBParams") is not None else None,
+            "azureSqlMIParams": AzureSqlMIEntityMetadata.from_dict(obj["azureSqlMIParams"]) if obj.get("azureSqlMIParams") is not None else None,
             "azureSqlParams": AzureSqlEntityMetadata.from_dict(obj["azureSqlParams"]) if obj.get("azureSqlParams") is not None else None
         })
         return _obj

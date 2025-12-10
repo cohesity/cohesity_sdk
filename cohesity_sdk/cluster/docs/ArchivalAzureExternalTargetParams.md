@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **storage_class** | **str** | Specifies the Azure External Target storage class. | 
 **worm_specific_target_params** | [**WormSpecificTargetParams**](WormSpecificTargetParams.md) |  | [optional] 
 **archive_blob_params** | [**AzureArchiveBlobParams**](AzureArchiveBlobParams.md) |  | [optional] 
+**cold_blob_params** | [**AzureColdBlobParams**](AzureColdBlobParams.md) |  | [optional] 
 **cool_blob_params** | [**AzureCoolBlobParams**](AzureCoolBlobParams.md) |  | [optional] 
 **hot_blob_params** | [**AzureHotBlobParams**](AzureHotBlobParams.md) |  | [optional] 
 

@@ -59,7 +59,7 @@ class AuditLogApi:
     ) -> AuditLogsEntityTypes:
         """Create cluster audit logs.
 
-        Create a cluster audit logs.
+        ```No Privileges Required``` <br><br>Create a cluster audit logs.
 
         :param body: Request to create a audit log. (required)
         :type body: AuditLog
@@ -126,7 +126,7 @@ class AuditLogApi:
     ) -> ApiResponse[AuditLogsEntityTypes]:
         """Create cluster audit logs.
 
-        Create a cluster audit logs.
+        ```No Privileges Required``` <br><br>Create a cluster audit logs.
 
         :param body: Request to create a audit log. (required)
         :type body: AuditLog
@@ -193,7 +193,7 @@ class AuditLogApi:
     ) -> RESTResponseType:
         """Create cluster audit logs.
 
-        Create a cluster audit logs.
+        ```No Privileges Required``` <br><br>Create a cluster audit logs.
 
         :param body: Request to create a audit log. (required)
         :type body: AuditLog
@@ -345,7 +345,7 @@ class AuditLogApi:
     ) -> AuditLogs:
         """Get cluster audit logs.
 
-        Get a cluster audit logs.
+        **Privileges:** ```CLUSTER_AUDIT``` <br><br>Get a cluster audit logs.
 
         :param search_string: Search audit logs by 'entityName' or 'details'.
         :type search_string: str
@@ -452,7 +452,7 @@ class AuditLogApi:
     ) -> ApiResponse[AuditLogs]:
         """Get cluster audit logs.
 
-        Get a cluster audit logs.
+        **Privileges:** ```CLUSTER_AUDIT``` <br><br>Get a cluster audit logs.
 
         :param search_string: Search audit logs by 'entityName' or 'details'.
         :type search_string: str
@@ -559,7 +559,7 @@ class AuditLogApi:
     ) -> RESTResponseType:
         """Get cluster audit logs.
 
-        Get a cluster audit logs.
+        **Privileges:** ```CLUSTER_AUDIT``` <br><br>Get a cluster audit logs.
 
         :param search_string: Search audit logs by 'entityName' or 'details'.
         :type search_string: str
@@ -774,7 +774,7 @@ class AuditLogApi:
     ) -> AuditLogsActions:
         """Get cluster audit logs actions.
 
-        Get all actions of cluster audit logs.
+        **Privileges:** ```CLUSTER_AUDIT``` <br><br>Get all actions of cluster audit logs.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -837,7 +837,7 @@ class AuditLogApi:
     ) -> ApiResponse[AuditLogsActions]:
         """Get cluster audit logs actions.
 
-        Get all actions of cluster audit logs.
+        **Privileges:** ```CLUSTER_AUDIT``` <br><br>Get all actions of cluster audit logs.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -900,7 +900,7 @@ class AuditLogApi:
     ) -> RESTResponseType:
         """Get cluster audit logs actions.
 
-        Get all actions of cluster audit logs.
+        **Privileges:** ```CLUSTER_AUDIT``` <br><br>Get all actions of cluster audit logs.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1022,7 +1022,7 @@ class AuditLogApi:
     ) -> AuditLogsEntityTypes:
         """Get cluster audit logs entity types.
 
-        Get all entity types of cluster audit logs.
+        **Privileges:** ```CLUSTER_AUDIT``` <br><br>Get all entity types of cluster audit logs.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1085,7 +1085,7 @@ class AuditLogApi:
     ) -> ApiResponse[AuditLogsEntityTypes]:
         """Get cluster audit logs entity types.
 
-        Get all entity types of cluster audit logs.
+        **Privileges:** ```CLUSTER_AUDIT``` <br><br>Get all entity types of cluster audit logs.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1148,7 +1148,7 @@ class AuditLogApi:
     ) -> RESTResponseType:
         """Get cluster audit logs entity types.
 
-        Get all entity types of cluster audit logs.
+        **Privileges:** ```CLUSTER_AUDIT``` <br><br>Get all entity types of cluster audit logs.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1270,7 +1270,7 @@ class AuditLogApi:
     ) -> FilerAuditLogConfigs:
         """Get filer audit log configs.
 
-        Get filer audit log configs.
+        **Privileges:** ```CLUSTER_AUDIT``` <br><br>Get filer audit log configs.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1333,7 +1333,7 @@ class AuditLogApi:
     ) -> ApiResponse[FilerAuditLogConfigs]:
         """Get filer audit log configs.
 
-        Get filer audit log configs.
+        **Privileges:** ```CLUSTER_AUDIT``` <br><br>Get filer audit log configs.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1396,7 +1396,7 @@ class AuditLogApi:
     ) -> RESTResponseType:
         """Get filer audit log configs.
 
-        Get filer audit log configs.
+        **Privileges:** ```CLUSTER_AUDIT``` <br><br>Get filer audit log configs.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1519,7 +1519,7 @@ class AuditLogApi:
     ) -> FilerAuditLogConfigs:
         """Update filer audit log configs.
 
-        Update filer audit log configs.
+        **Privileges:** ```CLUSTER_AUDIT``` <br><br>Update filer audit log configs.
 
         :param body: Specifies the filer audit log config to update. (required)
         :type body: FilerAuditLogConfigs
@@ -1586,7 +1586,7 @@ class AuditLogApi:
     ) -> ApiResponse[FilerAuditLogConfigs]:
         """Update filer audit log configs.
 
-        Update filer audit log configs.
+        **Privileges:** ```CLUSTER_AUDIT``` <br><br>Update filer audit log configs.
 
         :param body: Specifies the filer audit log config to update. (required)
         :type body: FilerAuditLogConfigs
@@ -1653,7 +1653,7 @@ class AuditLogApi:
     ) -> RESTResponseType:
         """Update filer audit log configs.
 
-        Update filer audit log configs.
+        **Privileges:** ```CLUSTER_AUDIT``` <br><br>Update filer audit log configs.
 
         :param body: Specifies the filer audit log config to update. (required)
         :type body: FilerAuditLogConfigs

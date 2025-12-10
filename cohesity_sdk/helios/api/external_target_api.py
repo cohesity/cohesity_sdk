@@ -43,8 +43,8 @@ class ExternalTargetApi:
     def create_external_target(
         self,
         body: Annotated[ExternalTarget, Field(description="Specifies the parameters to create a External Target.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -64,9 +64,9 @@ class ExternalTargetApi:
 
         :param body: Specifies the parameters to create a External Target. (required)
         :type body: ExternalTarget
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -118,8 +118,8 @@ class ExternalTargetApi:
     def create_external_target_with_http_info(
         self,
         body: Annotated[ExternalTarget, Field(description="Specifies the parameters to create a External Target.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -139,9 +139,9 @@ class ExternalTargetApi:
 
         :param body: Specifies the parameters to create a External Target. (required)
         :type body: ExternalTarget
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -193,8 +193,8 @@ class ExternalTargetApi:
     def create_external_target_without_preload_content(
         self,
         body: Annotated[ExternalTarget, Field(description="Specifies the parameters to create a External Target.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -214,9 +214,9 @@ class ExternalTargetApi:
 
         :param body: Specifies the parameters to create a External Target. (required)
         :type body: ExternalTarget
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -347,9 +347,9 @@ class ExternalTargetApi:
     def delete_external_target(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the External Target.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         force_delete: Annotated[Optional[StrictBool], Field(description="Specifies whether to force delete the External target.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -369,12 +369,12 @@ class ExternalTargetApi:
 
         :param id: Specifies a unique id of the External Target. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param force_delete: Specifies whether to force delete the External target.
         :type force_delete: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -399,9 +399,9 @@ class ExternalTargetApi:
 
         _param = self._delete_external_target_serialize(
             id=id,
+            force_delete=force_delete,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            force_delete=force_delete,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -426,9 +426,9 @@ class ExternalTargetApi:
     def delete_external_target_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the External Target.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         force_delete: Annotated[Optional[StrictBool], Field(description="Specifies whether to force delete the External target.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -448,12 +448,12 @@ class ExternalTargetApi:
 
         :param id: Specifies a unique id of the External Target. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param force_delete: Specifies whether to force delete the External target.
         :type force_delete: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -478,9 +478,9 @@ class ExternalTargetApi:
 
         _param = self._delete_external_target_serialize(
             id=id,
+            force_delete=force_delete,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            force_delete=force_delete,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -505,9 +505,9 @@ class ExternalTargetApi:
     def delete_external_target_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the External Target.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         force_delete: Annotated[Optional[StrictBool], Field(description="Specifies whether to force delete the External target.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -527,12 +527,12 @@ class ExternalTargetApi:
 
         :param id: Specifies a unique id of the External Target. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param force_delete: Specifies whether to force delete the External target.
         :type force_delete: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -557,9 +557,9 @@ class ExternalTargetApi:
 
         _param = self._delete_external_target_serialize(
             id=id,
+            force_delete=force_delete,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            force_delete=force_delete,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -579,9 +579,9 @@ class ExternalTargetApi:
     def _delete_external_target_serialize(
         self,
         id,
+        force_delete,
         access_cluster_id,
         region_id,
-        force_delete,
         _request_auth,
         _content_type,
         _headers,
@@ -655,8 +655,8 @@ class ExternalTargetApi:
     def get_external_target_by_id(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the External Target.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -676,9 +676,9 @@ class ExternalTargetApi:
 
         :param id: Specifies a unique id of the External Target. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -730,8 +730,8 @@ class ExternalTargetApi:
     def get_external_target_by_id_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the External Target.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -751,9 +751,9 @@ class ExternalTargetApi:
 
         :param id: Specifies a unique id of the External Target. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -805,8 +805,8 @@ class ExternalTargetApi:
     def get_external_target_by_id_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the External Target.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -826,9 +826,9 @@ class ExternalTargetApi:
 
         :param id: Specifies a unique id of the External Target. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -946,8 +946,8 @@ class ExternalTargetApi:
     def get_external_target_encryption_key_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the External Target.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -967,9 +967,9 @@ class ExternalTargetApi:
 
         :param id: Specifies the id of the External Target. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1021,8 +1021,8 @@ class ExternalTargetApi:
     def get_external_target_encryption_key_info_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the External Target.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1042,9 +1042,9 @@ class ExternalTargetApi:
 
         :param id: Specifies the id of the External Target. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1096,8 +1096,8 @@ class ExternalTargetApi:
     def get_external_target_encryption_key_info_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the External Target.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1117,9 +1117,9 @@ class ExternalTargetApi:
 
         :param id: Specifies the id of the External Target. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1239,10 +1239,10 @@ class ExternalTargetApi:
         cluster_id: Annotated[StrictInt, Field(description="Specifies the id of the Cohesity cluster which archived to a QStart media target.")],
         cluster_incarnation_id: Annotated[StrictInt, Field(description="Specifies the incarnation Id of the Cohesity cluster which archived to a QStart media target.")],
         archival_job_id: Annotated[StrictInt, Field(description="Specifies the id of the Job that archived to a QStar media Vault.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         restore_task_id: Annotated[Optional[StrictInt], Field(description="Specifies the id of the restore task to optionally filter by.")] = None,
         entity_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies an array of entityIds to optionally filter by. An entityId is a unique id for a VM assigned by the Cohesity Cluster.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1266,14 +1266,14 @@ class ExternalTargetApi:
         :type cluster_incarnation_id: int
         :param archival_job_id: Specifies the id of the Job that archived to a QStar media Vault. (required)
         :type archival_job_id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param restore_task_id: Specifies the id of the restore task to optionally filter by.
         :type restore_task_id: int
         :param entity_ids: Specifies an array of entityIds to optionally filter by. An entityId is a unique id for a VM assigned by the Cohesity Cluster.
         :type entity_ids: List[int]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1300,10 +1300,10 @@ class ExternalTargetApi:
             cluster_id=cluster_id,
             cluster_incarnation_id=cluster_incarnation_id,
             archival_job_id=archival_job_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             restore_task_id=restore_task_id,
             entity_ids=entity_ids,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1330,10 +1330,10 @@ class ExternalTargetApi:
         cluster_id: Annotated[StrictInt, Field(description="Specifies the id of the Cohesity cluster which archived to a QStart media target.")],
         cluster_incarnation_id: Annotated[StrictInt, Field(description="Specifies the incarnation Id of the Cohesity cluster which archived to a QStart media target.")],
         archival_job_id: Annotated[StrictInt, Field(description="Specifies the id of the Job that archived to a QStar media Vault.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         restore_task_id: Annotated[Optional[StrictInt], Field(description="Specifies the id of the restore task to optionally filter by.")] = None,
         entity_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies an array of entityIds to optionally filter by. An entityId is a unique id for a VM assigned by the Cohesity Cluster.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1357,14 +1357,14 @@ class ExternalTargetApi:
         :type cluster_incarnation_id: int
         :param archival_job_id: Specifies the id of the Job that archived to a QStar media Vault. (required)
         :type archival_job_id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param restore_task_id: Specifies the id of the restore task to optionally filter by.
         :type restore_task_id: int
         :param entity_ids: Specifies an array of entityIds to optionally filter by. An entityId is a unique id for a VM assigned by the Cohesity Cluster.
         :type entity_ids: List[int]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1391,10 +1391,10 @@ class ExternalTargetApi:
             cluster_id=cluster_id,
             cluster_incarnation_id=cluster_incarnation_id,
             archival_job_id=archival_job_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             restore_task_id=restore_task_id,
             entity_ids=entity_ids,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1421,10 +1421,10 @@ class ExternalTargetApi:
         cluster_id: Annotated[StrictInt, Field(description="Specifies the id of the Cohesity cluster which archived to a QStart media target.")],
         cluster_incarnation_id: Annotated[StrictInt, Field(description="Specifies the incarnation Id of the Cohesity cluster which archived to a QStart media target.")],
         archival_job_id: Annotated[StrictInt, Field(description="Specifies the id of the Job that archived to a QStar media Vault.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         restore_task_id: Annotated[Optional[StrictInt], Field(description="Specifies the id of the restore task to optionally filter by.")] = None,
         entity_ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies an array of entityIds to optionally filter by. An entityId is a unique id for a VM assigned by the Cohesity Cluster.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1448,14 +1448,14 @@ class ExternalTargetApi:
         :type cluster_incarnation_id: int
         :param archival_job_id: Specifies the id of the Job that archived to a QStar media Vault. (required)
         :type archival_job_id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param restore_task_id: Specifies the id of the restore task to optionally filter by.
         :type restore_task_id: int
         :param entity_ids: Specifies an array of entityIds to optionally filter by. An entityId is a unique id for a VM assigned by the Cohesity Cluster.
         :type entity_ids: List[int]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1482,10 +1482,10 @@ class ExternalTargetApi:
             cluster_id=cluster_id,
             cluster_incarnation_id=cluster_incarnation_id,
             archival_job_id=archival_job_id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             restore_task_id=restore_task_id,
             entity_ids=entity_ids,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1507,10 +1507,10 @@ class ExternalTargetApi:
         cluster_id,
         cluster_incarnation_id,
         archival_job_id,
-        access_cluster_id,
-        region_id,
         restore_task_id,
         entity_ids,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1598,8 +1598,8 @@ class ExternalTargetApi:
     @validate_call
     def get_external_target_settings(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1617,9 +1617,9 @@ class ExternalTargetApi:
 
         Get the list of External Target Settings
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1669,8 +1669,8 @@ class ExternalTargetApi:
     @validate_call
     def get_external_target_settings_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1688,9 +1688,9 @@ class ExternalTargetApi:
 
         Get the list of External Target Settings
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1740,8 +1740,8 @@ class ExternalTargetApi:
     @validate_call
     def get_external_target_settings_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1759,9 +1759,9 @@ class ExternalTargetApi:
 
         Get the list of External Target Settings
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1874,8 +1874,6 @@ class ExternalTargetApi:
     @validate_call
     def get_external_targets(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of External Target ids.")] = None,
         global_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of External Target global ids.")] = None,
         names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of External Target names.")] = None,
@@ -1883,6 +1881,8 @@ class ExternalTargetApi:
         storage_types: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of External Target storage types. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead.")] = None,
         storage_classes: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of External Target storage classes.")] = None,
         ownership_contexts: Annotated[Optional[List[StrictStr]], Field(description="Specifies whether how this external target is being consumed either Local or FortKnox.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1900,10 +1900,6 @@ class ExternalTargetApi:
 
         Get the list of External Targets.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter by a list of External Target ids.
         :type ids: List[int]
         :param global_ids: Filter by a list of External Target global ids.
@@ -1918,6 +1914,10 @@ class ExternalTargetApi:
         :type storage_classes: List[str]
         :param ownership_contexts: Specifies whether how this external target is being consumed either Local or FortKnox.
         :type ownership_contexts: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1941,8 +1941,6 @@ class ExternalTargetApi:
         """ # noqa: E501
 
         _param = self._get_external_targets_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             global_ids=global_ids,
             names=names,
@@ -1950,6 +1948,8 @@ class ExternalTargetApi:
             storage_types=storage_types,
             storage_classes=storage_classes,
             ownership_contexts=ownership_contexts,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1973,8 +1973,6 @@ class ExternalTargetApi:
     @validate_call
     def get_external_targets_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of External Target ids.")] = None,
         global_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of External Target global ids.")] = None,
         names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of External Target names.")] = None,
@@ -1982,6 +1980,8 @@ class ExternalTargetApi:
         storage_types: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of External Target storage types. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead.")] = None,
         storage_classes: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of External Target storage classes.")] = None,
         ownership_contexts: Annotated[Optional[List[StrictStr]], Field(description="Specifies whether how this external target is being consumed either Local or FortKnox.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1999,10 +1999,6 @@ class ExternalTargetApi:
 
         Get the list of External Targets.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter by a list of External Target ids.
         :type ids: List[int]
         :param global_ids: Filter by a list of External Target global ids.
@@ -2017,6 +2013,10 @@ class ExternalTargetApi:
         :type storage_classes: List[str]
         :param ownership_contexts: Specifies whether how this external target is being consumed either Local or FortKnox.
         :type ownership_contexts: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2040,8 +2040,6 @@ class ExternalTargetApi:
         """ # noqa: E501
 
         _param = self._get_external_targets_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             global_ids=global_ids,
             names=names,
@@ -2049,6 +2047,8 @@ class ExternalTargetApi:
             storage_types=storage_types,
             storage_classes=storage_classes,
             ownership_contexts=ownership_contexts,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2072,8 +2072,6 @@ class ExternalTargetApi:
     @validate_call
     def get_external_targets_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of External Target ids.")] = None,
         global_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of External Target global ids.")] = None,
         names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of External Target names.")] = None,
@@ -2081,6 +2079,8 @@ class ExternalTargetApi:
         storage_types: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of External Target storage types. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead.")] = None,
         storage_classes: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of External Target storage classes.")] = None,
         ownership_contexts: Annotated[Optional[List[StrictStr]], Field(description="Specifies whether how this external target is being consumed either Local or FortKnox.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2098,10 +2098,6 @@ class ExternalTargetApi:
 
         Get the list of External Targets.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter by a list of External Target ids.
         :type ids: List[int]
         :param global_ids: Filter by a list of External Target global ids.
@@ -2116,6 +2112,10 @@ class ExternalTargetApi:
         :type storage_classes: List[str]
         :param ownership_contexts: Specifies whether how this external target is being consumed either Local or FortKnox.
         :type ownership_contexts: List[str]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2139,8 +2139,6 @@ class ExternalTargetApi:
         """ # noqa: E501
 
         _param = self._get_external_targets_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             global_ids=global_ids,
             names=names,
@@ -2148,6 +2146,8 @@ class ExternalTargetApi:
             storage_types=storage_types,
             storage_classes=storage_classes,
             ownership_contexts=ownership_contexts,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2166,8 +2166,6 @@ class ExternalTargetApi:
 
     def _get_external_targets_serialize(
         self,
-        access_cluster_id,
-        region_id,
         ids,
         global_ids,
         names,
@@ -2175,6 +2173,8 @@ class ExternalTargetApi:
         storage_types,
         storage_classes,
         ownership_contexts,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2278,8 +2278,8 @@ class ExternalTargetApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the External Target.")],
         body: Annotated[ExternalTarget, Field(description="Specifies the parameters to update a External Target.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2301,9 +2301,9 @@ class ExternalTargetApi:
         :type id: int
         :param body: Specifies the parameters to update a External Target. (required)
         :type body: ExternalTarget
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2357,8 +2357,8 @@ class ExternalTargetApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the External Target.")],
         body: Annotated[ExternalTarget, Field(description="Specifies the parameters to update a External Target.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2380,9 +2380,9 @@ class ExternalTargetApi:
         :type id: int
         :param body: Specifies the parameters to update a External Target. (required)
         :type body: ExternalTarget
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2436,8 +2436,8 @@ class ExternalTargetApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the External Target.")],
         body: Annotated[ExternalTarget, Field(description="Specifies the parameters to update a External Target.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2459,9 +2459,9 @@ class ExternalTargetApi:
         :type id: int
         :param body: Specifies the parameters to update a External Target. (required)
         :type body: ExternalTarget
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2596,8 +2596,8 @@ class ExternalTargetApi:
     def update_external_target_settings(
         self,
         body: Annotated[GlobalBandwidthSettings, Field(description="Specifies the parameters to update a External Target Settings.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2617,9 +2617,9 @@ class ExternalTargetApi:
 
         :param body: Specifies the parameters to update a External Target Settings. (required)
         :type body: GlobalBandwidthSettings
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2671,8 +2671,8 @@ class ExternalTargetApi:
     def update_external_target_settings_with_http_info(
         self,
         body: Annotated[GlobalBandwidthSettings, Field(description="Specifies the parameters to update a External Target Settings.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2692,9 +2692,9 @@ class ExternalTargetApi:
 
         :param body: Specifies the parameters to update a External Target Settings. (required)
         :type body: GlobalBandwidthSettings
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2746,8 +2746,8 @@ class ExternalTargetApi:
     def update_external_target_settings_without_preload_content(
         self,
         body: Annotated[GlobalBandwidthSettings, Field(description="Specifies the parameters to update a External Target Settings.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2767,9 +2767,9 @@ class ExternalTargetApi:
 
         :param body: Specifies the parameters to update a External Target Settings. (required)
         :type body: GlobalBandwidthSettings
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

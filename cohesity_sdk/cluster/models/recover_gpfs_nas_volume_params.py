@@ -46,8 +46,8 @@ class RecoverGpfsNasVolumeParams(BaseModel):
     @field_validator('target_environment')
     def target_environment_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['kElastifile', 'kFlashBlade', 'kGenericNas', 'kGPFS', 'kIsilon', 'kNetapp', 'kView']):
-            raise ValueError("must be one of enum values ('kElastifile', 'kFlashBlade', 'kGenericNas', 'kGPFS', 'kIsilon', 'kNetapp', 'kView')")
+        if value not in set(['kElastifile', 'kFlashBlade', 'kGenericNas', 'kGPFS', 'kIsilon', 'kNetapp', 'kNutanixFS', 'kView']):
+            raise ValueError("must be one of enum values ('kElastifile', 'kFlashBlade', 'kGenericNas', 'kGPFS', 'kIsilon', 'kNetapp', 'kNutanixFS', 'kView')")
         return value
 
     model_config = ConfigDict(

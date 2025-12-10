@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **current_password** | **str** | Specifies the current password of the user. This is required when trying to update the current user&#39;s password. | [optional] 
 **enable_sudo_access** | **bool** | If set to true, sudo access will be enabled for the user. If null, the endpoint will not attempt to alter sudo access privilege for the support user. | [optional] 
 **new_password** | **str** | Specifies the new password for the support user. | [optional] 
+**sudo_access_end_timestamp_msecs** | **int** | Sudo Access End Time in Milli seconds If null, the endpoint will try to use default behavior of 5 days. | [optional] 
 
 ## Example
 

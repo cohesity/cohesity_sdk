@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.storage_domain import StorageDomain
+from cohesity_sdk.cluster.models.storage_domains_settings import StorageDomainsSettings
 from typing import Set
 from typing_extensions import Self
 
@@ -27,8 +28,9 @@ class StorageDomains(BaseModel):
     """
     Specifies a list of Storage Domains.
     """ # noqa: E501
+    settings: Optional[StorageDomainsSettings] = None
     storage_domains: Optional[List[StorageDomain]] = Field(default=None, description="Specifies the list of storage domains.", alias="storageDomains")
-    __properties: ClassVar[List[str]] = ["storageDomains"]
+    __properties: ClassVar[List[str]] = ["settings", "storageDomains"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,6 +71,9 @@ class StorageDomains(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of settings
+        if self.settings:
+            _dict['settings'] = self.settings.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in storage_domains (list)
         _items = []
         if self.storage_domains:
@@ -93,6 +98,7 @@ class StorageDomains(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "settings": StorageDomainsSettings.from_dict(obj["settings"]) if obj.get("settings") is not None else None,
             "storageDomains": [StorageDomain.from_dict(_item) for _item in obj["storageDomains"]] if obj.get("storageDomains") is not None else None
         })
         return _obj

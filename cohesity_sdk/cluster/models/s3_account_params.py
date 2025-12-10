@@ -26,10 +26,10 @@ class S3AccountParams(BaseModel):
     """
     Specifies S3 Account parameters for User.
     """ # noqa: E501
-    s3_access_key_id: Optional[StrictStr] = Field(default=None, description="Specifies the S3 Account Access Key ID.", alias="s3AccessKeyId")
+    s3_access_key_id: Optional[StrictStr] = Field(default=None, description="Specifies the S3 Account Access Key ID. Allowed characters are: AlphaNumeric(a-zA-z0-9), underscore(_) and hyphen(-). Key should contain exactly 43 characters.", alias="s3AccessKeyId")
+    s3_secret_key: Optional[StrictStr] = Field(default=None, description="Specifies the S3 Account Secret Key. Allowed characters are: AlphaNumeric(a-zA-z0-9), underscore(_) and hyphen(-). Key should contain exactly 43 characters.", alias="s3SecretKey")
     s3_account_id: Optional[StrictStr] = Field(default=None, description="Specifies the S3 Account Canonical User ID.", alias="s3AccountId")
-    s3_secret_key: Optional[StrictStr] = Field(default=None, description="Specifies the S3 Account Secret Key.", alias="s3SecretKey")
-    __properties: ClassVar[List[str]] = ["s3AccessKeyId", "s3AccountId", "s3SecretKey"]
+    __properties: ClassVar[List[str]] = ["s3AccessKeyId", "s3SecretKey", "s3AccountId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,15 +75,15 @@ class S3AccountParams(BaseModel):
         if self.s3_access_key_id is None and "s3_access_key_id" in self.model_fields_set:
             _dict['s3AccessKeyId'] = None
 
-        # set to None if s3_account_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.s3_account_id is None and "s3_account_id" in self.model_fields_set:
-            _dict['s3AccountId'] = None
-
         # set to None if s3_secret_key (nullable) is None
         # and model_fields_set contains the field
         if self.s3_secret_key is None and "s3_secret_key" in self.model_fields_set:
             _dict['s3SecretKey'] = None
+
+        # set to None if s3_account_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.s3_account_id is None and "s3_account_id" in self.model_fields_set:
+            _dict['s3AccountId'] = None
 
         return _dict
 
@@ -98,8 +98,8 @@ class S3AccountParams(BaseModel):
 
         _obj = cls.model_validate({
             "s3AccessKeyId": obj.get("s3AccessKeyId"),
-            "s3AccountId": obj.get("s3AccountId"),
-            "s3SecretKey": obj.get("s3SecretKey")
+            "s3SecretKey": obj.get("s3SecretKey"),
+            "s3AccountId": obj.get("s3AccountId")
         })
         return _obj
 

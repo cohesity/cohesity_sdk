@@ -18,23 +18,20 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
-from typing import Set
+from typing import Any, ClassVar, Dict, List
+from typing import Optional, Set
 from typing_extensions import Self
 
 class UpgradeCheckRunTestsRequest(BaseModel):
     """
     Specifies upgrade checks request parameters
     """ # noqa: E501
-    request_type: Optional[StrictStr] = Field(default=None, description="Type of upgrade checks(pre/post) to run", alias="requestType")
+    request_type: StrictStr = Field(description="Type of upgrade checks(pre/post) to run", alias="requestType")
     __properties: ClassVar[List[str]] = ["requestType"]
 
     @field_validator('request_type')
     def request_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
         if value not in set(['PreUpgrade', 'PostUpgrade']):
             raise ValueError("must be one of enum values ('PreUpgrade', 'PostUpgrade')")
         return value

@@ -30,7 +30,7 @@ class TargetOneDriveParam(BaseModel):
     name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the object.")
     parent_source_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the domain for alternate domain recovery.", alias="parentSourceId")
     primary_smtp_address: Optional[StrictStr] = Field(default=None, description="Specifies the primary SMTP address of the target onedrive. Atleast one of id or primarySMTPAddress needs to be defined. In case both id and primarySMTPAddress are defined then id takes precedence.", alias="primarySmtpAddress")
-    target_folder_path: Optional[StrictStr] = Field(description="Specifies the path to the target folder.", alias="targetFolderPath")
+    target_folder_path: Optional[StrictStr] = Field(default=None, description="Specifies the path to the target folder.", alias="targetFolderPath")
     __properties: ClassVar[List[str]] = ["id", "name", "parentSourceId", "primarySmtpAddress", "targetFolderPath"]
 
     model_config = ConfigDict(

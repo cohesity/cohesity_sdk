@@ -8,7 +8,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cdp_info** | [**VmwareCdpObject**](VmwareCdpObject.md) |  | [optional] 
 **is_template** | **bool** | Specifies if the object is a VM template. | [optional] 
+**mo_ref** | [**MOref**](MOref.md) |  | [optional] 
+**name** | **str** | Specifies the name associated with the object. | [optional] 
 **type** | **str** | VMware Object type. | [optional] 
+**uuid** | **str** | Specifies the uuid associated with the object. | [optional] 
 
 ## Example
 

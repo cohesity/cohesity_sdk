@@ -18,21 +18,33 @@ from typing_extensions import Annotated
 from pydantic import StrictBool, StrictBytes
 from cohesity_sdk.cluster.models.add_remote_disk_response_body import AddRemoteDiskResponseBody
 from cohesity_sdk.cluster.models.airgap_config import AirgapConfig
+from cohesity_sdk.cluster.models.change_services_states_params import ChangeServicesStatesParams
+from cohesity_sdk.cluster.models.change_services_states_result import ChangeServicesStatesResult
 from cohesity_sdk.cluster.models.chassis import Chassis
 from cohesity_sdk.cluster.models.chassis_list import ChassisList
 from cohesity_sdk.cluster.models.cluster import Cluster
 from cohesity_sdk.cluster.models.cluster_amqp_target_config import ClusterAMQPTargetConfig
-from cohesity_sdk.cluster.models.cluster_expand_params import ClusterExpandParams
+from cohesity_sdk.cluster.models.cluster_delete_ipmi_users import ClusterDeleteIpmiUsers
 from cohesity_sdk.cluster.models.cluster_free_disks import ClusterFreeDisks
 from cohesity_sdk.cluster.models.cluster_interfaces import ClusterInterfaces
+from cohesity_sdk.cluster.models.cluster_ipmi_lan_info import ClusterIpmiLanInfo
+from cohesity_sdk.cluster.models.cluster_ipmi_users import ClusterIpmiUsers
 from cohesity_sdk.cluster.models.cluster_local_domain_sid import ClusterLocalDomainSID
-from cohesity_sdk.cluster.models.cluster_operation_response_params import ClusterOperationResponseParams
+from cohesity_sdk.cluster.models.cluster_metadata_request import ClusterMetadataRequest
+from cohesity_sdk.cluster.models.cluster_operation_status import ClusterOperationStatus
+from cohesity_sdk.cluster.models.cluster_operation_type_and_id import ClusterOperationTypeAndId
 from cohesity_sdk.cluster.models.cluster_packages import ClusterPackages
+from cohesity_sdk.cluster.models.cluster_sw_update_history_event import ClusterSWUpdateHistoryEvent
+from cohesity_sdk.cluster.models.cluster_sw_update_params import ClusterSWUpdateParams
+from cohesity_sdk.cluster.models.cluster_services_states import ClusterServicesStates
+from cohesity_sdk.cluster.models.cluster_services_states_params import ClusterServicesStatesParams
 from cohesity_sdk.cluster.models.cluster_snapshot_policy import ClusterSnapshotPolicy
 from cohesity_sdk.cluster.models.cluster_state_params import ClusterStateParams
-from cohesity_sdk.cluster.models.cluster_uprade_params import ClusterUpradeParams
+from cohesity_sdk.cluster.models.cluster_status import ClusterStatus
+from cohesity_sdk.cluster.models.cluster_update_ipmi_users import ClusterUpdateIpmiUsers
 from cohesity_sdk.cluster.models.cluster_vlan_params import ClusterVlanParams
 from cohesity_sdk.cluster.models.cluster_vlans import ClusterVlans
+from cohesity_sdk.cluster.models.create_bond_params import CreateBondParams
 from cohesity_sdk.cluster.models.create_cluster_params import CreateClusterParams
 from cohesity_sdk.cluster.models.create_cluster_vlan_params import CreateClusterVlanParams
 from cohesity_sdk.cluster.models.d_maa_s_info import DMaaSInfo
@@ -43,20 +55,35 @@ from cohesity_sdk.cluster.models.disk_removal_params import DiskRemovalParams
 from cohesity_sdk.cluster.models.disks_list import DisksList
 from cohesity_sdk.cluster.models.feature_flag import FeatureFlag
 from cohesity_sdk.cluster.models.free_nodes import FreeNodes
+from cohesity_sdk.cluster.models.get_kubernetes_status_response import GetKubernetesStatusResponse
+from cohesity_sdk.cluster.models.hardware_info import HardwareInfo
 from cohesity_sdk.cluster.models.host_entry import HostEntry
 from cohesity_sdk.cluster.models.host_mappings import HostMappings
 from cohesity_sdk.cluster.models.interface_group import InterfaceGroup
 from cohesity_sdk.cluster.models.interface_group_params import InterfaceGroupParams
 from cohesity_sdk.cluster.models.interface_groups import InterfaceGroups
-from cohesity_sdk.cluster.models.interface_params import InterfaceParams
+from cohesity_sdk.cluster.models.ipmi_fru_info import IpmiFruInfo
+from cohesity_sdk.cluster.models.ipmi_lan_info import IpmiLanInfo
+from cohesity_sdk.cluster.models.ipmi_sdr_info import IpmiSdrInfo
+from cohesity_sdk.cluster.models.ipmi_sel import IpmiSel
+from cohesity_sdk.cluster.models.ipmi_sel_info import IpmiSelInfo
 from cohesity_sdk.cluster.models.ipmi_text_response import IpmiTextResponse
+from cohesity_sdk.cluster.models.ipmi_users import IpmiUsers
+from cohesity_sdk.cluster.models.login_banner import LoginBanner
 from cohesity_sdk.cluster.models.mark_baseos_upgrade_info import MarkBaseosUpgradeInfo
-from cohesity_sdk.cluster.models.network_interface_params import NetworkInterfaceParams
 from cohesity_sdk.cluster.models.node import Node
+from cohesity_sdk.cluster.models.node_cert_request import NodeCertRequest
+from cohesity_sdk.cluster.models.node_cert_result import NodeCertResult
 from cohesity_sdk.cluster.models.node_identify_params import NodeIdentifyParams
 from cohesity_sdk.cluster.models.node_info import NodeInfo
 from cohesity_sdk.cluster.models.node_power_operation import NodePowerOperation
 from cohesity_sdk.cluster.models.node_removal_params import NodeRemovalParams
+from cohesity_sdk.cluster.models.node_status_result import NodeStatusResult
+from cohesity_sdk.cluster.models.node_upgrade_parameters import NodeUpgradeParameters
+from cohesity_sdk.cluster.models.node_upgrade_result import NodeUpgradeResult
+from cohesity_sdk.cluster.models.ntp_server_list import NtpServerList
+from cohesity_sdk.cluster.models.proxy_server import ProxyServer
+from cohesity_sdk.cluster.models.proxy_server_list import ProxyServerList
 from cohesity_sdk.cluster.models.public_key_request import PublicKeyRequest
 from cohesity_sdk.cluster.models.public_key_response import PublicKeyResponse
 from cohesity_sdk.cluster.models.rack import Rack
@@ -64,17 +91,27 @@ from cohesity_sdk.cluster.models.racks import Racks
 from cohesity_sdk.cluster.models.remote_disks import RemoteDisks
 from cohesity_sdk.cluster.models.remove_disk import RemoveDisk
 from cohesity_sdk.cluster.models.remove_node import RemoveNode
+from cohesity_sdk.cluster.models.reset_ipmi_bmc_params import ResetIpmiBmcParams
+from cohesity_sdk.cluster.models.restore_config import RestoreConfig
+from cohesity_sdk.cluster.models.restore_config_payload import RestoreConfigPayload
 from cohesity_sdk.cluster.models.smtp_configuration import SMTPConfiguration
+from cohesity_sdk.cluster.models.service_gflags import ServiceGflags
+from cohesity_sdk.cluster.models.software_components import SoftwareComponents
+from cohesity_sdk.cluster.models.subnet import Subnet
+from cohesity_sdk.cluster.models.support_channel import SupportChannel
 from cohesity_sdk.cluster.models.support_channel_config import SupportChannelConfig
 from cohesity_sdk.cluster.models.test_smtp_config import TestSMTPConfig
+from cohesity_sdk.cluster.models.update_cluster_subnets_params import UpdateClusterSubnetsParams
 from cohesity_sdk.cluster.models.update_cluster_vlan_params import UpdateClusterVlanParams
 from cohesity_sdk.cluster.models.update_feature_flag_params import UpdateFeatureFlagParams
+from cohesity_sdk.cluster.models.update_gflag_parameters import UpdateGflagParameters
+from cohesity_sdk.cluster.models.update_ipmi_user import UpdateIpmiUser
 from cohesity_sdk.cluster.models.update_smtp_params import UpdateSMTPParams
 from cohesity_sdk.cluster.models.update_snapshot_policy_params import UpdateSnapshotPolicyParams
 from cohesity_sdk.cluster.models.upgrade_check_run_tests_request import UpgradeCheckRunTestsRequest
 from cohesity_sdk.cluster.models.upgrade_check_run_tests_result import UpgradeCheckRunTestsResult
 from cohesity_sdk.cluster.models.upgrade_checks_results import UpgradeChecksResults
-from cohesity_sdk.cluster.models.upload_package_url_params import UploadPackageUrlParams
+from cohesity_sdk.cluster.models.verify_ipmi_user import VerifyIpmiUser
 
 from cohesity_sdk.cluster.api_client import ApiClient, RequestSerialized
 from cohesity_sdk.cluster.api_response import ApiResponse
@@ -113,7 +150,7 @@ class PlatformApi:
     ) -> HostMappings:
         """Create Cluster Host Mappings
 
-        Sends a request to add one or more new entries to the Cluster's /etc/hosts
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Sends a request to add one or more new entries to the Cluster's /etc/hosts
 
         :param body: Specifies the request to add entries to /etc/hosts (required)
         :type body: List[HostEntry]
@@ -180,7 +217,7 @@ class PlatformApi:
     ) -> ApiResponse[HostMappings]:
         """Create Cluster Host Mappings
 
-        Sends a request to add one or more new entries to the Cluster's /etc/hosts
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Sends a request to add one or more new entries to the Cluster's /etc/hosts
 
         :param body: Specifies the request to add entries to /etc/hosts (required)
         :type body: List[HostEntry]
@@ -247,7 +284,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Create Cluster Host Mappings
 
-        Sends a request to add one or more new entries to the Cluster's /etc/hosts
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Sends a request to add one or more new entries to the Cluster's /etc/hosts
 
         :param body: Specifies the request to add entries to /etc/hosts (required)
         :type body: List[HostEntry]
@@ -390,7 +427,7 @@ class PlatformApi:
     ) -> AddRemoteDiskResponseBody:
         """Add remote disk
 
-        Add a remote disk.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Add a remote disk.
 
         :param body: Specifies the remote disk configuration. (required)
         :type body: RemoteDisks
@@ -457,7 +494,7 @@ class PlatformApi:
     ) -> ApiResponse[AddRemoteDiskResponseBody]:
         """Add remote disk
 
-        Add a remote disk.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Add a remote disk.
 
         :param body: Specifies the remote disk configuration. (required)
         :type body: RemoteDisks
@@ -524,7 +561,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Add remote disk
 
-        Add a remote disk.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Add a remote disk.
 
         :param body: Specifies the remote disk configuration. (required)
         :type body: RemoteDisks
@@ -648,6 +685,282 @@ class PlatformApi:
 
 
     @validate_call
+    def change_services_states(
+        self,
+        body: Annotated[ChangeServicesStatesParams, Field(description="Specifies the parameters to change cluster services states.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ChangeServicesStatesResult:
+        """Change cluster services states.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Change the state of one or more services on a Cohesity Cluster.
+
+        :param body: Specifies the parameters to change cluster services states. (required)
+        :type body: ChangeServicesStatesParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._change_services_states_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '202': "ChangeServicesStatesResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def change_services_states_with_http_info(
+        self,
+        body: Annotated[ChangeServicesStatesParams, Field(description="Specifies the parameters to change cluster services states.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ChangeServicesStatesResult]:
+        """Change cluster services states.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Change the state of one or more services on a Cohesity Cluster.
+
+        :param body: Specifies the parameters to change cluster services states. (required)
+        :type body: ChangeServicesStatesParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._change_services_states_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '202': "ChangeServicesStatesResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def change_services_states_without_preload_content(
+        self,
+        body: Annotated[ChangeServicesStatesParams, Field(description="Specifies the parameters to change cluster services states.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Change cluster services states.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Change the state of one or more services on a Cohesity Cluster.
+
+        :param body: Specifies the parameters to change cluster services states. (required)
+        :type body: ChangeServicesStatesParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._change_services_states_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '202': "ChangeServicesStatesResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _change_services_states_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/clusters/services/states',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def clear_smtp_configuration(
         self,
         _request_timeout: Union[
@@ -665,7 +978,7 @@ class PlatformApi:
     ) -> None:
         """Clear SMTP configuration.
 
-        Clear cluster SMTP configuration.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Clear cluster SMTP configuration.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -728,7 +1041,7 @@ class PlatformApi:
     ) -> ApiResponse[None]:
         """Clear SMTP configuration.
 
-        Clear cluster SMTP configuration.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Clear cluster SMTP configuration.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -791,7 +1104,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Clear SMTP configuration.
 
-        Clear cluster SMTP configuration.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Clear cluster SMTP configuration.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -896,6 +1209,834 @@ class PlatformApi:
 
 
     @validate_call
+    def cluster_delete_ipmi_users(
+        self,
+        body: Annotated[ClusterDeleteIpmiUsers, Field(description="Specifies the parameters to delete cluster ipmi users.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> IpmiTextResponse:
+        """To delete IPMI Users for cluster
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Deletes the specified cluster ipmi user.
+
+        :param body: Specifies the parameters to delete cluster ipmi users. (required)
+        :type body: ClusterDeleteIpmiUsers
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._cluster_delete_ipmi_users_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiTextResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def cluster_delete_ipmi_users_with_http_info(
+        self,
+        body: Annotated[ClusterDeleteIpmiUsers, Field(description="Specifies the parameters to delete cluster ipmi users.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[IpmiTextResponse]:
+        """To delete IPMI Users for cluster
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Deletes the specified cluster ipmi user.
+
+        :param body: Specifies the parameters to delete cluster ipmi users. (required)
+        :type body: ClusterDeleteIpmiUsers
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._cluster_delete_ipmi_users_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiTextResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def cluster_delete_ipmi_users_without_preload_content(
+        self,
+        body: Annotated[ClusterDeleteIpmiUsers, Field(description="Specifies the parameters to delete cluster ipmi users.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """To delete IPMI Users for cluster
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Deletes the specified cluster ipmi user.
+
+        :param body: Specifies the parameters to delete cluster ipmi users. (required)
+        :type body: ClusterDeleteIpmiUsers
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._cluster_delete_ipmi_users_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiTextResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _cluster_delete_ipmi_users_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/ipmi/cluster-users',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def cluster_update_ipmi_users(
+        self,
+        body: Annotated[ClusterUpdateIpmiUsers, Field(description="Specifies the parameters to update cluster ipmi users.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> IpmiTextResponse:
+        """To update IPMI Users for cluster
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates the cluster ipmi user information.
+
+        :param body: Specifies the parameters to update cluster ipmi users. (required)
+        :type body: ClusterUpdateIpmiUsers
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._cluster_update_ipmi_users_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiTextResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def cluster_update_ipmi_users_with_http_info(
+        self,
+        body: Annotated[ClusterUpdateIpmiUsers, Field(description="Specifies the parameters to update cluster ipmi users.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[IpmiTextResponse]:
+        """To update IPMI Users for cluster
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates the cluster ipmi user information.
+
+        :param body: Specifies the parameters to update cluster ipmi users. (required)
+        :type body: ClusterUpdateIpmiUsers
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._cluster_update_ipmi_users_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiTextResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def cluster_update_ipmi_users_without_preload_content(
+        self,
+        body: Annotated[ClusterUpdateIpmiUsers, Field(description="Specifies the parameters to update cluster ipmi users.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """To update IPMI Users for cluster
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates the cluster ipmi user information.
+
+        :param body: Specifies the parameters to update cluster ipmi users. (required)
+        :type body: ClusterUpdateIpmiUsers
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._cluster_update_ipmi_users_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiTextResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _cluster_update_ipmi_users_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/ipmi/cluster-users',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def create_bond(
+        self,
+        body: Annotated[CreateBondParams, Field(description="Parameters to create bond.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> CreateBondParams:
+        """Create a new network bond.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Sends a request to create a new network bond on the Cluster. This can only be performed on a Node before it is part of a Cluster.
+
+        :param body: Parameters to create bond. (required)
+        :type body: CreateBondParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_bond_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "CreateBondParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def create_bond_with_http_info(
+        self,
+        body: Annotated[CreateBondParams, Field(description="Parameters to create bond.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[CreateBondParams]:
+        """Create a new network bond.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Sends a request to create a new network bond on the Cluster. This can only be performed on a Node before it is part of a Cluster.
+
+        :param body: Parameters to create bond. (required)
+        :type body: CreateBondParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_bond_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "CreateBondParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def create_bond_without_preload_content(
+        self,
+        body: Annotated[CreateBondParams, Field(description="Parameters to create bond.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create a new network bond.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Sends a request to create a new network bond on the Cluster. This can only be performed on a Node before it is part of a Cluster.
+
+        :param body: Parameters to create bond. (required)
+        :type body: CreateBondParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_bond_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "CreateBondParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _create_bond_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/network/bonds',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def create_cluster(
         self,
         body: Annotated[CreateClusterParams, Field(description="Specifies the parameters to create cluster.")],
@@ -914,7 +2055,7 @@ class PlatformApi:
     ) -> Cluster:
         """Create a cluster.
 
-        Create a cluster with given network and cluster configuration.
+        **Privileges:** ```CLUSTER_CREATE``` <br><br>Create a cluster with given network and cluster configuration.
 
         :param body: Specifies the parameters to create cluster. (required)
         :type body: CreateClusterParams
@@ -981,7 +2122,7 @@ class PlatformApi:
     ) -> ApiResponse[Cluster]:
         """Create a cluster.
 
-        Create a cluster with given network and cluster configuration.
+        **Privileges:** ```CLUSTER_CREATE``` <br><br>Create a cluster with given network and cluster configuration.
 
         :param body: Specifies the parameters to create cluster. (required)
         :type body: CreateClusterParams
@@ -1048,7 +2189,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Create a cluster.
 
-        Create a cluster with given network and cluster configuration.
+        **Privileges:** ```CLUSTER_CREATE``` <br><br>Create a cluster with given network and cluster configuration.
 
         :param body: Specifies the parameters to create cluster. (required)
         :type body: CreateClusterParams
@@ -1190,7 +2331,7 @@ class PlatformApi:
     ) -> ClusterVlanParams:
         """Create vlan
 
-        Create a vlan on the cluster.
+        **Privileges:** ```VLAN_MODIFY, CLUSTER_CREATE``` <br><br>Create a vlan on the cluster.
 
         :param body: Parameters to create a vlan. (required)
         :type body: CreateClusterVlanParams
@@ -1257,7 +2398,7 @@ class PlatformApi:
     ) -> ApiResponse[ClusterVlanParams]:
         """Create vlan
 
-        Create a vlan on the cluster.
+        **Privileges:** ```VLAN_MODIFY, CLUSTER_CREATE``` <br><br>Create a vlan on the cluster.
 
         :param body: Parameters to create a vlan. (required)
         :type body: CreateClusterVlanParams
@@ -1324,7 +2465,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Create vlan
 
-        Create a vlan on the cluster.
+        **Privileges:** ```VLAN_MODIFY, CLUSTER_CREATE``` <br><br>Create a vlan on the cluster.
 
         :param body: Parameters to create a vlan. (required)
         :type body: CreateClusterVlanParams
@@ -1466,7 +2607,7 @@ class PlatformApi:
     ) -> InterfaceGroup:
         """Create interface group
 
-        Create an interface group on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Create an interface group on the cluster.
 
         :param body: Parameters to create an interface group. (required)
         :type body: InterfaceGroupParams
@@ -1533,7 +2674,7 @@ class PlatformApi:
     ) -> ApiResponse[InterfaceGroup]:
         """Create interface group
 
-        Create an interface group on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Create an interface group on the cluster.
 
         :param body: Parameters to create an interface group. (required)
         :type body: InterfaceGroupParams
@@ -1600,7 +2741,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Create interface group
 
-        Create an interface group on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Create an interface group on the cluster.
 
         :param body: Parameters to create an interface group. (required)
         :type body: InterfaceGroupParams
@@ -1724,6 +2865,282 @@ class PlatformApi:
 
 
     @validate_call
+    def create_proxy_server(
+        self,
+        body: Annotated[ProxyServer, Field(description="Specifies parameters to create the proxy server.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ProxyServer:
+        """Creare a proxy server.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Create a proxy server. If a proxy server with given name exists error will be returned.
+
+        :param body: Specifies parameters to create the proxy server. (required)
+        :type body: ProxyServer
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_proxy_server_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ProxyServer",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def create_proxy_server_with_http_info(
+        self,
+        body: Annotated[ProxyServer, Field(description="Specifies parameters to create the proxy server.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ProxyServer]:
+        """Creare a proxy server.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Create a proxy server. If a proxy server with given name exists error will be returned.
+
+        :param body: Specifies parameters to create the proxy server. (required)
+        :type body: ProxyServer
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_proxy_server_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ProxyServer",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def create_proxy_server_without_preload_content(
+        self,
+        body: Annotated[ProxyServer, Field(description="Specifies parameters to create the proxy server.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Creare a proxy server.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Create a proxy server. If a proxy server with given name exists error will be returned.
+
+        :param body: Specifies parameters to create the proxy server. (required)
+        :type body: ProxyServer
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_proxy_server_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ProxyServer",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _create_proxy_server_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/proxy-servers',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def create_racks(
         self,
         body: Annotated[Racks, Field(description="Specifies the parameters to create racks.")],
@@ -1742,7 +3159,7 @@ class PlatformApi:
     ) -> Racks:
         """Create racks
 
-        Create list of racks and optionally also assign list of chassis to each rack
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Create list of racks and optionally also assign list of chassis to each rack
 
         :param body: Specifies the parameters to create racks. (required)
         :type body: Racks
@@ -1809,7 +3226,7 @@ class PlatformApi:
     ) -> ApiResponse[Racks]:
         """Create racks
 
-        Create list of racks and optionally also assign list of chassis to each rack
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Create list of racks and optionally also assign list of chassis to each rack
 
         :param body: Specifies the parameters to create racks. (required)
         :type body: Racks
@@ -1876,7 +3293,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Create racks
 
-        Create list of racks and optionally also assign list of chassis to each rack
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Create list of racks and optionally also assign list of chassis to each rack
 
         :param body: Specifies the parameters to create racks. (required)
         :type body: Racks
@@ -2017,7 +3434,7 @@ class PlatformApi:
     ) -> None:
         """Delete AMQP Target Config
 
-        Delete AMQP target config on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete AMQP target config on the cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2080,7 +3497,7 @@ class PlatformApi:
     ) -> ApiResponse[None]:
         """Delete AMQP Target Config
 
-        Delete AMQP target config on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete AMQP target config on the cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2143,7 +3560,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Delete AMQP Target Config
 
-        Delete AMQP target config on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete AMQP target config on the cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2248,269 +3665,6 @@ class PlatformApi:
 
 
     @validate_call
-    def delete_cluster_package(
-        self,
-        version_name: Annotated[StrictStr, Field(description="Version name of the package. Example: 6.3.1h_release-20210714_0fad884e")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ClusterOperationResponseParams:
-        """Delete package
-
-        Delete a software package on the cluster.
-
-        :param version_name: Version name of the package. Example: 6.3.1h_release-20210714_0fad884e (required)
-        :type version_name: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._delete_cluster_package_serialize(
-            version_name=version_name,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '202': "ClusterOperationResponseParams",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def delete_cluster_package_with_http_info(
-        self,
-        version_name: Annotated[StrictStr, Field(description="Version name of the package. Example: 6.3.1h_release-20210714_0fad884e")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ClusterOperationResponseParams]:
-        """Delete package
-
-        Delete a software package on the cluster.
-
-        :param version_name: Version name of the package. Example: 6.3.1h_release-20210714_0fad884e (required)
-        :type version_name: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._delete_cluster_package_serialize(
-            version_name=version_name,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '202': "ClusterOperationResponseParams",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def delete_cluster_package_without_preload_content(
-        self,
-        version_name: Annotated[StrictStr, Field(description="Version name of the package. Example: 6.3.1h_release-20210714_0fad884e")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Delete package
-
-        Delete a software package on the cluster.
-
-        :param version_name: Version name of the package. Example: 6.3.1h_release-20210714_0fad884e (required)
-        :type version_name: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._delete_cluster_package_serialize(
-            version_name=version_name,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '202': "ClusterOperationResponseParams",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _delete_cluster_package_serialize(
-        self,
-        version_name,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if version_name is not None:
-            _path_params['versionName'] = version_name
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'APIKeyHeader', 
-            'SessionIdHeader', 
-            'Bearer'
-        ]
-
-        return self.api_client.param_serialize(
-            method='DELETE',
-            resource_path='/clusters/packages/{versionName}',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
     def delete_cluster_snapshot_policy(
         self,
         _request_timeout: Union[
@@ -2528,7 +3682,7 @@ class PlatformApi:
     ) -> None:
         """Delete cluster snapshot policy.
 
-        Delete cluster snapshot policy.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete cluster snapshot policy.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2591,7 +3745,7 @@ class PlatformApi:
     ) -> ApiResponse[None]:
         """Delete cluster snapshot policy.
 
-        Delete cluster snapshot policy.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete cluster snapshot policy.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2654,7 +3808,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Delete cluster snapshot policy.
 
-        Delete cluster snapshot policy.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete cluster snapshot policy.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2761,7 +3915,7 @@ class PlatformApi:
     @validate_call
     def delete_cluster_vlan(
         self,
-        interface_name: Annotated[StrictStr, Field(description="Vlan interface name, it should be in interface_group_name.vlan_id format.")],
+        vlan_interface_group_name: Annotated[StrictStr, Field(description="Vlan interface group name, it should be in interface_group_name.vlan_id format.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2777,10 +3931,10 @@ class PlatformApi:
     ) -> None:
         """Delete vlan
 
-        Delete a vlan on the cluster.
+        ```Unknown Privileges``` <br><br>Delete a vlan on the cluster.
 
-        :param interface_name: Vlan interface name, it should be in interface_group_name.vlan_id format. (required)
-        :type interface_name: str
+        :param vlan_interface_group_name: Vlan interface group name, it should be in interface_group_name.vlan_id format. (required)
+        :type vlan_interface_group_name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2804,7 +3958,7 @@ class PlatformApi:
         """ # noqa: E501
 
         _param = self._delete_cluster_vlan_serialize(
-            interface_name=interface_name,
+            vlan_interface_group_name=vlan_interface_group_name,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2828,7 +3982,7 @@ class PlatformApi:
     @validate_call
     def delete_cluster_vlan_with_http_info(
         self,
-        interface_name: Annotated[StrictStr, Field(description="Vlan interface name, it should be in interface_group_name.vlan_id format.")],
+        vlan_interface_group_name: Annotated[StrictStr, Field(description="Vlan interface group name, it should be in interface_group_name.vlan_id format.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2844,10 +3998,10 @@ class PlatformApi:
     ) -> ApiResponse[None]:
         """Delete vlan
 
-        Delete a vlan on the cluster.
+        ```Unknown Privileges``` <br><br>Delete a vlan on the cluster.
 
-        :param interface_name: Vlan interface name, it should be in interface_group_name.vlan_id format. (required)
-        :type interface_name: str
+        :param vlan_interface_group_name: Vlan interface group name, it should be in interface_group_name.vlan_id format. (required)
+        :type vlan_interface_group_name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2871,7 +4025,7 @@ class PlatformApi:
         """ # noqa: E501
 
         _param = self._delete_cluster_vlan_serialize(
-            interface_name=interface_name,
+            vlan_interface_group_name=vlan_interface_group_name,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2895,7 +4049,7 @@ class PlatformApi:
     @validate_call
     def delete_cluster_vlan_without_preload_content(
         self,
-        interface_name: Annotated[StrictStr, Field(description="Vlan interface name, it should be in interface_group_name.vlan_id format.")],
+        vlan_interface_group_name: Annotated[StrictStr, Field(description="Vlan interface group name, it should be in interface_group_name.vlan_id format.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2911,10 +4065,10 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Delete vlan
 
-        Delete a vlan on the cluster.
+        ```Unknown Privileges``` <br><br>Delete a vlan on the cluster.
 
-        :param interface_name: Vlan interface name, it should be in interface_group_name.vlan_id format. (required)
-        :type interface_name: str
+        :param vlan_interface_group_name: Vlan interface group name, it should be in interface_group_name.vlan_id format. (required)
+        :type vlan_interface_group_name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2938,7 +4092,7 @@ class PlatformApi:
         """ # noqa: E501
 
         _param = self._delete_cluster_vlan_serialize(
-            interface_name=interface_name,
+            vlan_interface_group_name=vlan_interface_group_name,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2957,7 +4111,7 @@ class PlatformApi:
 
     def _delete_cluster_vlan_serialize(
         self,
-        interface_name,
+        vlan_interface_group_name,
         _request_auth,
         _content_type,
         _headers,
@@ -2979,8 +4133,8 @@ class PlatformApi:
         _body_params: Optional[bytes] = None
 
         # process the path parameters
-        if interface_name is not None:
-            _path_params['interfaceName'] = interface_name
+        if vlan_interface_group_name is not None:
+            _path_params['vlanInterfaceGroupName'] = vlan_interface_group_name
         # process the query parameters
         # process the header parameters
         # process the form parameters
@@ -3005,7 +4159,7 @@ class PlatformApi:
 
         return self.api_client.param_serialize(
             method='DELETE',
-            resource_path='/network/vlans/{interfaceName}',
+            resource_path='/network/vlans/{vlanInterfaceGroupName}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -3040,7 +4194,7 @@ class PlatformApi:
     ) -> None:
         """Deletes multiple Host Mappings within the cluster
 
-        Delete one or more Host Mappings within the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete one or more Host Mappings within the cluster.
 
         :param body: Specifies the params to delete host mappings (required)
         :type body: DeleteHostsParameters
@@ -3107,7 +4261,7 @@ class PlatformApi:
     ) -> ApiResponse[None]:
         """Deletes multiple Host Mappings within the cluster
 
-        Delete one or more Host Mappings within the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete one or more Host Mappings within the cluster.
 
         :param body: Specifies the params to delete host mappings (required)
         :type body: DeleteHostsParameters
@@ -3174,7 +4328,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Deletes multiple Host Mappings within the cluster
 
-        Delete one or more Host Mappings within the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete one or more Host Mappings within the cluster.
 
         :param body: Specifies the params to delete host mappings (required)
         :type body: DeleteHostsParameters
@@ -3300,7 +4454,7 @@ class PlatformApi:
     @validate_call
     def delete_interface_group(
         self,
-        id: Annotated[StrictInt, Field(description="Id of the interface group.")],
+        name: Annotated[StrictStr, Field(description="Name of the interface group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3316,10 +4470,10 @@ class PlatformApi:
     ) -> None:
         """Delete interface group
 
-        Delete an interface group on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete an interface group on the cluster.
 
-        :param id: Id of the interface group. (required)
-        :type id: int
+        :param name: Name of the interface group. (required)
+        :type name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3343,7 +4497,7 @@ class PlatformApi:
         """ # noqa: E501
 
         _param = self._delete_interface_group_serialize(
-            id=id,
+            name=name,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3367,7 +4521,7 @@ class PlatformApi:
     @validate_call
     def delete_interface_group_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="Id of the interface group.")],
+        name: Annotated[StrictStr, Field(description="Name of the interface group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3383,10 +4537,10 @@ class PlatformApi:
     ) -> ApiResponse[None]:
         """Delete interface group
 
-        Delete an interface group on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete an interface group on the cluster.
 
-        :param id: Id of the interface group. (required)
-        :type id: int
+        :param name: Name of the interface group. (required)
+        :type name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3410,7 +4564,7 @@ class PlatformApi:
         """ # noqa: E501
 
         _param = self._delete_interface_group_serialize(
-            id=id,
+            name=name,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3434,7 +4588,7 @@ class PlatformApi:
     @validate_call
     def delete_interface_group_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="Id of the interface group.")],
+        name: Annotated[StrictStr, Field(description="Name of the interface group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3450,10 +4604,10 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Delete interface group
 
-        Delete an interface group on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete an interface group on the cluster.
 
-        :param id: Id of the interface group. (required)
-        :type id: int
+        :param name: Name of the interface group. (required)
+        :type name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3477,7 +4631,7 @@ class PlatformApi:
         """ # noqa: E501
 
         _param = self._delete_interface_group_serialize(
-            id=id,
+            name=name,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3496,7 +4650,7 @@ class PlatformApi:
 
     def _delete_interface_group_serialize(
         self,
-        id,
+        name,
         _request_auth,
         _content_type,
         _headers,
@@ -3518,8 +4672,8 @@ class PlatformApi:
         _body_params: Optional[bytes] = None
 
         # process the path parameters
-        if id is not None:
-            _path_params['id'] = id
+        if name is not None:
+            _path_params['name'] = name
         # process the query parameters
         # process the header parameters
         # process the form parameters
@@ -3544,7 +4698,7 @@ class PlatformApi:
 
         return self.api_client.param_serialize(
             method='DELETE',
-            resource_path='/network/interface-groups/{id}',
+            resource_path='/network/interface-groups/{name}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -3579,7 +4733,7 @@ class PlatformApi:
     ) -> IpmiTextResponse:
         """To delete IPMI User for node
 
-        Deletes the provided ipmi user for given node.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Deletes the provided ipmi user for given node.
 
         :param body: Specifies the parameters to delete an ipmi user from given node. (required)
         :type body: DeleteIpmiUser
@@ -3646,7 +4800,7 @@ class PlatformApi:
     ) -> ApiResponse[IpmiTextResponse]:
         """To delete IPMI User for node
 
-        Deletes the provided ipmi user for given node.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Deletes the provided ipmi user for given node.
 
         :param body: Specifies the parameters to delete an ipmi user from given node. (required)
         :type body: DeleteIpmiUser
@@ -3713,7 +4867,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """To delete IPMI User for node
 
-        Deletes the provided ipmi user for given node.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Deletes the provided ipmi user for given node.
 
         :param body: Specifies the parameters to delete an ipmi user from given node. (required)
         :type body: DeleteIpmiUser
@@ -3837,517 +4991,6 @@ class PlatformApi:
 
 
     @validate_call
-    def delete_rack_by_id(
-        self,
-        id: Annotated[StrictStr, Field(description="Specifies a unique id of the rack.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
-        """Delete a rack by id.
-
-        Delete a given rack by id.
-
-        :param id: Specifies a unique id of the rack. (required)
-        :type id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._delete_rack_by_id_serialize(
-            id=id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def delete_rack_by_id_with_http_info(
-        self,
-        id: Annotated[StrictStr, Field(description="Specifies a unique id of the rack.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[None]:
-        """Delete a rack by id.
-
-        Delete a given rack by id.
-
-        :param id: Specifies a unique id of the rack. (required)
-        :type id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._delete_rack_by_id_serialize(
-            id=id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def delete_rack_by_id_without_preload_content(
-        self,
-        id: Annotated[StrictStr, Field(description="Specifies a unique id of the rack.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Delete a rack by id.
-
-        Delete a given rack by id.
-
-        :param id: Specifies a unique id of the rack. (required)
-        :type id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._delete_rack_by_id_serialize(
-            id=id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _delete_rack_by_id_serialize(
-        self,
-        id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if id is not None:
-            _path_params['id'] = id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'APIKeyHeader', 
-            'SessionIdHeader', 
-            'Bearer'
-        ]
-
-        return self.api_client.param_serialize(
-            method='DELETE',
-            resource_path='/racks/{id}',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def delete_racks(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
-        """Delete all the racks.
-
-        Delete all the racks.
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._delete_racks_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def delete_racks_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[None]:
-        """Delete all the racks.
-
-        Delete all the racks.
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._delete_racks_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def delete_racks_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Delete all the racks.
-
-        Delete all the racks.
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._delete_racks_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _delete_racks_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'APIKeyHeader', 
-            'SessionIdHeader', 
-            'Bearer'
-        ]
-
-        return self.api_client.param_serialize(
-            method='DELETE',
-            resource_path='/racks',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
     def discover_disks(
         self,
         _request_timeout: Union[
@@ -4365,7 +5008,7 @@ class PlatformApi:
     ) -> ClusterFreeDisks:
         """Discover new disks
 
-        Discover disks that are ready for activation
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Discover disks that are ready for activation
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4428,7 +5071,7 @@ class PlatformApi:
     ) -> ApiResponse[ClusterFreeDisks]:
         """Discover new disks
 
-        Discover disks that are ready for activation
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Discover disks that are ready for activation
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4491,7 +5134,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Discover new disks
 
-        Discover disks that are ready for activation
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Discover disks that are ready for activation
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4614,7 +5257,7 @@ class PlatformApi:
     ) -> DiskIdentify:
         """Identify a disk
 
-        Turn on/off led light of a disk.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Turn on/off led light of a disk.
 
         :param body: Specifies the parameter to identify disk. (required)
         :type body: DiskIdentify
@@ -4681,7 +5324,7 @@ class PlatformApi:
     ) -> ApiResponse[DiskIdentify]:
         """Identify a disk
 
-        Turn on/off led light of a disk.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Turn on/off led light of a disk.
 
         :param body: Specifies the parameter to identify disk. (required)
         :type body: DiskIdentify
@@ -4748,7 +5391,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Identify a disk
 
-        Turn on/off led light of a disk.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Turn on/off led light of a disk.
 
         :param body: Specifies the parameter to identify disk. (required)
         :type body: DiskIdentify
@@ -4890,7 +5533,7 @@ class PlatformApi:
     ) -> ClusterFreeDisks:
         """Assimilate disks.
 
-        Assimilate list of disks from one or more nodes of cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Assimilate list of disks from one or more nodes of cluster.
 
         :param body: Specifies the parameter to assimilate disks. (required)
         :type body: ClusterFreeDisks
@@ -4957,7 +5600,7 @@ class PlatformApi:
     ) -> ApiResponse[ClusterFreeDisks]:
         """Assimilate disks.
 
-        Assimilate list of disks from one or more nodes of cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Assimilate list of disks from one or more nodes of cluster.
 
         :param body: Specifies the parameter to assimilate disks. (required)
         :type body: ClusterFreeDisks
@@ -5024,7 +5667,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Assimilate disks.
 
-        Assimilate list of disks from one or more nodes of cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Assimilate list of disks from one or more nodes of cluster.
 
         :param body: Specifies the parameter to assimilate disks. (required)
         :type body: ClusterFreeDisks
@@ -5148,282 +5791,6 @@ class PlatformApi:
 
 
     @validate_call
-    def expand_cluster_nodes(
-        self,
-        body: Annotated[ClusterExpandParams, Field(description="Specifies the parameters to expand the cluster.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ClusterOperationResponseParams:
-        """Expand the cluster.
-
-        Expand the cluster by adding new nodes.
-
-        :param body: Specifies the parameters to expand the cluster. (required)
-        :type body: ClusterExpandParams
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._expand_cluster_nodes_serialize(
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '202': "ClusterOperationResponseParams",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def expand_cluster_nodes_with_http_info(
-        self,
-        body: Annotated[ClusterExpandParams, Field(description="Specifies the parameters to expand the cluster.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ClusterOperationResponseParams]:
-        """Expand the cluster.
-
-        Expand the cluster by adding new nodes.
-
-        :param body: Specifies the parameters to expand the cluster. (required)
-        :type body: ClusterExpandParams
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._expand_cluster_nodes_serialize(
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '202': "ClusterOperationResponseParams",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def expand_cluster_nodes_without_preload_content(
-        self,
-        body: Annotated[ClusterExpandParams, Field(description="Specifies the parameters to expand the cluster.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Expand the cluster.
-
-        Expand the cluster by adding new nodes.
-
-        :param body: Specifies the parameters to expand the cluster. (required)
-        :type body: ClusterExpandParams
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._expand_cluster_nodes_serialize(
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '202': "ClusterOperationResponseParams",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _expand_cluster_nodes_serialize(
-        self,
-        body,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if body is not None:
-            _body_params = body
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'APIKeyHeader', 
-            'SessionIdHeader', 
-            'Bearer'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/clusters/nodes',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
     def get_amqp_target_config(
         self,
         _request_timeout: Union[
@@ -5441,7 +5808,7 @@ class PlatformApi:
     ) -> ClusterAMQPTargetConfig:
         """Get AMQP Target Config
 
-        Fetch AMQP target config on the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetch AMQP target config on the cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5504,7 +5871,7 @@ class PlatformApi:
     ) -> ApiResponse[ClusterAMQPTargetConfig]:
         """Get AMQP Target Config
 
-        Fetch AMQP target config on the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetch AMQP target config on the cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5567,7 +5934,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Get AMQP Target Config
 
-        Fetch AMQP target config on the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetch AMQP target config on the cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5690,7 +6057,7 @@ class PlatformApi:
     ) -> ChassisList:
         """Get list of chassis
 
-        Get list of all chassis info that are part of cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get list of all chassis info that are part of cluster.
 
         :param no_rack_assigned: Filters chassis that have no rack assigned.
         :type no_rack_assigned: bool
@@ -5757,7 +6124,7 @@ class PlatformApi:
     ) -> ApiResponse[ChassisList]:
         """Get list of chassis
 
-        Get list of all chassis info that are part of cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get list of all chassis info that are part of cluster.
 
         :param no_rack_assigned: Filters chassis that have no rack assigned.
         :type no_rack_assigned: bool
@@ -5824,7 +6191,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Get list of chassis
 
-        Get list of all chassis info that are part of cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get list of all chassis info that are part of cluster.
 
         :param no_rack_assigned: Filters chassis that have no rack assigned.
         :type no_rack_assigned: bool
@@ -5955,7 +6322,7 @@ class PlatformApi:
     ) -> Chassis:
         """Get a chassis by chassis id.
 
-        Get a chassis info by id.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get a chassis info by id.
 
         :param id: Specifies the id of chassis. (required)
         :type id: int
@@ -6022,7 +6389,7 @@ class PlatformApi:
     ) -> ApiResponse[Chassis]:
         """Get a chassis by chassis id.
 
-        Get a chassis info by id.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get a chassis info by id.
 
         :param id: Specifies the id of chassis. (required)
         :type id: int
@@ -6089,7 +6456,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Get a chassis by chassis id.
 
-        Get a chassis info by id.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get a chassis info by id.
 
         :param id: Specifies the id of chassis. (required)
         :type id: int
@@ -6202,6 +6569,14 @@ class PlatformApi:
     @validate_call
     def get_cluster(
         self,
+        fetch_stats: Annotated[Optional[StrictBool], Field(description="If 'true', also get statistics about the Cohesity Cluster.")] = None,
+        fetch_time_series_schema: Annotated[Optional[StrictBool], Field(description="Specifies whether to get time series schema info of the cluster")] = None,
+        include_minimum_nodes_info: Annotated[Optional[StrictBool], Field(description="Specifies whether to include info about minimum failure domains")] = None,
+        fetch_patch_info: Annotated[Optional[StrictBool], Field(description="If 'true', return patch information about the Cohesity Cluster.")] = None,
+        fetch_license_info: Annotated[Optional[StrictBool], Field(description="If 'true', return licensing information about the Cohesity Cluster.")] = None,
+        fetch_encryption_info: Annotated[Optional[StrictBool], Field(description="If 'true', return encryption information about the Cohesity Cluster.")] = None,
+        fetch_metadata_info: Annotated[Optional[StrictBool], Field(description="If 'true', return metadata information about the Cohesity Cluster.")] = None,
+        fetch_upgrade_info: Annotated[Optional[StrictBool], Field(description="If 'true', return upgrade information about the Cohesity Cluster.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6217,8 +6592,24 @@ class PlatformApi:
     ) -> Cluster:
         """Retrieve Cluster Configuration
 
-        Retrieve some summary information about the Cluster Configuration.
+        **Privileges:** ```CLUSTER_VIEW, TENANT_VIEW``` <br><br>Retrieve some summary information about the Cluster Configuration.
 
+        :param fetch_stats: If 'true', also get statistics about the Cohesity Cluster.
+        :type fetch_stats: bool
+        :param fetch_time_series_schema: Specifies whether to get time series schema info of the cluster
+        :type fetch_time_series_schema: bool
+        :param include_minimum_nodes_info: Specifies whether to include info about minimum failure domains
+        :type include_minimum_nodes_info: bool
+        :param fetch_patch_info: If 'true', return patch information about the Cohesity Cluster.
+        :type fetch_patch_info: bool
+        :param fetch_license_info: If 'true', return licensing information about the Cohesity Cluster.
+        :type fetch_license_info: bool
+        :param fetch_encryption_info: If 'true', return encryption information about the Cohesity Cluster.
+        :type fetch_encryption_info: bool
+        :param fetch_metadata_info: If 'true', return metadata information about the Cohesity Cluster.
+        :type fetch_metadata_info: bool
+        :param fetch_upgrade_info: If 'true', return upgrade information about the Cohesity Cluster.
+        :type fetch_upgrade_info: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6242,6 +6633,14 @@ class PlatformApi:
         """ # noqa: E501
 
         _param = self._get_cluster_serialize(
+            fetch_stats=fetch_stats,
+            fetch_time_series_schema=fetch_time_series_schema,
+            include_minimum_nodes_info=include_minimum_nodes_info,
+            fetch_patch_info=fetch_patch_info,
+            fetch_license_info=fetch_license_info,
+            fetch_encryption_info=fetch_encryption_info,
+            fetch_metadata_info=fetch_metadata_info,
+            fetch_upgrade_info=fetch_upgrade_info,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6265,6 +6664,14 @@ class PlatformApi:
     @validate_call
     def get_cluster_with_http_info(
         self,
+        fetch_stats: Annotated[Optional[StrictBool], Field(description="If 'true', also get statistics about the Cohesity Cluster.")] = None,
+        fetch_time_series_schema: Annotated[Optional[StrictBool], Field(description="Specifies whether to get time series schema info of the cluster")] = None,
+        include_minimum_nodes_info: Annotated[Optional[StrictBool], Field(description="Specifies whether to include info about minimum failure domains")] = None,
+        fetch_patch_info: Annotated[Optional[StrictBool], Field(description="If 'true', return patch information about the Cohesity Cluster.")] = None,
+        fetch_license_info: Annotated[Optional[StrictBool], Field(description="If 'true', return licensing information about the Cohesity Cluster.")] = None,
+        fetch_encryption_info: Annotated[Optional[StrictBool], Field(description="If 'true', return encryption information about the Cohesity Cluster.")] = None,
+        fetch_metadata_info: Annotated[Optional[StrictBool], Field(description="If 'true', return metadata information about the Cohesity Cluster.")] = None,
+        fetch_upgrade_info: Annotated[Optional[StrictBool], Field(description="If 'true', return upgrade information about the Cohesity Cluster.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6280,8 +6687,24 @@ class PlatformApi:
     ) -> ApiResponse[Cluster]:
         """Retrieve Cluster Configuration
 
-        Retrieve some summary information about the Cluster Configuration.
+        **Privileges:** ```CLUSTER_VIEW, TENANT_VIEW``` <br><br>Retrieve some summary information about the Cluster Configuration.
 
+        :param fetch_stats: If 'true', also get statistics about the Cohesity Cluster.
+        :type fetch_stats: bool
+        :param fetch_time_series_schema: Specifies whether to get time series schema info of the cluster
+        :type fetch_time_series_schema: bool
+        :param include_minimum_nodes_info: Specifies whether to include info about minimum failure domains
+        :type include_minimum_nodes_info: bool
+        :param fetch_patch_info: If 'true', return patch information about the Cohesity Cluster.
+        :type fetch_patch_info: bool
+        :param fetch_license_info: If 'true', return licensing information about the Cohesity Cluster.
+        :type fetch_license_info: bool
+        :param fetch_encryption_info: If 'true', return encryption information about the Cohesity Cluster.
+        :type fetch_encryption_info: bool
+        :param fetch_metadata_info: If 'true', return metadata information about the Cohesity Cluster.
+        :type fetch_metadata_info: bool
+        :param fetch_upgrade_info: If 'true', return upgrade information about the Cohesity Cluster.
+        :type fetch_upgrade_info: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6305,6 +6728,14 @@ class PlatformApi:
         """ # noqa: E501
 
         _param = self._get_cluster_serialize(
+            fetch_stats=fetch_stats,
+            fetch_time_series_schema=fetch_time_series_schema,
+            include_minimum_nodes_info=include_minimum_nodes_info,
+            fetch_patch_info=fetch_patch_info,
+            fetch_license_info=fetch_license_info,
+            fetch_encryption_info=fetch_encryption_info,
+            fetch_metadata_info=fetch_metadata_info,
+            fetch_upgrade_info=fetch_upgrade_info,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6328,6 +6759,14 @@ class PlatformApi:
     @validate_call
     def get_cluster_without_preload_content(
         self,
+        fetch_stats: Annotated[Optional[StrictBool], Field(description="If 'true', also get statistics about the Cohesity Cluster.")] = None,
+        fetch_time_series_schema: Annotated[Optional[StrictBool], Field(description="Specifies whether to get time series schema info of the cluster")] = None,
+        include_minimum_nodes_info: Annotated[Optional[StrictBool], Field(description="Specifies whether to include info about minimum failure domains")] = None,
+        fetch_patch_info: Annotated[Optional[StrictBool], Field(description="If 'true', return patch information about the Cohesity Cluster.")] = None,
+        fetch_license_info: Annotated[Optional[StrictBool], Field(description="If 'true', return licensing information about the Cohesity Cluster.")] = None,
+        fetch_encryption_info: Annotated[Optional[StrictBool], Field(description="If 'true', return encryption information about the Cohesity Cluster.")] = None,
+        fetch_metadata_info: Annotated[Optional[StrictBool], Field(description="If 'true', return metadata information about the Cohesity Cluster.")] = None,
+        fetch_upgrade_info: Annotated[Optional[StrictBool], Field(description="If 'true', return upgrade information about the Cohesity Cluster.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6343,8 +6782,24 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Retrieve Cluster Configuration
 
-        Retrieve some summary information about the Cluster Configuration.
+        **Privileges:** ```CLUSTER_VIEW, TENANT_VIEW``` <br><br>Retrieve some summary information about the Cluster Configuration.
 
+        :param fetch_stats: If 'true', also get statistics about the Cohesity Cluster.
+        :type fetch_stats: bool
+        :param fetch_time_series_schema: Specifies whether to get time series schema info of the cluster
+        :type fetch_time_series_schema: bool
+        :param include_minimum_nodes_info: Specifies whether to include info about minimum failure domains
+        :type include_minimum_nodes_info: bool
+        :param fetch_patch_info: If 'true', return patch information about the Cohesity Cluster.
+        :type fetch_patch_info: bool
+        :param fetch_license_info: If 'true', return licensing information about the Cohesity Cluster.
+        :type fetch_license_info: bool
+        :param fetch_encryption_info: If 'true', return encryption information about the Cohesity Cluster.
+        :type fetch_encryption_info: bool
+        :param fetch_metadata_info: If 'true', return metadata information about the Cohesity Cluster.
+        :type fetch_metadata_info: bool
+        :param fetch_upgrade_info: If 'true', return upgrade information about the Cohesity Cluster.
+        :type fetch_upgrade_info: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6368,6 +6823,14 @@ class PlatformApi:
         """ # noqa: E501
 
         _param = self._get_cluster_serialize(
+            fetch_stats=fetch_stats,
+            fetch_time_series_schema=fetch_time_series_schema,
+            include_minimum_nodes_info=include_minimum_nodes_info,
+            fetch_patch_info=fetch_patch_info,
+            fetch_license_info=fetch_license_info,
+            fetch_encryption_info=fetch_encryption_info,
+            fetch_metadata_info=fetch_metadata_info,
+            fetch_upgrade_info=fetch_upgrade_info,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6385,6 +6848,294 @@ class PlatformApi:
 
 
     def _get_cluster_serialize(
+        self,
+        fetch_stats,
+        fetch_time_series_schema,
+        include_minimum_nodes_info,
+        fetch_patch_info,
+        fetch_license_info,
+        fetch_encryption_info,
+        fetch_metadata_info,
+        fetch_upgrade_info,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if fetch_stats is not None:
+            
+            _query_params.append(('fetchStats', fetch_stats))
+            
+        if fetch_time_series_schema is not None:
+            
+            _query_params.append(('fetchTimeSeriesSchema', fetch_time_series_schema))
+            
+        if include_minimum_nodes_info is not None:
+            
+            _query_params.append(('includeMinimumNodesInfo', include_minimum_nodes_info))
+            
+        if fetch_patch_info is not None:
+            
+            _query_params.append(('fetchPatchInfo', fetch_patch_info))
+            
+        if fetch_license_info is not None:
+            
+            _query_params.append(('fetchLicenseInfo', fetch_license_info))
+            
+        if fetch_encryption_info is not None:
+            
+            _query_params.append(('fetchEncryptionInfo', fetch_encryption_info))
+            
+        if fetch_metadata_info is not None:
+            
+            _query_params.append(('fetchMetadataInfo', fetch_metadata_info))
+            
+        if fetch_upgrade_info is not None:
+            
+            _query_params.append(('fetchUpgradeInfo', fetch_upgrade_info))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/clusters',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_cluster_ipmi_lan_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ClusterIpmiLanInfo:
+        """To get IPMI LAN info for the cluster
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about LAN for the cluster in which current node is present.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_ipmi_lan_info_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterIpmiLanInfo",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_cluster_ipmi_lan_info_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ClusterIpmiLanInfo]:
+        """To get IPMI LAN info for the cluster
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about LAN for the cluster in which current node is present.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_ipmi_lan_info_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterIpmiLanInfo",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_cluster_ipmi_lan_info_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """To get IPMI LAN info for the cluster
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about LAN for the cluster in which current node is present.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_ipmi_lan_info_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterIpmiLanInfo",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_cluster_ipmi_lan_info_serialize(
         self,
         _request_auth,
         _content_type,
@@ -6431,7 +7182,255 @@ class PlatformApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/clusters',
+            resource_path='/ipmi/cluster-get-lan-info',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_cluster_ipmi_users(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ClusterIpmiUsers:
+        """To get IPMI users info for the cluster
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about cluster and node level IPMI user names.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_ipmi_users_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterIpmiUsers",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_cluster_ipmi_users_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ClusterIpmiUsers]:
+        """To get IPMI users info for the cluster
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about cluster and node level IPMI user names.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_ipmi_users_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterIpmiUsers",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_cluster_ipmi_users_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """To get IPMI users info for the cluster
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about cluster and node level IPMI user names.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_ipmi_users_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterIpmiUsers",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_cluster_ipmi_users_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/ipmi/cluster-users',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -6465,7 +7464,7 @@ class PlatformApi:
     ) -> ClusterLocalDomainSID:
         """Get Cluster Local Domain SID
 
-        Fetch SID of cluster local domain.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetch SID of cluster local domain.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6528,7 +7527,7 @@ class PlatformApi:
     ) -> ApiResponse[ClusterLocalDomainSID]:
         """Get Cluster Local Domain SID
 
-        Fetch SID of cluster local domain.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetch SID of cluster local domain.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6591,7 +7590,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Get Cluster Local Domain SID
 
-        Fetch SID of cluster local domain.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetch SID of cluster local domain.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6696,6 +7695,606 @@ class PlatformApi:
 
 
     @validate_call
+    def get_cluster_metadata(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ClusterMetadataRequest:
+        """Get Cluster Metadata
+
+        ```No Privileges Required``` <br><br>Get Cluster Metadata.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_metadata_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterMetadataRequest",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_cluster_metadata_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ClusterMetadataRequest]:
+        """Get Cluster Metadata
+
+        ```No Privileges Required``` <br><br>Get Cluster Metadata.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_metadata_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterMetadataRequest",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_cluster_metadata_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Cluster Metadata
+
+        ```No Privileges Required``` <br><br>Get Cluster Metadata.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_metadata_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterMetadataRequest",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_cluster_metadata_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/clusters/metadata',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_cluster_operation_status_list(
+        self,
+        operation_types: Annotated[Optional[List[StrictStr]], Field(description="One or more operation types to query for.")] = None,
+        operation_ids: Annotated[Optional[List[StrictStr]], Field(description="One or more operation ids to query for.")] = None,
+        include_finished_operations: Annotated[Optional[StrictBool], Field(description="Controls whether finished operations should be included in the query results. The default value is false. Applicable only for patch apply, revert, and upgrade operations")] = None,
+        include_event_logs: Annotated[Optional[StrictBool], Field(description="Controls whether event logs should be included in the query results. If set to true, 'operationIds' becomes mandatory. The default value is false. Applicable only for patch apply, revert, and upgrade operations")] = None,
+        start_time: Annotated[Optional[StrictInt], Field(description="Filters operations that started after the specified time. Applicable only for patch apply, revert, and upgrade operations")] = None,
+        end_time: Annotated[Optional[StrictInt], Field(description="Filters operations that ended before the specified time. Applicable only for patch apply, revert, and upgrade operations")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[ClusterOperationStatus]:
+        """Get cluster operations status.
+
+        ```No Privileges Required``` <br><br>Get list of cluster operations status information.
+
+        :param operation_types: One or more operation types to query for.
+        :type operation_types: List[str]
+        :param operation_ids: One or more operation ids to query for.
+        :type operation_ids: List[str]
+        :param include_finished_operations: Controls whether finished operations should be included in the query results. The default value is false. Applicable only for patch apply, revert, and upgrade operations
+        :type include_finished_operations: bool
+        :param include_event_logs: Controls whether event logs should be included in the query results. If set to true, 'operationIds' becomes mandatory. The default value is false. Applicable only for patch apply, revert, and upgrade operations
+        :type include_event_logs: bool
+        :param start_time: Filters operations that started after the specified time. Applicable only for patch apply, revert, and upgrade operations
+        :type start_time: int
+        :param end_time: Filters operations that ended before the specified time. Applicable only for patch apply, revert, and upgrade operations
+        :type end_time: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_operation_status_list_serialize(
+            operation_types=operation_types,
+            operation_ids=operation_ids,
+            include_finished_operations=include_finished_operations,
+            include_event_logs=include_event_logs,
+            start_time=start_time,
+            end_time=end_time,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[ClusterOperationStatus]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_cluster_operation_status_list_with_http_info(
+        self,
+        operation_types: Annotated[Optional[List[StrictStr]], Field(description="One or more operation types to query for.")] = None,
+        operation_ids: Annotated[Optional[List[StrictStr]], Field(description="One or more operation ids to query for.")] = None,
+        include_finished_operations: Annotated[Optional[StrictBool], Field(description="Controls whether finished operations should be included in the query results. The default value is false. Applicable only for patch apply, revert, and upgrade operations")] = None,
+        include_event_logs: Annotated[Optional[StrictBool], Field(description="Controls whether event logs should be included in the query results. If set to true, 'operationIds' becomes mandatory. The default value is false. Applicable only for patch apply, revert, and upgrade operations")] = None,
+        start_time: Annotated[Optional[StrictInt], Field(description="Filters operations that started after the specified time. Applicable only for patch apply, revert, and upgrade operations")] = None,
+        end_time: Annotated[Optional[StrictInt], Field(description="Filters operations that ended before the specified time. Applicable only for patch apply, revert, and upgrade operations")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[ClusterOperationStatus]]:
+        """Get cluster operations status.
+
+        ```No Privileges Required``` <br><br>Get list of cluster operations status information.
+
+        :param operation_types: One or more operation types to query for.
+        :type operation_types: List[str]
+        :param operation_ids: One or more operation ids to query for.
+        :type operation_ids: List[str]
+        :param include_finished_operations: Controls whether finished operations should be included in the query results. The default value is false. Applicable only for patch apply, revert, and upgrade operations
+        :type include_finished_operations: bool
+        :param include_event_logs: Controls whether event logs should be included in the query results. If set to true, 'operationIds' becomes mandatory. The default value is false. Applicable only for patch apply, revert, and upgrade operations
+        :type include_event_logs: bool
+        :param start_time: Filters operations that started after the specified time. Applicable only for patch apply, revert, and upgrade operations
+        :type start_time: int
+        :param end_time: Filters operations that ended before the specified time. Applicable only for patch apply, revert, and upgrade operations
+        :type end_time: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_operation_status_list_serialize(
+            operation_types=operation_types,
+            operation_ids=operation_ids,
+            include_finished_operations=include_finished_operations,
+            include_event_logs=include_event_logs,
+            start_time=start_time,
+            end_time=end_time,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[ClusterOperationStatus]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_cluster_operation_status_list_without_preload_content(
+        self,
+        operation_types: Annotated[Optional[List[StrictStr]], Field(description="One or more operation types to query for.")] = None,
+        operation_ids: Annotated[Optional[List[StrictStr]], Field(description="One or more operation ids to query for.")] = None,
+        include_finished_operations: Annotated[Optional[StrictBool], Field(description="Controls whether finished operations should be included in the query results. The default value is false. Applicable only for patch apply, revert, and upgrade operations")] = None,
+        include_event_logs: Annotated[Optional[StrictBool], Field(description="Controls whether event logs should be included in the query results. If set to true, 'operationIds' becomes mandatory. The default value is false. Applicable only for patch apply, revert, and upgrade operations")] = None,
+        start_time: Annotated[Optional[StrictInt], Field(description="Filters operations that started after the specified time. Applicable only for patch apply, revert, and upgrade operations")] = None,
+        end_time: Annotated[Optional[StrictInt], Field(description="Filters operations that ended before the specified time. Applicable only for patch apply, revert, and upgrade operations")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get cluster operations status.
+
+        ```No Privileges Required``` <br><br>Get list of cluster operations status information.
+
+        :param operation_types: One or more operation types to query for.
+        :type operation_types: List[str]
+        :param operation_ids: One or more operation ids to query for.
+        :type operation_ids: List[str]
+        :param include_finished_operations: Controls whether finished operations should be included in the query results. The default value is false. Applicable only for patch apply, revert, and upgrade operations
+        :type include_finished_operations: bool
+        :param include_event_logs: Controls whether event logs should be included in the query results. If set to true, 'operationIds' becomes mandatory. The default value is false. Applicable only for patch apply, revert, and upgrade operations
+        :type include_event_logs: bool
+        :param start_time: Filters operations that started after the specified time. Applicable only for patch apply, revert, and upgrade operations
+        :type start_time: int
+        :param end_time: Filters operations that ended before the specified time. Applicable only for patch apply, revert, and upgrade operations
+        :type end_time: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_operation_status_list_serialize(
+            operation_types=operation_types,
+            operation_ids=operation_ids,
+            include_finished_operations=include_finished_operations,
+            include_event_logs=include_event_logs,
+            start_time=start_time,
+            end_time=end_time,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[ClusterOperationStatus]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_cluster_operation_status_list_serialize(
+        self,
+        operation_types,
+        operation_ids,
+        include_finished_operations,
+        include_event_logs,
+        start_time,
+        end_time,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+            'operationTypes': 'csv',
+            'operationIds': 'csv',
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if operation_types is not None:
+            
+            _query_params.append(('operationTypes', operation_types))
+            
+        if operation_ids is not None:
+            
+            _query_params.append(('operationIds', operation_ids))
+            
+        if include_finished_operations is not None:
+            
+            _query_params.append(('includeFinishedOperations', include_finished_operations))
+            
+        if include_event_logs is not None:
+            
+            _query_params.append(('includeEventLogs', include_event_logs))
+            
+        if start_time is not None:
+            
+            _query_params.append(('startTime', start_time))
+            
+        if end_time is not None:
+            
+            _query_params.append(('endTime', end_time))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/clusters/operation-status',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_cluster_packages(
         self,
         _request_timeout: Union[
@@ -6713,7 +8312,7 @@ class PlatformApi:
     ) -> ClusterPackages:
         """Get packages
 
-        Get software packages on the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get software packages on the cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6776,7 +8375,7 @@ class PlatformApi:
     ) -> ApiResponse[ClusterPackages]:
         """Get packages
 
-        Get software packages on the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get software packages on the cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6839,7 +8438,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Get packages
 
-        Get software packages on the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get software packages on the cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6961,7 +8560,7 @@ class PlatformApi:
     ) -> ClusterSnapshotPolicy:
         """Get cluster snapshot policy.
 
-        Get cluster snapshot policy.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get cluster snapshot policy.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7024,7 +8623,7 @@ class PlatformApi:
     ) -> ApiResponse[ClusterSnapshotPolicy]:
         """Get cluster snapshot policy.
 
-        Get cluster snapshot policy.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get cluster snapshot policy.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7087,7 +8686,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Get cluster snapshot policy.
 
-        Get cluster snapshot policy.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get cluster snapshot policy.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7210,7 +8809,7 @@ class PlatformApi:
     ) -> ClusterStateParams:
         """Get cluster state
 
-        Get the current state of the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get the current state of the cluster.
 
         :param system_apps: The filter whether or not to get the system apps state details.
         :type system_apps: bool
@@ -7277,7 +8876,7 @@ class PlatformApi:
     ) -> ApiResponse[ClusterStateParams]:
         """Get cluster state
 
-        Get the current state of the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get the current state of the cluster.
 
         :param system_apps: The filter whether or not to get the system apps state details.
         :type system_apps: bool
@@ -7344,7 +8943,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Get cluster state
 
-        Get the current state of the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get the current state of the cluster.
 
         :param system_apps: The filter whether or not to get the system apps state details.
         :type system_apps: bool
@@ -7457,9 +9056,768 @@ class PlatformApi:
 
 
     @validate_call
+    def get_cluster_status(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ClusterStatus:
+        """Get cluster status.
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get cluster status.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_status_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterStatus",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_cluster_status_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ClusterStatus]:
+        """Get cluster status.
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get cluster status.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_status_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterStatus",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_cluster_status_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get cluster status.
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get cluster status.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_status_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterStatus",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_cluster_status_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/clusters/status',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_cluster_subnets_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[Subnet]:
+        """Get cluster subnets info.
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get cluster subnet info.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_subnets_info_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[Subnet]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_cluster_subnets_info_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[Subnet]]:
+        """Get cluster subnets info.
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get cluster subnet info.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_subnets_info_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[Subnet]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_cluster_subnets_info_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get cluster subnets info.
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get cluster subnet info.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_subnets_info_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[Subnet]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_cluster_subnets_info_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/clusters/subnets',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_cluster_vlan(
+        self,
+        vlan_interface_group_name: Annotated[StrictStr, Field(description="Vlan interface group name, it should be in interface_group_name.vlan_id format.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ClusterVlanParams:
+        """Get vlan
+
+        ```Unknown Privileges``` <br><br>Get a vlan on the cluster.
+
+        :param vlan_interface_group_name: Vlan interface group name, it should be in interface_group_name.vlan_id format. (required)
+        :type vlan_interface_group_name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_vlan_serialize(
+            vlan_interface_group_name=vlan_interface_group_name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterVlanParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_cluster_vlan_with_http_info(
+        self,
+        vlan_interface_group_name: Annotated[StrictStr, Field(description="Vlan interface group name, it should be in interface_group_name.vlan_id format.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ClusterVlanParams]:
+        """Get vlan
+
+        ```Unknown Privileges``` <br><br>Get a vlan on the cluster.
+
+        :param vlan_interface_group_name: Vlan interface group name, it should be in interface_group_name.vlan_id format. (required)
+        :type vlan_interface_group_name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_vlan_serialize(
+            vlan_interface_group_name=vlan_interface_group_name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterVlanParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_cluster_vlan_without_preload_content(
+        self,
+        vlan_interface_group_name: Annotated[StrictStr, Field(description="Vlan interface group name, it should be in interface_group_name.vlan_id format.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get vlan
+
+        ```Unknown Privileges``` <br><br>Get a vlan on the cluster.
+
+        :param vlan_interface_group_name: Vlan interface group name, it should be in interface_group_name.vlan_id format. (required)
+        :type vlan_interface_group_name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_cluster_vlan_serialize(
+            vlan_interface_group_name=vlan_interface_group_name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterVlanParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_cluster_vlan_serialize(
+        self,
+        vlan_interface_group_name,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if vlan_interface_group_name is not None:
+            _path_params['vlanInterfaceGroupName'] = vlan_interface_group_name
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/network/vlans/{vlanInterfaceGroupName}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_cluster_vlans(
         self,
-        interface_names: Annotated[Optional[List[StrictStr]], Field(description="Vlan interface names, it should be in interface_group_name.vlan_id format.")] = None,
+        vlan_interface_group_names: Annotated[Optional[List[StrictStr]], Field(description="Vlan interface group names, it should be in interface_group_name.vlan_id format.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Ids of the tenants, used to get vlans assigned to tenants.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response includes vlans which belongs to all the tenants the current user has permissions to see.")] = None,
         skip_primary_and_bond_iface: Annotated[Optional[StrictBool], Field(description="If true, vlan primary and bond interfaces are not returned in the response.")] = None,
@@ -7479,10 +9837,10 @@ class PlatformApi:
     ) -> ClusterVlans:
         """Get vlans
 
-        Get vlans on the cluster.
+        **Privileges:** ```VLAN_VIEW, CLUSTER_CREATE``` <br><br>Get vlans on the cluster.
 
-        :param interface_names: Vlan interface names, it should be in interface_group_name.vlan_id format.
-        :type interface_names: List[str]
+        :param vlan_interface_group_names: Vlan interface group names, it should be in interface_group_name.vlan_id format.
+        :type vlan_interface_group_names: List[str]
         :param tenant_ids: Ids of the tenants, used to get vlans assigned to tenants.
         :type tenant_ids: List[str]
         :param include_tenants: If true, the response includes vlans which belongs to all the tenants the current user has permissions to see.
@@ -7514,7 +9872,7 @@ class PlatformApi:
         """ # noqa: E501
 
         _param = self._get_cluster_vlans_serialize(
-            interface_names=interface_names,
+            vlan_interface_group_names=vlan_interface_group_names,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
             skip_primary_and_bond_iface=skip_primary_and_bond_iface,
@@ -7542,7 +9900,7 @@ class PlatformApi:
     @validate_call
     def get_cluster_vlans_with_http_info(
         self,
-        interface_names: Annotated[Optional[List[StrictStr]], Field(description="Vlan interface names, it should be in interface_group_name.vlan_id format.")] = None,
+        vlan_interface_group_names: Annotated[Optional[List[StrictStr]], Field(description="Vlan interface group names, it should be in interface_group_name.vlan_id format.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Ids of the tenants, used to get vlans assigned to tenants.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response includes vlans which belongs to all the tenants the current user has permissions to see.")] = None,
         skip_primary_and_bond_iface: Annotated[Optional[StrictBool], Field(description="If true, vlan primary and bond interfaces are not returned in the response.")] = None,
@@ -7562,10 +9920,10 @@ class PlatformApi:
     ) -> ApiResponse[ClusterVlans]:
         """Get vlans
 
-        Get vlans on the cluster.
+        **Privileges:** ```VLAN_VIEW, CLUSTER_CREATE``` <br><br>Get vlans on the cluster.
 
-        :param interface_names: Vlan interface names, it should be in interface_group_name.vlan_id format.
-        :type interface_names: List[str]
+        :param vlan_interface_group_names: Vlan interface group names, it should be in interface_group_name.vlan_id format.
+        :type vlan_interface_group_names: List[str]
         :param tenant_ids: Ids of the tenants, used to get vlans assigned to tenants.
         :type tenant_ids: List[str]
         :param include_tenants: If true, the response includes vlans which belongs to all the tenants the current user has permissions to see.
@@ -7597,7 +9955,7 @@ class PlatformApi:
         """ # noqa: E501
 
         _param = self._get_cluster_vlans_serialize(
-            interface_names=interface_names,
+            vlan_interface_group_names=vlan_interface_group_names,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
             skip_primary_and_bond_iface=skip_primary_and_bond_iface,
@@ -7625,7 +9983,7 @@ class PlatformApi:
     @validate_call
     def get_cluster_vlans_without_preload_content(
         self,
-        interface_names: Annotated[Optional[List[StrictStr]], Field(description="Vlan interface names, it should be in interface_group_name.vlan_id format.")] = None,
+        vlan_interface_group_names: Annotated[Optional[List[StrictStr]], Field(description="Vlan interface group names, it should be in interface_group_name.vlan_id format.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Ids of the tenants, used to get vlans assigned to tenants.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response includes vlans which belongs to all the tenants the current user has permissions to see.")] = None,
         skip_primary_and_bond_iface: Annotated[Optional[StrictBool], Field(description="If true, vlan primary and bond interfaces are not returned in the response.")] = None,
@@ -7645,10 +10003,10 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Get vlans
 
-        Get vlans on the cluster.
+        **Privileges:** ```VLAN_VIEW, CLUSTER_CREATE``` <br><br>Get vlans on the cluster.
 
-        :param interface_names: Vlan interface names, it should be in interface_group_name.vlan_id format.
-        :type interface_names: List[str]
+        :param vlan_interface_group_names: Vlan interface group names, it should be in interface_group_name.vlan_id format.
+        :type vlan_interface_group_names: List[str]
         :param tenant_ids: Ids of the tenants, used to get vlans assigned to tenants.
         :type tenant_ids: List[str]
         :param include_tenants: If true, the response includes vlans which belongs to all the tenants the current user has permissions to see.
@@ -7680,7 +10038,7 @@ class PlatformApi:
         """ # noqa: E501
 
         _param = self._get_cluster_vlans_serialize(
-            interface_names=interface_names,
+            vlan_interface_group_names=vlan_interface_group_names,
             tenant_ids=tenant_ids,
             include_tenants=include_tenants,
             skip_primary_and_bond_iface=skip_primary_and_bond_iface,
@@ -7703,7 +10061,7 @@ class PlatformApi:
 
     def _get_cluster_vlans_serialize(
         self,
-        interface_names,
+        vlan_interface_group_names,
         tenant_ids,
         include_tenants,
         skip_primary_and_bond_iface,
@@ -7717,7 +10075,7 @@ class PlatformApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            'interfaceNames': 'csv',
+            'vlanInterfaceGroupNames': 'csv',
             'tenantIds': 'csv',
         }
 
@@ -7732,9 +10090,9 @@ class PlatformApi:
 
         # process the path parameters
         # process the query parameters
-        if interface_names is not None:
+        if vlan_interface_group_names is not None:
             
-            _query_params.append(('interfaceNames', interface_names))
+            _query_params.append(('vlanInterfaceGroupNames', vlan_interface_group_names))
             
         if tenant_ids is not None:
             
@@ -7792,6 +10150,254 @@ class PlatformApi:
 
 
     @validate_call
+    def get_hardware_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> HardwareInfo:
+        """Fetch Node Hardware Information
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetch general information about the node hardware to which the request is sent to.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_hardware_info_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "HardwareInfo",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_hardware_info_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[HardwareInfo]:
+        """Fetch Node Hardware Information
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetch general information about the node hardware to which the request is sent to.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_hardware_info_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "HardwareInfo",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_hardware_info_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Fetch Node Hardware Information
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetch general information about the node hardware to which the request is sent to.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_hardware_info_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "HardwareInfo",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_hardware_info_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/node/hardware-info',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_interface_groups(
         self,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Ids of the interface groups.")] = None,
@@ -7810,7 +10416,7 @@ class PlatformApi:
     ) -> InterfaceGroups:
         """Get interface groups
 
-        Get a list of interface groups configured on the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get a list of interface groups configured on the cluster.
 
         :param ids: Ids of the interface groups.
         :type ids: List[int]
@@ -7877,7 +10483,7 @@ class PlatformApi:
     ) -> ApiResponse[InterfaceGroups]:
         """Get interface groups
 
-        Get a list of interface groups configured on the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get a list of interface groups configured on the cluster.
 
         :param ids: Ids of the interface groups.
         :type ids: List[int]
@@ -7944,7 +10550,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Get interface groups
 
-        Get a list of interface groups configured on the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get a list of interface groups configured on the cluster.
 
         :param ids: Ids of the interface groups.
         :type ids: List[int]
@@ -8058,17 +10664,10 @@ class PlatformApi:
 
 
     @validate_call
-    def get_interfaces(
+    def get_ipmi_fru_info(
         self,
-        node_id: Annotated[Optional[StrictInt], Field(description="Node id, used to get interfaces on a particular node.")] = None,
-        chassis_serial: Annotated[Optional[StrictStr], Field(description="Chassis serial number, used to get interfaces on a chassis.")] = None,
-        slot: Annotated[Optional[StrictInt], Field(description="Slot number, used to get interfaces on a slot.")] = None,
-        cache: Annotated[Optional[StrictBool], Field(description="Get interfaces information from cache.")] = None,
-        bond_interfaces: Annotated[Optional[StrictBool], Field(description="Get bond interfaces only.")] = None,
-        interface_group: Annotated[Optional[StrictBool], Field(description="Get interfaces assigned to a interface group only.")] = None,
-        uplink_switch: Annotated[Optional[StrictBool], Field(description="Include uplink switch information.")] = None,
-        bond_member: Annotated[Optional[StrictBool], Field(description="Include bond member information for bond interfaces.")] = None,
-        stats: Annotated[Optional[StrictBool], Field(description="Include interface stats.")] = None,
+        node_id: Annotated[Optional[StrictStr], Field(description="Specifies the node id of the node for which fru info is requested. This parameter is incompatible with 'nodeIp'.")] = None,
+        node_ip: Annotated[Optional[StrictStr], Field(description="Specifies the IP Address of the node for which fru info is requested. This parameter is incompatible with 'nodeId'.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8081,29 +10680,15 @@ class PlatformApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> NetworkInterfaceParams:
-        """Get interfaces
+    ) -> IpmiFruInfo:
+        """To get IPMI FRU info
 
-        Get interfaces on a cluster or free node.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about FRU for given IPMI
 
-        :param node_id: Node id, used to get interfaces on a particular node.
-        :type node_id: int
-        :param chassis_serial: Chassis serial number, used to get interfaces on a chassis.
-        :type chassis_serial: str
-        :param slot: Slot number, used to get interfaces on a slot.
-        :type slot: int
-        :param cache: Get interfaces information from cache.
-        :type cache: bool
-        :param bond_interfaces: Get bond interfaces only.
-        :type bond_interfaces: bool
-        :param interface_group: Get interfaces assigned to a interface group only.
-        :type interface_group: bool
-        :param uplink_switch: Include uplink switch information.
-        :type uplink_switch: bool
-        :param bond_member: Include bond member information for bond interfaces.
-        :type bond_member: bool
-        :param stats: Include interface stats.
-        :type stats: bool
+        :param node_id: Specifies the node id of the node for which fru info is requested. This parameter is incompatible with 'nodeIp'.
+        :type node_id: str
+        :param node_ip: Specifies the IP Address of the node for which fru info is requested. This parameter is incompatible with 'nodeId'.
+        :type node_ip: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8126,16 +10711,9 @@ class PlatformApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_interfaces_serialize(
+        _param = self._get_ipmi_fru_info_serialize(
             node_id=node_id,
-            chassis_serial=chassis_serial,
-            slot=slot,
-            cache=cache,
-            bond_interfaces=bond_interfaces,
-            interface_group=interface_group,
-            uplink_switch=uplink_switch,
-            bond_member=bond_member,
-            stats=stats,
+            node_ip=node_ip,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8143,7 +10721,7 @@ class PlatformApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "NetworkInterfaceParams",
+            '200': "IpmiFruInfo",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -8157,17 +10735,10 @@ class PlatformApi:
 
 
     @validate_call
-    def get_interfaces_with_http_info(
+    def get_ipmi_fru_info_with_http_info(
         self,
-        node_id: Annotated[Optional[StrictInt], Field(description="Node id, used to get interfaces on a particular node.")] = None,
-        chassis_serial: Annotated[Optional[StrictStr], Field(description="Chassis serial number, used to get interfaces on a chassis.")] = None,
-        slot: Annotated[Optional[StrictInt], Field(description="Slot number, used to get interfaces on a slot.")] = None,
-        cache: Annotated[Optional[StrictBool], Field(description="Get interfaces information from cache.")] = None,
-        bond_interfaces: Annotated[Optional[StrictBool], Field(description="Get bond interfaces only.")] = None,
-        interface_group: Annotated[Optional[StrictBool], Field(description="Get interfaces assigned to a interface group only.")] = None,
-        uplink_switch: Annotated[Optional[StrictBool], Field(description="Include uplink switch information.")] = None,
-        bond_member: Annotated[Optional[StrictBool], Field(description="Include bond member information for bond interfaces.")] = None,
-        stats: Annotated[Optional[StrictBool], Field(description="Include interface stats.")] = None,
+        node_id: Annotated[Optional[StrictStr], Field(description="Specifies the node id of the node for which fru info is requested. This parameter is incompatible with 'nodeIp'.")] = None,
+        node_ip: Annotated[Optional[StrictStr], Field(description="Specifies the IP Address of the node for which fru info is requested. This parameter is incompatible with 'nodeId'.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8180,29 +10751,15 @@ class PlatformApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[NetworkInterfaceParams]:
-        """Get interfaces
+    ) -> ApiResponse[IpmiFruInfo]:
+        """To get IPMI FRU info
 
-        Get interfaces on a cluster or free node.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about FRU for given IPMI
 
-        :param node_id: Node id, used to get interfaces on a particular node.
-        :type node_id: int
-        :param chassis_serial: Chassis serial number, used to get interfaces on a chassis.
-        :type chassis_serial: str
-        :param slot: Slot number, used to get interfaces on a slot.
-        :type slot: int
-        :param cache: Get interfaces information from cache.
-        :type cache: bool
-        :param bond_interfaces: Get bond interfaces only.
-        :type bond_interfaces: bool
-        :param interface_group: Get interfaces assigned to a interface group only.
-        :type interface_group: bool
-        :param uplink_switch: Include uplink switch information.
-        :type uplink_switch: bool
-        :param bond_member: Include bond member information for bond interfaces.
-        :type bond_member: bool
-        :param stats: Include interface stats.
-        :type stats: bool
+        :param node_id: Specifies the node id of the node for which fru info is requested. This parameter is incompatible with 'nodeIp'.
+        :type node_id: str
+        :param node_ip: Specifies the IP Address of the node for which fru info is requested. This parameter is incompatible with 'nodeId'.
+        :type node_ip: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8225,16 +10782,9 @@ class PlatformApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_interfaces_serialize(
+        _param = self._get_ipmi_fru_info_serialize(
             node_id=node_id,
-            chassis_serial=chassis_serial,
-            slot=slot,
-            cache=cache,
-            bond_interfaces=bond_interfaces,
-            interface_group=interface_group,
-            uplink_switch=uplink_switch,
-            bond_member=bond_member,
-            stats=stats,
+            node_ip=node_ip,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8242,7 +10792,7 @@ class PlatformApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "NetworkInterfaceParams",
+            '200': "IpmiFruInfo",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -8256,17 +10806,10 @@ class PlatformApi:
 
 
     @validate_call
-    def get_interfaces_without_preload_content(
+    def get_ipmi_fru_info_without_preload_content(
         self,
-        node_id: Annotated[Optional[StrictInt], Field(description="Node id, used to get interfaces on a particular node.")] = None,
-        chassis_serial: Annotated[Optional[StrictStr], Field(description="Chassis serial number, used to get interfaces on a chassis.")] = None,
-        slot: Annotated[Optional[StrictInt], Field(description="Slot number, used to get interfaces on a slot.")] = None,
-        cache: Annotated[Optional[StrictBool], Field(description="Get interfaces information from cache.")] = None,
-        bond_interfaces: Annotated[Optional[StrictBool], Field(description="Get bond interfaces only.")] = None,
-        interface_group: Annotated[Optional[StrictBool], Field(description="Get interfaces assigned to a interface group only.")] = None,
-        uplink_switch: Annotated[Optional[StrictBool], Field(description="Include uplink switch information.")] = None,
-        bond_member: Annotated[Optional[StrictBool], Field(description="Include bond member information for bond interfaces.")] = None,
-        stats: Annotated[Optional[StrictBool], Field(description="Include interface stats.")] = None,
+        node_id: Annotated[Optional[StrictStr], Field(description="Specifies the node id of the node for which fru info is requested. This parameter is incompatible with 'nodeIp'.")] = None,
+        node_ip: Annotated[Optional[StrictStr], Field(description="Specifies the IP Address of the node for which fru info is requested. This parameter is incompatible with 'nodeId'.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8280,28 +10823,14 @@ class PlatformApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get interfaces
+        """To get IPMI FRU info
 
-        Get interfaces on a cluster or free node.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about FRU for given IPMI
 
-        :param node_id: Node id, used to get interfaces on a particular node.
-        :type node_id: int
-        :param chassis_serial: Chassis serial number, used to get interfaces on a chassis.
-        :type chassis_serial: str
-        :param slot: Slot number, used to get interfaces on a slot.
-        :type slot: int
-        :param cache: Get interfaces information from cache.
-        :type cache: bool
-        :param bond_interfaces: Get bond interfaces only.
-        :type bond_interfaces: bool
-        :param interface_group: Get interfaces assigned to a interface group only.
-        :type interface_group: bool
-        :param uplink_switch: Include uplink switch information.
-        :type uplink_switch: bool
-        :param bond_member: Include bond member information for bond interfaces.
-        :type bond_member: bool
-        :param stats: Include interface stats.
-        :type stats: bool
+        :param node_id: Specifies the node id of the node for which fru info is requested. This parameter is incompatible with 'nodeIp'.
+        :type node_id: str
+        :param node_ip: Specifies the IP Address of the node for which fru info is requested. This parameter is incompatible with 'nodeId'.
+        :type node_ip: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8324,16 +10853,9 @@ class PlatformApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_interfaces_serialize(
+        _param = self._get_ipmi_fru_info_serialize(
             node_id=node_id,
-            chassis_serial=chassis_serial,
-            slot=slot,
-            cache=cache,
-            bond_interfaces=bond_interfaces,
-            interface_group=interface_group,
-            uplink_switch=uplink_switch,
-            bond_member=bond_member,
-            stats=stats,
+            node_ip=node_ip,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8341,7 +10863,7 @@ class PlatformApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "NetworkInterfaceParams",
+            '200': "IpmiFruInfo",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -8350,17 +10872,10 @@ class PlatformApi:
         return response_data.response
 
 
-    def _get_interfaces_serialize(
+    def _get_ipmi_fru_info_serialize(
         self,
         node_id,
-        chassis_serial,
-        slot,
-        cache,
-        bond_interfaces,
-        interface_group,
-        uplink_switch,
-        bond_member,
-        stats,
+        node_ip,
         _request_auth,
         _content_type,
         _headers,
@@ -8387,37 +10902,9 @@ class PlatformApi:
             
             _query_params.append(('nodeId', node_id))
             
-        if chassis_serial is not None:
+        if node_ip is not None:
             
-            _query_params.append(('chassisSerial', chassis_serial))
-            
-        if slot is not None:
-            
-            _query_params.append(('slot', slot))
-            
-        if cache is not None:
-            
-            _query_params.append(('cache', cache))
-            
-        if bond_interfaces is not None:
-            
-            _query_params.append(('bondInterfaces', bond_interfaces))
-            
-        if interface_group is not None:
-            
-            _query_params.append(('interfaceGroup', interface_group))
-            
-        if uplink_switch is not None:
-            
-            _query_params.append(('uplinkSwitch', uplink_switch))
-            
-        if bond_member is not None:
-            
-            _query_params.append(('bondMember', bond_member))
-            
-        if stats is not None:
-            
-            _query_params.append(('stats', stats))
+            _query_params.append(('nodeIp', node_ip))
             
         # process the header parameters
         # process the form parameters
@@ -8442,7 +10929,1434 @@ class PlatformApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/network/interfaces',
+            resource_path='/ipmi/get-fru-info',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_ipmi_lan_info(
+        self,
+        node_id: Annotated[Optional[StrictStr], Field(description="Specifies the node id of the node for which lan info is requested. This parameter is incompatible with 'nodeIp'.")] = None,
+        node_ip: Annotated[Optional[StrictStr], Field(description="Specifies the IP Address of the node for which lan info is requested. This parameter is incompatible with 'nodeId'.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> IpmiLanInfo:
+        """To get IPMI LAN info
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about LAN for given IPMI
+
+        :param node_id: Specifies the node id of the node for which lan info is requested. This parameter is incompatible with 'nodeIp'.
+        :type node_id: str
+        :param node_ip: Specifies the IP Address of the node for which lan info is requested. This parameter is incompatible with 'nodeId'.
+        :type node_ip: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ipmi_lan_info_serialize(
+            node_id=node_id,
+            node_ip=node_ip,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiLanInfo",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_ipmi_lan_info_with_http_info(
+        self,
+        node_id: Annotated[Optional[StrictStr], Field(description="Specifies the node id of the node for which lan info is requested. This parameter is incompatible with 'nodeIp'.")] = None,
+        node_ip: Annotated[Optional[StrictStr], Field(description="Specifies the IP Address of the node for which lan info is requested. This parameter is incompatible with 'nodeId'.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[IpmiLanInfo]:
+        """To get IPMI LAN info
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about LAN for given IPMI
+
+        :param node_id: Specifies the node id of the node for which lan info is requested. This parameter is incompatible with 'nodeIp'.
+        :type node_id: str
+        :param node_ip: Specifies the IP Address of the node for which lan info is requested. This parameter is incompatible with 'nodeId'.
+        :type node_ip: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ipmi_lan_info_serialize(
+            node_id=node_id,
+            node_ip=node_ip,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiLanInfo",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_ipmi_lan_info_without_preload_content(
+        self,
+        node_id: Annotated[Optional[StrictStr], Field(description="Specifies the node id of the node for which lan info is requested. This parameter is incompatible with 'nodeIp'.")] = None,
+        node_ip: Annotated[Optional[StrictStr], Field(description="Specifies the IP Address of the node for which lan info is requested. This parameter is incompatible with 'nodeId'.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """To get IPMI LAN info
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about LAN for given IPMI
+
+        :param node_id: Specifies the node id of the node for which lan info is requested. This parameter is incompatible with 'nodeIp'.
+        :type node_id: str
+        :param node_ip: Specifies the IP Address of the node for which lan info is requested. This parameter is incompatible with 'nodeId'.
+        :type node_ip: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ipmi_lan_info_serialize(
+            node_id=node_id,
+            node_ip=node_ip,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiLanInfo",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_ipmi_lan_info_serialize(
+        self,
+        node_id,
+        node_ip,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if node_id is not None:
+            
+            _query_params.append(('nodeId', node_id))
+            
+        if node_ip is not None:
+            
+            _query_params.append(('nodeIp', node_ip))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/ipmi/get-lan-info',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_ipmi_sdr_info(
+        self,
+        node_id: Annotated[Optional[StrictStr], Field(description="Specifies the node id of the node for which sdr is requested. This parameter is incompatible with 'nodeIp'.")] = None,
+        node_ip: Annotated[Optional[StrictStr], Field(description="Specifies the IP Address of the node for which sdr is requested. This parameter is incompatible with 'nodeId'.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> IpmiSdrInfo:
+        """To get IPMI SDR Info
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about SDR info for given IPMI
+
+        :param node_id: Specifies the node id of the node for which sdr is requested. This parameter is incompatible with 'nodeIp'.
+        :type node_id: str
+        :param node_ip: Specifies the IP Address of the node for which sdr is requested. This parameter is incompatible with 'nodeId'.
+        :type node_ip: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ipmi_sdr_info_serialize(
+            node_id=node_id,
+            node_ip=node_ip,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiSdrInfo",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_ipmi_sdr_info_with_http_info(
+        self,
+        node_id: Annotated[Optional[StrictStr], Field(description="Specifies the node id of the node for which sdr is requested. This parameter is incompatible with 'nodeIp'.")] = None,
+        node_ip: Annotated[Optional[StrictStr], Field(description="Specifies the IP Address of the node for which sdr is requested. This parameter is incompatible with 'nodeId'.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[IpmiSdrInfo]:
+        """To get IPMI SDR Info
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about SDR info for given IPMI
+
+        :param node_id: Specifies the node id of the node for which sdr is requested. This parameter is incompatible with 'nodeIp'.
+        :type node_id: str
+        :param node_ip: Specifies the IP Address of the node for which sdr is requested. This parameter is incompatible with 'nodeId'.
+        :type node_ip: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ipmi_sdr_info_serialize(
+            node_id=node_id,
+            node_ip=node_ip,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiSdrInfo",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_ipmi_sdr_info_without_preload_content(
+        self,
+        node_id: Annotated[Optional[StrictStr], Field(description="Specifies the node id of the node for which sdr is requested. This parameter is incompatible with 'nodeIp'.")] = None,
+        node_ip: Annotated[Optional[StrictStr], Field(description="Specifies the IP Address of the node for which sdr is requested. This parameter is incompatible with 'nodeId'.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """To get IPMI SDR Info
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about SDR info for given IPMI
+
+        :param node_id: Specifies the node id of the node for which sdr is requested. This parameter is incompatible with 'nodeIp'.
+        :type node_id: str
+        :param node_ip: Specifies the IP Address of the node for which sdr is requested. This parameter is incompatible with 'nodeId'.
+        :type node_ip: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ipmi_sdr_info_serialize(
+            node_id=node_id,
+            node_ip=node_ip,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiSdrInfo",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_ipmi_sdr_info_serialize(
+        self,
+        node_id,
+        node_ip,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if node_id is not None:
+            
+            _query_params.append(('nodeId', node_id))
+            
+        if node_ip is not None:
+            
+            _query_params.append(('nodeIp', node_ip))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/ipmi/get-sdr-info',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_ipmi_sel(
+        self,
+        node_id: Annotated[Optional[StrictStr], Field(description="Specifies the node id of the node for which sel is requested. This parameter is incompatible with 'nodeIp'.")] = None,
+        node_ip: Annotated[Optional[StrictStr], Field(description="Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with 'nodeId'.")] = None,
+        verbose: Annotated[Optional[StrictBool], Field(description="Specifies the Verbosity of log produced by sel request.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> IpmiSel:
+        """To get IPMI SEL
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about SEL for given IPMI
+
+        :param node_id: Specifies the node id of the node for which sel is requested. This parameter is incompatible with 'nodeIp'.
+        :type node_id: str
+        :param node_ip: Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with 'nodeId'.
+        :type node_ip: str
+        :param verbose: Specifies the Verbosity of log produced by sel request.
+        :type verbose: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ipmi_sel_serialize(
+            node_id=node_id,
+            node_ip=node_ip,
+            verbose=verbose,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiSel",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_ipmi_sel_with_http_info(
+        self,
+        node_id: Annotated[Optional[StrictStr], Field(description="Specifies the node id of the node for which sel is requested. This parameter is incompatible with 'nodeIp'.")] = None,
+        node_ip: Annotated[Optional[StrictStr], Field(description="Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with 'nodeId'.")] = None,
+        verbose: Annotated[Optional[StrictBool], Field(description="Specifies the Verbosity of log produced by sel request.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[IpmiSel]:
+        """To get IPMI SEL
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about SEL for given IPMI
+
+        :param node_id: Specifies the node id of the node for which sel is requested. This parameter is incompatible with 'nodeIp'.
+        :type node_id: str
+        :param node_ip: Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with 'nodeId'.
+        :type node_ip: str
+        :param verbose: Specifies the Verbosity of log produced by sel request.
+        :type verbose: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ipmi_sel_serialize(
+            node_id=node_id,
+            node_ip=node_ip,
+            verbose=verbose,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiSel",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_ipmi_sel_without_preload_content(
+        self,
+        node_id: Annotated[Optional[StrictStr], Field(description="Specifies the node id of the node for which sel is requested. This parameter is incompatible with 'nodeIp'.")] = None,
+        node_ip: Annotated[Optional[StrictStr], Field(description="Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with 'nodeId'.")] = None,
+        verbose: Annotated[Optional[StrictBool], Field(description="Specifies the Verbosity of log produced by sel request.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """To get IPMI SEL
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about SEL for given IPMI
+
+        :param node_id: Specifies the node id of the node for which sel is requested. This parameter is incompatible with 'nodeIp'.
+        :type node_id: str
+        :param node_ip: Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with 'nodeId'.
+        :type node_ip: str
+        :param verbose: Specifies the Verbosity of log produced by sel request.
+        :type verbose: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ipmi_sel_serialize(
+            node_id=node_id,
+            node_ip=node_ip,
+            verbose=verbose,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiSel",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_ipmi_sel_serialize(
+        self,
+        node_id,
+        node_ip,
+        verbose,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if node_id is not None:
+            
+            _query_params.append(('nodeId', node_id))
+            
+        if node_ip is not None:
+            
+            _query_params.append(('nodeIp', node_ip))
+            
+        if verbose is not None:
+            
+            _query_params.append(('verbose', verbose))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/ipmi/get-sel',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_ipmi_sel_info(
+        self,
+        node_id: Annotated[Optional[StrictStr], Field(description="Specifies the node id of the node for which sel is requested. This parameter is incompatible with 'nodeIp'.")] = None,
+        node_ip: Annotated[Optional[StrictStr], Field(description="Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with 'nodeId'.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> IpmiSelInfo:
+        """To get IPMI SEL Info
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about SEL info for given IPMI
+
+        :param node_id: Specifies the node id of the node for which sel is requested. This parameter is incompatible with 'nodeIp'.
+        :type node_id: str
+        :param node_ip: Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with 'nodeId'.
+        :type node_ip: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ipmi_sel_info_serialize(
+            node_id=node_id,
+            node_ip=node_ip,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiSelInfo",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_ipmi_sel_info_with_http_info(
+        self,
+        node_id: Annotated[Optional[StrictStr], Field(description="Specifies the node id of the node for which sel is requested. This parameter is incompatible with 'nodeIp'.")] = None,
+        node_ip: Annotated[Optional[StrictStr], Field(description="Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with 'nodeId'.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[IpmiSelInfo]:
+        """To get IPMI SEL Info
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about SEL info for given IPMI
+
+        :param node_id: Specifies the node id of the node for which sel is requested. This parameter is incompatible with 'nodeIp'.
+        :type node_id: str
+        :param node_ip: Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with 'nodeId'.
+        :type node_ip: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ipmi_sel_info_serialize(
+            node_id=node_id,
+            node_ip=node_ip,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiSelInfo",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_ipmi_sel_info_without_preload_content(
+        self,
+        node_id: Annotated[Optional[StrictStr], Field(description="Specifies the node id of the node for which sel is requested. This parameter is incompatible with 'nodeIp'.")] = None,
+        node_ip: Annotated[Optional[StrictStr], Field(description="Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with 'nodeId'.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """To get IPMI SEL Info
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the information about SEL info for given IPMI
+
+        :param node_id: Specifies the node id of the node for which sel is requested. This parameter is incompatible with 'nodeIp'.
+        :type node_id: str
+        :param node_ip: Specifies the IP Address of the node for which sel is requested. This parameter is incompatible with 'nodeId'.
+        :type node_ip: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ipmi_sel_info_serialize(
+            node_id=node_id,
+            node_ip=node_ip,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiSelInfo",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_ipmi_sel_info_serialize(
+        self,
+        node_id,
+        node_ip,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if node_id is not None:
+            
+            _query_params.append(('nodeId', node_id))
+            
+        if node_ip is not None:
+            
+            _query_params.append(('nodeIp', node_ip))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/ipmi/get-sel-info',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_ipmi_users(
+        self,
+        node_id: Annotated[Optional[StrictStr], Field(description="Specifies the node id of the node for which ipmi users info is requested. This parameter is incompatible with 'nodeIp'.")] = None,
+        node_ip: Annotated[Optional[StrictStr], Field(description="Specifies the IP address of the node for which ipmi users info is requested. This parameter is incompatible with 'nodeId'.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> IpmiUsers:
+        """To get IPMI User Info for node
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the ipmi user information for given node.
+
+        :param node_id: Specifies the node id of the node for which ipmi users info is requested. This parameter is incompatible with 'nodeIp'.
+        :type node_id: str
+        :param node_ip: Specifies the IP address of the node for which ipmi users info is requested. This parameter is incompatible with 'nodeId'.
+        :type node_ip: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ipmi_users_serialize(
+            node_id=node_id,
+            node_ip=node_ip,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiUsers",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_ipmi_users_with_http_info(
+        self,
+        node_id: Annotated[Optional[StrictStr], Field(description="Specifies the node id of the node for which ipmi users info is requested. This parameter is incompatible with 'nodeIp'.")] = None,
+        node_ip: Annotated[Optional[StrictStr], Field(description="Specifies the IP address of the node for which ipmi users info is requested. This parameter is incompatible with 'nodeId'.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[IpmiUsers]:
+        """To get IPMI User Info for node
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the ipmi user information for given node.
+
+        :param node_id: Specifies the node id of the node for which ipmi users info is requested. This parameter is incompatible with 'nodeIp'.
+        :type node_id: str
+        :param node_ip: Specifies the IP address of the node for which ipmi users info is requested. This parameter is incompatible with 'nodeId'.
+        :type node_ip: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ipmi_users_serialize(
+            node_id=node_id,
+            node_ip=node_ip,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiUsers",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_ipmi_users_without_preload_content(
+        self,
+        node_id: Annotated[Optional[StrictStr], Field(description="Specifies the node id of the node for which ipmi users info is requested. This parameter is incompatible with 'nodeIp'.")] = None,
+        node_ip: Annotated[Optional[StrictStr], Field(description="Specifies the IP address of the node for which ipmi users info is requested. This parameter is incompatible with 'nodeId'.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """To get IPMI User Info for node
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetches the ipmi user information for given node.
+
+        :param node_id: Specifies the node id of the node for which ipmi users info is requested. This parameter is incompatible with 'nodeIp'.
+        :type node_id: str
+        :param node_ip: Specifies the IP address of the node for which ipmi users info is requested. This parameter is incompatible with 'nodeId'.
+        :type node_ip: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ipmi_users_serialize(
+            node_id=node_id,
+            node_ip=node_ip,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiUsers",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_ipmi_users_serialize(
+        self,
+        node_id,
+        node_ip,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if node_id is not None:
+            
+            _query_params.append(('nodeId', node_id))
+            
+        if node_ip is not None:
+            
+            _query_params.append(('nodeIp', node_ip))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/ipmi/users',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -8476,7 +12390,7 @@ class PlatformApi:
     ) -> DMaaSInfo:
         """Get whether the cluster is a DMaaS cluster.
 
-        Get whether the cluster is a DMaaS cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get whether the cluster is a DMaaS cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8539,7 +12453,7 @@ class PlatformApi:
     ) -> ApiResponse[DMaaSInfo]:
         """Get whether the cluster is a DMaaS cluster.
 
-        Get whether the cluster is a DMaaS cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get whether the cluster is a DMaaS cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8602,7 +12516,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Get whether the cluster is a DMaaS cluster.
 
-        Get whether the cluster is a DMaaS cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get whether the cluster is a DMaaS cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8707,7 +12621,7 @@ class PlatformApi:
 
 
     @validate_call
-    def get_network_interfaces(
+    def get_kubernetes_infra_health_status(
         self,
         _request_timeout: Union[
             None,
@@ -8721,10 +12635,10 @@ class PlatformApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ClusterInterfaces:
-        """Get list of interfaces
+    ) -> GetKubernetesStatusResponse:
+        """Get Kubernetes Infra Health Status
 
-        Get a list of interfaces present on the node or cluster.
+        **Privileges:** ```APPS_MANAGEMENT``` <br><br>Fetches the Kubernetes Infra Health status
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8748,7 +12662,7 @@ class PlatformApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_network_interfaces_serialize(
+        _param = self._get_kubernetes_infra_health_status_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8756,7 +12670,7 @@ class PlatformApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ClusterInterfaces",
+            '200': "GetKubernetesStatusResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -8770,7 +12684,7 @@ class PlatformApi:
 
 
     @validate_call
-    def get_network_interfaces_with_http_info(
+    def get_kubernetes_infra_health_status_with_http_info(
         self,
         _request_timeout: Union[
             None,
@@ -8784,10 +12698,10 @@ class PlatformApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ClusterInterfaces]:
-        """Get list of interfaces
+    ) -> ApiResponse[GetKubernetesStatusResponse]:
+        """Get Kubernetes Infra Health Status
 
-        Get a list of interfaces present on the node or cluster.
+        **Privileges:** ```APPS_MANAGEMENT``` <br><br>Fetches the Kubernetes Infra Health status
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8811,7 +12725,7 @@ class PlatformApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_network_interfaces_serialize(
+        _param = self._get_kubernetes_infra_health_status_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8819,7 +12733,7 @@ class PlatformApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ClusterInterfaces",
+            '200': "GetKubernetesStatusResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -8833,7 +12747,7 @@ class PlatformApi:
 
 
     @validate_call
-    def get_network_interfaces_without_preload_content(
+    def get_kubernetes_infra_health_status_without_preload_content(
         self,
         _request_timeout: Union[
             None,
@@ -8848,9 +12762,9 @@ class PlatformApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get list of interfaces
+        """Get Kubernetes Infra Health Status
 
-        Get a list of interfaces present on the node or cluster.
+        **Privileges:** ```APPS_MANAGEMENT``` <br><br>Fetches the Kubernetes Infra Health status
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8874,7 +12788,7 @@ class PlatformApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_network_interfaces_serialize(
+        _param = self._get_kubernetes_infra_health_status_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8882,7 +12796,7 @@ class PlatformApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ClusterInterfaces",
+            '200': "GetKubernetesStatusResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -8891,7 +12805,7 @@ class PlatformApi:
         return response_data.response
 
 
-    def _get_network_interfaces_serialize(
+    def _get_kubernetes_infra_health_status_serialize(
         self,
         _request_auth,
         _content_type,
@@ -8915,6 +12829,621 @@ class PlatformApi:
 
         # process the path parameters
         # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/kubernetes/status',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_login_banner(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> LoginBanner:
+        """Get login banner.
+
+        ```No Privileges Required``` <br><br>Return contents of login banner.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_login_banner_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "LoginBanner",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_login_banner_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[LoginBanner]:
+        """Get login banner.
+
+        ```No Privileges Required``` <br><br>Return contents of login banner.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_login_banner_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "LoginBanner",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_login_banner_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get login banner.
+
+        ```No Privileges Required``` <br><br>Return contents of login banner.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_login_banner_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "LoginBanner",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_login_banner_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/login-banners',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_network_interfaces(
+        self,
+        node_id: Annotated[Optional[StrictInt], Field(description="Node id, used to get interfaces on a particular node.")] = None,
+        cache: Annotated[Optional[StrictBool], Field(description="Get interfaces information from cache.")] = None,
+        bond_interface_only: Annotated[Optional[StrictBool], Field(description="Specifies if only show bond interface info.")] = None,
+        iface_group_assigned_only: Annotated[Optional[StrictBool], Field(description="Specifies if only show interface group assigned interface info.")] = None,
+        include_uplink_switch_info: Annotated[Optional[StrictBool], Field(description="Specifies if include uplink switch info.")] = None,
+        include_bond_slave_details: Annotated[Optional[StrictBool], Field(description="Specifies if include bond secondary detailed info.")] = None,
+        include_stats: Annotated[Optional[StrictBool], Field(description="Specifies if include stats.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ClusterInterfaces:
+        """Get list of interfaces
+
+        **Privileges:** ```CLUSTER_VIEW, CLUSTER_CREATE``` <br><br>Get a list of interfaces present on the node or cluster.
+
+        :param node_id: Node id, used to get interfaces on a particular node.
+        :type node_id: int
+        :param cache: Get interfaces information from cache.
+        :type cache: bool
+        :param bond_interface_only: Specifies if only show bond interface info.
+        :type bond_interface_only: bool
+        :param iface_group_assigned_only: Specifies if only show interface group assigned interface info.
+        :type iface_group_assigned_only: bool
+        :param include_uplink_switch_info: Specifies if include uplink switch info.
+        :type include_uplink_switch_info: bool
+        :param include_bond_slave_details: Specifies if include bond secondary detailed info.
+        :type include_bond_slave_details: bool
+        :param include_stats: Specifies if include stats.
+        :type include_stats: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_network_interfaces_serialize(
+            node_id=node_id,
+            cache=cache,
+            bond_interface_only=bond_interface_only,
+            iface_group_assigned_only=iface_group_assigned_only,
+            include_uplink_switch_info=include_uplink_switch_info,
+            include_bond_slave_details=include_bond_slave_details,
+            include_stats=include_stats,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterInterfaces",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_network_interfaces_with_http_info(
+        self,
+        node_id: Annotated[Optional[StrictInt], Field(description="Node id, used to get interfaces on a particular node.")] = None,
+        cache: Annotated[Optional[StrictBool], Field(description="Get interfaces information from cache.")] = None,
+        bond_interface_only: Annotated[Optional[StrictBool], Field(description="Specifies if only show bond interface info.")] = None,
+        iface_group_assigned_only: Annotated[Optional[StrictBool], Field(description="Specifies if only show interface group assigned interface info.")] = None,
+        include_uplink_switch_info: Annotated[Optional[StrictBool], Field(description="Specifies if include uplink switch info.")] = None,
+        include_bond_slave_details: Annotated[Optional[StrictBool], Field(description="Specifies if include bond secondary detailed info.")] = None,
+        include_stats: Annotated[Optional[StrictBool], Field(description="Specifies if include stats.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ClusterInterfaces]:
+        """Get list of interfaces
+
+        **Privileges:** ```CLUSTER_VIEW, CLUSTER_CREATE``` <br><br>Get a list of interfaces present on the node or cluster.
+
+        :param node_id: Node id, used to get interfaces on a particular node.
+        :type node_id: int
+        :param cache: Get interfaces information from cache.
+        :type cache: bool
+        :param bond_interface_only: Specifies if only show bond interface info.
+        :type bond_interface_only: bool
+        :param iface_group_assigned_only: Specifies if only show interface group assigned interface info.
+        :type iface_group_assigned_only: bool
+        :param include_uplink_switch_info: Specifies if include uplink switch info.
+        :type include_uplink_switch_info: bool
+        :param include_bond_slave_details: Specifies if include bond secondary detailed info.
+        :type include_bond_slave_details: bool
+        :param include_stats: Specifies if include stats.
+        :type include_stats: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_network_interfaces_serialize(
+            node_id=node_id,
+            cache=cache,
+            bond_interface_only=bond_interface_only,
+            iface_group_assigned_only=iface_group_assigned_only,
+            include_uplink_switch_info=include_uplink_switch_info,
+            include_bond_slave_details=include_bond_slave_details,
+            include_stats=include_stats,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterInterfaces",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_network_interfaces_without_preload_content(
+        self,
+        node_id: Annotated[Optional[StrictInt], Field(description="Node id, used to get interfaces on a particular node.")] = None,
+        cache: Annotated[Optional[StrictBool], Field(description="Get interfaces information from cache.")] = None,
+        bond_interface_only: Annotated[Optional[StrictBool], Field(description="Specifies if only show bond interface info.")] = None,
+        iface_group_assigned_only: Annotated[Optional[StrictBool], Field(description="Specifies if only show interface group assigned interface info.")] = None,
+        include_uplink_switch_info: Annotated[Optional[StrictBool], Field(description="Specifies if include uplink switch info.")] = None,
+        include_bond_slave_details: Annotated[Optional[StrictBool], Field(description="Specifies if include bond secondary detailed info.")] = None,
+        include_stats: Annotated[Optional[StrictBool], Field(description="Specifies if include stats.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get list of interfaces
+
+        **Privileges:** ```CLUSTER_VIEW, CLUSTER_CREATE``` <br><br>Get a list of interfaces present on the node or cluster.
+
+        :param node_id: Node id, used to get interfaces on a particular node.
+        :type node_id: int
+        :param cache: Get interfaces information from cache.
+        :type cache: bool
+        :param bond_interface_only: Specifies if only show bond interface info.
+        :type bond_interface_only: bool
+        :param iface_group_assigned_only: Specifies if only show interface group assigned interface info.
+        :type iface_group_assigned_only: bool
+        :param include_uplink_switch_info: Specifies if include uplink switch info.
+        :type include_uplink_switch_info: bool
+        :param include_bond_slave_details: Specifies if include bond secondary detailed info.
+        :type include_bond_slave_details: bool
+        :param include_stats: Specifies if include stats.
+        :type include_stats: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_network_interfaces_serialize(
+            node_id=node_id,
+            cache=cache,
+            bond_interface_only=bond_interface_only,
+            iface_group_assigned_only=iface_group_assigned_only,
+            include_uplink_switch_info=include_uplink_switch_info,
+            include_bond_slave_details=include_bond_slave_details,
+            include_stats=include_stats,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterInterfaces",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_network_interfaces_serialize(
+        self,
+        node_id,
+        cache,
+        bond_interface_only,
+        iface_group_assigned_only,
+        include_uplink_switch_info,
+        include_bond_slave_details,
+        include_stats,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if node_id is not None:
+            
+            _query_params.append(('nodeId', node_id))
+            
+        if cache is not None:
+            
+            _query_params.append(('cache', cache))
+            
+        if bond_interface_only is not None:
+            
+            _query_params.append(('bondInterfaceOnly', bond_interface_only))
+            
+        if iface_group_assigned_only is not None:
+            
+            _query_params.append(('ifaceGroupAssignedOnly', iface_group_assigned_only))
+            
+        if include_uplink_switch_info is not None:
+            
+            _query_params.append(('includeUplinkSwitchInfo', include_uplink_switch_info))
+            
+        if include_bond_slave_details is not None:
+            
+            _query_params.append(('includeBondSlaveDetails', include_bond_slave_details))
+            
+        if include_stats is not None:
+            
+            _query_params.append(('includeStats', include_stats))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -8978,7 +13507,7 @@ class PlatformApi:
     ) -> List[Node]:
         """List Nodes of the cluster.
 
-        Gets the list of Nodes in a cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Gets the list of Nodes in a cluster.
 
         :param ids: \"List of IDs to be returned. If empty, all nodes are returned.\"
         :type ids: List[int]
@@ -9065,7 +13594,7 @@ class PlatformApi:
     ) -> ApiResponse[List[Node]]:
         """List Nodes of the cluster.
 
-        Gets the list of Nodes in a cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Gets the list of Nodes in a cluster.
 
         :param ids: \"List of IDs to be returned. If empty, all nodes are returned.\"
         :type ids: List[int]
@@ -9152,7 +13681,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """List Nodes of the cluster.
 
-        Gets the list of Nodes in a cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Gets the list of Nodes in a cluster.
 
         :param ids: \"List of IDs to be returned. If empty, all nodes are returned.\"
         :type ids: List[int]
@@ -9307,6 +13836,502 @@ class PlatformApi:
 
 
     @validate_call
+    def get_ntp_servers(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> NtpServerList:
+        """Get list of NTP servers.
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get list of configured NTP servers.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ntp_servers_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "NtpServerList",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_ntp_servers_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[NtpServerList]:
+        """Get list of NTP servers.
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get list of configured NTP servers.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ntp_servers_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "NtpServerList",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_ntp_servers_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get list of NTP servers.
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get list of configured NTP servers.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ntp_servers_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "NtpServerList",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_ntp_servers_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/ntp-servers',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_proxy_servers(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ProxyServerList:
+        """Get list of proxy servers
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get proxy servers.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_proxy_servers_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ProxyServerList",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_proxy_servers_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ProxyServerList]:
+        """Get list of proxy servers
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get proxy servers.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_proxy_servers_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ProxyServerList",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_proxy_servers_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get list of proxy servers
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get proxy servers.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_proxy_servers_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ProxyServerList",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_proxy_servers_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/proxy-servers',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_rack_by_id(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of rack.")],
@@ -9325,7 +14350,7 @@ class PlatformApi:
     ) -> Rack:
         """Get a rack by rack id.
 
-        Get a rack info by id.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get a rack info by id.
 
         :param id: Specifies the id of rack. (required)
         :type id: int
@@ -9392,7 +14417,7 @@ class PlatformApi:
     ) -> ApiResponse[Rack]:
         """Get a rack by rack id.
 
-        Get a rack info by id.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get a rack info by id.
 
         :param id: Specifies the id of rack. (required)
         :type id: int
@@ -9459,7 +14484,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Get a rack by rack id.
 
-        Get a rack info by id.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get a rack info by id.
 
         :param id: Specifies the id of rack. (required)
         :type id: int
@@ -9587,7 +14612,7 @@ class PlatformApi:
     ) -> Racks:
         """Get list of racks
 
-        Get list of all racks that are part of cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get list of all racks that are part of cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9650,7 +14675,7 @@ class PlatformApi:
     ) -> ApiResponse[Racks]:
         """Get list of racks
 
-        Get list of all racks that are part of cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get list of all racks that are part of cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9713,7 +14738,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Get list of racks
 
-        Get list of all racks that are part of cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get list of all racks that are part of cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9840,7 +14865,7 @@ class PlatformApi:
     ) -> RemoteDisks:
         """Get remote disks
 
-        Get remote disks.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get remote disks.
 
         :param disk_ids: Specifies a list of disk ids, only disks having these ids will be returned.
         :type disk_ids: List[int]
@@ -9923,7 +14948,7 @@ class PlatformApi:
     ) -> ApiResponse[RemoteDisks]:
         """Get remote disks
 
-        Get remote disks.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get remote disks.
 
         :param disk_ids: Specifies a list of disk ids, only disks having these ids will be returned.
         :type disk_ids: List[int]
@@ -10006,7 +15031,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Get remote disks
 
-        Get remote disks.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get remote disks.
 
         :param disk_ids: Specifies a list of disk ids, only disks having these ids will be returned.
         :type disk_ids: List[int]
@@ -10154,6 +15179,289 @@ class PlatformApi:
 
 
     @validate_call
+    def get_service_gflags(
+        self,
+        gflags: Annotated[Optional[List[StrictStr]], Field(description="\"Specifies a list of gflag names. If specified, only gflags matching the gflag name list will be returned.\"")] = None,
+        service_name: Annotated[Optional[StrictStr], Field(description="Specifies the service name. If specified, only gflags matching the service name will be returned.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[ServiceGflags]:
+        """Gets cluster gflags for a service.
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Gets the cluster gflags for a service.
+
+        :param gflags: \"Specifies a list of gflag names. If specified, only gflags matching the gflag name list will be returned.\"
+        :type gflags: List[str]
+        :param service_name: Specifies the service name. If specified, only gflags matching the service name will be returned.
+        :type service_name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_service_gflags_serialize(
+            gflags=gflags,
+            service_name=service_name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[ServiceGflags]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_service_gflags_with_http_info(
+        self,
+        gflags: Annotated[Optional[List[StrictStr]], Field(description="\"Specifies a list of gflag names. If specified, only gflags matching the gflag name list will be returned.\"")] = None,
+        service_name: Annotated[Optional[StrictStr], Field(description="Specifies the service name. If specified, only gflags matching the service name will be returned.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[ServiceGflags]]:
+        """Gets cluster gflags for a service.
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Gets the cluster gflags for a service.
+
+        :param gflags: \"Specifies a list of gflag names. If specified, only gflags matching the gflag name list will be returned.\"
+        :type gflags: List[str]
+        :param service_name: Specifies the service name. If specified, only gflags matching the service name will be returned.
+        :type service_name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_service_gflags_serialize(
+            gflags=gflags,
+            service_name=service_name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[ServiceGflags]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_service_gflags_without_preload_content(
+        self,
+        gflags: Annotated[Optional[List[StrictStr]], Field(description="\"Specifies a list of gflag names. If specified, only gflags matching the gflag name list will be returned.\"")] = None,
+        service_name: Annotated[Optional[StrictStr], Field(description="Specifies the service name. If specified, only gflags matching the service name will be returned.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Gets cluster gflags for a service.
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Gets the cluster gflags for a service.
+
+        :param gflags: \"Specifies a list of gflag names. If specified, only gflags matching the gflag name list will be returned.\"
+        :type gflags: List[str]
+        :param service_name: Specifies the service name. If specified, only gflags matching the service name will be returned.
+        :type service_name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_service_gflags_serialize(
+            gflags=gflags,
+            service_name=service_name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[ServiceGflags]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_service_gflags_serialize(
+        self,
+        gflags,
+        service_name,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+            'gflags': 'csv',
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if gflags is not None:
+            
+            _query_params.append(('gflags', gflags))
+            
+        if service_name is not None:
+            
+            _query_params.append(('serviceName', service_name))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/clusters/gflag',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_smtp_configuration(
         self,
         _request_timeout: Union[
@@ -10171,7 +15479,7 @@ class PlatformApi:
     ) -> SMTPConfiguration:
         """Get SMTP configuration.
 
-        Get the SMTP cluster configuration.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get the SMTP cluster configuration.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10234,7 +15542,7 @@ class PlatformApi:
     ) -> ApiResponse[SMTPConfiguration]:
         """Get SMTP configuration.
 
-        Get the SMTP cluster configuration.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get the SMTP cluster configuration.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10297,7 +15605,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Get SMTP configuration.
 
-        Get the SMTP cluster configuration.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get the SMTP cluster configuration.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10402,6 +15710,254 @@ class PlatformApi:
 
 
     @validate_call
+    def get_software_components(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> SoftwareComponents:
+        """Get Software Components
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get software components versions on the cluster.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_software_components_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "SoftwareComponents",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_software_components_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[SoftwareComponents]:
+        """Get Software Components
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get software components versions on the cluster.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_software_components_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "SoftwareComponents",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_software_components_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Software Components
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get software components versions on the cluster.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_software_components_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "SoftwareComponents",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_software_components_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/clusters/software-components',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_support_channel_config(
         self,
         _request_timeout: Union[
@@ -10416,10 +15972,10 @@ class PlatformApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> SupportChannelConfig:
+    ) -> SupportChannel:
         """Get support channel configuration.
 
-        Get support channel configuration.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get support channel configuration.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10451,7 +16007,7 @@ class PlatformApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SupportChannelConfig",
+            '200': "SupportChannel",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -10479,10 +16035,10 @@ class PlatformApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[SupportChannelConfig]:
+    ) -> ApiResponse[SupportChannel]:
         """Get support channel configuration.
 
-        Get support channel configuration.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get support channel configuration.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10514,7 +16070,7 @@ class PlatformApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SupportChannelConfig",
+            '200': "SupportChannel",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -10545,7 +16101,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Get support channel configuration.
 
-        Get support channel configuration.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get support channel configuration.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10577,7 +16133,7 @@ class PlatformApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SupportChannelConfig",
+            '200': "SupportChannel",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -10650,6 +16206,271 @@ class PlatformApi:
 
 
     @validate_call
+    def get_sw_update_history(
+        self,
+        include_node_history: Annotated[StrictBool, Field(description="Flag to specify whether to fetch data from current node or all the nodes. ")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[ClusterSWUpdateHistoryEvent]:
+        """Get cluster software history
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get upgrade and patch history of the cluster.
+
+        :param include_node_history: Flag to specify whether to fetch data from current node or all the nodes.  (required)
+        :type include_node_history: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_sw_update_history_serialize(
+            include_node_history=include_node_history,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[ClusterSWUpdateHistoryEvent]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_sw_update_history_with_http_info(
+        self,
+        include_node_history: Annotated[StrictBool, Field(description="Flag to specify whether to fetch data from current node or all the nodes. ")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[ClusterSWUpdateHistoryEvent]]:
+        """Get cluster software history
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get upgrade and patch history of the cluster.
+
+        :param include_node_history: Flag to specify whether to fetch data from current node or all the nodes.  (required)
+        :type include_node_history: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_sw_update_history_serialize(
+            include_node_history=include_node_history,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[ClusterSWUpdateHistoryEvent]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_sw_update_history_without_preload_content(
+        self,
+        include_node_history: Annotated[StrictBool, Field(description="Flag to specify whether to fetch data from current node or all the nodes. ")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get cluster software history
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get upgrade and patch history of the cluster.
+
+        :param include_node_history: Flag to specify whether to fetch data from current node or all the nodes.  (required)
+        :type include_node_history: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_sw_update_history_serialize(
+            include_node_history=include_node_history,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[ClusterSWUpdateHistoryEvent]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_sw_update_history_serialize(
+        self,
+        include_node_history,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if include_node_history is not None:
+            
+            _query_params.append(('includeNodeHistory', include_node_history))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/clusters/softwares',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def identify_node(
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of node to identify.")],
@@ -10669,7 +16490,7 @@ class PlatformApi:
     ) -> NodeIdentifyParams:
         """Identify node
 
-        Turn on/off LED light of a node to identify.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Turn on/off LED light of a node to identify.
 
         :param id: Specifies id of node to identify. (required)
         :type id: int
@@ -10740,7 +16561,7 @@ class PlatformApi:
     ) -> ApiResponse[NodeIdentifyParams]:
         """Identify node
 
-        Turn on/off LED light of a node to identify.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Turn on/off LED light of a node to identify.
 
         :param id: Specifies id of node to identify. (required)
         :type id: int
@@ -10811,7 +16632,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Identify node
 
-        Turn on/off LED light of a node to identify.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Turn on/off LED light of a node to identify.
 
         :param id: Specifies id of node to identify. (required)
         :type id: int
@@ -10960,7 +16781,7 @@ class PlatformApi:
     ) -> None:
         """Import Crl File
 
-        Import a Crl file into the cluster.
+        **Privileges:** ```CLUSTER_MAINTENANCE``` <br><br>Import a Crl file into the cluster.
 
         :param file_name: (required)
         :type file_name: str
@@ -11031,7 +16852,7 @@ class PlatformApi:
     ) -> ApiResponse[None]:
         """Import Crl File
 
-        Import a Crl file into the cluster.
+        **Privileges:** ```CLUSTER_MAINTENANCE``` <br><br>Import a Crl file into the cluster.
 
         :param file_name: (required)
         :type file_name: str
@@ -11102,7 +16923,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Import Crl File
 
-        Import a Crl file into the cluster.
+        **Privileges:** ```CLUSTER_MAINTENANCE``` <br><br>Import a Crl file into the cluster.
 
         :param file_name: (required)
         :type file_name: str
@@ -11250,7 +17071,7 @@ class PlatformApi:
     ) -> DisksList:
         """Get list of disks
 
-        Get list of local disks.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get list of local disks.
 
         :param node_id: Specifies node id of the node to get list of disks
         :type node_id: int
@@ -11317,7 +17138,7 @@ class PlatformApi:
     ) -> ApiResponse[DisksList]:
         """Get list of disks
 
-        Get list of local disks.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get list of local disks.
 
         :param node_id: Specifies node id of the node to get list of disks
         :type node_id: int
@@ -11384,7 +17205,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Get list of disks
 
-        Get list of local disks.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get list of local disks.
 
         :param node_id: Specifies node id of the node to get list of disks
         :type node_id: int
@@ -11497,256 +17318,9 @@ class PlatformApi:
 
 
     @validate_call
-    def list_feature_flag(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[FeatureFlag]:
-        """Get feature flag overrides list.
-
-        Get the list of feature flag overrides defined on cluster.
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._list_feature_flag_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[FeatureFlag]",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def list_feature_flag_with_http_info(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[FeatureFlag]]:
-        """Get feature flag overrides list.
-
-        Get the list of feature flag overrides defined on cluster.
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._list_feature_flag_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[FeatureFlag]",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def list_feature_flag_without_preload_content(
-        self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Get feature flag overrides list.
-
-        Get the list of feature flag overrides defined on cluster.
-
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._list_feature_flag_serialize(
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[FeatureFlag]",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _list_feature_flag_serialize(
-        self,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'APIKeyHeader', 
-            'SessionIdHeader', 
-            'Bearer'
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/clusters/feature-flag',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
     def list_free_nodes(
         self,
+        ips: Annotated[Optional[List[StrictStr]], Field(description="\"Specifies a list of ips of nodes among which free and compatible nodes to be returned\"")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11762,8 +17336,10 @@ class PlatformApi:
     ) -> FreeNodes:
         """List the free Cohesity Nodes present on a network.
 
-        Sends a request to any Node to list all of the free Nodes that are present on the network.
+        **Privileges:** ```CLUSTER_VIEW, CLUSTER_CREATE``` <br><br>Sends a request to any Node to list all of the free Nodes that are present on the network.
 
+        :param ips: \"Specifies a list of ips of nodes among which free and compatible nodes to be returned\"
+        :type ips: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11787,6 +17363,7 @@ class PlatformApi:
         """ # noqa: E501
 
         _param = self._list_free_nodes_serialize(
+            ips=ips,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -11810,6 +17387,7 @@ class PlatformApi:
     @validate_call
     def list_free_nodes_with_http_info(
         self,
+        ips: Annotated[Optional[List[StrictStr]], Field(description="\"Specifies a list of ips of nodes among which free and compatible nodes to be returned\"")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11825,8 +17403,10 @@ class PlatformApi:
     ) -> ApiResponse[FreeNodes]:
         """List the free Cohesity Nodes present on a network.
 
-        Sends a request to any Node to list all of the free Nodes that are present on the network.
+        **Privileges:** ```CLUSTER_VIEW, CLUSTER_CREATE``` <br><br>Sends a request to any Node to list all of the free Nodes that are present on the network.
 
+        :param ips: \"Specifies a list of ips of nodes among which free and compatible nodes to be returned\"
+        :type ips: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11850,6 +17430,7 @@ class PlatformApi:
         """ # noqa: E501
 
         _param = self._list_free_nodes_serialize(
+            ips=ips,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -11873,6 +17454,7 @@ class PlatformApi:
     @validate_call
     def list_free_nodes_without_preload_content(
         self,
+        ips: Annotated[Optional[List[StrictStr]], Field(description="\"Specifies a list of ips of nodes among which free and compatible nodes to be returned\"")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11888,8 +17470,10 @@ class PlatformApi:
     ) -> RESTResponseType:
         """List the free Cohesity Nodes present on a network.
 
-        Sends a request to any Node to list all of the free Nodes that are present on the network.
+        **Privileges:** ```CLUSTER_VIEW, CLUSTER_CREATE``` <br><br>Sends a request to any Node to list all of the free Nodes that are present on the network.
 
+        :param ips: \"Specifies a list of ips of nodes among which free and compatible nodes to be returned\"
+        :type ips: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11913,6 +17497,7 @@ class PlatformApi:
         """ # noqa: E501
 
         _param = self._list_free_nodes_serialize(
+            ips=ips,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -11931,6 +17516,7 @@ class PlatformApi:
 
     def _list_free_nodes_serialize(
         self,
+        ips,
         _request_auth,
         _content_type,
         _headers,
@@ -11940,6 +17526,7 @@ class PlatformApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'ips': 'csv',
         }
 
         _path_params: Dict[str, str] = {}
@@ -11953,6 +17540,10 @@ class PlatformApi:
 
         # process the path parameters
         # process the query parameters
+        if ips is not None:
+            
+            _query_params.append(('ips', ips))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -12010,7 +17601,7 @@ class PlatformApi:
     ) -> HostMappings:
         """List Host Mappings
 
-        Lists the host mappings in /etc/hosts of the nodes in a cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Lists the host mappings in /etc/hosts of the nodes in a cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -12073,7 +17664,7 @@ class PlatformApi:
     ) -> ApiResponse[HostMappings]:
         """List Host Mappings
 
-        Lists the host mappings in /etc/hosts of the nodes in a cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Lists the host mappings in /etc/hosts of the nodes in a cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -12136,7 +17727,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """List Host Mappings
 
-        Lists the host mappings in /etc/hosts of the nodes in a cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Lists the host mappings in /etc/hosts of the nodes in a cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -12241,6 +17832,282 @@ class PlatformApi:
 
 
     @validate_call
+    def list_services_states(
+        self,
+        body: Annotated[Optional[ClusterServicesStatesParams], Field(description="Specifies the parameters to get cluster services states.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ClusterServicesStates:
+        """List services states
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>List the states of the services on the Cluster
+
+        :param body: Specifies the parameters to get cluster services states.
+        :type body: ClusterServicesStatesParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_services_states_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '202': "ClusterServicesStates",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def list_services_states_with_http_info(
+        self,
+        body: Annotated[Optional[ClusterServicesStatesParams], Field(description="Specifies the parameters to get cluster services states.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ClusterServicesStates]:
+        """List services states
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>List the states of the services on the Cluster
+
+        :param body: Specifies the parameters to get cluster services states.
+        :type body: ClusterServicesStatesParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_services_states_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '202': "ClusterServicesStates",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def list_services_states_without_preload_content(
+        self,
+        body: Annotated[Optional[ClusterServicesStatesParams], Field(description="Specifies the parameters to get cluster services states.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List services states
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>List the states of the services on the Cluster
+
+        :param body: Specifies the parameters to get cluster services states.
+        :type body: ClusterServicesStatesParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_services_states_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '202': "ClusterServicesStates",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_services_states_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/clusters/services/states',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def mark_baseos_upgrade(
         self,
         body: Annotated[MarkBaseosUpgradeInfo, Field(description="Param to whether set/clear BaseOS uprgade  operation.")],
@@ -12259,7 +18126,7 @@ class PlatformApi:
     ) -> MarkBaseosUpgradeInfo:
         """Sets/clears the BaseOS upgrade cluster operation.
 
-        Sets/clears the BaseOS upgrade cluster operation.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Sets/clears the BaseOS upgrade cluster operation.
 
         :param body: Param to whether set/clear BaseOS uprgade  operation. (required)
         :type body: MarkBaseosUpgradeInfo
@@ -12326,7 +18193,7 @@ class PlatformApi:
     ) -> ApiResponse[MarkBaseosUpgradeInfo]:
         """Sets/clears the BaseOS upgrade cluster operation.
 
-        Sets/clears the BaseOS upgrade cluster operation.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Sets/clears the BaseOS upgrade cluster operation.
 
         :param body: Param to whether set/clear BaseOS uprgade  operation. (required)
         :type body: MarkBaseosUpgradeInfo
@@ -12393,7 +18260,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Sets/clears the BaseOS upgrade cluster operation.
 
-        Sets/clears the BaseOS upgrade cluster operation.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Sets/clears the BaseOS upgrade cluster operation.
 
         :param body: Param to whether set/clear BaseOS uprgade  operation. (required)
         :type body: MarkBaseosUpgradeInfo
@@ -12536,7 +18403,7 @@ class PlatformApi:
     ) -> RemoveDisk:
         """Mark Disk for removal
 
-        Mark disk for removal or cancel removal if a disk is already marked for removal.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Mark disk for removal or cancel removal if a disk is already marked for removal.
 
         :param id: Specifies unique id of the disk to mark for removal. (required)
         :type id: int
@@ -12607,7 +18474,7 @@ class PlatformApi:
     ) -> ApiResponse[RemoveDisk]:
         """Mark Disk for removal
 
-        Mark disk for removal or cancel removal if a disk is already marked for removal.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Mark disk for removal or cancel removal if a disk is already marked for removal.
 
         :param id: Specifies unique id of the disk to mark for removal. (required)
         :type id: int
@@ -12678,7 +18545,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Mark Disk for removal
 
-        Mark disk for removal or cancel removal if a disk is already marked for removal.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Mark disk for removal or cancel removal if a disk is already marked for removal.
 
         :param id: Specifies unique id of the disk to mark for removal. (required)
         :type id: int
@@ -12827,7 +18694,7 @@ class PlatformApi:
     ) -> RemoveNode:
         """Mark Node for removal
 
-        Mark node for removal or Cancel if a node is already marked for removal.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Mark node for removal or Cancel if a node is already marked for removal.
 
         :param id: Specifies id of node to cancel removal. (required)
         :type id: int
@@ -12898,7 +18765,7 @@ class PlatformApi:
     ) -> ApiResponse[RemoveNode]:
         """Mark Node for removal
 
-        Mark node for removal or Cancel if a node is already marked for removal.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Mark node for removal or Cancel if a node is already marked for removal.
 
         :param id: Specifies id of node to cancel removal. (required)
         :type id: int
@@ -12969,7 +18836,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Mark Node for removal
 
-        Mark node for removal or Cancel if a node is already marked for removal.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Mark node for removal or Cancel if a node is already marked for removal.
 
         :param id: Specifies id of node to cancel removal. (required)
         :type id: int
@@ -13099,9 +18966,286 @@ class PlatformApi:
 
 
     @validate_call
+    def node_import_signed_cert(
+        self,
+        body: Annotated[NodeCertRequest, Field(description="The parameters to import the signed cert.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> NodeCertResult:
+        """Import a signed certificate used for n2n communication
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Import a signed certificate.
+
+        :param body: The parameters to import the signed cert. (required)
+        :type body: NodeCertRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._node_import_signed_cert_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "NodeCertResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def node_import_signed_cert_with_http_info(
+        self,
+        body: Annotated[NodeCertRequest, Field(description="The parameters to import the signed cert.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[NodeCertResult]:
+        """Import a signed certificate used for n2n communication
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Import a signed certificate.
+
+        :param body: The parameters to import the signed cert. (required)
+        :type body: NodeCertRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._node_import_signed_cert_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "NodeCertResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def node_import_signed_cert_without_preload_content(
+        self,
+        body: Annotated[NodeCertRequest, Field(description="The parameters to import the signed cert.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Import a signed certificate used for n2n communication
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Import a signed certificate.
+
+        :param body: The parameters to import the signed cert. (required)
+        :type body: NodeCertRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._node_import_signed_cert_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "NodeCertResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _node_import_signed_cert_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/node/import/signed-csr',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def node_information(
         self,
         show_services_version_info: Annotated[Optional[StrictBool], Field(description="Specifies whether to show version info of the services running on the node.")] = None,
+        only_check_node_reachability: Annotated[Optional[StrictBool], Field(description="Specifies to show only node reachability details")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13117,10 +19261,12 @@ class PlatformApi:
     ) -> NodeInfo:
         """Fetch Node General Information
 
-        Fetch general information about the node to which the request is sent to.
+        **Privileges:** ```CLUSTER_VIEW, NODE_VIEW``` <br><br>Fetch general information about the node to which the request is sent to.
 
         :param show_services_version_info: Specifies whether to show version info of the services running on the node.
         :type show_services_version_info: bool
+        :param only_check_node_reachability: Specifies to show only node reachability details
+        :type only_check_node_reachability: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13145,6 +19291,7 @@ class PlatformApi:
 
         _param = self._node_information_serialize(
             show_services_version_info=show_services_version_info,
+            only_check_node_reachability=only_check_node_reachability,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13169,6 +19316,7 @@ class PlatformApi:
     def node_information_with_http_info(
         self,
         show_services_version_info: Annotated[Optional[StrictBool], Field(description="Specifies whether to show version info of the services running on the node.")] = None,
+        only_check_node_reachability: Annotated[Optional[StrictBool], Field(description="Specifies to show only node reachability details")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13184,10 +19332,12 @@ class PlatformApi:
     ) -> ApiResponse[NodeInfo]:
         """Fetch Node General Information
 
-        Fetch general information about the node to which the request is sent to.
+        **Privileges:** ```CLUSTER_VIEW, NODE_VIEW``` <br><br>Fetch general information about the node to which the request is sent to.
 
         :param show_services_version_info: Specifies whether to show version info of the services running on the node.
         :type show_services_version_info: bool
+        :param only_check_node_reachability: Specifies to show only node reachability details
+        :type only_check_node_reachability: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13212,6 +19362,7 @@ class PlatformApi:
 
         _param = self._node_information_serialize(
             show_services_version_info=show_services_version_info,
+            only_check_node_reachability=only_check_node_reachability,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13236,6 +19387,7 @@ class PlatformApi:
     def node_information_without_preload_content(
         self,
         show_services_version_info: Annotated[Optional[StrictBool], Field(description="Specifies whether to show version info of the services running on the node.")] = None,
+        only_check_node_reachability: Annotated[Optional[StrictBool], Field(description="Specifies to show only node reachability details")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13251,10 +19403,12 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Fetch Node General Information
 
-        Fetch general information about the node to which the request is sent to.
+        **Privileges:** ```CLUSTER_VIEW, NODE_VIEW``` <br><br>Fetch general information about the node to which the request is sent to.
 
         :param show_services_version_info: Specifies whether to show version info of the services running on the node.
         :type show_services_version_info: bool
+        :param only_check_node_reachability: Specifies to show only node reachability details
+        :type only_check_node_reachability: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13279,6 +19433,7 @@ class PlatformApi:
 
         _param = self._node_information_serialize(
             show_services_version_info=show_services_version_info,
+            only_check_node_reachability=only_check_node_reachability,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13298,6 +19453,7 @@ class PlatformApi:
     def _node_information_serialize(
         self,
         show_services_version_info,
+        only_check_node_reachability,
         _request_auth,
         _content_type,
         _headers,
@@ -13323,6 +19479,10 @@ class PlatformApi:
         if show_services_version_info is not None:
             
             _query_params.append(('showServicesVersionInfo', show_services_version_info))
+            
+        if only_check_node_reachability is not None:
+            
+            _query_params.append(('onlyCheckNodeReachability', only_check_node_reachability))
             
         # process the header parameters
         # process the form parameters
@@ -13364,6 +19524,254 @@ class PlatformApi:
 
 
     @validate_call
+    def node_status(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> NodeStatusResult:
+        """Fetch Node status Information
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetch node status details.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._node_status_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "NodeStatusResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def node_status_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[NodeStatusResult]:
+        """Fetch Node status Information
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetch node status details.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._node_status_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "NodeStatusResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def node_status_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Fetch Node status Information
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Fetch node status details.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._node_status_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "NodeStatusResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _node_status_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/node/status',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def public_key_request(
         self,
         body: Annotated[PublicKeyRequest, Field(description="Specifies the parameters required to retrieve SSH public key")],
@@ -13382,7 +19790,7 @@ class PlatformApi:
     ) -> PublicKeyResponse:
         """Get the SSH public key.
 
-        Get the SSH public key corresponding to the private key used by workloads. For example, users may specify multiple scripts which are supposed to be executed on a remote machine at different progress states of a protection group run (for instance - running a script before the run starts and another after the run completes). The public key returned as part of this response should be added on the remote server where the script is to be executed as there is a specific private key used by the workload for remote login.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Get the SSH public key corresponding to the private key used by workloads. For example, users may specify multiple scripts which are supposed to be executed on a remote machine at different progress states of a protection group run (for instance - running a script before the run starts and another after the run completes). The public key returned as part of this response should be added on the remote server where the script is to be executed as there is a specific private key used by the workload for remote login.
 
         :param body: Specifies the parameters required to retrieve SSH public key (required)
         :type body: PublicKeyRequest
@@ -13449,7 +19857,7 @@ class PlatformApi:
     ) -> ApiResponse[PublicKeyResponse]:
         """Get the SSH public key.
 
-        Get the SSH public key corresponding to the private key used by workloads. For example, users may specify multiple scripts which are supposed to be executed on a remote machine at different progress states of a protection group run (for instance - running a script before the run starts and another after the run completes). The public key returned as part of this response should be added on the remote server where the script is to be executed as there is a specific private key used by the workload for remote login.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Get the SSH public key corresponding to the private key used by workloads. For example, users may specify multiple scripts which are supposed to be executed on a remote machine at different progress states of a protection group run (for instance - running a script before the run starts and another after the run completes). The public key returned as part of this response should be added on the remote server where the script is to be executed as there is a specific private key used by the workload for remote login.
 
         :param body: Specifies the parameters required to retrieve SSH public key (required)
         :type body: PublicKeyRequest
@@ -13516,7 +19924,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Get the SSH public key.
 
-        Get the SSH public key corresponding to the private key used by workloads. For example, users may specify multiple scripts which are supposed to be executed on a remote machine at different progress states of a protection group run (for instance - running a script before the run starts and another after the run completes). The public key returned as part of this response should be added on the remote server where the script is to be executed as there is a specific private key used by the workload for remote login.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Get the SSH public key corresponding to the private key used by workloads. For example, users may specify multiple scripts which are supposed to be executed on a remote machine at different progress states of a protection group run (for instance - running a script before the run starts and another after the run completes). The public key returned as part of this response should be added on the remote server where the script is to be executed as there is a specific private key used by the workload for remote login.
 
         :param body: Specifies the parameters required to retrieve SSH public key (required)
         :type body: PublicKeyRequest
@@ -13640,6 +20048,269 @@ class PlatformApi:
 
 
     @validate_call
+    def remove_proxy_server(
+        self,
+        name: Annotated[StrictStr, Field(description="Specifies name of the proxy server.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Remove specified proxy server.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Remove specified proxy server.
+
+        :param name: Specifies name of the proxy server. (required)
+        :type name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_proxy_server_serialize(
+            name=name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def remove_proxy_server_with_http_info(
+        self,
+        name: Annotated[StrictStr, Field(description="Specifies name of the proxy server.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Remove specified proxy server.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Remove specified proxy server.
+
+        :param name: Specifies name of the proxy server. (required)
+        :type name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_proxy_server_serialize(
+            name=name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def remove_proxy_server_without_preload_content(
+        self,
+        name: Annotated[StrictStr, Field(description="Specifies name of the proxy server.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Remove specified proxy server.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Remove specified proxy server.
+
+        :param name: Specifies name of the proxy server. (required)
+        :type name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_proxy_server_serialize(
+            name=name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _remove_proxy_server_serialize(
+        self,
+        name,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if name is not None:
+            _path_params['name'] = name
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/proxy-servers/{name}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def remove_remote_disk(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the remote disk to remove.")],
@@ -13658,7 +20329,7 @@ class PlatformApi:
     ) -> None:
         """Remove remote disk
 
-        Remove a remote disk.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Remove a remote disk.
 
         :param id: Specifies the id of the remote disk to remove. (required)
         :type id: int
@@ -13725,7 +20396,7 @@ class PlatformApi:
     ) -> ApiResponse[None]:
         """Remove remote disk
 
-        Remove a remote disk.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Remove a remote disk.
 
         :param id: Specifies the id of the remote disk to remove. (required)
         :type id: int
@@ -13792,7 +20463,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Remove remote disk
 
-        Remove a remote disk.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Remove a remote disk.
 
         :param id: Specifies the id of the remote disk to remove. (required)
         :type id: int
@@ -13903,6 +20574,530 @@ class PlatformApi:
 
 
     @validate_call
+    def reset_ipmi_bmc(
+        self,
+        body: Annotated[ResetIpmiBmcParams, Field(description="Specifies the parameters to reset ipmi bmc for given node.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> IpmiTextResponse:
+        """To reset IPMI BMC for given node
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Resets the ipmi bmc for given node.
+
+        :param body: Specifies the parameters to reset ipmi bmc for given node. (required)
+        :type body: ResetIpmiBmcParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._reset_ipmi_bmc_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiTextResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def reset_ipmi_bmc_with_http_info(
+        self,
+        body: Annotated[ResetIpmiBmcParams, Field(description="Specifies the parameters to reset ipmi bmc for given node.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[IpmiTextResponse]:
+        """To reset IPMI BMC for given node
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Resets the ipmi bmc for given node.
+
+        :param body: Specifies the parameters to reset ipmi bmc for given node. (required)
+        :type body: ResetIpmiBmcParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._reset_ipmi_bmc_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiTextResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def reset_ipmi_bmc_without_preload_content(
+        self,
+        body: Annotated[ResetIpmiBmcParams, Field(description="Specifies the parameters to reset ipmi bmc for given node.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """To reset IPMI BMC for given node
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Resets the ipmi bmc for given node.
+
+        :param body: Specifies the parameters to reset ipmi bmc for given node. (required)
+        :type body: ResetIpmiBmcParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._reset_ipmi_bmc_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiTextResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _reset_ipmi_bmc_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/ipmi/reset-bmc',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def restore_configuration(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[RestoreConfig]:
+        """Restore configuration.
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Config to be restored during one-helios cluster creation.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._restore_configuration_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[RestoreConfig]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def restore_configuration_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[RestoreConfig]]:
+        """Restore configuration.
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Config to be restored during one-helios cluster creation.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._restore_configuration_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[RestoreConfig]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def restore_configuration_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Restore configuration.
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Config to be restored during one-helios cluster creation.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._restore_configuration_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[RestoreConfig]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _restore_configuration_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/clusters/restore-config',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def set_node_power(
         self,
         body: Annotated[NodePowerOperation, Field(description="Specifies the reboot or shutdown operation.")],
@@ -13921,7 +21116,7 @@ class PlatformApi:
     ) -> None:
         """Reboot or shutdown nodes in cluster.
 
-        Reboot or shutdown nodes in cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Reboot or shutdown nodes in cluster.
 
         :param body: Specifies the reboot or shutdown operation. (required)
         :type body: NodePowerOperation
@@ -13988,7 +21183,7 @@ class PlatformApi:
     ) -> ApiResponse[None]:
         """Reboot or shutdown nodes in cluster.
 
-        Reboot or shutdown nodes in cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Reboot or shutdown nodes in cluster.
 
         :param body: Specifies the reboot or shutdown operation. (required)
         :type body: NodePowerOperation
@@ -14055,7 +21250,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Reboot or shutdown nodes in cluster.
 
-        Reboot or shutdown nodes in cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Reboot or shutdown nodes in cluster.
 
         :param body: Specifies the reboot or shutdown operation. (required)
         :type body: NodePowerOperation
@@ -14197,7 +21392,7 @@ class PlatformApi:
     ) -> AirgapConfig:
         """Update Airgap config
 
-        Enable or Disable Airgap on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Enable or Disable Airgap on the cluster.
 
         :param body: Specifies the parameters to update airgap config. (required)
         :type body: AirgapConfig
@@ -14264,7 +21459,7 @@ class PlatformApi:
     ) -> ApiResponse[AirgapConfig]:
         """Update Airgap config
 
-        Enable or Disable Airgap on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Enable or Disable Airgap on the cluster.
 
         :param body: Specifies the parameters to update airgap config. (required)
         :type body: AirgapConfig
@@ -14331,7 +21526,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Update Airgap config
 
-        Enable or Disable Airgap on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Enable or Disable Airgap on the cluster.
 
         :param body: Specifies the parameters to update airgap config. (required)
         :type body: AirgapConfig
@@ -14473,7 +21668,7 @@ class PlatformApi:
     ) -> ClusterAMQPTargetConfig:
         """Update AMQP Target Config
 
-        Updates AMQP target config on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates AMQP target config on the cluster.
 
         :param body: Specifies the parameters to update cluster AMQP target config. (required)
         :type body: ClusterAMQPTargetConfig
@@ -14540,7 +21735,7 @@ class PlatformApi:
     ) -> ApiResponse[ClusterAMQPTargetConfig]:
         """Update AMQP Target Config
 
-        Updates AMQP target config on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates AMQP target config on the cluster.
 
         :param body: Specifies the parameters to update cluster AMQP target config. (required)
         :type body: ClusterAMQPTargetConfig
@@ -14607,7 +21802,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Update AMQP Target Config
 
-        Updates AMQP target config on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates AMQP target config on the cluster.
 
         :param body: Specifies the parameters to update cluster AMQP target config. (required)
         :type body: ClusterAMQPTargetConfig
@@ -14750,7 +21945,7 @@ class PlatformApi:
     ) -> Chassis:
         """Update a chassis by chassis id.
 
-        Update selected properties of chassis info by id.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update selected properties of chassis info by id.
 
         :param id: Specifies the id of chassis. (required)
         :type id: int
@@ -14821,7 +22016,7 @@ class PlatformApi:
     ) -> ApiResponse[Chassis]:
         """Update a chassis by chassis id.
 
-        Update selected properties of chassis info by id.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update selected properties of chassis info by id.
 
         :param id: Specifies the id of chassis. (required)
         :type id: int
@@ -14892,7 +22087,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Update a chassis by chassis id.
 
-        Update selected properties of chassis info by id.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update selected properties of chassis info by id.
 
         :param id: Specifies the id of chassis. (required)
         :type id: int
@@ -15040,7 +22235,7 @@ class PlatformApi:
     ) -> Cluster:
         """Update a cluster.
 
-        Update the Cluster with the given configuration.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the Cluster with the given configuration.
 
         :param body: Specifies the parameters to update cluster. (required)
         :type body: Cluster
@@ -15107,7 +22302,7 @@ class PlatformApi:
     ) -> ApiResponse[Cluster]:
         """Update a cluster.
 
-        Update the Cluster with the given configuration.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the Cluster with the given configuration.
 
         :param body: Specifies the parameters to update cluster. (required)
         :type body: Cluster
@@ -15174,7 +22369,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Update a cluster.
 
-        Update the Cluster with the given configuration.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the Cluster with the given configuration.
 
         :param body: Specifies the parameters to update cluster. (required)
         :type body: Cluster
@@ -15298,6 +22493,282 @@ class PlatformApi:
 
 
     @validate_call
+    def update_cluster_ipmi_lan_info(
+        self,
+        body: Annotated[ClusterIpmiLanInfo, Field(description="Specifies the parameters to update the information about LAN for the cluster in which current node is present.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> IpmiTextResponse:
+        """To update IPMI LAN info for the cluster
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates the information about LAN for the cluster in which current node is present.
+
+        :param body: Specifies the parameters to update the information about LAN for the cluster in which current node is present. (required)
+        :type body: ClusterIpmiLanInfo
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_cluster_ipmi_lan_info_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiTextResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_cluster_ipmi_lan_info_with_http_info(
+        self,
+        body: Annotated[ClusterIpmiLanInfo, Field(description="Specifies the parameters to update the information about LAN for the cluster in which current node is present.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[IpmiTextResponse]:
+        """To update IPMI LAN info for the cluster
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates the information about LAN for the cluster in which current node is present.
+
+        :param body: Specifies the parameters to update the information about LAN for the cluster in which current node is present. (required)
+        :type body: ClusterIpmiLanInfo
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_cluster_ipmi_lan_info_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiTextResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_cluster_ipmi_lan_info_without_preload_content(
+        self,
+        body: Annotated[ClusterIpmiLanInfo, Field(description="Specifies the parameters to update the information about LAN for the cluster in which current node is present.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """To update IPMI LAN info for the cluster
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates the information about LAN for the cluster in which current node is present.
+
+        :param body: Specifies the parameters to update the information about LAN for the cluster in which current node is present. (required)
+        :type body: ClusterIpmiLanInfo
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_cluster_ipmi_lan_info_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiTextResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_cluster_ipmi_lan_info_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/ipmi/cluster-update-lan-info',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def update_cluster_snapshot_policy(
         self,
         body: Annotated[UpdateSnapshotPolicyParams, Field(description="Specifies the parameters to update cluster snapshot policy.")],
@@ -15316,7 +22787,7 @@ class PlatformApi:
     ) -> ClusterSnapshotPolicy:
         """Update cluster snapshot policy.
 
-        Update cluster snapshot policy.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update cluster snapshot policy.
 
         :param body: Specifies the parameters to update cluster snapshot policy. (required)
         :type body: UpdateSnapshotPolicyParams
@@ -15383,7 +22854,7 @@ class PlatformApi:
     ) -> ApiResponse[ClusterSnapshotPolicy]:
         """Update cluster snapshot policy.
 
-        Update cluster snapshot policy.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update cluster snapshot policy.
 
         :param body: Specifies the parameters to update cluster snapshot policy. (required)
         :type body: UpdateSnapshotPolicyParams
@@ -15450,7 +22921,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Update cluster snapshot policy.
 
-        Update cluster snapshot policy.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update cluster snapshot policy.
 
         :param body: Specifies the parameters to update cluster snapshot policy. (required)
         :type body: UpdateSnapshotPolicyParams
@@ -15574,10 +23045,9 @@ class PlatformApi:
 
 
     @validate_call
-    def update_cluster_vlan(
+    def update_cluster_software(
         self,
-        interface_name: Annotated[StrictStr, Field(description="Vlan interface name, it should be in interface_group_name.vlan_id format.")],
-        body: Annotated[UpdateClusterVlanParams, Field(description="Parameters to update vlan on the cluster.")],
+        body: Annotated[ClusterSWUpdateParams, Field(description="The parameters to update the software on the cluster.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15590,15 +23060,13 @@ class PlatformApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ClusterVlanParams:
-        """Update vlan
+    ) -> List[ClusterOperationTypeAndId]:
+        """Update cluster software
 
-        Update a vlan on the cluster.
+        **Privileges:** ```CLUSTER_UPGRADE, CLUSTER_MAINTENANCE``` <br><br>Update the software on the cluster through upgrade and/or patch.
 
-        :param interface_name: Vlan interface name, it should be in interface_group_name.vlan_id format. (required)
-        :type interface_name: str
-        :param body: Parameters to update vlan on the cluster. (required)
-        :type body: UpdateClusterVlanParams
+        :param body: The parameters to update the software on the cluster. (required)
+        :type body: ClusterSWUpdateParams
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15621,8 +23089,7 @@ class PlatformApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._update_cluster_vlan_serialize(
-            interface_name=interface_name,
+        _param = self._update_cluster_software_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -15631,7 +23098,7 @@ class PlatformApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ClusterVlanParams",
+            '202': "List[ClusterOperationTypeAndId]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -15645,10 +23112,9 @@ class PlatformApi:
 
 
     @validate_call
-    def update_cluster_vlan_with_http_info(
+    def update_cluster_software_with_http_info(
         self,
-        interface_name: Annotated[StrictStr, Field(description="Vlan interface name, it should be in interface_group_name.vlan_id format.")],
-        body: Annotated[UpdateClusterVlanParams, Field(description="Parameters to update vlan on the cluster.")],
+        body: Annotated[ClusterSWUpdateParams, Field(description="The parameters to update the software on the cluster.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15661,15 +23127,13 @@ class PlatformApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ClusterVlanParams]:
-        """Update vlan
+    ) -> ApiResponse[List[ClusterOperationTypeAndId]]:
+        """Update cluster software
 
-        Update a vlan on the cluster.
+        **Privileges:** ```CLUSTER_UPGRADE, CLUSTER_MAINTENANCE``` <br><br>Update the software on the cluster through upgrade and/or patch.
 
-        :param interface_name: Vlan interface name, it should be in interface_group_name.vlan_id format. (required)
-        :type interface_name: str
-        :param body: Parameters to update vlan on the cluster. (required)
-        :type body: UpdateClusterVlanParams
+        :param body: The parameters to update the software on the cluster. (required)
+        :type body: ClusterSWUpdateParams
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15692,8 +23156,7 @@ class PlatformApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._update_cluster_vlan_serialize(
-            interface_name=interface_name,
+        _param = self._update_cluster_software_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -15702,7 +23165,7 @@ class PlatformApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ClusterVlanParams",
+            '202': "List[ClusterOperationTypeAndId]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -15716,10 +23179,9 @@ class PlatformApi:
 
 
     @validate_call
-    def update_cluster_vlan_without_preload_content(
+    def update_cluster_software_without_preload_content(
         self,
-        interface_name: Annotated[StrictStr, Field(description="Vlan interface name, it should be in interface_group_name.vlan_id format.")],
-        body: Annotated[UpdateClusterVlanParams, Field(description="Parameters to update vlan on the cluster.")],
+        body: Annotated[ClusterSWUpdateParams, Field(description="The parameters to update the software on the cluster.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15733,14 +23195,12 @@ class PlatformApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Update vlan
+        """Update cluster software
 
-        Update a vlan on the cluster.
+        **Privileges:** ```CLUSTER_UPGRADE, CLUSTER_MAINTENANCE``` <br><br>Update the software on the cluster through upgrade and/or patch.
 
-        :param interface_name: Vlan interface name, it should be in interface_group_name.vlan_id format. (required)
-        :type interface_name: str
-        :param body: Parameters to update vlan on the cluster. (required)
-        :type body: UpdateClusterVlanParams
+        :param body: The parameters to update the software on the cluster. (required)
+        :type body: ClusterSWUpdateParams
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15763,8 +23223,7 @@ class PlatformApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._update_cluster_vlan_serialize(
-            interface_name=interface_name,
+        _param = self._update_cluster_software_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -15773,7 +23232,7 @@ class PlatformApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ClusterVlanParams",
+            '202': "List[ClusterOperationTypeAndId]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -15782,9 +23241,8 @@ class PlatformApi:
         return response_data.response
 
 
-    def _update_cluster_vlan_serialize(
+    def _update_cluster_software_serialize(
         self,
-        interface_name,
         body,
         _request_auth,
         _content_type,
@@ -15807,8 +23265,6 @@ class PlatformApi:
         _body_params: Optional[bytes] = None
 
         # process the path parameters
-        if interface_name is not None:
-            _path_params['interfaceName'] = interface_name
         # process the query parameters
         # process the header parameters
         # process the form parameters
@@ -15848,7 +23304,574 @@ class PlatformApi:
 
         return self.api_client.param_serialize(
             method='PUT',
-            resource_path='/network/vlans/{interfaceName}',
+            resource_path='/clusters/softwares',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_cluster_subnets(
+        self,
+        body: UpdateClusterSubnetsParams,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[Subnet]:
+        """Update the Cluster Subnets
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the cluster subnet Info
+
+        :param body: (required)
+        :type body: UpdateClusterSubnetsParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_cluster_subnets_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[Subnet]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_cluster_subnets_with_http_info(
+        self,
+        body: UpdateClusterSubnetsParams,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[Subnet]]:
+        """Update the Cluster Subnets
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the cluster subnet Info
+
+        :param body: (required)
+        :type body: UpdateClusterSubnetsParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_cluster_subnets_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[Subnet]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_cluster_subnets_without_preload_content(
+        self,
+        body: UpdateClusterSubnetsParams,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update the Cluster Subnets
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the cluster subnet Info
+
+        :param body: (required)
+        :type body: UpdateClusterSubnetsParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_cluster_subnets_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[Subnet]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_cluster_subnets_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/clusters/subnets',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_cluster_vlan(
+        self,
+        vlan_interface_group_name: Annotated[StrictStr, Field(description="Vlan interface group name, it should be in interface_group_name.vlan_id format.")],
+        body: Annotated[UpdateClusterVlanParams, Field(description="Parameters to update vlan on the cluster.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ClusterVlanParams:
+        """Update vlan
+
+        ```Unknown Privileges``` <br><br>Update a vlan on the cluster.
+
+        :param vlan_interface_group_name: Vlan interface group name, it should be in interface_group_name.vlan_id format. (required)
+        :type vlan_interface_group_name: str
+        :param body: Parameters to update vlan on the cluster. (required)
+        :type body: UpdateClusterVlanParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_cluster_vlan_serialize(
+            vlan_interface_group_name=vlan_interface_group_name,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterVlanParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_cluster_vlan_with_http_info(
+        self,
+        vlan_interface_group_name: Annotated[StrictStr, Field(description="Vlan interface group name, it should be in interface_group_name.vlan_id format.")],
+        body: Annotated[UpdateClusterVlanParams, Field(description="Parameters to update vlan on the cluster.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ClusterVlanParams]:
+        """Update vlan
+
+        ```Unknown Privileges``` <br><br>Update a vlan on the cluster.
+
+        :param vlan_interface_group_name: Vlan interface group name, it should be in interface_group_name.vlan_id format. (required)
+        :type vlan_interface_group_name: str
+        :param body: Parameters to update vlan on the cluster. (required)
+        :type body: UpdateClusterVlanParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_cluster_vlan_serialize(
+            vlan_interface_group_name=vlan_interface_group_name,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterVlanParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_cluster_vlan_without_preload_content(
+        self,
+        vlan_interface_group_name: Annotated[StrictStr, Field(description="Vlan interface group name, it should be in interface_group_name.vlan_id format.")],
+        body: Annotated[UpdateClusterVlanParams, Field(description="Parameters to update vlan on the cluster.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update vlan
+
+        ```Unknown Privileges``` <br><br>Update a vlan on the cluster.
+
+        :param vlan_interface_group_name: Vlan interface group name, it should be in interface_group_name.vlan_id format. (required)
+        :type vlan_interface_group_name: str
+        :param body: Parameters to update vlan on the cluster. (required)
+        :type body: UpdateClusterVlanParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_cluster_vlan_serialize(
+            vlan_interface_group_name=vlan_interface_group_name,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ClusterVlanParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_cluster_vlan_serialize(
+        self,
+        vlan_interface_group_name,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if vlan_interface_group_name is not None:
+            _path_params['vlanInterfaceGroupName'] = vlan_interface_group_name
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/network/vlans/{vlanInterfaceGroupName}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -15883,7 +23906,7 @@ class PlatformApi:
     ) -> List[FeatureFlag]:
         """Update feature flag override status.
 
-        Update a feature flag override status to cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update a feature flag override status to cluster.
 
         :param body: Param for feature flag override request. (required)
         :type body: UpdateFeatureFlagParams
@@ -15950,7 +23973,7 @@ class PlatformApi:
     ) -> ApiResponse[List[FeatureFlag]]:
         """Update feature flag override status.
 
-        Update a feature flag override status to cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update a feature flag override status to cluster.
 
         :param body: Param for feature flag override request. (required)
         :type body: UpdateFeatureFlagParams
@@ -16017,7 +24040,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Update feature flag override status.
 
-        Update a feature flag override status to cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update a feature flag override status to cluster.
 
         :param body: Param for feature flag override request. (required)
         :type body: UpdateFeatureFlagParams
@@ -16159,7 +24182,7 @@ class PlatformApi:
     ) -> HostMappings:
         """Update Host Mappings
 
-        Updates Host Mapping on the Cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates Host Mapping on the Cluster.
 
         :param body: (required)
         :type body: List[HostEntry]
@@ -16226,7 +24249,7 @@ class PlatformApi:
     ) -> ApiResponse[HostMappings]:
         """Update Host Mappings
 
-        Updates Host Mapping on the Cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates Host Mapping on the Cluster.
 
         :param body: (required)
         :type body: List[HostEntry]
@@ -16293,7 +24316,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Update Host Mappings
 
-        Updates Host Mapping on the Cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates Host Mapping on the Cluster.
 
         :param body: (required)
         :type body: List[HostEntry]
@@ -16418,300 +24441,9 @@ class PlatformApi:
 
 
     @validate_call
-    def update_interface(
-        self,
-        id: Annotated[StrictInt, Field(description="Id of the interface.")],
-        body: Annotated[InterfaceParams, Field(description="Parameters to update an interface on a node or cluster.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> InterfaceParams:
-        """Update interface
-
-        Update network interface on a free node.
-
-        :param id: Id of the interface. (required)
-        :type id: int
-        :param body: Parameters to update an interface on a node or cluster. (required)
-        :type body: InterfaceParams
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._update_interface_serialize(
-            id=id,
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "InterfaceParams",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def update_interface_with_http_info(
-        self,
-        id: Annotated[StrictInt, Field(description="Id of the interface.")],
-        body: Annotated[InterfaceParams, Field(description="Parameters to update an interface on a node or cluster.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[InterfaceParams]:
-        """Update interface
-
-        Update network interface on a free node.
-
-        :param id: Id of the interface. (required)
-        :type id: int
-        :param body: Parameters to update an interface on a node or cluster. (required)
-        :type body: InterfaceParams
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._update_interface_serialize(
-            id=id,
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "InterfaceParams",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def update_interface_without_preload_content(
-        self,
-        id: Annotated[StrictInt, Field(description="Id of the interface.")],
-        body: Annotated[InterfaceParams, Field(description="Parameters to update an interface on a node or cluster.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Update interface
-
-        Update network interface on a free node.
-
-        :param id: Id of the interface. (required)
-        :type id: int
-        :param body: Parameters to update an interface on a node or cluster. (required)
-        :type body: InterfaceParams
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._update_interface_serialize(
-            id=id,
-            body=body,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "InterfaceParams",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _update_interface_serialize(
-        self,
-        id,
-        body,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if id is not None:
-            _path_params['id'] = id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if body is not None:
-            _body_params = body
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'APIKeyHeader', 
-            'SessionIdHeader', 
-            'Bearer'
-        ]
-
-        return self.api_client.param_serialize(
-            method='PUT',
-            resource_path='/network/interfaces/{id}',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
     def update_interface_group(
         self,
-        id: Annotated[StrictInt, Field(description="Id of the interface group.")],
+        name: Annotated[StrictStr, Field(description="Name of the interface group.")],
         body: Annotated[InterfaceGroupParams, Field(description="Parameters to update an interface group on the cluster.")],
         _request_timeout: Union[
             None,
@@ -16728,10 +24460,10 @@ class PlatformApi:
     ) -> InterfaceGroup:
         """Update interface group
 
-        Update an interface group on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update an interface group on the cluster.
 
-        :param id: Id of the interface group. (required)
-        :type id: int
+        :param name: Name of the interface group. (required)
+        :type name: str
         :param body: Parameters to update an interface group on the cluster. (required)
         :type body: InterfaceGroupParams
         :param _request_timeout: timeout setting for this request. If one
@@ -16757,7 +24489,7 @@ class PlatformApi:
         """ # noqa: E501
 
         _param = self._update_interface_group_serialize(
-            id=id,
+            name=name,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -16782,7 +24514,7 @@ class PlatformApi:
     @validate_call
     def update_interface_group_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="Id of the interface group.")],
+        name: Annotated[StrictStr, Field(description="Name of the interface group.")],
         body: Annotated[InterfaceGroupParams, Field(description="Parameters to update an interface group on the cluster.")],
         _request_timeout: Union[
             None,
@@ -16799,10 +24531,10 @@ class PlatformApi:
     ) -> ApiResponse[InterfaceGroup]:
         """Update interface group
 
-        Update an interface group on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update an interface group on the cluster.
 
-        :param id: Id of the interface group. (required)
-        :type id: int
+        :param name: Name of the interface group. (required)
+        :type name: str
         :param body: Parameters to update an interface group on the cluster. (required)
         :type body: InterfaceGroupParams
         :param _request_timeout: timeout setting for this request. If one
@@ -16828,7 +24560,7 @@ class PlatformApi:
         """ # noqa: E501
 
         _param = self._update_interface_group_serialize(
-            id=id,
+            name=name,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -16853,7 +24585,7 @@ class PlatformApi:
     @validate_call
     def update_interface_group_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="Id of the interface group.")],
+        name: Annotated[StrictStr, Field(description="Name of the interface group.")],
         body: Annotated[InterfaceGroupParams, Field(description="Parameters to update an interface group on the cluster.")],
         _request_timeout: Union[
             None,
@@ -16870,10 +24602,10 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Update interface group
 
-        Update an interface group on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update an interface group on the cluster.
 
-        :param id: Id of the interface group. (required)
-        :type id: int
+        :param name: Name of the interface group. (required)
+        :type name: str
         :param body: Parameters to update an interface group on the cluster. (required)
         :type body: InterfaceGroupParams
         :param _request_timeout: timeout setting for this request. If one
@@ -16899,7 +24631,7 @@ class PlatformApi:
         """ # noqa: E501
 
         _param = self._update_interface_group_serialize(
-            id=id,
+            name=name,
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -16919,7 +24651,7 @@ class PlatformApi:
 
     def _update_interface_group_serialize(
         self,
-        id,
+        name,
         body,
         _request_auth,
         _content_type,
@@ -16942,8 +24674,8 @@ class PlatformApi:
         _body_params: Optional[bytes] = None
 
         # process the path parameters
-        if id is not None:
-            _path_params['id'] = id
+        if name is not None:
+            _path_params['name'] = name
         # process the query parameters
         # process the header parameters
         # process the form parameters
@@ -16983,7 +24715,283 @@ class PlatformApi:
 
         return self.api_client.param_serialize(
             method='PUT',
-            resource_path='/network/interface-groups/{id}',
+            resource_path='/network/interface-groups/{name}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_ipmi_user(
+        self,
+        body: Annotated[UpdateIpmiUser, Field(description="Specifies the parameters to add an ipmi user to node.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> IpmiTextResponse:
+        """To update IPMI User Info for node
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates the ipmi user information for given node.
+
+        :param body: Specifies the parameters to add an ipmi user to node. (required)
+        :type body: UpdateIpmiUser
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_ipmi_user_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiTextResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_ipmi_user_with_http_info(
+        self,
+        body: Annotated[UpdateIpmiUser, Field(description="Specifies the parameters to add an ipmi user to node.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[IpmiTextResponse]:
+        """To update IPMI User Info for node
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates the ipmi user information for given node.
+
+        :param body: Specifies the parameters to add an ipmi user to node. (required)
+        :type body: UpdateIpmiUser
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_ipmi_user_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiTextResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_ipmi_user_without_preload_content(
+        self,
+        body: Annotated[UpdateIpmiUser, Field(description="Specifies the parameters to add an ipmi user to node.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """To update IPMI User Info for node
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates the ipmi user information for given node.
+
+        :param body: Specifies the parameters to add an ipmi user to node. (required)
+        :type body: UpdateIpmiUser
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_ipmi_user_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiTextResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_ipmi_user_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/ipmi/users',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -17018,7 +25026,7 @@ class PlatformApi:
     ) -> DMaaSInfo:
         """Update whether the cluster is a DMaaS cluster.
 
-        Update whether the cluster is a DMaaS cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update whether the cluster is a DMaaS cluster.
 
         :param body: Param to update whether the cluster is a DMaaS cluster. (required)
         :type body: DMaaSInfo
@@ -17085,7 +25093,7 @@ class PlatformApi:
     ) -> ApiResponse[DMaaSInfo]:
         """Update whether the cluster is a DMaaS cluster.
 
-        Update whether the cluster is a DMaaS cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update whether the cluster is a DMaaS cluster.
 
         :param body: Param to update whether the cluster is a DMaaS cluster. (required)
         :type body: DMaaSInfo
@@ -17152,7 +25160,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Update whether the cluster is a DMaaS cluster.
 
-        Update whether the cluster is a DMaaS cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update whether the cluster is a DMaaS cluster.
 
         :param body: Param to update whether the cluster is a DMaaS cluster. (required)
         :type body: DMaaSInfo
@@ -17276,6 +25284,849 @@ class PlatformApi:
 
 
     @validate_call
+    def update_login_banner(
+        self,
+        body: Annotated[LoginBanner, Field(description="Specifies text to update the login banner.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> LoginBanner:
+        """Update login banner.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update contents of login banner. Setting the banner content to an empty string disables the banner.
+
+        :param body: Specifies text to update the login banner. (required)
+        :type body: LoginBanner
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_login_banner_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "LoginBanner",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_login_banner_with_http_info(
+        self,
+        body: Annotated[LoginBanner, Field(description="Specifies text to update the login banner.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[LoginBanner]:
+        """Update login banner.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update contents of login banner. Setting the banner content to an empty string disables the banner.
+
+        :param body: Specifies text to update the login banner. (required)
+        :type body: LoginBanner
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_login_banner_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "LoginBanner",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_login_banner_without_preload_content(
+        self,
+        body: Annotated[LoginBanner, Field(description="Specifies text to update the login banner.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update login banner.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update contents of login banner. Setting the banner content to an empty string disables the banner.
+
+        :param body: Specifies text to update the login banner. (required)
+        :type body: LoginBanner
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_login_banner_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "LoginBanner",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_login_banner_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/login-banners',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_ntp_servers(
+        self,
+        body: Annotated[NtpServerList, Field(description="Specifies parameters to update NTP sever configuration.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> NtpServerList:
+        """Update NTP servers.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update configuration of one or more NTP servers. Specified list of NTP servers will replace the currently configured NTP servers.
+
+        :param body: Specifies parameters to update NTP sever configuration. (required)
+        :type body: NtpServerList
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_ntp_servers_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "NtpServerList",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_ntp_servers_with_http_info(
+        self,
+        body: Annotated[NtpServerList, Field(description="Specifies parameters to update NTP sever configuration.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[NtpServerList]:
+        """Update NTP servers.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update configuration of one or more NTP servers. Specified list of NTP servers will replace the currently configured NTP servers.
+
+        :param body: Specifies parameters to update NTP sever configuration. (required)
+        :type body: NtpServerList
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_ntp_servers_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "NtpServerList",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_ntp_servers_without_preload_content(
+        self,
+        body: Annotated[NtpServerList, Field(description="Specifies parameters to update NTP sever configuration.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update NTP servers.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update configuration of one or more NTP servers. Specified list of NTP servers will replace the currently configured NTP servers.
+
+        :param body: Specifies parameters to update NTP sever configuration. (required)
+        :type body: NtpServerList
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_ntp_servers_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "NtpServerList",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_ntp_servers_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/ntp-servers',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_proxy_server(
+        self,
+        name: Annotated[StrictStr, Field(description="Specifies name of the proxy server.")],
+        body: Annotated[ProxyServer, Field(description="Specifies parameters to update the proxy server.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ProxyServer:
+        """Update specified proxy server.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update specified proxy server. If a proxy server with given name exists, it will be updated else error will be returned.
+
+        :param name: Specifies name of the proxy server. (required)
+        :type name: str
+        :param body: Specifies parameters to update the proxy server. (required)
+        :type body: ProxyServer
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_proxy_server_serialize(
+            name=name,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ProxyServer",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_proxy_server_with_http_info(
+        self,
+        name: Annotated[StrictStr, Field(description="Specifies name of the proxy server.")],
+        body: Annotated[ProxyServer, Field(description="Specifies parameters to update the proxy server.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ProxyServer]:
+        """Update specified proxy server.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update specified proxy server. If a proxy server with given name exists, it will be updated else error will be returned.
+
+        :param name: Specifies name of the proxy server. (required)
+        :type name: str
+        :param body: Specifies parameters to update the proxy server. (required)
+        :type body: ProxyServer
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_proxy_server_serialize(
+            name=name,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ProxyServer",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_proxy_server_without_preload_content(
+        self,
+        name: Annotated[StrictStr, Field(description="Specifies name of the proxy server.")],
+        body: Annotated[ProxyServer, Field(description="Specifies parameters to update the proxy server.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update specified proxy server.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update specified proxy server. If a proxy server with given name exists, it will be updated else error will be returned.
+
+        :param name: Specifies name of the proxy server. (required)
+        :type name: str
+        :param body: Specifies parameters to update the proxy server. (required)
+        :type body: ProxyServer
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_proxy_server_serialize(
+            name=name,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ProxyServer",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_proxy_server_serialize(
+        self,
+        name,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if name is not None:
+            _path_params['name'] = name
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/proxy-servers/{name}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def update_rack_by_id(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of rack.")],
@@ -17295,7 +26146,7 @@ class PlatformApi:
     ) -> Rack:
         """update_rack_by_id
 
-        Update selected properties of a rack given by id.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update selected properties of a rack given by id.
 
         :param id: Specifies the id of rack. (required)
         :type id: int
@@ -17366,7 +26217,7 @@ class PlatformApi:
     ) -> ApiResponse[Rack]:
         """update_rack_by_id
 
-        Update selected properties of a rack given by id.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update selected properties of a rack given by id.
 
         :param id: Specifies the id of rack. (required)
         :type id: int
@@ -17437,7 +26288,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """update_rack_by_id
 
-        Update selected properties of a rack given by id.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update selected properties of a rack given by id.
 
         :param id: Specifies the id of rack. (required)
         :type id: int
@@ -17585,7 +26436,7 @@ class PlatformApi:
     ) -> Racks:
         """Update racks
 
-        Updates list of racks with name, chassis list or/and location
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates list of racks with name, chassis list or/and location
 
         :param body: Specifies the parameters to update racks. (required)
         :type body: Racks
@@ -17652,7 +26503,7 @@ class PlatformApi:
     ) -> ApiResponse[Racks]:
         """Update racks
 
-        Updates list of racks with name, chassis list or/and location
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates list of racks with name, chassis list or/and location
 
         :param body: Specifies the parameters to update racks. (required)
         :type body: Racks
@@ -17719,7 +26570,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Update racks
 
-        Updates list of racks with name, chassis list or/and location
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates list of racks with name, chassis list or/and location
 
         :param body: Specifies the parameters to update racks. (required)
         :type body: Racks
@@ -17843,6 +26694,558 @@ class PlatformApi:
 
 
     @validate_call
+    def update_restore_configuration(
+        self,
+        body: RestoreConfigPayload,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[RestoreConfig]:
+        """Update Restore configuration.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the restore config for one-helios cluster restore.
+
+        :param body: (required)
+        :type body: RestoreConfigPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_restore_configuration_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[RestoreConfig]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_restore_configuration_with_http_info(
+        self,
+        body: RestoreConfigPayload,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[RestoreConfig]]:
+        """Update Restore configuration.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the restore config for one-helios cluster restore.
+
+        :param body: (required)
+        :type body: RestoreConfigPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_restore_configuration_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[RestoreConfig]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_restore_configuration_without_preload_content(
+        self,
+        body: RestoreConfigPayload,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update Restore configuration.
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the restore config for one-helios cluster restore.
+
+        :param body: (required)
+        :type body: RestoreConfigPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_restore_configuration_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[RestoreConfig]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_restore_configuration_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/clusters/restore-config',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_service_gflags(
+        self,
+        body: UpdateGflagParameters,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[ServiceGflags]:
+        """Update the gflags
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates the gflags for a service on the Cluster.
+
+        :param body: (required)
+        :type body: UpdateGflagParameters
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_service_gflags_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[ServiceGflags]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_service_gflags_with_http_info(
+        self,
+        body: UpdateGflagParameters,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[ServiceGflags]]:
+        """Update the gflags
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates the gflags for a service on the Cluster.
+
+        :param body: (required)
+        :type body: UpdateGflagParameters
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_service_gflags_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[ServiceGflags]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_service_gflags_without_preload_content(
+        self,
+        body: UpdateGflagParameters,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update the gflags
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Updates the gflags for a service on the Cluster.
+
+        :param body: (required)
+        :type body: UpdateGflagParameters
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_service_gflags_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[ServiceGflags]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_service_gflags_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/clusters/gflag',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def update_smtp_configuration(
         self,
         body: Annotated[UpdateSMTPParams, Field(description="Specifies the parameters to update cluster SMTP configuration.")],
@@ -17861,7 +27264,7 @@ class PlatformApi:
     ) -> SMTPConfiguration:
         """Update SMTP configuration.
 
-        Update SMTP configuration.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update SMTP configuration.
 
         :param body: Specifies the parameters to update cluster SMTP configuration. (required)
         :type body: UpdateSMTPParams
@@ -17928,7 +27331,7 @@ class PlatformApi:
     ) -> ApiResponse[SMTPConfiguration]:
         """Update SMTP configuration.
 
-        Update SMTP configuration.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update SMTP configuration.
 
         :param body: Specifies the parameters to update cluster SMTP configuration. (required)
         :type body: UpdateSMTPParams
@@ -17995,7 +27398,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Update SMTP configuration.
 
-        Update SMTP configuration.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update SMTP configuration.
 
         :param body: Specifies the parameters to update cluster SMTP configuration. (required)
         :type body: UpdateSMTPParams
@@ -18137,7 +27540,7 @@ class PlatformApi:
     ) -> SupportChannelConfig:
         """Update support channel configuration.
 
-        Update support channel configuration.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update support channel configuration.
 
         :param body: Specifies the support channel configuration. (required)
         :type body: SupportChannelConfig
@@ -18204,7 +27607,7 @@ class PlatformApi:
     ) -> ApiResponse[SupportChannelConfig]:
         """Update support channel configuration.
 
-        Update support channel configuration.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update support channel configuration.
 
         :param body: Specifies the support channel configuration. (required)
         :type body: SupportChannelConfig
@@ -18271,7 +27674,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Update support channel configuration.
 
-        Update support channel configuration.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update support channel configuration.
 
         :param body: Specifies the support channel configuration. (required)
         :type body: SupportChannelConfig
@@ -18413,7 +27816,7 @@ class PlatformApi:
     ) -> UpgradeChecksResults:
         """Get upgrade checks results.
 
-        Get upgrade checks results.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get upgrade checks results. This API will be deprecated.  Use [GetClusterOperationStatusList](#tag/Platform/operation/GetClusterOperationStatusList) with `AssessSoftwareUpdate` operationType query. 
 
         :param test_run_instance_id: Specifies test run instance for which to fetch results (required)
         :type test_run_instance_id: int
@@ -18480,7 +27883,7 @@ class PlatformApi:
     ) -> ApiResponse[UpgradeChecksResults]:
         """Get upgrade checks results.
 
-        Get upgrade checks results.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get upgrade checks results. This API will be deprecated.  Use [GetClusterOperationStatusList](#tag/Platform/operation/GetClusterOperationStatusList) with `AssessSoftwareUpdate` operationType query. 
 
         :param test_run_instance_id: Specifies test run instance for which to fetch results (required)
         :type test_run_instance_id: int
@@ -18547,7 +27950,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Get upgrade checks results.
 
-        Get upgrade checks results.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get upgrade checks results. This API will be deprecated.  Use [GetClusterOperationStatusList](#tag/Platform/operation/GetClusterOperationStatusList) with `AssessSoftwareUpdate` operationType query. 
 
         :param test_run_instance_id: Specifies test run instance for which to fetch results (required)
         :type test_run_instance_id: int
@@ -18641,7 +28044,7 @@ class PlatformApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/cluster/upgrade-checks/{testRunInstanceId}',
+            resource_path='/clusters/upgrade-checks/{testRunInstanceId}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -18676,7 +28079,7 @@ class PlatformApi:
     ) -> UpgradeCheckRunTestsResult:
         """Run upgrade checks on cluster.
 
-        Run upgrade checks on cluster.
+        **Privileges:** ```CLUSTER_MODIFY, CLUSTER_UPGRADE``` <br><br>Run upgrade checks on cluster. This API will be deprecated.  Use [UpdateClusterSoftware](#tag/Platform/operation/UpdateClusterSoftware) with `AssessSoftwareUpdate` operationType. 
 
         :param body: Run upgrade checks on cluster. (required)
         :type body: UpgradeCheckRunTestsRequest
@@ -18743,7 +28146,7 @@ class PlatformApi:
     ) -> ApiResponse[UpgradeCheckRunTestsResult]:
         """Run upgrade checks on cluster.
 
-        Run upgrade checks on cluster.
+        **Privileges:** ```CLUSTER_MODIFY, CLUSTER_UPGRADE``` <br><br>Run upgrade checks on cluster. This API will be deprecated.  Use [UpdateClusterSoftware](#tag/Platform/operation/UpdateClusterSoftware) with `AssessSoftwareUpdate` operationType. 
 
         :param body: Run upgrade checks on cluster. (required)
         :type body: UpgradeCheckRunTestsRequest
@@ -18810,7 +28213,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Run upgrade checks on cluster.
 
-        Run upgrade checks on cluster.
+        **Privileges:** ```CLUSTER_MODIFY, CLUSTER_UPGRADE``` <br><br>Run upgrade checks on cluster. This API will be deprecated.  Use [UpdateClusterSoftware](#tag/Platform/operation/UpdateClusterSoftware) with `AssessSoftwareUpdate` operationType. 
 
         :param body: Run upgrade checks on cluster. (required)
         :type body: UpgradeCheckRunTestsRequest
@@ -18917,7 +28320,7 @@ class PlatformApi:
 
         return self.api_client.param_serialize(
             method='PUT',
-            resource_path='/cluster/upgrade-checks',
+            resource_path='/clusters/upgrade-checks',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -18934,9 +28337,9 @@ class PlatformApi:
 
 
     @validate_call
-    def upgrade_cluster_software(
+    def upgrade_nodes(
         self,
-        body: Annotated[ClusterUpradeParams, Field(description="The parameters to upgrade the software on the cluster.")],
+        body: Annotated[NodeUpgradeParameters, Field(description="The parameters to upgrade free node(s).")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -18949,13 +28352,13 @@ class PlatformApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ClusterOperationResponseParams:
-        """Upgrade cluster
+    ) -> NodeUpgradeResult:
+        """Upgrade a free node.
 
-        Upgrade the software on the cluster.
+        **Privileges:** ```CLUSTER_CREATE``` <br><br>Upgrade a free Node.
 
-        :param body: The parameters to upgrade the software on the cluster. (required)
-        :type body: ClusterUpradeParams
+        :param body: The parameters to upgrade free node(s). (required)
+        :type body: NodeUpgradeParameters
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -18978,7 +28381,7 @@ class PlatformApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._upgrade_cluster_software_serialize(
+        _param = self._upgrade_nodes_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -18987,7 +28390,7 @@ class PlatformApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '202': "ClusterOperationResponseParams",
+            '202': "NodeUpgradeResult",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -19001,9 +28404,9 @@ class PlatformApi:
 
 
     @validate_call
-    def upgrade_cluster_software_with_http_info(
+    def upgrade_nodes_with_http_info(
         self,
-        body: Annotated[ClusterUpradeParams, Field(description="The parameters to upgrade the software on the cluster.")],
+        body: Annotated[NodeUpgradeParameters, Field(description="The parameters to upgrade free node(s).")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -19016,13 +28419,13 @@ class PlatformApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ClusterOperationResponseParams]:
-        """Upgrade cluster
+    ) -> ApiResponse[NodeUpgradeResult]:
+        """Upgrade a free node.
 
-        Upgrade the software on the cluster.
+        **Privileges:** ```CLUSTER_CREATE``` <br><br>Upgrade a free Node.
 
-        :param body: The parameters to upgrade the software on the cluster. (required)
-        :type body: ClusterUpradeParams
+        :param body: The parameters to upgrade free node(s). (required)
+        :type body: NodeUpgradeParameters
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -19045,7 +28448,7 @@ class PlatformApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._upgrade_cluster_software_serialize(
+        _param = self._upgrade_nodes_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -19054,7 +28457,7 @@ class PlatformApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '202': "ClusterOperationResponseParams",
+            '202': "NodeUpgradeResult",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -19068,9 +28471,9 @@ class PlatformApi:
 
 
     @validate_call
-    def upgrade_cluster_software_without_preload_content(
+    def upgrade_nodes_without_preload_content(
         self,
-        body: Annotated[ClusterUpradeParams, Field(description="The parameters to upgrade the software on the cluster.")],
+        body: Annotated[NodeUpgradeParameters, Field(description="The parameters to upgrade free node(s).")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -19084,12 +28487,12 @@ class PlatformApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Upgrade cluster
+        """Upgrade a free node.
 
-        Upgrade the software on the cluster.
+        **Privileges:** ```CLUSTER_CREATE``` <br><br>Upgrade a free Node.
 
-        :param body: The parameters to upgrade the software on the cluster. (required)
-        :type body: ClusterUpradeParams
+        :param body: The parameters to upgrade free node(s). (required)
+        :type body: NodeUpgradeParameters
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -19112,7 +28515,7 @@ class PlatformApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._upgrade_cluster_software_serialize(
+        _param = self._upgrade_nodes_serialize(
             body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -19121,7 +28524,7 @@ class PlatformApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '202': "ClusterOperationResponseParams",
+            '202': "NodeUpgradeResult",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -19130,7 +28533,7 @@ class PlatformApi:
         return response_data.response
 
 
-    def _upgrade_cluster_software_serialize(
+    def _upgrade_nodes_serialize(
         self,
         body,
         _request_auth,
@@ -19193,7 +28596,7 @@ class PlatformApi:
 
         return self.api_client.param_serialize(
             method='PUT',
-            resource_path='/clusters/upgrade',
+            resource_path='/nodes/software',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -19210,9 +28613,10 @@ class PlatformApi:
 
 
     @validate_call
-    def upload_package_by_url(
+    def upload_file_package(
         self,
-        body: Annotated[UploadPackageUrlParams, Field(description="Parameters to upload a package by URL.")],
+        package_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="Binary content of the file.")],
+        package_type: Annotated[Optional[StrictStr], Field(description="Package Type.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -19225,13 +28629,15 @@ class PlatformApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ClusterOperationResponseParams:
-        """Upload package by URL
+    ) -> None:
+        """Upload package by files
 
-        Upload a package to the cluster by providing the URL where the package is hosted.
+        **Privileges:** ```CLUSTER_UPGRADE, CLUSTER_MAINTENANCE``` <br><br>Upload upgrade/patch package.
 
-        :param body: Parameters to upload a package by URL. (required)
-        :type body: UploadPackageUrlParams
+        :param package_file: Binary content of the file. (required)
+        :type package_file: bytearray
+        :param package_type: Package Type.
+        :type package_type: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -19254,8 +28660,9 @@ class PlatformApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._upload_package_by_url_serialize(
-            body=body,
+        _param = self._upload_file_package_serialize(
+            package_file=package_file,
+            package_type=package_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -19263,7 +28670,7 @@ class PlatformApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '202': "ClusterOperationResponseParams",
+            '204': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -19277,9 +28684,10 @@ class PlatformApi:
 
 
     @validate_call
-    def upload_package_by_url_with_http_info(
+    def upload_file_package_with_http_info(
         self,
-        body: Annotated[UploadPackageUrlParams, Field(description="Parameters to upload a package by URL.")],
+        package_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="Binary content of the file.")],
+        package_type: Annotated[Optional[StrictStr], Field(description="Package Type.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -19292,13 +28700,15 @@ class PlatformApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ClusterOperationResponseParams]:
-        """Upload package by URL
+    ) -> ApiResponse[None]:
+        """Upload package by files
 
-        Upload a package to the cluster by providing the URL where the package is hosted.
+        **Privileges:** ```CLUSTER_UPGRADE, CLUSTER_MAINTENANCE``` <br><br>Upload upgrade/patch package.
 
-        :param body: Parameters to upload a package by URL. (required)
-        :type body: UploadPackageUrlParams
+        :param package_file: Binary content of the file. (required)
+        :type package_file: bytearray
+        :param package_type: Package Type.
+        :type package_type: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -19321,8 +28731,9 @@ class PlatformApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._upload_package_by_url_serialize(
-            body=body,
+        _param = self._upload_file_package_serialize(
+            package_file=package_file,
+            package_type=package_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -19330,7 +28741,7 @@ class PlatformApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '202': "ClusterOperationResponseParams",
+            '204': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -19344,9 +28755,10 @@ class PlatformApi:
 
 
     @validate_call
-    def upload_package_by_url_without_preload_content(
+    def upload_file_package_without_preload_content(
         self,
-        body: Annotated[UploadPackageUrlParams, Field(description="Parameters to upload a package by URL.")],
+        package_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="Binary content of the file.")],
+        package_type: Annotated[Optional[StrictStr], Field(description="Package Type.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -19360,12 +28772,14 @@ class PlatformApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Upload package by URL
+        """Upload package by files
 
-        Upload a package to the cluster by providing the URL where the package is hosted.
+        **Privileges:** ```CLUSTER_UPGRADE, CLUSTER_MAINTENANCE``` <br><br>Upload upgrade/patch package.
 
-        :param body: Parameters to upload a package by URL. (required)
-        :type body: UploadPackageUrlParams
+        :param package_file: Binary content of the file. (required)
+        :type package_file: bytearray
+        :param package_type: Package Type.
+        :type package_type: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -19388,8 +28802,9 @@ class PlatformApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._upload_package_by_url_serialize(
-            body=body,
+        _param = self._upload_file_package_serialize(
+            package_file=package_file,
+            package_type=package_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -19397,7 +28812,7 @@ class PlatformApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '202': "ClusterOperationResponseParams",
+            '204': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -19406,9 +28821,10 @@ class PlatformApi:
         return response_data.response
 
 
-    def _upload_package_by_url_serialize(
+    def _upload_file_package_serialize(
         self,
-        body,
+        package_file,
+        package_type,
         _request_auth,
         _content_type,
         _headers,
@@ -19431,11 +28847,15 @@ class PlatformApi:
 
         # process the path parameters
         # process the query parameters
+        if package_type is not None:
+            
+            _query_params.append(('packageType', package_type))
+            
         # process the header parameters
         # process the form parameters
+        if package_file is not None:
+            _files['packageFile'] = package_file
         # process the body parameter
-        if body is not None:
-            _body_params = body
 
 
         # set the HTTP header `Accept`
@@ -19453,7 +28873,7 @@ class PlatformApi:
             _default_content_type = (
                 self.api_client.select_header_content_type(
                     [
-                        'application/json'
+                        'multipart/form-data'
                     ]
                 )
             )
@@ -19469,7 +28889,7 @@ class PlatformApi:
 
         return self.api_client.param_serialize(
             method='POST',
-            resource_path='/clusters/packages/url',
+            resource_path='/clusters/packages/file',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -19504,7 +28924,7 @@ class PlatformApi:
     ) -> None:
         """Validate SMTP configuration.
 
-        Validate SMTP configuration by sending a test email.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Validate SMTP configuration by sending a test email.
 
         :param body: Specifies the request parameters to validate SMTP configuration. (required)
         :type body: TestSMTPConfig
@@ -19571,7 +28991,7 @@ class PlatformApi:
     ) -> ApiResponse[None]:
         """Validate SMTP configuration.
 
-        Validate SMTP configuration by sending a test email.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Validate SMTP configuration by sending a test email.
 
         :param body: Specifies the request parameters to validate SMTP configuration. (required)
         :type body: TestSMTPConfig
@@ -19638,7 +29058,7 @@ class PlatformApi:
     ) -> RESTResponseType:
         """Validate SMTP configuration.
 
-        Validate SMTP configuration by sending a test email.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Validate SMTP configuration by sending a test email.
 
         :param body: Specifies the request parameters to validate SMTP configuration. (required)
         :type body: TestSMTPConfig
@@ -19746,6 +29166,282 @@ class PlatformApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/clusters/smtp/validate',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def verify_ipmi_user(
+        self,
+        body: Annotated[VerifyIpmiUser, Field(description="Specifies the parameters to add an ipmi user to node.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> IpmiTextResponse:
+        """To verify IPMI User with Password for node
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Verifies the ipmi user with password information for given node.
+
+        :param body: Specifies the parameters to add an ipmi user to node. (required)
+        :type body: VerifyIpmiUser
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._verify_ipmi_user_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiTextResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def verify_ipmi_user_with_http_info(
+        self,
+        body: Annotated[VerifyIpmiUser, Field(description="Specifies the parameters to add an ipmi user to node.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[IpmiTextResponse]:
+        """To verify IPMI User with Password for node
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Verifies the ipmi user with password information for given node.
+
+        :param body: Specifies the parameters to add an ipmi user to node. (required)
+        :type body: VerifyIpmiUser
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._verify_ipmi_user_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiTextResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def verify_ipmi_user_without_preload_content(
+        self,
+        body: Annotated[VerifyIpmiUser, Field(description="Specifies the parameters to add an ipmi user to node.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """To verify IPMI User with Password for node
+
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Verifies the ipmi user with password information for given node.
+
+        :param body: Specifies the parameters to add an ipmi user to node. (required)
+        :type body: VerifyIpmiUser
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._verify_ipmi_user_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IpmiTextResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _verify_ipmi_user_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/ipmi/verify-users',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

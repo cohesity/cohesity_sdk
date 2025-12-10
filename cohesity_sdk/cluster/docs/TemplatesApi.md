@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 Download the azure resource template.
 
-Download the azure resource template.
+**Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Download the azure resource template.
 
 ### Example
 

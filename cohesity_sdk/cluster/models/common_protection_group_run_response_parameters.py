@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.archival_run_summary import ArchivalRunSummary
 from cohesity_sdk.cluster.models.backup_run_summary import BackupRunSummary
@@ -54,7 +54,18 @@ class CommonProtectionGroupRunResponseParameters(BaseModel):
     protection_group_instance_id: Optional[StrictInt] = Field(default=None, description="Protection Group instance Id. This field will be removed later.", alias="protectionGroupInstanceId")
     protection_group_name: Optional[StrictStr] = Field(default=None, description="Name of the Protection Group to which this run belongs.", alias="protectionGroupName")
     replication_info: Optional[ReplicationRunSummary] = Field(default=None, alias="replicationInfo")
-    __properties: ClassVar[List[str]] = ["archivalInfo", "cloudSpinInfo", "environment", "externallyTriggeredBackupTag", "hasLocalSnapshot", "id", "isCloudArchivalDirect", "isLocalSnapshotsDeleted", "isMetadataDeleted", "isReplicationRun", "localBackupInfo", "objects", "onLegalHold", "originClusterIdentifier", "originProtectionGroupId", "originalBackupInfo", "permissions", "protectionGroupId", "protectionGroupInstanceId", "protectionGroupName", "replicationInfo"]
+    replication_runs: Optional[List[ReplicationRunSummary]] = Field(default=None, description="Summary information about all replication runs for this backup run. replicationInfo provides information about the latest replication run for this backup run. whereas this field provides information about all historical replication runs for this backup run.", alias="replicationRuns")
+    __properties: ClassVar[List[str]] = ["archivalInfo", "cloudSpinInfo", "environment", "externallyTriggeredBackupTag", "hasLocalSnapshot", "id", "isCloudArchivalDirect", "isLocalSnapshotsDeleted", "isMetadataDeleted", "isReplicationRun", "localBackupInfo", "objects", "onLegalHold", "originClusterIdentifier", "originProtectionGroupId", "originalBackupInfo", "permissions", "protectionGroupId", "protectionGroupInstanceId", "protectionGroupName", "replicationInfo", "replicationRuns"]
+
+    @field_validator('environment')
+    def environment_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['kVMware', 'kHyperV', 'kVCD', 'kSQL', 'kView', 'kRemoteAdapter', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kAzure', 'kNetapp', 'kGenericNas', 'kAcropolis', 'kIsilon', 'kKVM', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kRDSPostgresSnapshotManager', 'kRDSMySQLSnapshotManager', 'kRDSMSSQLSnapshotManager', 'kRDSOracleSnapshotManager', 'kRDSMariaDBSnapshotManager', 'kRDSCustomMSSQLSnapshotManager', 'kRDSCustomOracleSnapshotManager', 'kAuroraSnapshotManager', 'kAuroraPostgresSnapshotManager', 'kAuroraMySQLSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAWSAuroraMySQL', 'kAwsDynamoDB', 'kAWSRdsOracle', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRDSMSSQL', 'kAWSRedshift', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzurePostgreSQLServer', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureBlobStorage', 'kAzureTableAPI', 'kAzureSnapshotManager', 'kExchange', 'kOracle', 'kGCP', 'kGCPBigQuery', 'kGCPMySQL', 'kGoogleSpanner', 'kGCPPostgreSQL', 'kGCPAlloyDBPostgreSQL', 'kGCPSQLServer', 'kGCPFirestore', 'kFlashBlade', 'kO365', 'kHyperFlex', 'kAD', 'kGPFS', 'kKubernetes', 'kNimble', 'kElastifile', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kS3Compatible', 'kSAPHANA', 'kO365Sharepoint', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kEwsExchange', 'kServiceNow', 'kPostgres', 'kNutanixFS']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kVCD', 'kSQL', 'kView', 'kRemoteAdapter', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kAzure', 'kNetapp', 'kGenericNas', 'kAcropolis', 'kIsilon', 'kKVM', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kRDSPostgresSnapshotManager', 'kRDSMySQLSnapshotManager', 'kRDSMSSQLSnapshotManager', 'kRDSOracleSnapshotManager', 'kRDSMariaDBSnapshotManager', 'kRDSCustomMSSQLSnapshotManager', 'kRDSCustomOracleSnapshotManager', 'kAuroraSnapshotManager', 'kAuroraPostgresSnapshotManager', 'kAuroraMySQLSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAWSAuroraMySQL', 'kAwsDynamoDB', 'kAWSRdsOracle', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRDSMSSQL', 'kAWSRedshift', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzurePostgreSQLServer', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureBlobStorage', 'kAzureTableAPI', 'kAzureSnapshotManager', 'kExchange', 'kOracle', 'kGCP', 'kGCPBigQuery', 'kGCPMySQL', 'kGoogleSpanner', 'kGCPPostgreSQL', 'kGCPAlloyDBPostgreSQL', 'kGCPSQLServer', 'kGCPFirestore', 'kFlashBlade', 'kO365', 'kHyperFlex', 'kAD', 'kGPFS', 'kKubernetes', 'kNimble', 'kElastifile', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kS3Compatible', 'kSAPHANA', 'kO365Sharepoint', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kEwsExchange', 'kServiceNow', 'kPostgres', 'kNutanixFS')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -127,6 +138,13 @@ class CommonProtectionGroupRunResponseParameters(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of replication_info
         if self.replication_info:
             _dict['replicationInfo'] = self.replication_info.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in replication_runs (list)
+        _items = []
+        if self.replication_runs:
+            for _item_replication_runs in self.replication_runs:
+                if _item_replication_runs:
+                    _items.append(_item_replication_runs.to_dict())
+            _dict['replicationRuns'] = _items
         # set to None if environment (nullable) is None
         # and model_fields_set contains the field
         if self.environment is None and "environment" in self.model_fields_set:
@@ -197,6 +215,11 @@ class CommonProtectionGroupRunResponseParameters(BaseModel):
         if self.protection_group_name is None and "protection_group_name" in self.model_fields_set:
             _dict['protectionGroupName'] = None
 
+        # set to None if replication_runs (nullable) is None
+        # and model_fields_set contains the field
+        if self.replication_runs is None and "replication_runs" in self.model_fields_set:
+            _dict['replicationRuns'] = None
+
         return _dict
 
     @classmethod
@@ -229,7 +252,8 @@ class CommonProtectionGroupRunResponseParameters(BaseModel):
             "protectionGroupId": obj.get("protectionGroupId"),
             "protectionGroupInstanceId": obj.get("protectionGroupInstanceId"),
             "protectionGroupName": obj.get("protectionGroupName"),
-            "replicationInfo": ReplicationRunSummary.from_dict(obj["replicationInfo"]) if obj.get("replicationInfo") is not None else None
+            "replicationInfo": ReplicationRunSummary.from_dict(obj["replicationInfo"]) if obj.get("replicationInfo") is not None else None,
+            "replicationRuns": [ReplicationRunSummary.from_dict(_item) for _item in obj["replicationRuns"]] if obj.get("replicationRuns") is not None else None
         })
         return _obj
 

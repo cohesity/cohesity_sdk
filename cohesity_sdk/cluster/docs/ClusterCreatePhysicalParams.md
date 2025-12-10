@@ -6,7 +6,21 @@ Params for Physical Edition Cluster Creation
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**allow_api_based_fetch** | **bool** | Specifies if API based GET should be enabled for cluster destroy params | [optional] 
+**apps_subnet_ip** | **str** | Specifies the IP for apps subnet | [optional] 
+**apps_subnet_ip_v6** | **str** | Specifies the IPv6 for apps subnet | [optional] 
+**apps_subnet_mask** | **str** | Specifies the Mask for apps subnet | [optional] 
+**apps_subnet_mask_v6** | **str** | Specifies the MaskV6 for apps subnet | [optional] 
+**cluster_destroy_hmac_key** | **str** | Specifies HMAC secret key that will be used to validate OTP used for destroy request | [optional] 
+**cluster_subnet_groups** | [**List[NodeGroup]**](NodeGroup.md) | List of cluster subnet groups this cluster should be configured with | [optional] 
+**enable_cluster_destroy** | **bool** | Specifies if cluster destroy op is enabled on this cluster | [optional] 
+**encryption_config** | [**EncryptionConfigurationParams**](EncryptionConfigurationParams.md) |  | [optional] 
+**ip_preference** | **int** | Specifies IP preference | [optional] 
+**ipmi_config** | [**IpmiConfigurationParams**](IpmiConfigurationParams.md) |  | [optional] 
+**metadata_fault_tolerance** | **int** | Specifies the metadata fault tolerance. | [optional] 
+**node_configs** | [**List[NodeConfigParams]**](NodeConfigParams.md) | Configuration of the nodes. | [optional] 
 **nodes** | [**List[ClusterCreateNodeParams]**](ClusterCreateNodeParams.md) |  | [optional] 
+**trust_domain** | **str** | Specifies Trust Domain used for Service Identity | [optional] 
 
 ## Example
 

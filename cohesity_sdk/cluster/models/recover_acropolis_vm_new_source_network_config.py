@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.cluster.models.recovery_object_identifier import RecoveryObjectIdentifier
+from cohesity_sdk.cluster.models.recover_acropolis_vm_new_network_config import RecoverAcropolisVmNewNetworkConfig
 from typing import Set
 from typing_extensions import Self
 
@@ -28,8 +28,8 @@ class RecoverAcropolisVmNewSourceNetworkConfig(BaseModel):
     Specifies the network config parameters to applied for Acropolis VMs.
     """ # noqa: E501
     detach_network: Optional[StrictBool] = Field(default=None, description="If this is set to true, then the network will be detached from the recovered VMs. All the other networking parameters set will be ignored if set to true. Default value is false.", alias="detachNetwork")
-    network_port_group: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="networkPortGroup")
-    __properties: ClassVar[List[str]] = ["detachNetwork", "networkPortGroup"]
+    new_network_config: Optional[RecoverAcropolisVmNewNetworkConfig] = Field(default=None, alias="newNetworkConfig")
+    __properties: ClassVar[List[str]] = ["detachNetwork", "newNetworkConfig"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,9 +70,9 @@ class RecoverAcropolisVmNewSourceNetworkConfig(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of network_port_group
-        if self.network_port_group:
-            _dict['networkPortGroup'] = self.network_port_group.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of new_network_config
+        if self.new_network_config:
+            _dict['newNetworkConfig'] = self.new_network_config.to_dict()
         # set to None if detach_network (nullable) is None
         # and model_fields_set contains the field
         if self.detach_network is None and "detach_network" in self.model_fields_set:
@@ -91,7 +91,7 @@ class RecoverAcropolisVmNewSourceNetworkConfig(BaseModel):
 
         _obj = cls.model_validate({
             "detachNetwork": obj.get("detachNetwork"),
-            "networkPortGroup": RecoveryObjectIdentifier.from_dict(obj["networkPortGroup"]) if obj.get("networkPortGroup") is not None else None
+            "newNetworkConfig": RecoverAcropolisVmNewNetworkConfig.from_dict(obj["newNetworkConfig"]) if obj.get("newNetworkConfig") is not None else None
         })
         return _obj
 

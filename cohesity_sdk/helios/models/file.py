@@ -30,6 +30,8 @@ class File(BaseModel):
     """ # noqa: E501
     snapshot_tags: Optional[List[SnapshotTagInfo]] = Field(default=None, description="Specifies snapshot tags applied to the object.", alias="snapshotTags")
     tags: Optional[List[TagInfo]] = Field(default=None, description="Specifies tag applied to the object.")
+    hash: Optional[StrictStr] = Field(default=None, description="Specifies hash value for this file.")
+    modified_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies modification time for this file in usecs.", alias="modifiedTimeUsecs")
     name: Optional[StrictStr] = Field(default=None, description="Specifies the file name.")
     path: Optional[StrictStr] = Field(default=None, description="Specifies the path to this file.")
     policy_id: Optional[StrictStr] = Field(default=None, description="Specifies the protection policy id for this file.", alias="policyId")
@@ -39,7 +41,7 @@ class File(BaseModel):
     source_info: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the Source Object information.", alias="sourceInfo")
     storage_domain_id: Optional[StrictInt] = Field(default=None, description="\"Specifies the Storage Domain id where the backup data of Object is present.\"", alias="storageDomainId")
     type: Optional[StrictStr] = Field(default=None, description="Specifies the file type.")
-    __properties: ClassVar[List[str]] = ["snapshotTags", "tags", "name", "path", "policyId", "policyName", "protectionGroupId", "protectionGroupName", "sourceInfo", "storageDomainId", "type"]
+    __properties: ClassVar[List[str]] = ["snapshotTags", "tags", "hash", "modifiedTimeUsecs", "name", "path", "policyId", "policyName", "protectionGroupId", "protectionGroupName", "sourceInfo", "storageDomainId", "type"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -114,6 +116,16 @@ class File(BaseModel):
         if self.tags is None and "tags" in self.model_fields_set:
             _dict['tags'] = None
 
+        # set to None if hash (nullable) is None
+        # and model_fields_set contains the field
+        if self.hash is None and "hash" in self.model_fields_set:
+            _dict['hash'] = None
+
+        # set to None if modified_time_usecs (nullable) is None
+        # and model_fields_set contains the field
+        if self.modified_time_usecs is None and "modified_time_usecs" in self.model_fields_set:
+            _dict['modifiedTimeUsecs'] = None
+
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
@@ -168,6 +180,8 @@ class File(BaseModel):
         _obj = cls.model_validate({
             "snapshotTags": [SnapshotTagInfo.from_dict(_item) for _item in obj["snapshotTags"]] if obj.get("snapshotTags") is not None else None,
             "tags": [TagInfo.from_dict(_item) for _item in obj["tags"]] if obj.get("tags") is not None else None,
+            "hash": obj.get("hash"),
+            "modifiedTimeUsecs": obj.get("modifiedTimeUsecs"),
             "name": obj.get("name"),
             "path": obj.get("path"),
             "policyId": obj.get("policyId"),

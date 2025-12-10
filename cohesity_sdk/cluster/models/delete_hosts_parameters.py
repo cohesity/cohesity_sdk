@@ -26,8 +26,9 @@ class DeleteHostsParameters(BaseModel):
     """
     Specifies the params for deleting hosts
     """ # noqa: E501
+    domain_names: Optional[List[StrictStr]] = Field(default=None, description="Specifies the list of domain names to be deleted", alias="domainNames")
     ips: Optional[List[StrictStr]] = Field(default=None, description="Specifies the list of IPs to be deleted")
-    __properties: ClassVar[List[str]] = ["ips"]
+    __properties: ClassVar[List[str]] = ["domainNames", "ips"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,6 +81,7 @@ class DeleteHostsParameters(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "domainNames": obj.get("domainNames"),
             "ips": obj.get("ips")
         })
         return _obj

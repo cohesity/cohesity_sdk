@@ -7,6 +7,7 @@ Specifies the parameters to connect to a seed node and fetch information from it
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **configuration_directory** | **str** | The directory containing the application specific config file. . | 
+**hdfs_connection_type** | **str** | HDFS Connection Type. | [optional] 
 **host** | **str** | IP or hostname of any host from which the  configuration file can be read. | 
 **ssh_password_credentials** | [**HadoopConnectionParamsSshPasswordCredentials**](HadoopConnectionParamsSshPasswordCredentials.md) |  | [optional] 
 **ssh_private_key_credentials** | [**HadoopConnectionParamsSshPrivateKeyCredentials**](HadoopConnectionParamsSshPrivateKeyCredentials.md) |  | [optional] 

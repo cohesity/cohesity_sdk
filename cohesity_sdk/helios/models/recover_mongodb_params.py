@@ -34,9 +34,11 @@ class RecoverMongodbParams(BaseModel):
     overwrite: Optional[StrictBool] = Field(default=None, description="Set to true to overwrite an existing object at the destination. If set to false, and the same object exists at the destination, then recovery will fail for that object.")
     recover_to: Optional[StrictInt] = Field(default=None, description="Specifies the 'Source Registration ID' of the source where the objects are to be recovered. If this is not specified, the recovery job will recover to the original location.", alias="recoverTo")
     warnings: Optional[List[StrictStr]] = Field(default=None, description="This field will hold the warnings in cases where the job status is SucceededWithWarnings.")
+    recover_user_roles: Optional[StrictBool] = Field(default=None, description="Specifies whether to recover User and roles at the time of recovery.", alias="recoverUserRoles")
+    recover_zones_tags: Optional[StrictBool] = Field(default=None, description="Specifies whether to recover Zones/shard tags at the time of recovery.", alias="recoverZonesTags")
     snapshots: Optional[List[RecoverMongodbSnapshotParams]] = Field(description="Specifies the local snapshot ids of the Objects to be recovered.")
     suffix: Optional[StrictStr] = Field(default=None, description="A suffix that is to be applied to all recovered objects.")
-    __properties: ClassVar[List[str]] = ["advancedConfigs", "bandwidthMBPS", "concurrency", "overwrite", "recoverTo", "warnings", "snapshots", "suffix"]
+    __properties: ClassVar[List[str]] = ["advancedConfigs", "bandwidthMBPS", "concurrency", "overwrite", "recoverTo", "warnings", "recoverUserRoles", "recoverZonesTags", "snapshots", "suffix"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -123,6 +125,16 @@ class RecoverMongodbParams(BaseModel):
         if self.warnings is None and "warnings" in self.model_fields_set:
             _dict['warnings'] = None
 
+        # set to None if recover_user_roles (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_user_roles is None and "recover_user_roles" in self.model_fields_set:
+            _dict['recoverUserRoles'] = None
+
+        # set to None if recover_zones_tags (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_zones_tags is None and "recover_zones_tags" in self.model_fields_set:
+            _dict['recoverZonesTags'] = None
+
         # set to None if snapshots (nullable) is None
         # and model_fields_set contains the field
         if self.snapshots is None and "snapshots" in self.model_fields_set:
@@ -151,6 +163,8 @@ class RecoverMongodbParams(BaseModel):
             "overwrite": obj.get("overwrite"),
             "recoverTo": obj.get("recoverTo"),
             "warnings": obj.get("warnings"),
+            "recoverUserRoles": obj.get("recoverUserRoles"),
+            "recoverZonesTags": obj.get("recoverZonesTags"),
             "snapshots": [RecoverMongodbSnapshotParams.from_dict(_item) for _item in obj["snapshots"]] if obj.get("snapshots") is not None else None,
             "suffix": obj.get("suffix")
         })

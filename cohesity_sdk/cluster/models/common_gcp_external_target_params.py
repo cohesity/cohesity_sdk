@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.cluster.models.gcp_authentication_methods_params import GCPAuthenticationMethodsParams
 from typing import Set
 from typing_extensions import Self
 
@@ -26,11 +27,13 @@ class CommonGcpExternalTargetParams(BaseModel):
     """
     Specifies the common parameters which are specific to GCP related External Targets.
     """ # noqa: E501
+    authentication_method: Optional[GCPAuthenticationMethodsParams] = Field(default=None, alias="authenticationMethod")
     bucket_name: Optional[StrictStr] = Field(description="Specifies the bucket name of the external target.", alias="bucketName")
-    client_email_address: Optional[StrictStr] = Field(description="Specifies the client email address of the external target.", alias="clientEmailAddress")
-    client_private_key: Optional[StrictStr] = Field(default=None, description="Specifies the client private key of the external target.", alias="clientPrivateKey")
+    client_email_address: Optional[StrictStr] = Field(default=None, description="Specifies the client email address of the external target. This field is being deprecated, please use authenticationMethod instead.", alias="clientEmailAddress")
+    client_private_key: Optional[StrictStr] = Field(default=None, description="Specifies the client private key of the external target. This field is being deprecated, please use authenticationMethod instead.", alias="clientPrivateKey")
     project_id: Optional[StrictStr] = Field(description="Specifies the project Id of the external target.", alias="projectId")
-    __properties: ClassVar[List[str]] = ["bucketName", "clientEmailAddress", "clientPrivateKey", "projectId"]
+    region: Optional[StrictStr] = Field(default=None, description="Specifies the Google Cloud region where the storage bucket is located (e.g., 'us-central1', 'europe-west1').")
+    __properties: ClassVar[List[str]] = ["authenticationMethod", "bucketName", "clientEmailAddress", "clientPrivateKey", "projectId", "region"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,6 +74,9 @@ class CommonGcpExternalTargetParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of authentication_method
+        if self.authentication_method:
+            _dict['authenticationMethod'] = self.authentication_method.to_dict()
         # set to None if bucket_name (nullable) is None
         # and model_fields_set contains the field
         if self.bucket_name is None and "bucket_name" in self.model_fields_set:
@@ -91,6 +97,11 @@ class CommonGcpExternalTargetParams(BaseModel):
         if self.project_id is None and "project_id" in self.model_fields_set:
             _dict['projectId'] = None
 
+        # set to None if region (nullable) is None
+        # and model_fields_set contains the field
+        if self.region is None and "region" in self.model_fields_set:
+            _dict['region'] = None
+
         return _dict
 
     @classmethod
@@ -103,10 +114,12 @@ class CommonGcpExternalTargetParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "authenticationMethod": GCPAuthenticationMethodsParams.from_dict(obj["authenticationMethod"]) if obj.get("authenticationMethod") is not None else None,
             "bucketName": obj.get("bucketName"),
             "clientEmailAddress": obj.get("clientEmailAddress"),
             "clientPrivateKey": obj.get("clientPrivateKey"),
-            "projectId": obj.get("projectId")
+            "projectId": obj.get("projectId"),
+            "region": obj.get("region")
         })
         return _obj
 

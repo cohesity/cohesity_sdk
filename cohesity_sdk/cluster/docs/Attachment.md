@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **interfaces** | **List[str]** | Specifies the network interfaces | [optional] 
 **ipset_names** | **List[str]** | Specifies the ip sets. | [optional] 
 **is_implicit** | **bool** |  | [optional] [readonly] 
+**profile** | **str** | Specifies the firewall profile. | [optional] 
+**subnets** | **List[str]** | Specifies the subnets. | [optional] 
 
 ## Example
 

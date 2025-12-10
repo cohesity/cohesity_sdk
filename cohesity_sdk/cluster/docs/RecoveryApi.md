@@ -7,14 +7,18 @@ Method | HTTP request | Description
 [**cancel_recovery_by_id**](RecoveryApi.md#cancel_recovery_by_id) | **POST** /data-protect/recoveries/{id}/cancel | Cancel Recovery for a given id.
 [**create_download_files_and_folders_recovery**](RecoveryApi.md#create_download_files_and_folders_recovery) | **POST** /data-protect/recoveries/download-files-folders | Create a download files and folders recovery.
 [**create_recovery**](RecoveryApi.md#create_recovery) | **POST** /data-protect/recoveries | Performs a Recovery.
+[**delete_recovery_clone_task_by_id**](RecoveryApi.md#delete_recovery_clone_task_by_id) | **DELETE** /data-protect/recoveries/clone/{id} | Delete a restore clone task
 [**download_files_from_recovery**](RecoveryApi.md#download_files_from_recovery) | **GET** /data-protect/recoveries/{id}/download-files | Download files from the given download file recovery.
 [**download_indexed_file**](RecoveryApi.md#download_indexed_file) | **GET** /data-protect/snapshots/{snapshotsId}/download-file | Download an indexed file.
 [**fetch_uptier_data**](RecoveryApi.md#fetch_uptier_data) | **GET** /data-protect/recoveries/fetch-uptier-data | Fetches the uptier data.
+[**get_directories**](RecoveryApi.md#get_directories) | **GET** /data-protect/recoveries/directories | Fetches the children of a directory
 [**get_recoveries**](RecoveryApi.md#get_recoveries) | **GET** /data-protect/recoveries | Lists the Recoveries.
 [**get_recovery_by_id**](RecoveryApi.md#get_recovery_by_id) | **GET** /data-protect/recoveries/{id} | Get Recovery for a given id.
 [**get_recovery_debug_logs**](RecoveryApi.md#get_recovery_debug_logs) | **GET** /data-protect/recoveries/{id}/debug-logs | Get the debug logs for a particular recovery operation.
 [**get_recovery_errors_report**](RecoveryApi.md#get_recovery_errors_report) | **GET** /data-protect/recoveries/{id}/download-messages | Get the CSV of errors/warnings for a given recovery operation.
+[**get_restore_points_in_time_range**](RecoveryApi.md#get_restore_points_in_time_range) | **POST** /data-protect/snapshots/restore-points | List Restore Points in a given time range
 [**tear_down_recovery_by_id**](RecoveryApi.md#tear_down_recovery_by_id) | **POST** /data-protect/recoveries/{id}/tear-down | Tear down Recovery for a given id.
+[**virtual_disk_information**](RecoveryApi.md#virtual_disk_information) | **GET** /data-protect/recoveries/virtual-disks | Fetches information of virtual disks
 
 
 # **cancel_recovery_by_id**
@@ -22,7 +26,7 @@ Method | HTTP request | Description
 
 Cancel Recovery for a given id.
 
-Cancel Recovery for a given id.
+**Privileges:** ```RESTORE_MODIFY``` <br><br>Cancel Recovery for a given id.
 
 ### Example
 
@@ -113,7 +117,7 @@ void (empty response body)
 
 Create a download files and folders recovery.
 
-Creates a download files and folders recovery.
+**Privileges:** ```RESTORE_MODIFY``` <br><br>Creates a download files and folders recovery.
 
 ### Example
 
@@ -208,7 +212,7 @@ Name | Type | Description  | Notes
 
 Performs a Recovery.
 
-Performs a Recovery.
+**Privileges:** ```RESTORE_MODIFY, REMOTE_RESTORE``` <br><br>Performs a Recovery.
 
 ### Example
 
@@ -300,12 +304,103 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **delete_recovery_clone_task_by_id**
+> delete_recovery_clone_task_by_id(id)
+
+Delete a restore clone task
+
+**Privileges:** ```RESTORE_MODIFY``` <br><br>Delete a restore clone task with specified id
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
+```python
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.RecoveryApi(api_client)
+    id = 56 # int | Specifies a unique id of the Clone Task to delete.
+
+    try:
+        # Delete a restore clone task
+        api_instance.delete_recovery_clone_task_by_id(id)
+    except Exception as e:
+        print("Exception when calling RecoveryApi->delete_recovery_clone_task_by_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Specifies a unique id of the Clone Task to delete. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **download_files_from_recovery**
-> download_files_from_recovery(id, start_offset=start_offset, length=length, file_type=file_type, source_name=source_name, start_time=start_time, include_tenants=include_tenants)
+> download_files_from_recovery(id, start_offset=start_offset, length=length, file_type=file_type, source_name=source_name, start_time=start_time, include_tenants=include_tenants, file_path=file_path)
 
 Download files from the given download file recovery.
 
-Download files from the given download file recovery.
+**Privileges:** ```RESTORE_DOWNLOAD``` <br><br>Download files from the given download file recovery.
 
 ### Example
 
@@ -358,10 +453,11 @@ with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     source_name = 'source_name_example' # str | Specifies the name of the source on which restore is done (optional)
     start_time = 'start_time_example' # str | Specifies the start time of restore task (optional)
     include_tenants = True # bool | Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned. (optional)
+    file_path = 'file_path_example' # str | Specifies the path of the file on the cluster to be downloaded. (optional)
 
     try:
         # Download files from the given download file recovery.
-        api_instance.download_files_from_recovery(id, start_offset=start_offset, length=length, file_type=file_type, source_name=source_name, start_time=start_time, include_tenants=include_tenants)
+        api_instance.download_files_from_recovery(id, start_offset=start_offset, length=length, file_type=file_type, source_name=source_name, start_time=start_time, include_tenants=include_tenants, file_path=file_path)
     except Exception as e:
         print("Exception when calling RecoveryApi->download_files_from_recovery: %s\n" % e)
 ```
@@ -380,6 +476,7 @@ Name | Type | Description  | Notes
  **source_name** | **str**| Specifies the name of the source on which restore is done | [optional] 
  **start_time** | **str**| Specifies the start time of restore task | [optional] 
  **include_tenants** | **bool**| Specifies if objects of all the organizations under the hierarchy of the logged in user&#39;s organization should be returned. | [optional] 
+ **file_path** | **str**| Specifies the path of the file on the cluster to be downloaded. | [optional] 
 
 ### Return type
 
@@ -408,7 +505,7 @@ void (empty response body)
 
 Download an indexed file.
 
-Download an indexed file from a snapshot.
+**Privileges:** ```RESTORE_DOWNLOAD``` <br><br>Download an indexed file from a snapshot.
 
 ### Example
 
@@ -509,7 +606,7 @@ void (empty response body)
 
 Fetches the uptier data.
 
-Fetches the uptier data for a restore job.
+**Privileges:** ```RESTORE_VIEW``` <br><br>Fetches the uptier data for a restore job.
 
 ### Example
 
@@ -598,12 +695,107 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_directories**
+> DirectoryListResult get_directories(body)
+
+Fetches the children of a directory
+
+**Privileges:** ```RESTORE_VIEW``` <br><br>Retrieves the immediate files and subdirectories of a specified directory within a VM, View, NAS Volume, Physical machine etc. i.e. any adapter that supports browse functionality
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
+```python
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.directory_list_result import DirectoryListResult
+from cohesity_sdk.cluster.models.fetch_directories_params import FetchDirectoriesParams
+from cohesity_sdk.cluster.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.RecoveryApi(api_client)
+    body = cohesity_sdk.cluster.FetchDirectoriesParams() # FetchDirectoriesParams | Specifies the parameters to create a download files and folder recovery.
+
+    try:
+        # Fetches the children of a directory
+        api_response = api_instance.get_directories(body)
+        print("The response of RecoveryApi->get_directories:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RecoveryApi->get_directories: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**FetchDirectoriesParams**](FetchDirectoriesParams.md)| Specifies the parameters to create a download files and folder recovery. | 
+
+### Return type
+
+[**DirectoryListResult**](DirectoryListResult.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_recoveries**
-> Recoveries get_recoveries(ids=ids, return_only_child_recoveries=return_only_child_recoveries, tenant_ids=tenant_ids, include_tenants=include_tenants, start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, storage_domain_id=storage_domain_id, snapshot_target_type=snapshot_target_type, archival_target_type=archival_target_type, snapshot_environments=snapshot_environments, status=status, recovery_actions=recovery_actions)
+> Recoveries get_recoveries(ids=ids, return_only_child_recoveries=return_only_child_recoveries, tenant_ids=tenant_ids, include_tenants=include_tenants, start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, storage_domain_id=storage_domain_id, snapshot_target_type=snapshot_target_type, archival_target_type=archival_target_type, snapshot_environments=snapshot_environments, status=status, recovery_actions=recovery_actions, return_child_tasks=return_child_tasks, fortknox_onprem_recoveries_only=fortknox_onprem_recoveries_only, prune_objects=prune_objects)
 
 Lists the Recoveries.
 
-Lists the Recoveries.
+**Privileges:** ```RESTORE_VIEW``` <br><br>Lists the Recoveries.
 
 ### Example
 
@@ -662,10 +854,13 @@ with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     snapshot_environments = ['snapshot_environments_example'] # List[str] | Specifies the list of snapshot environment types to filter Recoveries. If empty, Recoveries related to all environments will be returned. (optional)
     status = ['status_example'] # List[str] | Specifies the list of run status to filter Recoveries. If empty, Recoveries with all run status will be returned. (optional)
     recovery_actions = ['recovery_actions_example'] # List[str] | Specifies the list of recovery actions to filter Recoveries. If empty, Recoveries related to all actions will be returned. (optional)
+    return_child_tasks = False # bool | If set to true, also allows child tasks created by restore jobs or multi-state restores to be returned. (optional) (default to False)
+    fortknox_onprem_recoveries_only = False # bool | Return only recoveries initiated from the snapshots in FortKnox Onprem vaults if it set to true. Otherwise, return all recoveries as default. (optional) (default to False)
+    prune_objects = False # bool | Specifies if objects should be excluded from the response. (optional) (default to False)
 
     try:
         # Lists the Recoveries.
-        api_response = api_instance.get_recoveries(ids=ids, return_only_child_recoveries=return_only_child_recoveries, tenant_ids=tenant_ids, include_tenants=include_tenants, start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, storage_domain_id=storage_domain_id, snapshot_target_type=snapshot_target_type, archival_target_type=archival_target_type, snapshot_environments=snapshot_environments, status=status, recovery_actions=recovery_actions)
+        api_response = api_instance.get_recoveries(ids=ids, return_only_child_recoveries=return_only_child_recoveries, tenant_ids=tenant_ids, include_tenants=include_tenants, start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, storage_domain_id=storage_domain_id, snapshot_target_type=snapshot_target_type, archival_target_type=archival_target_type, snapshot_environments=snapshot_environments, status=status, recovery_actions=recovery_actions, return_child_tasks=return_child_tasks, fortknox_onprem_recoveries_only=fortknox_onprem_recoveries_only, prune_objects=prune_objects)
         print("The response of RecoveryApi->get_recoveries:\n")
         pprint(api_response)
     except Exception as e:
@@ -691,6 +886,9 @@ Name | Type | Description  | Notes
  **snapshot_environments** | [**List[str]**](str.md)| Specifies the list of snapshot environment types to filter Recoveries. If empty, Recoveries related to all environments will be returned. | [optional] 
  **status** | [**List[str]**](str.md)| Specifies the list of run status to filter Recoveries. If empty, Recoveries with all run status will be returned. | [optional] 
  **recovery_actions** | [**List[str]**](str.md)| Specifies the list of recovery actions to filter Recoveries. If empty, Recoveries related to all actions will be returned. | [optional] 
+ **return_child_tasks** | **bool**| If set to true, also allows child tasks created by restore jobs or multi-state restores to be returned. | [optional] [default to False]
+ **fortknox_onprem_recoveries_only** | **bool**| Return only recoveries initiated from the snapshots in FortKnox Onprem vaults if it set to true. Otherwise, return all recoveries as default. | [optional] [default to False]
+ **prune_objects** | **bool**| Specifies if objects should be excluded from the response. | [optional] [default to False]
 
 ### Return type
 
@@ -715,11 +913,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_recovery_by_id**
-> Recovery get_recovery_by_id(id, include_tenants=include_tenants)
+> Recovery get_recovery_by_id(id, include_tenants=include_tenants, return_child_tasks=return_child_tasks)
 
 Get Recovery for a given id.
 
-Get Recovery for a given id.
+**Privileges:** ```RESTORE_VIEW``` <br><br>Get Recovery for a given id.
 
 ### Example
 
@@ -768,10 +966,11 @@ with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     api_instance = cohesity_sdk.cluster.RecoveryApi(api_client)
     id = 'id_example' # str | Specifies the id of a Recovery.
     include_tenants = True # bool | Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned. (optional)
+    return_child_tasks = False # bool | If set to true, also allows child tasks created by restore jobs or multi-state restores to be returned. (optional) (default to False)
 
     try:
         # Get Recovery for a given id.
-        api_response = api_instance.get_recovery_by_id(id, include_tenants=include_tenants)
+        api_response = api_instance.get_recovery_by_id(id, include_tenants=include_tenants, return_child_tasks=return_child_tasks)
         print("The response of RecoveryApi->get_recovery_by_id:\n")
         pprint(api_response)
     except Exception as e:
@@ -787,6 +986,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id of a Recovery. | 
  **include_tenants** | **bool**| Specifies if objects of all the organizations under the hierarchy of the logged in user&#39;s organization should be returned. | [optional] 
+ **return_child_tasks** | **bool**| If set to true, also allows child tasks created by restore jobs or multi-state restores to be returned. | [optional] [default to False]
 
 ### Return type
 
@@ -815,7 +1015,7 @@ Name | Type | Description  | Notes
 
 Get the debug logs for a particular recovery operation.
 
-Get the debug logs for a particular recovery operation.
+**Privileges:** ```RESTORE_VIEW``` <br><br>Get the debug logs for a particular recovery operation.
 
 ### Example
 
@@ -906,7 +1106,7 @@ void (empty response body)
 
 Get the CSV of errors/warnings for a given recovery operation.
 
-Get a CSV error report for given recovery operation. Each row in CSV report contains the File Path, error/warning code and error/warning message.
+**Privileges:** ```RESTORE_VIEW``` <br><br>Get a CSV error report for given recovery operation. Each row in CSV report contains the File Path, error/warning code and error/warning message.
 
 ### Example
 
@@ -992,12 +1192,107 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_restore_points_in_time_range**
+> GetRestorePointsInTimeRangeResponse get_restore_points_in_time_range(body)
+
+List Restore Points in a given time range
+
+**Privileges:** ```RESTORE_VIEW``` <br><br>List Restore Points i.e. returns the snapshots in in a given time range
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
+```python
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_restore_points_in_time_range_params import GetRestorePointsInTimeRangeParams
+from cohesity_sdk.cluster.models.get_restore_points_in_time_range_response import GetRestorePointsInTimeRangeResponse
+from cohesity_sdk.cluster.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.RecoveryApi(api_client)
+    body = cohesity_sdk.cluster.GetRestorePointsInTimeRangeParams() # GetRestorePointsInTimeRangeParams | Specifies the request parameters to restore points for time range API
+
+    try:
+        # List Restore Points in a given time range
+        api_response = api_instance.get_restore_points_in_time_range(body)
+        print("The response of RecoveryApi->get_restore_points_in_time_range:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RecoveryApi->get_restore_points_in_time_range: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**GetRestorePointsInTimeRangeParams**](GetRestorePointsInTimeRangeParams.md)| Specifies the request parameters to restore points for time range API | 
+
+### Return type
+
+[**GetRestorePointsInTimeRangeResponse**](GetRestorePointsInTimeRangeResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **tear_down_recovery_by_id**
 > tear_down_recovery_by_id(id)
 
 Tear down Recovery for a given id.
 
-Tear down Recovery for a given id.
+**Privileges:** ```RESTORE_MODIFY``` <br><br>Tear down Recovery for a given id.
 
 ### Example
 
@@ -1079,6 +1374,116 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **virtual_disk_information**
+> VirtualDiskInformationResponseParams virtual_disk_information(cluster_id, cluster_incarnation_id, job_id, object_id, snapshot_id=snapshot_id, point_in_time_usecs=point_in_time_usecs, vault_id=vault_id, vault_name=vault_name, vault_type=vault_type)
+
+Fetches information of virtual disks
+
+**Privileges:** ```RESTORE_VIEW``` <br><br>Fetches information of virtual disks of an object such as a VM or a physical server for a given snapshot.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
+```python
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.virtual_disk_information_response_params import VirtualDiskInformationResponseParams
+from cohesity_sdk.cluster.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.RecoveryApi(api_client)
+    cluster_id = 56 # int | Specifies the Cohesity Cluster id where the Job was created.
+    cluster_incarnation_id = 56 # int | Specifies the incarnation id of the Cohesity Cluster where the Job was created.
+    job_id = 56 # int | Specifies the id of the Job that captured the snapshot.
+    object_id = 56 # int | Specifies the Id of the Protection Source object.
+    snapshot_id = 'snapshot_id_example' # str | Specifies the snapshot id. (optional)
+    point_in_time_usecs = 56 # int | Specifies the Id of the vault where snapshot was taken (optional)
+    vault_id = 56 # int | Specifies the Id of the vault where snapshot was taken (optional)
+    vault_name = 'vault_name_example' # str | Specifies the name of the vault where snapshot was taken (optional)
+    vault_type = 'vault_type_example' # str | Specifies the External Target type. (optional)
+
+    try:
+        # Fetches information of virtual disks
+        api_response = api_instance.virtual_disk_information(cluster_id, cluster_incarnation_id, job_id, object_id, snapshot_id=snapshot_id, point_in_time_usecs=point_in_time_usecs, vault_id=vault_id, vault_name=vault_name, vault_type=vault_type)
+        print("The response of RecoveryApi->virtual_disk_information:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RecoveryApi->virtual_disk_information: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **cluster_id** | **int**| Specifies the Cohesity Cluster id where the Job was created. | 
+ **cluster_incarnation_id** | **int**| Specifies the incarnation id of the Cohesity Cluster where the Job was created. | 
+ **job_id** | **int**| Specifies the id of the Job that captured the snapshot. | 
+ **object_id** | **int**| Specifies the Id of the Protection Source object. | 
+ **snapshot_id** | **str**| Specifies the snapshot id. | [optional] 
+ **point_in_time_usecs** | **int**| Specifies the Id of the vault where snapshot was taken | [optional] 
+ **vault_id** | **int**| Specifies the Id of the vault where snapshot was taken | [optional] 
+ **vault_name** | **str**| Specifies the name of the vault where snapshot was taken | [optional] 
+ **vault_type** | **str**| Specifies the External Target type. | [optional] 
+
+### Return type
+
+[**VirtualDiskInformationResponseParams**](VirtualDiskInformationResponseParams.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
 **0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

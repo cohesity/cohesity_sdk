@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **is_tls_enabled** | **bool** | Specify whether to enable tls support. | [optional] 
 **msg_pattern_list** | **List[str]** | Send logs including the msg patterns to logging server. | [optional] 
 **name** | **str** | Specifies a unique name for the syslog server on the Cluster. | [optional] 
+**permitted_peer** | **str** | Syslog server certificate common name. | [optional] 
 **port** | **int** | Specifies the port where the syslog server listens. | [optional] 
 **program_name_list** | **List[str]** | Send programes related logs to logging server. | [optional] 
 **protocol** | **str** | Specifies the protocol used to send the logs. | [optional] 

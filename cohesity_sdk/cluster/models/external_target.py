@@ -31,6 +31,7 @@ class ExternalTarget(BaseModel):
     """ # noqa: E501
     cloud_domains: Optional[List[CloudDomain]] = Field(default=None, description="Specifies the cloud domain information.", alias="cloudDomains")
     compression: Optional[StrictStr] = Field(default=None, description="Specifies whether the type of compression of the External Target")
+    enable_object_lock: Optional[StrictBool] = Field(default=None, description="Whether to enable object lock for this vault. If this field is set, all the objects written to the vault will be object locked until all the archives referring to them expire.", alias="enableObjectLock")
     error_message: Optional[StrictStr] = Field(default=None, description="Specifies the error message if the event is in failed state.", alias="errorMessage")
     global_id: Optional[StrictStr] = Field(default=None, description="Specifies the global identifier of the External Target.", alias="globalId")
     id: Optional[StrictInt] = Field(default=None, description="Specifies the ID of the External Target.")
@@ -41,9 +42,12 @@ class ExternalTarget(BaseModel):
     status: Optional[StrictStr] = Field(default=None, description="Specifies the registration status of the External Target")
     storage_domain_name: Optional[StrictStr] = Field(default=None, description="Specifies the storage domain associated with the target.", alias="storageDomainName")
     tenant_ids: Optional[List[StrictStr]] = Field(default=None, description="Specifies the list of tenantIds for the External Target", alias="tenantIds")
+    use_for_apollo_mr_store: Optional[StrictBool] = Field(default=None, description="Specifies whether this external target is used to store apollo mr records.", alias="useForApolloMrStore")
+    use_rolling_object_lock: Optional[StrictBool] = Field(default=None, description="Whether the vault should use rolling object lock.", alias="useRollingObjectLock")
+    worm_lock_in_compliance_mode: Optional[StrictBool] = Field(default=None, description="Whether archives to this vault should use compliance mode when adding data locks to objects.", alias="wormLockInComplianceMode")
     archival_params: Optional[ArchivalExternalTargetParams] = Field(default=None, alias="archivalParams")
     tiering_params: Optional[TieringExternalTargetParams] = Field(default=None, alias="tieringParams")
-    __properties: ClassVar[List[str]] = ["cloudDomains", "compression", "errorMessage", "globalId", "id", "isWormCapable", "name", "ownershipContext", "purposeType", "status", "storageDomainName", "tenantIds", "archivalParams", "tieringParams"]
+    __properties: ClassVar[List[str]] = ["cloudDomains", "compression", "enableObjectLock", "errorMessage", "globalId", "id", "isWormCapable", "name", "ownershipContext", "purposeType", "status", "storageDomainName", "tenantIds", "useForApolloMrStore", "useRollingObjectLock", "wormLockInComplianceMode", "archivalParams", "tieringParams"]
 
     @field_validator('compression')
     def compression_validate_enum(cls, value):
@@ -61,8 +65,8 @@ class ExternalTarget(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Local', 'FortKnox']):
-            raise ValueError("must be one of enum values ('Local', 'FortKnox')")
+        if value not in set(['Local', 'FortKnox', 'FortKnoxOnprem']):
+            raise ValueError("must be one of enum values ('Local', 'FortKnox', 'FortKnoxOnprem')")
         return value
 
     @field_validator('purpose_type')
@@ -71,8 +75,8 @@ class ExternalTarget(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Archival', 'Tiering', 'Rpaas']):
-            raise ValueError("must be one of enum values ('Archival', 'Tiering', 'Rpaas')")
+        if value not in set(['Archival', 'Tiering', 'Rpaas', 'Logbackup']):
+            raise ValueError("must be one of enum values ('Archival', 'Tiering', 'Rpaas', 'Logbackup')")
         return value
 
     @field_validator('status')
@@ -153,6 +157,11 @@ class ExternalTarget(BaseModel):
         if self.compression is None and "compression" in self.model_fields_set:
             _dict['compression'] = None
 
+        # set to None if enable_object_lock (nullable) is None
+        # and model_fields_set contains the field
+        if self.enable_object_lock is None and "enable_object_lock" in self.model_fields_set:
+            _dict['enableObjectLock'] = None
+
         # set to None if error_message (nullable) is None
         # and model_fields_set contains the field
         if self.error_message is None and "error_message" in self.model_fields_set:
@@ -198,6 +207,21 @@ class ExternalTarget(BaseModel):
         if self.storage_domain_name is None and "storage_domain_name" in self.model_fields_set:
             _dict['storageDomainName'] = None
 
+        # set to None if use_for_apollo_mr_store (nullable) is None
+        # and model_fields_set contains the field
+        if self.use_for_apollo_mr_store is None and "use_for_apollo_mr_store" in self.model_fields_set:
+            _dict['useForApolloMrStore'] = None
+
+        # set to None if use_rolling_object_lock (nullable) is None
+        # and model_fields_set contains the field
+        if self.use_rolling_object_lock is None and "use_rolling_object_lock" in self.model_fields_set:
+            _dict['useRollingObjectLock'] = None
+
+        # set to None if worm_lock_in_compliance_mode (nullable) is None
+        # and model_fields_set contains the field
+        if self.worm_lock_in_compliance_mode is None and "worm_lock_in_compliance_mode" in self.model_fields_set:
+            _dict['wormLockInComplianceMode'] = None
+
         return _dict
 
     @classmethod
@@ -212,6 +236,7 @@ class ExternalTarget(BaseModel):
         _obj = cls.model_validate({
             "cloudDomains": [CloudDomain.from_dict(_item) for _item in obj["cloudDomains"]] if obj.get("cloudDomains") is not None else None,
             "compression": obj.get("compression"),
+            "enableObjectLock": obj.get("enableObjectLock"),
             "errorMessage": obj.get("errorMessage"),
             "globalId": obj.get("globalId"),
             "id": obj.get("id"),
@@ -222,6 +247,9 @@ class ExternalTarget(BaseModel):
             "status": obj.get("status"),
             "storageDomainName": obj.get("storageDomainName"),
             "tenantIds": obj.get("tenantIds"),
+            "useForApolloMrStore": obj.get("useForApolloMrStore"),
+            "useRollingObjectLock": obj.get("useRollingObjectLock"),
+            "wormLockInComplianceMode": obj.get("wormLockInComplianceMode"),
             "archivalParams": ArchivalExternalTargetParams.from_dict(obj["archivalParams"]) if obj.get("archivalParams") is not None else None,
             "tieringParams": TieringExternalTargetParams.from_dict(obj["tieringParams"]) if obj.get("tieringParams") is not None else None
         })

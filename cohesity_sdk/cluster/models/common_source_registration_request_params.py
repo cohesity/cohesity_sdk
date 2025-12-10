@@ -29,14 +29,16 @@ class CommonSourceRegistrationRequestParams(BaseModel):
     Specifies the parameters which are common between all Protection Source registrations.
     """ # noqa: E501
     advanced_configs: Optional[List[KeyValuePair]] = Field(default=None, description="Specifies the advanced configuration for a protection source.", alias="advancedConfigs")
+    async_registration: Optional[StrictBool] = Field(default=None, description="Indicates whether the source should be registered asynchronously. Currently supported only for VMware sources.", alias="asyncRegistration")
     connection_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user.", alias="connectionId")
     connections: Optional[List[ConnectionConfig]] = Field(default=None, description="Specfies the list of connections for the source.")
     connector_group_id: Optional[StrictInt] = Field(default=None, description="Specifies the connector group id of connector groups.", alias="connectorGroupId")
+    data_source_connection_id: Optional[StrictStr] = Field(default=None, description="Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user. Also, this is the 'string' of connectionId. This property was added to accommodate for ID values that exceed 2^53 - 1, which is the max value for which JS maintains precision.", alias="dataSourceConnectionId")
     encryption_key: Optional[StrictStr] = Field(default=None, description="Specifies the key that user has encrypted the credential with.", alias="encryptionKey")
     environment: Optional[StrictStr] = Field(description="Specifies the environment type of the Protection Source.")
     is_internal_encrypted: Optional[StrictBool] = Field(default=None, description="Specifies if credentials are encrypted by internal key.", alias="isInternalEncrypted")
     name: Optional[StrictStr] = Field(default=None, description="A user specified name for this source.")
-    __properties: ClassVar[List[str]] = ["advancedConfigs", "connectionId", "connections", "connectorGroupId", "encryptionKey", "environment", "isInternalEncrypted", "name"]
+    __properties: ClassVar[List[str]] = ["advancedConfigs", "asyncRegistration", "connectionId", "connections", "connectorGroupId", "dataSourceConnectionId", "encryptionKey", "environment", "isInternalEncrypted", "name"]
 
     @field_validator('environment')
     def environment_validate_enum(cls, value):
@@ -44,8 +46,8 @@ class CommonSourceRegistrationRequestParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kVMware', 'kHyperV', 'kAcropolis', 'kKVM', 'kAWS', 'kGCP', 'kAzure', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kGPFS', 'kElastifile', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSQL', 'kOracle', 'kSfdc']):
-            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAcropolis', 'kKVM', 'kAWS', 'kGCP', 'kAzure', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kGPFS', 'kElastifile', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSQL', 'kOracle', 'kSfdc')")
+        if value not in set(['kVMware', 'kHyperV', 'kAcropolis', 'kKVM', 'kAWS', 'kGCP', 'kAzure', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kNetapp', 'kNutanixFS', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kGPFS', 'kElastifile', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kSQL', 'kOracle', 'kS3Compatible', 'kSfdc', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kEwsExchange', 'kServiceNow', 'kPostgres']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAcropolis', 'kKVM', 'kAWS', 'kGCP', 'kAzure', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kNetapp', 'kNutanixFS', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kGPFS', 'kElastifile', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kSQL', 'kOracle', 'kS3Compatible', 'kSfdc', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kEwsExchange', 'kServiceNow', 'kPostgres')")
         return value
 
     model_config = ConfigDict(
@@ -106,6 +108,11 @@ class CommonSourceRegistrationRequestParams(BaseModel):
         if self.advanced_configs is None and "advanced_configs" in self.model_fields_set:
             _dict['advancedConfigs'] = None
 
+        # set to None if async_registration (nullable) is None
+        # and model_fields_set contains the field
+        if self.async_registration is None and "async_registration" in self.model_fields_set:
+            _dict['asyncRegistration'] = None
+
         # set to None if connection_id (nullable) is None
         # and model_fields_set contains the field
         if self.connection_id is None and "connection_id" in self.model_fields_set:
@@ -120,6 +127,11 @@ class CommonSourceRegistrationRequestParams(BaseModel):
         # and model_fields_set contains the field
         if self.connector_group_id is None and "connector_group_id" in self.model_fields_set:
             _dict['connectorGroupId'] = None
+
+        # set to None if data_source_connection_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.data_source_connection_id is None and "data_source_connection_id" in self.model_fields_set:
+            _dict['dataSourceConnectionId'] = None
 
         # set to None if encryption_key (nullable) is None
         # and model_fields_set contains the field
@@ -154,9 +166,11 @@ class CommonSourceRegistrationRequestParams(BaseModel):
 
         _obj = cls.model_validate({
             "advancedConfigs": [KeyValuePair.from_dict(_item) for _item in obj["advancedConfigs"]] if obj.get("advancedConfigs") is not None else None,
+            "asyncRegistration": obj.get("asyncRegistration"),
             "connectionId": obj.get("connectionId"),
             "connections": [ConnectionConfig.from_dict(_item) for _item in obj["connections"]] if obj.get("connections") is not None else None,
             "connectorGroupId": obj.get("connectorGroupId"),
+            "dataSourceConnectionId": obj.get("dataSourceConnectionId"),
             "encryptionKey": obj.get("encryptionKey"),
             "environment": obj.get("environment"),
             "isInternalEncrypted": obj.get("isInternalEncrypted"),

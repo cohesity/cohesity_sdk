@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **gateway** | **str** | Gateway. | [optional] 
 **netmask_bits** | **int** | Subnet netmask bits. | [optional] 
 **subnet_ip** | **str** | Subnet IP. | [optional] 
+**subnet_ipv4_mask** | **str** | Subnet ipv4 mask. This is used only for V4 subnet | [optional] 
 
 ## Example
 

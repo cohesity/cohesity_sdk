@@ -18,9 +18,11 @@ Name | Type | Description | Notes
 **tags** | [**List[TagInfo]**](TagInfo.md) | Specifies tag applied to the object. | [optional] 
 **creation_time_secs** | **int** | Specifies the Unix timestamp epoch in seconds at which this item is created. | [optional] 
 **file_type** | **str** | Specifies the file type. | [optional] 
+**item_id** | **str** | Specifies the id of the document library item. | [optional] 
 **item_size** | **int** | Specifies the size in bytes for the indexed item. | [optional] 
 **owner_email** | **str** | Specifies the email of the owner of the document library item. | [optional] 
 **owner_name** | **str** | Specifies the name of the owner of the document library item. | [optional] 
+**subsite_item** | [**SubsiteItem**](SubsiteItem.md) |  | [optional] 
 
 ## Example
 

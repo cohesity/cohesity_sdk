@@ -22,10 +22,13 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.common_nas_object_params import CommonNasObjectParams
 from cohesity_sdk.cluster.models.flashblade_object_params import FlashbladeObjectParams
 from cohesity_sdk.cluster.models.group_object_entity_params import GroupObjectEntityParams
+from cohesity_sdk.cluster.models.helios_tag_info import HeliosTagInfo
 from cohesity_sdk.cluster.models.isilon_object_params import IsilonObjectParams
 from cohesity_sdk.cluster.models.mongo_db_object_params import MongoDBObjectParams
 from cohesity_sdk.cluster.models.mssql_object_entity_params import MssqlObjectEntityParams
 from cohesity_sdk.cluster.models.netapp_object_params import NetappObjectParams
+from cohesity_sdk.cluster.models.nutanix_fs_object_params import NutanixFSObjectParams
+from cohesity_sdk.cluster.models.o365_object_entity_params import O365ObjectEntityParams
 from cohesity_sdk.cluster.models.object import Object
 from cohesity_sdk.cluster.models.object_protection_info import ObjectProtectionInfo
 from cohesity_sdk.cluster.models.object_protection_stats_summary import ObjectProtectionStatsSummary
@@ -36,10 +39,12 @@ from cohesity_sdk.cluster.models.object_type_windows_cluster_params import Objec
 from cohesity_sdk.cluster.models.oracle_object_entity_params import OracleObjectEntityParams
 from cohesity_sdk.cluster.models.permission_info import PermissionInfo
 from cohesity_sdk.cluster.models.physical_object_entity_params import PhysicalObjectEntityParams
+from cohesity_sdk.cluster.models.secondary_id import SecondaryId
 from cohesity_sdk.cluster.models.sharepoint_object_entity_params import SharepointObjectEntityParams
 from cohesity_sdk.cluster.models.sharepoint_object_params import SharepointObjectParams
 from cohesity_sdk.cluster.models.snapshot_tag_info import SnapshotTagInfo
 from cohesity_sdk.cluster.models.tag_info import TagInfo
+from cohesity_sdk.cluster.models.tagged_snapshot_info import TaggedSnapshotInfo
 from cohesity_sdk.cluster.models.uda_object_params import UdaObjectParams
 from cohesity_sdk.cluster.models.view_object_params import ViewObjectParams
 from cohesity_sdk.cluster.models.vmware_object_entity_params import VmwareObjectEntityParams
@@ -78,6 +83,8 @@ class SearchObject(BaseModel):
     mongo_db_params: Optional[MongoDBObjectParams] = Field(default=None, alias="mongoDBParams")
     mssql_params: Optional[MssqlObjectEntityParams] = Field(default=None, alias="mssqlParams")
     netapp_params: Optional[NetappObjectParams] = Field(default=None, alias="netappParams")
+    nutanix_fs_params: Optional[NutanixFSObjectParams] = Field(default=None, alias="nutanixFSParams")
+    o365_params: Optional[O365ObjectEntityParams] = Field(default=None, alias="o365Params")
     oracle_params: Optional[OracleObjectEntityParams] = Field(default=None, alias="oracleParams")
     physical_params: Optional[PhysicalObjectEntityParams] = Field(default=None, alias="physicalParams")
     sharepoint_params: Optional[SharepointObjectEntityParams] = Field(default=None, alias="sharepointParams")
@@ -86,9 +93,12 @@ class SearchObject(BaseModel):
     vmware_params: Optional[VmwareObjectEntityParams] = Field(default=None, alias="vmwareParams")
     snapshot_tags: Optional[List[SnapshotTagInfo]] = Field(default=None, description="Specifies snapshot tags applied to the object.", alias="snapshotTags")
     tags: Optional[List[TagInfo]] = Field(default=None, description="Specifies tag applied to the object.")
+    helios_tags: Optional[List[HeliosTagInfo]] = Field(default=None, description="Specifies the helios tag information for the object", alias="heliosTags")
     object_protection_infos: Optional[List[ObjectProtectionInfo]] = Field(default=None, description="Specifies the object info on each cluster.", alias="objectProtectionInfos")
+    secondary_ids: Optional[List[SecondaryId]] = Field(default=None, description="Specifies secondary IDs associated to the object.", alias="secondaryIds")
     source_info: Optional[Object] = Field(default=None, alias="sourceInfo")
-    __properties: ClassVar[List[str]] = ["entityId", "environment", "id", "name", "sourceId", "sourceName", "childObjects", "globalId", "logicalSizeBytes", "objectHash", "objectType", "osType", "protectionType", "sharepointSiteSummary", "uuid", "vCenterSummary", "windowsClusterSummary", "permissions", "protectionStats", "elastifileParams", "flashbladeParams", "genericNasParams", "gpfsParams", "groupParams", "isilonParams", "mongoDBParams", "mssqlParams", "netappParams", "oracleParams", "physicalParams", "sharepointParams", "udaParams", "viewParams", "vmwareParams", "snapshotTags", "tags", "objectProtectionInfos", "sourceInfo"]
+    tagged_snapshots: Optional[List[TaggedSnapshotInfo]] = Field(default=None, description="Specifies the helios tagged snapshots (snapshots which are tagged by user or thirdparty in control plane) for the object", alias="taggedSnapshots")
+    __properties: ClassVar[List[str]] = ["entityId", "environment", "id", "name", "sourceId", "sourceName", "childObjects", "globalId", "logicalSizeBytes", "objectHash", "objectType", "osType", "protectionType", "sharepointSiteSummary", "uuid", "vCenterSummary", "windowsClusterSummary", "permissions", "protectionStats", "elastifileParams", "flashbladeParams", "genericNasParams", "gpfsParams", "groupParams", "isilonParams", "mongoDBParams", "mssqlParams", "netappParams", "nutanixFSParams", "o365Params", "oracleParams", "physicalParams", "sharepointParams", "udaParams", "viewParams", "vmwareParams", "snapshotTags", "tags", "heliosTags", "objectProtectionInfos", "secondaryIds", "sourceInfo", "taggedSnapshots"]
 
     @field_validator('environment')
     def environment_validate_enum(cls, value):
@@ -96,8 +106,8 @@ class SearchObject(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAzureSQL', 'kAcropolis', 'kGCP', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc']):
-            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAzureSQL', 'kAcropolis', 'kGCP', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc')")
+        if value not in set(['kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAcropolis', 'kGCP', 'kGCPBigQuery', 'kGCPMySQL', 'kGoogleSpanner', 'kGCPPostgreSQL', 'kGCPAlloyDBPostgreSQL', 'kGCPSQLServer', 'kGCPFirestore', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kS3Compatible', 'kSAPHANA', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzurePostgreSQLServer', 'kAzureSQL', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureBlobStorage', 'kAzureTableAPI', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kPostgres', 'kNutanixFS', 'kAWSAuroraMySQL', 'kAWSMySQL', 'kAuroraSnapshotManager', 'kAWSRDSMSSQL', 'kAWSRdsOracle', 'kRDSSnapshotManager', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRedshift']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAcropolis', 'kGCP', 'kGCPBigQuery', 'kGCPMySQL', 'kGoogleSpanner', 'kGCPPostgreSQL', 'kGCPAlloyDBPostgreSQL', 'kGCPSQLServer', 'kGCPFirestore', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kS3Compatible', 'kSAPHANA', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzurePostgreSQLServer', 'kAzureSQL', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureBlobStorage', 'kAzureTableAPI', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kPostgres', 'kNutanixFS', 'kAWSAuroraMySQL', 'kAWSMySQL', 'kAuroraSnapshotManager', 'kAWSRDSMSSQL', 'kAWSRdsOracle', 'kRDSSnapshotManager', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRedshift')")
         return value
 
     @field_validator('object_type')
@@ -106,8 +116,8 @@ class SearchObject(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kCluster', 'kVserver', 'kVolume', 'kVCenter', 'kStandaloneHost', 'kvCloudDirector', 'kFolder', 'kDatacenter', 'kComputeResource', 'kClusterComputeResource', 'kResourcePool', 'kDatastore', 'kHostSystem', 'kVirtualMachine', 'kVirtualApp', 'kStoragePod', 'kNetwork', 'kDistributedVirtualPortgroup', 'kTagCategory', 'kTag', 'kOpaqueNetwork', 'kOrganization', 'kVirtualDatacenter', 'kCatalog', 'kOrgMetadata', 'kStoragePolicy', 'kVirtualAppTemplate', 'kDomain', 'kOutlook', 'kMailbox', 'kUsers', 'kGroups', 'kSites', 'kUser', 'kGroup', 'kSite', 'kApplication', 'kGraphUser', 'kPublicFolders', 'kPublicFolder', 'kTeams', 'kTeam', 'kRootPublicFolder', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKeyspace', 'kTable', 'kDatabase', 'kCollection', 'kBucket', 'kNamespace', 'kSCVMMServer', 'kStandaloneCluster', 'kHostGroup', 'kHypervHost', 'kHostCluster', 'kCustomProperty', 'kTenant', 'kSubscription', 'kResourceGroup', 'kStorageAccount', 'kStorageKey', 'kStorageContainer', 'kStorageBlob', 'kApplicationSecurityGroup', 'kNetworkSecurityGroup', 'kVirtualNetwork', 'kSubnet', 'kComputeOptions', 'kSnapshotManagerPermit', 'kAvailabilitySet', 'kSQLServer', 'kSQLDatabase', 'kOVirtManager', 'kHost', 'kStorageDomain', 'kVNicProfile', 'kIAMUser', 'kRegion', 'kAvailabilityZone', 'kEC2Instance', 'kVPC', 'kInstanceType', 'kKeyPair', 'kRDSOptionGroup', 'kRDSParameterGroup', 'kRDSInstance', 'kRDSSubnet', 'kRDSTag', 'kAuroraTag', 'kAuroraCluster', 'kAccount', 'kSubTaskPermit', 'kS3Bucket', 'kS3Tag', 'kKmsKey', 'kRDSPostgresDb', 'kAuroraClusterPostgresDb', 'kProject', 'kLabel', 'kMetadata', 'kVPCConnector', 'kPrismCentral', 'kOtherHypervisorCluster', 'kZone', 'kMountPoint', 'kStorageArray', 'kFileSystem', 'kContainer', 'kFilesystem', 'kFileset', 'kPureProtectionGroup', 'kVolumeGroup', 'kStoragePool', 'kViewBox', 'kView', 'kWindowsCluster', 'kOracleRACCluster', 'kOracleAPCluster', 'kService', 'kPVC', 'kPersistentVolumeClaim', 'kPersistentVolume', 'kRootContainer', 'kDAGRootContainer', 'kExchangeNode', 'kExchangeDAGDatabaseCopy', 'kExchangeStandaloneDatabase', 'kExchangeDAG', 'kExchangeDAGDatabase', 'kDomainController', 'kInstance', 'kAAG', 'kAAGRootContainer', 'kAAGDatabase', 'kRACRootContainer', 'kTableSpace', 'kPDB', 'kObject', 'kOrg', 'kAppInstance']):
-            raise ValueError("must be one of enum values ('kCluster', 'kVserver', 'kVolume', 'kVCenter', 'kStandaloneHost', 'kvCloudDirector', 'kFolder', 'kDatacenter', 'kComputeResource', 'kClusterComputeResource', 'kResourcePool', 'kDatastore', 'kHostSystem', 'kVirtualMachine', 'kVirtualApp', 'kStoragePod', 'kNetwork', 'kDistributedVirtualPortgroup', 'kTagCategory', 'kTag', 'kOpaqueNetwork', 'kOrganization', 'kVirtualDatacenter', 'kCatalog', 'kOrgMetadata', 'kStoragePolicy', 'kVirtualAppTemplate', 'kDomain', 'kOutlook', 'kMailbox', 'kUsers', 'kGroups', 'kSites', 'kUser', 'kGroup', 'kSite', 'kApplication', 'kGraphUser', 'kPublicFolders', 'kPublicFolder', 'kTeams', 'kTeam', 'kRootPublicFolder', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKeyspace', 'kTable', 'kDatabase', 'kCollection', 'kBucket', 'kNamespace', 'kSCVMMServer', 'kStandaloneCluster', 'kHostGroup', 'kHypervHost', 'kHostCluster', 'kCustomProperty', 'kTenant', 'kSubscription', 'kResourceGroup', 'kStorageAccount', 'kStorageKey', 'kStorageContainer', 'kStorageBlob', 'kApplicationSecurityGroup', 'kNetworkSecurityGroup', 'kVirtualNetwork', 'kSubnet', 'kComputeOptions', 'kSnapshotManagerPermit', 'kAvailabilitySet', 'kSQLServer', 'kSQLDatabase', 'kOVirtManager', 'kHost', 'kStorageDomain', 'kVNicProfile', 'kIAMUser', 'kRegion', 'kAvailabilityZone', 'kEC2Instance', 'kVPC', 'kInstanceType', 'kKeyPair', 'kRDSOptionGroup', 'kRDSParameterGroup', 'kRDSInstance', 'kRDSSubnet', 'kRDSTag', 'kAuroraTag', 'kAuroraCluster', 'kAccount', 'kSubTaskPermit', 'kS3Bucket', 'kS3Tag', 'kKmsKey', 'kRDSPostgresDb', 'kAuroraClusterPostgresDb', 'kProject', 'kLabel', 'kMetadata', 'kVPCConnector', 'kPrismCentral', 'kOtherHypervisorCluster', 'kZone', 'kMountPoint', 'kStorageArray', 'kFileSystem', 'kContainer', 'kFilesystem', 'kFileset', 'kPureProtectionGroup', 'kVolumeGroup', 'kStoragePool', 'kViewBox', 'kView', 'kWindowsCluster', 'kOracleRACCluster', 'kOracleAPCluster', 'kService', 'kPVC', 'kPersistentVolumeClaim', 'kPersistentVolume', 'kRootContainer', 'kDAGRootContainer', 'kExchangeNode', 'kExchangeDAGDatabaseCopy', 'kExchangeStandaloneDatabase', 'kExchangeDAG', 'kExchangeDAGDatabase', 'kDomainController', 'kInstance', 'kAAG', 'kAAGRootContainer', 'kAAGDatabase', 'kRACRootContainer', 'kTableSpace', 'kPDB', 'kObject', 'kOrg', 'kAppInstance')")
+        if value not in set(['kCluster', 'kVserver', 'kVolume', 'kVCenter', 'kStandaloneHost', 'kvCloudDirector', 'kFolder', 'kDatacenter', 'kComputeResource', 'kClusterComputeResource', 'kResourcePool', 'kDatastore', 'kHostSystem', 'kVirtualMachine', 'kVirtualApp', 'kStoragePod', 'kNetwork', 'kDistributedVirtualPortgroup', 'kTagCategory', 'kTag', 'kOpaqueNetwork', 'kOrganization', 'kVirtualDatacenter', 'kCatalog', 'kOrgMetadata', 'kStoragePolicy', 'kVirtualAppTemplate', 'kProviderVDC', 'kPlacementPolicy', 'kSizingPolicy', 'kComputePolicy', 'kDomain', 'kOutlook', 'kMailbox', 'kUsers', 'kGroups', 'kSites', 'kUser', 'kGroup', 'kSite', 'kApplication', 'kGraphUser', 'kPublicFolders', 'kPublicFolder', 'kTeams', 'kTeam', 'kRootPublicFolder', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKeyspace', 'kTable', 'kDatabase', 'kCollection', 'kBucket', 'kNamespace', 'kSCVMMServer', 'kStandaloneCluster', 'kHostGroup', 'kHypervHost', 'kHostCluster', 'kCustomProperty', 'kTenant', 'kSubscription', 'kResourceGroup', 'kStorageAccount', 'kStorageKey', 'kStorageContainer', 'kStorageBlob', 'kApplicationSecurityGroup', 'kNetworkSecurityGroup', 'kVirtualNetwork', 'kSubnet', 'kComputeOptions', 'kSnapshotManagerPermit', 'kRegion', 'kAvailabilitySet', 'kSQLServer', 'kSQLDatabase', 'kSQLManagedInstance', 'kMySQLDatabase', 'kMySQLFlexibleServer', 'kAzureKubernetesCluster', 'kAzureKubernetesNamespace', 'kCosmosDBCassandraAccount', 'kCosmosDBCassandraKeyspace', 'kAzureCosmosDBNoSQLAccount', 'kAzureCosmosDBNoSQLDatabase', 'kAzureCosmosDBMongoDBAccount', 'kAzureCosmosDBMongoDBDatabase', 'kCosmosDBTableAccount', 'kCosmosDBTableAPI', 'kSQLMIDatabase', 'kPostgreSQLFlexibleServer', 'kPostgreSQLDatabase', 'kCosmosDBTableAPITable', 'kEntraID', 'kAdminUnit', 'kContact', 'kDevice', 'kDirRole', 'kServicePrincipal', 'kAppRoleAssignment', 'kCondAccessPolicy', 'kOVirtManager', 'kHost', 'kStorageDomain', 'kVNicProfile', 'kIAMUser', 'kAvailabilityZone', 'kEC2Instance', 'kVPC', 'kInstanceType', 'kKeyPair', 'kRDSOptionGroup', 'kRDSParameterGroup', 'kRDSInstance', 'kRDSPostgresInstance', 'kRDSMySQLInstance', 'kRDSMSSQLInstance', 'kRDSOracleInstance', 'kRDSMariaDBInstance', 'kRDSCustomMSSQLInstance', 'kRDSCustomOracleInstance', 'kRDSSubnet', 'kRDSTag', 'kRedshiftTag', 'kAuroraTag', 'kAuroraCluster', 'kAuroraPostgresCluster', 'kAuroraMySQLCluster', 'kAccount', 'kSubTaskPermit', 'kS3Bucket', 'kS3Tag', 'kKmsKey', 'kRDSPostgresDb', 'kAuroraClusterPostgresDb', 'kRDSMySQLDb', 'kAuroraMySQLDb', 'kRDSMSSQLDb', 'kRDSOracleDb', 'kRDSMariaDBDb', 'kRDSCustomMSSQLDb', 'kRDSCustomOracleDb', 'kAWSRedshiftCluster', 'kAWSRedshiftDatabase', 'kAWSDocumentDBCluster', 'kAWSDocumentDBdb', 'kProject', 'kLabel', 'kMetadata', 'kVPCConnector', 'kBigQueryDataset', 'kSpannerDatabase', 'kFirestoreDatabase', 'kSQLServerDatabase', 'kPrismCentral', 'kOtherHypervisorCluster', 'kZone', 'kMountPoint', 'kStorageArray', 'kFileSystem', 'kContainer', 'kFilesystem', 'kFileset', 'kPureProtectionGroup', 'kVolumeGroup', 'kStoragePool', 'kViewBox', 'kView', 'kWindowsCluster', 'kOracleRACCluster', 'kOracleAPCluster', 'kUnixCluster', 'kOracleCluster', 'kService', 'kPVC', 'kPersistentVolumeClaim', 'kPersistentVolume', 'kRootContainer', 'kDAGRootContainer', 'kExchangeNode', 'kExchangeDAGDatabaseCopy', 'kExchangeStandaloneDatabase', 'kExchangeDAG', 'kExchangeDAGDatabase', 'kDomainController', 'kInstance', 'kAAG', 'kAAGRootContainer', 'kAAGDatabase', 'kRACRootContainer', 'kTableSpace', 'kPDB', 'kObject', 'kSapHanaCluster', 'kSapHanaSID', 'kSapHanaDatabase', 'kDB2Cluster', 'kDB2Instance', 'kDB2Database', 'kPostgresCluster', 'kPostgresInstance', 'kPostgresDatabase', 'kOrg', 'kAppInstance', 'kOpsManager', 'kSharedDrives', 'kSharedDrive', 'kPrismElement', 'kFileServer', 'kMountTarget']):
+            raise ValueError("must be one of enum values ('kCluster', 'kVserver', 'kVolume', 'kVCenter', 'kStandaloneHost', 'kvCloudDirector', 'kFolder', 'kDatacenter', 'kComputeResource', 'kClusterComputeResource', 'kResourcePool', 'kDatastore', 'kHostSystem', 'kVirtualMachine', 'kVirtualApp', 'kStoragePod', 'kNetwork', 'kDistributedVirtualPortgroup', 'kTagCategory', 'kTag', 'kOpaqueNetwork', 'kOrganization', 'kVirtualDatacenter', 'kCatalog', 'kOrgMetadata', 'kStoragePolicy', 'kVirtualAppTemplate', 'kProviderVDC', 'kPlacementPolicy', 'kSizingPolicy', 'kComputePolicy', 'kDomain', 'kOutlook', 'kMailbox', 'kUsers', 'kGroups', 'kSites', 'kUser', 'kGroup', 'kSite', 'kApplication', 'kGraphUser', 'kPublicFolders', 'kPublicFolder', 'kTeams', 'kTeam', 'kRootPublicFolder', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKeyspace', 'kTable', 'kDatabase', 'kCollection', 'kBucket', 'kNamespace', 'kSCVMMServer', 'kStandaloneCluster', 'kHostGroup', 'kHypervHost', 'kHostCluster', 'kCustomProperty', 'kTenant', 'kSubscription', 'kResourceGroup', 'kStorageAccount', 'kStorageKey', 'kStorageContainer', 'kStorageBlob', 'kApplicationSecurityGroup', 'kNetworkSecurityGroup', 'kVirtualNetwork', 'kSubnet', 'kComputeOptions', 'kSnapshotManagerPermit', 'kRegion', 'kAvailabilitySet', 'kSQLServer', 'kSQLDatabase', 'kSQLManagedInstance', 'kMySQLDatabase', 'kMySQLFlexibleServer', 'kAzureKubernetesCluster', 'kAzureKubernetesNamespace', 'kCosmosDBCassandraAccount', 'kCosmosDBCassandraKeyspace', 'kAzureCosmosDBNoSQLAccount', 'kAzureCosmosDBNoSQLDatabase', 'kAzureCosmosDBMongoDBAccount', 'kAzureCosmosDBMongoDBDatabase', 'kCosmosDBTableAccount', 'kCosmosDBTableAPI', 'kSQLMIDatabase', 'kPostgreSQLFlexibleServer', 'kPostgreSQLDatabase', 'kCosmosDBTableAPITable', 'kEntraID', 'kAdminUnit', 'kContact', 'kDevice', 'kDirRole', 'kServicePrincipal', 'kAppRoleAssignment', 'kCondAccessPolicy', 'kOVirtManager', 'kHost', 'kStorageDomain', 'kVNicProfile', 'kIAMUser', 'kAvailabilityZone', 'kEC2Instance', 'kVPC', 'kInstanceType', 'kKeyPair', 'kRDSOptionGroup', 'kRDSParameterGroup', 'kRDSInstance', 'kRDSPostgresInstance', 'kRDSMySQLInstance', 'kRDSMSSQLInstance', 'kRDSOracleInstance', 'kRDSMariaDBInstance', 'kRDSCustomMSSQLInstance', 'kRDSCustomOracleInstance', 'kRDSSubnet', 'kRDSTag', 'kRedshiftTag', 'kAuroraTag', 'kAuroraCluster', 'kAuroraPostgresCluster', 'kAuroraMySQLCluster', 'kAccount', 'kSubTaskPermit', 'kS3Bucket', 'kS3Tag', 'kKmsKey', 'kRDSPostgresDb', 'kAuroraClusterPostgresDb', 'kRDSMySQLDb', 'kAuroraMySQLDb', 'kRDSMSSQLDb', 'kRDSOracleDb', 'kRDSMariaDBDb', 'kRDSCustomMSSQLDb', 'kRDSCustomOracleDb', 'kAWSRedshiftCluster', 'kAWSRedshiftDatabase', 'kAWSDocumentDBCluster', 'kAWSDocumentDBdb', 'kProject', 'kLabel', 'kMetadata', 'kVPCConnector', 'kBigQueryDataset', 'kSpannerDatabase', 'kFirestoreDatabase', 'kSQLServerDatabase', 'kPrismCentral', 'kOtherHypervisorCluster', 'kZone', 'kMountPoint', 'kStorageArray', 'kFileSystem', 'kContainer', 'kFilesystem', 'kFileset', 'kPureProtectionGroup', 'kVolumeGroup', 'kStoragePool', 'kViewBox', 'kView', 'kWindowsCluster', 'kOracleRACCluster', 'kOracleAPCluster', 'kUnixCluster', 'kOracleCluster', 'kService', 'kPVC', 'kPersistentVolumeClaim', 'kPersistentVolume', 'kRootContainer', 'kDAGRootContainer', 'kExchangeNode', 'kExchangeDAGDatabaseCopy', 'kExchangeStandaloneDatabase', 'kExchangeDAG', 'kExchangeDAGDatabase', 'kDomainController', 'kInstance', 'kAAG', 'kAAGRootContainer', 'kAAGDatabase', 'kRACRootContainer', 'kTableSpace', 'kPDB', 'kObject', 'kSapHanaCluster', 'kSapHanaSID', 'kSapHanaDatabase', 'kDB2Cluster', 'kDB2Instance', 'kDB2Database', 'kPostgresCluster', 'kPostgresInstance', 'kPostgresDatabase', 'kOrg', 'kAppInstance', 'kOpsManager', 'kSharedDrives', 'kSharedDrive', 'kPrismElement', 'kFileServer', 'kMountTarget')")
         return value
 
     @field_validator('os_type')
@@ -126,8 +136,8 @@ class SearchObject(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kAgent', 'kNative', 'kSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup', 'kAzureSQL', 'kFile', 'kVolume']):
-            raise ValueError("must be one of enum values ('kAgent', 'kNative', 'kSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup', 'kAzureSQL', 'kFile', 'kVolume')")
+        if value not in set(['kAgent', 'kNative', 'kSnapshotManager', 'kRDSSnapshotManager', 'kRDSPostgresSnapshotManager', 'kRDSMySQLSnapshotManager', 'kRDSMSSQLSnapshotManager', 'kRDSOracleSnapshotManager', 'kRDSMariaDBSnapshotManager', 'kRDSCustomMSSQLSnapshotManager', 'kRDSCustomOracleSnapshotManager', 'kAuroraSnapshotManager', 'kAuroraPostgresSnapshotManager', 'kAuroraMySQLSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup', 'kAwsAuroraPostgres', 'kAwsRDSPostgres', 'kAWSMySQL', 'kAWSSnapshotManager', 'kAwsDynamoDB', 'kAWSAuroraMySQL', 'kAWSRdsOracle', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRDSMSSQL', 'kAWSRedshift', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzureBlobStorage', 'kAzurePostgreSQLServer', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureTableAPI', 'kKubernetes', 'kGCPBigQuery', 'kGoogleSpanner', 'kGCPFirestore', 'kGCPMySQL', 'kGCPPostgreSQL', 'kGCPAlloyDBPostgreSQL', 'kGCPSQLServer', 'kFile', 'kVolume', 'kGmail', 'kGoogleDrive']):
+            raise ValueError("must be one of enum values ('kAgent', 'kNative', 'kSnapshotManager', 'kRDSSnapshotManager', 'kRDSPostgresSnapshotManager', 'kRDSMySQLSnapshotManager', 'kRDSMSSQLSnapshotManager', 'kRDSOracleSnapshotManager', 'kRDSMariaDBSnapshotManager', 'kRDSCustomMSSQLSnapshotManager', 'kRDSCustomOracleSnapshotManager', 'kAuroraSnapshotManager', 'kAuroraPostgresSnapshotManager', 'kAuroraMySQLSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup', 'kAwsAuroraPostgres', 'kAwsRDSPostgres', 'kAWSMySQL', 'kAWSSnapshotManager', 'kAwsDynamoDB', 'kAWSAuroraMySQL', 'kAWSRdsOracle', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRDSMSSQL', 'kAWSRedshift', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzureBlobStorage', 'kAzurePostgreSQLServer', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureTableAPI', 'kKubernetes', 'kGCPBigQuery', 'kGoogleSpanner', 'kGCPFirestore', 'kGCPMySQL', 'kGCPPostgreSQL', 'kGCPAlloyDBPostgreSQL', 'kGCPSQLServer', 'kFile', 'kVolume', 'kGmail', 'kGoogleDrive')")
         return value
 
     model_config = ConfigDict(
@@ -225,6 +235,12 @@ class SearchObject(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of netapp_params
         if self.netapp_params:
             _dict['netappParams'] = self.netapp_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of nutanix_fs_params
+        if self.nutanix_fs_params:
+            _dict['nutanixFSParams'] = self.nutanix_fs_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of o365_params
+        if self.o365_params:
+            _dict['o365Params'] = self.o365_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of oracle_params
         if self.oracle_params:
             _dict['oracleParams'] = self.oracle_params.to_dict()
@@ -257,6 +273,13 @@ class SearchObject(BaseModel):
                 if _item_tags:
                     _items.append(_item_tags.to_dict())
             _dict['tags'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in helios_tags (list)
+        _items = []
+        if self.helios_tags:
+            for _item_helios_tags in self.helios_tags:
+                if _item_helios_tags:
+                    _items.append(_item_helios_tags.to_dict())
+            _dict['heliosTags'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in object_protection_infos (list)
         _items = []
         if self.object_protection_infos:
@@ -264,9 +287,23 @@ class SearchObject(BaseModel):
                 if _item_object_protection_infos:
                     _items.append(_item_object_protection_infos.to_dict())
             _dict['objectProtectionInfos'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in secondary_ids (list)
+        _items = []
+        if self.secondary_ids:
+            for _item_secondary_ids in self.secondary_ids:
+                if _item_secondary_ids:
+                    _items.append(_item_secondary_ids.to_dict())
+            _dict['secondaryIds'] = _items
         # override the default output from pydantic by calling `to_dict()` of source_info
         if self.source_info:
             _dict['sourceInfo'] = self.source_info.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in tagged_snapshots (list)
+        _items = []
+        if self.tagged_snapshots:
+            for _item_tagged_snapshots in self.tagged_snapshots:
+                if _item_tagged_snapshots:
+                    _items.append(_item_tagged_snapshots.to_dict())
+            _dict['taggedSnapshots'] = _items
         # set to None if environment (nullable) is None
         # and model_fields_set contains the field
         if self.environment is None and "environment" in self.model_fields_set:
@@ -352,10 +389,25 @@ class SearchObject(BaseModel):
         if self.tags is None and "tags" in self.model_fields_set:
             _dict['tags'] = None
 
+        # set to None if helios_tags (nullable) is None
+        # and model_fields_set contains the field
+        if self.helios_tags is None and "helios_tags" in self.model_fields_set:
+            _dict['heliosTags'] = None
+
         # set to None if object_protection_infos (nullable) is None
         # and model_fields_set contains the field
         if self.object_protection_infos is None and "object_protection_infos" in self.model_fields_set:
             _dict['objectProtectionInfos'] = None
+
+        # set to None if secondary_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.secondary_ids is None and "secondary_ids" in self.model_fields_set:
+            _dict['secondaryIds'] = None
+
+        # set to None if tagged_snapshots (nullable) is None
+        # and model_fields_set contains the field
+        if self.tagged_snapshots is None and "tagged_snapshots" in self.model_fields_set:
+            _dict['taggedSnapshots'] = None
 
         return _dict
 
@@ -397,6 +449,8 @@ class SearchObject(BaseModel):
             "mongoDBParams": MongoDBObjectParams.from_dict(obj["mongoDBParams"]) if obj.get("mongoDBParams") is not None else None,
             "mssqlParams": MssqlObjectEntityParams.from_dict(obj["mssqlParams"]) if obj.get("mssqlParams") is not None else None,
             "netappParams": NetappObjectParams.from_dict(obj["netappParams"]) if obj.get("netappParams") is not None else None,
+            "nutanixFSParams": NutanixFSObjectParams.from_dict(obj["nutanixFSParams"]) if obj.get("nutanixFSParams") is not None else None,
+            "o365Params": O365ObjectEntityParams.from_dict(obj["o365Params"]) if obj.get("o365Params") is not None else None,
             "oracleParams": OracleObjectEntityParams.from_dict(obj["oracleParams"]) if obj.get("oracleParams") is not None else None,
             "physicalParams": PhysicalObjectEntityParams.from_dict(obj["physicalParams"]) if obj.get("physicalParams") is not None else None,
             "sharepointParams": SharepointObjectEntityParams.from_dict(obj["sharepointParams"]) if obj.get("sharepointParams") is not None else None,
@@ -405,8 +459,11 @@ class SearchObject(BaseModel):
             "vmwareParams": VmwareObjectEntityParams.from_dict(obj["vmwareParams"]) if obj.get("vmwareParams") is not None else None,
             "snapshotTags": [SnapshotTagInfo.from_dict(_item) for _item in obj["snapshotTags"]] if obj.get("snapshotTags") is not None else None,
             "tags": [TagInfo.from_dict(_item) for _item in obj["tags"]] if obj.get("tags") is not None else None,
+            "heliosTags": [HeliosTagInfo.from_dict(_item) for _item in obj["heliosTags"]] if obj.get("heliosTags") is not None else None,
             "objectProtectionInfos": [ObjectProtectionInfo.from_dict(_item) for _item in obj["objectProtectionInfos"]] if obj.get("objectProtectionInfos") is not None else None,
-            "sourceInfo": Object.from_dict(obj["sourceInfo"]) if obj.get("sourceInfo") is not None else None
+            "secondaryIds": [SecondaryId.from_dict(_item) for _item in obj["secondaryIds"]] if obj.get("secondaryIds") is not None else None,
+            "sourceInfo": Object.from_dict(obj["sourceInfo"]) if obj.get("sourceInfo") is not None else None,
+            "taggedSnapshots": [TaggedSnapshotInfo.from_dict(_item) for _item in obj["taggedSnapshots"]] if obj.get("taggedSnapshots") is not None else None
         })
         return _obj
 

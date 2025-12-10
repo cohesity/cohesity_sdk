@@ -18,17 +18,17 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from typing import Set
+from typing import Any, ClassVar, Dict, List
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ServiceVersionInfo(BaseModel):
     """
     Specifies version information for a cohesity service.
     """ # noqa: E501
-    last_commit_time: Optional[StrictStr] = Field(default=None, description="LastCommitTime of the service.", alias="lastCommitTime")
-    service_name: Optional[StrictStr] = Field(default=None, description="Name of the service.", alias="serviceName")
-    service_version: Optional[StrictStr] = Field(default=None, description="Version of the service.", alias="serviceVersion")
+    last_commit_time: StrictStr = Field(description="LastCommitTime of the service.", alias="lastCommitTime")
+    service_name: StrictStr = Field(description="Name of the service.", alias="serviceName")
+    service_version: StrictStr = Field(description="Version of the service.", alias="serviceVersion")
     __properties: ClassVar[List[str]] = ["lastCommitTime", "serviceName", "serviceVersion"]
 
     model_config = ConfigDict(

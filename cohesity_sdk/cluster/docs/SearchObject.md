@@ -34,6 +34,8 @@ Name | Type | Description | Notes
 **mongo_db_params** | [**MongoDBObjectParams**](MongoDBObjectParams.md) |  | [optional] 
 **mssql_params** | [**MssqlObjectEntityParams**](MssqlObjectEntityParams.md) |  | [optional] 
 **netapp_params** | [**NetappObjectParams**](NetappObjectParams.md) |  | [optional] 
+**nutanix_fs_params** | [**NutanixFSObjectParams**](NutanixFSObjectParams.md) |  | [optional] 
+**o365_params** | [**O365ObjectEntityParams**](O365ObjectEntityParams.md) |  | [optional] 
 **oracle_params** | [**OracleObjectEntityParams**](OracleObjectEntityParams.md) |  | [optional] 
 **physical_params** | [**PhysicalObjectEntityParams**](PhysicalObjectEntityParams.md) |  | [optional] 
 **sharepoint_params** | [**SharepointObjectEntityParams**](SharepointObjectEntityParams.md) |  | [optional] 
@@ -42,8 +44,11 @@ Name | Type | Description | Notes
 **vmware_params** | [**VmwareObjectEntityParams**](VmwareObjectEntityParams.md) |  | [optional] 
 **snapshot_tags** | [**List[SnapshotTagInfo]**](SnapshotTagInfo.md) | Specifies snapshot tags applied to the object. | [optional] 
 **tags** | [**List[TagInfo]**](TagInfo.md) | Specifies tag applied to the object. | [optional] 
+**helios_tags** | [**List[HeliosTagInfo]**](HeliosTagInfo.md) | Specifies the helios tag information for the object | [optional] 
 **object_protection_infos** | [**List[ObjectProtectionInfo]**](ObjectProtectionInfo.md) | Specifies the object info on each cluster. | [optional] 
+**secondary_ids** | [**List[SecondaryId]**](SecondaryId.md) | Specifies secondary IDs associated to the object. | [optional] 
 **source_info** | [**Object**](Object.md) |  | [optional] 
+**tagged_snapshots** | [**List[TaggedSnapshotInfo]**](TaggedSnapshotInfo.md) | Specifies the helios tagged snapshots (snapshots which are tagged by user or thirdparty in control plane) for the object | [optional] 
 
 ## Example
 

@@ -6,13 +6,13 @@ Specifies upgrade checks results from cluster.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error** | **str** | Error message if test results could not be fetched. | [optional] 
+**error** | **str** | Error message if test results could not be fetched. | 
 **finish_time_secs** | **int** | Specifies unix epoch finish time of checks(in seconds). | [optional] 
 **node_results** | [**List[UpgradeCheckNodeResult]**](UpgradeCheckNodeResult.md) | The healthcheck result for node. | [optional] 
-**request_type** | **str** | Type of the check(preupgrade/postupgrade). | [optional] 
-**result_status** | **str** | Final result (running/pass/fail) of run. | [optional] 
+**request_type** | **str** | Type of the check(preupgrade/postupgrade). | 
+**result_status** | **str** | Final result (running/pass/fail) of run. | 
 **start_time_secs** | **int** | Specifies unix epoch start time of checks(in seconds). | [optional] 
-**test_run_instance_id** | **str** | Specifies test run instance of upgrade checks. | [optional] 
+**test_run_instance_id** | **str** | Specifies test run instance of upgrade checks. | 
 
 ## Example
 

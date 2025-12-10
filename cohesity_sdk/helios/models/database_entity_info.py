@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.container_database_info import ContainerDatabaseInfo
 from cohesity_sdk.helios.models.oracle_data_guard_info import OracleDataGuardInfo
@@ -31,7 +31,9 @@ class DatabaseEntityInfo(BaseModel):
     container_database_info: Optional[ContainerDatabaseInfo] = Field(default=None, alias="containerDatabaseInfo")
     data_guard_info: Optional[OracleDataGuardInfo] = Field(default=None, alias="dataGuardInfo")
     db_type: Optional[StrictStr] = Field(default=None, description="Specifies database type of oracle database.", alias="dbType")
-    __properties: ClassVar[List[str]] = ["containerDatabaseInfo", "dataGuardInfo", "dbType"]
+    tde_encrypted_ts_count: Optional[StrictInt] = Field(default=None, description="Specifies the number of TDE encrypted tablespaces found in the database.", alias="tdeEncryptedTsCount")
+    version: Optional[StrictStr] = Field(default=None, description="Specifies version of oracle database.")
+    __properties: ClassVar[List[str]] = ["containerDatabaseInfo", "dataGuardInfo", "dbType", "tdeEncryptedTsCount", "version"]
 
     @field_validator('db_type')
     def db_type_validate_enum(cls, value):
@@ -93,6 +95,16 @@ class DatabaseEntityInfo(BaseModel):
         if self.db_type is None and "db_type" in self.model_fields_set:
             _dict['dbType'] = None
 
+        # set to None if tde_encrypted_ts_count (nullable) is None
+        # and model_fields_set contains the field
+        if self.tde_encrypted_ts_count is None and "tde_encrypted_ts_count" in self.model_fields_set:
+            _dict['tdeEncryptedTsCount'] = None
+
+        # set to None if version (nullable) is None
+        # and model_fields_set contains the field
+        if self.version is None and "version" in self.model_fields_set:
+            _dict['version'] = None
+
         return _dict
 
     @classmethod
@@ -107,7 +119,9 @@ class DatabaseEntityInfo(BaseModel):
         _obj = cls.model_validate({
             "containerDatabaseInfo": ContainerDatabaseInfo.from_dict(obj["containerDatabaseInfo"]) if obj.get("containerDatabaseInfo") is not None else None,
             "dataGuardInfo": OracleDataGuardInfo.from_dict(obj["dataGuardInfo"]) if obj.get("dataGuardInfo") is not None else None,
-            "dbType": obj.get("dbType")
+            "dbType": obj.get("dbType"),
+            "tdeEncryptedTsCount": obj.get("tdeEncryptedTsCount"),
+            "version": obj.get("version")
         })
         return _obj
 

@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **name** | **str** | Name of the KMS. | 
 **storage_domain_ids** | **List[int]** | Ids of storage domains used to assign the KMS for encryption. Once an external KMS (AWS KMS or KIMP KMS) is assigned to a storage domain, it cannot be changed. | [optional] 
 **aws_kms_params** | [**AwsKmsConfiguration**](AwsKmsConfiguration.md) |  | [optional] 
+**gcp_kms_params** | [**GcpKmsConfiguration**](GcpKmsConfiguration.md) |  | [optional] 
+**ibm_kms_params** | [**IbmKmsConfiguration**](IbmKmsConfiguration.md) |  | [optional] 
 **ownership_context** | **str** | Specifies the ownership context of the kms config. &#39;Local&#39; indicates this is used for regular archival. &#39;FortKnox&#39; indicates this is used for FortKnox only. | [optional] 
 **type** | **str** | Type of KMS. &#39;InternalKms&#39; indicates the internal cluster KMS. &#39;AwsKms&#39; indicates AWS KMS. &#39;KmipKms&#39; indicates any KMIP compliant KMS. | 
 **usage_type** | **str** | Specifies the usage type of the kms config. &#39;kArchival&#39; indicates this is used for regular archival. &#39;kRpaasArchival&#39; indicates this is used for RPaaS only. | [optional] 

@@ -27,8 +27,12 @@ from cohesity_sdk.cluster.models.common_nas_object_params import CommonNasObject
 from cohesity_sdk.cluster.models.flashblade_object_params import FlashbladeObjectParams
 from cohesity_sdk.cluster.models.hyperv_snapshot_params import HypervSnapshotParams
 from cohesity_sdk.cluster.models.isilon_object_params import IsilonObjectParams
+from cohesity_sdk.cluster.models.m365_params import M365Params
 from cohesity_sdk.cluster.models.netapp_object_params import NetappObjectParams
+from cohesity_sdk.cluster.models.nutanix_fs_object_params import NutanixFSObjectParams
+from cohesity_sdk.cluster.models.oracle_object_params import OracleObjectParams
 from cohesity_sdk.cluster.models.physical_snapshot_params import PhysicalSnapshotParams
+from cohesity_sdk.cluster.models.replication_target_summary_info import ReplicationTargetSummaryInfo
 from cohesity_sdk.cluster.models.sfdc_object_params import SfdcObjectParams
 from typing import Set
 from typing_extensions import Self
@@ -53,16 +57,20 @@ class ObjectSnapshot(BaseModel):
     id: Optional[StrictStr] = Field(default=None, description="Specifies the id of the snapshot.")
     indexing_status: Optional[StrictStr] = Field(default=None, description="Specifies the indexing status of objects in this snapshot.<br> 'InProgress' indicates the indexing is in progress.<br> 'Done' indicates indexing is done.<br> 'NoIndex' indicates indexing is not applicable.<br> 'Error' indicates indexing failed with error.", alias="indexingStatus")
     isilon_params: Optional[IsilonObjectParams] = Field(default=None, alias="isilonParams")
+    m365_params: Optional[M365Params] = Field(default=None, alias="m365Params")
     netapp_params: Optional[NetappObjectParams] = Field(default=None, alias="netappParams")
+    nutanix_fs_params: Optional[NutanixFSObjectParams] = Field(default=None, alias="nutanixFSParams")
     object_id: Optional[StrictInt] = Field(default=None, description="Specifies the object id which the snapshot is taken from.", alias="objectId")
     object_name: Optional[StrictStr] = Field(default=None, description="Specifies the object name which the snapshot is taken from.", alias="objectName")
     on_legal_hold: Optional[StrictBool] = Field(default=None, description="Specifies if this snapshot is on legalhold.", alias="onLegalHold")
+    oracle_params: Optional[OracleObjectParams] = Field(default=None, alias="oracleParams")
     ownership_context: Optional[StrictStr] = Field(default=None, description="Specifies the ownership context for the target.", alias="ownershipContext")
     physical_params: Optional[PhysicalSnapshotParams] = Field(default=None, alias="physicalParams")
     protection_group_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Specifies id of the Protection Group.", alias="protectionGroupId")
     protection_group_name: Optional[StrictStr] = Field(default=None, description="Specifies name of the Protection Group.", alias="protectionGroupName")
     protection_group_run_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Specifies id of the Protection Group Run.", alias="protectionGroupRunId")
     region_id: Optional[StrictStr] = Field(default=None, description="Specifies the region id where this snapshot belongs to.", alias="regionId")
+    replication_target_info: Optional[ReplicationTargetSummaryInfo] = Field(default=None, alias="replicationTargetInfo")
     run_instance_id: Optional[StrictInt] = Field(default=None, description="Specifies the instance id of the protection run which create the snapshot.", alias="runInstanceId")
     run_start_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the start time of the run in micro seconds.", alias="runStartTimeUsecs")
     run_type: Optional[StrictStr] = Field(default=None, description="Specifies the type of protection run created this snapshot.", alias="runType")
@@ -72,7 +80,7 @@ class ObjectSnapshot(BaseModel):
     source_group_id: Optional[StrictStr] = Field(default=None, description="Specifies the source protection group id in case of replication.", alias="sourceGroupId")
     source_id: Optional[StrictInt] = Field(default=None, description="Specifies the object source id which the snapshot is taken from.", alias="sourceId")
     storage_domain_id: Optional[StrictInt] = Field(default=None, description="Specifies the Storage Domain id where the snapshot of object is present.", alias="storageDomainId")
-    __properties: ClassVar[List[str]] = ["awsParams", "azureParams", "clusterId", "clusterIncarnationId", "elastifileParams", "environment", "expiryTimeUsecs", "externalTargetInfo", "flashbladeParams", "genericNasParams", "gpfsParams", "hasDataLock", "hypervParams", "id", "indexingStatus", "isilonParams", "netappParams", "objectId", "objectName", "onLegalHold", "ownershipContext", "physicalParams", "protectionGroupId", "protectionGroupName", "protectionGroupRunId", "regionId", "runInstanceId", "runStartTimeUsecs", "runType", "sfdcParams", "snapshotTargetType", "snapshotTimestampUsecs", "sourceGroupId", "sourceId", "storageDomainId"]
+    __properties: ClassVar[List[str]] = ["awsParams", "azureParams", "clusterId", "clusterIncarnationId", "elastifileParams", "environment", "expiryTimeUsecs", "externalTargetInfo", "flashbladeParams", "genericNasParams", "gpfsParams", "hasDataLock", "hypervParams", "id", "indexingStatus", "isilonParams", "m365Params", "netappParams", "nutanixFSParams", "objectId", "objectName", "onLegalHold", "oracleParams", "ownershipContext", "physicalParams", "protectionGroupId", "protectionGroupName", "protectionGroupRunId", "regionId", "replicationTargetInfo", "runInstanceId", "runStartTimeUsecs", "runType", "sfdcParams", "snapshotTargetType", "snapshotTimestampUsecs", "sourceGroupId", "sourceId", "storageDomainId"]
 
     @field_validator('environment')
     def environment_validate_enum(cls, value):
@@ -80,8 +88,8 @@ class ObjectSnapshot(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAzureSQL', 'kAcropolis', 'kGCP', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc']):
-            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAzureSQL', 'kAcropolis', 'kGCP', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc')")
+        if value not in set(['kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAcropolis', 'kGCP', 'kGCPBigQuery', 'kGCPMySQL', 'kGoogleSpanner', 'kGCPPostgreSQL', 'kGCPAlloyDBPostgreSQL', 'kGCPSQLServer', 'kGCPFirestore', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kS3Compatible', 'kSAPHANA', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzurePostgreSQLServer', 'kAzureSQL', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureBlobStorage', 'kAzureTableAPI', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kPostgres', 'kNutanixFS', 'kAWSAuroraMySQL', 'kAWSMySQL', 'kAuroraSnapshotManager', 'kAWSRDSMSSQL', 'kAWSRdsOracle', 'kRDSSnapshotManager', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRedshift']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAcropolis', 'kGCP', 'kGCPBigQuery', 'kGCPMySQL', 'kGoogleSpanner', 'kGCPPostgreSQL', 'kGCPAlloyDBPostgreSQL', 'kGCPSQLServer', 'kGCPFirestore', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kS3Compatible', 'kSAPHANA', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzurePostgreSQLServer', 'kAzureSQL', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureBlobStorage', 'kAzureTableAPI', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kPostgres', 'kNutanixFS', 'kAWSAuroraMySQL', 'kAWSMySQL', 'kAuroraSnapshotManager', 'kAWSRDSMSSQL', 'kAWSRdsOracle', 'kRDSSnapshotManager', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRedshift')")
         return value
 
     @field_validator('indexing_status')
@@ -100,8 +108,8 @@ class ObjectSnapshot(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Local', 'FortKnox']):
-            raise ValueError("must be one of enum values ('Local', 'FortKnox')")
+        if value not in set(['Local', 'FortKnox', 'FortKnoxOnprem']):
+            raise ValueError("must be one of enum values ('Local', 'FortKnox', 'FortKnoxOnprem')")
         return value
 
     @field_validator('protection_group_id')
@@ -210,12 +218,24 @@ class ObjectSnapshot(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of isilon_params
         if self.isilon_params:
             _dict['isilonParams'] = self.isilon_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of m365_params
+        if self.m365_params:
+            _dict['m365Params'] = self.m365_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of netapp_params
         if self.netapp_params:
             _dict['netappParams'] = self.netapp_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of nutanix_fs_params
+        if self.nutanix_fs_params:
+            _dict['nutanixFSParams'] = self.nutanix_fs_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of oracle_params
+        if self.oracle_params:
+            _dict['oracleParams'] = self.oracle_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of physical_params
         if self.physical_params:
             _dict['physicalParams'] = self.physical_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of replication_target_info
+        if self.replication_target_info:
+            _dict['replicationTargetInfo'] = self.replication_target_info.to_dict()
         # override the default output from pydantic by calling `to_dict()` of sfdc_params
         if self.sfdc_params:
             _dict['sfdcParams'] = self.sfdc_params.to_dict()
@@ -362,16 +382,20 @@ class ObjectSnapshot(BaseModel):
             "id": obj.get("id"),
             "indexingStatus": obj.get("indexingStatus"),
             "isilonParams": IsilonObjectParams.from_dict(obj["isilonParams"]) if obj.get("isilonParams") is not None else None,
+            "m365Params": M365Params.from_dict(obj["m365Params"]) if obj.get("m365Params") is not None else None,
             "netappParams": NetappObjectParams.from_dict(obj["netappParams"]) if obj.get("netappParams") is not None else None,
+            "nutanixFSParams": NutanixFSObjectParams.from_dict(obj["nutanixFSParams"]) if obj.get("nutanixFSParams") is not None else None,
             "objectId": obj.get("objectId"),
             "objectName": obj.get("objectName"),
             "onLegalHold": obj.get("onLegalHold"),
+            "oracleParams": OracleObjectParams.from_dict(obj["oracleParams"]) if obj.get("oracleParams") is not None else None,
             "ownershipContext": obj.get("ownershipContext"),
             "physicalParams": PhysicalSnapshotParams.from_dict(obj["physicalParams"]) if obj.get("physicalParams") is not None else None,
             "protectionGroupId": obj.get("protectionGroupId"),
             "protectionGroupName": obj.get("protectionGroupName"),
             "protectionGroupRunId": obj.get("protectionGroupRunId"),
             "regionId": obj.get("regionId"),
+            "replicationTargetInfo": ReplicationTargetSummaryInfo.from_dict(obj["replicationTargetInfo"]) if obj.get("replicationTargetInfo") is not None else None,
             "runInstanceId": obj.get("runInstanceId"),
             "runStartTimeUsecs": obj.get("runStartTimeUsecs"),
             "runType": obj.get("runType"),

@@ -27,13 +27,14 @@ class ObjectIdentifier(BaseModel):
     """
     Specifies the basic info to identify an object.
     """ # noqa: E501
+    aux_entity_id: Optional[StrictInt] = Field(default=None, description="Specifies the auxiliary object id.", alias="auxEntityId")
     entity_id: Optional[ObjectStringIdentifier] = Field(default=None, alias="entityId")
     environment: Optional[StrictStr] = Field(default=None, description="Specifies the environment of the object.")
     id: Optional[StrictInt] = Field(default=None, description="Specifies object id.")
     name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the object.")
     source_id: Optional[StrictInt] = Field(default=None, description="Specifies registered source id to which object belongs.", alias="sourceId")
     source_name: Optional[StrictStr] = Field(default=None, description="Specifies registered source name to which object belongs.", alias="sourceName")
-    __properties: ClassVar[List[str]] = ["entityId", "environment", "id", "name", "sourceId", "sourceName"]
+    __properties: ClassVar[List[str]] = ["auxEntityId", "entityId", "environment", "id", "name", "sourceId", "sourceName"]
 
     @field_validator('environment')
     def environment_validate_enum(cls, value):
@@ -41,8 +42,8 @@ class ObjectIdentifier(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAzureSQL', 'kAcropolis', 'kGCP', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc']):
-            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAzureSQL', 'kAcropolis', 'kGCP', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc')")
+        if value not in set(['kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAcropolis', 'kGCP', 'kGCPBigQuery', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kS3Compatible', 'kSAPHANA', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kAzureEntraID', 'kAzureMySQL', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kSalesforce']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAzure', 'kKVM', 'kAWS', 'kAcropolis', 'kGCP', 'kGCPBigQuery', 'kPhysical', 'kPhysicalFiles', 'kIsilon', 'kNetapp', 'kGenericNas', 'kFlashBlade', 'kElastifile', 'kGPFS', 'kPure', 'kIbmFlashSystem', 'kNimble', 'kSQL', 'kOracle', 'kExchange', 'kAD', 'kView', 'kO365', 'kHyperFlex', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kS3Compatible', 'kSAPHANA', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kAzureEntraID', 'kAzureMySQL', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kSalesforce')")
         return value
 
     model_config = ConfigDict(
@@ -87,6 +88,11 @@ class ObjectIdentifier(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of entity_id
         if self.entity_id:
             _dict['entityId'] = self.entity_id.to_dict()
+        # set to None if aux_entity_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.aux_entity_id is None and "aux_entity_id" in self.model_fields_set:
+            _dict['auxEntityId'] = None
+
         # set to None if environment (nullable) is None
         # and model_fields_set contains the field
         if self.environment is None and "environment" in self.model_fields_set:
@@ -124,6 +130,7 @@ class ObjectIdentifier(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "auxEntityId": obj.get("auxEntityId"),
             "entityId": ObjectStringIdentifier.from_dict(obj["entityId"]) if obj.get("entityId") is not None else None,
             "environment": obj.get("environment"),
             "id": obj.get("id"),

@@ -56,7 +56,7 @@ class StorageDomainApi:
     ) -> StorageDomain:
         """Create a Storage Domain.
 
-        Create a Storage Domain.
+        **Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Create a Storage Domain.
 
         :param body: Specified the request to create a Storage Domain. (required)
         :type body: StorageDomain
@@ -123,7 +123,7 @@ class StorageDomainApi:
     ) -> ApiResponse[StorageDomain]:
         """Create a Storage Domain.
 
-        Create a Storage Domain.
+        **Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Create a Storage Domain.
 
         :param body: Specified the request to create a Storage Domain. (required)
         :type body: StorageDomain
@@ -190,7 +190,7 @@ class StorageDomainApi:
     ) -> RESTResponseType:
         """Create a Storage Domain.
 
-        Create a Storage Domain.
+        **Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Create a Storage Domain.
 
         :param body: Specified the request to create a Storage Domain. (required)
         :type body: StorageDomain
@@ -317,6 +317,7 @@ class StorageDomainApi:
     def delete_storage_domain(
         self,
         id: Annotated[StrictInt, Field(description="Specified the Storage Domain id to delete.")],
+        force: Annotated[Optional[StrictBool], Field(description="If `true`, the Storage Domain can be deleted even if it contains LSUs that are paired with remote LSUs.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -332,10 +333,12 @@ class StorageDomainApi:
     ) -> None:
         """Delete a Storage Domain.
 
-        Delete a Storage Domain.
+        **Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Delete a Storage Domain.
 
         :param id: Specified the Storage Domain id to delete. (required)
         :type id: int
+        :param force: If `true`, the Storage Domain can be deleted even if it contains LSUs that are paired with remote LSUs.
+        :type force: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -360,6 +363,7 @@ class StorageDomainApi:
 
         _param = self._delete_storage_domain_serialize(
             id=id,
+            force=force,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -384,6 +388,7 @@ class StorageDomainApi:
     def delete_storage_domain_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specified the Storage Domain id to delete.")],
+        force: Annotated[Optional[StrictBool], Field(description="If `true`, the Storage Domain can be deleted even if it contains LSUs that are paired with remote LSUs.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -399,10 +404,12 @@ class StorageDomainApi:
     ) -> ApiResponse[None]:
         """Delete a Storage Domain.
 
-        Delete a Storage Domain.
+        **Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Delete a Storage Domain.
 
         :param id: Specified the Storage Domain id to delete. (required)
         :type id: int
+        :param force: If `true`, the Storage Domain can be deleted even if it contains LSUs that are paired with remote LSUs.
+        :type force: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -427,6 +434,7 @@ class StorageDomainApi:
 
         _param = self._delete_storage_domain_serialize(
             id=id,
+            force=force,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -451,6 +459,7 @@ class StorageDomainApi:
     def delete_storage_domain_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specified the Storage Domain id to delete.")],
+        force: Annotated[Optional[StrictBool], Field(description="If `true`, the Storage Domain can be deleted even if it contains LSUs that are paired with remote LSUs.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -466,10 +475,12 @@ class StorageDomainApi:
     ) -> RESTResponseType:
         """Delete a Storage Domain.
 
-        Delete a Storage Domain.
+        **Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Delete a Storage Domain.
 
         :param id: Specified the Storage Domain id to delete. (required)
         :type id: int
+        :param force: If `true`, the Storage Domain can be deleted even if it contains LSUs that are paired with remote LSUs.
+        :type force: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -494,6 +505,7 @@ class StorageDomainApi:
 
         _param = self._delete_storage_domain_serialize(
             id=id,
+            force=force,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -513,6 +525,7 @@ class StorageDomainApi:
     def _delete_storage_domain_serialize(
         self,
         id,
+        force,
         _request_auth,
         _content_type,
         _headers,
@@ -537,6 +550,10 @@ class StorageDomainApi:
         if id is not None:
             _path_params['id'] = id
         # process the query parameters
+        if force is not None:
+            
+            _query_params.append(('force', force))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -599,7 +616,7 @@ class StorageDomainApi:
     ) -> StorageDomain:
         """Get a Storage Domain by id.
 
-        Get a Storage Domain by id.
+        **Privileges:** ```STORAGE_DOMAIN_VIEW``` <br><br>Get a Storage Domain by id.
 
         :param id: Specified the Storage Domain id to fetch. (required)
         :type id: int
@@ -682,7 +699,7 @@ class StorageDomainApi:
     ) -> ApiResponse[StorageDomain]:
         """Get a Storage Domain by id.
 
-        Get a Storage Domain by id.
+        **Privileges:** ```STORAGE_DOMAIN_VIEW``` <br><br>Get a Storage Domain by id.
 
         :param id: Specified the Storage Domain id to fetch. (required)
         :type id: int
@@ -765,7 +782,7 @@ class StorageDomainApi:
     ) -> RESTResponseType:
         """Get a Storage Domain by id.
 
-        Get a Storage Domain by id.
+        **Privileges:** ```STORAGE_DOMAIN_VIEW``` <br><br>Get a Storage Domain by id.
 
         :param id: Specified the Storage Domain id to fetch. (required)
         :type id: int
@@ -918,7 +935,7 @@ class StorageDomainApi:
         include_stats: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain stats in response.")] = None,
         include_time_series_schema: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain time series schema in response.")] = None,
         include_file_count_by_size: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain file count by size.")] = None,
-        match_partial_names: Annotated[Optional[StrictBool], Field(description="If true, the names in viewNames are matched by any partial rather than exactly matched.")] = None,
+        match_partial_names: Annotated[Optional[StrictBool], Field(description="If set to true, names in the 'names' parameter will be matched partially instead of exactly.")] = None,
         view_template_id: Annotated[Optional[StrictInt], Field(description="Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended.")] = None,
         _request_timeout: Union[
             None,
@@ -935,7 +952,7 @@ class StorageDomainApi:
     ) -> StorageDomains:
         """Get Storage Domains.
 
-        Get Storage Domains.
+        **Privileges:** ```STORAGE_DOMAIN_VIEW``` <br><br>Get Storage Domains.
 
         :param ids: Filter by a list of Storage Domain ids.
         :type ids: List[int]
@@ -953,7 +970,7 @@ class StorageDomainApi:
         :type include_time_series_schema: bool
         :param include_file_count_by_size: Whether to include Storage Domain file count by size.
         :type include_file_count_by_size: bool
-        :param match_partial_names: If true, the names in viewNames are matched by any partial rather than exactly matched.
+        :param match_partial_names: If set to true, names in the 'names' parameter will be matched partially instead of exactly.
         :type match_partial_names: bool
         :param view_template_id: Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended.
         :type view_template_id: int
@@ -1021,7 +1038,7 @@ class StorageDomainApi:
         include_stats: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain stats in response.")] = None,
         include_time_series_schema: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain time series schema in response.")] = None,
         include_file_count_by_size: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain file count by size.")] = None,
-        match_partial_names: Annotated[Optional[StrictBool], Field(description="If true, the names in viewNames are matched by any partial rather than exactly matched.")] = None,
+        match_partial_names: Annotated[Optional[StrictBool], Field(description="If set to true, names in the 'names' parameter will be matched partially instead of exactly.")] = None,
         view_template_id: Annotated[Optional[StrictInt], Field(description="Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended.")] = None,
         _request_timeout: Union[
             None,
@@ -1038,7 +1055,7 @@ class StorageDomainApi:
     ) -> ApiResponse[StorageDomains]:
         """Get Storage Domains.
 
-        Get Storage Domains.
+        **Privileges:** ```STORAGE_DOMAIN_VIEW``` <br><br>Get Storage Domains.
 
         :param ids: Filter by a list of Storage Domain ids.
         :type ids: List[int]
@@ -1056,7 +1073,7 @@ class StorageDomainApi:
         :type include_time_series_schema: bool
         :param include_file_count_by_size: Whether to include Storage Domain file count by size.
         :type include_file_count_by_size: bool
-        :param match_partial_names: If true, the names in viewNames are matched by any partial rather than exactly matched.
+        :param match_partial_names: If set to true, names in the 'names' parameter will be matched partially instead of exactly.
         :type match_partial_names: bool
         :param view_template_id: Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended.
         :type view_template_id: int
@@ -1124,7 +1141,7 @@ class StorageDomainApi:
         include_stats: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain stats in response.")] = None,
         include_time_series_schema: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain time series schema in response.")] = None,
         include_file_count_by_size: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain file count by size.")] = None,
-        match_partial_names: Annotated[Optional[StrictBool], Field(description="If true, the names in viewNames are matched by any partial rather than exactly matched.")] = None,
+        match_partial_names: Annotated[Optional[StrictBool], Field(description="If set to true, names in the 'names' parameter will be matched partially instead of exactly.")] = None,
         view_template_id: Annotated[Optional[StrictInt], Field(description="Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended.")] = None,
         _request_timeout: Union[
             None,
@@ -1141,7 +1158,7 @@ class StorageDomainApi:
     ) -> RESTResponseType:
         """Get Storage Domains.
 
-        Get Storage Domains.
+        **Privileges:** ```STORAGE_DOMAIN_VIEW``` <br><br>Get Storage Domains.
 
         :param ids: Filter by a list of Storage Domain ids.
         :type ids: List[int]
@@ -1159,7 +1176,7 @@ class StorageDomainApi:
         :type include_time_series_schema: bool
         :param include_file_count_by_size: Whether to include Storage Domain file count by size.
         :type include_file_count_by_size: bool
-        :param match_partial_names: If true, the names in viewNames are matched by any partial rather than exactly matched.
+        :param match_partial_names: If set to true, names in the 'names' parameter will be matched partially instead of exactly.
         :type match_partial_names: bool
         :param view_template_id: Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended.
         :type view_template_id: int
@@ -1349,7 +1366,7 @@ class StorageDomainApi:
     ) -> StorageDomain:
         """Update a Storage Domain.
 
-        Update a Storage Domain.
+        **Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Update a Storage Domain.
 
         :param id: Specified the Storage Domain id to update. (required)
         :type id: int
@@ -1420,7 +1437,7 @@ class StorageDomainApi:
     ) -> ApiResponse[StorageDomain]:
         """Update a Storage Domain.
 
-        Update a Storage Domain.
+        **Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Update a Storage Domain.
 
         :param id: Specified the Storage Domain id to update. (required)
         :type id: int
@@ -1491,7 +1508,7 @@ class StorageDomainApi:
     ) -> RESTResponseType:
         """Update a Storage Domain.
 
-        Update a Storage Domain.
+        **Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Update a Storage Domain.
 
         :param id: Specified the Storage Domain id to update. (required)
         :type id: int

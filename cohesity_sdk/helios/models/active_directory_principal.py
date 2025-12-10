@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Set
 from typing_extensions import Self
 
@@ -27,11 +28,22 @@ class ActiveDirectoryPrincipal(BaseModel):
     Specifies an active directory principal fields.
     """ # noqa: E501
     domain_name: Optional[StrictStr] = Field(default=None, description="Specifies the domain name to which the principal belongs to", alias="domainName")
+    email: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Specifies the email address of the principal.")
     full_name: Optional[StrictStr] = Field(default=None, description="Specifies the full name of the principal.", alias="fullName")
     name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the principal which is being added.")
     object_class: Optional[StrictStr] = Field(default=None, description="Specifies the type of principal, a user or a group", alias="objectClass")
     sid: Optional[StrictStr] = Field(default=None, description="Specifies the unique SID of the principal.")
-    __properties: ClassVar[List[str]] = ["domainName", "fullName", "name", "objectClass", "sid"]
+    __properties: ClassVar[List[str]] = ["domainName", "email", "fullName", "name", "objectClass", "sid"]
+
+    @field_validator('email')
+    def email_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/")
+        return value
 
     @field_validator('object_class')
     def object_class_validate_enum(cls, value):
@@ -87,6 +99,11 @@ class ActiveDirectoryPrincipal(BaseModel):
         if self.domain_name is None and "domain_name" in self.model_fields_set:
             _dict['domainName'] = None
 
+        # set to None if email (nullable) is None
+        # and model_fields_set contains the field
+        if self.email is None and "email" in self.model_fields_set:
+            _dict['email'] = None
+
         # set to None if full_name (nullable) is None
         # and model_fields_set contains the field
         if self.full_name is None and "full_name" in self.model_fields_set:
@@ -110,6 +127,7 @@ class ActiveDirectoryPrincipal(BaseModel):
 
         _obj = cls.model_validate({
             "domainName": obj.get("domainName"),
+            "email": obj.get("email"),
             "fullName": obj.get("fullName"),
             "name": obj.get("name"),
             "objectClass": obj.get("objectClass"),

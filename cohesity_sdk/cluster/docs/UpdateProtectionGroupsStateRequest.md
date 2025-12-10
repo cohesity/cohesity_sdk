@@ -8,6 +8,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **action** | **str** | Specifies the action to be performed on all the specfied Protection Groups. &#39;kActivate&#39; specifies that Protection Group should be activated. &#39;kDeactivate&#39; sepcifies that Protection Group should be deactivated. &#39;kPause&#39; specifies that Protection Group should be paused. &#39;kResume&#39; specifies that Protection Group should be resumed. | 
 **ids** | **List[str]** | Specifies a list of Protection Group ids for which the state should change. | 
+**last_pause_reason** | **str** | Specifies the reason why the protection group was paused | [optional] 
+**paused_note** | **str** | A note from the current user explaining the reason for pausing future runs, if applicable. | [optional] 
+**tenant_id** | **str** | Specifies the tenant id who has access to these protection groups. | [optional] 
 
 ## Example
 

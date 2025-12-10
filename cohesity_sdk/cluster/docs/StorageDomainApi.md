@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 Create a Storage Domain.
 
-Create a Storage Domain.
+**Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Create a Storage Domain.
 
 ### Example
 
@@ -106,11 +106,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_storage_domain**
-> delete_storage_domain(id)
+> delete_storage_domain(id, force=force)
 
 Delete a Storage Domain.
 
-Delete a Storage Domain.
+**Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Delete a Storage Domain.
 
 ### Example
 
@@ -157,10 +157,11 @@ with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cohesity_sdk.cluster.StorageDomainApi(api_client)
     id = 56 # int | Specified the Storage Domain id to delete.
+    force = True # bool | If `true`, the Storage Domain can be deleted even if it contains LSUs that are paired with remote LSUs. (optional)
 
     try:
         # Delete a Storage Domain.
-        api_instance.delete_storage_domain(id)
+        api_instance.delete_storage_domain(id, force=force)
     except Exception as e:
         print("Exception when calling StorageDomainApi->delete_storage_domain: %s\n" % e)
 ```
@@ -173,6 +174,7 @@ with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specified the Storage Domain id to delete. | 
+ **force** | **bool**| If &#x60;true&#x60;, the Storage Domain can be deleted even if it contains LSUs that are paired with remote LSUs. | [optional] 
 
 ### Return type
 
@@ -201,7 +203,7 @@ void (empty response body)
 
 Get a Storage Domain by id.
 
-Get a Storage Domain by id.
+**Privileges:** ```STORAGE_DOMAIN_VIEW``` <br><br>Get a Storage Domain by id.
 
 ### Example
 
@@ -303,7 +305,7 @@ Name | Type | Description  | Notes
 
 Get Storage Domains.
 
-Get Storage Domains.
+**Privileges:** ```STORAGE_DOMAIN_VIEW``` <br><br>Get Storage Domains.
 
 ### Example
 
@@ -358,7 +360,7 @@ with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     include_stats = True # bool | Whether to include Storage Domain stats in response. (optional)
     include_time_series_schema = True # bool | Whether to include Storage Domain time series schema in response. (optional)
     include_file_count_by_size = True # bool | Whether to include Storage Domain file count by size. (optional)
-    match_partial_names = True # bool | If true, the names in viewNames are matched by any partial rather than exactly matched. (optional)
+    match_partial_names = True # bool | If set to true, names in the 'names' parameter will be matched partially instead of exactly. (optional)
     view_template_id = 56 # int | Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended. (optional)
 
     try:
@@ -385,7 +387,7 @@ Name | Type | Description  | Notes
  **include_stats** | **bool**| Whether to include Storage Domain stats in response. | [optional] 
  **include_time_series_schema** | **bool**| Whether to include Storage Domain time series schema in response. | [optional] 
  **include_file_count_by_size** | **bool**| Whether to include Storage Domain file count by size. | [optional] 
- **match_partial_names** | **bool**| If true, the names in viewNames are matched by any partial rather than exactly matched. | [optional] 
+ **match_partial_names** | **bool**| If set to true, names in the &#39;names&#39; parameter will be matched partially instead of exactly. | [optional] 
  **view_template_id** | **int**| Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended. | [optional] 
 
 ### Return type
@@ -415,7 +417,7 @@ Name | Type | Description  | Notes
 
 Update a Storage Domain.
 
-Update a Storage Domain.
+**Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Update a Storage Domain.
 
 ### Example
 

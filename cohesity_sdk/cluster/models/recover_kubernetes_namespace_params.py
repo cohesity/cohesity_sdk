@@ -29,7 +29,7 @@ class RecoverKubernetesNamespaceParams(BaseModel):
     Specifies the parameters to recover Kubernetes Namespaces.
     """ # noqa: E501
     kubernetes_target_params: Optional[KubernetesTargetParamsForRecoverKubernetesNamespace] = Field(default=None, alias="kubernetesTargetParams")
-    target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
+    target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out. As of now only kubernetes target environment is supported.", alias="targetEnvironment")
     vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, alias="vlanConfig")
     __properties: ClassVar[List[str]] = ["kubernetesTargetParams", "targetEnvironment", "vlanConfig"]
 

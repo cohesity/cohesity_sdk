@@ -29,9 +29,10 @@ class RecoverAcropolisVmNewSourceConfig(BaseModel):
     Specifies the new destination Source configuration where the VMs will be recovered.
     """ # noqa: E501
     network_config: Optional[RecoverAcropolisVmNewSourceNetworkConfig] = Field(default=None, alias="networkConfig")
+    prism_element: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="prismElement")
     source: RecoveryObjectIdentifier
     storage_container: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="storageContainer")
-    __properties: ClassVar[List[str]] = ["networkConfig", "source", "storageContainer"]
+    __properties: ClassVar[List[str]] = ["networkConfig", "prismElement", "source", "storageContainer"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,6 +76,9 @@ class RecoverAcropolisVmNewSourceConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of network_config
         if self.network_config:
             _dict['networkConfig'] = self.network_config.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of prism_element
+        if self.prism_element:
+            _dict['prismElement'] = self.prism_element.to_dict()
         # override the default output from pydantic by calling `to_dict()` of source
         if self.source:
             _dict['source'] = self.source.to_dict()
@@ -94,6 +98,7 @@ class RecoverAcropolisVmNewSourceConfig(BaseModel):
 
         _obj = cls.model_validate({
             "networkConfig": RecoverAcropolisVmNewSourceNetworkConfig.from_dict(obj["networkConfig"]) if obj.get("networkConfig") is not None else None,
+            "prismElement": RecoveryObjectIdentifier.from_dict(obj["prismElement"]) if obj.get("prismElement") is not None else None,
             "source": RecoveryObjectIdentifier.from_dict(obj["source"]) if obj.get("source") is not None else None,
             "storageContainer": RecoveryObjectIdentifier.from_dict(obj["storageContainer"]) if obj.get("storageContainer") is not None else None
         })

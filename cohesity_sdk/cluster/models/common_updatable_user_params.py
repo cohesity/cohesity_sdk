@@ -30,9 +30,11 @@ class CommonUpdatableUserParams(BaseModel):
     effective_time_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the epoch time in milliseconds since when the user can login.", alias="effectiveTimeMsecs")
     expiry_time_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the epoch time in milliseconds when the user expires. Post expiry the user cannot access Cohesity cluster.", alias="expiryTimeMsecs")
     locked: Optional[StrictBool] = Field(default=None, description="Specifies whether the User is locked.")
+    other_groups: Optional[List[StrictStr]] = Field(default=None, description="Specifies additional groups the User may belong to.", alias="otherGroups")
+    primary_group: Optional[StrictStr] = Field(default=None, description="Specifies the primary group of the User. Primary group is used for file access.", alias="primaryGroup")
     restricted: Optional[StrictBool] = Field(default=None, description="Specifies whether the User is restricted. A restricted user can only view & manage the objects it has permissions to.")
     roles: Optional[List[StrictStr]] = Field(default=None, description="Specifies the Cohesity roles to associate with the user. The Cohesity roles determine privileges on the Cohesity Cluster for this user.")
-    __properties: ClassVar[List[str]] = ["description", "effectiveTimeMsecs", "expiryTimeMsecs", "locked", "restricted", "roles"]
+    __properties: ClassVar[List[str]] = ["description", "effectiveTimeMsecs", "expiryTimeMsecs", "locked", "otherGroups", "primaryGroup", "restricted", "roles"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -64,8 +66,12 @@ class CommonUpdatableUserParams(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
+            "other_groups",
+            "primary_group",
         ])
 
         _dict = self.model_dump(
@@ -93,6 +99,11 @@ class CommonUpdatableUserParams(BaseModel):
         if self.locked is None and "locked" in self.model_fields_set:
             _dict['locked'] = None
 
+        # set to None if primary_group (nullable) is None
+        # and model_fields_set contains the field
+        if self.primary_group is None and "primary_group" in self.model_fields_set:
+            _dict['primaryGroup'] = None
+
         # set to None if restricted (nullable) is None
         # and model_fields_set contains the field
         if self.restricted is None and "restricted" in self.model_fields_set:
@@ -119,6 +130,8 @@ class CommonUpdatableUserParams(BaseModel):
             "effectiveTimeMsecs": obj.get("effectiveTimeMsecs"),
             "expiryTimeMsecs": obj.get("expiryTimeMsecs"),
             "locked": obj.get("locked"),
+            "otherGroups": obj.get("otherGroups"),
+            "primaryGroup": obj.get("primaryGroup"),
             "restricted": obj.get("restricted"),
             "roles": obj.get("roles")
         })

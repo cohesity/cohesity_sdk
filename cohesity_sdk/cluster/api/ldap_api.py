@@ -57,7 +57,7 @@ class LDAPApi:
     ) -> Ldap:
         """Create Ldap provider.
 
-        Create Ldap provider with given parameters.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Create Ldap provider with given parameters.
 
         :param body: Specifies the parameters to create Ldap provider. (required)
         :type body: Ldap
@@ -124,7 +124,7 @@ class LDAPApi:
     ) -> ApiResponse[Ldap]:
         """Create Ldap provider.
 
-        Create Ldap provider with given parameters.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Create Ldap provider with given parameters.
 
         :param body: Specifies the parameters to create Ldap provider. (required)
         :type body: Ldap
@@ -191,7 +191,7 @@ class LDAPApi:
     ) -> RESTResponseType:
         """Create Ldap provider.
 
-        Create Ldap provider with given parameters.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Create Ldap provider with given parameters.
 
         :param body: Specifies the parameters to create Ldap provider. (required)
         :type body: Ldap
@@ -333,7 +333,7 @@ class LDAPApi:
     ) -> None:
         """Delete LDAP provider.
 
-        Delete LDAP provider which will be identified by given Id.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Delete LDAP provider which will be identified by given Id.
 
         :param id: Specifies the LDAP Id. (required)
         :type id: int
@@ -400,7 +400,7 @@ class LDAPApi:
     ) -> ApiResponse[None]:
         """Delete LDAP provider.
 
-        Delete LDAP provider which will be identified by given Id.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Delete LDAP provider which will be identified by given Id.
 
         :param id: Specifies the LDAP Id. (required)
         :type id: int
@@ -467,7 +467,7 @@ class LDAPApi:
     ) -> RESTResponseType:
         """Delete LDAP provider.
 
-        Delete LDAP provider which will be identified by given Id.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Delete LDAP provider which will be identified by given Id.
 
         :param id: Specifies the LDAP Id. (required)
         :type id: int
@@ -596,7 +596,7 @@ class LDAPApi:
     ) -> LdapStatus:
         """Get LDAP connection status.
 
-        Get LDAP connection status.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get LDAP connection status.
 
         :param id: Specifies the LDAP id. (required)
         :type id: int
@@ -663,7 +663,7 @@ class LDAPApi:
     ) -> ApiResponse[LdapStatus]:
         """Get LDAP connection status.
 
-        Get LDAP connection status.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get LDAP connection status.
 
         :param id: Specifies the LDAP id. (required)
         :type id: int
@@ -730,7 +730,7 @@ class LDAPApi:
     ) -> RESTResponseType:
         """Get LDAP connection status.
 
-        Get LDAP connection status.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get LDAP connection status.
 
         :param id: Specifies the LDAP id. (required)
         :type id: int
@@ -861,7 +861,7 @@ class LDAPApi:
     ) -> Ldaps:
         """Get Groups.
 
-        Get LDAPs.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get LDAPs.
 
         :param ids: Specifies a list of ids to filter.
         :type ids: List[int]
@@ -936,7 +936,7 @@ class LDAPApi:
     ) -> ApiResponse[Ldaps]:
         """Get Groups.
 
-        Get LDAPs.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get LDAPs.
 
         :param ids: Specifies a list of ids to filter.
         :type ids: List[int]
@@ -1011,7 +1011,7 @@ class LDAPApi:
     ) -> RESTResponseType:
         """Get Groups.
 
-        Get LDAPs.
+        **Privileges:** ```AD_LDAP_VIEW``` <br><br>Get LDAPs.
 
         :param ids: Specifies a list of ids to filter.
         :type ids: List[int]
@@ -1160,7 +1160,7 @@ class LDAPApi:
     ) -> Ldap:
         """Update Ldap provider.
 
-        Modify Ldap provider with given parameters.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Modify Ldap provider with given parameters.
 
         :param body: Specifies the parameters to update Ldap provider. (required)
         :type body: Ldap
@@ -1227,7 +1227,7 @@ class LDAPApi:
     ) -> ApiResponse[Ldap]:
         """Update Ldap provider.
 
-        Modify Ldap provider with given parameters.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Modify Ldap provider with given parameters.
 
         :param body: Specifies the parameters to update Ldap provider. (required)
         :type body: Ldap
@@ -1294,7 +1294,7 @@ class LDAPApi:
     ) -> RESTResponseType:
         """Update Ldap provider.
 
-        Modify Ldap provider with given parameters.
+        **Privileges:** ```AD_LDAP_MODIFY``` <br><br>Modify Ldap provider with given parameters.
 
         :param body: Specifies the parameters to update Ldap provider. (required)
         :type body: Ldap

@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Set
 from typing_extensions import Self
@@ -28,8 +28,9 @@ class ConnectionConfig(BaseModel):
     """ # noqa: E501
     connection_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the connection.", alias="connectionId")
     connector_group_id: Optional[StrictInt] = Field(default=None, description="Specifies the connector group id of connector groups.", alias="connectorGroupId")
+    data_source_connection_id: Optional[StrictStr] = Field(default=None, description="Specifies the id of the connection in string format.", alias="dataSourceConnectionId")
     entity_id: Optional[StrictInt] = Field(default=None, description="Specifies the entity id of the source. The source can a non-root entity.", alias="entityId")
-    __properties: ClassVar[List[str]] = ["connectionId", "connectorGroupId", "entityId"]
+    __properties: ClassVar[List[str]] = ["connectionId", "connectorGroupId", "dataSourceConnectionId", "entityId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,6 +81,11 @@ class ConnectionConfig(BaseModel):
         if self.connector_group_id is None and "connector_group_id" in self.model_fields_set:
             _dict['connectorGroupId'] = None
 
+        # set to None if data_source_connection_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.data_source_connection_id is None and "data_source_connection_id" in self.model_fields_set:
+            _dict['dataSourceConnectionId'] = None
+
         # set to None if entity_id (nullable) is None
         # and model_fields_set contains the field
         if self.entity_id is None and "entity_id" in self.model_fields_set:
@@ -99,6 +105,7 @@ class ConnectionConfig(BaseModel):
         _obj = cls.model_validate({
             "connectionId": obj.get("connectionId"),
             "connectorGroupId": obj.get("connectorGroupId"),
+            "dataSourceConnectionId": obj.get("dataSourceConnectionId"),
             "entityId": obj.get("entityId")
         })
         return _obj

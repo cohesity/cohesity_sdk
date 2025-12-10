@@ -28,8 +28,9 @@ class CommonVmwareObjectParams(BaseModel):
     Specifies the common object parameters required for VMware protection.
     """ # noqa: E501
     exclude_disks: Optional[List[DiskInfo]] = Field(default=None, description="Specifies a list of disks to exclude from being protected. This is only applicable to VM objects.", alias="excludeDisks")
+    include_disks: Optional[List[DiskInfo]] = Field(default=None, description="Specifies a list of disks to be protected. This is only applicable to VM objects.", alias="includeDisks")
     truncate_exchange_logs: Optional[StrictBool] = Field(default=None, description="Specifies whether or not to truncate MS Exchange logs while taking an app consistent snapshot of this object. This is only applicable to objects which have a registered MS Exchange app.", alias="truncateExchangeLogs")
-    __properties: ClassVar[List[str]] = ["excludeDisks", "truncateExchangeLogs"]
+    __properties: ClassVar[List[str]] = ["excludeDisks", "includeDisks", "truncateExchangeLogs"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,6 +78,13 @@ class CommonVmwareObjectParams(BaseModel):
                 if _item_exclude_disks:
                     _items.append(_item_exclude_disks.to_dict())
             _dict['excludeDisks'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in include_disks (list)
+        _items = []
+        if self.include_disks:
+            for _item_include_disks in self.include_disks:
+                if _item_include_disks:
+                    _items.append(_item_include_disks.to_dict())
+            _dict['includeDisks'] = _items
         # set to None if truncate_exchange_logs (nullable) is None
         # and model_fields_set contains the field
         if self.truncate_exchange_logs is None and "truncate_exchange_logs" in self.model_fields_set:
@@ -95,6 +103,7 @@ class CommonVmwareObjectParams(BaseModel):
 
         _obj = cls.model_validate({
             "excludeDisks": [DiskInfo.from_dict(_item) for _item in obj["excludeDisks"]] if obj.get("excludeDisks") is not None else None,
+            "includeDisks": [DiskInfo.from_dict(_item) for _item in obj["includeDisks"]] if obj.get("includeDisks") is not None else None,
             "truncateExchangeLogs": obj.get("truncateExchangeLogs")
         })
         return _obj

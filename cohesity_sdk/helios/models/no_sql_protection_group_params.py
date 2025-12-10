@@ -33,10 +33,14 @@ class NoSqlProtectionGroupParams(BaseModel):
     concurrency: Optional[StrictInt] = Field(default=None, description="Specifies the maximum number of concurrent IO Streams that will be created to exchange data with the cluster.")
     custom_source_name: Optional[StrictStr] = Field(default=None, description="The user specified name for the Source on which this protection was run.", alias="customSourceName")
     exclude_object_ids: Optional[List[StrictInt]] = Field(default=None, description="Specifies the objects to be excluded in the Protection Group.", alias="excludeObjectIds")
+    exclude_objectlist: Optional[List[StrictStr]] = Field(default=None, description="Specifies the list of fully qualified name of the entities to exclude for protection.", alias="excludeObjectlist")
+    include_objectlist: Optional[List[StrictStr]] = Field(default=None, description="Specifies the list of fully qualified name of the entities to include for protection.", alias="includeObjectlist")
     objects: Optional[Annotated[List[NoSqlProtectionGroupObjectParams], Field(min_length=1)]] = Field(default=None, description="Specifies the objects to be included in the Protection Group.")
+    overwrite_exclude_objectlist: Optional[StrictBool] = Field(default=True, description="If disabled - The excludeObjectlist is merged with the existing exclude_sources_vec, preserving any existing elements while incorporating new ones.", alias="overwriteExcludeObjectlist")
+    overwrite_include_objectlist: Optional[StrictBool] = Field(default=True, description="If disabled - The includeObjectlist is merged with the existing sources_vec, preserving any existing elements while incorporating new ones.", alias="overwriteIncludeObjectlist")
     source_id: Optional[StrictInt] = Field(default=None, description="Object ID of the Source on which this protection was run .", alias="sourceId")
     source_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the Source on which this protection was run.", alias="sourceName")
-    __properties: ClassVar[List[str]] = ["autoScaleConcurrency", "bandwidthMBPS", "concurrency", "customSourceName", "excludeObjectIds", "objects", "sourceId", "sourceName"]
+    __properties: ClassVar[List[str]] = ["autoScaleConcurrency", "bandwidthMBPS", "concurrency", "customSourceName", "excludeObjectIds", "excludeObjectlist", "includeObjectlist", "objects", "overwriteExcludeObjectlist", "overwriteIncludeObjectlist", "sourceId", "sourceName"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -115,6 +119,26 @@ class NoSqlProtectionGroupParams(BaseModel):
         if self.exclude_object_ids is None and "exclude_object_ids" in self.model_fields_set:
             _dict['excludeObjectIds'] = None
 
+        # set to None if exclude_objectlist (nullable) is None
+        # and model_fields_set contains the field
+        if self.exclude_objectlist is None and "exclude_objectlist" in self.model_fields_set:
+            _dict['excludeObjectlist'] = None
+
+        # set to None if include_objectlist (nullable) is None
+        # and model_fields_set contains the field
+        if self.include_objectlist is None and "include_objectlist" in self.model_fields_set:
+            _dict['includeObjectlist'] = None
+
+        # set to None if overwrite_exclude_objectlist (nullable) is None
+        # and model_fields_set contains the field
+        if self.overwrite_exclude_objectlist is None and "overwrite_exclude_objectlist" in self.model_fields_set:
+            _dict['overwriteExcludeObjectlist'] = None
+
+        # set to None if overwrite_include_objectlist (nullable) is None
+        # and model_fields_set contains the field
+        if self.overwrite_include_objectlist is None and "overwrite_include_objectlist" in self.model_fields_set:
+            _dict['overwriteIncludeObjectlist'] = None
+
         # set to None if source_id (nullable) is None
         # and model_fields_set contains the field
         if self.source_id is None and "source_id" in self.model_fields_set:
@@ -142,7 +166,11 @@ class NoSqlProtectionGroupParams(BaseModel):
             "concurrency": obj.get("concurrency"),
             "customSourceName": obj.get("customSourceName"),
             "excludeObjectIds": obj.get("excludeObjectIds"),
+            "excludeObjectlist": obj.get("excludeObjectlist"),
+            "includeObjectlist": obj.get("includeObjectlist"),
             "objects": [NoSqlProtectionGroupObjectParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None,
+            "overwriteExcludeObjectlist": obj.get("overwriteExcludeObjectlist") if obj.get("overwriteExcludeObjectlist") is not None else True,
+            "overwriteIncludeObjectlist": obj.get("overwriteIncludeObjectlist") if obj.get("overwriteIncludeObjectlist") is not None else True,
             "sourceId": obj.get("sourceId"),
             "sourceName": obj.get("sourceName")
         })

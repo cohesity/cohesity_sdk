@@ -56,7 +56,7 @@ class RemoteStorageApi:
     ) -> None:
         """Delete Remote Storage Registration
 
-        Delete remote storage registration.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete remote storage registration.
 
         :param id: Specifies the registration id of the registered remote storage. (required)
         :type id: int
@@ -123,7 +123,7 @@ class RemoteStorageApi:
     ) -> ApiResponse[None]:
         """Delete Remote Storage Registration
 
-        Delete remote storage registration.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete remote storage registration.
 
         :param id: Specifies the registration id of the registered remote storage. (required)
         :type id: int
@@ -190,7 +190,7 @@ class RemoteStorageApi:
     ) -> RESTResponseType:
         """Delete Remote Storage Registration
 
-        Delete remote storage registration.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete remote storage registration.
 
         :param id: Specifies the registration id of the registered remote storage. (required)
         :type id: int
@@ -318,7 +318,7 @@ class RemoteStorageApi:
     ) -> RegisteredRemoteStorageList:
         """Get Registered Remote Storage Servers List
 
-        Get summary about list of registered remote storage servers.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get summary about list of registered remote storage servers.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -381,7 +381,7 @@ class RemoteStorageApi:
     ) -> ApiResponse[RegisteredRemoteStorageList]:
         """Get Registered Remote Storage Servers List
 
-        Get summary about list of registered remote storage servers.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get summary about list of registered remote storage servers.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -444,7 +444,7 @@ class RemoteStorageApi:
     ) -> RESTResponseType:
         """Get Registered Remote Storage Servers List
 
-        Get summary about list of registered remote storage servers.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get summary about list of registered remote storage servers.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -570,7 +570,7 @@ class RemoteStorageApi:
     ) -> RemoteStorageInfo:
         """Get remote storage details
 
-        Get details of remote storage given by id.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get details of remote storage given by id.
 
         :param id: Specifies the id of the registered remote storage. (required)
         :type id: int
@@ -649,7 +649,7 @@ class RemoteStorageApi:
     ) -> ApiResponse[RemoteStorageInfo]:
         """Get remote storage details
 
-        Get details of remote storage given by id.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get details of remote storage given by id.
 
         :param id: Specifies the id of the registered remote storage. (required)
         :type id: int
@@ -728,7 +728,7 @@ class RemoteStorageApi:
     ) -> RESTResponseType:
         """Get remote storage details
 
-        Get details of remote storage given by id.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get details of remote storage given by id.
 
         :param id: Specifies the id of the registered remote storage. (required)
         :type id: int
@@ -881,7 +881,7 @@ class RemoteStorageApi:
     ) -> RemoteStorageInfo:
         """Register Remote Storage
 
-        Register a remote storage to be used for disaggregated storage.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Register a remote storage to be used for disaggregated storage.
 
         :param body: Specifies the parameters to register a remote storage management server. (required)
         :type body: RemoteStorageInfo
@@ -948,7 +948,7 @@ class RemoteStorageApi:
     ) -> ApiResponse[RemoteStorageInfo]:
         """Register Remote Storage
 
-        Register a remote storage to be used for disaggregated storage.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Register a remote storage to be used for disaggregated storage.
 
         :param body: Specifies the parameters to register a remote storage management server. (required)
         :type body: RemoteStorageInfo
@@ -1015,7 +1015,7 @@ class RemoteStorageApi:
     ) -> RESTResponseType:
         """Register Remote Storage
 
-        Register a remote storage to be used for disaggregated storage.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Register a remote storage to be used for disaggregated storage.
 
         :param body: Specifies the parameters to register a remote storage management server. (required)
         :type body: RemoteStorageInfo
@@ -1158,7 +1158,7 @@ class RemoteStorageApi:
     ) -> RemoteStorageInfo:
         """Update Remote Storage Config
 
-        Update Registered Remote Storage Config.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update Registered Remote Storage Config.
 
         :param id: Specifies the registration id of the registered remote storage. (required)
         :type id: int
@@ -1229,7 +1229,7 @@ class RemoteStorageApi:
     ) -> ApiResponse[RemoteStorageInfo]:
         """Update Remote Storage Config
 
-        Update Registered Remote Storage Config.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update Registered Remote Storage Config.
 
         :param id: Specifies the registration id of the registered remote storage. (required)
         :type id: int
@@ -1300,7 +1300,7 @@ class RemoteStorageApi:
     ) -> RESTResponseType:
         """Update Remote Storage Config
 
-        Update Registered Remote Storage Config.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update Registered Remote Storage Config.
 
         :param id: Specifies the registration id of the registered remote storage. (required)
         :type id: int

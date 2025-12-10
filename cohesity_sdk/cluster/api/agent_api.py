@@ -60,7 +60,7 @@ class AgentApi:
     ) -> AgentUpgradeTaskState:
         """Create an upgrade task
 
-        Create a schedule based agent upgrade task.
+        **Privileges:** ```AGENT_UPGRADE_MODIFY``` <br><br>Create a schedule based agent upgrade task.
 
         :param body: Specifies parameters to create a schedule based agent upgrade task. (required)
         :type body: CreateUpgradeTaskRequest
@@ -127,7 +127,7 @@ class AgentApi:
     ) -> ApiResponse[AgentUpgradeTaskState]:
         """Create an upgrade task
 
-        Create a schedule based agent upgrade task.
+        **Privileges:** ```AGENT_UPGRADE_MODIFY``` <br><br>Create a schedule based agent upgrade task.
 
         :param body: Specifies parameters to create a schedule based agent upgrade task. (required)
         :type body: CreateUpgradeTaskRequest
@@ -194,7 +194,7 @@ class AgentApi:
     ) -> RESTResponseType:
         """Create an upgrade task
 
-        Create a schedule based agent upgrade task.
+        **Privileges:** ```AGENT_UPGRADE_MODIFY``` <br><br>Create a schedule based agent upgrade task.
 
         :param body: Specifies parameters to create a schedule based agent upgrade task. (required)
         :type body: CreateUpgradeTaskRequest
@@ -336,7 +336,7 @@ class AgentApi:
     ) -> bytearray:
         """Download agent
 
-        Download agent for different hosts.
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Download agent for different hosts.
 
         :param body: Specifies agent details. (required)
         :type body: DownloadAgentRequestParams
@@ -403,7 +403,7 @@ class AgentApi:
     ) -> ApiResponse[bytearray]:
         """Download agent
 
-        Download agent for different hosts.
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Download agent for different hosts.
 
         :param body: Specifies agent details. (required)
         :type body: DownloadAgentRequestParams
@@ -470,7 +470,7 @@ class AgentApi:
     ) -> RESTResponseType:
         """Download agent
 
-        Download agent for different hosts.
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Download agent for different hosts.
 
         :param body: Specifies agent details. (required)
         :type body: DownloadAgentRequestParams
@@ -614,7 +614,7 @@ class AgentApi:
     ) -> AgentUpgradeTaskStates:
         """Get upgrade tasks
 
-        Get the list of agent upgrade tasks.
+        **Privileges:** ```AGENT_UPGRADE_VIEW``` <br><br>Get the list of agent upgrade tasks.
 
         :param ids: Specifies IDs of tasks to be fetched.
         :type ids: List[int]
@@ -689,7 +689,7 @@ class AgentApi:
     ) -> ApiResponse[AgentUpgradeTaskStates]:
         """Get upgrade tasks
 
-        Get the list of agent upgrade tasks.
+        **Privileges:** ```AGENT_UPGRADE_VIEW``` <br><br>Get the list of agent upgrade tasks.
 
         :param ids: Specifies IDs of tasks to be fetched.
         :type ids: List[int]
@@ -764,7 +764,7 @@ class AgentApi:
     ) -> RESTResponseType:
         """Get upgrade tasks
 
-        Get the list of agent upgrade tasks.
+        **Privileges:** ```AGENT_UPGRADE_VIEW``` <br><br>Get the list of agent upgrade tasks.
 
         :param ids: Specifies IDs of tasks to be fetched.
         :type ids: List[int]
@@ -913,7 +913,7 @@ class AgentApi:
     ) -> AgentUpgradeTaskActionObject:
         """Perform action on an upgrade task.
 
-        Perform actions on an agent upgrade task.
+        **Privileges:** ```AGENT_UPGRADE_MODIFY``` <br><br>Perform actions on an agent upgrade task.
 
         :param body: Specifies the parameters to perform an action on an agent upgrade task. (required)
         :type body: AgentUpgradeTaskActionRequest
@@ -980,7 +980,7 @@ class AgentApi:
     ) -> ApiResponse[AgentUpgradeTaskActionObject]:
         """Perform action on an upgrade task.
 
-        Perform actions on an agent upgrade task.
+        **Privileges:** ```AGENT_UPGRADE_MODIFY``` <br><br>Perform actions on an agent upgrade task.
 
         :param body: Specifies the parameters to perform an action on an agent upgrade task. (required)
         :type body: AgentUpgradeTaskActionRequest
@@ -1047,7 +1047,7 @@ class AgentApi:
     ) -> RESTResponseType:
         """Perform action on an upgrade task.
 
-        Perform actions on an agent upgrade task.
+        **Privileges:** ```AGENT_UPGRADE_MODIFY``` <br><br>Perform actions on an agent upgrade task.
 
         :param body: Specifies the parameters to perform an action on an agent upgrade task. (required)
         :type body: AgentUpgradeTaskActionRequest

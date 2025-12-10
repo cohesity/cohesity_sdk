@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_node_group**](NodeGroupApi.md#create_node_group) | **POST** /node-groups | Create a Node Group.
 [**delete_node_group**](NodeGroupApi.md#delete_node_group) | **DELETE** /node-groups/{groupName} | Delete a Node Group.
-[**get_node_group_by_name**](NodeGroupApi.md#get_node_group_by_name) | **GET** /node-groups/{groupName} | List Node Groups for a given Group Name.
 [**get_node_groups**](NodeGroupApi.md#get_node_groups) | **GET** /node-groups | List Node Groups based on provided filtering parameters.
 [**update_node_group**](NodeGroupApi.md#update_node_group) | **PUT** /node-groups/{groupName} | Update a Node Group.
 
@@ -16,7 +15,7 @@ Method | HTTP request | Description
 
 Create a Node Group.
 
-Create the Node Group and returns the newly created node group object.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Create the Node Group and returns the newly created node group object.
 
 ### Example
 
@@ -111,7 +110,7 @@ Name | Type | Description  | Notes
 
 Delete a Node Group.
 
-Deletes a Node Group based on given node group name.
+```Unknown Privileges``` <br><br>Deletes a Node Group based on given node group name.
 
 ### Example
 
@@ -197,106 +196,12 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_node_group_by_name**
-> NodeGroupResponse get_node_group_by_name(group_name)
-
-List Node Groups for a given Group Name.
-
-Returns Node Group for given Group Name.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
-```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.node_group_response import NodeGroupResponse
-from cohesity_sdk.cluster.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.NodeGroupApi(api_client)
-    group_name = 'group_name_example' # str | Specifies a unique id of Node Group to return.
-
-    try:
-        # List Node Groups for a given Group Name.
-        api_response = api_instance.get_node_group_by_name(group_name)
-        print("The response of NodeGroupApi->get_node_group_by_name:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling NodeGroupApi->get_node_group_by_name: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **group_name** | **str**| Specifies a unique id of Node Group to return. | 
-
-### Return type
-
-[**NodeGroupResponse**](NodeGroupResponse.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_node_groups**
 > NodeGroupResponse get_node_groups(group_names=group_names, group_type=group_type)
 
 List Node Groups based on provided filtering parameters.
 
-List node groups.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>List node groups.
 
 ### Example
 
@@ -392,7 +297,7 @@ Name | Type | Description  | Notes
 
 Update a Node Group.
 
-Specifies the request to update the existing Node Group. On successful update, returns the updated node group object.
+```Unknown Privileges``` <br><br>Specifies the request to update the existing Node Group. On successful update, returns the updated node group object.
 
 ### Example
 

@@ -7,6 +7,11 @@ Specifies the parameters which are specific to AWS S3 Protection.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **backup_object_level_acls** | **bool** | Specifies whether to backup object level acls. Default value is false. | [optional] 
+**baseline_incremental_frequency** | **str** | Specifies the baseline incremental frequency. | [optional] 
+**exclude_object_ids** | **List[int]** | Specifies the objects to be excluded in the Protection Group. | [optional] 
+**inventory_report_destination** | **str** | ARN of the inventory report destination bucket for S3 backups. | [optional] 
+**inventory_report_destination_prefix** | **str** | The prefix in the S3 destination bucket where inventory reports will be stored. | [optional] 
+**inventory_report_frequency** | **str** | Specifies the frequency to generate inventory reports. | [optional] 
 **objects** | [**List[AwsS3ProtectionGroupObjectParams]**](AwsS3ProtectionGroupObjectParams.md) | Specifies the objects to be protected. | [optional] 
 **skip_on_error** | **bool** | Specifies whether to skip files on error or not. Default value is false. | [optional] 
 **source_id** | **int** | Specifies the id of the parent of the objects. | [optional] [readonly] 

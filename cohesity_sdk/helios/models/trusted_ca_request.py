@@ -26,7 +26,7 @@ class TrustedCaRequest(BaseModel):
     """
     Specifies the basic info about CA Root Certificate.
     """ # noqa: E501
-    certificate: Optional[StrictStr] = Field(description="Specifies the certificate to be imported. Certificate should be in PEM format.")
+    certificate: Optional[StrictStr] = Field(default=None, description="Specifies the certificate to be imported. Certificate should be in PEM format.")
     description: Optional[StrictStr] = Field(default=None, description="Description of the certificate.")
     name: Optional[StrictStr] = Field(description="Descriptive name of the certificate.")
     __properties: ClassVar[List[str]] = ["certificate", "description", "name"]

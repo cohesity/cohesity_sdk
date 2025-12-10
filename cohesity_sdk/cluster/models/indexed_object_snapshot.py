@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.archival_target_summary_info import ArchivalTargetSummaryInfo
+from cohesity_sdk.cluster.models.uda_snapshot_metadata import UdaSnapshotMetadata
 from typing import Set
 from typing_extensions import Self
 
@@ -29,6 +30,7 @@ class IndexedObjectSnapshot(BaseModel):
     """ # noqa: E501
     attempts: Optional[StrictInt] = Field(default=None, description="Specifies the number of runs have been executed before the run completed successfully.")
     external_target_info: Optional[ArchivalTargetSummaryInfo] = Field(default=None, alias="externalTargetInfo")
+    indexed_object_hash: Optional[StrictStr] = Field(default=None, description="Specifies the hash of the indexed object. This is currently only applicable for snapshots of the file.", alias="indexedObjectHash")
     indexed_object_name: Optional[StrictStr] = Field(default=None, description="Specifies the indexed object name.", alias="indexedObjectName")
     indexed_object_source_uuid: Optional[StrictStr] = Field(default=None, description="Specifies the unique identifier from the source of the item associated with this particular snapshot. It can get changed between the snapshots and therefore will be required for recovery.", alias="indexedObjectSourceUuid")
     inode_id: Optional[StrictInt] = Field(default=None, description="Specifies the source inode number of the file being recovered.", alias="inodeId")
@@ -40,7 +42,8 @@ class IndexedObjectSnapshot(BaseModel):
     size_bytes: Optional[StrictInt] = Field(default=None, description="Specifies the indexed object size in bytes.", alias="sizeBytes")
     snapshot_timestamp_usecs: Optional[StrictInt] = Field(default=None, description="Specifies a unix timestamp when the object snapshot was taken in micro seconds.", alias="snapshotTimestampUsecs")
     storage_domain_id: Optional[StrictInt] = Field(default=None, description="Specifies the storage domain id containing this snapshot.", alias="storageDomainId")
-    __properties: ClassVar[List[str]] = ["attempts", "externalTargetInfo", "indexedObjectName", "indexedObjectSourceUuid", "inodeId", "lastModifiedTimeUsecs", "objectSnapshotid", "protectionGroupId", "protectionGroupName", "runType", "sizeBytes", "snapshotTimestampUsecs", "storageDomainId"]
+    uda_params: Optional[UdaSnapshotMetadata] = Field(default=None, alias="udaParams")
+    __properties: ClassVar[List[str]] = ["attempts", "externalTargetInfo", "indexedObjectHash", "indexedObjectName", "indexedObjectSourceUuid", "inodeId", "lastModifiedTimeUsecs", "objectSnapshotid", "protectionGroupId", "protectionGroupName", "runType", "sizeBytes", "snapshotTimestampUsecs", "storageDomainId", "udaParams"]
 
     @field_validator('run_type')
     def run_type_validate_enum(cls, value):
@@ -96,10 +99,18 @@ class IndexedObjectSnapshot(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of external_target_info
         if self.external_target_info:
             _dict['externalTargetInfo'] = self.external_target_info.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of uda_params
+        if self.uda_params:
+            _dict['udaParams'] = self.uda_params.to_dict()
         # set to None if attempts (nullable) is None
         # and model_fields_set contains the field
         if self.attempts is None and "attempts" in self.model_fields_set:
             _dict['attempts'] = None
+
+        # set to None if indexed_object_hash (nullable) is None
+        # and model_fields_set contains the field
+        if self.indexed_object_hash is None and "indexed_object_hash" in self.model_fields_set:
+            _dict['indexedObjectHash'] = None
 
         # set to None if indexed_object_name (nullable) is None
         # and model_fields_set contains the field
@@ -170,6 +181,7 @@ class IndexedObjectSnapshot(BaseModel):
         _obj = cls.model_validate({
             "attempts": obj.get("attempts"),
             "externalTargetInfo": ArchivalTargetSummaryInfo.from_dict(obj["externalTargetInfo"]) if obj.get("externalTargetInfo") is not None else None,
+            "indexedObjectHash": obj.get("indexedObjectHash"),
             "indexedObjectName": obj.get("indexedObjectName"),
             "indexedObjectSourceUuid": obj.get("indexedObjectSourceUuid"),
             "inodeId": obj.get("inodeId"),
@@ -180,7 +192,8 @@ class IndexedObjectSnapshot(BaseModel):
             "runType": obj.get("runType"),
             "sizeBytes": obj.get("sizeBytes"),
             "snapshotTimestampUsecs": obj.get("snapshotTimestampUsecs"),
-            "storageDomainId": obj.get("storageDomainId")
+            "storageDomainId": obj.get("storageDomainId"),
+            "udaParams": UdaSnapshotMetadata.from_dict(obj["udaParams"]) if obj.get("udaParams") is not None else None
         })
         return _obj
 

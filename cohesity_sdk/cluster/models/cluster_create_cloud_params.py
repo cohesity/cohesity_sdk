@@ -17,18 +17,41 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from cohesity_sdk.cluster.models.encryption_configuration_params import EncryptionConfigurationParams
 from typing import Set
 from typing_extensions import Self
 
 class ClusterCreateCloudParams(BaseModel):
     """
-    Params for Cloud Edition Cluster Creation
+    Params for DataProtect for Cloud Cluster Creation
     """ # noqa: E501
-    node_ips: Optional[Annotated[List[StrictStr], Field(min_length=1)]] = Field(default=None, alias="nodeIps")
-    __properties: ClassVar[List[str]] = ["nodeIps"]
+    cluster_partition_hostname: Optional[StrictStr] = Field(default=None, description="Hostname of the cluster partition.", alias="clusterPartitionHostname")
+    cluster_size: Optional[StrictStr] = Field(default=None, description="Specifies the size of the cloud platforms.", alias="clusterSize")
+    disk_all_nodes_reachable: Optional[List[StrictBool]] = Field(default=None, description="All nodes reachable property of the disks to designate.", alias="diskAllNodesReachable")
+    disk_component_exclusive: Optional[List[StrictStr]] = Field(default=None, description="Component exclusive property of the disks to designate.", alias="diskComponentExclusive")
+    disk_self_fault_tolerant: Optional[List[StrictBool]] = Field(default=None, description="Self fault tolerant property of the disks to designate.", alias="diskSelfFaultTolerant")
+    disk_serials: Optional[List[StrictStr]] = Field(default=None, description="Serial number of the disks to designate properties.", alias="diskSerials")
+    disk_tiers: Optional[List[StrictStr]] = Field(default=None, description="Optional field. Tiers of the Disks to designate.", alias="diskTiers")
+    enable_cloud_rf1: Optional[StrictBool] = Field(default=None, description="Specifies whether or not to enable software encryption", alias="enableCloudRf1")
+    encryption_config: Optional[EncryptionConfigurationParams] = Field(default=None, alias="encryptionConfig")
+    ip_preference: Optional[StrictInt] = Field(default=None, description="Specifies IP preference", alias="ipPreference")
+    metadata_fault_tolerance: Optional[StrictInt] = Field(default=None, description="Specifies the metadata fault tolerance.", alias="metadataFaultTolerance")
+    node_ips: Optional[Annotated[List[StrictStr], Field(min_length=1)]] = Field(alias="nodeIps")
+    trust_domain: Optional[StrictStr] = Field(default=None, description="Specifies Trust Domain used for Service Identity", alias="trustDomain")
+    __properties: ClassVar[List[str]] = ["clusterPartitionHostname", "clusterSize", "diskAllNodesReachable", "diskComponentExclusive", "diskSelfFaultTolerant", "diskSerials", "diskTiers", "enableCloudRf1", "encryptionConfig", "ipPreference", "metadataFaultTolerance", "nodeIps", "trustDomain"]
+
+    @field_validator('cluster_size')
+    def cluster_size_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['Small', 'Medium', 'Large', 'XLarge', 'NextGen']):
+            raise ValueError("must be one of enum values ('Small', 'Medium', 'Large', 'XLarge', 'NextGen')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,6 +92,69 @@ class ClusterCreateCloudParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of encryption_config
+        if self.encryption_config:
+            _dict['encryptionConfig'] = self.encryption_config.to_dict()
+        # set to None if cluster_partition_hostname (nullable) is None
+        # and model_fields_set contains the field
+        if self.cluster_partition_hostname is None and "cluster_partition_hostname" in self.model_fields_set:
+            _dict['clusterPartitionHostname'] = None
+
+        # set to None if cluster_size (nullable) is None
+        # and model_fields_set contains the field
+        if self.cluster_size is None and "cluster_size" in self.model_fields_set:
+            _dict['clusterSize'] = None
+
+        # set to None if disk_all_nodes_reachable (nullable) is None
+        # and model_fields_set contains the field
+        if self.disk_all_nodes_reachable is None and "disk_all_nodes_reachable" in self.model_fields_set:
+            _dict['diskAllNodesReachable'] = None
+
+        # set to None if disk_component_exclusive (nullable) is None
+        # and model_fields_set contains the field
+        if self.disk_component_exclusive is None and "disk_component_exclusive" in self.model_fields_set:
+            _dict['diskComponentExclusive'] = None
+
+        # set to None if disk_self_fault_tolerant (nullable) is None
+        # and model_fields_set contains the field
+        if self.disk_self_fault_tolerant is None and "disk_self_fault_tolerant" in self.model_fields_set:
+            _dict['diskSelfFaultTolerant'] = None
+
+        # set to None if disk_serials (nullable) is None
+        # and model_fields_set contains the field
+        if self.disk_serials is None and "disk_serials" in self.model_fields_set:
+            _dict['diskSerials'] = None
+
+        # set to None if disk_tiers (nullable) is None
+        # and model_fields_set contains the field
+        if self.disk_tiers is None and "disk_tiers" in self.model_fields_set:
+            _dict['diskTiers'] = None
+
+        # set to None if enable_cloud_rf1 (nullable) is None
+        # and model_fields_set contains the field
+        if self.enable_cloud_rf1 is None and "enable_cloud_rf1" in self.model_fields_set:
+            _dict['enableCloudRf1'] = None
+
+        # set to None if ip_preference (nullable) is None
+        # and model_fields_set contains the field
+        if self.ip_preference is None and "ip_preference" in self.model_fields_set:
+            _dict['ipPreference'] = None
+
+        # set to None if metadata_fault_tolerance (nullable) is None
+        # and model_fields_set contains the field
+        if self.metadata_fault_tolerance is None and "metadata_fault_tolerance" in self.model_fields_set:
+            _dict['metadataFaultTolerance'] = None
+
+        # set to None if node_ips (nullable) is None
+        # and model_fields_set contains the field
+        if self.node_ips is None and "node_ips" in self.model_fields_set:
+            _dict['nodeIps'] = None
+
+        # set to None if trust_domain (nullable) is None
+        # and model_fields_set contains the field
+        if self.trust_domain is None and "trust_domain" in self.model_fields_set:
+            _dict['trustDomain'] = None
+
         return _dict
 
     @classmethod
@@ -81,7 +167,19 @@ class ClusterCreateCloudParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "nodeIps": obj.get("nodeIps")
+            "clusterPartitionHostname": obj.get("clusterPartitionHostname"),
+            "clusterSize": obj.get("clusterSize"),
+            "diskAllNodesReachable": obj.get("diskAllNodesReachable"),
+            "diskComponentExclusive": obj.get("diskComponentExclusive"),
+            "diskSelfFaultTolerant": obj.get("diskSelfFaultTolerant"),
+            "diskSerials": obj.get("diskSerials"),
+            "diskTiers": obj.get("diskTiers"),
+            "enableCloudRf1": obj.get("enableCloudRf1"),
+            "encryptionConfig": EncryptionConfigurationParams.from_dict(obj["encryptionConfig"]) if obj.get("encryptionConfig") is not None else None,
+            "ipPreference": obj.get("ipPreference"),
+            "metadataFaultTolerance": obj.get("metadataFaultTolerance"),
+            "nodeIps": obj.get("nodeIps"),
+            "trustDomain": obj.get("trustDomain")
         })
         return _obj
 

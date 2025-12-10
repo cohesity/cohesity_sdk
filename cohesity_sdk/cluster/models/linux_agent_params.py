@@ -32,8 +32,8 @@ class LinuxAgentParams(BaseModel):
     @field_validator('package_type')
     def package_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['kScript', 'kRPM', 'kSuseRPM', 'kDEB', 'kPowerPCRPM']):
-            raise ValueError("must be one of enum values ('kScript', 'kRPM', 'kSuseRPM', 'kDEB', 'kPowerPCRPM')")
+        if value not in set(['kScript', 'kRPM', 'kSuseRPM', 'kDEB', 'kPowerPCRPM', 'kS390XRPM', 'kUnknownLinuxPackage', 'kAarch64RPM']):
+            raise ValueError("must be one of enum values ('kScript', 'kRPM', 'kSuseRPM', 'kDEB', 'kPowerPCRPM', 'kS390XRPM', 'kUnknownLinuxPackage', 'kAarch64RPM')")
         return value
 
     model_config = ConfigDict(

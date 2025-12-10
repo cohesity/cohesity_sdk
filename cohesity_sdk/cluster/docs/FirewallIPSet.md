@@ -6,8 +6,8 @@ Specifies a firewall IP set information
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** | Specifies the name of the IP set. | 
-**subnets** | **List[str]** | Specifies the subnets in the IP set. | 
+**name** | **str** | Specifies the name of the IP set. | [optional] 
+**subnets** | **List[str]** | Specifies the subnets in the IP set. | [optional] 
 
 ## Example
 

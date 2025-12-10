@@ -21,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.quota_policy import QuotaPolicy
 from cohesity_sdk.cluster.models.user_quota import UserQuota
+from cohesity_sdk.cluster.models.user_quota_summary_for_view import UserQuotaSummaryForView
 from typing import Set
 from typing_extensions import Self
 
@@ -29,11 +30,12 @@ class ViewUserQuotas(BaseModel):
     Specifies the default logical user quota on the View along with the list of logical quota overrides for each user.
     """ # noqa: E501
     default_quota_policy: Optional[QuotaPolicy] = Field(default=None, alias="defaultQuotaPolicy")
-    enabled: StrictBool = Field(description="Specifies whether user quota is enabled for the View.")
+    enabled: Optional[StrictBool] = Field(default=None, description="Specifies whether user quota is enabled for the View.")
     cookie: Optional[StrictStr] = Field(default=None, description="Specifies the pagination cookie.")
     override_existing_per_user_quotas: Optional[StrictBool] = Field(default=None, description="By default, the overrides specified in userQuotas is treated as delta and the existing overrides will be left untouched. Set this to true, if the existing overrides should be cleared before applying overrides specified in userQuotas.", alias="overrideExistingPerUserQuotas")
     user_quotas: Optional[List[UserQuota]] = Field(description="Array of UserQuota. Specifies the list of UserQuota for each user.", alias="userQuotas")
-    __properties: ClassVar[List[str]] = ["defaultQuotaPolicy", "enabled", "cookie", "overrideExistingPerUserQuotas", "userQuotas"]
+    summary_for_view: Optional[UserQuotaSummaryForView] = Field(default=None, alias="summaryForView")
+    __properties: ClassVar[List[str]] = ["defaultQuotaPolicy", "enabled", "cookie", "overrideExistingPerUserQuotas", "userQuotas", "summaryForView"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,6 +86,14 @@ class ViewUserQuotas(BaseModel):
                 if _item_user_quotas:
                     _items.append(_item_user_quotas.to_dict())
             _dict['userQuotas'] = _items
+        # override the default output from pydantic by calling `to_dict()` of summary_for_view
+        if self.summary_for_view:
+            _dict['summaryForView'] = self.summary_for_view.to_dict()
+        # set to None if enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.enabled is None and "enabled" in self.model_fields_set:
+            _dict['enabled'] = None
+
         # set to None if cookie (nullable) is None
         # and model_fields_set contains the field
         if self.cookie is None and "cookie" in self.model_fields_set:
@@ -115,7 +125,8 @@ class ViewUserQuotas(BaseModel):
             "enabled": obj.get("enabled"),
             "cookie": obj.get("cookie"),
             "overrideExistingPerUserQuotas": obj.get("overrideExistingPerUserQuotas"),
-            "userQuotas": [UserQuota.from_dict(_item) for _item in obj["userQuotas"]] if obj.get("userQuotas") is not None else None
+            "userQuotas": [UserQuota.from_dict(_item) for _item in obj["userQuotas"]] if obj.get("userQuotas") is not None else None,
+            "summaryForView": UserQuotaSummaryForView.from_dict(obj["summaryForView"]) if obj.get("summaryForView") is not None else None
         })
         return _obj
 

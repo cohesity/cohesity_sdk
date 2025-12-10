@@ -29,7 +29,7 @@ class ProtectionGroupAlertingPolicy(BaseModel):
     Specifies a policy for alerting users of the status of a Protection Group.
     """ # noqa: E501
     alert_targets: Optional[List[AlertTarget]] = Field(default=None, description="Specifies a list of targets to receive the alerts.", alias="alertTargets")
-    backup_run_status: Annotated[List[StrictStr], Field(min_length=1)] = Field(description="Specifies the run status for which the user would like to receive alerts.", alias="backupRunStatus")
+    backup_run_status: Annotated[List[StrictStr], Field(min_length=1)] = Field(description="Specifies when to send out alerts. The possible values are kSuccess , kFailure, kSlaViolation and kWarning", alias="backupRunStatus")
     raise_object_level_failure_alert: Optional[StrictBool] = Field(default=None, description="Specifies whether object level alerts are raised for backup failures after the backup run.", alias="raiseObjectLevelFailureAlert")
     raise_object_level_failure_alert_after_each_attempt: Optional[StrictBool] = Field(default=None, description="Specifies whether object level alerts are raised for backup failures after each backup attempt.", alias="raiseObjectLevelFailureAlertAfterEachAttempt")
     raise_object_level_failure_alert_after_last_attempt: Optional[StrictBool] = Field(default=None, description="Specifies whether object level alerts are raised for backup failures after last backup attempt.", alias="raiseObjectLevelFailureAlertAfterLastAttempt")

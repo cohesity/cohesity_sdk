@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.cluster.models.construct_meta_info_kubernetes_params import ConstructMetaInfoKubernetesParams
 from cohesity_sdk.cluster.models.construct_meta_info_sfdc_params import ConstructMetaInfoSfdcParams
 from cohesity_sdk.cluster.models.construct_restore_meta_info_oracle_params import ConstructRestoreMetaInfoOracleParams
 from typing import Set
@@ -29,9 +30,20 @@ class ConstructMetaInfoRequest(BaseModel):
     Params to construct meta info
     """ # noqa: E501
     environment: Optional[StrictStr] = Field(description="Specifies the environment type of the Protection group")
+    kubernetes_params: Optional[ConstructMetaInfoKubernetesParams] = Field(default=None, alias="kubernetesParams")
     oracle_params: Optional[ConstructRestoreMetaInfoOracleParams] = Field(default=None, alias="oracleParams")
     sfdc_params: Optional[ConstructMetaInfoSfdcParams] = Field(default=None, alias="sfdcParams")
-    __properties: ClassVar[List[str]] = ["environment", "oracleParams", "sfdcParams"]
+    __properties: ClassVar[List[str]] = ["environment", "kubernetesParams", "oracleParams", "sfdcParams"]
+
+    @field_validator('environment')
+    def environment_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['kVMware', 'kHyperV', 'kVCD', 'kSQL', 'kView', 'kRemoteAdapter', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kAzure', 'kNetapp', 'kGenericNas', 'kAcropolis', 'kIsilon', 'kKVM', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kRDSPostgresSnapshotManager', 'kRDSMySQLSnapshotManager', 'kRDSMSSQLSnapshotManager', 'kRDSOracleSnapshotManager', 'kRDSMariaDBSnapshotManager', 'kRDSCustomMSSQLSnapshotManager', 'kRDSCustomOracleSnapshotManager', 'kAuroraSnapshotManager', 'kAuroraPostgresSnapshotManager', 'kAuroraMySQLSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAWSAuroraMySQL', 'kAwsDynamoDB', 'kAWSRdsOracle', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRDSMSSQL', 'kAWSRedshift', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzurePostgreSQLServer', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureBlobStorage', 'kAzureTableAPI', 'kAzureSnapshotManager', 'kExchange', 'kOracle', 'kGCP', 'kGCPBigQuery', 'kGCPMySQL', 'kGoogleSpanner', 'kGCPPostgreSQL', 'kGCPAlloyDBPostgreSQL', 'kGCPSQLServer', 'kGCPFirestore', 'kFlashBlade', 'kO365', 'kHyperFlex', 'kAD', 'kGPFS', 'kKubernetes', 'kNimble', 'kElastifile', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kS3Compatible', 'kSAPHANA', 'kO365Sharepoint', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kEwsExchange', 'kServiceNow', 'kPostgres', 'kNutanixFS']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kVCD', 'kSQL', 'kView', 'kRemoteAdapter', 'kPhysical', 'kPure', 'kIbmFlashSystem', 'kAzure', 'kNetapp', 'kGenericNas', 'kAcropolis', 'kIsilon', 'kKVM', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kRDSPostgresSnapshotManager', 'kRDSMySQLSnapshotManager', 'kRDSMSSQLSnapshotManager', 'kRDSOracleSnapshotManager', 'kRDSMariaDBSnapshotManager', 'kRDSCustomMSSQLSnapshotManager', 'kRDSCustomOracleSnapshotManager', 'kAuroraSnapshotManager', 'kAuroraPostgresSnapshotManager', 'kAuroraMySQLSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAWSAuroraMySQL', 'kAwsDynamoDB', 'kAWSRdsOracle', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRDSMSSQL', 'kAWSRedshift', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzurePostgreSQLServer', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureBlobStorage', 'kAzureTableAPI', 'kAzureSnapshotManager', 'kExchange', 'kOracle', 'kGCP', 'kGCPBigQuery', 'kGCPMySQL', 'kGoogleSpanner', 'kGCPPostgreSQL', 'kGCPAlloyDBPostgreSQL', 'kGCPSQLServer', 'kGCPFirestore', 'kFlashBlade', 'kO365', 'kHyperFlex', 'kAD', 'kGPFS', 'kKubernetes', 'kNimble', 'kElastifile', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kS3Compatible', 'kSAPHANA', 'kO365Sharepoint', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kEwsExchange', 'kServiceNow', 'kPostgres', 'kNutanixFS')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,6 +84,9 @@ class ConstructMetaInfoRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of kubernetes_params
+        if self.kubernetes_params:
+            _dict['kubernetesParams'] = self.kubernetes_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of oracle_params
         if self.oracle_params:
             _dict['oracleParams'] = self.oracle_params.to_dict()
@@ -96,6 +111,7 @@ class ConstructMetaInfoRequest(BaseModel):
 
         _obj = cls.model_validate({
             "environment": obj.get("environment"),
+            "kubernetesParams": ConstructMetaInfoKubernetesParams.from_dict(obj["kubernetesParams"]) if obj.get("kubernetesParams") is not None else None,
             "oracleParams": ConstructRestoreMetaInfoOracleParams.from_dict(obj["oracleParams"]) if obj.get("oracleParams") is not None else None,
             "sfdcParams": ConstructMetaInfoSfdcParams.from_dict(obj["sfdcParams"]) if obj.get("sfdcParams") is not None else None
         })

@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **datastores** | [**List[RecoveryObjectIdentifier]**](RecoveryObjectIdentifier.md) | Specifies the datastore objects where the object&#39;s files should be recovered to. This should only be specified if storageProfile is not specified. | [optional] 
 **network_config** | [**RecoverVmwareVmNewSourceNetworkConfig**](RecoverVmwareVmNewSourceNetworkConfig.md) |  | [optional] 
 **org_vdc_network** | [**OrgVDCNetwork**](OrgVDCNetwork.md) |  | [optional] 
+**placement_policy** | [**VcdPolicyParams**](VcdPolicyParams.md) |  | [optional] 
+**sizing_policy** | [**VcdPolicyParams**](VcdPolicyParams.md) |  | [optional] 
 **source** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | 
 **storage_profile** | [**VcdStorageProfileParams**](VcdStorageProfileParams.md) |  | [optional] 
 **v_app** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | [optional] 

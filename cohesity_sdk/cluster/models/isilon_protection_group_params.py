@@ -45,6 +45,7 @@ class IsilonProtectionGroupParams(BaseModel):
     indexing_policy: Optional[IndexingPolicy] = Field(default=None, alias="indexingPolicy")
     modify_source_permissions: Optional[StrictBool] = Field(default=None, description="Specifies if the Isilon source permissions should be modified internally to allow backups.", alias="modifySourcePermissions")
     native_format: Optional[StrictBool] = Field(default=None, description="Specifies whether or not to enable native format for direct archive job. This field is set to true if native format should be used for archiving.", alias="nativeFormat")
+    nfs_version_preference: Optional[StrictStr] = Field(default=None, description="Specifies the preference of NFS version to be used for backing up Isilon.", alias="nfsVersionPreference")
     objects: Annotated[List[IsilonProtectionGroupObjectParams], Field(min_length=1)] = Field(description="Specifies the objects to be included in the Protection Group.")
     pre_post_script: Optional[HostBasedBackupScriptParams] = Field(default=None, alias="prePostScript")
     protocol: Optional[StrictStr] = Field(default=None, description="Specifies the preferred protocol to use if this device supports multiple protocols.")
@@ -52,7 +53,17 @@ class IsilonProtectionGroupParams(BaseModel):
     source_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the parent of the objects.", alias="sourceName")
     throttling_config: Optional[NasThrottlingConfig] = Field(default=None, alias="throttlingConfig")
     use_changelist: Optional[StrictBool] = Field(default=None, description="Specify whether to use the Isilon Changelist API to directly discover changed files/directories for faster incremental backup. Cohesity will keep an extra snapshot which will be deleted by the next successful backup.", alias="useChangelist")
-    __properties: ClassVar[List[str]] = ["continueOnError", "continuousSnapshots", "directCloudArchive", "encryptionEnabled", "fileFilters", "fileLockConfig", "filterIpConfig", "indexingPolicy", "modifySourcePermissions", "nativeFormat", "objects", "prePostScript", "protocol", "sourceId", "sourceName", "throttlingConfig", "useChangelist"]
+    __properties: ClassVar[List[str]] = ["continueOnError", "continuousSnapshots", "directCloudArchive", "encryptionEnabled", "fileFilters", "fileLockConfig", "filterIpConfig", "indexingPolicy", "modifySourcePermissions", "nativeFormat", "nfsVersionPreference", "objects", "prePostScript", "protocol", "sourceId", "sourceName", "throttlingConfig", "useChangelist"]
+
+    @field_validator('nfs_version_preference')
+    def nfs_version_preference_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['kNfs3', 'kNfs4_1']):
+            raise ValueError("must be one of enum values ('kNfs3', 'kNfs4_1')")
+        return value
 
     @field_validator('protocol')
     def protocol_validate_enum(cls, value):
@@ -160,6 +171,11 @@ class IsilonProtectionGroupParams(BaseModel):
         if self.native_format is None and "native_format" in self.model_fields_set:
             _dict['nativeFormat'] = None
 
+        # set to None if nfs_version_preference (nullable) is None
+        # and model_fields_set contains the field
+        if self.nfs_version_preference is None and "nfs_version_preference" in self.model_fields_set:
+            _dict['nfsVersionPreference'] = None
+
         # set to None if protocol (nullable) is None
         # and model_fields_set contains the field
         if self.protocol is None and "protocol" in self.model_fields_set:
@@ -202,6 +218,7 @@ class IsilonProtectionGroupParams(BaseModel):
             "indexingPolicy": IndexingPolicy.from_dict(obj["indexingPolicy"]) if obj.get("indexingPolicy") is not None else None,
             "modifySourcePermissions": obj.get("modifySourcePermissions"),
             "nativeFormat": obj.get("nativeFormat"),
+            "nfsVersionPreference": obj.get("nfsVersionPreference"),
             "objects": [IsilonProtectionGroupObjectParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None,
             "prePostScript": HostBasedBackupScriptParams.from_dict(obj["prePostScript"]) if obj.get("prePostScript") is not None else None,
             "protocol": obj.get("protocol"),

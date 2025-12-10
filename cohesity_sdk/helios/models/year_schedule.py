@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.month_day import MonthDay
 from typing import Set
 from typing_extensions import Self
 
@@ -26,8 +27,9 @@ class YearSchedule(BaseModel):
     """
     Specifies settings that define a schedule for a Protection Group to run on specific year and specific day of that year.
     """ # noqa: E501
-    day_of_year: Optional[StrictStr] = Field(description="Specifies the day of the Year (such as 'First' or 'Last') in a Yearly Schedule. <br>This field is used to define the day in the year to start the Protection Group Run. <br> Example: if 'dayOfYear' is set to 'First', a backup is performed on the first day of every year. <br> Example: if 'dayOfYear' is set to 'Last', a backup is performed on the last day of every year.", alias="dayOfYear")
-    __properties: ClassVar[List[str]] = ["dayOfYear"]
+    day_of_year: Optional[StrictStr] = Field(default=None, description="Specifies the day of the Year (such as 'First' or 'Last') in a Yearly Schedule. <br>This field is used to define the day in the year to start the Protection Group Run. <br> Example: if 'dayOfYear' is set to 'First', a backup is performed on the first day of every year. <br> Example: if 'dayOfYear' is set to 'Last', a backup is performed on the last day of every year.", alias="dayOfYear")
+    month_day: Optional[MonthDay] = Field(default=None, alias="monthDay")
+    __properties: ClassVar[List[str]] = ["dayOfYear", "monthDay"]
 
     @field_validator('day_of_year')
     def day_of_year_validate_enum(cls, value):
@@ -78,6 +80,9 @@ class YearSchedule(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of month_day
+        if self.month_day:
+            _dict['monthDay'] = self.month_day.to_dict()
         # set to None if day_of_year (nullable) is None
         # and model_fields_set contains the field
         if self.day_of_year is None and "day_of_year" in self.model_fields_set:
@@ -95,7 +100,8 @@ class YearSchedule(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "dayOfYear": obj.get("dayOfYear")
+            "dayOfYear": obj.get("dayOfYear"),
+            "monthDay": MonthDay.from_dict(obj["monthDay"]) if obj.get("monthDay") is not None else None
         })
         return _obj
 

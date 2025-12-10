@@ -26,10 +26,11 @@ class DiskIdentify(BaseModel):
     """
     Specifies the parameters needed to identify disk.
     """ # noqa: E501
-    identify: Optional[StrictBool] = Field(description="Turn on/off led light if it is set to true/false")
-    node_id: Optional[StrictInt] = Field(description="Specifies the node id of node that disk belongs to.", alias="nodeId")
-    serial_number: Optional[StrictStr] = Field(description="Specifies serial number of disk.", alias="serialNumber")
-    __properties: ClassVar[List[str]] = ["identify", "nodeId", "serialNumber"]
+    disk_id: Optional[StrictInt] = Field(default=None, description="Specifies the disk id of the disk. This parameter is incompatible with 'nodeId' and 'serialNumber'.", alias="diskId")
+    identify: StrictBool = Field(description="Turn on/off led light if it is set to true/false")
+    node_id: Optional[StrictInt] = Field(default=None, description="Specifies the node id of node that disk belongs to. This parameter is incompatible with 'diskId'. Must be used together with 'serialNumber'.", alias="nodeId")
+    serial_number: Optional[StrictStr] = Field(default=None, description="Specifies serial number of disk. This parameter is incompatible with 'diskId'. Must be used together with 'nodeId'.", alias="serialNumber")
+    __properties: ClassVar[List[str]] = ["diskId", "identify", "nodeId", "serialNumber"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,10 +71,10 @@ class DiskIdentify(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if identify (nullable) is None
+        # set to None if disk_id (nullable) is None
         # and model_fields_set contains the field
-        if self.identify is None and "identify" in self.model_fields_set:
-            _dict['identify'] = None
+        if self.disk_id is None and "disk_id" in self.model_fields_set:
+            _dict['diskId'] = None
 
         # set to None if node_id (nullable) is None
         # and model_fields_set contains the field
@@ -97,6 +98,7 @@ class DiskIdentify(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "diskId": obj.get("diskId"),
             "identify": obj.get("identify"),
             "nodeId": obj.get("nodeId"),
             "serialNumber": obj.get("serialNumber")

@@ -27,6 +27,8 @@ from cohesity_sdk.cluster.models.modify_object_store_ciphers_request_body import
 from cohesity_sdk.cluster.models.object_store_ciphers_resp import ObjectStoreCiphersResp
 from cohesity_sdk.cluster.models.register_trusted_cas import RegisterTrustedCas
 from cohesity_sdk.cluster.models.security_config import SecurityConfig
+from cohesity_sdk.cluster.models.security_config_response import SecurityConfigResponse
+from cohesity_sdk.cluster.models.ssl_certificate import SslCertificate
 from cohesity_sdk.cluster.models.trusted_ca import TrustedCa
 from cohesity_sdk.cluster.models.update_certificate_by_csr_request import UpdateCertificateByCsrRequest
 from cohesity_sdk.cluster.models.update_certificate_by_csr_response_body import UpdateCertificateByCsrResponseBody
@@ -68,7 +70,7 @@ class SecurityApi:
     ) -> CreateClientcsrResponseBody:
         """Create Certificate Signing Requests on the cluster.
 
-        Create two Certificate Signing Request on the cluster with the given details one each for client and server. Each service can have at most one outstanding pair of CSR.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Create two Certificate Signing Request on the cluster with the given details one each for client and server. Each service can have at most one outstanding pair of CSR.
 
         :param body: Specifies the parameters to create the Certificate Signing Requests. (required)
         :type body: CommonCsrRequestParams
@@ -135,7 +137,7 @@ class SecurityApi:
     ) -> ApiResponse[CreateClientcsrResponseBody]:
         """Create Certificate Signing Requests on the cluster.
 
-        Create two Certificate Signing Request on the cluster with the given details one each for client and server. Each service can have at most one outstanding pair of CSR.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Create two Certificate Signing Request on the cluster with the given details one each for client and server. Each service can have at most one outstanding pair of CSR.
 
         :param body: Specifies the parameters to create the Certificate Signing Requests. (required)
         :type body: CommonCsrRequestParams
@@ -202,7 +204,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Create Certificate Signing Requests on the cluster.
 
-        Create two Certificate Signing Request on the cluster with the given details one each for client and server. Each service can have at most one outstanding pair of CSR.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Create two Certificate Signing Request on the cluster with the given details one each for client and server. Each service can have at most one outstanding pair of CSR.
 
         :param body: Specifies the parameters to create the Certificate Signing Requests. (required)
         :type body: CommonCsrRequestParams
@@ -344,7 +346,7 @@ class SecurityApi:
     ) -> CommonCsrResponseParams:
         """Create a Certificate Signing Request on the cluster.
 
-        Create a Certificate Signing Request on the cluster with the given details. Each service has at most one outstanding CSR.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Create a Certificate Signing Request on the cluster with the given details. Each service has at most one outstanding CSR.
 
         :param body: Specifies the parameters to create a Certificate Signing Request. (required)
         :type body: CommonCsrRequestParams
@@ -411,7 +413,7 @@ class SecurityApi:
     ) -> ApiResponse[CommonCsrResponseParams]:
         """Create a Certificate Signing Request on the cluster.
 
-        Create a Certificate Signing Request on the cluster with the given details. Each service has at most one outstanding CSR.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Create a Certificate Signing Request on the cluster with the given details. Each service has at most one outstanding CSR.
 
         :param body: Specifies the parameters to create a Certificate Signing Request. (required)
         :type body: CommonCsrRequestParams
@@ -478,7 +480,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Create a Certificate Signing Request on the cluster.
 
-        Create a Certificate Signing Request on the cluster with the given details. Each service has at most one outstanding CSR.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Create a Certificate Signing Request on the cluster with the given details. Each service has at most one outstanding CSR.
 
         :param body: Specifies the parameters to create a Certificate Signing Request. (required)
         :type body: CommonCsrRequestParams
@@ -620,7 +622,7 @@ class SecurityApi:
     ) -> None:
         """Delete a Certificate Signing Request on the cluster.
 
-        Delete a Certificate Signing Request on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete a Certificate Signing Request on the cluster.
 
         :param id: Specifies the id of the csr to be deleted. (required)
         :type id: str
@@ -687,7 +689,7 @@ class SecurityApi:
     ) -> ApiResponse[None]:
         """Delete a Certificate Signing Request on the cluster.
 
-        Delete a Certificate Signing Request on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete a Certificate Signing Request on the cluster.
 
         :param id: Specifies the id of the csr to be deleted. (required)
         :type id: str
@@ -754,7 +756,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Delete a Certificate Signing Request on the cluster.
 
-        Delete a Certificate Signing Request on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete a Certificate Signing Request on the cluster.
 
         :param id: Specifies the id of the csr to be deleted. (required)
         :type id: str
@@ -882,7 +884,7 @@ class SecurityApi:
     ) -> CiphersResp:
         """Gets the list of ciphers enabled on the cluster.
 
-        Gets the list of ciphers enabled on the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Gets the list of ciphers enabled on the cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -945,7 +947,7 @@ class SecurityApi:
     ) -> ApiResponse[CiphersResp]:
         """Gets the list of ciphers enabled on the cluster.
 
-        Gets the list of ciphers enabled on the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Gets the list of ciphers enabled on the cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1008,7 +1010,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Gets the list of ciphers enabled on the cluster.
 
-        Gets the list of ciphers enabled on the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Gets the list of ciphers enabled on the cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1131,7 +1133,7 @@ class SecurityApi:
     ) -> CommonCsrResponseParams:
         """List the specified Certificate Signing Request.
 
-        List the specified Certificate Signing Request.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>List the specified Certificate Signing Request.
 
         :param id: Specifies the id of the csr. (required)
         :type id: str
@@ -1198,7 +1200,7 @@ class SecurityApi:
     ) -> ApiResponse[CommonCsrResponseParams]:
         """List the specified Certificate Signing Request.
 
-        List the specified Certificate Signing Request.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>List the specified Certificate Signing Request.
 
         :param id: Specifies the id of the csr. (required)
         :type id: str
@@ -1265,7 +1267,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """List the specified Certificate Signing Request.
 
-        List the specified Certificate Signing Request.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>List the specified Certificate Signing Request.
 
         :param id: Specifies the id of the csr. (required)
         :type id: str
@@ -1395,7 +1397,7 @@ class SecurityApi:
     ) -> List[CommonCsrResponseParams]:
         """List Certificate Signing Requests on the cluster.
 
-        List Certificate Signing Requests on the cluster with service name filtering.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>List Certificate Signing Requests on the cluster with service name filtering.
 
         :param service_name: Specifies the Cohesity service name for which the CSR is generated. If this is not specified, all the csrs on the cluster will be returned.
         :type service_name: str
@@ -1466,7 +1468,7 @@ class SecurityApi:
     ) -> ApiResponse[List[CommonCsrResponseParams]]:
         """List Certificate Signing Requests on the cluster.
 
-        List Certificate Signing Requests on the cluster with service name filtering.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>List Certificate Signing Requests on the cluster with service name filtering.
 
         :param service_name: Specifies the Cohesity service name for which the CSR is generated. If this is not specified, all the csrs on the cluster will be returned.
         :type service_name: str
@@ -1537,7 +1539,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """List Certificate Signing Requests on the cluster.
 
-        List Certificate Signing Requests on the cluster with service name filtering.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>List Certificate Signing Requests on the cluster with service name filtering.
 
         :param service_name: Specifies the Cohesity service name for which the CSR is generated. If this is not specified, all the csrs on the cluster will be returned.
         :type service_name: str
@@ -1676,7 +1678,7 @@ class SecurityApi:
     ) -> ObjectStoreCiphersResp:
         """Gets the list of object store ciphers enabled on the cluster.
 
-        Gets the list of object store ciphers enabled on the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Gets the list of object store ciphers enabled on the cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1739,7 +1741,7 @@ class SecurityApi:
     ) -> ApiResponse[ObjectStoreCiphersResp]:
         """Gets the list of object store ciphers enabled on the cluster.
 
-        Gets the list of object store ciphers enabled on the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Gets the list of object store ciphers enabled on the cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1802,7 +1804,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Gets the list of object store ciphers enabled on the cluster.
 
-        Gets the list of object store ciphers enabled on the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Gets the list of object store ciphers enabled on the cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1921,10 +1923,10 @@ class SecurityApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> SecurityConfig:
+    ) -> SecurityConfigResponse:
         """Get cluster security settings.
 
-        Get cluster security settings.
+        **Privileges:** ```SECURITY_ADVISOR_VIEW, TENANT_VIEW``` <br><br>Get cluster security settings.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1956,7 +1958,7 @@ class SecurityApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SecurityConfig",
+            '200': "SecurityConfigResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1984,10 +1986,10 @@ class SecurityApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[SecurityConfig]:
+    ) -> ApiResponse[SecurityConfigResponse]:
         """Get cluster security settings.
 
-        Get cluster security settings.
+        **Privileges:** ```SECURITY_ADVISOR_VIEW, TENANT_VIEW``` <br><br>Get cluster security settings.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2019,7 +2021,7 @@ class SecurityApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SecurityConfig",
+            '200': "SecurityConfigResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2050,7 +2052,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Get cluster security settings.
 
-        Get cluster security settings.
+        **Privileges:** ```SECURITY_ADVISOR_VIEW, TENANT_VIEW``` <br><br>Get cluster security settings.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2082,7 +2084,7 @@ class SecurityApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SecurityConfig",
+            '200': "SecurityConfigResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2155,6 +2157,271 @@ class SecurityApi:
 
 
     @validate_call
+    def get_ssl_certificates(
+        self,
+        service_name: Annotated[Optional[StrictStr], Field(description="Specifies the service name for which the certificate details needs to be returned. If this is not specified, all certificates are returned.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[SslCertificate]:
+        """Get list of SSL certificates.
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get list of SSL certificates.
+
+        :param service_name: Specifies the service name for which the certificate details needs to be returned. If this is not specified, all certificates are returned.
+        :type service_name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ssl_certificates_serialize(
+            service_name=service_name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[SslCertificate]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_ssl_certificates_with_http_info(
+        self,
+        service_name: Annotated[Optional[StrictStr], Field(description="Specifies the service name for which the certificate details needs to be returned. If this is not specified, all certificates are returned.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[SslCertificate]]:
+        """Get list of SSL certificates.
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get list of SSL certificates.
+
+        :param service_name: Specifies the service name for which the certificate details needs to be returned. If this is not specified, all certificates are returned.
+        :type service_name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ssl_certificates_serialize(
+            service_name=service_name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[SslCertificate]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_ssl_certificates_without_preload_content(
+        self,
+        service_name: Annotated[Optional[StrictStr], Field(description="Specifies the service name for which the certificate details needs to be returned. If this is not specified, all certificates are returned.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get list of SSL certificates.
+
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get list of SSL certificates.
+
+        :param service_name: Specifies the service name for which the certificate details needs to be returned. If this is not specified, all certificates are returned.
+        :type service_name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ssl_certificates_serialize(
+            service_name=service_name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[SslCertificate]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_ssl_certificates_serialize(
+        self,
+        service_name,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if service_name is not None:
+            
+            _query_params.append(('serviceName', service_name))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/ssl-certificates',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def import_certificate_by_clientcsr(
         self,
         body: Annotated[ImportCertificateByClientcsrRequest, Field(description="Specifies the parameters to import the certificate.")],
@@ -2173,7 +2440,7 @@ class SecurityApi:
     ) -> ImportCertificateByClientcsrResponseBody:
         """Import the signed certificates on the cluster after the Certificate Signing Requests are created.
 
-        Import the signed certificates on the cluster after the Certificate Signing Requests are created.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Import the signed certificates on the cluster after the Certificate Signing Requests are created.
 
         :param body: Specifies the parameters to import the certificate. (required)
         :type body: ImportCertificateByClientcsrRequest
@@ -2240,7 +2507,7 @@ class SecurityApi:
     ) -> ApiResponse[ImportCertificateByClientcsrResponseBody]:
         """Import the signed certificates on the cluster after the Certificate Signing Requests are created.
 
-        Import the signed certificates on the cluster after the Certificate Signing Requests are created.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Import the signed certificates on the cluster after the Certificate Signing Requests are created.
 
         :param body: Specifies the parameters to import the certificate. (required)
         :type body: ImportCertificateByClientcsrRequest
@@ -2307,7 +2574,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Import the signed certificates on the cluster after the Certificate Signing Requests are created.
 
-        Import the signed certificates on the cluster after the Certificate Signing Requests are created.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Import the signed certificates on the cluster after the Certificate Signing Requests are created.
 
         :param body: Specifies the parameters to import the certificate. (required)
         :type body: ImportCertificateByClientcsrRequest
@@ -2449,7 +2716,7 @@ class SecurityApi:
     ) -> TrustedCa:
         """List the specified Certificate.
 
-        List the specified Certificate.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>List the specified Certificate.
 
         :param id: Specifies the id of the certificate. (required)
         :type id: str
@@ -2516,7 +2783,7 @@ class SecurityApi:
     ) -> ApiResponse[TrustedCa]:
         """List the specified Certificate.
 
-        List the specified Certificate.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>List the specified Certificate.
 
         :param id: Specifies the id of the certificate. (required)
         :type id: str
@@ -2583,7 +2850,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """List the specified Certificate.
 
-        List the specified Certificate.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>List the specified Certificate.
 
         :param id: Specifies the id of the certificate. (required)
         :type id: str
@@ -2713,7 +2980,7 @@ class SecurityApi:
     ) -> ListTrustedCasResult:
         """List all Certificates with cluster trust store.
 
-        List all trusted certificates in cluster trust store.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>List all trusted certificates in cluster trust store.
 
         :param ids: Specifies the ids of the certificates to be returned.
         :type ids: List[str]
@@ -2784,7 +3051,7 @@ class SecurityApi:
     ) -> ApiResponse[ListTrustedCasResult]:
         """List all Certificates with cluster trust store.
 
-        List all trusted certificates in cluster trust store.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>List all trusted certificates in cluster trust store.
 
         :param ids: Specifies the ids of the certificates to be returned.
         :type ids: List[str]
@@ -2855,7 +3122,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """List all Certificates with cluster trust store.
 
-        List all trusted certificates in cluster trust store.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>List all trusted certificates in cluster trust store.
 
         :param ids: Specifies the ids of the certificates to be returned.
         :type ids: List[str]
@@ -2996,7 +3263,7 @@ class SecurityApi:
     ) -> CiphersResp:
         """Enable/Disable a list of ciphers on the cluster. Iris must be restarted for the change to take effect.
 
-        Enable/Disable a list of ciphers on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Enable/Disable a list of ciphers on the cluster.
 
         :param body: Enable/Disable ciphers. (required)
         :type body: ModifyCiphersRequestBody
@@ -3063,7 +3330,7 @@ class SecurityApi:
     ) -> ApiResponse[CiphersResp]:
         """Enable/Disable a list of ciphers on the cluster. Iris must be restarted for the change to take effect.
 
-        Enable/Disable a list of ciphers on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Enable/Disable a list of ciphers on the cluster.
 
         :param body: Enable/Disable ciphers. (required)
         :type body: ModifyCiphersRequestBody
@@ -3130,7 +3397,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Enable/Disable a list of ciphers on the cluster. Iris must be restarted for the change to take effect.
 
-        Enable/Disable a list of ciphers on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Enable/Disable a list of ciphers on the cluster.
 
         :param body: Enable/Disable ciphers. (required)
         :type body: ModifyCiphersRequestBody
@@ -3272,7 +3539,7 @@ class SecurityApi:
     ) -> ObjectStoreCiphersResp:
         """Enable/Disable a list of object store ciphers on the cluster. Bridge must be restarted for the change to take effect.
 
-        Enable/Disable a list of object store ciphers on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Enable/Disable a list of object store ciphers on the cluster.
 
         :param body: Enable/Disable object store ciphers. (required)
         :type body: ModifyObjectStoreCiphersRequestBody
@@ -3339,7 +3606,7 @@ class SecurityApi:
     ) -> ApiResponse[ObjectStoreCiphersResp]:
         """Enable/Disable a list of object store ciphers on the cluster. Bridge must be restarted for the change to take effect.
 
-        Enable/Disable a list of object store ciphers on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Enable/Disable a list of object store ciphers on the cluster.
 
         :param body: Enable/Disable object store ciphers. (required)
         :type body: ModifyObjectStoreCiphersRequestBody
@@ -3406,7 +3673,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Enable/Disable a list of object store ciphers on the cluster. Bridge must be restarted for the change to take effect.
 
-        Enable/Disable a list of object store ciphers on the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Enable/Disable a list of object store ciphers on the cluster.
 
         :param body: Enable/Disable object store ciphers. (required)
         :type body: ModifyObjectStoreCiphersRequestBody
@@ -3548,7 +3815,7 @@ class SecurityApi:
     ) -> ListTrustedCasResult:
         """Register CA Certificate to the cluster trust store.
 
-        Register CA Certificate to the cluster trust store.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Register CA Certificate to the cluster trust store.
 
         :param body: Specifies the parameters to register a Certificate. (required)
         :type body: RegisterTrustedCas
@@ -3615,7 +3882,7 @@ class SecurityApi:
     ) -> ApiResponse[ListTrustedCasResult]:
         """Register CA Certificate to the cluster trust store.
 
-        Register CA Certificate to the cluster trust store.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Register CA Certificate to the cluster trust store.
 
         :param body: Specifies the parameters to register a Certificate. (required)
         :type body: RegisterTrustedCas
@@ -3682,7 +3949,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Register CA Certificate to the cluster trust store.
 
-        Register CA Certificate to the cluster trust store.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Register CA Certificate to the cluster trust store.
 
         :param body: Specifies the parameters to register a Certificate. (required)
         :type body: RegisterTrustedCas
@@ -3824,7 +4091,7 @@ class SecurityApi:
     ) -> None:
         """Unregister CA Certificate from the cluster trust store.
 
-        Unregister CA Certificate from the cluster trust store.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Unregister CA Certificate from the cluster trust store.
 
         :param id: Specifies the id of the certificate to be unregistered. (required)
         :type id: str
@@ -3891,7 +4158,7 @@ class SecurityApi:
     ) -> ApiResponse[None]:
         """Unregister CA Certificate from the cluster trust store.
 
-        Unregister CA Certificate from the cluster trust store.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Unregister CA Certificate from the cluster trust store.
 
         :param id: Specifies the id of the certificate to be unregistered. (required)
         :type id: str
@@ -3958,7 +4225,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Unregister CA Certificate from the cluster trust store.
 
-        Unregister CA Certificate from the cluster trust store.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Unregister CA Certificate from the cluster trust store.
 
         :param id: Specifies the id of the certificate to be unregistered. (required)
         :type id: str
@@ -4087,7 +4354,7 @@ class SecurityApi:
     ) -> UpdateCertificateByCsrResponseBody:
         """Update the signed certificate on the cluster after a Certificate Signing Request is created.
 
-        Update the signed certificate on the cluster after a Certificate Signing Request is created.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the signed certificate on the cluster after a Certificate Signing Request is created.
 
         :param body: Specifies the parameters to update the certificate. (required)
         :type body: UpdateCertificateByCsrRequest
@@ -4154,7 +4421,7 @@ class SecurityApi:
     ) -> ApiResponse[UpdateCertificateByCsrResponseBody]:
         """Update the signed certificate on the cluster after a Certificate Signing Request is created.
 
-        Update the signed certificate on the cluster after a Certificate Signing Request is created.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the signed certificate on the cluster after a Certificate Signing Request is created.
 
         :param body: Specifies the parameters to update the certificate. (required)
         :type body: UpdateCertificateByCsrRequest
@@ -4221,7 +4488,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Update the signed certificate on the cluster after a Certificate Signing Request is created.
 
-        Update the signed certificate on the cluster after a Certificate Signing Request is created.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update the signed certificate on the cluster after a Certificate Signing Request is created.
 
         :param body: Specifies the parameters to update the certificate. (required)
         :type body: UpdateCertificateByCsrRequest
@@ -4360,10 +4627,10 @@ class SecurityApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> SecurityConfig:
+    ) -> SecurityConfigResponse:
         """Update cluster security settings.
 
-        Update cluster security settings.
+        **Privileges:** ```SECURITY_ADVISOR_MODIFY``` <br><br>Update cluster security settings.
 
         :param body: Specifies the parameters to update security config. (required)
         :type body: SecurityConfig
@@ -4398,7 +4665,7 @@ class SecurityApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SecurityConfig",
+            '200': "SecurityConfigResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -4427,10 +4694,10 @@ class SecurityApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[SecurityConfig]:
+    ) -> ApiResponse[SecurityConfigResponse]:
         """Update cluster security settings.
 
-        Update cluster security settings.
+        **Privileges:** ```SECURITY_ADVISOR_MODIFY``` <br><br>Update cluster security settings.
 
         :param body: Specifies the parameters to update security config. (required)
         :type body: SecurityConfig
@@ -4465,7 +4732,7 @@ class SecurityApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SecurityConfig",
+            '200': "SecurityConfigResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -4497,7 +4764,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Update cluster security settings.
 
-        Update cluster security settings.
+        **Privileges:** ```SECURITY_ADVISOR_MODIFY``` <br><br>Update cluster security settings.
 
         :param body: Specifies the parameters to update security config. (required)
         :type body: SecurityConfig
@@ -4532,7 +4799,7 @@ class SecurityApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SecurityConfig",
+            '200': "SecurityConfigResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -4639,7 +4906,7 @@ class SecurityApi:
     ) -> TrustedCa:
         """Validate CA Certificate.
 
-        Certificate will be checked for Expiration and Revocation.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Certificate will be checked for Expiration and Revocation.
 
         :param id: Specifies the id of the certificate to be validated. (required)
         :type id: str
@@ -4706,7 +4973,7 @@ class SecurityApi:
     ) -> ApiResponse[TrustedCa]:
         """Validate CA Certificate.
 
-        Certificate will be checked for Expiration and Revocation.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Certificate will be checked for Expiration and Revocation.
 
         :param id: Specifies the id of the certificate to be validated. (required)
         :type id: str
@@ -4773,7 +5040,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Validate CA Certificate.
 
-        Certificate will be checked for Expiration and Revocation.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Certificate will be checked for Expiration and Revocation.
 
         :param id: Specifies the id of the certificate to be validated. (required)
         :type id: str

@@ -6,6 +6,8 @@ Specifies the Source configuration if VM's are being recovered to Original Sourc
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**include_categories** | **bool** | Specifies the category configuration to be applied to the recovered VMs. | [optional] [default to False]
+**include_project_owners** | **bool** | Specifies the project owners configuration to be applied to the recovered VMs. | [optional] [default to False]
 **network_config** | [**RecoverAcropolisVmOriginalSourceNetworkConfig**](RecoverAcropolisVmOriginalSourceNetworkConfig.md) |  | [optional] 
 
 ## Example

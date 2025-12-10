@@ -19,6 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.cluster.models.bond_member import BondMember
+from cohesity_sdk.cluster.models.interface_stats import InterfaceStats
 from typing import Set
 from typing_extensions import Self
 
@@ -26,11 +28,14 @@ class NetworkInterface(BaseModel):
     """
     Specifies the parameters of a network interface.
     """ # noqa: E501
+    active_bond_slave: Optional[StrictStr] = Field(default=None, description="Current active slave. This is only valid in active-backup mode.", alias="activeBondSlave")
     bond_slave_names: Optional[List[StrictStr]] = Field(default=None, description="Specifies the names of the bond slaves for this interface.", alias="bondSlaveNames")
     bond_slave_slots: Optional[List[StrictStr]] = Field(default=None, description="Specifies the slots of the bond slaves for this interface.", alias="bondSlaveSlots")
+    bond_slaves_details: Optional[List[BondMember]] = Field(default=None, description="Bond member details for bond interface.", alias="bondSlavesDetails")
     bonding_mode: Optional[StrictStr] = Field(default=None, description="Specifies the bonding mode of this interface.", alias="bondingMode")
     default_route: Optional[StrictBool] = Field(default=None, description="Specifies whether or not this interface is the default route.", alias="defaultRoute")
     gateway: Optional[StrictStr] = Field(default=None, description="Specifies the gateway of the network interface.")
+    gateway_v6: Optional[StrictStr] = Field(default=None, description="Specifies the gatewayV6 of the network interface.", alias="gatewayV6")
     group: Optional[StrictStr] = Field(default=None, description="Specifies the group to which this interface belongs.")
     is_connected: Optional[StrictBool] = Field(default=None, description="Specifies whether or not this interface is connected.", alias="isConnected")
     is_up: Optional[StrictBool] = Field(default=None, description="Specifies whether or not the interface is up.", alias="isUp")
@@ -38,12 +43,16 @@ class NetworkInterface(BaseModel):
     mtu: Optional[StrictInt] = Field(default=None, description="Specifies the MTU of the network interface.")
     name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the network interface.")
     role: Optional[StrictStr] = Field(default=None, description="Specifies the interface role.")
+    services: Optional[List[StrictStr]] = Field(default=None, description="Services which use this interface.")
     speed: Optional[StrictStr] = Field(default=None, description="Specifies the speed of this interface.")
     static_ip: Optional[StrictStr] = Field(default=None, description="Specifies the static IP of the network interface.", alias="staticIP")
+    static_ip_v6: Optional[StrictStr] = Field(default=None, description="Specifies the static IPV6 of the network interface.", alias="staticIpV6")
+    stats: Optional[InterfaceStats] = None
     subnet: Optional[StrictStr] = Field(default=None, description="Specifies the subnet of the network interface.")
+    subnet_v6: Optional[StrictStr] = Field(default=None, description="Specifies the subnetV6 of the network interface.", alias="subnetV6")
     type: Optional[StrictStr] = Field(default=None, description="Specifies the type of the network interface.")
     virtual_ip: Optional[StrictStr] = Field(default=None, description="Specifies the virtual IP of the network interface.", alias="virtualIP")
-    __properties: ClassVar[List[str]] = ["bondSlaveNames", "bondSlaveSlots", "bondingMode", "defaultRoute", "gateway", "group", "isConnected", "isUp", "macAddress", "mtu", "name", "role", "speed", "staticIP", "subnet", "type", "virtualIP"]
+    __properties: ClassVar[List[str]] = ["activeBondSlave", "bondSlaveNames", "bondSlaveSlots", "bondSlavesDetails", "bondingMode", "defaultRoute", "gateway", "gatewayV6", "group", "isConnected", "isUp", "macAddress", "mtu", "name", "role", "services", "speed", "staticIP", "staticIpV6", "stats", "subnet", "subnetV6", "type", "virtualIP"]
 
     @field_validator('bonding_mode')
     def bonding_mode_validate_enum(cls, value):
@@ -124,6 +133,21 @@ class NetworkInterface(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in bond_slaves_details (list)
+        _items = []
+        if self.bond_slaves_details:
+            for _item_bond_slaves_details in self.bond_slaves_details:
+                if _item_bond_slaves_details:
+                    _items.append(_item_bond_slaves_details.to_dict())
+            _dict['bondSlavesDetails'] = _items
+        # override the default output from pydantic by calling `to_dict()` of stats
+        if self.stats:
+            _dict['stats'] = self.stats.to_dict()
+        # set to None if active_bond_slave (nullable) is None
+        # and model_fields_set contains the field
+        if self.active_bond_slave is None and "active_bond_slave" in self.model_fields_set:
+            _dict['activeBondSlave'] = None
+
         # set to None if bond_slave_names (nullable) is None
         # and model_fields_set contains the field
         if self.bond_slave_names is None and "bond_slave_names" in self.model_fields_set:
@@ -133,6 +157,11 @@ class NetworkInterface(BaseModel):
         # and model_fields_set contains the field
         if self.bond_slave_slots is None and "bond_slave_slots" in self.model_fields_set:
             _dict['bondSlaveSlots'] = None
+
+        # set to None if bond_slaves_details (nullable) is None
+        # and model_fields_set contains the field
+        if self.bond_slaves_details is None and "bond_slaves_details" in self.model_fields_set:
+            _dict['bondSlavesDetails'] = None
 
         # set to None if bonding_mode (nullable) is None
         # and model_fields_set contains the field
@@ -148,6 +177,11 @@ class NetworkInterface(BaseModel):
         # and model_fields_set contains the field
         if self.gateway is None and "gateway" in self.model_fields_set:
             _dict['gateway'] = None
+
+        # set to None if gateway_v6 (nullable) is None
+        # and model_fields_set contains the field
+        if self.gateway_v6 is None and "gateway_v6" in self.model_fields_set:
+            _dict['gatewayV6'] = None
 
         # set to None if group (nullable) is None
         # and model_fields_set contains the field
@@ -184,6 +218,11 @@ class NetworkInterface(BaseModel):
         if self.role is None and "role" in self.model_fields_set:
             _dict['role'] = None
 
+        # set to None if services (nullable) is None
+        # and model_fields_set contains the field
+        if self.services is None and "services" in self.model_fields_set:
+            _dict['services'] = None
+
         # set to None if speed (nullable) is None
         # and model_fields_set contains the field
         if self.speed is None and "speed" in self.model_fields_set:
@@ -194,10 +233,20 @@ class NetworkInterface(BaseModel):
         if self.static_ip is None and "static_ip" in self.model_fields_set:
             _dict['staticIP'] = None
 
+        # set to None if static_ip_v6 (nullable) is None
+        # and model_fields_set contains the field
+        if self.static_ip_v6 is None and "static_ip_v6" in self.model_fields_set:
+            _dict['staticIpV6'] = None
+
         # set to None if subnet (nullable) is None
         # and model_fields_set contains the field
         if self.subnet is None and "subnet" in self.model_fields_set:
             _dict['subnet'] = None
+
+        # set to None if subnet_v6 (nullable) is None
+        # and model_fields_set contains the field
+        if self.subnet_v6 is None and "subnet_v6" in self.model_fields_set:
+            _dict['subnetV6'] = None
 
         # set to None if type (nullable) is None
         # and model_fields_set contains the field
@@ -221,11 +270,14 @@ class NetworkInterface(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "activeBondSlave": obj.get("activeBondSlave"),
             "bondSlaveNames": obj.get("bondSlaveNames"),
             "bondSlaveSlots": obj.get("bondSlaveSlots"),
+            "bondSlavesDetails": [BondMember.from_dict(_item) for _item in obj["bondSlavesDetails"]] if obj.get("bondSlavesDetails") is not None else None,
             "bondingMode": obj.get("bondingMode"),
             "defaultRoute": obj.get("defaultRoute"),
             "gateway": obj.get("gateway"),
+            "gatewayV6": obj.get("gatewayV6"),
             "group": obj.get("group"),
             "isConnected": obj.get("isConnected"),
             "isUp": obj.get("isUp"),
@@ -233,9 +285,13 @@ class NetworkInterface(BaseModel):
             "mtu": obj.get("mtu"),
             "name": obj.get("name"),
             "role": obj.get("role"),
+            "services": obj.get("services"),
             "speed": obj.get("speed"),
             "staticIP": obj.get("staticIP"),
+            "staticIpV6": obj.get("staticIpV6"),
+            "stats": InterfaceStats.from_dict(obj["stats"]) if obj.get("stats") is not None else None,
             "subnet": obj.get("subnet"),
+            "subnetV6": obj.get("subnetV6"),
             "type": obj.get("type"),
             "virtualIP": obj.get("virtualIP")
         })

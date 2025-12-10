@@ -7,6 +7,7 @@ Specifies the parameters to register a commercial AWS
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **auth_method_type** | **str** | Specifies the Authentication method(IamArn/IamRole) used by api | 
+**fleet_params** | [**AwsFleetParams**](AwsFleetParams.md) |  | [optional] 
 **iam_role_aws_credentials** | [**IamRoleAwsCredentials**](IamRoleAwsCredentials.md) |  | [optional] 
 **iam_user_aws_credentials** | [**IamUserAwsCredentials**](IamUserAwsCredentials.md) |  | [optional] 
 

@@ -42,7 +42,7 @@ class RpaasApi:
     def add_rpaas_regions(
         self,
         body: Annotated[AddRpaasRegionsRequest, Field(description="Specifies the parameters to add RPaas service in the regions.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -62,7 +62,7 @@ class RpaasApi:
 
         :param body: Specifies the parameters to add RPaas service in the regions. (required)
         :type body: AddRpaasRegionsRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -113,7 +113,7 @@ class RpaasApi:
     def add_rpaas_regions_with_http_info(
         self,
         body: Annotated[AddRpaasRegionsRequest, Field(description="Specifies the parameters to add RPaas service in the regions.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -133,7 +133,7 @@ class RpaasApi:
 
         :param body: Specifies the parameters to add RPaas service in the regions. (required)
         :type body: AddRpaasRegionsRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -184,7 +184,7 @@ class RpaasApi:
     def add_rpaas_regions_without_preload_content(
         self,
         body: Annotated[AddRpaasRegionsRequest, Field(description="Specifies the parameters to add RPaas service in the regions.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -204,7 +204,7 @@ class RpaasApi:
 
         :param body: Specifies the parameters to add RPaas service in the regions. (required)
         :type body: AddRpaasRegionsRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -330,7 +330,7 @@ class RpaasApi:
     @validate_call
     def complete_rpaas_onboard(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -348,7 +348,7 @@ class RpaasApi:
 
         Complete onboarding for RPaaS for the logged in user.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -397,7 +397,7 @@ class RpaasApi:
     @validate_call
     def complete_rpaas_onboard_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -415,7 +415,7 @@ class RpaasApi:
 
         Complete onboarding for RPaaS for the logged in user.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -464,7 +464,7 @@ class RpaasApi:
     @validate_call
     def complete_rpaas_onboard_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -482,7 +482,7 @@ class RpaasApi:
 
         Complete onboarding for RPaaS for the logged in user.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -591,8 +591,8 @@ class RpaasApi:
     @validate_call
     def get_fort_knox_vaults(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[Optional[StrictStr]]], Field(description="List of region IDs to filter the response.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -610,10 +610,10 @@ class RpaasApi:
 
         Get the list of FortKnox vaults for the logged in account.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: List of region IDs to filter the response.
         :type region_ids: List[Optional[str]]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -637,8 +637,8 @@ class RpaasApi:
         """ # noqa: E501
 
         _param = self._get_fort_knox_vaults_serialize(
-            region_id=region_id,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -662,8 +662,8 @@ class RpaasApi:
     @validate_call
     def get_fort_knox_vaults_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[Optional[StrictStr]]], Field(description="List of region IDs to filter the response.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -681,10 +681,10 @@ class RpaasApi:
 
         Get the list of FortKnox vaults for the logged in account.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: List of region IDs to filter the response.
         :type region_ids: List[Optional[str]]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -708,8 +708,8 @@ class RpaasApi:
         """ # noqa: E501
 
         _param = self._get_fort_knox_vaults_serialize(
-            region_id=region_id,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -733,8 +733,8 @@ class RpaasApi:
     @validate_call
     def get_fort_knox_vaults_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[Optional[StrictStr]]], Field(description="List of region IDs to filter the response.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -752,10 +752,10 @@ class RpaasApi:
 
         Get the list of FortKnox vaults for the logged in account.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: List of region IDs to filter the response.
         :type region_ids: List[Optional[str]]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -779,8 +779,8 @@ class RpaasApi:
         """ # noqa: E501
 
         _param = self._get_fort_knox_vaults_serialize(
-            region_id=region_id,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -799,8 +799,8 @@ class RpaasApi:
 
     def _get_fort_knox_vaults_serialize(
         self,
-        region_id,
         region_ids,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -870,7 +870,7 @@ class RpaasApi:
     @validate_call
     def get_rpaas_onboard(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -888,7 +888,7 @@ class RpaasApi:
 
         Get the onboarding status for RPaaS for the logged in user.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -937,7 +937,7 @@ class RpaasApi:
     @validate_call
     def get_rpaas_onboard_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -955,7 +955,7 @@ class RpaasApi:
 
         Get the onboarding status for RPaaS for the logged in user.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1004,7 +1004,7 @@ class RpaasApi:
     @validate_call
     def get_rpaas_onboard_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1022,7 +1022,7 @@ class RpaasApi:
 
         Get the onboarding status for RPaaS for the logged in user.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1131,8 +1131,8 @@ class RpaasApi:
     @validate_call
     def get_rpaas_regions(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[Optional[StrictStr]]], Field(description="List of region IDs to filter the response.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1150,10 +1150,10 @@ class RpaasApi:
 
         Get the list of Rpaas regions enabled for the logged in account.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: List of region IDs to filter the response.
         :type region_ids: List[Optional[str]]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1177,8 +1177,8 @@ class RpaasApi:
         """ # noqa: E501
 
         _param = self._get_rpaas_regions_serialize(
-            region_id=region_id,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1202,8 +1202,8 @@ class RpaasApi:
     @validate_call
     def get_rpaas_regions_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[Optional[StrictStr]]], Field(description="List of region IDs to filter the response.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1221,10 +1221,10 @@ class RpaasApi:
 
         Get the list of Rpaas regions enabled for the logged in account.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: List of region IDs to filter the response.
         :type region_ids: List[Optional[str]]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1248,8 +1248,8 @@ class RpaasApi:
         """ # noqa: E501
 
         _param = self._get_rpaas_regions_serialize(
-            region_id=region_id,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1273,8 +1273,8 @@ class RpaasApi:
     @validate_call
     def get_rpaas_regions_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         region_ids: Annotated[Optional[List[Optional[StrictStr]]], Field(description="List of region IDs to filter the response.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1292,10 +1292,10 @@ class RpaasApi:
 
         Get the list of Rpaas regions enabled for the logged in account.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param region_ids: List of region IDs to filter the response.
         :type region_ids: List[Optional[str]]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1319,8 +1319,8 @@ class RpaasApi:
         """ # noqa: E501
 
         _param = self._get_rpaas_regions_serialize(
-            region_id=region_id,
             region_ids=region_ids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1339,8 +1339,8 @@ class RpaasApi:
 
     def _get_rpaas_regions_serialize(
         self,
-        region_id,
         region_ids,
+        region_id,
         _request_auth,
         _content_type,
         _headers,

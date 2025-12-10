@@ -9,9 +9,12 @@ Name | Type | Description | Notes
 **block_access_on_scan_failure** | **bool** | Specifies whether block access to the file when antivirus scan fails. | [optional] 
 **is_enabled** | **bool** | Specifies whether the antivirus service is enabled or not. | [optional] 
 **maximum_scan_file_size** | **int** | Specifies maximum file size that will be sent to antivirus server for scanning. if greater than zero, the file size that exceeds this size would be skipped from virus scan. | [optional] 
+**prefix_scan_filter** | [**FileExtensionFilter**](FileExtensionFilter.md) |  | [optional] 
+**s3_tagging_filter** | [**S3TaggingFilter**](S3TaggingFilter.md) |  | [optional] 
 **scan_filter** | [**FileExtensionFilter**](FileExtensionFilter.md) |  | [optional] 
-**scan_on_access** | **bool** | Specifies whether to scan a file when it is opened. | [optional] 
-**scan_on_close** | **bool** | Specifies whether to scan a file when it is closed after modify. | [optional] 
+**scan_on_access** | **bool** | Specifies whether to scan a SMB file or S3 object before it is opened/GET. | [optional] 
+**scan_on_close** | **bool** | Specifies whether to scan a SMB file when it is closed after modify. | [optional] 
+**scan_on_put** | **bool** | Specifies whether to scan a S3 object after it is PUT. | [optional] 
 **scan_timeout_usecs** | **int** | Specifies the maximum amount of time that a scan can take before timing out. | 
 
 ## Example

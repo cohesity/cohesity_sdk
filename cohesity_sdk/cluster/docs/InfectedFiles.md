@@ -1,13 +1,13 @@
 # InfectedFiles
 
-Specifies a list of infected files.
+Specifies a list of infected entities.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cookie** | **str** | Specifies the pagination cookie. Cookie is used to  resume the enumeration of infected files. When the cookie is set the fields viewNameVec, includeQuarantinedFiles and includeUnquarantinedFiles are ignored.  | [optional] 
-**infected_files** | [**List[InfectedFile]**](InfectedFile.md) | Specifies the list of infected files. | [optional] 
+**cookie** | **str** | Specifies the pagination cookie. Cookie is used to  resume the enumeration of infected entities. When the cookie is set the fields viewNameVec, includeQuarantinedFiles and include UnquarantinedFiles are ignored.  | [optional] 
+**infected_files** | [**List[InfectedFile]**](InfectedFile.md) | Specifies the list of infected entities. | [optional] 
 
 ## Example
 

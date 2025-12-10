@@ -31,7 +31,8 @@ class OneDriveParam(BaseModel):
     name: Optional[StrictStr] = Field(default=None, description="Specifies the OneDrive name.")
     recover_entire_drive: Optional[StrictBool] = Field(default=None, description="Specifies whether to recover the whole OneDrive. This is set to false when excluding recovering specific drive items.", alias="recoverEntireDrive")
     recover_items: Optional[List[OneDriveItem]] = Field(default=None, description="Specifies a list of OneDrive items to recover.", alias="recoverItems")
-    __properties: ClassVar[List[str]] = ["id", "name", "recoverEntireDrive", "recoverItems"]
+    site_uuid: Optional[StrictStr] = Field(default=None, description="Sharepoint site uuid to which this Drive belongs. This is needed for Teams and Groups having subsites, as multiple items across different subsites can be selected for granular recovery.", alias="siteUuid")
+    __properties: ClassVar[List[str]] = ["id", "name", "recoverEntireDrive", "recoverItems", "siteUuid"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -99,6 +100,11 @@ class OneDriveParam(BaseModel):
         if self.recover_items is None and "recover_items" in self.model_fields_set:
             _dict['recoverItems'] = None
 
+        # set to None if site_uuid (nullable) is None
+        # and model_fields_set contains the field
+        if self.site_uuid is None and "site_uuid" in self.model_fields_set:
+            _dict['siteUuid'] = None
+
         return _dict
 
     @classmethod
@@ -114,7 +120,8 @@ class OneDriveParam(BaseModel):
             "id": obj.get("id"),
             "name": obj.get("name"),
             "recoverEntireDrive": obj.get("recoverEntireDrive"),
-            "recoverItems": [OneDriveItem.from_dict(_item) for _item in obj["recoverItems"]] if obj.get("recoverItems") is not None else None
+            "recoverItems": [OneDriveItem.from_dict(_item) for _item in obj["recoverItems"]] if obj.get("recoverItems") is not None else None,
+            "siteUuid": obj.get("siteUuid")
         })
         return _obj
 

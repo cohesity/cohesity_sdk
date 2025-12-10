@@ -37,8 +37,8 @@ class ViewIntent(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Unknown', 'BackupGeneral', 'BackupCommvault', 'BackupVeeam', 'FileServiceVideos', 'FileServiceMultimedia', 'FileServiceArchive', 'ObjectServiceContainer', 'ZDLRA', 'SAPHANA', 'TSM', 'ApplicationsDump', 'FileServiceGeneral', 'DigitalArchive', 'ObjectServiceGeneral', 'SplunkSmartStore', 'Hadoop']):
-            raise ValueError("must be one of enum values ('Unknown', 'BackupGeneral', 'BackupCommvault', 'BackupVeeam', 'FileServiceVideos', 'FileServiceMultimedia', 'FileServiceArchive', 'ObjectServiceContainer', 'ZDLRA', 'SAPHANA', 'TSM', 'ApplicationsDump', 'FileServiceGeneral', 'DigitalArchive', 'ObjectServiceGeneral', 'SplunkSmartStore', 'Hadoop')")
+        if value not in set(['Unknown', 'BackupGeneral', 'BackupCommvault', 'BackupVeeam', 'FileServiceVideos', 'FileServiceMultimedia', 'FileServiceArchive', 'ObjectServiceContainer', 'ZDLRA', 'SAPHANA', 'TSM', 'ApplicationsDump', 'FileServiceGeneral', 'DigitalArchive', 'ObjectServiceGeneral', 'SplunkSmartStore', 'Hadoop', 'GeneralArchive']):
+            raise ValueError("must be one of enum values ('Unknown', 'BackupGeneral', 'BackupCommvault', 'BackupVeeam', 'FileServiceVideos', 'FileServiceMultimedia', 'FileServiceArchive', 'ObjectServiceContainer', 'ZDLRA', 'SAPHANA', 'TSM', 'ApplicationsDump', 'FileServiceGeneral', 'DigitalArchive', 'ObjectServiceGeneral', 'SplunkSmartStore', 'Hadoop', 'GeneralArchive')")
         return value
 
     model_config = ConfigDict(

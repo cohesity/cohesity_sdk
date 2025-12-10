@@ -30,14 +30,16 @@ class ClusterCreateNetworkConfig(BaseModel):
     """ # noqa: E501
     dhcp_network_config: Optional[ClusterDhcpNetworkConfig] = Field(default=None, alias="dhcpNetworkConfig")
     domain_names: Optional[List[StrictStr]] = Field(description="Specifies the list of Domain Names new cluster should be configured with.", alias="domainNames")
+    host_names: Optional[List[StrictStr]] = Field(default=None, description="Specifies list of FQDN hostname of the cluster.", alias="hostNames")
     ip_preference: Optional[StrictStr] = Field(default=None, description="Specifies IP preference of the cluster to be Ipv4/Ipv6. It is Ipv4 by default.", alias="ipPreference")
     manual_network_config: Optional[ClusterManualNetworkConfig] = Field(default=None, alias="manualNetworkConfig")
     ntp_servers: Optional[List[StrictStr]] = Field(description="Specifies the list of NTP Servers new cluster should be configured with.", alias="ntpServers")
     secondary_dhcp_network_config: Optional[ClusterDhcpNetworkConfig] = Field(default=None, alias="secondaryDhcpNetworkConfig")
     secondary_manual_network_config: Optional[ClusterManualNetworkConfig] = Field(default=None, alias="secondaryManualNetworkConfig")
     use_dhcp: Optional[StrictBool] = Field(description="Specifies whether or not to use DHCP to configure the network of the Cluster.", alias="useDhcp")
-    vip_host_name: Optional[StrictStr] = Field(default=None, description="Specifies the FQDN hostname of the cluster.", alias="vipHostName")
-    __properties: ClassVar[List[str]] = ["dhcpNetworkConfig", "domainNames", "ipPreference", "manualNetworkConfig", "ntpServers", "secondaryDhcpNetworkConfig", "secondaryManualNetworkConfig", "useDhcp", "vipHostName"]
+    vip_host_name: Optional[StrictStr] = Field(default=None, description="Specifies the FQDN hostname of the cluster. Note: This field will be deprecated in future. Use hostNames field instead.", alias="vipHostName")
+    vips: Optional[List[StrictStr]] = Field(default=None, description="Virtual IPs to add to the cluster.")
+    __properties: ClassVar[List[str]] = ["dhcpNetworkConfig", "domainNames", "hostNames", "ipPreference", "manualNetworkConfig", "ntpServers", "secondaryDhcpNetworkConfig", "secondaryManualNetworkConfig", "useDhcp", "vipHostName", "vips"]
 
     @field_validator('ip_preference')
     def ip_preference_validate_enum(cls, value):
@@ -79,8 +81,10 @@ class ClusterCreateNetworkConfig(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
+            "host_names",
         ])
 
         _dict = self.model_dump(
@@ -104,6 +108,11 @@ class ClusterCreateNetworkConfig(BaseModel):
         # and model_fields_set contains the field
         if self.domain_names is None and "domain_names" in self.model_fields_set:
             _dict['domainNames'] = None
+
+        # set to None if host_names (nullable) is None
+        # and model_fields_set contains the field
+        if self.host_names is None and "host_names" in self.model_fields_set:
+            _dict['hostNames'] = None
 
         # set to None if ip_preference (nullable) is None
         # and model_fields_set contains the field
@@ -139,13 +148,15 @@ class ClusterCreateNetworkConfig(BaseModel):
         _obj = cls.model_validate({
             "dhcpNetworkConfig": ClusterDhcpNetworkConfig.from_dict(obj["dhcpNetworkConfig"]) if obj.get("dhcpNetworkConfig") is not None else None,
             "domainNames": obj.get("domainNames"),
+            "hostNames": obj.get("hostNames"),
             "ipPreference": obj.get("ipPreference"),
             "manualNetworkConfig": ClusterManualNetworkConfig.from_dict(obj["manualNetworkConfig"]) if obj.get("manualNetworkConfig") is not None else None,
             "ntpServers": obj.get("ntpServers"),
             "secondaryDhcpNetworkConfig": ClusterDhcpNetworkConfig.from_dict(obj["secondaryDhcpNetworkConfig"]) if obj.get("secondaryDhcpNetworkConfig") is not None else None,
             "secondaryManualNetworkConfig": ClusterManualNetworkConfig.from_dict(obj["secondaryManualNetworkConfig"]) if obj.get("secondaryManualNetworkConfig") is not None else None,
             "useDhcp": obj.get("useDhcp"),
-            "vipHostName": obj.get("vipHostName")
+            "vipHostName": obj.get("vipHostName"),
+            "vips": obj.get("vips")
         })
         return _obj
 

@@ -21,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.backup_data_stats import BackupDataStats
 from cohesity_sdk.helios.models.data_lock_constraints import DataLockConstraints
+from cohesity_sdk.helios.models.pause_metadata import PauseMetadata
 from typing import Set
 from typing_extensions import Self
 
@@ -40,15 +41,18 @@ class BackupRunSummary(BaseModel):
     local_snapshot_stats: Optional[BackupDataStats] = Field(default=None, alias="localSnapshotStats")
     local_task_id: Optional[StrictStr] = Field(default=None, description="Task ID for a local protection run.", alias="localTaskId")
     messages: Optional[List[StrictStr]] = Field(default=None, description="Message about the backup run.")
+    on_legal_hold: Optional[StrictBool] = Field(default=None, description="Specifies if the Run is on legal hold.", alias="onLegalHold")
+    pause_metadata: Optional[PauseMetadata] = Field(default=None, alias="pauseMetadata")
     progress_task_id: Optional[StrictStr] = Field(default=None, description="Progress monitor task id for local backup run.", alias="progressTaskId")
     run_type: Optional[StrictStr] = Field(default=None, description="Type of Protection Group run. 'kRegular' indicates an incremental (CBT) backup. Incremental backups utilizing CBT (if supported) are captured of the target protection objects. The first run of a kRegular schedule captures all the blocks. 'kFull' indicates a full (no CBT) backup. A complete backup (all blocks) of the target protection objects are always captured and Change Block Tracking (CBT) is not utilized. 'kLog' indicates a Database Log backup. Capture the database transaction logs to allow rolling back to a specific point in time. 'kSystem' indicates system volume backup. It produces an image for bare metal recovery. 'kStorageArraySnapshot' indicates storage array snapshot backup.", alias="runType")
+    skipped_app_objects_count: Optional[StrictInt] = Field(default=None, description="Specifies the count of app objects for which backup was skipped.", alias="skippedAppObjectsCount")
     skipped_objects_count: Optional[StrictInt] = Field(default=None, description="Specifies the count of objects for which backup was skipped.", alias="skippedObjectsCount")
     start_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the start time of backup run in Unix epoch Timestamp(in microseconds).", alias="startTimeUsecs")
     stats_task_id: Optional[StrictStr] = Field(default=None, description="Stats task id for local backup run.", alias="statsTaskId")
     status: Optional[StrictStr] = Field(default=None, description="Status of the backup run. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. 'Skipped' indicates that the run was skipped.")
     successful_app_objects_count: Optional[StrictInt] = Field(default=None, description="Specifies the count of app objects for which backup was successful.", alias="successfulAppObjectsCount")
     successful_objects_count: Optional[StrictInt] = Field(default=None, description="Specifies the count of objects for which backup was successful.", alias="successfulObjectsCount")
-    __properties: ClassVar[List[str]] = ["cancelledAppObjectsCount", "cancelledObjectsCount", "dataLock", "dataLockConstraints", "endTimeUsecs", "failedAppObjectsCount", "failedObjectsCount", "indexingTaskId", "isSlaViolated", "localSnapshotStats", "localTaskId", "messages", "progressTaskId", "runType", "skippedObjectsCount", "startTimeUsecs", "statsTaskId", "status", "successfulAppObjectsCount", "successfulObjectsCount"]
+    __properties: ClassVar[List[str]] = ["cancelledAppObjectsCount", "cancelledObjectsCount", "dataLock", "dataLockConstraints", "endTimeUsecs", "failedAppObjectsCount", "failedObjectsCount", "indexingTaskId", "isSlaViolated", "localSnapshotStats", "localTaskId", "messages", "onLegalHold", "pauseMetadata", "progressTaskId", "runType", "skippedAppObjectsCount", "skippedObjectsCount", "startTimeUsecs", "statsTaskId", "status", "successfulAppObjectsCount", "successfulObjectsCount"]
 
     @field_validator('data_lock')
     def data_lock_validate_enum(cls, value):
@@ -76,8 +80,8 @@ class BackupRunSummary(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'Paused']):
-            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'Paused')")
+        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold', 'Paused']):
+            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold', 'Paused')")
         return value
 
     model_config = ConfigDict(
@@ -125,6 +129,9 @@ class BackupRunSummary(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of local_snapshot_stats
         if self.local_snapshot_stats:
             _dict['localSnapshotStats'] = self.local_snapshot_stats.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of pause_metadata
+        if self.pause_metadata:
+            _dict['pauseMetadata'] = self.pause_metadata.to_dict()
         # set to None if cancelled_app_objects_count (nullable) is None
         # and model_fields_set contains the field
         if self.cancelled_app_objects_count is None and "cancelled_app_objects_count" in self.model_fields_set:
@@ -175,6 +182,11 @@ class BackupRunSummary(BaseModel):
         if self.messages is None and "messages" in self.model_fields_set:
             _dict['messages'] = None
 
+        # set to None if on_legal_hold (nullable) is None
+        # and model_fields_set contains the field
+        if self.on_legal_hold is None and "on_legal_hold" in self.model_fields_set:
+            _dict['onLegalHold'] = None
+
         # set to None if progress_task_id (nullable) is None
         # and model_fields_set contains the field
         if self.progress_task_id is None and "progress_task_id" in self.model_fields_set:
@@ -184,6 +196,11 @@ class BackupRunSummary(BaseModel):
         # and model_fields_set contains the field
         if self.run_type is None and "run_type" in self.model_fields_set:
             _dict['runType'] = None
+
+        # set to None if skipped_app_objects_count (nullable) is None
+        # and model_fields_set contains the field
+        if self.skipped_app_objects_count is None and "skipped_app_objects_count" in self.model_fields_set:
+            _dict['skippedAppObjectsCount'] = None
 
         # set to None if skipped_objects_count (nullable) is None
         # and model_fields_set contains the field
@@ -239,8 +256,11 @@ class BackupRunSummary(BaseModel):
             "localSnapshotStats": BackupDataStats.from_dict(obj["localSnapshotStats"]) if obj.get("localSnapshotStats") is not None else None,
             "localTaskId": obj.get("localTaskId"),
             "messages": obj.get("messages"),
+            "onLegalHold": obj.get("onLegalHold"),
+            "pauseMetadata": PauseMetadata.from_dict(obj["pauseMetadata"]) if obj.get("pauseMetadata") is not None else None,
             "progressTaskId": obj.get("progressTaskId"),
             "runType": obj.get("runType"),
+            "skippedAppObjectsCount": obj.get("skippedAppObjectsCount"),
             "skippedObjectsCount": obj.get("skippedObjectsCount"),
             "startTimeUsecs": obj.get("startTimeUsecs"),
             "statsTaskId": obj.get("statsTaskId"),

@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Set
 from typing_extensions import Self
@@ -28,7 +28,9 @@ class SupportUserConfig(BaseModel):
     """ # noqa: E501
     enable_sudo_access: Optional[StrictBool] = Field(default=None, description="Specifies if the support user has sudo access.", alias="enableSudoAccess")
     password_set: Optional[StrictBool] = Field(default=None, description="Specifies if the password for the support user has been set.", alias="passwordSet")
-    __properties: ClassVar[List[str]] = ["enableSudoAccess", "passwordSet"]
+    sudo_access_end_timestamp_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the sudo access end time stamp in milliseconds since unix epoch.", alias="sudoAccessEndTimestampMsecs")
+    sudo_access_mode: Optional[StrictInt] = Field(default=None, description="Specifies whether the sudo access mode is enabled or not", alias="sudoAccessMode")
+    __properties: ClassVar[List[str]] = ["enableSudoAccess", "passwordSet", "sudoAccessEndTimestampMsecs", "sudoAccessMode"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,6 +81,16 @@ class SupportUserConfig(BaseModel):
         if self.password_set is None and "password_set" in self.model_fields_set:
             _dict['passwordSet'] = None
 
+        # set to None if sudo_access_end_timestamp_msecs (nullable) is None
+        # and model_fields_set contains the field
+        if self.sudo_access_end_timestamp_msecs is None and "sudo_access_end_timestamp_msecs" in self.model_fields_set:
+            _dict['sudoAccessEndTimestampMsecs'] = None
+
+        # set to None if sudo_access_mode (nullable) is None
+        # and model_fields_set contains the field
+        if self.sudo_access_mode is None and "sudo_access_mode" in self.model_fields_set:
+            _dict['sudoAccessMode'] = None
+
         return _dict
 
     @classmethod
@@ -92,7 +104,9 @@ class SupportUserConfig(BaseModel):
 
         _obj = cls.model_validate({
             "enableSudoAccess": obj.get("enableSudoAccess"),
-            "passwordSet": obj.get("passwordSet")
+            "passwordSet": obj.get("passwordSet"),
+            "sudoAccessEndTimestampMsecs": obj.get("sudoAccessEndTimestampMsecs"),
+            "sudoAccessMode": obj.get("sudoAccessMode")
         })
         return _obj
 

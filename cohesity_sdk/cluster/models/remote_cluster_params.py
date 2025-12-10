@@ -40,9 +40,10 @@ class RemoteClusterParams(BaseModel):
     purpose: Optional[List[StrictStr]] = Field(default=None, description="Specifies the purpose for which the remote cluster is being registered.")
     replication_params: Optional[ReplicationParams] = Field(default=None, alias="replicationParams")
     supported_aes_encryption_mode: Optional[StrictStr] = Field(default=None, description="Specifies the AES Encryption mode of the remote cluster.", alias="supportedAesEncryptionMode")
+    tenant_id: Optional[StrictStr] = Field(default=None, description="Specifies the tenant Id of the Remote Cluster.", alias="tenantId")
     tenant_storage_domain_sharing_enabled: Optional[StrictBool] = Field(default=None, description="Specifies if Tenant Storage Domain sharing is enabled on the Remote Cluster.", alias="tenantStorageDomainSharingEnabled")
     tls_enabled: Optional[StrictBool] = Field(default=None, description="Specifies if TLS is enabled on the Remote Cluster.", alias="tlsEnabled")
-    __properties: ClassVar[List[str]] = ["autoRegisterTarget", "clusterId", "clusterIncarnationId", "clusterName", "description", "effectiveAesEncryptionMode", "isAutoRegistered", "localAddresses", "multiTenancyEnabled", "networkInterface", "purpose", "replicationParams", "supportedAesEncryptionMode", "tenantStorageDomainSharingEnabled", "tlsEnabled"]
+    __properties: ClassVar[List[str]] = ["autoRegisterTarget", "clusterId", "clusterIncarnationId", "clusterName", "description", "effectiveAesEncryptionMode", "isAutoRegistered", "localAddresses", "multiTenancyEnabled", "networkInterface", "purpose", "replicationParams", "supportedAesEncryptionMode", "tenantId", "tenantStorageDomainSharingEnabled", "tlsEnabled"]
 
     @field_validator('effective_aes_encryption_mode')
     def effective_aes_encryption_mode_validate_enum(cls, value):
@@ -110,6 +111,7 @@ class RemoteClusterParams(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "cluster_id",
@@ -117,6 +119,7 @@ class RemoteClusterParams(BaseModel):
             "cluster_name",
             "is_auto_registered",
             "local_addresses",
+            "tenant_id",
         ])
 
         _dict = self.model_dump(
@@ -182,6 +185,11 @@ class RemoteClusterParams(BaseModel):
         if self.supported_aes_encryption_mode is None and "supported_aes_encryption_mode" in self.model_fields_set:
             _dict['supportedAesEncryptionMode'] = None
 
+        # set to None if tenant_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.tenant_id is None and "tenant_id" in self.model_fields_set:
+            _dict['tenantId'] = None
+
         # set to None if tenant_storage_domain_sharing_enabled (nullable) is None
         # and model_fields_set contains the field
         if self.tenant_storage_domain_sharing_enabled is None and "tenant_storage_domain_sharing_enabled" in self.model_fields_set:
@@ -217,6 +225,7 @@ class RemoteClusterParams(BaseModel):
             "purpose": obj.get("purpose"),
             "replicationParams": ReplicationParams.from_dict(obj["replicationParams"]) if obj.get("replicationParams") is not None else None,
             "supportedAesEncryptionMode": obj.get("supportedAesEncryptionMode"),
+            "tenantId": obj.get("tenantId"),
             "tenantStorageDomainSharingEnabled": obj.get("tenantStorageDomainSharingEnabled"),
             "tlsEnabled": obj.get("tlsEnabled")
         })

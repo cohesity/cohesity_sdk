@@ -7,6 +7,7 @@ Specifies a list of View Clients.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **clients** | [**List[ViewClient]**](ViewClient.md) | Specifies the list of Clients. | [optional] 
+**clients_summary** | [**ViewClientsClientsSummary**](ViewClientsClientsSummary.md) |  | [optional] 
 
 ## Example
 

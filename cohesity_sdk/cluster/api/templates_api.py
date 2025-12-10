@@ -52,7 +52,7 @@ class TemplatesApi:
     ) -> bytearray:
         """Download the azure resource template.
 
-        Download the azure resource template.
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Download the azure resource template.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -115,7 +115,7 @@ class TemplatesApi:
     ) -> ApiResponse[bytearray]:
         """Download the azure resource template.
 
-        Download the azure resource template.
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Download the azure resource template.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -178,7 +178,7 @@ class TemplatesApi:
     ) -> RESTResponseType:
         """Download the azure resource template.
 
-        Download the azure resource template.
+        **Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Download the azure resource template.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

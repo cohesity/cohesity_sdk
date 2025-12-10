@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 Create a Keystone configuration.
 
-Create a Keystone configuration.
+**Privileges:** ```KEYSTONE_MODIFY``` <br><br>Create a Keystone configuration.
 
 ### Example
 
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 Delete a Keystone configuration.
 
-Delete a Keystone configuration.
+**Privileges:** ```KEYSTONE_MODIFY``` <br><br>Delete a Keystone configuration.
 
 ### Example
 
@@ -203,7 +203,7 @@ void (empty response body)
 
 Get Keystones.
 
-Get Keystones.
+**Privileges:** ```KEYSTONE_VIEW``` <br><br>Get Keystones.
 
 ### Example
 
@@ -301,7 +301,7 @@ Name | Type | Description  | Notes
 
 Get a Keystone by its id.
 
-Get a Keystone by its id.
+**Privileges:** ```KEYSTONE_VIEW``` <br><br>Get a Keystone by its id.
 
 ### Example
 
@@ -395,7 +395,7 @@ Name | Type | Description  | Notes
 
 Update a Keystone configuration.
 
-Update a Keystone configuration.
+**Privileges:** ```KEYSTONE_MODIFY``` <br><br>Update a Keystone configuration.
 
 ### Example
 

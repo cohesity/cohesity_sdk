@@ -43,8 +43,8 @@ class StorageDomainApi:
     def create_storage_domain(
         self,
         body: Annotated[CreateStorageDomainParam, Field(description="Specified the request to create a Storage Domain.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -64,9 +64,9 @@ class StorageDomainApi:
 
         :param body: Specified the request to create a Storage Domain. (required)
         :type body: CreateStorageDomainParam
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -118,8 +118,8 @@ class StorageDomainApi:
     def create_storage_domain_with_http_info(
         self,
         body: Annotated[CreateStorageDomainParam, Field(description="Specified the request to create a Storage Domain.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -139,9 +139,9 @@ class StorageDomainApi:
 
         :param body: Specified the request to create a Storage Domain. (required)
         :type body: CreateStorageDomainParam
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -193,8 +193,8 @@ class StorageDomainApi:
     def create_storage_domain_without_preload_content(
         self,
         body: Annotated[CreateStorageDomainParam, Field(description="Specified the request to create a Storage Domain.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -214,9 +214,9 @@ class StorageDomainApi:
 
         :param body: Specified the request to create a Storage Domain. (required)
         :type body: CreateStorageDomainParam
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -347,8 +347,8 @@ class StorageDomainApi:
     def delete_storage_domain(
         self,
         id: Annotated[StrictInt, Field(description="Specified the Storage Domain id to delete.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -368,9 +368,9 @@ class StorageDomainApi:
 
         :param id: Specified the Storage Domain id to delete. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -422,8 +422,8 @@ class StorageDomainApi:
     def delete_storage_domain_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specified the Storage Domain id to delete.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -443,9 +443,9 @@ class StorageDomainApi:
 
         :param id: Specified the Storage Domain id to delete. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -497,8 +497,8 @@ class StorageDomainApi:
     def delete_storage_domain_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specified the Storage Domain id to delete.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -518,9 +518,9 @@ class StorageDomainApi:
 
         :param id: Specified the Storage Domain id to delete. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -638,12 +638,12 @@ class StorageDomainApi:
     def get_storage_domain_by_id(
         self,
         id: Annotated[StrictInt, Field(description="Specified the Storage Domain id to fetch.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         include_stats: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain stats in response.")] = None,
         include_time_series_schema: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain time series schema in response.")] = None,
         include_file_count_by_size: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain file count by size.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domains that belong to Tenants. This param is only effective when the User has privilege to view Storage Domain details of a tenant.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -663,10 +663,6 @@ class StorageDomainApi:
 
         :param id: Specified the Storage Domain id to fetch. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param include_stats: Whether to include Storage Domain stats in response.
         :type include_stats: bool
         :param include_time_series_schema: Whether to include Storage Domain time series schema in response.
@@ -675,6 +671,10 @@ class StorageDomainApi:
         :type include_file_count_by_size: bool
         :param include_tenants: Whether to include Storage Domains that belong to Tenants. This param is only effective when the User has privilege to view Storage Domain details of a tenant.
         :type include_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -699,12 +699,12 @@ class StorageDomainApi:
 
         _param = self._get_storage_domain_by_id_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             include_stats=include_stats,
             include_time_series_schema=include_time_series_schema,
             include_file_count_by_size=include_file_count_by_size,
             include_tenants=include_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -729,12 +729,12 @@ class StorageDomainApi:
     def get_storage_domain_by_id_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specified the Storage Domain id to fetch.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         include_stats: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain stats in response.")] = None,
         include_time_series_schema: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain time series schema in response.")] = None,
         include_file_count_by_size: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain file count by size.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domains that belong to Tenants. This param is only effective when the User has privilege to view Storage Domain details of a tenant.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -754,10 +754,6 @@ class StorageDomainApi:
 
         :param id: Specified the Storage Domain id to fetch. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param include_stats: Whether to include Storage Domain stats in response.
         :type include_stats: bool
         :param include_time_series_schema: Whether to include Storage Domain time series schema in response.
@@ -766,6 +762,10 @@ class StorageDomainApi:
         :type include_file_count_by_size: bool
         :param include_tenants: Whether to include Storage Domains that belong to Tenants. This param is only effective when the User has privilege to view Storage Domain details of a tenant.
         :type include_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -790,12 +790,12 @@ class StorageDomainApi:
 
         _param = self._get_storage_domain_by_id_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             include_stats=include_stats,
             include_time_series_schema=include_time_series_schema,
             include_file_count_by_size=include_file_count_by_size,
             include_tenants=include_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -820,12 +820,12 @@ class StorageDomainApi:
     def get_storage_domain_by_id_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specified the Storage Domain id to fetch.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         include_stats: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain stats in response.")] = None,
         include_time_series_schema: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain time series schema in response.")] = None,
         include_file_count_by_size: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain file count by size.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domains that belong to Tenants. This param is only effective when the User has privilege to view Storage Domain details of a tenant.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -845,10 +845,6 @@ class StorageDomainApi:
 
         :param id: Specified the Storage Domain id to fetch. (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param include_stats: Whether to include Storage Domain stats in response.
         :type include_stats: bool
         :param include_time_series_schema: Whether to include Storage Domain time series schema in response.
@@ -857,6 +853,10 @@ class StorageDomainApi:
         :type include_file_count_by_size: bool
         :param include_tenants: Whether to include Storage Domains that belong to Tenants. This param is only effective when the User has privilege to view Storage Domain details of a tenant.
         :type include_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -881,12 +881,12 @@ class StorageDomainApi:
 
         _param = self._get_storage_domain_by_id_serialize(
             id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             include_stats=include_stats,
             include_time_series_schema=include_time_series_schema,
             include_file_count_by_size=include_file_count_by_size,
             include_tenants=include_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -906,12 +906,12 @@ class StorageDomainApi:
     def _get_storage_domain_by_id_serialize(
         self,
         id,
-        access_cluster_id,
-        region_id,
         include_stats,
         include_time_series_schema,
         include_file_count_by_size,
         include_tenants,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -996,8 +996,6 @@ class StorageDomainApi:
     @validate_call
     def get_storage_domains(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Storage Domain ids.")] = None,
         names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Storage Domain names.")] = None,
         cluster_partition_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of cluster partition ids.")] = None,
@@ -1006,8 +1004,10 @@ class StorageDomainApi:
         include_stats: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain stats in response.")] = None,
         include_time_series_schema: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain time series schema in response.")] = None,
         include_file_count_by_size: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain file count by size.")] = None,
-        match_partial_names: Annotated[Optional[StrictBool], Field(description="If true, the names in viewNames are matched by any partial rather than exactly matched.")] = None,
+        match_partial_names: Annotated[Optional[StrictBool], Field(description="If set to true, names in the 'names' parameter will be matched partially instead of exactly.")] = None,
         view_template_id: Annotated[Optional[StrictInt], Field(description="Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1025,10 +1025,6 @@ class StorageDomainApi:
 
         Get Storage Domains.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter by a list of Storage Domain ids.
         :type ids: List[int]
         :param names: Filter by a list of Storage Domain names.
@@ -1045,10 +1041,14 @@ class StorageDomainApi:
         :type include_time_series_schema: bool
         :param include_file_count_by_size: Whether to include Storage Domain file count by size.
         :type include_file_count_by_size: bool
-        :param match_partial_names: If true, the names in viewNames are matched by any partial rather than exactly matched.
+        :param match_partial_names: If set to true, names in the 'names' parameter will be matched partially instead of exactly.
         :type match_partial_names: bool
         :param view_template_id: Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended.
         :type view_template_id: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1072,8 +1072,6 @@ class StorageDomainApi:
         """ # noqa: E501
 
         _param = self._get_storage_domains_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             names=names,
             cluster_partition_ids=cluster_partition_ids,
@@ -1084,6 +1082,8 @@ class StorageDomainApi:
             include_file_count_by_size=include_file_count_by_size,
             match_partial_names=match_partial_names,
             view_template_id=view_template_id,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1107,8 +1107,6 @@ class StorageDomainApi:
     @validate_call
     def get_storage_domains_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Storage Domain ids.")] = None,
         names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Storage Domain names.")] = None,
         cluster_partition_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of cluster partition ids.")] = None,
@@ -1117,8 +1115,10 @@ class StorageDomainApi:
         include_stats: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain stats in response.")] = None,
         include_time_series_schema: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain time series schema in response.")] = None,
         include_file_count_by_size: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain file count by size.")] = None,
-        match_partial_names: Annotated[Optional[StrictBool], Field(description="If true, the names in viewNames are matched by any partial rather than exactly matched.")] = None,
+        match_partial_names: Annotated[Optional[StrictBool], Field(description="If set to true, names in the 'names' parameter will be matched partially instead of exactly.")] = None,
         view_template_id: Annotated[Optional[StrictInt], Field(description="Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1136,10 +1136,6 @@ class StorageDomainApi:
 
         Get Storage Domains.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter by a list of Storage Domain ids.
         :type ids: List[int]
         :param names: Filter by a list of Storage Domain names.
@@ -1156,10 +1152,14 @@ class StorageDomainApi:
         :type include_time_series_schema: bool
         :param include_file_count_by_size: Whether to include Storage Domain file count by size.
         :type include_file_count_by_size: bool
-        :param match_partial_names: If true, the names in viewNames are matched by any partial rather than exactly matched.
+        :param match_partial_names: If set to true, names in the 'names' parameter will be matched partially instead of exactly.
         :type match_partial_names: bool
         :param view_template_id: Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended.
         :type view_template_id: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1183,8 +1183,6 @@ class StorageDomainApi:
         """ # noqa: E501
 
         _param = self._get_storage_domains_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             names=names,
             cluster_partition_ids=cluster_partition_ids,
@@ -1195,6 +1193,8 @@ class StorageDomainApi:
             include_file_count_by_size=include_file_count_by_size,
             match_partial_names=match_partial_names,
             view_template_id=view_template_id,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1218,8 +1218,6 @@ class StorageDomainApi:
     @validate_call
     def get_storage_domains_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Storage Domain ids.")] = None,
         names: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of Storage Domain names.")] = None,
         cluster_partition_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of cluster partition ids.")] = None,
@@ -1228,8 +1226,10 @@ class StorageDomainApi:
         include_stats: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain stats in response.")] = None,
         include_time_series_schema: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain time series schema in response.")] = None,
         include_file_count_by_size: Annotated[Optional[StrictBool], Field(description="Whether to include Storage Domain file count by size.")] = None,
-        match_partial_names: Annotated[Optional[StrictBool], Field(description="If true, the names in viewNames are matched by any partial rather than exactly matched.")] = None,
+        match_partial_names: Annotated[Optional[StrictBool], Field(description="If set to true, names in the 'names' parameter will be matched partially instead of exactly.")] = None,
         view_template_id: Annotated[Optional[StrictInt], Field(description="Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1247,10 +1247,6 @@ class StorageDomainApi:
 
         Get Storage Domains.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter by a list of Storage Domain ids.
         :type ids: List[int]
         :param names: Filter by a list of Storage Domain names.
@@ -1267,10 +1263,14 @@ class StorageDomainApi:
         :type include_time_series_schema: bool
         :param include_file_count_by_size: Whether to include Storage Domain file count by size.
         :type include_file_count_by_size: bool
-        :param match_partial_names: If true, the names in viewNames are matched by any partial rather than exactly matched.
+        :param match_partial_names: If set to true, names in the 'names' parameter will be matched partially instead of exactly.
         :type match_partial_names: bool
         :param view_template_id: Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended.
         :type view_template_id: int
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1294,8 +1294,6 @@ class StorageDomainApi:
         """ # noqa: E501
 
         _param = self._get_storage_domains_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             names=names,
             cluster_partition_ids=cluster_partition_ids,
@@ -1306,6 +1304,8 @@ class StorageDomainApi:
             include_file_count_by_size=include_file_count_by_size,
             match_partial_names=match_partial_names,
             view_template_id=view_template_id,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1324,8 +1324,6 @@ class StorageDomainApi:
 
     def _get_storage_domains_serialize(
         self,
-        access_cluster_id,
-        region_id,
         ids,
         names,
         cluster_partition_ids,
@@ -1336,6 +1334,8 @@ class StorageDomainApi:
         include_file_count_by_size,
         match_partial_names,
         view_template_id,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1448,8 +1448,8 @@ class StorageDomainApi:
         self,
         id: Annotated[StrictInt, Field(description="Specified the Storage Domain id to update.")],
         body: Annotated[UpdateStorageDomainParam, Field(description="Specified the request to update a Storage Domain.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1471,9 +1471,9 @@ class StorageDomainApi:
         :type id: int
         :param body: Specified the request to update a Storage Domain. (required)
         :type body: UpdateStorageDomainParam
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1527,8 +1527,8 @@ class StorageDomainApi:
         self,
         id: Annotated[StrictInt, Field(description="Specified the Storage Domain id to update.")],
         body: Annotated[UpdateStorageDomainParam, Field(description="Specified the request to update a Storage Domain.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1550,9 +1550,9 @@ class StorageDomainApi:
         :type id: int
         :param body: Specified the request to update a Storage Domain. (required)
         :type body: UpdateStorageDomainParam
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1606,8 +1606,8 @@ class StorageDomainApi:
         self,
         id: Annotated[StrictInt, Field(description="Specified the Storage Domain id to update.")],
         body: Annotated[UpdateStorageDomainParam, Field(description="Specified the request to update a Storage Domain.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1629,9 +1629,9 @@ class StorageDomainApi:
         :type id: int
         :param body: Specified the request to update a Storage Domain. (required)
         :type body: UpdateStorageDomainParam
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

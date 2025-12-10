@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Set
 from typing_extensions import Self
 
@@ -26,9 +27,9 @@ class QuotaPolicy(BaseModel):
     """
     Specifies a quota limit that can be optionally applied to Views and Storage Domains. At the View level, this quota defines a logical limit for usage on the View. At the Storage Domain level, this quota defines a physical limit or a default logical View limit. If a physical quota is specified for Storage Domain, this quota defines a physical limit for the usage on the Storage Domain. If a default logical View quota is specified for Storage Domain, this limit is inherited by all the Views in that Storage Domain. However, this inherited quota can be overwritten at the View level. A new write is not allowed if the resource will exceed the specified quota. However, it takes time for the Cohesity Cluster to calculate the usage across Nodes, so the limit may be exceeded by a small amount. In addition, if the limit is increased or data is removed, there may be a delay before the Cohesity Cluster allows more data to be written to the resource, as the Cluster calculates the usage across Nodes.
     """ # noqa: E501
-    alert_limit_bytes: Optional[StrictInt] = Field(default=None, description="Specifies if an alert should be triggered when the usage of this resource exceeds this quota limit. This limit is optional and is specified in bytes. If no value is specified, there is no limit.", alias="alertLimitBytes")
-    alert_threshold_percentage: Optional[StrictInt] = Field(default=None, description="Supported only for user quota policy. Specifies when the usage goes above an alert threshold percentage which is: HardLimitBytes * AlertThresholdPercentage, eg: 80% of HardLimitBytes Can only be set if HardLimitBytes is set. Cannot be set if AlertLimitBytes is already set.", alias="alertThresholdPercentage")
-    hard_limit_bytes: Optional[StrictInt] = Field(default=None, description="Specifies an optional quota limit on the usage allowed for this resource. This limit is specified in bytes. If no value is specified, there is no limit.", alias="hardLimitBytes")
+    alert_limit_bytes: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(default=None, description="Specifies if an alert should be triggered when the usage of this resource exceeds this quota limit. This limit is optional and is specified in bytes. If no value is specified, there is no limit.", alias="alertLimitBytes")
+    alert_threshold_percentage: Optional[Annotated[int, Field(le=100, strict=True, ge=0)]] = Field(default=None, description="Supported only for user quota policy. Specifies when the usage goes above an alert threshold percentage which is: HardLimitBytes * AlertThresholdPercentage, eg: 80% of HardLimitBytes Can only be set if HardLimitBytes is set. Cannot be set if AlertLimitBytes is already set.", alias="alertThresholdPercentage")
+    hard_limit_bytes: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(default=None, description="Specifies an optional quota limit on the usage allowed for this resource. This limit is specified in bytes. If no value is specified, there is no limit.", alias="hardLimitBytes")
     __properties: ClassVar[List[str]] = ["alertLimitBytes", "alertThresholdPercentage", "hardLimitBytes"]
 
     model_config = ConfigDict(

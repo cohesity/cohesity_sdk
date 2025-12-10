@@ -7,6 +7,7 @@ Specifies a file or folder to download.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **absolute_path** | **str** | Specifies the absolute path of the file or folder. | 
+**document_params** | [**AdditionalDocumentInfo**](AdditionalDocumentInfo.md) |  | [optional] 
 **is_directory** | **bool** | Specifies whether the file or folder object is a directory. | [optional] 
 
 ## Example

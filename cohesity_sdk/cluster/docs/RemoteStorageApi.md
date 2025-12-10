@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 Delete Remote Storage Registration
 
-Delete remote storage registration.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete remote storage registration.
 
 ### Example
 
@@ -107,7 +107,7 @@ void (empty response body)
 
 Get Registered Remote Storage Servers List
 
-Get summary about list of registered remote storage servers.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>Get summary about list of registered remote storage servers.
 
 ### Example
 
@@ -197,7 +197,7 @@ This endpoint does not need any parameter.
 
 Get remote storage details
 
-Get details of remote storage given by id.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>Get details of remote storage given by id.
 
 ### Example
 
@@ -297,7 +297,7 @@ Name | Type | Description  | Notes
 
 Register Remote Storage
 
-Register a remote storage to be used for disaggregated storage.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Register a remote storage to be used for disaggregated storage.
 
 ### Example
 
@@ -391,7 +391,7 @@ Name | Type | Description  | Notes
 
 Update Remote Storage Config
 
-Update Registered Remote Storage Config.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Update Registered Remote Storage Config.
 
 ### Example
 

@@ -65,7 +65,7 @@ class TenantApi:
     ) -> TenantAssignments:
         """Update assginment of properties for a tenant.
 
-        Assign/Unassign properties like storage domain, entities, policies etc. to the tenant. The API expects a list of all the assignments (policies etc.) that are supposed to be associated to the Tenant. The list of assignments passed get assigned to the Tenant and anything else that was already assigned gets unassigned. In case a few objects fail the assignment and some objects get assigned, error is returned for all assignments except for policies.
+        ```Unknown Privileges``` <br><br>Assign/Unassign properties like storage domain, entities, policies etc. to the tenant. The API expects a list of all the assignments (policies etc.) that are supposed to be associated to the Tenant. The list of assignments passed get assigned to the Tenant and anything else that was already assigned gets unassigned. In case a few objects fail the assignment and some objects get assigned, error is returned for all assignments except for policies.
 
         :param id: The Tenant id. (required)
         :type id: str
@@ -136,7 +136,7 @@ class TenantApi:
     ) -> ApiResponse[TenantAssignments]:
         """Update assginment of properties for a tenant.
 
-        Assign/Unassign properties like storage domain, entities, policies etc. to the tenant. The API expects a list of all the assignments (policies etc.) that are supposed to be associated to the Tenant. The list of assignments passed get assigned to the Tenant and anything else that was already assigned gets unassigned. In case a few objects fail the assignment and some objects get assigned, error is returned for all assignments except for policies.
+        ```Unknown Privileges``` <br><br>Assign/Unassign properties like storage domain, entities, policies etc. to the tenant. The API expects a list of all the assignments (policies etc.) that are supposed to be associated to the Tenant. The list of assignments passed get assigned to the Tenant and anything else that was already assigned gets unassigned. In case a few objects fail the assignment and some objects get assigned, error is returned for all assignments except for policies.
 
         :param id: The Tenant id. (required)
         :type id: str
@@ -207,7 +207,7 @@ class TenantApi:
     ) -> RESTResponseType:
         """Update assginment of properties for a tenant.
 
-        Assign/Unassign properties like storage domain, entities, policies etc. to the tenant. The API expects a list of all the assignments (policies etc.) that are supposed to be associated to the Tenant. The list of assignments passed get assigned to the Tenant and anything else that was already assigned gets unassigned. In case a few objects fail the assignment and some objects get assigned, error is returned for all assignments except for policies.
+        ```Unknown Privileges``` <br><br>Assign/Unassign properties like storage domain, entities, policies etc. to the tenant. The API expects a list of all the assignments (policies etc.) that are supposed to be associated to the Tenant. The list of assignments passed get assigned to the Tenant and anything else that was already assigned gets unassigned. In case a few objects fail the assignment and some objects get assigned, error is returned for all assignments except for policies.
 
         :param id: The Tenant id. (required)
         :type id: str
@@ -355,6 +355,7 @@ class TenantApi:
     ) -> TenantInfo:
         """Create a new Tenant.
 
+        **Privileges:** ```ORGANIZATION_MODIFY``` <br><br>
 
         :param body: (required)
         :type body: CreateTenantRequest
@@ -421,6 +422,7 @@ class TenantApi:
     ) -> ApiResponse[TenantInfo]:
         """Create a new Tenant.
 
+        **Privileges:** ```ORGANIZATION_MODIFY``` <br><br>
 
         :param body: (required)
         :type body: CreateTenantRequest
@@ -487,6 +489,7 @@ class TenantApi:
     ) -> RESTResponseType:
         """Create a new Tenant.
 
+        **Privileges:** ```ORGANIZATION_MODIFY``` <br><br>
 
         :param body: (required)
         :type body: CreateTenantRequest
@@ -628,6 +631,7 @@ class TenantApi:
     ) -> None:
         """Delete Tenant with given ID.
 
+        ```Unknown Privileges``` <br><br>
 
         :param id: The Tenant id. (required)
         :type id: str
@@ -694,6 +698,7 @@ class TenantApi:
     ) -> ApiResponse[None]:
         """Delete Tenant with given ID.
 
+        ```Unknown Privileges``` <br><br>
 
         :param id: The Tenant id. (required)
         :type id: str
@@ -760,6 +765,7 @@ class TenantApi:
     ) -> RESTResponseType:
         """Delete Tenant with given ID.
 
+        ```Unknown Privileges``` <br><br>
 
         :param id: The Tenant id. (required)
         :type id: str
@@ -888,7 +894,7 @@ class TenantApi:
     ) -> TenantAssignmentProperties:
         """Get tenant assignments.
 
-        Get all assigned properties like storage domain, entities, policies, objects, views etc for a given tenant.
+        ```Unknown Privileges``` <br><br>Get all assigned properties like storage domain, entities, policies, objects, views etc for a given tenant.
 
         :param id: The Tenant id. (required)
         :type id: str
@@ -955,7 +961,7 @@ class TenantApi:
     ) -> ApiResponse[TenantAssignmentProperties]:
         """Get tenant assignments.
 
-        Get all assigned properties like storage domain, entities, policies, objects, views etc for a given tenant.
+        ```Unknown Privileges``` <br><br>Get all assigned properties like storage domain, entities, policies, objects, views etc for a given tenant.
 
         :param id: The Tenant id. (required)
         :type id: str
@@ -1022,7 +1028,7 @@ class TenantApi:
     ) -> RESTResponseType:
         """Get tenant assignments.
 
-        Get all assigned properties like storage domain, entities, policies, objects, views etc for a given tenant.
+        ```Unknown Privileges``` <br><br>Get all assigned properties like storage domain, entities, policies, objects, views etc for a given tenant.
 
         :param id: The Tenant id. (required)
         :type id: str
@@ -1150,7 +1156,7 @@ class TenantApi:
     ) -> OnPremTenantConfig:
         """Get Tenants Config.
 
-        Get Tenant related configurations for the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get Tenant related configurations for the cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1213,7 +1219,7 @@ class TenantApi:
     ) -> ApiResponse[OnPremTenantConfig]:
         """Get Tenants Config.
 
-        Get Tenant related configurations for the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get Tenant related configurations for the cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1276,7 +1282,7 @@ class TenantApi:
     ) -> RESTResponseType:
         """Get Tenants Config.
 
-        Get Tenant related configurations for the cluster.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Get Tenant related configurations for the cluster.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1381,266 +1387,6 @@ class TenantApi:
 
 
     @validate_call
-    def get_tenant_by_id(
-        self,
-        id: Annotated[str, Field(strict=True, description="The Tenant id.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> TenantInfo:
-        """Get Tenant by ID.
-
-
-        :param id: The Tenant id. (required)
-        :type id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_tenant_by_id_serialize(
-            id=id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TenantInfo",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_tenant_by_id_with_http_info(
-        self,
-        id: Annotated[str, Field(strict=True, description="The Tenant id.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[TenantInfo]:
-        """Get Tenant by ID.
-
-
-        :param id: The Tenant id. (required)
-        :type id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_tenant_by_id_serialize(
-            id=id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TenantInfo",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_tenant_by_id_without_preload_content(
-        self,
-        id: Annotated[str, Field(strict=True, description="The Tenant id.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Get Tenant by ID.
-
-
-        :param id: The Tenant id. (required)
-        :type id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_tenant_by_id_serialize(
-            id=id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TenantInfo",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_tenant_by_id_serialize(
-        self,
-        id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if id is not None:
-            _path_params['id'] = id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'APIKeyHeader', 
-            'SessionIdHeader', 
-            'Bearer'
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/tenants/{id}',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
     def get_tenant_swift(
         self,
         tenant_id: Annotated[Optional[StrictStr], Field(description="Specifies the tenant Id.")] = None,
@@ -1659,7 +1405,7 @@ class TenantApi:
     ) -> SwiftParams:
         """Get a Swift configuration.
 
-        Get a Swift configuration.
+        **Privileges:** ```KEYSTONE_VIEW``` <br><br>Get a Swift configuration.
 
         :param tenant_id: Specifies the tenant Id.
         :type tenant_id: str
@@ -1726,7 +1472,7 @@ class TenantApi:
     ) -> ApiResponse[SwiftParams]:
         """Get a Swift configuration.
 
-        Get a Swift configuration.
+        **Privileges:** ```KEYSTONE_VIEW``` <br><br>Get a Swift configuration.
 
         :param tenant_id: Specifies the tenant Id.
         :type tenant_id: str
@@ -1793,7 +1539,7 @@ class TenantApi:
     ) -> RESTResponseType:
         """Get a Swift configuration.
 
-        Get a Swift configuration.
+        **Privileges:** ```KEYSTONE_VIEW``` <br><br>Get a Swift configuration.
 
         :param tenant_id: Specifies the tenant Id.
         :type tenant_id: str
@@ -1910,6 +1656,8 @@ class TenantApi:
         self,
         ids: Annotated[Optional[List[Optional[StrictStr]]], Field(description="List of tenantIds to filter.")] = None,
         statuses: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by current status of tenant. If left blank, only active and inactive tenants are returned.")] = None,
+        liveness_modes: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by liveness modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.")] = None,
+        ownership_modes: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by ownership modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1925,11 +1673,16 @@ class TenantApi:
     ) -> List[TenantInfo]:
         """Get a list of Tenants.
 
+        **Privileges:** ```ORGANIZATION_VIEW``` <br><br>
 
         :param ids: List of tenantIds to filter.
         :type ids: List[Optional[str]]
         :param statuses: Filter by current status of tenant. If left blank, only active and inactive tenants are returned.
         :type statuses: List[Optional[str]]
+        :param liveness_modes: Filter by liveness modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.
+        :type liveness_modes: List[Optional[str]]
+        :param ownership_modes: Filter by ownership modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.
+        :type ownership_modes: List[Optional[str]]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1955,6 +1708,8 @@ class TenantApi:
         _param = self._list_tenants_serialize(
             ids=ids,
             statuses=statuses,
+            liveness_modes=liveness_modes,
+            ownership_modes=ownership_modes,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1980,6 +1735,8 @@ class TenantApi:
         self,
         ids: Annotated[Optional[List[Optional[StrictStr]]], Field(description="List of tenantIds to filter.")] = None,
         statuses: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by current status of tenant. If left blank, only active and inactive tenants are returned.")] = None,
+        liveness_modes: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by liveness modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.")] = None,
+        ownership_modes: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by ownership modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1995,11 +1752,16 @@ class TenantApi:
     ) -> ApiResponse[List[TenantInfo]]:
         """Get a list of Tenants.
 
+        **Privileges:** ```ORGANIZATION_VIEW``` <br><br>
 
         :param ids: List of tenantIds to filter.
         :type ids: List[Optional[str]]
         :param statuses: Filter by current status of tenant. If left blank, only active and inactive tenants are returned.
         :type statuses: List[Optional[str]]
+        :param liveness_modes: Filter by liveness modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.
+        :type liveness_modes: List[Optional[str]]
+        :param ownership_modes: Filter by ownership modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.
+        :type ownership_modes: List[Optional[str]]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2025,6 +1787,8 @@ class TenantApi:
         _param = self._list_tenants_serialize(
             ids=ids,
             statuses=statuses,
+            liveness_modes=liveness_modes,
+            ownership_modes=ownership_modes,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2050,6 +1814,8 @@ class TenantApi:
         self,
         ids: Annotated[Optional[List[Optional[StrictStr]]], Field(description="List of tenantIds to filter.")] = None,
         statuses: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by current status of tenant. If left blank, only active and inactive tenants are returned.")] = None,
+        liveness_modes: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by liveness modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.")] = None,
+        ownership_modes: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by ownership modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2065,11 +1831,16 @@ class TenantApi:
     ) -> RESTResponseType:
         """Get a list of Tenants.
 
+        **Privileges:** ```ORGANIZATION_VIEW``` <br><br>
 
         :param ids: List of tenantIds to filter.
         :type ids: List[Optional[str]]
         :param statuses: Filter by current status of tenant. If left blank, only active and inactive tenants are returned.
         :type statuses: List[Optional[str]]
+        :param liveness_modes: Filter by liveness modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.
+        :type liveness_modes: List[Optional[str]]
+        :param ownership_modes: Filter by ownership modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.
+        :type ownership_modes: List[Optional[str]]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2095,6 +1866,8 @@ class TenantApi:
         _param = self._list_tenants_serialize(
             ids=ids,
             statuses=statuses,
+            liveness_modes=liveness_modes,
+            ownership_modes=ownership_modes,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2115,6 +1888,8 @@ class TenantApi:
         self,
         ids,
         statuses,
+        liveness_modes,
+        ownership_modes,
         _request_auth,
         _content_type,
         _headers,
@@ -2126,6 +1901,8 @@ class TenantApi:
         _collection_formats: Dict[str, str] = {
             'ids': 'csv',
             'statuses': 'csv',
+            'livenessModes': 'csv',
+            'ownershipModes': 'csv',
         }
 
         _path_params: Dict[str, str] = {}
@@ -2146,6 +1923,14 @@ class TenantApi:
         if statuses is not None:
             
             _query_params.append(('statuses', statuses))
+            
+        if liveness_modes is not None:
+            
+            _query_params.append(('livenessModes', liveness_modes))
+            
+        if ownership_modes is not None:
+            
+            _query_params.append(('ownershipModes', ownership_modes))
             
         # process the header parameters
         # process the form parameters
@@ -2206,7 +1991,7 @@ class TenantApi:
     ) -> TenantInfo:
         """Perform actions on a Tenant.
 
-        Perform actions like activate and deactivate on a given Tenant.
+        ```Unknown Privileges``` <br><br>Perform actions like activate and deactivate on a given Tenant.
 
         :param id: The Tenant id. (required)
         :type id: str
@@ -2277,7 +2062,7 @@ class TenantApi:
     ) -> ApiResponse[TenantInfo]:
         """Perform actions on a Tenant.
 
-        Perform actions like activate and deactivate on a given Tenant.
+        ```Unknown Privileges``` <br><br>Perform actions like activate and deactivate on a given Tenant.
 
         :param id: The Tenant id. (required)
         :type id: str
@@ -2348,7 +2133,7 @@ class TenantApi:
     ) -> RESTResponseType:
         """Perform actions on a Tenant.
 
-        Perform actions like activate and deactivate on a given Tenant.
+        ```Unknown Privileges``` <br><br>Perform actions like activate and deactivate on a given Tenant.
 
         :param id: The Tenant id. (required)
         :type id: str
@@ -2496,7 +2281,7 @@ class TenantApi:
     ) -> None:
         """Register Swift service on a Keystone server.
 
-        Register Swift service on Keystone server.
+        **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Register Swift service on Keystone server.
 
         :param body: Specifies the parameters to register a Swift service on Keystone server. (required)
         :type body: RegisterSwiftParams
@@ -2563,7 +2348,7 @@ class TenantApi:
     ) -> ApiResponse[None]:
         """Register Swift service on a Keystone server.
 
-        Register Swift service on Keystone server.
+        **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Register Swift service on Keystone server.
 
         :param body: Specifies the parameters to register a Swift service on Keystone server. (required)
         :type body: RegisterSwiftParams
@@ -2630,7 +2415,7 @@ class TenantApi:
     ) -> RESTResponseType:
         """Register Swift service on a Keystone server.
 
-        Register Swift service on Keystone server.
+        **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Register Swift service on Keystone server.
 
         :param body: Specifies the parameters to register a Swift service on Keystone server. (required)
         :type body: RegisterSwiftParams
@@ -2772,7 +2557,7 @@ class TenantApi:
     ) -> None:
         """Unregister Swift service from a Keystone server.
 
-        Unregister Swift service from Keystone server.
+        **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Unregister Swift service from Keystone server.
 
         :param body: Specifies the parameters to unregister a Swift service from Keystone server. (required)
         :type body: UnregisterSwiftParams
@@ -2839,7 +2624,7 @@ class TenantApi:
     ) -> ApiResponse[None]:
         """Unregister Swift service from a Keystone server.
 
-        Unregister Swift service from Keystone server.
+        **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Unregister Swift service from Keystone server.
 
         :param body: Specifies the parameters to unregister a Swift service from Keystone server. (required)
         :type body: UnregisterSwiftParams
@@ -2906,7 +2691,7 @@ class TenantApi:
     ) -> RESTResponseType:
         """Unregister Swift service from a Keystone server.
 
-        Unregister Swift service from Keystone server.
+        **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Unregister Swift service from Keystone server.
 
         :param body: Specifies the parameters to unregister a Swift service from Keystone server. (required)
         :type body: UnregisterSwiftParams
@@ -3048,7 +2833,7 @@ class TenantApi:
     ) -> OnPremTenantConfig:
         """Update Tenants Config.
 
-        Update Tenant related configurations for the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update Tenant related configurations for the cluster.
 
         :param body: (required)
         :type body: OnPremTenantConfig
@@ -3115,7 +2900,7 @@ class TenantApi:
     ) -> ApiResponse[OnPremTenantConfig]:
         """Update Tenants Config.
 
-        Update Tenant related configurations for the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update Tenant related configurations for the cluster.
 
         :param body: (required)
         :type body: OnPremTenantConfig
@@ -3182,7 +2967,7 @@ class TenantApi:
     ) -> RESTResponseType:
         """Update Tenants Config.
 
-        Update Tenant related configurations for the cluster.
+        **Privileges:** ```CLUSTER_MODIFY``` <br><br>Update Tenant related configurations for the cluster.
 
         :param body: (required)
         :type body: OnPremTenantConfig
@@ -3325,7 +3110,7 @@ class TenantApi:
     ) -> TenantInfo:
         """Update Tenant.
 
-        Update Tenant's properties.
+        ```Unknown Privileges``` <br><br>Update Tenant's properties.
 
         :param id: (required)
         :type id: str
@@ -3396,7 +3181,7 @@ class TenantApi:
     ) -> ApiResponse[TenantInfo]:
         """Update Tenant.
 
-        Update Tenant's properties.
+        ```Unknown Privileges``` <br><br>Update Tenant's properties.
 
         :param id: (required)
         :type id: str
@@ -3467,7 +3252,7 @@ class TenantApi:
     ) -> RESTResponseType:
         """Update Tenant.
 
-        Update Tenant's properties.
+        ```Unknown Privileges``` <br><br>Update Tenant's properties.
 
         :param id: (required)
         :type id: str
@@ -3615,7 +3400,7 @@ class TenantApi:
     ) -> SwiftParams:
         """Update a Swift configuration.
 
-        Update a Swift configuration.
+        **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Update a Swift configuration.
 
         :param body: Specifies the parameters to update a Swift configuration. (required)
         :type body: SwiftParams
@@ -3682,7 +3467,7 @@ class TenantApi:
     ) -> ApiResponse[SwiftParams]:
         """Update a Swift configuration.
 
-        Update a Swift configuration.
+        **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Update a Swift configuration.
 
         :param body: Specifies the parameters to update a Swift configuration. (required)
         :type body: SwiftParams
@@ -3749,7 +3534,7 @@ class TenantApi:
     ) -> RESTResponseType:
         """Update a Swift configuration.
 
-        Update a Swift configuration.
+        **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Update a Swift configuration.
 
         :param body: Specifies the parameters to update a Swift configuration. (required)
         :type body: SwiftParams

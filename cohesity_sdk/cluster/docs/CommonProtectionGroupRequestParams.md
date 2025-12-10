@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **last_modified_timestamp_usecs** | **int** | Specifies the last time this protection group was updated. If this is passed into a PUT request, then the backend will validate that the timestamp passed in matches the time that the protection group was actually last modified. If the two timestamps do not match, then the request will be rejected with a stale error. | [optional] 
 **name** | **str** | Specifies the name of the Protection Group. | 
 **pause_in_blackouts** | **bool** | Specifies whether currently executing jobs should be paused if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if &#39;abortInBlackouts&#39; is sent as true. | [optional] 
+**paused_note** | **str** | A note from the current user explaining the reason for pausing future runs, if applicable. | [optional] 
 **policy_id** | **str** | Specifies the unique id of the Protection Policy associated with the Protection Group. The Policy provides retry settings Protection Schedules, Priority, SLA, etc. | 
 **priority** | **str** | Specifies the priority of the Protection Group. | [optional] 
 **qos_policy** | **str** | Specifies whether the Protection Group will be written to HDD or SSD. | [optional] 

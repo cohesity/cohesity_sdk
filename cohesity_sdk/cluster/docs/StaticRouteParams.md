@@ -6,6 +6,7 @@ Specifies the static route parameters.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**adv_mss** | **int** | Specifies AdvMss setting per route. | [optional] 
 **description** | **str** | Specifies a description of the Static Route. | [optional] 
 **destination_network** | **str** | Specifies the destination network of the Static Route. | 
 **id** | **str** | Specifies the unique identifier for the route. | [optional] [readonly] 

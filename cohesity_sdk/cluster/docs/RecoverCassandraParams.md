@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **restart_immediately** | **bool** | Specifies whether to restart Cassandra services immediately after the point in time recovery. | [optional] 
 **restart_services** | **bool** | Specifies whether to restart Cassandra services after the point in time recovery. | [optional] 
 **restart_services_task_id** | **int** | Specifies the Id of the task required to restart Cassandra services. | [optional] [readonly] 
+**run_pre_checks** | **bool** | Specifies Whether to run checks before the recovery. E.x if there is sufficient space in the destination cluster for the recovery to succeed. | [optional] 
 **selected_data_centers** | **List[str]** | Selected Data centers for this cluster. | [optional] 
 **snapshots** | [**List[RecoverCassandraSnapshotParams]**](RecoverCassandraSnapshotParams.md) | Specifies the local snapshot ids and other details of the Objects to be recovered. | 
 **staging_directory_list** | **List[str]** | Specifies the directory on the primary to copy the files which are to be uploaded using destination sstableloader. | [optional] 

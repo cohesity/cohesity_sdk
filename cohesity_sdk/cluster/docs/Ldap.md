@@ -6,7 +6,6 @@ Specifies an LDAP.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**active_directory_id** | **int** | Specifies the Active Directory id which is mapped to this LDAP. | [optional] 
 **ad_domain_name** | **str** | Specifies the domain name of an Active Directory which is mapped to this LDAP provider | [optional] 
 **attribute_common_name** | **str** | Specifies name of the LDAP attribute used for common name of an object. | [optional] 
 **attribute_gid** | **str** | Specifies name of the attribute used to lookup unix GID of an LDAP user. | [optional] 

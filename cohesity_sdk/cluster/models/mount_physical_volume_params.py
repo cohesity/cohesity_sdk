@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.cluster.models.mount_user_creds import MountUserCreds
 from cohesity_sdk.cluster.models.physical_target_params_for_mount_volume import PhysicalTargetParamsForMountVolume
 from typing import Set
 from typing_extensions import Self
@@ -27,9 +28,10 @@ class MountPhysicalVolumeParams(BaseModel):
     """
     Specifies the parameters to Mount Physical Volumes.
     """ # noqa: E501
+    mount_credentials: Optional[MountUserCreds] = Field(default=None, alias="mountCredentials")
     physical_target_params: Optional[PhysicalTargetParamsForMountVolume] = Field(default=None, alias="physicalTargetParams")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
-    __properties: ClassVar[List[str]] = ["physicalTargetParams", "targetEnvironment"]
+    __properties: ClassVar[List[str]] = ["mountCredentials", "physicalTargetParams", "targetEnvironment"]
 
     @field_validator('target_environment')
     def target_environment_validate_enum(cls, value):
@@ -77,6 +79,9 @@ class MountPhysicalVolumeParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of mount_credentials
+        if self.mount_credentials:
+            _dict['mountCredentials'] = self.mount_credentials.to_dict()
         # override the default output from pydantic by calling `to_dict()` of physical_target_params
         if self.physical_target_params:
             _dict['physicalTargetParams'] = self.physical_target_params.to_dict()
@@ -92,6 +97,7 @@ class MountPhysicalVolumeParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "mountCredentials": MountUserCreds.from_dict(obj["mountCredentials"]) if obj.get("mountCredentials") is not None else None,
             "physicalTargetParams": PhysicalTargetParamsForMountVolume.from_dict(obj["physicalTargetParams"]) if obj.get("physicalTargetParams") is not None else None,
             "targetEnvironment": obj.get("targetEnvironment")
         })

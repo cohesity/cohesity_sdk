@@ -38,8 +38,8 @@ class NetappObjectParams(BaseModel):
             return value
 
         for i in value:
-            if i not in set(['kNfs', 'kCifs', 'kIscsi', 'kFc', 'kFcache', 'kHttp', 'kNdmp', 'kManagement', 'kNvme']):
-                raise ValueError("each list item must be one of ('kNfs', 'kCifs', 'kIscsi', 'kFc', 'kFcache', 'kHttp', 'kNdmp', 'kManagement', 'kNvme')")
+            if i not in set(['kNfs', 'kCifs', 'kIscsi', 'kFc', 'kFcache', 'kHttp', 'kNdmp', 'kManagement', 'kNvme', 'kNfs4_1']):
+                raise ValueError("each list item must be one of ('kNfs', 'kCifs', 'kIscsi', 'kFc', 'kFcache', 'kHttp', 'kNdmp', 'kManagement', 'kNvme', 'kNfs4_1')")
         return value
 
     @field_validator('volume_extended_style')

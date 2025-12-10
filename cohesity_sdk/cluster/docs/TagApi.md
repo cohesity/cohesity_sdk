@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 Create a Tag
 
-Creates a Tag.
+**Privileges:** ```TAGS_MODIFY``` <br><br>Creates a Tag.
 
 ### Example
 
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 Delete a Tag
 
-Deletes a Tag by id.
+**Privileges:** ```TAGS_MODIFY``` <br><br>Deletes a Tag by id.
 
 ### Example
 
@@ -201,7 +201,7 @@ void (empty response body)
 
 Get Tag by id.
 
-Get Tag by id.
+**Privileges:** ```TAGS_VIEW``` <br><br>Get Tag by id.
 
 ### Example
 
@@ -295,7 +295,7 @@ Name | Type | Description  | Notes
 
 Get tags based on filters.
 
-If no parameters are specified, all tags are returned. Specifying parameters filters the results that are returned.
+**Privileges:** ```TAGS_VIEW``` <br><br>If no parameters are specified, all tags are returned. Specifying parameters filters the results that are returned.
 
 ### Example
 
@@ -399,7 +399,7 @@ Name | Type | Description  | Notes
 
 Update a Tag
 
-Updates a Tag by id.
+**Privileges:** ```TAGS_MODIFY``` <br><br>Updates a Tag by id.
 
 ### Example
 

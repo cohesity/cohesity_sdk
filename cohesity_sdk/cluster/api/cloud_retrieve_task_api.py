@@ -57,7 +57,7 @@ class CloudRetrieveTaskApi:
     ) -> CreateCloudRetrieveTaskRespBody:
         """Create a cloud retrieve task.
 
-        Create a cloud retrieve task.
+        ```Unknown Privileges``` <br><br>Create a cloud retrieve task.
 
         :param body: Specifies the parameters to create a cloud retrieve. (required)
         :type body: CreateCloudRetrieveTaskRequest
@@ -124,7 +124,7 @@ class CloudRetrieveTaskApi:
     ) -> ApiResponse[CreateCloudRetrieveTaskRespBody]:
         """Create a cloud retrieve task.
 
-        Create a cloud retrieve task.
+        ```Unknown Privileges``` <br><br>Create a cloud retrieve task.
 
         :param body: Specifies the parameters to create a cloud retrieve. (required)
         :type body: CreateCloudRetrieveTaskRequest
@@ -191,7 +191,7 @@ class CloudRetrieveTaskApi:
     ) -> RESTResponseType:
         """Create a cloud retrieve task.
 
-        Create a cloud retrieve task.
+        ```Unknown Privileges``` <br><br>Create a cloud retrieve task.
 
         :param body: Specifies the parameters to create a cloud retrieve. (required)
         :type body: CreateCloudRetrieveTaskRequest
@@ -333,7 +333,7 @@ class CloudRetrieveTaskApi:
     ) -> CloudRetrieveTask:
         """List details about the cloud retrieve task with the specific job id.
 
-        Returns the cloud retrieve task corresponding to the job id.
+        ```Unknown Privileges``` <br><br>Returns the cloud retrieve task corresponding to the job id.
 
         :param job_id: Specifies a job id of the cloud retrieve task. (required)
         :type job_id: int
@@ -400,7 +400,7 @@ class CloudRetrieveTaskApi:
     ) -> ApiResponse[CloudRetrieveTask]:
         """List details about the cloud retrieve task with the specific job id.
 
-        Returns the cloud retrieve task corresponding to the job id.
+        ```Unknown Privileges``` <br><br>Returns the cloud retrieve task corresponding to the job id.
 
         :param job_id: Specifies a job id of the cloud retrieve task. (required)
         :type job_id: int
@@ -467,7 +467,7 @@ class CloudRetrieveTaskApi:
     ) -> RESTResponseType:
         """List details about the cloud retrieve task with the specific job id.
 
-        Returns the cloud retrieve task corresponding to the job id.
+        ```Unknown Privileges``` <br><br>Returns the cloud retrieve task corresponding to the job id.
 
         :param job_id: Specifies a job id of the cloud retrieve task. (required)
         :type job_id: int
@@ -595,7 +595,7 @@ class CloudRetrieveTaskApi:
     ) -> CloudRetrieveTasks:
         """Get the list of cloud retrieve tasks.
 
-        Get the list of cloud retrieve tasks.
+        ```Unknown Privileges``` <br><br>Get the list of cloud retrieve tasks.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -658,7 +658,7 @@ class CloudRetrieveTaskApi:
     ) -> ApiResponse[CloudRetrieveTasks]:
         """Get the list of cloud retrieve tasks.
 
-        Get the list of cloud retrieve tasks.
+        ```Unknown Privileges``` <br><br>Get the list of cloud retrieve tasks.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -721,7 +721,7 @@ class CloudRetrieveTaskApi:
     ) -> RESTResponseType:
         """Get the list of cloud retrieve tasks.
 
-        Get the list of cloud retrieve tasks.
+        ```Unknown Privileges``` <br><br>Get the list of cloud retrieve tasks.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

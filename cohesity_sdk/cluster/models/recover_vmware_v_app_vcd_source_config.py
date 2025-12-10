@@ -23,6 +23,7 @@ from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.org_vdc_network import OrgVDCNetwork
 from cohesity_sdk.cluster.models.recover_vmware_vm_new_source_network_config import RecoverVmwareVmNewSourceNetworkConfig
 from cohesity_sdk.cluster.models.recovery_object_identifier import RecoveryObjectIdentifier
+from cohesity_sdk.cluster.models.vcd_policy_params import VcdPolicyParams
 from cohesity_sdk.cluster.models.vcd_storage_profile_params import VcdStorageProfileParams
 from typing import Set
 from typing_extensions import Self
@@ -34,10 +35,12 @@ class RecoverVmwareVAppVCDSourceConfig(BaseModel):
     datastores: Optional[Annotated[List[RecoveryObjectIdentifier], Field(max_length=1)]] = Field(default=None, description="Specifies the datastore objects where the object's files should be recovered to.")
     network_config: Optional[RecoverVmwareVmNewSourceNetworkConfig] = Field(default=None, alias="networkConfig")
     org_vdc_network: Optional[OrgVDCNetwork] = Field(default=None, alias="orgVdcNetwork")
+    placement_policy: Optional[VcdPolicyParams] = Field(default=None, alias="placementPolicy")
+    sizing_policy: Optional[VcdPolicyParams] = Field(default=None, alias="sizingPolicy")
     source: RecoveryObjectIdentifier
     storage_profile: Optional[VcdStorageProfileParams] = Field(default=None, alias="storageProfile")
     vdc: RecoveryObjectIdentifier
-    __properties: ClassVar[List[str]] = ["datastores", "networkConfig", "orgVdcNetwork", "source", "storageProfile", "vdc"]
+    __properties: ClassVar[List[str]] = ["datastores", "networkConfig", "orgVdcNetwork", "placementPolicy", "sizingPolicy", "source", "storageProfile", "vdc"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,6 +94,12 @@ class RecoverVmwareVAppVCDSourceConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of org_vdc_network
         if self.org_vdc_network:
             _dict['orgVdcNetwork'] = self.org_vdc_network.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of placement_policy
+        if self.placement_policy:
+            _dict['placementPolicy'] = self.placement_policy.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of sizing_policy
+        if self.sizing_policy:
+            _dict['sizingPolicy'] = self.sizing_policy.to_dict()
         # override the default output from pydantic by calling `to_dict()` of source
         if self.source:
             _dict['source'] = self.source.to_dict()
@@ -120,6 +129,8 @@ class RecoverVmwareVAppVCDSourceConfig(BaseModel):
             "datastores": [RecoveryObjectIdentifier.from_dict(_item) for _item in obj["datastores"]] if obj.get("datastores") is not None else None,
             "networkConfig": RecoverVmwareVmNewSourceNetworkConfig.from_dict(obj["networkConfig"]) if obj.get("networkConfig") is not None else None,
             "orgVdcNetwork": OrgVDCNetwork.from_dict(obj["orgVdcNetwork"]) if obj.get("orgVdcNetwork") is not None else None,
+            "placementPolicy": VcdPolicyParams.from_dict(obj["placementPolicy"]) if obj.get("placementPolicy") is not None else None,
+            "sizingPolicy": VcdPolicyParams.from_dict(obj["sizingPolicy"]) if obj.get("sizingPolicy") is not None else None,
             "source": RecoveryObjectIdentifier.from_dict(obj["source"]) if obj.get("source") is not None else None,
             "storageProfile": VcdStorageProfileParams.from_dict(obj["storageProfile"]) if obj.get("storageProfile") is not None else None,
             "vdc": RecoveryObjectIdentifier.from_dict(obj["vdc"]) if obj.get("vdc") is not None else None

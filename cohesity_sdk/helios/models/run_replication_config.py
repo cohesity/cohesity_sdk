@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.retention import Retention
 from typing import Set
@@ -28,8 +28,10 @@ class RunReplicationConfig(BaseModel):
     Specifies settings for copying Snapshots to Remote Clusters. This also specifies the retention policy that should be applied to Snapshots after they have been copied to the specified target.
     """ # noqa: E501
     id: Optional[StrictInt] = Field(description="Specifies id of Remote Cluster to copy the Snapshots to.")
+    object_ids: Optional[List[Optional[StrictStr]]] = Field(default=None, description="Specifies the list of object as string ids to be replicated by this Protection Group run. These can be leaf objects or non-leaf objects in the protection hierarchy. This must be specified only if a subset of objects from the Protection Group needs to be replicated.", alias="objectIds")
+    on_legal_hold: Optional[StrictBool] = Field(default=None, description="Specifies if the Run is on legal hold.", alias="onLegalHold")
     retention: Optional[Retention] = None
-    __properties: ClassVar[List[str]] = ["id", "retention"]
+    __properties: ClassVar[List[str]] = ["id", "objectIds", "onLegalHold", "retention"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,6 +80,16 @@ class RunReplicationConfig(BaseModel):
         if self.id is None and "id" in self.model_fields_set:
             _dict['id'] = None
 
+        # set to None if object_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.object_ids is None and "object_ids" in self.model_fields_set:
+            _dict['objectIds'] = None
+
+        # set to None if on_legal_hold (nullable) is None
+        # and model_fields_set contains the field
+        if self.on_legal_hold is None and "on_legal_hold" in self.model_fields_set:
+            _dict['onLegalHold'] = None
+
         return _dict
 
     @classmethod
@@ -91,6 +103,8 @@ class RunReplicationConfig(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
+            "objectIds": obj.get("objectIds"),
+            "onLegalHold": obj.get("onLegalHold"),
             "retention": Retention.from_dict(obj["retention"]) if obj.get("retention") is not None else None
         })
         return _obj

@@ -27,10 +27,8 @@ class LocalUserParams(BaseModel):
     Specifies properties for LOCAL cohesity user.
     """ # noqa: E501
     email: Optional[StrictStr] = Field(default=None, description="Specifies the email address of the User.")
-    groups: Optional[List[StrictStr]] = Field(default=None, description="Specifies additional groups the User may belong to.")
     password: Optional[StrictStr] = Field(default=None, description="Specifies the password of the User.")
-    primary_group: Optional[StrictStr] = Field(default=None, description="Specifies the primary group of the User. Primary group is used for file access.", alias="primaryGroup")
-    __properties: ClassVar[List[str]] = ["email", "groups", "password", "primaryGroup"]
+    __properties: ClassVar[List[str]] = ["email", "password"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -62,12 +60,8 @@ class LocalUserParams(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "groups",
-            "primary_group",
         ])
 
         _dict = self.model_dump(
@@ -85,11 +79,6 @@ class LocalUserParams(BaseModel):
         if self.password is None and "password" in self.model_fields_set:
             _dict['password'] = None
 
-        # set to None if primary_group (nullable) is None
-        # and model_fields_set contains the field
-        if self.primary_group is None and "primary_group" in self.model_fields_set:
-            _dict['primaryGroup'] = None
-
         return _dict
 
     @classmethod
@@ -103,9 +92,7 @@ class LocalUserParams(BaseModel):
 
         _obj = cls.model_validate({
             "email": obj.get("email"),
-            "groups": obj.get("groups"),
-            "password": obj.get("password"),
-            "primaryGroup": obj.get("primaryGroup")
+            "password": obj.get("password")
         })
         return _obj
 

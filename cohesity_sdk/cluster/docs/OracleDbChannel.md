@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **database_unique_name** | **str** | Specifies the unique Name of the database. | [optional] 
 **database_uuid** | **str** | Specifies the database unique id. This is an internal field and is filled by magneto master based on corresponding app entity id. | [optional] 
 **default_channel_count** | **int** | Specifies the default number of channels to use per node per database. This value is used on all Oracle Database Nodes unless databaseNodeList item&#39;s channelCount is specified for the node. Default value for the number of channels will be calculated as the minimum of number of nodes in Cohesity cluster and 2 * number of CPU on the host. If the number of channels is unspecified here and unspecified within databaseNodeList, the above formula will be used to determine the same. | [optional] 
+**dg_role_based_backup** | [**DgRoleBasedBackup**](DgRoleBasedBackup.md) |  | [optional] 
 **enable_dg_primary_backup** | **bool** | Specifies whether the database having the Primary role within Data Guard configuration is to be backed up. | [optional] 
 **max_host_count** | **int** | Specifies the maximum number of hosts from which backup/restore is allowed in parallel. This will be less than or equal to the number of databaseNode specified within databaseNodeList. | [optional] 
 **rman_backup_type** | **str** | Specifies the type of Oracle RMAN backup requested | [optional] 

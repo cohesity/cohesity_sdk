@@ -27,11 +27,9 @@ class LocalUserUpdateParams(BaseModel):
     Specifies properties for LOCAL cohesity user which are updatable.
     """ # noqa: E501
     email: Optional[StrictStr] = Field(default=None, description="Specifies the email address of the User.")
-    groups: Optional[List[StrictStr]] = Field(default=None, description="Specifies additional groups the User may belong to.")
     password: Optional[StrictStr] = Field(default=None, description="Specifies the password of the User.")
-    primary_group: Optional[StrictStr] = Field(default=None, description="Specifies the primary group of the User. Primary group is used for file access.", alias="primaryGroup")
     current_password: Optional[StrictStr] = Field(default=None, description="Specifies the current password of the user. This is required when a session user tries to update his own password.", alias="currentPassword")
-    __properties: ClassVar[List[str]] = ["email", "groups", "password", "primaryGroup", "currentPassword"]
+    __properties: ClassVar[List[str]] = ["email", "password", "currentPassword"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -63,12 +61,8 @@ class LocalUserUpdateParams(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "groups",
-            "primary_group",
         ])
 
         _dict = self.model_dump(
@@ -85,11 +79,6 @@ class LocalUserUpdateParams(BaseModel):
         # and model_fields_set contains the field
         if self.password is None and "password" in self.model_fields_set:
             _dict['password'] = None
-
-        # set to None if primary_group (nullable) is None
-        # and model_fields_set contains the field
-        if self.primary_group is None and "primary_group" in self.model_fields_set:
-            _dict['primaryGroup'] = None
 
         # set to None if current_password (nullable) is None
         # and model_fields_set contains the field
@@ -109,9 +98,7 @@ class LocalUserUpdateParams(BaseModel):
 
         _obj = cls.model_validate({
             "email": obj.get("email"),
-            "groups": obj.get("groups"),
             "password": obj.get("password"),
-            "primaryGroup": obj.get("primaryGroup"),
             "currentPassword": obj.get("currentPassword")
         })
         return _obj

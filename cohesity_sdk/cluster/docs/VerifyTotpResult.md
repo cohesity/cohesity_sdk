@@ -7,6 +7,7 @@ Result of verifying totp code for support user.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **message** | **str** | Specifies message of otp verification result. | [optional] 
+**reference_id** | **str** | Specifies the reference id of the otp verification request. Generated when TOTP is verified for disabling MFA. | [optional] 
 **success** | **bool** | Specifies whether or not verification of totp code is success. | [optional] [default to False]
 
 ## Example

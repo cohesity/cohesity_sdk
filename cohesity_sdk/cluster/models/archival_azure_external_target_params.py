@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.azure_archive_blob_params import AzureArchiveBlobParams
+from cohesity_sdk.cluster.models.azure_cold_blob_params import AzureColdBlobParams
 from cohesity_sdk.cluster.models.azure_cool_blob_params import AzureCoolBlobParams
 from cohesity_sdk.cluster.models.azure_hot_blob_params import AzureHotBlobParams
 from cohesity_sdk.cluster.models.worm_specific_target_params import WormSpecificTargetParams
@@ -42,9 +43,10 @@ class ArchivalAzureExternalTargetParams(BaseModel):
     storage_class: Optional[StrictStr] = Field(description="Specifies the Azure External Target storage class.", alias="storageClass")
     worm_specific_target_params: Optional[WormSpecificTargetParams] = Field(default=None, alias="wormSpecificTargetParams")
     archive_blob_params: Optional[AzureArchiveBlobParams] = Field(default=None, alias="archiveBlobParams")
+    cold_blob_params: Optional[AzureColdBlobParams] = Field(default=None, alias="coldBlobParams")
     cool_blob_params: Optional[AzureCoolBlobParams] = Field(default=None, alias="coolBlobParams")
     hot_blob_params: Optional[AzureHotBlobParams] = Field(default=None, alias="hotBlobParams")
-    __properties: ClassVar[List[str]] = ["clientId", "containerName", "region", "storageAccessKey", "storageAccountName", "isForeverIncrementalArchivalEnabled", "isIncrementalArchivalEnabled", "isWormEnabled", "sourceSideDeduplication", "storageClass", "wormSpecificTargetParams", "archiveBlobParams", "coolBlobParams", "hotBlobParams"]
+    __properties: ClassVar[List[str]] = ["clientId", "containerName", "region", "storageAccessKey", "storageAccountName", "isForeverIncrementalArchivalEnabled", "isIncrementalArchivalEnabled", "isWormEnabled", "sourceSideDeduplication", "storageClass", "wormSpecificTargetParams", "archiveBlobParams", "coldBlobParams", "coolBlobParams", "hotBlobParams"]
 
     @field_validator('storage_class')
     def storage_class_validate_enum(cls, value):
@@ -52,8 +54,8 @@ class ArchivalAzureExternalTargetParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['AzureArchiveBlob', 'AzureCoolBlob', 'AzureHotBlob']):
-            raise ValueError("must be one of enum values ('AzureArchiveBlob', 'AzureCoolBlob', 'AzureHotBlob')")
+        if value not in set(['AzureArchiveBlob', 'AzureCoolBlob', 'AzureHotBlob', 'AzureColdBlob']):
+            raise ValueError("must be one of enum values ('AzureArchiveBlob', 'AzureCoolBlob', 'AzureHotBlob', 'AzureColdBlob')")
         return value
 
     model_config = ConfigDict(
@@ -101,6 +103,9 @@ class ArchivalAzureExternalTargetParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of archive_blob_params
         if self.archive_blob_params:
             _dict['archiveBlobParams'] = self.archive_blob_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of cold_blob_params
+        if self.cold_blob_params:
+            _dict['coldBlobParams'] = self.cold_blob_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of cool_blob_params
         if self.cool_blob_params:
             _dict['coolBlobParams'] = self.cool_blob_params.to_dict()
@@ -181,6 +186,7 @@ class ArchivalAzureExternalTargetParams(BaseModel):
             "storageClass": obj.get("storageClass"),
             "wormSpecificTargetParams": WormSpecificTargetParams.from_dict(obj["wormSpecificTargetParams"]) if obj.get("wormSpecificTargetParams") is not None else None,
             "archiveBlobParams": AzureArchiveBlobParams.from_dict(obj["archiveBlobParams"]) if obj.get("archiveBlobParams") is not None else None,
+            "coldBlobParams": AzureColdBlobParams.from_dict(obj["coldBlobParams"]) if obj.get("coldBlobParams") is not None else None,
             "coolBlobParams": AzureCoolBlobParams.from_dict(obj["coolBlobParams"]) if obj.get("coolBlobParams") is not None else None,
             "hotBlobParams": AzureHotBlobParams.from_dict(obj["hotBlobParams"]) if obj.get("hotBlobParams") is not None else None
         })

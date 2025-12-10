@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.m_oref import MOref
 from cohesity_sdk.helios.models.vmware_cdp_object import VmwareCdpObject
 from typing import Set
 from typing_extensions import Self
@@ -29,8 +30,10 @@ class VmwareObjectEntityParams(BaseModel):
     """ # noqa: E501
     cdp_info: Optional[VmwareCdpObject] = Field(default=None, alias="cdpInfo")
     is_template: Optional[StrictBool] = Field(default=None, description="Specifies if the object is a VM template.", alias="isTemplate")
+    mo_ref: Optional[MOref] = Field(default=None, alias="moRef")
     type: Optional[StrictStr] = Field(default=None, description="VMware Object type.")
-    __properties: ClassVar[List[str]] = ["cdpInfo", "isTemplate", "type"]
+    uuid: Optional[StrictStr] = Field(default=None, description="Specifies the uuid associated with the object.")
+    __properties: ClassVar[List[str]] = ["cdpInfo", "isTemplate", "moRef", "type", "uuid"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -84,6 +87,9 @@ class VmwareObjectEntityParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of cdp_info
         if self.cdp_info:
             _dict['cdpInfo'] = self.cdp_info.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of mo_ref
+        if self.mo_ref:
+            _dict['moRef'] = self.mo_ref.to_dict()
         # set to None if is_template (nullable) is None
         # and model_fields_set contains the field
         if self.is_template is None and "is_template" in self.model_fields_set:
@@ -93,6 +99,11 @@ class VmwareObjectEntityParams(BaseModel):
         # and model_fields_set contains the field
         if self.type is None and "type" in self.model_fields_set:
             _dict['type'] = None
+
+        # set to None if uuid (nullable) is None
+        # and model_fields_set contains the field
+        if self.uuid is None and "uuid" in self.model_fields_set:
+            _dict['uuid'] = None
 
         return _dict
 
@@ -108,7 +119,9 @@ class VmwareObjectEntityParams(BaseModel):
         _obj = cls.model_validate({
             "cdpInfo": VmwareCdpObject.from_dict(obj["cdpInfo"]) if obj.get("cdpInfo") is not None else None,
             "isTemplate": obj.get("isTemplate"),
-            "type": obj.get("type")
+            "moRef": MOref.from_dict(obj["moRef"]) if obj.get("moRef") is not None else None,
+            "type": obj.get("type"),
+            "uuid": obj.get("uuid")
         })
         return _obj
 

@@ -20,6 +20,8 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from cohesity_sdk.cluster.models.child_task_params import ChildTaskParams
+from cohesity_sdk.cluster.models.common_filter_expression import CommonFilterExpression
 from cohesity_sdk.cluster.models.creation_info import CreationInfo
 from cohesity_sdk.cluster.models.retrieve_archive_task import RetrieveArchiveTask
 from cohesity_sdk.cluster.models.tenant_info import TenantInfo
@@ -31,24 +33,33 @@ class CommonRecoveryResponseParams(BaseModel):
     Specifies the common response parameters to create a Recovery
     """ # noqa: E501
     can_tear_down: Optional[StrictBool] = Field(default=None, description="Specifies whether it's possible to tear down the objects created by the recovery.", alias="canTearDown")
+    child_tasks: Optional[List[ChildTaskParams]] = Field(default=None, description="The child tasks used as part of the restore.", alias="childTasks")
     creation_info: Optional[CreationInfo] = Field(default=None, alias="creationInfo")
     end_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the end time of the Recovery in Unix timestamp epoch in microseconds. This field will be populated only after Recovery is finished.", alias="endTimeUsecs")
+    error_messages: Optional[List[StrictStr]] = Field(default=None, description="Specifies error messages about the recovery.", alias="errorMessages")
+    filter_params: Optional[CommonFilterExpression] = Field(default=None, alias="filterParams")
     id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Specifies the id of the Recovery.")
     is_multi_stage_restore: Optional[StrictBool] = Field(default=None, description="Specifies whether the current recovery operation is a multi-stage restore operation. This is currently used by VMware recoveres for the migration/hot-standby use case.", alias="isMultiStageRestore")
     is_parent_recovery: Optional[StrictBool] = Field(default=None, description="Specifies whether the current recovery operation has created child recoveries. This is currently used in SQL recovery where multiple child recoveries can be tracked under a common/parent recovery.", alias="isParentRecovery")
     messages: Optional[List[StrictStr]] = Field(default=None, description="Specifies messages about the recovery.")
     name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the Recovery.")
+    nfs_protocol: Optional[StrictStr] = Field(default=None, description="Specifies NFS protocol version. This protocol will be employed if the recovery request mounts the Cohesity storage via NFS on the primary source.", alias="nfsProtocol")
+    num_granular_objects_restored_successfully: Optional[StrictInt] = Field(default=None, description="Specifies the total number of objects that were successfully restored. The remaining objects were either skipped or had some error in restore operation.", alias="numGranularObjectsRestoredSuccessfully")
+    num_granular_objects_to_restore: Optional[StrictInt] = Field(default=None, description="Specifies the total number of objects which were requested to be restored.", alias="numGranularObjectsToRestore")
+    num_objects: Optional[StrictInt] = Field(default=None, description="Specifies the object count in a recovery task.", alias="numObjects")
     parent_recovery_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="If current recovery is child recovery triggered by another parent recovery operation, then this field willt specify the id of the parent recovery.", alias="parentRecoveryId")
     permissions: Optional[List[TenantInfo]] = Field(default=None, description="Specifies the list of tenants that have permissions for this recovery.")
     progress_task_id: Optional[StrictStr] = Field(default=None, description="Progress monitor task id for Recovery.", alias="progressTaskId")
     recovery_action: Optional[StrictStr] = Field(default=None, description="Specifies the type of recover action.", alias="recoveryAction")
     retrieve_archive_tasks: Optional[List[RetrieveArchiveTask]] = Field(default=None, description="Specifies the list of persistent state of a retrieve of an archive task.", alias="retrieveArchiveTasks")
+    retry_tear_down: Optional[StrictBool] = Field(default=None, description="Specifies whether it's possible to retry tear down of objects created by recovery operation.", alias="retryTearDown")
     snapshot_environment: Optional[StrictStr] = Field(default=None, description="Specifies the type of snapshot environment for which the Recovery was performed.", alias="snapshotEnvironment")
     start_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the start time of the Recovery in Unix timestamp epoch in microseconds.", alias="startTimeUsecs")
     status: Optional[StrictStr] = Field(default=None, description="Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages. 'Skipped' indicates that the Recovery task was skipped.")
     tear_down_message: Optional[StrictStr] = Field(default=None, description="Specifies the error message about the tear down operation if it fails.", alias="tearDownMessage")
     tear_down_status: Optional[StrictStr] = Field(default=None, description="Specifies the status of the tear down operation. This is only set when the canTearDown is set to true. 'DestroyScheduled' indicates that the tear down is ready to schedule. 'Destroying' indicates that the tear down is still running. 'Destroyed' indicates that the tear down succeeded. 'DestroyError' indicates that the tear down failed.", alias="tearDownStatus")
-    __properties: ClassVar[List[str]] = ["canTearDown", "creationInfo", "endTimeUsecs", "id", "isMultiStageRestore", "isParentRecovery", "messages", "name", "parentRecoveryId", "permissions", "progressTaskId", "recoveryAction", "retrieveArchiveTasks", "snapshotEnvironment", "startTimeUsecs", "status", "tearDownMessage", "tearDownStatus"]
+    warning_messages: Optional[List[StrictStr]] = Field(default=None, description="Specifies warning messages about the recovery.", alias="warningMessages")
+    __properties: ClassVar[List[str]] = ["canTearDown", "childTasks", "creationInfo", "endTimeUsecs", "errorMessages", "filterParams", "id", "isMultiStageRestore", "isParentRecovery", "messages", "name", "nfsProtocol", "numGranularObjectsRestoredSuccessfully", "numGranularObjectsToRestore", "numObjects", "parentRecoveryId", "permissions", "progressTaskId", "recoveryAction", "retrieveArchiveTasks", "retryTearDown", "snapshotEnvironment", "startTimeUsecs", "status", "tearDownMessage", "tearDownStatus", "warningMessages"]
 
     @field_validator('id')
     def id_validate_regular_expression(cls, value):
@@ -58,6 +69,16 @@ class CommonRecoveryResponseParams(BaseModel):
 
         if not re.match(r"^\d+:\d+:\d+$", value):
             raise ValueError(r"must validate the regular expression /^\d+:\d+:\d+$/")
+        return value
+
+    @field_validator('nfs_protocol')
+    def nfs_protocol_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['kNfs3', 'kNfs4_1']):
+            raise ValueError("must be one of enum values ('kNfs3', 'kNfs4_1')")
         return value
 
     @field_validator('parent_recovery_id')
@@ -76,8 +97,8 @@ class CommonRecoveryResponseParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['RecoverVMs', 'RecoverFiles', 'InstantVolumeMount', 'RecoverVmDisks', 'RecoverVApps', 'RecoverVAppTemplates', 'UptierSnapshot', 'RecoverRDS', 'RecoverAurora', 'RecoverS3Buckets', 'RecoverRDSPostgres', 'RecoverAzureSQL', 'RecoverApps', 'CloneApps', 'RecoverNasVolume', 'RecoverPhysicalVolumes', 'RecoverSystem', 'RecoverExchangeDbs', 'CloneAppView', 'RecoverSanVolumes', 'RecoverSanGroup', 'RecoverMailbox', 'RecoverOneDrive', 'RecoverSharePoint', 'RecoverPublicFolders', 'RecoverMsGroup', 'RecoverMsTeam', 'ConvertToPst', 'DownloadChats', 'RecoverNamespaces', 'RecoverObjects', 'RecoverSfdcObjects', 'RecoverSfdcOrg', 'RecoverSfdcRecords', 'DownloadFilesAndFolders', 'CloneVMs', 'CloneView', 'CloneRefreshApp', 'CloneVMsToView', 'ConvertAndDeployVMs', 'DeployVMs']):
-            raise ValueError("must be one of enum values ('RecoverVMs', 'RecoverFiles', 'InstantVolumeMount', 'RecoverVmDisks', 'RecoverVApps', 'RecoverVAppTemplates', 'UptierSnapshot', 'RecoverRDS', 'RecoverAurora', 'RecoverS3Buckets', 'RecoverRDSPostgres', 'RecoverAzureSQL', 'RecoverApps', 'CloneApps', 'RecoverNasVolume', 'RecoverPhysicalVolumes', 'RecoverSystem', 'RecoverExchangeDbs', 'CloneAppView', 'RecoverSanVolumes', 'RecoverSanGroup', 'RecoverMailbox', 'RecoverOneDrive', 'RecoverSharePoint', 'RecoverPublicFolders', 'RecoverMsGroup', 'RecoverMsTeam', 'ConvertToPst', 'DownloadChats', 'RecoverNamespaces', 'RecoverObjects', 'RecoverSfdcObjects', 'RecoverSfdcOrg', 'RecoverSfdcRecords', 'DownloadFilesAndFolders', 'CloneVMs', 'CloneView', 'CloneRefreshApp', 'CloneVMsToView', 'ConvertAndDeployVMs', 'DeployVMs')")
+        if value not in set(['RecoverVMs', 'RecoverFiles', 'InstantVolumeMount', 'RecoverVmDisks', 'RecoverVApps', 'RecoverVAppTemplates', 'UptierSnapshot', 'RecoverRDS', 'RecoverAurora', 'RecoverS3Buckets', 'RecoverRDSPostgres', 'RecoverAwsDynamoDB', 'RecoverRDSMySQL', 'RecoverRDSAuroraMySQL', 'RecoverRDSOracle', 'RecoverAWSDocumentDB', 'RecoverAWSRDSPostgresDB', 'RecoverAWSAuroraPostgresDB', 'RecoverAWSRDSMSSQL', 'RecoverAWSRedshift', 'RecoverGCPBigQuery', 'RecoverGoogleSpanner', 'RecoverGCPFirestore', 'RecoverGCPMySQL', 'RecoverGCPPostgreSQL', 'RecoverGCPAlloyDBPostgreSQL', 'RecoverGCPSQLServer', 'RecoverAzureSQL', 'RecoverAzureEntraID', 'RecoverAzureMySQL', 'RecoverNamespaces', 'RecoverAzureCosmosDBCassandra', 'RecoverAzurePostgreSQL', 'RecoverAzureCosmosDBNoSQL', 'RecoverAzureCosmosDBMongoDB', 'RecoverAzureBlobStorage', 'RecoverAzureSQLDB', 'RecoverAzureSQLMI', 'RecoverAzureTableStorage', 'RecoverAzureTableAPI', 'RecoverApps', 'CloneApps', 'RecoverAppFiles', 'RecoverNasVolume', 'RecoverPhysicalVolumes', 'RecoverSystem', 'RecoverSnapshotToView', 'RecoverExchangeDbs', 'CloneAppView', 'RecoverSanVolumes', 'RecoverSanGroup', 'RecoverMailbox', 'RecoverOneDrive', 'RecoverSharePoint', 'RecoverPublicFolders', 'RecoverMsGroup', 'RecoverMsTeam', 'ConvertToPst', 'DownloadChats', 'RecoverMailboxCSM', 'RecoverOneDriveCSM', 'RecoverSharePointCSM', 'RecoverO365ToExchangeServer', 'DownloadFilesAndFolders', 'RecoverObjects', 'RecoverSfdcObjects', 'RecoverSfdcOrg', 'RecoverSfdcRecords', 'RecoverGmail', 'RecoverGoogleDrive', 'CloneVMs', 'CloneView', 'CloneRefreshApp', 'CloneVMsToView', 'ConvertAndDeployVMs', 'DeployVMs', 'RecoverMongodbClusters', 'RecoverServiceNowTables', 'RecoverServiceNowInstance', 'DownloadTables']):
+            raise ValueError("must be one of enum values ('RecoverVMs', 'RecoverFiles', 'InstantVolumeMount', 'RecoverVmDisks', 'RecoverVApps', 'RecoverVAppTemplates', 'UptierSnapshot', 'RecoverRDS', 'RecoverAurora', 'RecoverS3Buckets', 'RecoverRDSPostgres', 'RecoverAwsDynamoDB', 'RecoverRDSMySQL', 'RecoverRDSAuroraMySQL', 'RecoverRDSOracle', 'RecoverAWSDocumentDB', 'RecoverAWSRDSPostgresDB', 'RecoverAWSAuroraPostgresDB', 'RecoverAWSRDSMSSQL', 'RecoverAWSRedshift', 'RecoverGCPBigQuery', 'RecoverGoogleSpanner', 'RecoverGCPFirestore', 'RecoverGCPMySQL', 'RecoverGCPPostgreSQL', 'RecoverGCPAlloyDBPostgreSQL', 'RecoverGCPSQLServer', 'RecoverAzureSQL', 'RecoverAzureEntraID', 'RecoverAzureMySQL', 'RecoverNamespaces', 'RecoverAzureCosmosDBCassandra', 'RecoverAzurePostgreSQL', 'RecoverAzureCosmosDBNoSQL', 'RecoverAzureCosmosDBMongoDB', 'RecoverAzureBlobStorage', 'RecoverAzureSQLDB', 'RecoverAzureSQLMI', 'RecoverAzureTableStorage', 'RecoverAzureTableAPI', 'RecoverApps', 'CloneApps', 'RecoverAppFiles', 'RecoverNasVolume', 'RecoverPhysicalVolumes', 'RecoverSystem', 'RecoverSnapshotToView', 'RecoverExchangeDbs', 'CloneAppView', 'RecoverSanVolumes', 'RecoverSanGroup', 'RecoverMailbox', 'RecoverOneDrive', 'RecoverSharePoint', 'RecoverPublicFolders', 'RecoverMsGroup', 'RecoverMsTeam', 'ConvertToPst', 'DownloadChats', 'RecoverMailboxCSM', 'RecoverOneDriveCSM', 'RecoverSharePointCSM', 'RecoverO365ToExchangeServer', 'DownloadFilesAndFolders', 'RecoverObjects', 'RecoverSfdcObjects', 'RecoverSfdcOrg', 'RecoverSfdcRecords', 'RecoverGmail', 'RecoverGoogleDrive', 'CloneVMs', 'CloneView', 'CloneRefreshApp', 'CloneVMsToView', 'ConvertAndDeployVMs', 'DeployVMs', 'RecoverMongodbClusters', 'RecoverServiceNowTables', 'RecoverServiceNowInstance', 'DownloadTables')")
         return value
 
     @field_validator('snapshot_environment')
@@ -86,8 +107,8 @@ class CommonRecoveryResponseParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kVMware', 'kHyperV', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kPhysical', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc']):
-            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kPhysical', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc')")
+        if value not in set(['kVMware', 'kHyperV', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kPhysical', 'kGPFS', 'kElastifile', 'kNetapp', 'kNutanixFS', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kS3Compatible', 'kSAPHANA', 'kHBase', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kPostgres']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kPhysical', 'kGPFS', 'kElastifile', 'kNetapp', 'kNutanixFS', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kS3Compatible', 'kSAPHANA', 'kHBase', 'kUDA', 'kSfdc', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kDB2', 'kServiceNow', 'kPostgres')")
         return value
 
     @field_validator('status')
@@ -96,8 +117,8 @@ class CommonRecoveryResponseParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped']):
-            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped')")
+        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold']):
+            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold')")
         return value
 
     @field_validator('tear_down_status')
@@ -106,8 +127,8 @@ class CommonRecoveryResponseParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['DestroyScheduled', 'Destroying', 'Destroyed', 'DestroyError']):
-            raise ValueError("must be one of enum values ('DestroyScheduled', 'Destroying', 'Destroyed', 'DestroyError')")
+        if value not in set(['DestroyScheduled', 'Destroying', 'Destroyed', 'DestroySkipped', 'DestroyError']):
+            raise ValueError("must be one of enum values ('DestroyScheduled', 'Destroying', 'Destroyed', 'DestroySkipped', 'DestroyError')")
         return value
 
     model_config = ConfigDict(
@@ -140,8 +161,12 @@ class CommonRecoveryResponseParams(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
+            "num_granular_objects_restored_successfully",
+            "num_granular_objects_to_restore",
         ])
 
         _dict = self.model_dump(
@@ -149,9 +174,19 @@ class CommonRecoveryResponseParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in child_tasks (list)
+        _items = []
+        if self.child_tasks:
+            for _item_child_tasks in self.child_tasks:
+                if _item_child_tasks:
+                    _items.append(_item_child_tasks.to_dict())
+            _dict['childTasks'] = _items
         # override the default output from pydantic by calling `to_dict()` of creation_info
         if self.creation_info:
             _dict['creationInfo'] = self.creation_info.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of filter_params
+        if self.filter_params:
+            _dict['filterParams'] = self.filter_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in permissions (list)
         _items = []
         if self.permissions:
@@ -171,10 +206,20 @@ class CommonRecoveryResponseParams(BaseModel):
         if self.can_tear_down is None and "can_tear_down" in self.model_fields_set:
             _dict['canTearDown'] = None
 
+        # set to None if child_tasks (nullable) is None
+        # and model_fields_set contains the field
+        if self.child_tasks is None and "child_tasks" in self.model_fields_set:
+            _dict['childTasks'] = None
+
         # set to None if end_time_usecs (nullable) is None
         # and model_fields_set contains the field
         if self.end_time_usecs is None and "end_time_usecs" in self.model_fields_set:
             _dict['endTimeUsecs'] = None
+
+        # set to None if error_messages (nullable) is None
+        # and model_fields_set contains the field
+        if self.error_messages is None and "error_messages" in self.model_fields_set:
+            _dict['errorMessages'] = None
 
         # set to None if id (nullable) is None
         # and model_fields_set contains the field
@@ -201,6 +246,26 @@ class CommonRecoveryResponseParams(BaseModel):
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
 
+        # set to None if nfs_protocol (nullable) is None
+        # and model_fields_set contains the field
+        if self.nfs_protocol is None and "nfs_protocol" in self.model_fields_set:
+            _dict['nfsProtocol'] = None
+
+        # set to None if num_granular_objects_restored_successfully (nullable) is None
+        # and model_fields_set contains the field
+        if self.num_granular_objects_restored_successfully is None and "num_granular_objects_restored_successfully" in self.model_fields_set:
+            _dict['numGranularObjectsRestoredSuccessfully'] = None
+
+        # set to None if num_granular_objects_to_restore (nullable) is None
+        # and model_fields_set contains the field
+        if self.num_granular_objects_to_restore is None and "num_granular_objects_to_restore" in self.model_fields_set:
+            _dict['numGranularObjectsToRestore'] = None
+
+        # set to None if num_objects (nullable) is None
+        # and model_fields_set contains the field
+        if self.num_objects is None and "num_objects" in self.model_fields_set:
+            _dict['numObjects'] = None
+
         # set to None if parent_recovery_id (nullable) is None
         # and model_fields_set contains the field
         if self.parent_recovery_id is None and "parent_recovery_id" in self.model_fields_set:
@@ -220,6 +285,11 @@ class CommonRecoveryResponseParams(BaseModel):
         # and model_fields_set contains the field
         if self.retrieve_archive_tasks is None and "retrieve_archive_tasks" in self.model_fields_set:
             _dict['retrieveArchiveTasks'] = None
+
+        # set to None if retry_tear_down (nullable) is None
+        # and model_fields_set contains the field
+        if self.retry_tear_down is None and "retry_tear_down" in self.model_fields_set:
+            _dict['retryTearDown'] = None
 
         # set to None if start_time_usecs (nullable) is None
         # and model_fields_set contains the field
@@ -241,6 +311,11 @@ class CommonRecoveryResponseParams(BaseModel):
         if self.tear_down_status is None and "tear_down_status" in self.model_fields_set:
             _dict['tearDownStatus'] = None
 
+        # set to None if warning_messages (nullable) is None
+        # and model_fields_set contains the field
+        if self.warning_messages is None and "warning_messages" in self.model_fields_set:
+            _dict['warningMessages'] = None
+
         return _dict
 
     @classmethod
@@ -254,23 +329,32 @@ class CommonRecoveryResponseParams(BaseModel):
 
         _obj = cls.model_validate({
             "canTearDown": obj.get("canTearDown"),
+            "childTasks": [ChildTaskParams.from_dict(_item) for _item in obj["childTasks"]] if obj.get("childTasks") is not None else None,
             "creationInfo": CreationInfo.from_dict(obj["creationInfo"]) if obj.get("creationInfo") is not None else None,
             "endTimeUsecs": obj.get("endTimeUsecs"),
+            "errorMessages": obj.get("errorMessages"),
+            "filterParams": CommonFilterExpression.from_dict(obj["filterParams"]) if obj.get("filterParams") is not None else None,
             "id": obj.get("id"),
             "isMultiStageRestore": obj.get("isMultiStageRestore"),
             "isParentRecovery": obj.get("isParentRecovery"),
             "messages": obj.get("messages"),
             "name": obj.get("name"),
+            "nfsProtocol": obj.get("nfsProtocol"),
+            "numGranularObjectsRestoredSuccessfully": obj.get("numGranularObjectsRestoredSuccessfully"),
+            "numGranularObjectsToRestore": obj.get("numGranularObjectsToRestore"),
+            "numObjects": obj.get("numObjects"),
             "parentRecoveryId": obj.get("parentRecoveryId"),
             "permissions": [TenantInfo.from_dict(_item) for _item in obj["permissions"]] if obj.get("permissions") is not None else None,
             "progressTaskId": obj.get("progressTaskId"),
             "recoveryAction": obj.get("recoveryAction"),
             "retrieveArchiveTasks": [RetrieveArchiveTask.from_dict(_item) for _item in obj["retrieveArchiveTasks"]] if obj.get("retrieveArchiveTasks") is not None else None,
+            "retryTearDown": obj.get("retryTearDown"),
             "snapshotEnvironment": obj.get("snapshotEnvironment"),
             "startTimeUsecs": obj.get("startTimeUsecs"),
             "status": obj.get("status"),
             "tearDownMessage": obj.get("tearDownMessage"),
-            "tearDownStatus": obj.get("tearDownStatus")
+            "tearDownStatus": obj.get("tearDownStatus"),
+            "warningMessages": obj.get("warningMessages")
         })
         return _obj
 

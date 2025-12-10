@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Set
@@ -27,8 +27,9 @@ class PauseProtectionRunActionParams(BaseModel):
     """
     Specifies the request to pause a protection run.
     """ # noqa: E501
+    paused_note: Optional[StrictStr] = Field(default=None, description="A note from the current user explaining the reason for pausing runs, if applicable.", alias="pausedNote")
     run_id: Optional[Annotated[str, Field(strict=True)]] = Field(description="Specifies a unique run id of the Protection Group run.", alias="runId")
-    __properties: ClassVar[List[str]] = ["runId"]
+    __properties: ClassVar[List[str]] = ["pausedNote", "runId"]
 
     @field_validator('run_id')
     def run_id_validate_regular_expression(cls, value):
@@ -79,6 +80,11 @@ class PauseProtectionRunActionParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if paused_note (nullable) is None
+        # and model_fields_set contains the field
+        if self.paused_note is None and "paused_note" in self.model_fields_set:
+            _dict['pausedNote'] = None
+
         # set to None if run_id (nullable) is None
         # and model_fields_set contains the field
         if self.run_id is None and "run_id" in self.model_fields_set:
@@ -96,6 +102,7 @@ class PauseProtectionRunActionParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "pausedNote": obj.get("pausedNote"),
             "runId": obj.get("runId")
         })
         return _obj

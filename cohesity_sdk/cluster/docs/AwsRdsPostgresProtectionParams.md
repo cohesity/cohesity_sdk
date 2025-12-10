@@ -6,7 +6,7 @@ Specifies the parameters which are specific to AWS RDS Postgres related Object p
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**objects** | [**List[AwsRdsPostgresObjectLevelParams]**](AwsRdsPostgresObjectLevelParams.md) | Specifies the objects to be protected. | [optional] 
+**objects** | [**List[AwsObjectLevelParams]**](AwsObjectLevelParams.md) | Specifies the objects to be protected. | [optional] 
 **source_id** | **int** | Specifies the id of the source of the objects. | [optional] [readonly] 
 
 ## Example

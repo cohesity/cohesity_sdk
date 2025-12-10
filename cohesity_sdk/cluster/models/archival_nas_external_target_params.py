@@ -29,13 +29,14 @@ class ArchivalNasExternalTargetParams(BaseModel):
     host: Optional[StrictStr] = Field(description="Specifies the host of the NAS external target.")
     is_forever_incremental_archival_enabled: Optional[StrictBool] = Field(default=None, description="Specifies if Forever Incremental Archival setting is enabled or not.", alias="isForeverIncrementalArchivalEnabled")
     is_incremental_archival_enabled: Optional[StrictBool] = Field(default=None, description="Specifies if Incremental Archival setting is enabled or not.", alias="isIncrementalArchivalEnabled")
+    is_network_optimized_gc: Optional[StrictBool] = Field(default=None, description="Specifies whether the garbage collection mode is network optimized or storage optimized. If this field is set to true, it refers to network optimized GC and if set to false, it refers to storage optimized GC.", alias="isNetworkOptimizedGC")
     kerberos_realm_name: Optional[StrictStr] = Field(default=None, description="Specifies the Kerberos realm name for a Kerberos-secured target.", alias="kerberosRealmName")
     mount_path: Optional[StrictStr] = Field(description="Specifies the mount path of the NAS external target.", alias="mountPath")
     nfs_security_type: Optional[StrictStr] = Field(default=None, description="Specifies the NFS security type of the target.", alias="nfsSecurityType")
     nfs_version_number: Optional[StrictStr] = Field(default=None, description="Specifies the NFS version number of the target.", alias="nfsVersionNumber")
     share_type: Optional[StrictStr] = Field(default=None, description="Specifies the share type of the NAS external target.", alias="shareType")
     source_side_deduplication: Optional[StrictBool] = Field(default=None, description="Specifies the Source Side Deduplication setting for the Nas external target", alias="sourceSideDeduplication")
-    __properties: ClassVar[List[str]] = ["host", "isForeverIncrementalArchivalEnabled", "isIncrementalArchivalEnabled", "kerberosRealmName", "mountPath", "nfsSecurityType", "nfsVersionNumber", "shareType", "sourceSideDeduplication"]
+    __properties: ClassVar[List[str]] = ["host", "isForeverIncrementalArchivalEnabled", "isIncrementalArchivalEnabled", "isNetworkOptimizedGC", "kerberosRealmName", "mountPath", "nfsSecurityType", "nfsVersionNumber", "shareType", "sourceSideDeduplication"]
 
     @field_validator('nfs_security_type')
     def nfs_security_type_validate_enum(cls, value):
@@ -123,6 +124,11 @@ class ArchivalNasExternalTargetParams(BaseModel):
         if self.is_incremental_archival_enabled is None and "is_incremental_archival_enabled" in self.model_fields_set:
             _dict['isIncrementalArchivalEnabled'] = None
 
+        # set to None if is_network_optimized_gc (nullable) is None
+        # and model_fields_set contains the field
+        if self.is_network_optimized_gc is None and "is_network_optimized_gc" in self.model_fields_set:
+            _dict['isNetworkOptimizedGC'] = None
+
         # set to None if kerberos_realm_name (nullable) is None
         # and model_fields_set contains the field
         if self.kerberos_realm_name is None and "kerberos_realm_name" in self.model_fields_set:
@@ -168,6 +174,7 @@ class ArchivalNasExternalTargetParams(BaseModel):
             "host": obj.get("host"),
             "isForeverIncrementalArchivalEnabled": obj.get("isForeverIncrementalArchivalEnabled"),
             "isIncrementalArchivalEnabled": obj.get("isIncrementalArchivalEnabled"),
+            "isNetworkOptimizedGC": obj.get("isNetworkOptimizedGC"),
             "kerberosRealmName": obj.get("kerberosRealmName"),
             "mountPath": obj.get("mountPath"),
             "nfsSecurityType": obj.get("nfsSecurityType"),

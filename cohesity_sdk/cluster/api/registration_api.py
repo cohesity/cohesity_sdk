@@ -54,7 +54,7 @@ class RegistrationApi:
     ) -> HeliosRegConfig:
         """Lists the Helios Registration Config.
 
-        Lists the Helios Registration Config.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Lists the Helios Registration Config.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -117,7 +117,7 @@ class RegistrationApi:
     ) -> ApiResponse[HeliosRegConfig]:
         """Lists the Helios Registration Config.
 
-        Lists the Helios Registration Config.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Lists the Helios Registration Config.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -180,7 +180,7 @@ class RegistrationApi:
     ) -> RESTResponseType:
         """Lists the Helios Registration Config.
 
-        Lists the Helios Registration Config.
+        **Privileges:** ```CLUSTER_VIEW``` <br><br>Lists the Helios Registration Config.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -303,7 +303,7 @@ class RegistrationApi:
     ) -> None:
         """Register to Helios.
 
-        Claim to Helios.
+        **Privileges:** ```MCM_MODIFY``` <br><br>Claim to Helios.
 
         :param body: Specifies the parameters to claim to Helios. (required)
         :type body: HeliosClaimRequest
@@ -370,7 +370,7 @@ class RegistrationApi:
     ) -> ApiResponse[None]:
         """Register to Helios.
 
-        Claim to Helios.
+        **Privileges:** ```MCM_MODIFY``` <br><br>Claim to Helios.
 
         :param body: Specifies the parameters to claim to Helios. (required)
         :type body: HeliosClaimRequest
@@ -437,7 +437,7 @@ class RegistrationApi:
     ) -> RESTResponseType:
         """Register to Helios.
 
-        Claim to Helios.
+        **Privileges:** ```MCM_MODIFY``` <br><br>Claim to Helios.
 
         :param body: Specifies the parameters to claim to Helios. (required)
         :type body: HeliosClaimRequest

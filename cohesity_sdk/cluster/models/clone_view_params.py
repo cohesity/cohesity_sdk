@@ -33,6 +33,7 @@ class CloneViewParams(BaseModel):
     """ # noqa: E501
     data_lock_expiry_usecs: Optional[StrictInt] = Field(default=None, description="DataLock (Write Once Read Many) lock expiry epoch time in microseconds. If a view is marked as a DataLock view, only a Data Security Officer (a user having Data Security Privilege) can delete the view until the lock expiry time.", alias="dataLockExpiryUsecs")
     description: Optional[StrictStr] = Field(default=None, description="Specifies the description of the cloned View.")
+    disable_s3_object_lock_config: Optional[StrictBool] = Field(default=None, description="Specifies whether to disable S3 Object Lock configuration on the cloned S3 View. This field is only applicable if the source View is an S3 View with S3 Object Lock configuration enabled.", alias="disableS3ObjectLockConfig")
     is_read_only: Optional[StrictBool] = Field(default=None, description="Specifies if the view is a read only view. User will no longer be able to write to this view if this is set to true.", alias="isReadOnly")
     name: Optional[StrictStr] = Field(description="Specifies the name of the cloned View.")
     netgroup_whitelist: Optional[NisNetgroups] = Field(default=None, alias="netgroupWhitelist")
@@ -40,7 +41,7 @@ class CloneViewParams(BaseModel):
     qos: Optional[QoS] = None
     storage_policy_override: Optional[StoragePolicyOverride] = Field(default=None, alias="storagePolicyOverride")
     subnet_whitelist: Optional[List[Subnet]] = Field(default=None, description="Array of Subnets. Specifies a list of Subnets with IP addresses that have permissions to access the View. (Overrides or extends the Subnets specified at the global Cohesity Cluster level.)", alias="subnetWhitelist")
-    __properties: ClassVar[List[str]] = ["dataLockExpiryUsecs", "description", "isReadOnly", "name", "netgroupWhitelist", "protocolAccess", "qos", "storagePolicyOverride", "subnetWhitelist"]
+    __properties: ClassVar[List[str]] = ["dataLockExpiryUsecs", "description", "disableS3ObjectLockConfig", "isReadOnly", "name", "netgroupWhitelist", "protocolAccess", "qos", "storagePolicyOverride", "subnetWhitelist"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -114,6 +115,11 @@ class CloneViewParams(BaseModel):
         if self.description is None and "description" in self.model_fields_set:
             _dict['description'] = None
 
+        # set to None if disable_s3_object_lock_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.disable_s3_object_lock_config is None and "disable_s3_object_lock_config" in self.model_fields_set:
+            _dict['disableS3ObjectLockConfig'] = None
+
         # set to None if is_read_only (nullable) is None
         # and model_fields_set contains the field
         if self.is_read_only is None and "is_read_only" in self.model_fields_set:
@@ -153,6 +159,7 @@ class CloneViewParams(BaseModel):
         _obj = cls.model_validate({
             "dataLockExpiryUsecs": obj.get("dataLockExpiryUsecs"),
             "description": obj.get("description"),
+            "disableS3ObjectLockConfig": obj.get("disableS3ObjectLockConfig"),
             "isReadOnly": obj.get("isReadOnly"),
             "name": obj.get("name"),
             "netgroupWhitelist": NisNetgroups.from_dict(obj["netgroupWhitelist"]) if obj.get("netgroupWhitelist") is not None else None,

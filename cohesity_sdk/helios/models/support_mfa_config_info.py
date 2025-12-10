@@ -26,12 +26,16 @@ class SupportMfaConfigInfo(BaseModel):
     """
     Holds the MFA configuration to be returned or stored.
     """ # noqa: E501
-    email: Optional[StrictStr] = Field(default=None, description="Specifies email address of the support user. Used when MFA mode is email.")
+    current_password: Optional[StrictStr] = Field(default=None, description="Specifies the current password of the support user, required for making updates to the configuration.", alias="currentPassword")
+    email: Optional[StrictStr] = Field(default=None, description="This field is deprecated, use PUT /v2/support-user/mfa. Specifies email address of the support user. Used when MFA mode is email.")
     enabled: Optional[StrictBool] = Field(default=False, description="Specifies whether MFA is enabled for support user.")
+    is_quorum_managed: Optional[StrictBool] = Field(default=False, description="Specifies whether the MFA configuration is managed by quorum.", alias="isQuorumManaged")
     mfa_code: Optional[StrictStr] = Field(default=None, description="MFA code that needs to be passed when disabling MFA or changing email address when email based MFA is configured.", alias="mfaCode")
-    mfa_type: Optional[StrictStr] = Field(default=None, description="Specifies the mechanism to receive the OTP code.", alias="mfaType")
+    mfa_type: Optional[StrictStr] = Field(default=None, description="This field is deprecated, use PUT /v2/support-user/mfa. Specifies the mechanism to receive the OTP code.", alias="mfaType")
     otp_verification_state: Optional[StrictStr] = Field(default=None, description="Specifies the status of otp verification.", alias="otpVerificationState")
-    __properties: ClassVar[List[str]] = ["email", "enabled", "mfaCode", "mfaType", "otpVerificationState"]
+    reference_id: Optional[StrictStr] = Field(default=None, description="Specifies a reference ID of OTP verification, required if mfaCode is not specified", alias="referenceId")
+    requires_password_auth: Optional[StrictBool] = Field(default=True, description="Specifies that this API requires current support user password for enabling/disabling MFA, and for updating mfaType and email.", alias="requiresPasswordAuth")
+    __properties: ClassVar[List[str]] = ["currentPassword", "email", "enabled", "isQuorumManaged", "mfaCode", "mfaType", "otpVerificationState", "referenceId", "requiresPasswordAuth"]
 
     @field_validator('mfa_type')
     def mfa_type_validate_enum(cls, value):
@@ -83,8 +87,12 @@ class SupportMfaConfigInfo(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
+            "is_quorum_managed",
+            "requires_password_auth",
         ])
 
         _dict = self.model_dump(
@@ -92,10 +100,20 @@ class SupportMfaConfigInfo(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if current_password (nullable) is None
+        # and model_fields_set contains the field
+        if self.current_password is None and "current_password" in self.model_fields_set:
+            _dict['currentPassword'] = None
+
         # set to None if email (nullable) is None
         # and model_fields_set contains the field
         if self.email is None and "email" in self.model_fields_set:
             _dict['email'] = None
+
+        # set to None if is_quorum_managed (nullable) is None
+        # and model_fields_set contains the field
+        if self.is_quorum_managed is None and "is_quorum_managed" in self.model_fields_set:
+            _dict['isQuorumManaged'] = None
 
         # set to None if mfa_code (nullable) is None
         # and model_fields_set contains the field
@@ -112,6 +130,11 @@ class SupportMfaConfigInfo(BaseModel):
         if self.otp_verification_state is None and "otp_verification_state" in self.model_fields_set:
             _dict['otpVerificationState'] = None
 
+        # set to None if reference_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.reference_id is None and "reference_id" in self.model_fields_set:
+            _dict['referenceId'] = None
+
         return _dict
 
     @classmethod
@@ -124,11 +147,15 @@ class SupportMfaConfigInfo(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "currentPassword": obj.get("currentPassword"),
             "email": obj.get("email"),
             "enabled": obj.get("enabled") if obj.get("enabled") is not None else False,
+            "isQuorumManaged": obj.get("isQuorumManaged") if obj.get("isQuorumManaged") is not None else False,
             "mfaCode": obj.get("mfaCode"),
             "mfaType": obj.get("mfaType"),
-            "otpVerificationState": obj.get("otpVerificationState")
+            "otpVerificationState": obj.get("otpVerificationState"),
+            "referenceId": obj.get("referenceId"),
+            "requiresPasswordAuth": obj.get("requiresPasswordAuth") if obj.get("requiresPasswordAuth") is not None else True
         })
         return _obj
 

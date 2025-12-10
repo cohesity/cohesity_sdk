@@ -27,21 +27,18 @@ class UpgradeChecksResults(BaseModel):
     """
     Specifies upgrade checks results from cluster.
     """ # noqa: E501
-    error: Optional[StrictStr] = Field(default=None, description="Error message if test results could not be fetched.")
+    error: StrictStr = Field(description="Error message if test results could not be fetched.")
     finish_time_secs: Optional[StrictInt] = Field(default=None, description="Specifies unix epoch finish time of checks(in seconds).", alias="finishTimeSecs")
     node_results: Optional[List[UpgradeCheckNodeResult]] = Field(default=None, description="The healthcheck result for node.", alias="nodeResults")
-    request_type: Optional[StrictStr] = Field(default=None, description="Type of the check(preupgrade/postupgrade).", alias="requestType")
-    result_status: Optional[StrictStr] = Field(default=None, description="Final result (running/pass/fail) of run.", alias="resultStatus")
+    request_type: StrictStr = Field(description="Type of the check(preupgrade/postupgrade).", alias="requestType")
+    result_status: StrictStr = Field(description="Final result (running/pass/fail) of run.", alias="resultStatus")
     start_time_secs: Optional[StrictInt] = Field(default=None, description="Specifies unix epoch start time of checks(in seconds).", alias="startTimeSecs")
-    test_run_instance_id: Optional[StrictStr] = Field(default=None, description="Specifies test run instance of upgrade checks.", alias="testRunInstanceId")
+    test_run_instance_id: StrictStr = Field(description="Specifies test run instance of upgrade checks.", alias="testRunInstanceId")
     __properties: ClassVar[List[str]] = ["error", "finishTimeSecs", "nodeResults", "requestType", "resultStatus", "startTimeSecs", "testRunInstanceId"]
 
     @field_validator('result_status')
     def result_status_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
         if value not in set(['Running', 'Passed', 'Failed', 'NotAvailable']):
             raise ValueError("must be one of enum values ('Running', 'Passed', 'Failed', 'NotAvailable')")
         return value

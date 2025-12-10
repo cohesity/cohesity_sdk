@@ -52,7 +52,7 @@ class IdentityProviderApi:
     def authenticate_idp(
         self,
         saml_response: Annotated[StrictStr, Field(description="Specifies the parameters to authenticate an Identity Provider.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -72,7 +72,7 @@ class IdentityProviderApi:
 
         :param saml_response: Specifies the parameters to authenticate an Identity Provider. (required)
         :type saml_response: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -123,7 +123,7 @@ class IdentityProviderApi:
     def authenticate_idp_with_http_info(
         self,
         saml_response: Annotated[StrictStr, Field(description="Specifies the parameters to authenticate an Identity Provider.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -143,7 +143,7 @@ class IdentityProviderApi:
 
         :param saml_response: Specifies the parameters to authenticate an Identity Provider. (required)
         :type saml_response: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -194,7 +194,7 @@ class IdentityProviderApi:
     def authenticate_idp_without_preload_content(
         self,
         saml_response: Annotated[StrictStr, Field(description="Specifies the parameters to authenticate an Identity Provider.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -214,7 +214,7 @@ class IdentityProviderApi:
 
         :param saml_response: Specifies the parameters to authenticate an Identity Provider. (required)
         :type saml_response: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -327,11 +327,304 @@ class IdentityProviderApi:
 
 
     @validate_call
+    def authenticate_idp_by_id(
+        self,
+        saml_response: Annotated[StrictStr, Field(description="Specifies the parameters to authenticate an Identity Provider.")],
+        id: Annotated[StrictInt, Field(description="Specifies the ID of the IdP Configuration.")],
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Error:
+        """Authenticate IdP By ID
+
+        Authenticate Identity Provider (IDP)
+
+        :param saml_response: Specifies the parameters to authenticate an Identity Provider. (required)
+        :type saml_response: str
+        :param id: Specifies the ID of the IdP Configuration. (required)
+        :type id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._authenticate_idp_by_id_serialize(
+            saml_response=saml_response,
+            id=id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '302': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def authenticate_idp_by_id_with_http_info(
+        self,
+        saml_response: Annotated[StrictStr, Field(description="Specifies the parameters to authenticate an Identity Provider.")],
+        id: Annotated[StrictInt, Field(description="Specifies the ID of the IdP Configuration.")],
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[Error]:
+        """Authenticate IdP By ID
+
+        Authenticate Identity Provider (IDP)
+
+        :param saml_response: Specifies the parameters to authenticate an Identity Provider. (required)
+        :type saml_response: str
+        :param id: Specifies the ID of the IdP Configuration. (required)
+        :type id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._authenticate_idp_by_id_serialize(
+            saml_response=saml_response,
+            id=id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '302': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def authenticate_idp_by_id_without_preload_content(
+        self,
+        saml_response: Annotated[StrictStr, Field(description="Specifies the parameters to authenticate an Identity Provider.")],
+        id: Annotated[StrictInt, Field(description="Specifies the ID of the IdP Configuration.")],
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Authenticate IdP By ID
+
+        Authenticate Identity Provider (IDP)
+
+        :param saml_response: Specifies the parameters to authenticate an Identity Provider. (required)
+        :type saml_response: str
+        :param id: Specifies the ID of the IdP Configuration. (required)
+        :type id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._authenticate_idp_by_id_serialize(
+            saml_response=saml_response,
+            id=id,
+            region_id=region_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '302': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _authenticate_idp_by_id_serialize(
+        self,
+        saml_response,
+        id,
+        region_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        if saml_response is not None:
+            
+            _query_params.append(('SAMLResponse', saml_response))
+            
+        # process the header parameters
+        if region_id is not None:
+            _header_params['regionId'] = region_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/mcm/idp/{id}/authenticate',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def create_identity(
         self,
         body: Annotated[IdentityConfig, Field(description="Specifies parameters to configure Identity")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -351,9 +644,9 @@ class IdentityProviderApi:
 
         :param body: Specifies parameters to configure Identity (required)
         :type body: IdentityConfig
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -405,8 +698,8 @@ class IdentityProviderApi:
     def create_identity_with_http_info(
         self,
         body: Annotated[IdentityConfig, Field(description="Specifies parameters to configure Identity")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -426,9 +719,9 @@ class IdentityProviderApi:
 
         :param body: Specifies parameters to configure Identity (required)
         :type body: IdentityConfig
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -480,8 +773,8 @@ class IdentityProviderApi:
     def create_identity_without_preload_content(
         self,
         body: Annotated[IdentityConfig, Field(description="Specifies parameters to configure Identity")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -501,9 +794,9 @@ class IdentityProviderApi:
 
         :param body: Specifies parameters to configure Identity (required)
         :type body: IdentityConfig
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -634,8 +927,8 @@ class IdentityProviderApi:
     def create_identity_provider(
         self,
         body: Annotated[CreateIdpRequestParams, Field(description="Specifies parameters to configure identity provider")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -655,9 +948,9 @@ class IdentityProviderApi:
 
         :param body: Specifies parameters to configure identity provider (required)
         :type body: CreateIdpRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -709,8 +1002,8 @@ class IdentityProviderApi:
     def create_identity_provider_with_http_info(
         self,
         body: Annotated[CreateIdpRequestParams, Field(description="Specifies parameters to configure identity provider")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -730,9 +1023,9 @@ class IdentityProviderApi:
 
         :param body: Specifies parameters to configure identity provider (required)
         :type body: CreateIdpRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -784,8 +1077,8 @@ class IdentityProviderApi:
     def create_identity_provider_without_preload_content(
         self,
         body: Annotated[CreateIdpRequestParams, Field(description="Specifies parameters to configure identity provider")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -805,9 +1098,9 @@ class IdentityProviderApi:
 
         :param body: Specifies parameters to configure identity provider (required)
         :type body: CreateIdpRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -938,7 +1231,7 @@ class IdentityProviderApi:
     def create_idp(
         self,
         body: Annotated[CreateOrUpdateIdpRequest, Field(description="Specifies the parameters to create an Identity Provider.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -958,7 +1251,7 @@ class IdentityProviderApi:
 
         :param body: Specifies the parameters to create an Identity Provider. (required)
         :type body: CreateOrUpdateIdpRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1009,7 +1302,7 @@ class IdentityProviderApi:
     def create_idp_with_http_info(
         self,
         body: Annotated[CreateOrUpdateIdpRequest, Field(description="Specifies the parameters to create an Identity Provider.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1029,7 +1322,7 @@ class IdentityProviderApi:
 
         :param body: Specifies the parameters to create an Identity Provider. (required)
         :type body: CreateOrUpdateIdpRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1080,7 +1373,7 @@ class IdentityProviderApi:
     def create_idp_without_preload_content(
         self,
         body: Annotated[CreateOrUpdateIdpRequest, Field(description="Specifies the parameters to create an Identity Provider.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1100,7 +1393,7 @@ class IdentityProviderApi:
 
         :param body: Specifies the parameters to create an Identity Provider. (required)
         :type body: CreateOrUpdateIdpRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1227,7 +1520,7 @@ class IdentityProviderApi:
     def create_idp_principal(
         self,
         body: Annotated[IdpPrincipal, Field(description="Specifies the parameters to create an IDP Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1247,7 +1540,7 @@ class IdentityProviderApi:
 
         :param body: Specifies the parameters to create an IDP Principal. (required)
         :type body: IdpPrincipal
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1298,7 +1591,7 @@ class IdentityProviderApi:
     def create_idp_principal_with_http_info(
         self,
         body: Annotated[IdpPrincipal, Field(description="Specifies the parameters to create an IDP Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1318,7 +1611,7 @@ class IdentityProviderApi:
 
         :param body: Specifies the parameters to create an IDP Principal. (required)
         :type body: IdpPrincipal
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1369,7 +1662,7 @@ class IdentityProviderApi:
     def create_idp_principal_without_preload_content(
         self,
         body: Annotated[IdpPrincipal, Field(description="Specifies the parameters to create an IDP Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1389,7 +1682,7 @@ class IdentityProviderApi:
 
         :param body: Specifies the parameters to create an IDP Principal. (required)
         :type body: IdpPrincipal
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1516,8 +1809,8 @@ class IdentityProviderApi:
     def delete_identity(
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of identity provider configuration")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1537,9 +1830,9 @@ class IdentityProviderApi:
 
         :param id: Specifies id of identity provider configuration (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1591,8 +1884,8 @@ class IdentityProviderApi:
     def delete_identity_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of identity provider configuration")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1612,9 +1905,9 @@ class IdentityProviderApi:
 
         :param id: Specifies id of identity provider configuration (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1666,8 +1959,8 @@ class IdentityProviderApi:
     def delete_identity_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of identity provider configuration")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1687,9 +1980,9 @@ class IdentityProviderApi:
 
         :param id: Specifies id of identity provider configuration (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1807,8 +2100,8 @@ class IdentityProviderApi:
     def delete_identity_provider(
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of idp configuration")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1828,9 +2121,9 @@ class IdentityProviderApi:
 
         :param id: Specifies id of idp configuration (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1882,8 +2175,8 @@ class IdentityProviderApi:
     def delete_identity_provider_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of idp configuration")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1903,9 +2196,9 @@ class IdentityProviderApi:
 
         :param id: Specifies id of idp configuration (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1957,8 +2250,8 @@ class IdentityProviderApi:
     def delete_identity_provider_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of idp configuration")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1978,9 +2271,9 @@ class IdentityProviderApi:
 
         :param id: Specifies id of idp configuration (required)
         :type id: int
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2098,7 +2391,7 @@ class IdentityProviderApi:
     def delete_idp(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the IDP.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2118,7 +2411,7 @@ class IdentityProviderApi:
 
         :param id: Specifies a unique id of the IDP. (required)
         :type id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2169,7 +2462,7 @@ class IdentityProviderApi:
     def delete_idp_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the IDP.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2189,7 +2482,7 @@ class IdentityProviderApi:
 
         :param id: Specifies a unique id of the IDP. (required)
         :type id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2240,7 +2533,7 @@ class IdentityProviderApi:
     def delete_idp_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the IDP.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2260,7 +2553,7 @@ class IdentityProviderApi:
 
         :param id: Specifies a unique id of the IDP. (required)
         :type id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2374,7 +2667,7 @@ class IdentityProviderApi:
     def delete_idp_principal(
         self,
         sid: Annotated[StrictStr, Field(description="Specifies a unique SID of the Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2394,7 +2687,7 @@ class IdentityProviderApi:
 
         :param sid: Specifies a unique SID of the Principal. (required)
         :type sid: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2445,7 +2738,7 @@ class IdentityProviderApi:
     def delete_idp_principal_with_http_info(
         self,
         sid: Annotated[StrictStr, Field(description="Specifies a unique SID of the Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2465,7 +2758,7 @@ class IdentityProviderApi:
 
         :param sid: Specifies a unique SID of the Principal. (required)
         :type sid: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2516,7 +2809,7 @@ class IdentityProviderApi:
     def delete_idp_principal_without_preload_content(
         self,
         sid: Annotated[StrictStr, Field(description="Specifies a unique SID of the Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2536,7 +2829,7 @@ class IdentityProviderApi:
 
         :param sid: Specifies a unique SID of the Principal. (required)
         :type sid: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2649,12 +2942,12 @@ class IdentityProviderApi:
     @validate_call
     def get_identities(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies IDs of configured identity providers")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tenant id's to get IDPs configured on tenants")] = None,
         domains: Annotated[Optional[List[StrictStr]], Field(description="Specifies domains of the IDP configurations")] = None,
         include_all_tenants: Annotated[Optional[StrictBool], Field(description="Specifies if IDP configurations on all the tenants under the hierarchy of the logged in user should be returned")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2672,10 +2965,6 @@ class IdentityProviderApi:
 
         Get Identity Providers configured on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Specifies IDs of configured identity providers
         :type ids: List[int]
         :param tenant_ids: Specifies the tenant id's to get IDPs configured on tenants
@@ -2684,6 +2973,10 @@ class IdentityProviderApi:
         :type domains: List[str]
         :param include_all_tenants: Specifies if IDP configurations on all the tenants under the hierarchy of the logged in user should be returned
         :type include_all_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2707,12 +3000,12 @@ class IdentityProviderApi:
         """ # noqa: E501
 
         _param = self._get_identities_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             tenant_ids=tenant_ids,
             domains=domains,
             include_all_tenants=include_all_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2736,12 +3029,12 @@ class IdentityProviderApi:
     @validate_call
     def get_identities_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies IDs of configured identity providers")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tenant id's to get IDPs configured on tenants")] = None,
         domains: Annotated[Optional[List[StrictStr]], Field(description="Specifies domains of the IDP configurations")] = None,
         include_all_tenants: Annotated[Optional[StrictBool], Field(description="Specifies if IDP configurations on all the tenants under the hierarchy of the logged in user should be returned")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2759,10 +3052,6 @@ class IdentityProviderApi:
 
         Get Identity Providers configured on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Specifies IDs of configured identity providers
         :type ids: List[int]
         :param tenant_ids: Specifies the tenant id's to get IDPs configured on tenants
@@ -2771,6 +3060,10 @@ class IdentityProviderApi:
         :type domains: List[str]
         :param include_all_tenants: Specifies if IDP configurations on all the tenants under the hierarchy of the logged in user should be returned
         :type include_all_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2794,12 +3087,12 @@ class IdentityProviderApi:
         """ # noqa: E501
 
         _param = self._get_identities_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             tenant_ids=tenant_ids,
             domains=domains,
             include_all_tenants=include_all_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2823,12 +3116,12 @@ class IdentityProviderApi:
     @validate_call
     def get_identities_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies IDs of configured identity providers")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tenant id's to get IDPs configured on tenants")] = None,
         domains: Annotated[Optional[List[StrictStr]], Field(description="Specifies domains of the IDP configurations")] = None,
         include_all_tenants: Annotated[Optional[StrictBool], Field(description="Specifies if IDP configurations on all the tenants under the hierarchy of the logged in user should be returned")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2846,10 +3139,6 @@ class IdentityProviderApi:
 
         Get Identity Providers configured on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Specifies IDs of configured identity providers
         :type ids: List[int]
         :param tenant_ids: Specifies the tenant id's to get IDPs configured on tenants
@@ -2858,6 +3147,10 @@ class IdentityProviderApi:
         :type domains: List[str]
         :param include_all_tenants: Specifies if IDP configurations on all the tenants under the hierarchy of the logged in user should be returned
         :type include_all_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2881,12 +3174,12 @@ class IdentityProviderApi:
         """ # noqa: E501
 
         _param = self._get_identities_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             tenant_ids=tenant_ids,
             domains=domains,
             include_all_tenants=include_all_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2905,12 +3198,12 @@ class IdentityProviderApi:
 
     def _get_identities_serialize(
         self,
-        access_cluster_id,
-        region_id,
         ids,
         tenant_ids,
         domains,
         include_all_tenants,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2996,13 +3289,13 @@ class IdentityProviderApi:
     @validate_call
     def get_identity_providers(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies ids of configured identity providers")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tenant id's to get idps configured on tenants")] = None,
         names: Annotated[Optional[List[StrictStr]], Field(description="Specifies the names of the identity providers")] = None,
         domains: Annotated[Optional[List[StrictStr]], Field(description="Specifies domains of the idp configurations")] = None,
         include_all_tenants: Annotated[Optional[StrictBool], Field(description="Specifies if idp configurations on all the tenants under the hierarchy of the logged in user should be returned")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3020,10 +3313,6 @@ class IdentityProviderApi:
 
         Get SAML based identity providers configured on the cluster
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Specifies ids of configured identity providers
         :type ids: List[int]
         :param tenant_ids: Specifies the tenant id's to get idps configured on tenants
@@ -3034,6 +3323,10 @@ class IdentityProviderApi:
         :type domains: List[str]
         :param include_all_tenants: Specifies if idp configurations on all the tenants under the hierarchy of the logged in user should be returned
         :type include_all_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3057,13 +3350,13 @@ class IdentityProviderApi:
         """ # noqa: E501
 
         _param = self._get_identity_providers_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             tenant_ids=tenant_ids,
             names=names,
             domains=domains,
             include_all_tenants=include_all_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3087,13 +3380,13 @@ class IdentityProviderApi:
     @validate_call
     def get_identity_providers_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies ids of configured identity providers")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tenant id's to get idps configured on tenants")] = None,
         names: Annotated[Optional[List[StrictStr]], Field(description="Specifies the names of the identity providers")] = None,
         domains: Annotated[Optional[List[StrictStr]], Field(description="Specifies domains of the idp configurations")] = None,
         include_all_tenants: Annotated[Optional[StrictBool], Field(description="Specifies if idp configurations on all the tenants under the hierarchy of the logged in user should be returned")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3111,10 +3404,6 @@ class IdentityProviderApi:
 
         Get SAML based identity providers configured on the cluster
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Specifies ids of configured identity providers
         :type ids: List[int]
         :param tenant_ids: Specifies the tenant id's to get idps configured on tenants
@@ -3125,6 +3414,10 @@ class IdentityProviderApi:
         :type domains: List[str]
         :param include_all_tenants: Specifies if idp configurations on all the tenants under the hierarchy of the logged in user should be returned
         :type include_all_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3148,13 +3441,13 @@ class IdentityProviderApi:
         """ # noqa: E501
 
         _param = self._get_identity_providers_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             tenant_ids=tenant_ids,
             names=names,
             domains=domains,
             include_all_tenants=include_all_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3178,13 +3471,13 @@ class IdentityProviderApi:
     @validate_call
     def get_identity_providers_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Specifies ids of configured identity providers")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="Specifies the tenant id's to get idps configured on tenants")] = None,
         names: Annotated[Optional[List[StrictStr]], Field(description="Specifies the names of the identity providers")] = None,
         domains: Annotated[Optional[List[StrictStr]], Field(description="Specifies domains of the idp configurations")] = None,
         include_all_tenants: Annotated[Optional[StrictBool], Field(description="Specifies if idp configurations on all the tenants under the hierarchy of the logged in user should be returned")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3202,10 +3495,6 @@ class IdentityProviderApi:
 
         Get SAML based identity providers configured on the cluster
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Specifies ids of configured identity providers
         :type ids: List[int]
         :param tenant_ids: Specifies the tenant id's to get idps configured on tenants
@@ -3216,6 +3505,10 @@ class IdentityProviderApi:
         :type domains: List[str]
         :param include_all_tenants: Specifies if idp configurations on all the tenants under the hierarchy of the logged in user should be returned
         :type include_all_tenants: bool
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3239,13 +3532,13 @@ class IdentityProviderApi:
         """ # noqa: E501
 
         _param = self._get_identity_providers_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             tenant_ids=tenant_ids,
             names=names,
             domains=domains,
             include_all_tenants=include_all_tenants,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3264,13 +3557,13 @@ class IdentityProviderApi:
 
     def _get_identity_providers_serialize(
         self,
-        access_cluster_id,
-        region_id,
         ids,
         tenant_ids,
         names,
         domains,
         include_all_tenants,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -3362,7 +3655,7 @@ class IdentityProviderApi:
     def get_idp_by_id(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the IDP.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3382,7 +3675,7 @@ class IdentityProviderApi:
 
         :param id: Specifies a unique id of the IDP. (required)
         :type id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3433,7 +3726,7 @@ class IdentityProviderApi:
     def get_idp_by_id_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the IDP.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3453,7 +3746,7 @@ class IdentityProviderApi:
 
         :param id: Specifies a unique id of the IDP. (required)
         :type id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3504,7 +3797,7 @@ class IdentityProviderApi:
     def get_idp_by_id_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the IDP.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3524,7 +3817,7 @@ class IdentityProviderApi:
 
         :param id: Specifies a unique id of the IDP. (required)
         :type id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3638,7 +3931,7 @@ class IdentityProviderApi:
     def get_idp_principal_by_sid(
         self,
         sid: Annotated[StrictStr, Field(description="Specifies the ID of the IDP Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3658,7 +3951,7 @@ class IdentityProviderApi:
 
         :param sid: Specifies the ID of the IDP Principal. (required)
         :type sid: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3709,7 +4002,7 @@ class IdentityProviderApi:
     def get_idp_principal_by_sid_with_http_info(
         self,
         sid: Annotated[StrictStr, Field(description="Specifies the ID of the IDP Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3729,7 +4022,7 @@ class IdentityProviderApi:
 
         :param sid: Specifies the ID of the IDP Principal. (required)
         :type sid: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3780,7 +4073,7 @@ class IdentityProviderApi:
     def get_idp_principal_by_sid_without_preload_content(
         self,
         sid: Annotated[StrictStr, Field(description="Specifies the ID of the IDP Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3800,7 +4093,7 @@ class IdentityProviderApi:
 
         :param sid: Specifies the ID of the IDP Principal. (required)
         :type sid: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3913,9 +4206,9 @@ class IdentityProviderApi:
     @validate_call
     def get_idps(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of IDP ids.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. Default's to false.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3933,12 +4226,12 @@ class IdentityProviderApi:
 
         Get the list of Identity Providers (IDP) configurations.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter by a list of IDP ids.
         :type ids: List[int]
         :param include_tenants: IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. Default's to false.
         :type include_tenants: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3962,9 +4255,9 @@ class IdentityProviderApi:
         """ # noqa: E501
 
         _param = self._get_idps_serialize(
-            region_id=region_id,
             ids=ids,
             include_tenants=include_tenants,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3988,9 +4281,9 @@ class IdentityProviderApi:
     @validate_call
     def get_idps_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of IDP ids.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. Default's to false.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4008,12 +4301,12 @@ class IdentityProviderApi:
 
         Get the list of Identity Providers (IDP) configurations.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter by a list of IDP ids.
         :type ids: List[int]
         :param include_tenants: IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. Default's to false.
         :type include_tenants: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4037,9 +4330,9 @@ class IdentityProviderApi:
         """ # noqa: E501
 
         _param = self._get_idps_serialize(
-            region_id=region_id,
             ids=ids,
             include_tenants=include_tenants,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4063,9 +4356,9 @@ class IdentityProviderApi:
     @validate_call
     def get_idps_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of IDP ids.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. Default's to false.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4083,12 +4376,12 @@ class IdentityProviderApi:
 
         Get the list of Identity Providers (IDP) configurations.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: Filter by a list of IDP ids.
         :type ids: List[int]
         :param include_tenants: IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. Default's to false.
         :type include_tenants: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4112,9 +4405,9 @@ class IdentityProviderApi:
         """ # noqa: E501
 
         _param = self._get_idps_serialize(
-            region_id=region_id,
             ids=ids,
             include_tenants=include_tenants,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4133,9 +4426,9 @@ class IdentityProviderApi:
 
     def _get_idps_serialize(
         self,
-        region_id,
         ids,
         include_tenants,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -4209,9 +4502,9 @@ class IdentityProviderApi:
     @validate_call
     def idps_login(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         tenant_id: Annotated[Optional[StrictStr], Field(description="Specifies an optional tenantId for which the SSO login should be done. If this is not specified, cluster SSO login is done.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4229,12 +4522,12 @@ class IdentityProviderApi:
 
         Redirects the client to the idp site with the URI to login
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param tenant_id: Specifies an optional tenantId for which the SSO login should be done. If this is not specified, cluster SSO login is done.
         :type tenant_id: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4258,9 +4551,9 @@ class IdentityProviderApi:
         """ # noqa: E501
 
         _param = self._idps_login_serialize(
+            tenant_id=tenant_id,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            tenant_id=tenant_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4284,9 +4577,9 @@ class IdentityProviderApi:
     @validate_call
     def idps_login_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         tenant_id: Annotated[Optional[StrictStr], Field(description="Specifies an optional tenantId for which the SSO login should be done. If this is not specified, cluster SSO login is done.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4304,12 +4597,12 @@ class IdentityProviderApi:
 
         Redirects the client to the idp site with the URI to login
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param tenant_id: Specifies an optional tenantId for which the SSO login should be done. If this is not specified, cluster SSO login is done.
         :type tenant_id: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4333,9 +4626,9 @@ class IdentityProviderApi:
         """ # noqa: E501
 
         _param = self._idps_login_serialize(
+            tenant_id=tenant_id,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            tenant_id=tenant_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4359,9 +4652,9 @@ class IdentityProviderApi:
     @validate_call
     def idps_login_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         tenant_id: Annotated[Optional[StrictStr], Field(description="Specifies an optional tenantId for which the SSO login should be done. If this is not specified, cluster SSO login is done.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4379,12 +4672,12 @@ class IdentityProviderApi:
 
         Redirects the client to the idp site with the URI to login
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param tenant_id: Specifies an optional tenantId for which the SSO login should be done. If this is not specified, cluster SSO login is done.
         :type tenant_id: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4408,9 +4701,9 @@ class IdentityProviderApi:
         """ # noqa: E501
 
         _param = self._idps_login_serialize(
+            tenant_id=tenant_id,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            tenant_id=tenant_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4429,9 +4722,9 @@ class IdentityProviderApi:
 
     def _idps_login_serialize(
         self,
+        tenant_id,
         access_cluster_id,
         region_id,
-        tenant_id,
         _request_auth,
         _content_type,
         _headers,
@@ -4502,9 +4795,9 @@ class IdentityProviderApi:
     @validate_call
     def list_idp_principals(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned.")] = None,
         sids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of principal SIDs.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4522,12 +4815,12 @@ class IdentityProviderApi:
 
         List the IDP Principals which have been created.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param include_tenants: IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned.
         :type include_tenants: bool
         :param sids: Specifies a list of principal SIDs.
         :type sids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4551,9 +4844,9 @@ class IdentityProviderApi:
         """ # noqa: E501
 
         _param = self._list_idp_principals_serialize(
-            region_id=region_id,
             include_tenants=include_tenants,
             sids=sids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4577,9 +4870,9 @@ class IdentityProviderApi:
     @validate_call
     def list_idp_principals_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned.")] = None,
         sids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of principal SIDs.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4597,12 +4890,12 @@ class IdentityProviderApi:
 
         List the IDP Principals which have been created.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param include_tenants: IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned.
         :type include_tenants: bool
         :param sids: Specifies a list of principal SIDs.
         :type sids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4626,9 +4919,9 @@ class IdentityProviderApi:
         """ # noqa: E501
 
         _param = self._list_idp_principals_serialize(
-            region_id=region_id,
             include_tenants=include_tenants,
             sids=sids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4652,9 +4945,9 @@ class IdentityProviderApi:
     @validate_call
     def list_idp_principals_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned.")] = None,
         sids: Annotated[Optional[List[StrictStr]], Field(description="Specifies a list of principal SIDs.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4672,12 +4965,12 @@ class IdentityProviderApi:
 
         List the IDP Principals which have been created.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param include_tenants: IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned.
         :type include_tenants: bool
         :param sids: Specifies a list of principal SIDs.
         :type sids: List[str]
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4701,9 +4994,9 @@ class IdentityProviderApi:
         """ # noqa: E501
 
         _param = self._list_idp_principals_serialize(
-            region_id=region_id,
             include_tenants=include_tenants,
             sids=sids,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4722,9 +5015,9 @@ class IdentityProviderApi:
 
     def _list_idp_principals_serialize(
         self,
-        region_id,
         include_tenants,
         sids,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -4799,8 +5092,8 @@ class IdentityProviderApi:
     def perform_identity_action(
         self,
         body: Annotated[IdentityAction, Field(description="Specifies parameters perform an identity action.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4820,9 +5113,9 @@ class IdentityProviderApi:
 
         :param body: Specifies parameters perform an identity action. (required)
         :type body: IdentityAction
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4874,8 +5167,8 @@ class IdentityProviderApi:
     def perform_identity_action_with_http_info(
         self,
         body: Annotated[IdentityAction, Field(description="Specifies parameters perform an identity action.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4895,9 +5188,9 @@ class IdentityProviderApi:
 
         :param body: Specifies parameters perform an identity action. (required)
         :type body: IdentityAction
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4949,8 +5242,8 @@ class IdentityProviderApi:
     def perform_identity_action_without_preload_content(
         self,
         body: Annotated[IdentityAction, Field(description="Specifies parameters perform an identity action.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4970,9 +5263,9 @@ class IdentityProviderApi:
 
         :param body: Specifies parameters perform an identity action. (required)
         :type body: IdentityAction
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5104,8 +5397,8 @@ class IdentityProviderApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of identity provider configuration")],
         body: Annotated[IdentityConfig, Field(description="Specifies parameters to update identity provider configuration")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5127,9 +5420,9 @@ class IdentityProviderApi:
         :type id: int
         :param body: Specifies parameters to update identity provider configuration (required)
         :type body: IdentityConfig
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5183,8 +5476,8 @@ class IdentityProviderApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of identity provider configuration")],
         body: Annotated[IdentityConfig, Field(description="Specifies parameters to update identity provider configuration")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5206,9 +5499,9 @@ class IdentityProviderApi:
         :type id: int
         :param body: Specifies parameters to update identity provider configuration (required)
         :type body: IdentityConfig
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5262,8 +5555,8 @@ class IdentityProviderApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of identity provider configuration")],
         body: Annotated[IdentityConfig, Field(description="Specifies parameters to update identity provider configuration")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5285,9 +5578,9 @@ class IdentityProviderApi:
         :type id: int
         :param body: Specifies parameters to update identity provider configuration (required)
         :type body: IdentityConfig
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5423,8 +5716,8 @@ class IdentityProviderApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of idp configuration")],
         body: Annotated[UpdateIdpRequestParams, Field(description="Specifies parameters to update identity provider configuration")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5446,9 +5739,9 @@ class IdentityProviderApi:
         :type id: int
         :param body: Specifies parameters to update identity provider configuration (required)
         :type body: UpdateIdpRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5502,8 +5795,8 @@ class IdentityProviderApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of idp configuration")],
         body: Annotated[UpdateIdpRequestParams, Field(description="Specifies parameters to update identity provider configuration")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5525,9 +5818,9 @@ class IdentityProviderApi:
         :type id: int
         :param body: Specifies parameters to update identity provider configuration (required)
         :type body: UpdateIdpRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5581,8 +5874,8 @@ class IdentityProviderApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of idp configuration")],
         body: Annotated[UpdateIdpRequestParams, Field(description="Specifies parameters to update identity provider configuration")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5604,9 +5897,9 @@ class IdentityProviderApi:
         :type id: int
         :param body: Specifies parameters to update identity provider configuration (required)
         :type body: UpdateIdpRequestParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5742,7 +6035,7 @@ class IdentityProviderApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the IDP configuration.")],
         body: Annotated[CreateOrUpdateIdpRequest, Field(description="Specifies the parameters to update IDP configuration.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5764,7 +6057,7 @@ class IdentityProviderApi:
         :type id: int
         :param body: Specifies the parameters to update IDP configuration. (required)
         :type body: CreateOrUpdateIdpRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5817,7 +6110,7 @@ class IdentityProviderApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the IDP configuration.")],
         body: Annotated[CreateOrUpdateIdpRequest, Field(description="Specifies the parameters to update IDP configuration.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5839,7 +6132,7 @@ class IdentityProviderApi:
         :type id: int
         :param body: Specifies the parameters to update IDP configuration. (required)
         :type body: CreateOrUpdateIdpRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5892,7 +6185,7 @@ class IdentityProviderApi:
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the IDP configuration.")],
         body: Annotated[CreateOrUpdateIdpRequest, Field(description="Specifies the parameters to update IDP configuration.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5914,7 +6207,7 @@ class IdentityProviderApi:
         :type id: int
         :param body: Specifies the parameters to update IDP configuration. (required)
         :type body: CreateOrUpdateIdpRequest
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6046,7 +6339,7 @@ class IdentityProviderApi:
         self,
         sid: Annotated[StrictStr, Field(description="Specifies the SID of the IDP Principal.")],
         body: Annotated[IdpPrincipal, Field(description="Specifies the parameters to update IDP Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6068,7 +6361,7 @@ class IdentityProviderApi:
         :type sid: str
         :param body: Specifies the parameters to update IDP Principal. (required)
         :type body: IdpPrincipal
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6121,7 +6414,7 @@ class IdentityProviderApi:
         self,
         sid: Annotated[StrictStr, Field(description="Specifies the SID of the IDP Principal.")],
         body: Annotated[IdpPrincipal, Field(description="Specifies the parameters to update IDP Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6143,7 +6436,7 @@ class IdentityProviderApi:
         :type sid: str
         :param body: Specifies the parameters to update IDP Principal. (required)
         :type body: IdpPrincipal
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6196,7 +6489,7 @@ class IdentityProviderApi:
         self,
         sid: Annotated[StrictStr, Field(description="Specifies the SID of the IDP Principal.")],
         body: Annotated[IdpPrincipal, Field(description="Specifies the parameters to update IDP Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6218,7 +6511,7 @@ class IdentityProviderApi:
         :type sid: str
         :param body: Specifies the parameters to update IDP Principal. (required)
         :type body: IdpPrincipal
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

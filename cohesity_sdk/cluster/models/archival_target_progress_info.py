@@ -53,8 +53,8 @@ class ArchivalTargetProgressInfo(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Local', 'FortKnox']):
-            raise ValueError("must be one of enum values ('Local', 'FortKnox')")
+        if value not in set(['Local', 'FortKnox', 'FortKnoxOnprem']):
+            raise ValueError("must be one of enum values ('Local', 'FortKnox', 'FortKnoxOnprem')")
         return value
 
     @field_validator('target_type')
@@ -73,8 +73,8 @@ class ArchivalTargetProgressInfo(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Archival', 'Tiering', 'Rpaas']):
-            raise ValueError("must be one of enum values ('Archival', 'Tiering', 'Rpaas')")
+        if value not in set(['Archival', 'Tiering', 'Rpaas', 'Logbackup']):
+            raise ValueError("must be one of enum values ('Archival', 'Tiering', 'Rpaas', 'Logbackup')")
         return value
 
     @field_validator('status')

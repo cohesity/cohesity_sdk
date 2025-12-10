@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **cloud_migration** | **bool** | Specifies whether or not to move the workload to the cloud. | [optional] 
 **cloud_pre_post_script** | [**CloudBackupScriptParams**](CloudBackupScriptParams.md) |  | [optional] 
 **data_transfer_info** | [**DataTransferInfo**](DataTransferInfo.md) |  | [optional] 
+**disk_exclusion_params** | [**AzureDiskExclusionParams**](AzureDiskExclusionParams.md) |  | [optional] 
 **exclude_object_ids** | **List[int]** | Specifies the objects to be excluded in the Protection Group. | [optional] 
 **exclude_vm_tag_ids** | **List[List[int]]** | Array of arrays of VM Tag Ids that Specify VMs to Exclude. | [optional] 
 **indexing_policy** | [**IndexingPolicy**](IndexingPolicy.md) |  | [optional] 

@@ -19,7 +19,13 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.cluster.models.big_query_protection_group_params import BigQueryProtectionGroupParams
+from cohesity_sdk.cluster.models.firestore_protection_group_params import FirestoreProtectionGroupParams
+from cohesity_sdk.cluster.models.gcp_my_sql_protection_group_params import GcpMySqlProtectionGroupParams
 from cohesity_sdk.cluster.models.gcp_native_protection_group_params import GcpNativeProtectionGroupParams
+from cohesity_sdk.cluster.models.gcp_postgre_sql_protection_group_params import GcpPostgreSQLProtectionGroupParams
+from cohesity_sdk.cluster.models.gcp_sql_server_protection_group_params import GcpSqlServerProtectionGroupParams
+from cohesity_sdk.cluster.models.spanner_protection_group_params import SpannerProtectionGroupParams
 from typing import Set
 from typing_extensions import Self
 
@@ -27,15 +33,21 @@ class GcpProtectionGroupParams(BaseModel):
     """
     Specifies the parameters which are specific to GCP related Protection Groups.
     """ # noqa: E501
+    big_query_protection_type_params: Optional[BigQueryProtectionGroupParams] = Field(default=None, alias="bigQueryProtectionTypeParams")
+    firestore_protection_type_params: Optional[FirestoreProtectionGroupParams] = Field(default=None, alias="firestoreProtectionTypeParams")
+    my_sql_protection_type_params: Optional[GcpMySqlProtectionGroupParams] = Field(default=None, alias="mySqlProtectionTypeParams")
     native_protection_type_params: Optional[GcpNativeProtectionGroupParams] = Field(default=None, alias="nativeProtectionTypeParams")
+    postgre_sql_protection_type_params: Optional[GcpPostgreSQLProtectionGroupParams] = Field(default=None, alias="postgreSqlProtectionTypeParams")
     protection_type: StrictStr = Field(description="Specifies the GCP Protection Group type.", alias="protectionType")
-    __properties: ClassVar[List[str]] = ["nativeProtectionTypeParams", "protectionType"]
+    spanner_protection_type_params: Optional[SpannerProtectionGroupParams] = Field(default=None, alias="spannerProtectionTypeParams")
+    sql_server_protection_type_params: Optional[GcpSqlServerProtectionGroupParams] = Field(default=None, alias="sqlServerProtectionTypeParams")
+    __properties: ClassVar[List[str]] = ["bigQueryProtectionTypeParams", "firestoreProtectionTypeParams", "mySqlProtectionTypeParams", "nativeProtectionTypeParams", "postgreSqlProtectionTypeParams", "protectionType", "spannerProtectionTypeParams", "sqlServerProtectionTypeParams"]
 
     @field_validator('protection_type')
     def protection_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['kNative']):
-            raise ValueError("must be one of enum values ('kNative')")
+        if value not in set(['kNative', 'kGCPBigQuery', 'kGoogleSpanner', 'kGCPFirestore', 'kGCPMySQL', 'kGCPPostgreSQL', 'kGCPAlloyDBPostgreSQL', 'kGCPSQLServer']):
+            raise ValueError("must be one of enum values ('kNative', 'kGCPBigQuery', 'kGoogleSpanner', 'kGCPFirestore', 'kGCPMySQL', 'kGCPPostgreSQL', 'kGCPAlloyDBPostgreSQL', 'kGCPSQLServer')")
         return value
 
     model_config = ConfigDict(
@@ -77,9 +89,27 @@ class GcpProtectionGroupParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of big_query_protection_type_params
+        if self.big_query_protection_type_params:
+            _dict['bigQueryProtectionTypeParams'] = self.big_query_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of firestore_protection_type_params
+        if self.firestore_protection_type_params:
+            _dict['firestoreProtectionTypeParams'] = self.firestore_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of my_sql_protection_type_params
+        if self.my_sql_protection_type_params:
+            _dict['mySqlProtectionTypeParams'] = self.my_sql_protection_type_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of native_protection_type_params
         if self.native_protection_type_params:
             _dict['nativeProtectionTypeParams'] = self.native_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of postgre_sql_protection_type_params
+        if self.postgre_sql_protection_type_params:
+            _dict['postgreSqlProtectionTypeParams'] = self.postgre_sql_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of spanner_protection_type_params
+        if self.spanner_protection_type_params:
+            _dict['spannerProtectionTypeParams'] = self.spanner_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of sql_server_protection_type_params
+        if self.sql_server_protection_type_params:
+            _dict['sqlServerProtectionTypeParams'] = self.sql_server_protection_type_params.to_dict()
         return _dict
 
     @classmethod
@@ -92,8 +122,14 @@ class GcpProtectionGroupParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "bigQueryProtectionTypeParams": BigQueryProtectionGroupParams.from_dict(obj["bigQueryProtectionTypeParams"]) if obj.get("bigQueryProtectionTypeParams") is not None else None,
+            "firestoreProtectionTypeParams": FirestoreProtectionGroupParams.from_dict(obj["firestoreProtectionTypeParams"]) if obj.get("firestoreProtectionTypeParams") is not None else None,
+            "mySqlProtectionTypeParams": GcpMySqlProtectionGroupParams.from_dict(obj["mySqlProtectionTypeParams"]) if obj.get("mySqlProtectionTypeParams") is not None else None,
             "nativeProtectionTypeParams": GcpNativeProtectionGroupParams.from_dict(obj["nativeProtectionTypeParams"]) if obj.get("nativeProtectionTypeParams") is not None else None,
-            "protectionType": obj.get("protectionType")
+            "postgreSqlProtectionTypeParams": GcpPostgreSQLProtectionGroupParams.from_dict(obj["postgreSqlProtectionTypeParams"]) if obj.get("postgreSqlProtectionTypeParams") is not None else None,
+            "protectionType": obj.get("protectionType"),
+            "spannerProtectionTypeParams": SpannerProtectionGroupParams.from_dict(obj["spannerProtectionTypeParams"]) if obj.get("spannerProtectionTypeParams") is not None else None,
+            "sqlServerProtectionTypeParams": GcpSqlServerProtectionGroupParams.from_dict(obj["sqlServerProtectionTypeParams"]) if obj.get("sqlServerProtectionTypeParams") is not None else None
         })
         return _obj
 

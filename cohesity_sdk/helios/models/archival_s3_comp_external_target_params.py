@@ -37,9 +37,10 @@ class ArchivalS3CompExternalTargetParams(BaseModel):
     bucket_owner_account_id: Optional[StrictStr] = Field(default=None, description="Specifies the account Id of the S3 bucket owner.", alias="bucketOwnerAccountId")
     is_forever_incremental_archival_enabled: Optional[StrictBool] = Field(default=None, description="Specifies if Forever Incremental Archival setting is enabled or not.", alias="isForeverIncrementalArchivalEnabled")
     is_incremental_archival_enabled: Optional[StrictBool] = Field(default=None, description="Specifies if Incremental Archival setting is enabled or not.", alias="isIncrementalArchivalEnabled")
+    is_network_optimized_gc: Optional[StrictBool] = Field(default=None, description="Specifies whether the garbage collection mode is network optimized or storage optimized. If this field is set to true, it refers to network optimized GC and if set to false, it refers to storage optimized GC.", alias="isNetworkOptimizedGC")
     source_side_deduplication: Optional[StrictBool] = Field(default=None, description="Specifies the Source Side Deduplication setting for the S3 Compatible external target", alias="sourceSideDeduplication")
     storage_class: Optional[StrictStr] = Field(default=None, description="Specifies the S3Compatible External Target storage class.", alias="storageClass")
-    __properties: ClassVar[List[str]] = ["accessKeyId", "bucketName", "endPoint", "isAwsSnowball", "region", "secretAccessKey", "secureConnection", "signatureVersion", "bucketOwnerAccountId", "isForeverIncrementalArchivalEnabled", "isIncrementalArchivalEnabled", "sourceSideDeduplication", "storageClass"]
+    __properties: ClassVar[List[str]] = ["accessKeyId", "bucketName", "endPoint", "isAwsSnowball", "region", "secretAccessKey", "secureConnection", "signatureVersion", "bucketOwnerAccountId", "isForeverIncrementalArchivalEnabled", "isIncrementalArchivalEnabled", "isNetworkOptimizedGC", "sourceSideDeduplication", "storageClass"]
 
     @field_validator('storage_class')
     def storage_class_validate_enum(cls, value):
@@ -145,6 +146,11 @@ class ArchivalS3CompExternalTargetParams(BaseModel):
         if self.is_incremental_archival_enabled is None and "is_incremental_archival_enabled" in self.model_fields_set:
             _dict['isIncrementalArchivalEnabled'] = None
 
+        # set to None if is_network_optimized_gc (nullable) is None
+        # and model_fields_set contains the field
+        if self.is_network_optimized_gc is None and "is_network_optimized_gc" in self.model_fields_set:
+            _dict['isNetworkOptimizedGC'] = None
+
         # set to None if source_side_deduplication (nullable) is None
         # and model_fields_set contains the field
         if self.source_side_deduplication is None and "source_side_deduplication" in self.model_fields_set:
@@ -178,6 +184,7 @@ class ArchivalS3CompExternalTargetParams(BaseModel):
             "bucketOwnerAccountId": obj.get("bucketOwnerAccountId"),
             "isForeverIncrementalArchivalEnabled": obj.get("isForeverIncrementalArchivalEnabled"),
             "isIncrementalArchivalEnabled": obj.get("isIncrementalArchivalEnabled"),
+            "isNetworkOptimizedGC": obj.get("isNetworkOptimizedGC"),
             "sourceSideDeduplication": obj.get("sourceSideDeduplication"),
             "storageClass": obj.get("storageClass")
         })

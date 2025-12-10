@@ -26,9 +26,10 @@ class DiskRemovalParams(BaseModel):
     """
     Specifies parameters to initiate/cancel disk removal.
     """ # noqa: E501
-    cancel: Optional[StrictBool] = Field(description="If true, cancels disk removal which is already in progress.")
+    cancel: StrictBool = Field(description="If true, cancels disk removal which is already in progress.")
+    is_clear_pre_check_result_only: Optional[StrictBool] = Field(default=False, description="Specifies whether request is for clearing pre-check result only", alias="isClearPreCheckResultOnly")
     is_validate_only: Optional[StrictBool] = Field(default=False, description="Specifies whether request is for pre-check validations only", alias="isValidateOnly")
-    __properties: ClassVar[List[str]] = ["cancel", "isValidateOnly"]
+    __properties: ClassVar[List[str]] = ["cancel", "isClearPreCheckResultOnly", "isValidateOnly"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,10 +70,10 @@ class DiskRemovalParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if cancel (nullable) is None
+        # set to None if is_clear_pre_check_result_only (nullable) is None
         # and model_fields_set contains the field
-        if self.cancel is None and "cancel" in self.model_fields_set:
-            _dict['cancel'] = None
+        if self.is_clear_pre_check_result_only is None and "is_clear_pre_check_result_only" in self.model_fields_set:
+            _dict['isClearPreCheckResultOnly'] = None
 
         # set to None if is_validate_only (nullable) is None
         # and model_fields_set contains the field
@@ -92,6 +93,7 @@ class DiskRemovalParams(BaseModel):
 
         _obj = cls.model_validate({
             "cancel": obj.get("cancel"),
+            "isClearPreCheckResultOnly": obj.get("isClearPreCheckResultOnly") if obj.get("isClearPreCheckResultOnly") is not None else False,
             "isValidateOnly": obj.get("isValidateOnly") if obj.get("isValidateOnly") is not None else False
         })
         return _obj

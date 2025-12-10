@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 Unregister a Remote Cluster.
 
-Unregister an external Remote Cluster.
+**Privileges:** ```CLUSTER_REMOTE_MODIFY``` <br><br>Unregister an external Remote Cluster.
 
 ### Example
 
@@ -108,7 +108,7 @@ void (empty response body)
 
 Get Remote Cluster config by id.
 
-Get Remote Cluster config by cluster id.
+**Privileges:** ```CLUSTER_REMOTE_VIEW``` <br><br>Get Remote Cluster config by cluster id.
 
 ### Example
 
@@ -198,11 +198,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_remote_clusters**
-> RemoteClusters get_remote_clusters(cluster_ids=cluster_ids, cluster_names=cluster_names, node_addresses=node_addresses, purpose=purpose, include_encrypted_credentials=include_encrypted_credentials)
+> RemoteClusters get_remote_clusters(cluster_ids=cluster_ids, cluster_names=cluster_names, node_addresses=node_addresses, purpose=purpose, include_encrypted_credentials=include_encrypted_credentials, include_onprem_vault=include_onprem_vault)
 
 Get all registered Remote Clusters.
 
-List the Remote Clusters that are registered on this local Cluster and that matches the filter criteria specified using parameters.
+**Privileges:** ```CLUSTER_REMOTE_VIEW``` <br><br>List the Remote Clusters that are registered on this local Cluster and that matches the filter criteria specified using parameters.
 
 ### Example
 
@@ -254,10 +254,11 @@ with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     node_addresses = ['node_addresses_example'] # List[str] | Specifies a list of Remote Cluster IPs to filter. (optional)
     purpose = ['purpose_example'] # List[str] | Specifies the purpose for which the remote cluster is being registered. (optional)
     include_encrypted_credentials = True # bool | If true, the response will include encrypted password. (optional)
+    include_onprem_vault = True # bool | If true, the response will include onprem vault. Onprem vault will not be included by default. (optional)
 
     try:
         # Get all registered Remote Clusters.
-        api_response = api_instance.get_remote_clusters(cluster_ids=cluster_ids, cluster_names=cluster_names, node_addresses=node_addresses, purpose=purpose, include_encrypted_credentials=include_encrypted_credentials)
+        api_response = api_instance.get_remote_clusters(cluster_ids=cluster_ids, cluster_names=cluster_names, node_addresses=node_addresses, purpose=purpose, include_encrypted_credentials=include_encrypted_credentials, include_onprem_vault=include_onprem_vault)
         print("The response of RemoteClustersApi->get_remote_clusters:\n")
         pprint(api_response)
     except Exception as e:
@@ -276,6 +277,7 @@ Name | Type | Description  | Notes
  **node_addresses** | [**List[str]**](str.md)| Specifies a list of Remote Cluster IPs to filter. | [optional] 
  **purpose** | [**List[str]**](str.md)| Specifies the purpose for which the remote cluster is being registered. | [optional] 
  **include_encrypted_credentials** | **bool**| If true, the response will include encrypted password. | [optional] 
+ **include_onprem_vault** | **bool**| If true, the response will include onprem vault. Onprem vault will not be included by default. | [optional] 
 
 ### Return type
 
@@ -304,7 +306,7 @@ Name | Type | Description  | Notes
 
 Register a Remote Cluster.
 
-Register a Remote Cluster on this local cluster for remote access and/or replication.
+**Privileges:** ```CLUSTER_REMOTE_MODIFY``` <br><br>Register a Remote Cluster on this local cluster for remote access and/or replication.
 
 ### Example
 
@@ -314,7 +316,7 @@ Register a Remote Cluster on this local cluster for remote access and/or replica
 
 ```python
 import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.register_remote_cluster_params import RegisterRemoteClusterParams
+from cohesity_sdk.cluster.models.register_remote_cluster_parameters import RegisterRemoteClusterParameters
 from cohesity_sdk.cluster.models.update_remote_cluster_params import UpdateRemoteClusterParams
 from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
@@ -352,7 +354,7 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cohesity_sdk.cluster.RemoteClustersApi(api_client)
-    body = cohesity_sdk.cluster.RegisterRemoteClusterParams() # RegisterRemoteClusterParams | Specifies the request to register Remote Cluster.
+    body = cohesity_sdk.cluster.RegisterRemoteClusterParameters() # RegisterRemoteClusterParameters | Specifies the request to register Remote Cluster.
 
     try:
         # Register a Remote Cluster.
@@ -370,7 +372,7 @@ with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**RegisterRemoteClusterParams**](RegisterRemoteClusterParams.md)| Specifies the request to register Remote Cluster. | 
+ **body** | [**RegisterRemoteClusterParameters**](RegisterRemoteClusterParameters.md)| Specifies the request to register Remote Cluster. | 
 
 ### Return type
 
@@ -399,7 +401,7 @@ Name | Type | Description  | Notes
 
 Update a Remote Cluster config.
 
-Update the connection settings of the specified Remote Cluster that is registered on this Cluster.
+**Privileges:** ```CLUSTER_REMOTE_MODIFY``` <br><br>Update the connection settings of the specified Remote Cluster that is registered on this Cluster.
 
 ### Example
 
@@ -466,7 +468,7 @@ with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cluster_id** | **int**| Specifies the cluster id of the Remote Cluster to update. | 
- **body** | [**UpdateRemoteClusterParams**](UpdateRemoteClusterParams.md)| Specifies the request to update Remote Cluster config. | 
+ **body** | **UpdateRemoteClusterParams**| Specifies the request to update Remote Cluster config. | 
 
 ### Return type
 
@@ -495,7 +497,7 @@ Name | Type | Description  | Notes
 
 Validate Remote Cluster config.
 
-Validate a Remote Cluster credentials. If includeRemoteClusterMetadata is true, response will include the remote cluster metadata.
+**Privileges:** ```CLUSTER_REMOTE_MODIFY``` <br><br>Validate a Remote Cluster credentials. If includeRemoteClusterMetadata is true, response will include the remote cluster metadata.
 
 ### Example
 
@@ -506,7 +508,7 @@ Validate a Remote Cluster credentials. If includeRemoteClusterMetadata is true, 
 ```python
 import cohesity_sdk.cluster
 from cohesity_sdk.cluster.models.remote_cluster_params import RemoteClusterParams
-from cohesity_sdk.cluster.models.validate_remote_cluster_connection_param import ValidateRemoteClusterConnectionParam
+from cohesity_sdk.cluster.models.validate_remote_cluster_connection_params import ValidateRemoteClusterConnectionParams
 from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
@@ -543,7 +545,7 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cohesity_sdk.cluster.RemoteClustersApi(api_client)
-    body = cohesity_sdk.cluster.ValidateRemoteClusterConnectionParam() # ValidateRemoteClusterConnectionParam | Specifies the request to validate Remote Cluster.
+    body = cohesity_sdk.cluster.ValidateRemoteClusterConnectionParams() # ValidateRemoteClusterConnectionParams | Specifies the request to validate Remote Cluster.
     include_metadata = True # bool | Specifies if Remote Cluster metadata should be included in the response. (optional)
 
     try:
@@ -562,7 +564,7 @@ with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ValidateRemoteClusterConnectionParam**](ValidateRemoteClusterConnectionParam.md)| Specifies the request to validate Remote Cluster. | 
+ **body** | [**ValidateRemoteClusterConnectionParams**](ValidateRemoteClusterConnectionParams.md)| Specifies the request to validate Remote Cluster. | 
  **include_metadata** | **bool**| Specifies if Remote Cluster metadata should be included in the response. | [optional] 
 
 ### Return type

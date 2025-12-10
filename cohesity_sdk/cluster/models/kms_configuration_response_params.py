@@ -20,6 +20,8 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.aws_kms_configuration_response import AwsKmsConfigurationResponse
+from cohesity_sdk.cluster.models.gcp_kms_configuration_response import GcpKmsConfigurationResponse
+from cohesity_sdk.cluster.models.ibm_kms_configuration_response import IbmKmsConfigurationResponse
 from cohesity_sdk.cluster.models.kmip_kms_configuration_response import KmipKmsConfigurationResponse
 from typing import Set
 from typing_extensions import Self
@@ -30,13 +32,15 @@ class KmsConfigurationResponseParams(BaseModel):
     """ # noqa: E501
     aws_kms_params: Optional[AwsKmsConfigurationResponse] = Field(default=None, alias="awsKmsParams")
     external_target_ids: Optional[List[StrictInt]] = Field(default=None, description="Ids of external targets used to assign the KMS for encryption. Once an external KMS (AWS KMS or KIMP KMS) is assigned to an external target, it cannot be changed.", alias="externalTargetIds")
+    gcp_kms_params: Optional[GcpKmsConfigurationResponse] = Field(default=None, alias="gcpKmsParams")
+    ibm_kms_params: Optional[IbmKmsConfigurationResponse] = Field(default=None, alias="ibmKmsParams")
     kmip_kms_params: Optional[KmipKmsConfigurationResponse] = Field(default=None, alias="kmipKmsParams")
     name: Optional[StrictStr] = Field(default=None, description="Name of the KMS.")
     ownership_context: Optional[StrictStr] = Field(default=None, description="Describes the consumption of the KMS key whether it is used for local or FortKnox.", alias="ownershipContext")
     storage_domain_ids: Optional[List[StrictInt]] = Field(default=None, description="Ids of storage domains used to assign the KMS for encryption. Once an external KMS (AWS KMS or KIMP KMS) is assigned to a storage domain, it cannot be changed.", alias="storageDomainIds")
     type: Optional[StrictStr] = Field(default=None, description="Type of KMS. 'InternalKms' indicates the internal cluster KMS. 'AwsKms' indicates AWS KMS. 'KmipKms' indicates any KMIP compliant KMS.")
     usage_type: Optional[StrictStr] = Field(default=None, description="Specifies the usage type of the kms config. 'kArchival' indicates this is used for regular archival. 'kRpaasArchival' indicates this is used for RPaaS only.", alias="usageType")
-    __properties: ClassVar[List[str]] = ["awsKmsParams", "externalTargetIds", "kmipKmsParams", "name", "ownershipContext", "storageDomainIds", "type", "usageType"]
+    __properties: ClassVar[List[str]] = ["awsKmsParams", "externalTargetIds", "gcpKmsParams", "ibmKmsParams", "kmipKmsParams", "name", "ownershipContext", "storageDomainIds", "type", "usageType"]
 
     @field_validator('ownership_context')
     def ownership_context_validate_enum(cls, value):
@@ -44,8 +48,8 @@ class KmsConfigurationResponseParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Local', 'FortKnox']):
-            raise ValueError("must be one of enum values ('Local', 'FortKnox')")
+        if value not in set(['Local', 'FortKnox', 'FortKnoxOnprem']):
+            raise ValueError("must be one of enum values ('Local', 'FortKnox', 'FortKnoxOnprem')")
         return value
 
     @field_validator('type')
@@ -54,8 +58,8 @@ class KmsConfigurationResponseParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['InternalKms', 'AwsKms', 'KmipKms']):
-            raise ValueError("must be one of enum values ('InternalKms', 'AwsKms', 'KmipKms')")
+        if value not in set(['InternalKms', 'AwsKms', 'KmipKms', 'IbmKms', 'GcpKms']):
+            raise ValueError("must be one of enum values ('InternalKms', 'AwsKms', 'KmipKms', 'IbmKms', 'GcpKms')")
         return value
 
     @field_validator('usage_type')
@@ -110,6 +114,12 @@ class KmsConfigurationResponseParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of aws_kms_params
         if self.aws_kms_params:
             _dict['awsKmsParams'] = self.aws_kms_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of gcp_kms_params
+        if self.gcp_kms_params:
+            _dict['gcpKmsParams'] = self.gcp_kms_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ibm_kms_params
+        if self.ibm_kms_params:
+            _dict['ibmKmsParams'] = self.ibm_kms_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of kmip_kms_params
         if self.kmip_kms_params:
             _dict['kmipKmsParams'] = self.kmip_kms_params.to_dict()
@@ -157,6 +167,8 @@ class KmsConfigurationResponseParams(BaseModel):
         _obj = cls.model_validate({
             "awsKmsParams": AwsKmsConfigurationResponse.from_dict(obj["awsKmsParams"]) if obj.get("awsKmsParams") is not None else None,
             "externalTargetIds": obj.get("externalTargetIds"),
+            "gcpKmsParams": GcpKmsConfigurationResponse.from_dict(obj["gcpKmsParams"]) if obj.get("gcpKmsParams") is not None else None,
+            "ibmKmsParams": IbmKmsConfigurationResponse.from_dict(obj["ibmKmsParams"]) if obj.get("ibmKmsParams") is not None else None,
             "kmipKmsParams": KmipKmsConfigurationResponse.from_dict(obj["kmipKmsParams"]) if obj.get("kmipKmsParams") is not None else None,
             "name": obj.get("name"),
             "ownershipContext": obj.get("ownershipContext"),

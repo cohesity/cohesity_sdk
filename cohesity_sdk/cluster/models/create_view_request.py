@@ -52,12 +52,12 @@ class CreateViewRequest(BaseModel):
     intent: Optional[ViewIntent] = None
     object_services_mapping_config: Optional[StrictStr] = Field(default=None, description="Specifies the Object Services key mapping config of the view. This parameter can only be set during create and cannot be changed. Configuration of Object Services key mapping. Specifies the type of Object Services key mapping config.", alias="objectServicesMappingConfig")
     s3_folder_support_enabled: Optional[StrictBool] = Field(default=None, description="Specifies whether to support s3 folder support feature. This parameter can only be set during create and cannot be changed.", alias="s3FolderSupportEnabled")
-    storage_domain_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the Storage Domain (View Box) where the View will be created.", alias="storageDomainId")
+    storage_domain_id: Optional[StrictInt] = Field(description="Specifies the id of the Storage Domain (View Box) where the View will be created.", alias="storageDomainId")
     view_protection_config: Optional[ViewProtectionConfig] = Field(default=None, alias="viewProtectionConfig")
     access_sids: Optional[List[StrictStr]] = Field(default=None, description="Array of Security Identifiers (SIDs) Specifies the list of security identifiers (SIDs) for the restricted Principals who have access to this View.", alias="accessSids")
     allow_mount_on_windows: Optional[StrictBool] = Field(default=None, description="Specifies if this View can be mounted using the NFS protocol on Windows systems. If true, this View can be NFS mounted on Windows systems.", alias="allowMountOnWindows")
     antivirus_scan_config: Optional[AntivirusScanConfig] = Field(default=None, alias="antivirusScanConfig")
-    category: Optional[StrictStr] = Field(default=None, description="Specifies the category of the View.")
+    category: Optional[StrictStr] = Field(description="Specifies the category of the View.")
     description: Optional[StrictStr] = Field(default=None, description="Specifies an optional text description about the View.")
     enable_filer_audit_logging: Optional[StrictBool] = Field(default=None, description="Specifies if Filer Audit Logging is enabled for this view.", alias="enableFilerAuditLogging")
     enable_live_indexing: Optional[StrictBool] = Field(default=None, description="Specifies whether to enable live indexing for the view.", alias="enableLiveIndexing")
@@ -75,7 +75,7 @@ class CreateViewRequest(BaseModel):
     netgroup_whitelist: Optional[NisNetgroups] = Field(default=None, alias="netgroupWhitelist")
     override_global_netgroup_whitelist: Optional[StrictBool] = Field(default=None, description="Specifies whether view level client netgroup whitelist overrides cluster and global setting.", alias="overrideGlobalNetgroupWhitelist")
     override_global_subnet_whitelist: Optional[StrictBool] = Field(default=None, description="Specifies whether view level client subnet whitelist overrides cluster and global setting.", alias="overrideGlobalSubnetWhitelist")
-    protocol_access: Optional[List[ViewProtocol]] = Field(default=None, description="Specifies the supported Protocols for the View.", alias="protocolAccess")
+    protocol_access: Optional[List[ViewProtocol]] = Field(description="Specifies the supported Protocols for the View.", alias="protocolAccess")
     qos: Optional[QoS] = None
     security_mode: Optional[StrictStr] = Field(default=None, description="Specifies the security mode used for this view. Currently we support the following modes: Native, Unified and NTFS style. 'NativeMode' indicates a native security mode. 'UnifiedMode' indicates a unified security mode. 'NtfsMode' indicates a NTFS style security mode.", alias="securityMode")
     self_service_snapshot_config: Optional[SelfServiceSnapshotConfig] = Field(default=None, alias="selfServiceSnapshotConfig")
@@ -107,12 +107,17 @@ class CreateViewRequest(BaseModel):
     lifecycle_management: Optional[S3LifecycleManagement] = Field(default=None, alias="lifecycleManagement")
     owner_info: Optional[S3ConfigOwnerInfo] = Field(default=None, alias="ownerInfo")
     s3_access_path: Optional[StrictStr] = Field(default=None, description="Specifies the path to access this View as an S3 share.", alias="s3AccessPath")
+    s3_efficient_mpu_max_subfiles: Optional[StrictInt] = Field(default=None, description="Specifies if this View has S3 MPU 2.0 enabled. This can set while editing a view. ", alias="s3EfficientMpuMaxSubfiles")
+    s3_enable_efficient_mpu: Optional[StrictBool] = Field(default=None, description="Specifies if this View has S3 MPU 2.0 enabled. This can set while editing a view. ", alias="s3EnableEfficientMpu")
+    s3_migration_action: Optional[StrictStr] = Field(default=None, description="Specifies the S3 migration action to be performed on this View. Supported migration actions are: [Enable, Cancel, Pause, Resume].", alias="s3MigrationAction")
+    s3_migration_progress: Optional[StrictInt] = Field(default=None, description="Specifies the S3 migration progress in percentage for a view.", alias="s3MigrationProgress")
+    s3_migration_state: Optional[StrictStr] = Field(default=None, description="Specifies the current S3 migration state for this View. A View can be under following migration states: [Eligible, Enable, Pause, Complete, UnderMigration].", alias="s3MigrationState")
     versioning: Optional[StrictStr] = Field(default=None, description="Specifies the versioning state of S3 bucket. Buckets can be in one of three states: UnVersioned (default), VersioningEnabled, or VersioningSuspended. Once versioning is enabled for a bucket, it can never return to an UnVersioned state. However, versioning on the bucket can be suspended.")
     swift_project_domain: Optional[StrictStr] = Field(default=None, description="Specifies the Keystone project domain.", alias="swiftProjectDomain")
     swift_project_name: Optional[StrictStr] = Field(default=None, description="Specifies the Keystone project name.", alias="swiftProjectName")
     swift_user_domain: Optional[StrictStr] = Field(default=None, description="Specifies the Keystone user domain.", alias="swiftUserDomain")
     swift_username: Optional[StrictStr] = Field(default=None, description="Specifies the Keystone username.", alias="swiftUsername")
-    __properties: ClassVar[List[str]] = ["caseInsensitiveNamesEnabled", "intent", "objectServicesMappingConfig", "s3FolderSupportEnabled", "storageDomainId", "viewProtectionConfig", "accessSids", "allowMountOnWindows", "antivirusScanConfig", "category", "description", "enableFilerAuditLogging", "enableLiveIndexing", "enableMetadataAccelerator", "enableMinion", "enableOfflineCaching", "fileExtensionFilter", "fileLockConfig", "filerLifecycleManagement", "isExternallyTriggeredBackupTarget", "isReadOnly", "lexicographicPrefetch", "logicalQuota", "name", "netgroupWhitelist", "overrideGlobalNetgroupWhitelist", "overrideGlobalSubnetWhitelist", "protocolAccess", "qos", "securityMode", "selfServiceSnapshotConfig", "storagePolicyOverride", "subnetWhitelist", "tenantId", "viewLockEnabled", "viewPinningConfig", "enableNfsKerberosAuthentication", "enableNfsKerberosIntegrity", "enableNfsKerberosPrivacy", "enableNfsUnixAuthentication", "enableNfsViewDiscovery", "enableNfsWcc", "nfsAllSquash", "nfsRootPermissions", "nfsRootSquash", "enableFastDurableHandle", "enableSmbAccessBasedEnumeration", "enableSmbEncryption", "enableSmbOplock", "enableSmbViewDiscovery", "enforceSmbEncryption", "sharePermissions", "smbPermissionsInfo", "aclConfig", "bucketPolicy", "enableAbac", "lifecycleManagement", "ownerInfo", "s3AccessPath", "versioning", "swiftProjectDomain", "swiftProjectName", "swiftUserDomain", "swiftUsername"]
+    __properties: ClassVar[List[str]] = ["caseInsensitiveNamesEnabled", "intent", "objectServicesMappingConfig", "s3FolderSupportEnabled", "storageDomainId", "viewProtectionConfig", "accessSids", "allowMountOnWindows", "antivirusScanConfig", "category", "description", "enableFilerAuditLogging", "enableLiveIndexing", "enableMetadataAccelerator", "enableMinion", "enableOfflineCaching", "fileExtensionFilter", "fileLockConfig", "filerLifecycleManagement", "isExternallyTriggeredBackupTarget", "isReadOnly", "lexicographicPrefetch", "logicalQuota", "name", "netgroupWhitelist", "overrideGlobalNetgroupWhitelist", "overrideGlobalSubnetWhitelist", "protocolAccess", "qos", "securityMode", "selfServiceSnapshotConfig", "storagePolicyOverride", "subnetWhitelist", "tenantId", "viewLockEnabled", "viewPinningConfig", "enableNfsKerberosAuthentication", "enableNfsKerberosIntegrity", "enableNfsKerberosPrivacy", "enableNfsUnixAuthentication", "enableNfsViewDiscovery", "enableNfsWcc", "nfsAllSquash", "nfsRootPermissions", "nfsRootSquash", "enableFastDurableHandle", "enableSmbAccessBasedEnumeration", "enableSmbEncryption", "enableSmbOplock", "enableSmbViewDiscovery", "enforceSmbEncryption", "sharePermissions", "smbPermissionsInfo", "aclConfig", "bucketPolicy", "enableAbac", "lifecycleManagement", "ownerInfo", "s3AccessPath", "s3EfficientMpuMaxSubfiles", "s3EnableEfficientMpu", "s3MigrationAction", "s3MigrationProgress", "s3MigrationState", "versioning", "swiftProjectDomain", "swiftProjectName", "swiftUserDomain", "swiftUsername"]
 
     @field_validator('object_services_mapping_config')
     def object_services_mapping_config_validate_enum(cls, value):
@@ -130,8 +135,8 @@ class CreateViewRequest(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['BackupTarget', 'FileServices', 'ObjectServices']):
-            raise ValueError("must be one of enum values ('BackupTarget', 'FileServices', 'ObjectServices')")
+        if value not in set(['BackupTarget', 'FileServices', 'ObjectServices', 'ArchiveServices']):
+            raise ValueError("must be one of enum values ('BackupTarget', 'FileServices', 'ObjectServices', 'ArchiveServices')")
         return value
 
     @field_validator('security_mode')
@@ -142,6 +147,26 @@ class CreateViewRequest(BaseModel):
 
         if value not in set(['NativeMode', 'UnifiedMode', 'NtfsMode']):
             raise ValueError("must be one of enum values ('NativeMode', 'UnifiedMode', 'NtfsMode')")
+        return value
+
+    @field_validator('s3_migration_action')
+    def s3_migration_action_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['Enable', 'Cancel', 'Pause', 'Resume']):
+            raise ValueError("must be one of enum values ('Enable', 'Cancel', 'Pause', 'Resume')")
+        return value
+
+    @field_validator('s3_migration_state')
+    def s3_migration_state_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['Enabled', 'UnderMigration', 'Paused', 'Completed', 'Eligible']):
+            raise ValueError("must be one of enum values ('Enabled', 'UnderMigration', 'Paused', 'Completed', 'Eligible')")
         return value
 
     @field_validator('versioning')
@@ -467,6 +492,31 @@ class CreateViewRequest(BaseModel):
         if self.s3_access_path is None and "s3_access_path" in self.model_fields_set:
             _dict['s3AccessPath'] = None
 
+        # set to None if s3_efficient_mpu_max_subfiles (nullable) is None
+        # and model_fields_set contains the field
+        if self.s3_efficient_mpu_max_subfiles is None and "s3_efficient_mpu_max_subfiles" in self.model_fields_set:
+            _dict['s3EfficientMpuMaxSubfiles'] = None
+
+        # set to None if s3_enable_efficient_mpu (nullable) is None
+        # and model_fields_set contains the field
+        if self.s3_enable_efficient_mpu is None and "s3_enable_efficient_mpu" in self.model_fields_set:
+            _dict['s3EnableEfficientMpu'] = None
+
+        # set to None if s3_migration_action (nullable) is None
+        # and model_fields_set contains the field
+        if self.s3_migration_action is None and "s3_migration_action" in self.model_fields_set:
+            _dict['s3MigrationAction'] = None
+
+        # set to None if s3_migration_progress (nullable) is None
+        # and model_fields_set contains the field
+        if self.s3_migration_progress is None and "s3_migration_progress" in self.model_fields_set:
+            _dict['s3MigrationProgress'] = None
+
+        # set to None if s3_migration_state (nullable) is None
+        # and model_fields_set contains the field
+        if self.s3_migration_state is None and "s3_migration_state" in self.model_fields_set:
+            _dict['s3MigrationState'] = None
+
         # set to None if versioning (nullable) is None
         # and model_fields_set contains the field
         if self.versioning is None and "versioning" in self.model_fields_set:
@@ -563,6 +613,11 @@ class CreateViewRequest(BaseModel):
             "lifecycleManagement": S3LifecycleManagement.from_dict(obj["lifecycleManagement"]) if obj.get("lifecycleManagement") is not None else None,
             "ownerInfo": S3ConfigOwnerInfo.from_dict(obj["ownerInfo"]) if obj.get("ownerInfo") is not None else None,
             "s3AccessPath": obj.get("s3AccessPath"),
+            "s3EfficientMpuMaxSubfiles": obj.get("s3EfficientMpuMaxSubfiles"),
+            "s3EnableEfficientMpu": obj.get("s3EnableEfficientMpu"),
+            "s3MigrationAction": obj.get("s3MigrationAction"),
+            "s3MigrationProgress": obj.get("s3MigrationProgress"),
+            "s3MigrationState": obj.get("s3MigrationState"),
             "versioning": obj.get("versioning"),
             "swiftProjectDomain": obj.get("swiftProjectDomain"),
             "swiftProjectName": obj.get("swiftProjectName"),

@@ -6,7 +6,7 @@ Specifies the response parameters containing the Azure apps created within the M
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**microsoft365_app_credentials_list** | [**List[Office365AppCredentials]**](Office365AppCredentials.md) | Specifies a list of Microsoft365 azure application credentials needed to authenticate &amp; authorize users for Office 365. | [optional] 
+**microsoft365_app_credentials_list** | [**List[Office365AppCredentials]**](Office365AppCredentials.md) | Specifies a list of Microsoft365 azure application credentials needed to authenticate &amp; authorize users for Office 365/Azure Workflows. | [optional] 
 
 ## Example
 

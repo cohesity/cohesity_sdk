@@ -26,8 +26,8 @@ class S3SpecificParams(BaseModel):
     """
     Specifies the s3 specific parameters for source registration
     """ # noqa: E501
-    inventory_report_bucket: Optional[StrictStr] = Field(description="Specifies the ARN for S3 bucket where inventory reports are to be stored.", alias="inventoryReportBucket")
-    inventory_report_prefix: Optional[StrictStr] = Field(description="The inventory bucket prefix where inventory reports are to be stored.", alias="inventoryReportPrefix")
+    inventory_report_bucket: Optional[StrictStr] = Field(default=None, description="Specifies the ARN for S3 bucket where inventory reports are to be stored.", alias="inventoryReportBucket")
+    inventory_report_prefix: Optional[StrictStr] = Field(default=None, description="The inventory bucket prefix where inventory reports are to be stored.", alias="inventoryReportPrefix")
     __properties: ClassVar[List[str]] = ["inventoryReportBucket", "inventoryReportPrefix"]
 
     model_config = ConfigDict(

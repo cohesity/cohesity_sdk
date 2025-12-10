@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.cluster.models.external_vendor_tenant_metadata import ExternalVendorTenantMetadata
 from cohesity_sdk.cluster.models.tenant_network import TenantNetwork
 from typing import Set
 from typing_extensions import Self
@@ -27,16 +28,40 @@ class TenantInfo(BaseModel):
     """
     Description of a Tenant and it's properties.
     """ # noqa: E501
+    active_deactivation: Optional[StrictStr] = Field(default=None, description="Specifies info about the active deactivation of this tenant, if any.", alias="activeDeactivation")
     created_at_time_msecs: Optional[StrictInt] = Field(default=None, description="Epoch time when tenant was created.", alias="createdAtTimeMsecs")
     deleted_at_time_msecs: Optional[StrictInt] = Field(default=None, description="Epoch time when tenant was last updated.", alias="deletedAtTimeMsecs")
     description: Optional[StrictStr] = Field(default=None, description="Description about the tenant.")
+    external_vendor_metadata: Optional[ExternalVendorTenantMetadata] = Field(default=None, alias="externalVendorMetadata")
+    finished_deactivations: Optional[List[Optional[StrictStr]]] = Field(default=None, description="Specifies a history of deactivations for this tenant. Only the latest 5 deactivations are preserved.", alias="finishedDeactivations")
     id: Optional[StrictStr] = Field(default=None, description="The tenant id.")
     is_managed_on_helios: Optional[StrictBool] = Field(default=None, description="Flag to indicate if tenant is managed on helios", alias="isManagedOnHelios")
     last_updated_at_time_msecs: Optional[StrictInt] = Field(default=None, description="Epoch time when tenant was last updated.", alias="lastUpdatedAtTimeMsecs")
     name: Optional[StrictStr] = Field(default=None, description="Name of the Tenant.")
     network: Optional[TenantNetwork] = None
     status: Optional[StrictStr] = Field(default=None, description="Current Status of the Tenant.")
-    __properties: ClassVar[List[str]] = ["createdAtTimeMsecs", "deletedAtTimeMsecs", "description", "id", "isManagedOnHelios", "lastUpdatedAtTimeMsecs", "name", "network", "status"]
+    __properties: ClassVar[List[str]] = ["activeDeactivation", "createdAtTimeMsecs", "deletedAtTimeMsecs", "description", "externalVendorMetadata", "finishedDeactivations", "id", "isManagedOnHelios", "lastUpdatedAtTimeMsecs", "name", "network", "status"]
+
+    @field_validator('active_deactivation')
+    def active_deactivation_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['None', 'Success', 'Failure', 'InProgress']):
+            raise ValueError("must be one of enum values ('None', 'Success', 'Failure', 'InProgress')")
+        return value
+
+    @field_validator('finished_deactivations')
+    def finished_deactivations_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        for i in value:
+            if i not in set(['None', 'Success', 'Failure', 'InProgress']):
+                raise ValueError("each list item must be one of ('None', 'Success', 'Failure', 'InProgress')")
+        return value
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -93,9 +118,17 @@ class TenantInfo(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of external_vendor_metadata
+        if self.external_vendor_metadata:
+            _dict['externalVendorMetadata'] = self.external_vendor_metadata.to_dict()
         # override the default output from pydantic by calling `to_dict()` of network
         if self.network:
             _dict['network'] = self.network.to_dict()
+        # set to None if active_deactivation (nullable) is None
+        # and model_fields_set contains the field
+        if self.active_deactivation is None and "active_deactivation" in self.model_fields_set:
+            _dict['activeDeactivation'] = None
+
         # set to None if created_at_time_msecs (nullable) is None
         # and model_fields_set contains the field
         if self.created_at_time_msecs is None and "created_at_time_msecs" in self.model_fields_set:
@@ -110,6 +143,11 @@ class TenantInfo(BaseModel):
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
             _dict['description'] = None
+
+        # set to None if finished_deactivations (nullable) is None
+        # and model_fields_set contains the field
+        if self.finished_deactivations is None and "finished_deactivations" in self.model_fields_set:
+            _dict['finishedDeactivations'] = None
 
         # set to None if id (nullable) is None
         # and model_fields_set contains the field
@@ -148,9 +186,12 @@ class TenantInfo(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "activeDeactivation": obj.get("activeDeactivation"),
             "createdAtTimeMsecs": obj.get("createdAtTimeMsecs"),
             "deletedAtTimeMsecs": obj.get("deletedAtTimeMsecs"),
             "description": obj.get("description"),
+            "externalVendorMetadata": ExternalVendorTenantMetadata.from_dict(obj["externalVendorMetadata"]) if obj.get("externalVendorMetadata") is not None else None,
+            "finishedDeactivations": obj.get("finishedDeactivations"),
             "id": obj.get("id"),
             "isManagedOnHelios": obj.get("isManagedOnHelios"),
             "lastUpdatedAtTimeMsecs": obj.get("lastUpdatedAtTimeMsecs"),

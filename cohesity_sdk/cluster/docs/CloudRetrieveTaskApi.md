@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Create a cloud retrieve task.
 
-Create a cloud retrieve task.
+```Unknown Privileges``` <br><br>Create a cloud retrieve task.
 
 ### Example
 
@@ -109,7 +109,7 @@ Name | Type | Description  | Notes
 
 List details about the cloud retrieve task with the specific job id.
 
-Returns the cloud retrieve task corresponding to the job id.
+```Unknown Privileges``` <br><br>Returns the cloud retrieve task corresponding to the job id.
 
 ### Example
 
@@ -203,7 +203,7 @@ Name | Type | Description  | Notes
 
 Get the list of cloud retrieve tasks.
 
-Get the list of cloud retrieve tasks.
+```Unknown Privileges``` <br><br>Get the list of cloud retrieve tasks.
 
 ### Example
 

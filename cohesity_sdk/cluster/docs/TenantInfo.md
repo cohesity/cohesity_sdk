@@ -6,9 +6,12 @@ Description of a Tenant and it's properties.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**active_deactivation** | **str** | Specifies info about the active deactivation of this tenant, if any. | [optional] 
 **created_at_time_msecs** | **int** | Epoch time when tenant was created. | [optional] [readonly] 
 **deleted_at_time_msecs** | **int** | Epoch time when tenant was last updated. | [optional] [readonly] 
 **description** | **str** | Description about the tenant. | [optional] 
+**external_vendor_metadata** | [**ExternalVendorTenantMetadata**](ExternalVendorTenantMetadata.md) |  | [optional] 
+**finished_deactivations** | **List[Optional[str]]** | Specifies a history of deactivations for this tenant. Only the latest 5 deactivations are preserved. | [optional] 
 **id** | **str** | The tenant id. | [optional] 
 **is_managed_on_helios** | **bool** | Flag to indicate if tenant is managed on helios | [optional] 
 **last_updated_at_time_msecs** | **int** | Epoch time when tenant was last updated. | [optional] [readonly] 

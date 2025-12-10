@@ -35,6 +35,10 @@ class ReplicationTargetResult(BaseModel):
     cluster_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the cluster.", alias="clusterName")
     aws_target_config: Optional[AWSTargetConfig] = Field(default=None, alias="awsTargetConfig")
     azure_target_config: Optional[AzureTargetConfig] = Field(default=None, alias="azureTargetConfig")
+    logical_size_bytes: Optional[StrictInt] = Field(default=None, description="Specifies the logical size of this snapshot in bytes.", alias="logicalSizeBytes")
+    object_ids: Optional[List[StrictStr]] = Field(default=None, description="Specifies the list of object ids for which this replication run was performed.", alias="objectIds")
+    ownership_context: Optional[StrictStr] = Field(default=None, description="Specifies the ownership context for the replication. This will only be populated when the replication target is a remote cluster.", alias="ownershipContext")
+    snapshot_id: Optional[StrictStr] = Field(default=None, description="Specifies the id of the replication snapshot for the object.", alias="snapshotId")
     data_lock_constraints: Optional[DataLockConstraints] = Field(default=None, alias="dataLockConstraints")
     end_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the end time of replication in Unix epoch Timestamp(in microseconds) for a target.", alias="endTimeUsecs")
     entries_changed: Optional[StrictInt] = Field(default=None, description="Specifies the number of metadata actions completed during the protection run.", alias="entriesChanged")
@@ -45,12 +49,23 @@ class ReplicationTargetResult(BaseModel):
     multi_object_replication: Optional[StrictBool] = Field(default=None, description="Specifies whether view based replication was used. In this case, the view containing all objects is replicated as a whole instead of replicating on a per object basis.", alias="multiObjectReplication")
     on_legal_hold: Optional[StrictBool] = Field(default=None, description="Specifies the legal hold status for a replication target.", alias="onLegalHold")
     percentage_completed: Optional[StrictInt] = Field(default=None, description="Specifies the progress in percentage.", alias="percentageCompleted")
+    progress_task_id: Optional[StrictStr] = Field(default=None, description="Progress monitor task id.", alias="progressTaskId")
     queued_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the time when the replication is queued for schedule in Unix epoch Timestamp(in microseconds) for a target.", alias="queuedTimeUsecs")
     replication_task_id: Optional[StrictStr] = Field(default=None, description="Task UID for a replication protection run. This is for tasks that are replicated from another cluster.", alias="replicationTaskId")
     start_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the start time of replication in Unix epoch Timestamp(in microseconds) for a target.", alias="startTimeUsecs")
     stats: Optional[ReplicationDataStats] = None
     status: Optional[StrictStr] = Field(default=None, description="Status of the replication for a target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. 'Skipped' indicates that the run was skipped.")
-    __properties: ClassVar[List[str]] = ["clusterId", "clusterIncarnationId", "clusterName", "awsTargetConfig", "azureTargetConfig", "dataLockConstraints", "endTimeUsecs", "entriesChanged", "expiryTimeUsecs", "isInBound", "isManuallyDeleted", "message", "multiObjectReplication", "onLegalHold", "percentageCompleted", "queuedTimeUsecs", "replicationTaskId", "startTimeUsecs", "stats", "status"]
+    __properties: ClassVar[List[str]] = ["clusterId", "clusterIncarnationId", "clusterName", "awsTargetConfig", "azureTargetConfig", "logicalSizeBytes", "objectIds", "ownershipContext", "snapshotId", "dataLockConstraints", "endTimeUsecs", "entriesChanged", "expiryTimeUsecs", "isInBound", "isManuallyDeleted", "message", "multiObjectReplication", "onLegalHold", "percentageCompleted", "progressTaskId", "queuedTimeUsecs", "replicationTaskId", "startTimeUsecs", "stats", "status"]
+
+    @field_validator('ownership_context')
+    def ownership_context_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['Local', 'FortKnox', 'FortKnoxOnprem']):
+            raise ValueError("must be one of enum values ('Local', 'FortKnox', 'FortKnoxOnprem')")
+        return value
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -58,8 +73,8 @@ class ReplicationTargetResult(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'Paused']):
-            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'Paused')")
+        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold', 'Paused']):
+            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold', 'Paused')")
         return value
 
     model_config = ConfigDict(
@@ -130,6 +145,26 @@ class ReplicationTargetResult(BaseModel):
         if self.cluster_name is None and "cluster_name" in self.model_fields_set:
             _dict['clusterName'] = None
 
+        # set to None if logical_size_bytes (nullable) is None
+        # and model_fields_set contains the field
+        if self.logical_size_bytes is None and "logical_size_bytes" in self.model_fields_set:
+            _dict['logicalSizeBytes'] = None
+
+        # set to None if object_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.object_ids is None and "object_ids" in self.model_fields_set:
+            _dict['objectIds'] = None
+
+        # set to None if ownership_context (nullable) is None
+        # and model_fields_set contains the field
+        if self.ownership_context is None and "ownership_context" in self.model_fields_set:
+            _dict['ownershipContext'] = None
+
+        # set to None if snapshot_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.snapshot_id is None and "snapshot_id" in self.model_fields_set:
+            _dict['snapshotId'] = None
+
         # set to None if end_time_usecs (nullable) is None
         # and model_fields_set contains the field
         if self.end_time_usecs is None and "end_time_usecs" in self.model_fields_set:
@@ -175,6 +210,11 @@ class ReplicationTargetResult(BaseModel):
         if self.percentage_completed is None and "percentage_completed" in self.model_fields_set:
             _dict['percentageCompleted'] = None
 
+        # set to None if progress_task_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.progress_task_id is None and "progress_task_id" in self.model_fields_set:
+            _dict['progressTaskId'] = None
+
         # set to None if queued_time_usecs (nullable) is None
         # and model_fields_set contains the field
         if self.queued_time_usecs is None and "queued_time_usecs" in self.model_fields_set:
@@ -212,6 +252,10 @@ class ReplicationTargetResult(BaseModel):
             "clusterName": obj.get("clusterName"),
             "awsTargetConfig": AWSTargetConfig.from_dict(obj["awsTargetConfig"]) if obj.get("awsTargetConfig") is not None else None,
             "azureTargetConfig": AzureTargetConfig.from_dict(obj["azureTargetConfig"]) if obj.get("azureTargetConfig") is not None else None,
+            "logicalSizeBytes": obj.get("logicalSizeBytes"),
+            "objectIds": obj.get("objectIds"),
+            "ownershipContext": obj.get("ownershipContext"),
+            "snapshotId": obj.get("snapshotId"),
             "dataLockConstraints": DataLockConstraints.from_dict(obj["dataLockConstraints"]) if obj.get("dataLockConstraints") is not None else None,
             "endTimeUsecs": obj.get("endTimeUsecs"),
             "entriesChanged": obj.get("entriesChanged"),
@@ -222,6 +266,7 @@ class ReplicationTargetResult(BaseModel):
             "multiObjectReplication": obj.get("multiObjectReplication"),
             "onLegalHold": obj.get("onLegalHold"),
             "percentageCompleted": obj.get("percentageCompleted"),
+            "progressTaskId": obj.get("progressTaskId"),
             "queuedTimeUsecs": obj.get("queuedTimeUsecs"),
             "replicationTaskId": obj.get("replicationTaskId"),
             "startTimeUsecs": obj.get("startTimeUsecs"),

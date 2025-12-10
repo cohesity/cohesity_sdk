@@ -30,6 +30,7 @@ class SnapshotsSummary(BaseModel):
     cluster_id: Optional[StrictInt] = Field(default=None, description="Specifies the cluster id where the snapshots is stored.", alias="clusterId")
     cluster_incarnation_id: Optional[StrictInt] = Field(default=None, description="Specifies the cluster incarnation id where the snapshots is stored.", alias="clusterIncarnationId")
     external_target_info: Optional[ArchivalTargetSummaryInfo] = Field(default=None, description="Specifies the external target information if this is an archival snapshot.", alias="externalTargetInfo")
+    latest_end_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp in Unix time epoch in microseconds representing the latest end time.", alias="latestEndTimeUsecs")
     latest_run_start_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp in Unix time epoch in microseconds when the latest run started.", alias="latestRunStartTimeUsecs")
     latest_run_status: Optional[StrictStr] = Field(default=None, description="Specifies the status of latest run.", alias="latestRunStatus")
     latest_snapshot_timestamp_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp in Unix time epoch in microseconds when the latest snapshot is taken.", alias="latestSnapshotTimestampUsecs")
@@ -37,7 +38,7 @@ class SnapshotsSummary(BaseModel):
     region_id: Optional[StrictStr] = Field(default=None, description="Specifies the cluster indentifier where the snapshots is stored.", alias="regionId")
     snapshot_count: Optional[StrictInt] = Field(default=None, description="Specifies the number of snapshots of this type and target.", alias="snapshotCount")
     snapshot_target_type: Optional[StrictStr] = Field(default=None, description="Specifies the target type where the Object's snapshot resides.", alias="snapshotTargetType")
-    __properties: ClassVar[List[str]] = ["clusterId", "clusterIncarnationId", "externalTargetInfo", "latestRunStartTimeUsecs", "latestRunStatus", "latestSnapshotTimestampUsecs", "ownershipContext", "regionId", "snapshotCount", "snapshotTargetType"]
+    __properties: ClassVar[List[str]] = ["clusterId", "clusterIncarnationId", "externalTargetInfo", "latestEndTimeUsecs", "latestRunStartTimeUsecs", "latestRunStatus", "latestSnapshotTimestampUsecs", "ownershipContext", "regionId", "snapshotCount", "snapshotTargetType"]
 
     @field_validator('latest_run_status')
     def latest_run_status_validate_enum(cls, value):
@@ -45,8 +46,8 @@ class SnapshotsSummary(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped']):
-            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped')")
+        if value not in set(['Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold']):
+            raise ValueError("must be one of enum values ('Accepted', 'Running', 'Canceled', 'Canceling', 'Failed', 'Missed', 'Succeeded', 'SucceededWithWarning', 'OnHold', 'Finalizing', 'Skipped', 'LegalHold')")
         return value
 
     @field_validator('ownership_context')
@@ -55,8 +56,8 @@ class SnapshotsSummary(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Local', 'FortKnox']):
-            raise ValueError("must be one of enum values ('Local', 'FortKnox')")
+        if value not in set(['Local', 'FortKnox', 'FortKnoxOnprem']):
+            raise ValueError("must be one of enum values ('Local', 'FortKnox', 'FortKnoxOnprem')")
         return value
 
     @field_validator('snapshot_target_type')
@@ -126,6 +127,11 @@ class SnapshotsSummary(BaseModel):
         if self.external_target_info is None and "external_target_info" in self.model_fields_set:
             _dict['externalTargetInfo'] = None
 
+        # set to None if latest_end_time_usecs (nullable) is None
+        # and model_fields_set contains the field
+        if self.latest_end_time_usecs is None and "latest_end_time_usecs" in self.model_fields_set:
+            _dict['latestEndTimeUsecs'] = None
+
         # set to None if latest_run_start_time_usecs (nullable) is None
         # and model_fields_set contains the field
         if self.latest_run_start_time_usecs is None and "latest_run_start_time_usecs" in self.model_fields_set:
@@ -176,6 +182,7 @@ class SnapshotsSummary(BaseModel):
             "clusterId": obj.get("clusterId"),
             "clusterIncarnationId": obj.get("clusterIncarnationId"),
             "externalTargetInfo": ArchivalTargetSummaryInfo.from_dict(obj["externalTargetInfo"]) if obj.get("externalTargetInfo") is not None else None,
+            "latestEndTimeUsecs": obj.get("latestEndTimeUsecs"),
             "latestRunStartTimeUsecs": obj.get("latestRunStartTimeUsecs"),
             "latestRunStatus": obj.get("latestRunStatus"),
             "latestSnapshotTimestampUsecs": obj.get("latestSnapshotTimestampUsecs"),

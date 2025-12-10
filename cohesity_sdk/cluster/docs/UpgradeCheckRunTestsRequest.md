@@ -6,7 +6,7 @@ Specifies upgrade checks request parameters
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**request_type** | **str** | Type of upgrade checks(pre/post) to run | [optional] 
+**request_type** | **str** | Type of upgrade checks(pre/post) to run | 
 
 ## Example
 

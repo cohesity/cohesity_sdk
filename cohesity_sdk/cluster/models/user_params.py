@@ -21,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.local_user_response_params import LocalUserResponseParams
 from cohesity_sdk.cluster.models.s3_account_params import S3AccountParams
+from cohesity_sdk.cluster.models.user_mfa_info import UserMfaInfo
 from typing import Set
 from typing_extensions import Self
 
@@ -32,22 +33,23 @@ class UserParams(BaseModel):
     effective_time_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the epoch time in milliseconds since when the user can login.", alias="effectiveTimeMsecs")
     expiry_time_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the epoch time in milliseconds when the user expires. Post expiry the user cannot access Cohesity cluster.", alias="expiryTimeMsecs")
     locked: Optional[StrictBool] = Field(default=None, description="Specifies whether the User is locked.")
+    other_groups: Optional[List[StrictStr]] = Field(default=None, description="Specifies additional groups the User may belong to.", alias="otherGroups")
+    primary_group: Optional[StrictStr] = Field(default=None, description="Specifies the primary group of the User. Primary group is used for file access.", alias="primaryGroup")
     restricted: Optional[StrictBool] = Field(default=None, description="Specifies whether the User is restricted. A restricted user can only view & manage the objects it has permissions to.")
     roles: Optional[List[StrictStr]] = Field(default=None, description="Specifies the Cohesity roles to associate with the user. The Cohesity roles determine privileges on the Cohesity Cluster for this user.")
     created_time_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the epoch time in milliseconds when the user account was created.", alias="createdTimeMsecs")
-    domain: Optional[StrictStr] = Field(default=None, description="Specifies the domain of the user. For active directories, this is the fully qualified domain name (FQDN). It is 'LOCAL' for local users on the Cohesity Cluster. A user is uniquely identified by combination of the username and the domain.")
+    domain: StrictStr = Field(description="Specifies the domain of the user. For active directories, this is the fully qualified domain name (FQDN). It is 'LOCAL' for local users on the Cohesity Cluster. A user is uniquely identified by combination of the username and the domain.")
     force_password_change: Optional[StrictBool] = Field(default=None, description="Specifies if the user must change password.", alias="forcePasswordChange")
     last_login_time_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the epoch time in milliseconds when the user last logged in successfully.", alias="lastLoginTimeMsecs")
     last_updated_time_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the epoch time in milliseconds when the user account was last modified.", alias="lastUpdatedTimeMsecs")
     local_user_params: Optional[LocalUserResponseParams] = Field(default=None, alias="localUserParams")
     locked_reason: Optional[StrictStr] = Field(default=None, description="Specifies the reason for locking the User.", alias="lockedReason")
-    other_groups: Optional[List[StrictStr]] = Field(default=None, description="Specifies additional groups the User may belong to.", alias="otherGroups")
-    primary_group: Optional[StrictStr] = Field(default=None, description="Specifies the primary group of the User. Primary group is used for file access.", alias="primaryGroup")
+    mfa_info: Optional[UserMfaInfo] = Field(default=None, alias="mfaInfo")
     s3_account_params: Optional[S3AccountParams] = Field(default=None, alias="s3AccountParams")
     sid: Optional[StrictStr] = Field(default=None, description="Specifies the sid of the User.")
     tenant_id: Optional[StrictStr] = Field(default=None, description="Specifies the tenant id of the User.", alias="tenantId")
-    username: Optional[StrictStr] = Field(default=None, description="Specifies the username.")
-    __properties: ClassVar[List[str]] = ["description", "effectiveTimeMsecs", "expiryTimeMsecs", "locked", "restricted", "roles", "createdTimeMsecs", "domain", "forcePasswordChange", "lastLoginTimeMsecs", "lastUpdatedTimeMsecs", "localUserParams", "lockedReason", "otherGroups", "primaryGroup", "s3AccountParams", "sid", "tenantId", "username"]
+    username: StrictStr = Field(description="Specifies the username.")
+    __properties: ClassVar[List[str]] = ["description", "effectiveTimeMsecs", "expiryTimeMsecs", "locked", "otherGroups", "primaryGroup", "restricted", "roles", "createdTimeMsecs", "domain", "forcePasswordChange", "lastLoginTimeMsecs", "lastUpdatedTimeMsecs", "localUserParams", "lockedReason", "mfaInfo", "s3AccountParams", "sid", "tenantId", "username"]
 
     @field_validator('locked_reason')
     def locked_reason_validate_enum(cls, value):
@@ -101,14 +103,14 @@ class UserParams(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
+            "other_groups",
+            "primary_group",
             "created_time_msecs",
             "domain",
             "force_password_change",
             "last_login_time_msecs",
             "last_updated_time_msecs",
             "locked_reason",
-            "other_groups",
-            "primary_group",
             "sid",
             "username",
         ])
@@ -121,6 +123,9 @@ class UserParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of local_user_params
         if self.local_user_params:
             _dict['localUserParams'] = self.local_user_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of mfa_info
+        if self.mfa_info:
+            _dict['mfaInfo'] = self.mfa_info.to_dict()
         # override the default output from pydantic by calling `to_dict()` of s3_account_params
         if self.s3_account_params:
             _dict['s3AccountParams'] = self.s3_account_params.to_dict()
@@ -143,6 +148,11 @@ class UserParams(BaseModel):
         # and model_fields_set contains the field
         if self.locked is None and "locked" in self.model_fields_set:
             _dict['locked'] = None
+
+        # set to None if primary_group (nullable) is None
+        # and model_fields_set contains the field
+        if self.primary_group is None and "primary_group" in self.model_fields_set:
+            _dict['primaryGroup'] = None
 
         # set to None if restricted (nullable) is None
         # and model_fields_set contains the field
@@ -179,11 +189,6 @@ class UserParams(BaseModel):
         if self.locked_reason is None and "locked_reason" in self.model_fields_set:
             _dict['lockedReason'] = None
 
-        # set to None if primary_group (nullable) is None
-        # and model_fields_set contains the field
-        if self.primary_group is None and "primary_group" in self.model_fields_set:
-            _dict['primaryGroup'] = None
-
         # set to None if sid (nullable) is None
         # and model_fields_set contains the field
         if self.sid is None and "sid" in self.model_fields_set:
@@ -210,6 +215,8 @@ class UserParams(BaseModel):
             "effectiveTimeMsecs": obj.get("effectiveTimeMsecs"),
             "expiryTimeMsecs": obj.get("expiryTimeMsecs"),
             "locked": obj.get("locked"),
+            "otherGroups": obj.get("otherGroups"),
+            "primaryGroup": obj.get("primaryGroup"),
             "restricted": obj.get("restricted"),
             "roles": obj.get("roles"),
             "createdTimeMsecs": obj.get("createdTimeMsecs"),
@@ -219,8 +226,7 @@ class UserParams(BaseModel):
             "lastUpdatedTimeMsecs": obj.get("lastUpdatedTimeMsecs"),
             "localUserParams": LocalUserResponseParams.from_dict(obj["localUserParams"]) if obj.get("localUserParams") is not None else None,
             "lockedReason": obj.get("lockedReason"),
-            "otherGroups": obj.get("otherGroups"),
-            "primaryGroup": obj.get("primaryGroup"),
+            "mfaInfo": UserMfaInfo.from_dict(obj["mfaInfo"]) if obj.get("mfaInfo") is not None else None,
             "s3AccountParams": S3AccountParams.from_dict(obj["s3AccountParams"]) if obj.get("s3AccountParams") is not None else None,
             "sid": obj.get("sid"),
             "tenantId": obj.get("tenantId"),

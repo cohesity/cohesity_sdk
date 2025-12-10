@@ -58,7 +58,7 @@ class RoleApi:
     ) -> Role:
         """Create a Role.
 
-        Create a Role.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Create a Role.
 
         :param body: Specifies the request body to create a Role. (required)
         :type body: CreateRoleParameters
@@ -125,7 +125,7 @@ class RoleApi:
     ) -> ApiResponse[Role]:
         """Create a Role.
 
-        Create a Role.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Create a Role.
 
         :param body: Specifies the request body to create a Role. (required)
         :type body: CreateRoleParameters
@@ -192,7 +192,7 @@ class RoleApi:
     ) -> RESTResponseType:
         """Create a Role.
 
-        Create a Role.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Create a Role.
 
         :param body: Specifies the request body to create a Role. (required)
         :type body: CreateRoleParameters
@@ -334,7 +334,7 @@ class RoleApi:
     ) -> None:
         """Delete a Role.
 
-        Delete a Role.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete a Role.
 
         :param name: Specifies the name of Role to delete. (required)
         :type name: str
@@ -401,7 +401,7 @@ class RoleApi:
     ) -> ApiResponse[None]:
         """Delete a Role.
 
-        Delete a Role.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete a Role.
 
         :param name: Specifies the name of Role to delete. (required)
         :type name: str
@@ -468,7 +468,7 @@ class RoleApi:
     ) -> RESTResponseType:
         """Delete a Role.
 
-        Delete a Role.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete a Role.
 
         :param name: Specifies the name of Role to delete. (required)
         :type name: str
@@ -599,7 +599,7 @@ class RoleApi:
     ) -> Roles:
         """Get Roles.
 
-        Get Roles.
+        **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Roles.
 
         :param names: Specifies a list of Role names.
         :type names: List[str]
@@ -674,7 +674,7 @@ class RoleApi:
     ) -> ApiResponse[Roles]:
         """Get Roles.
 
-        Get Roles.
+        **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Roles.
 
         :param names: Specifies a list of Role names.
         :type names: List[str]
@@ -749,7 +749,7 @@ class RoleApi:
     ) -> RESTResponseType:
         """Get Roles.
 
-        Get Roles.
+        **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Roles.
 
         :param names: Specifies a list of Role names.
         :type names: List[str]
@@ -899,7 +899,7 @@ class RoleApi:
     ) -> Role:
         """Update a Role.
 
-        Update a Role.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Update a Role.
 
         :param name: Specifies the name of Role to update. (required)
         :type name: str
@@ -970,7 +970,7 @@ class RoleApi:
     ) -> ApiResponse[Role]:
         """Update a Role.
 
-        Update a Role.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Update a Role.
 
         :param name: Specifies the name of Role to update. (required)
         :type name: str
@@ -1041,7 +1041,7 @@ class RoleApi:
     ) -> RESTResponseType:
         """Update a Role.
 
-        Update a Role.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Update a Role.
 
         :param name: Specifies the name of Role to update. (required)
         :type name: str

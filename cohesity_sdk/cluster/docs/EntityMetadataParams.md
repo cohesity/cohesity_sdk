@@ -9,7 +9,10 @@ Name | Type | Description | Notes
 **aws_params** | [**AwsEntityMetadata**](AwsEntityMetadata.md) |  | [optional] 
 **azure_params** | [**AzureEntityMetadata**](AzureEntityMetadata.md) |  | [optional] 
 **entity_id** | **int** | Specifies the entity id of the entity whose metadata is being updated. | 
+**experimental_adapter_params** | [**ExperimentalAdapterEntityMetadata**](ExperimentalAdapterEntityMetadata.md) |  | [optional] 
+**gcp_params** | [**GCPEntityMetadata**](GCPEntityMetadata.md) |  | [optional] 
 **maintenance_mode_config** | [**MaintenanceModeConfig**](MaintenanceModeConfig.md) |  | [optional] 
+**user_tag_attributes** | [**List[TagAttributeParams]**](TagAttributeParams.md) | Specifies the tag attributes associated with the entity created by the user | [optional] 
 
 ## Example
 

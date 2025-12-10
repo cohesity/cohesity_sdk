@@ -6,6 +6,7 @@ Specifies the request parameters to search for files and file folders.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**hashes** | **List[str]** | Specifies a list of the source hashes. Only files matches with these hashes will be returned. Only supported for adapters supported by ThreatHunting. | [optional] 
 **search_string** | **str** | Specifies the search string to filter the files. User can specify a wildcard character &#39;*&#39; as a suffix to a string where all files name are matched with the prefix string. | [optional] 
 **source_environments** | **List[str]** | Specifies a list of the source environments. Only files from these types of source will be returned. | [optional] 
 **types** | **List[str]** | Specifies a list of file types. Only files within the given types will be returned. | [optional] 

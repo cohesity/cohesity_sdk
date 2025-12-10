@@ -28,7 +28,7 @@ class ViewUserQuotaSettings(BaseModel):
     Specifies the user quota config on the View.
     """ # noqa: E501
     default_quota_policy: Optional[QuotaPolicy] = Field(default=None, alias="defaultQuotaPolicy")
-    enabled: StrictBool = Field(description="Specifies whether user quota is enabled for the View.")
+    enabled: Optional[StrictBool] = Field(default=None, description="Specifies whether user quota is enabled for the View.")
     __properties: ClassVar[List[str]] = ["defaultQuotaPolicy", "enabled"]
 
     model_config = ConfigDict(
@@ -73,6 +73,11 @@ class ViewUserQuotaSettings(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of default_quota_policy
         if self.default_quota_policy:
             _dict['defaultQuotaPolicy'] = self.default_quota_policy.to_dict()
+        # set to None if enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.enabled is None and "enabled" in self.model_fields_set:
+            _dict['enabled'] = None
+
         return _dict
 
     @classmethod

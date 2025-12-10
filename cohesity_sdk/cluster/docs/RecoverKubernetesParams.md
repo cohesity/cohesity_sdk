@@ -6,6 +6,9 @@ Specifies the recovery options specific to Kubernetes environment.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**download_file_and_folder_params** | [**CommonDownloadFileAndFolderParams**](CommonDownloadFileAndFolderParams.md) |  | [optional] 
+**objects** | [**List[CommonRecoverObjectSnapshotParams]**](CommonRecoverObjectSnapshotParams.md) | Specifies the list of objects which need to be recovered. | [optional] 
+**recover_file_and_folder_params** | [**RecoverKubernetesFileAndFolderParams**](RecoverKubernetesFileAndFolderParams.md) |  | [optional] 
 **recover_namespace_params** | [**RecoverKubernetesNamespaceParams**](RecoverKubernetesNamespaceParams.md) |  | [optional] 
 **recovery_action** | **str** | Specifies the type of recover action to be performed. | 
 

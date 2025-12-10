@@ -6,6 +6,8 @@ Specifies the Azure object level settings for object protection.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**disk_exclusion_params** | [**AzureDiskExclusionParams**](AzureDiskExclusionParams.md) |  | [optional] 
+**exclude_object_ids** | **List[Optional[int]]** | Specifies the list of IDs of the objects not to be protected in this backup. This field only applies if provided object id is non leaf entity such as Tag. This can be used to ignore specific objects (can include tags) under a parent object which has been included for protection. | [optional] 
 **id** | **int** | Specifies the id of the object being protected. This can be a leaf level or non leaf level object. | 
 
 ## Example

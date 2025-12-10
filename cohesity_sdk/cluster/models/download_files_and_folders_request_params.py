@@ -21,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
+from cohesity_sdk.cluster.models.document_object import DocumentObject
 from cohesity_sdk.cluster.models.files_and_folders_object import FilesAndFoldersObject
 from typing import Set
 from typing_extensions import Self
@@ -29,12 +30,13 @@ class DownloadFilesAndFoldersRequestParams(BaseModel):
     """
     Specifies the parameters to create a download files and folders Recovery.
     """ # noqa: E501
-    files_and_folders: Optional[Annotated[List[FilesAndFoldersObject], Field(min_length=1)]] = Field(description="Specifies the list of files and folders to download.", alias="filesAndFolders")
+    documents: Optional[Annotated[List[DocumentObject], Field(min_length=1)]] = Field(default=None, description="Specifies the list of documents to download using item ids. Only one of filesAndFolders or documents should be used. Currently only files are supported by documents.")
+    files_and_folders: Optional[List[FilesAndFoldersObject]] = Field(default=None, description="Specifies the list of files and folders to download. Only one of filesAndFolders or documents should be used.", alias="filesAndFolders")
     glacier_retrieval_type: Optional[StrictStr] = Field(default=None, description="Specifies the glacier retrieval type when restoring or downloding files or folders from a Glacier-based cloud snapshot.", alias="glacierRetrievalType")
     name: Optional[StrictStr] = Field(description="Specifies the name of the recovery task. This field must be set and must be a unique name.")
     object: CommonRecoverObjectSnapshotParams
     parent_recovery_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="If current recovery is child task triggered through another parent recovery operation, then this field will specify the id of the parent recovery.", alias="parentRecoveryId")
-    __properties: ClassVar[List[str]] = ["filesAndFolders", "glacierRetrievalType", "name", "object", "parentRecoveryId"]
+    __properties: ClassVar[List[str]] = ["documents", "filesAndFolders", "glacierRetrievalType", "name", "object", "parentRecoveryId"]
 
     @field_validator('glacier_retrieval_type')
     def glacier_retrieval_type_validate_enum(cls, value):
@@ -95,6 +97,13 @@ class DownloadFilesAndFoldersRequestParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in documents (list)
+        _items = []
+        if self.documents:
+            for _item_documents in self.documents:
+                if _item_documents:
+                    _items.append(_item_documents.to_dict())
+            _dict['documents'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in files_and_folders (list)
         _items = []
         if self.files_and_folders:
@@ -105,6 +114,11 @@ class DownloadFilesAndFoldersRequestParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of object
         if self.object:
             _dict['object'] = self.object.to_dict()
+        # set to None if documents (nullable) is None
+        # and model_fields_set contains the field
+        if self.documents is None and "documents" in self.model_fields_set:
+            _dict['documents'] = None
+
         # set to None if files_and_folders (nullable) is None
         # and model_fields_set contains the field
         if self.files_and_folders is None and "files_and_folders" in self.model_fields_set:
@@ -137,6 +151,7 @@ class DownloadFilesAndFoldersRequestParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "documents": [DocumentObject.from_dict(_item) for _item in obj["documents"]] if obj.get("documents") is not None else None,
             "filesAndFolders": [FilesAndFoldersObject.from_dict(_item) for _item in obj["filesAndFolders"]] if obj.get("filesAndFolders") is not None else None,
             "glacierRetrievalType": obj.get("glacierRetrievalType"),
             "name": obj.get("name"),

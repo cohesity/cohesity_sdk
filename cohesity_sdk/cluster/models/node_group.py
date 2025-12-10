@@ -33,10 +33,11 @@ class NodeGroup(BaseModel):
     dns_servers_info: Optional[DnsServersInfo] = Field(default=None, alias="dnsServersInfo")
     id: Optional[StrictInt] = Field(default=None, description="Id of the node group.")
     name: StrictStr = Field(description="Specifies the name of the Node Group.")
-    node_ids: Optional[List[StrictInt]] = Field(default=None, description="List of Node Ids that are part of this node group.", alias="node-ids")
+    node_ids: Optional[List[StrictInt]] = Field(default=None, description="List of Node Ids that are part of this node group.", alias="nodeIds")
+    node_ips: Optional[List[StrictStr]] = Field(default=None, description="Node ips for node group", alias="nodeIps")
     subnet_info: Optional[SubnetInfo] = Field(default=None, alias="subnetInfo")
     type: Optional[StrictInt] = Field(default=None, description="Type of the node group.")
-    __properties: ClassVar[List[str]] = ["bgpInstance", "dnsServersInfo", "id", "name", "node-ids", "subnetInfo", "type"]
+    __properties: ClassVar[List[str]] = ["bgpInstance", "dnsServersInfo", "id", "name", "nodeIds", "nodeIps", "subnetInfo", "type"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,7 +95,12 @@ class NodeGroup(BaseModel):
         # set to None if node_ids (nullable) is None
         # and model_fields_set contains the field
         if self.node_ids is None and "node_ids" in self.model_fields_set:
-            _dict['node-ids'] = None
+            _dict['nodeIds'] = None
+
+        # set to None if node_ips (nullable) is None
+        # and model_fields_set contains the field
+        if self.node_ips is None and "node_ips" in self.model_fields_set:
+            _dict['nodeIps'] = None
 
         # set to None if type (nullable) is None
         # and model_fields_set contains the field
@@ -117,7 +123,8 @@ class NodeGroup(BaseModel):
             "dnsServersInfo": DnsServersInfo.from_dict(obj["dnsServersInfo"]) if obj.get("dnsServersInfo") is not None else None,
             "id": obj.get("id"),
             "name": obj.get("name"),
-            "node-ids": obj.get("node-ids"),
+            "nodeIds": obj.get("nodeIds"),
+            "nodeIps": obj.get("nodeIps"),
             "subnetInfo": SubnetInfo.from_dict(obj["subnetInfo"]) if obj.get("subnetInfo") is not None else None,
             "type": obj.get("type")
         })

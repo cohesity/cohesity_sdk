@@ -6,8 +6,10 @@ Specifies a user quota for a user.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**domain** | **str** | Specifies the domain name of the user, where the principal&#39; account is maintained. | [optional] 
 **sid** | **str** | Specifies the user sid. | [optional] 
 **unix_uid** | **int** | Specifies the unix Uid. | [optional] 
+**user_name** | **str** | Specifies the full name of the user | [optional] 
 **quota_policy** | [**QuotaPolicy**](QuotaPolicy.md) |  | [optional] 
 **usage_bytes** | **int** | Specifies the user usage in bytes. | [optional] [readonly] 
 

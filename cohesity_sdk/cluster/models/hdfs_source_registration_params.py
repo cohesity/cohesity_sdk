@@ -32,13 +32,14 @@ class HdfsSourceRegistrationParams(BaseModel):
     namenode_address: Optional[StrictStr] = Field(default=None, description="The HDFS Namenode IP or hostname.", alias="namenodeAddress")
     webhdfs_port: Optional[StrictInt] = Field(default=None, description="The HDFS WebHDFS port.", alias="webhdfsPort")
     configuration_directory: StrictStr = Field(description="The directory containing the core-site.xml and hdfs-site.xml configuration files.", alias="configurationDirectory")
+    connection_type: Optional[StrictStr] = Field(default=None, description="HDFS Connection Type.", alias="connectionType")
     hadoop_distribution: StrictStr = Field(description="The hadoop distribution for this cluster. This can be either 'CDH' or 'HDP'", alias="hadoopDistribution")
     hadoop_version: StrictStr = Field(description="The hadoop version for this cluster.", alias="hadoopVersion")
     host: StrictStr = Field(description="IP or hostname of any host from which the HDFS configuration files core-site.xml and hdfs-site.xml can be read.")
     kerberos_principal: Optional[StrictStr] = Field(default=None, description="The kerberos principal to be used to connect to this HDFS source.", alias="kerberosPrincipal")
     ssh_password_credentials: Optional[HbaseSourceRegistrationParamsAllOfSshPasswordCredentials] = Field(default=None, alias="sshPasswordCredentials")
     ssh_private_key_credentials: Optional[HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials] = Field(default=None, alias="sshPrivateKeyCredentials")
-    __properties: ClassVar[List[str]] = ["authType", "namenodeAddress", "webhdfsPort", "configurationDirectory", "hadoopDistribution", "hadoopVersion", "host", "kerberosPrincipal", "sshPasswordCredentials", "sshPrivateKeyCredentials"]
+    __properties: ClassVar[List[str]] = ["authType", "namenodeAddress", "webhdfsPort", "configurationDirectory", "connectionType", "hadoopDistribution", "hadoopVersion", "host", "kerberosPrincipal", "sshPasswordCredentials", "sshPrivateKeyCredentials"]
 
     @field_validator('auth_type')
     def auth_type_validate_enum(cls, value):
@@ -48,6 +49,16 @@ class HdfsSourceRegistrationParams(BaseModel):
 
         if value not in set(['KERBEROS', 'NONE']):
             raise ValueError("must be one of enum values ('KERBEROS', 'NONE')")
+        return value
+
+    @field_validator('connection_type')
+    def connection_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['DFS', 'WEBHDFS', 'HTTPFSLB', 'HTTPFS']):
+            raise ValueError("must be one of enum values ('DFS', 'WEBHDFS', 'HTTPFSLB', 'HTTPFS')")
         return value
 
     @field_validator('hadoop_distribution')
@@ -113,6 +124,11 @@ class HdfsSourceRegistrationParams(BaseModel):
         if self.auth_type is None and "auth_type" in self.model_fields_set:
             _dict['authType'] = None
 
+        # set to None if connection_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.connection_type is None and "connection_type" in self.model_fields_set:
+            _dict['connectionType'] = None
+
         # set to None if kerberos_principal (nullable) is None
         # and model_fields_set contains the field
         if self.kerberos_principal is None and "kerberos_principal" in self.model_fields_set:
@@ -144,6 +160,7 @@ class HdfsSourceRegistrationParams(BaseModel):
             "namenodeAddress": obj.get("namenodeAddress"),
             "webhdfsPort": obj.get("webhdfsPort"),
             "configurationDirectory": obj.get("configurationDirectory"),
+            "connectionType": obj.get("connectionType"),
             "hadoopDistribution": obj.get("hadoopDistribution"),
             "hadoopVersion": obj.get("hadoopVersion"),
             "host": obj.get("host"),

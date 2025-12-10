@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **container_database_info** | [**ContainerDatabaseInfo**](ContainerDatabaseInfo.md) |  | [optional] 
 **data_guard_info** | [**OracleDataGuardInfo**](OracleDataGuardInfo.md) |  | [optional] 
 **db_type** | **str** | Specifies database type of oracle database. | [optional] 
+**tde_encrypted_ts_count** | **int** | Specifies the number of TDE encrypted tablespaces found in the database. | [optional] 
+**version** | **str** | Specifies version of oracle database. | [optional] 
 
 ## Example
 

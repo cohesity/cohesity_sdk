@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Add KMS
 
-Add a key management system(KMS) to the cluster.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Add a key management system(KMS) to the cluster.
 
 ### Example
 
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 Delete KMS
 
-Delete KMS configued on the cluster.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Delete KMS configued on the cluster.
 
 ### Example
 
@@ -201,7 +201,7 @@ void (empty response body)
 
 Get KMS
 
-Get key management systems(KMS) configured on the cluster.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>Get key management systems(KMS) configured on the cluster.
 
 ### Example
 
@@ -297,7 +297,7 @@ Name | Type | Description  | Notes
 
 Update KMS
 
-Update KMS on the cluster.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Update KMS on the cluster.
 
 ### Example
 

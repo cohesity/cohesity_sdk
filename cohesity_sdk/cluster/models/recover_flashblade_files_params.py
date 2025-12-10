@@ -46,8 +46,8 @@ class RecoverFlashbladeFilesParams(BaseModel):
     @field_validator('target_environment')
     def target_environment_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['kElastifile', 'kFlashBlade', 'kGenericNas', 'kGPFS', 'kIsilon', 'kNetapp']):
-            raise ValueError("must be one of enum values ('kElastifile', 'kFlashBlade', 'kGenericNas', 'kGPFS', 'kIsilon', 'kNetapp')")
+        if value not in set(['kElastifile', 'kFlashBlade', 'kGenericNas', 'kGPFS', 'kIsilon', 'kNetapp', 'kNutanixFS']):
+            raise ValueError("must be one of enum values ('kElastifile', 'kFlashBlade', 'kGenericNas', 'kGPFS', 'kIsilon', 'kNetapp', 'kNutanixFS')")
         return value
 
     model_config = ConfigDict(

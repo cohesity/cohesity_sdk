@@ -62,7 +62,7 @@ class IdentityProviderApi:
     ) -> IdentityConfig:
         """Configure Identity Provider
 
-        Configure Identity Provider on the cluster. Currently this API is only for Open ID providers, but will be expanded to include SAML providers in the future.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Configure Identity Provider on the cluster. Currently this API is only for Open ID providers, but will be expanded to include SAML providers in the future.
 
         :param body: Specifies parameters to configure Identity (required)
         :type body: IdentityConfig
@@ -129,7 +129,7 @@ class IdentityProviderApi:
     ) -> ApiResponse[IdentityConfig]:
         """Configure Identity Provider
 
-        Configure Identity Provider on the cluster. Currently this API is only for Open ID providers, but will be expanded to include SAML providers in the future.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Configure Identity Provider on the cluster. Currently this API is only for Open ID providers, but will be expanded to include SAML providers in the future.
 
         :param body: Specifies parameters to configure Identity (required)
         :type body: IdentityConfig
@@ -196,7 +196,7 @@ class IdentityProviderApi:
     ) -> RESTResponseType:
         """Configure Identity Provider
 
-        Configure Identity Provider on the cluster. Currently this API is only for Open ID providers, but will be expanded to include SAML providers in the future.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Configure Identity Provider on the cluster. Currently this API is only for Open ID providers, but will be expanded to include SAML providers in the future.
 
         :param body: Specifies parameters to configure Identity (required)
         :type body: IdentityConfig
@@ -338,7 +338,7 @@ class IdentityProviderApi:
     ) -> IdentityProviderConfiguration:
         """Configure identity provider
 
-        Configure SAML based identity provider on the cluster
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Configure SAML based identity provider on the cluster
 
         :param body: Specifies parameters to configure identity provider (required)
         :type body: CreateIdpRequestParams
@@ -405,7 +405,7 @@ class IdentityProviderApi:
     ) -> ApiResponse[IdentityProviderConfiguration]:
         """Configure identity provider
 
-        Configure SAML based identity provider on the cluster
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Configure SAML based identity provider on the cluster
 
         :param body: Specifies parameters to configure identity provider (required)
         :type body: CreateIdpRequestParams
@@ -472,7 +472,7 @@ class IdentityProviderApi:
     ) -> RESTResponseType:
         """Configure identity provider
 
-        Configure SAML based identity provider on the cluster
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Configure SAML based identity provider on the cluster
 
         :param body: Specifies parameters to configure identity provider (required)
         :type body: CreateIdpRequestParams
@@ -614,7 +614,7 @@ class IdentityProviderApi:
     ) -> None:
         """Delete Identity Provider
 
-        Delete identity provider configuration on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete identity provider configuration on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
 
         :param id: Specifies id of identity provider configuration (required)
         :type id: int
@@ -681,7 +681,7 @@ class IdentityProviderApi:
     ) -> ApiResponse[None]:
         """Delete Identity Provider
 
-        Delete identity provider configuration on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete identity provider configuration on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
 
         :param id: Specifies id of identity provider configuration (required)
         :type id: int
@@ -748,7 +748,7 @@ class IdentityProviderApi:
     ) -> RESTResponseType:
         """Delete Identity Provider
 
-        Delete identity provider configuration on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete identity provider configuration on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
 
         :param id: Specifies id of identity provider configuration (required)
         :type id: int
@@ -877,7 +877,7 @@ class IdentityProviderApi:
     ) -> None:
         """Delete identity provider
 
-        Delete SAML based identity provider configuration on the cluster
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete SAML based identity provider configuration on the cluster
 
         :param id: Specifies id of idp configuration (required)
         :type id: int
@@ -944,7 +944,7 @@ class IdentityProviderApi:
     ) -> ApiResponse[None]:
         """Delete identity provider
 
-        Delete SAML based identity provider configuration on the cluster
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete SAML based identity provider configuration on the cluster
 
         :param id: Specifies id of idp configuration (required)
         :type id: int
@@ -1011,7 +1011,7 @@ class IdentityProviderApi:
     ) -> RESTResponseType:
         """Delete identity provider
 
-        Delete SAML based identity provider configuration on the cluster
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Delete SAML based identity provider configuration on the cluster
 
         :param id: Specifies id of idp configuration (required)
         :type id: int
@@ -1143,7 +1143,7 @@ class IdentityProviderApi:
     ) -> IdentityConfigs:
         """Get Identities
 
-        Get Identity Providers configured on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
+        **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Identity Providers configured on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
 
         :param ids: Specifies IDs of configured identity providers
         :type ids: List[int]
@@ -1222,7 +1222,7 @@ class IdentityProviderApi:
     ) -> ApiResponse[IdentityConfigs]:
         """Get Identities
 
-        Get Identity Providers configured on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
+        **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Identity Providers configured on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
 
         :param ids: Specifies IDs of configured identity providers
         :type ids: List[int]
@@ -1301,7 +1301,7 @@ class IdentityProviderApi:
     ) -> RESTResponseType:
         """Get Identities
 
-        Get Identity Providers configured on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
+        **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Identity Providers configured on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
 
         :param ids: Specifies IDs of configured identity providers
         :type ids: List[int]
@@ -1463,7 +1463,7 @@ class IdentityProviderApi:
     ) -> IdentityProviderConfigurations:
         """Get identity providers
 
-        Get SAML based identity providers configured on the cluster
+        **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get SAML based identity providers configured on the cluster
 
         :param ids: Specifies ids of configured identity providers
         :type ids: List[int]
@@ -1546,7 +1546,7 @@ class IdentityProviderApi:
     ) -> ApiResponse[IdentityProviderConfigurations]:
         """Get identity providers
 
-        Get SAML based identity providers configured on the cluster
+        **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get SAML based identity providers configured on the cluster
 
         :param ids: Specifies ids of configured identity providers
         :type ids: List[int]
@@ -1629,7 +1629,7 @@ class IdentityProviderApi:
     ) -> RESTResponseType:
         """Get identity providers
 
-        Get SAML based identity providers configured on the cluster
+        **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get SAML based identity providers configured on the cluster
 
         :param ids: Specifies ids of configured identity providers
         :type ids: List[int]
@@ -1796,7 +1796,7 @@ class IdentityProviderApi:
     ) -> Error:
         """Login to cluster using idp
 
-        Redirects the client to the idp site with the URI to login
+        ```No Privileges Required``` <br><br>Redirects the client to the idp site with the URI to login
 
         :param tenant_id: Specifies an optional tenantId for which the SSO login should be done. If this is not specified, cluster SSO login is done.
         :type tenant_id: str
@@ -1863,7 +1863,7 @@ class IdentityProviderApi:
     ) -> ApiResponse[Error]:
         """Login to cluster using idp
 
-        Redirects the client to the idp site with the URI to login
+        ```No Privileges Required``` <br><br>Redirects the client to the idp site with the URI to login
 
         :param tenant_id: Specifies an optional tenantId for which the SSO login should be done. If this is not specified, cluster SSO login is done.
         :type tenant_id: str
@@ -1930,7 +1930,7 @@ class IdentityProviderApi:
     ) -> RESTResponseType:
         """Login to cluster using idp
 
-        Redirects the client to the idp site with the URI to login
+        ```No Privileges Required``` <br><br>Redirects the client to the idp site with the URI to login
 
         :param tenant_id: Specifies an optional tenantId for which the SSO login should be done. If this is not specified, cluster SSO login is done.
         :type tenant_id: str
@@ -2061,7 +2061,7 @@ class IdentityProviderApi:
     ) -> IdentityAction:
         """Perform Identity Action
 
-        Perform an action on an Identity Provider. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Perform an action on an Identity Provider. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
 
         :param body: Specifies parameters perform an identity action. (required)
         :type body: IdentityAction
@@ -2128,7 +2128,7 @@ class IdentityProviderApi:
     ) -> ApiResponse[IdentityAction]:
         """Perform Identity Action
 
-        Perform an action on an Identity Provider. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Perform an action on an Identity Provider. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
 
         :param body: Specifies parameters perform an identity action. (required)
         :type body: IdentityAction
@@ -2195,7 +2195,7 @@ class IdentityProviderApi:
     ) -> RESTResponseType:
         """Perform Identity Action
 
-        Perform an action on an Identity Provider. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Perform an action on an Identity Provider. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
 
         :param body: Specifies parameters perform an identity action. (required)
         :type body: IdentityAction
@@ -2338,7 +2338,7 @@ class IdentityProviderApi:
     ) -> IdentityConfig:
         """Update Identity Provider
 
-        Update Identity Provider on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Update Identity Provider on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
 
         :param id: Specifies id of identity provider configuration (required)
         :type id: int
@@ -2409,7 +2409,7 @@ class IdentityProviderApi:
     ) -> ApiResponse[IdentityConfig]:
         """Update Identity Provider
 
-        Update Identity Provider on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Update Identity Provider on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
 
         :param id: Specifies id of identity provider configuration (required)
         :type id: int
@@ -2480,7 +2480,7 @@ class IdentityProviderApi:
     ) -> RESTResponseType:
         """Update Identity Provider
 
-        Update Identity Provider on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Update Identity Provider on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.
 
         :param id: Specifies id of identity provider configuration (required)
         :type id: int
@@ -2629,7 +2629,7 @@ class IdentityProviderApi:
     ) -> IdentityProviderConfiguration:
         """Update identity provider
 
-        Update SAML based identity provider configurartion on the cluster
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Update SAML based identity provider configurartion on the cluster
 
         :param id: Specifies id of idp configuration (required)
         :type id: int
@@ -2700,7 +2700,7 @@ class IdentityProviderApi:
     ) -> ApiResponse[IdentityProviderConfiguration]:
         """Update identity provider
 
-        Update SAML based identity provider configurartion on the cluster
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Update SAML based identity provider configurartion on the cluster
 
         :param id: Specifies id of idp configuration (required)
         :type id: int
@@ -2771,7 +2771,7 @@ class IdentityProviderApi:
     ) -> RESTResponseType:
         """Update identity provider
 
-        Update SAML based identity provider configurartion on the cluster
+        **Privileges:** ```PRINCIPAL_MODIFY``` <br><br>Update SAML based identity provider configurartion on the cluster
 
         :param id: Specifies id of idp configuration (required)
         :type id: int

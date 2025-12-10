@@ -27,7 +27,7 @@ class ExtendedRetentionSchedule(BaseModel):
     """
     Specifies a schedule frequency and schedule unit for Extended Retentions.
     """ # noqa: E501
-    frequency: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(default=None, description="Specifies a factor to multiply the unit by, to determine the retention schedule. For example if set to 2 and the unit is hourly, then Snapshots from the first eligible Job Run for every 2 hour period is retained.")
+    frequency: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(default=None, description="Specifies a factor to multiply the unit by, to determine the retention schedule. For example if set to 2 and the unit is hourly, then Snapshots from the first eligible group Run for every 2 hour period is retained.")
     unit: Optional[StrictStr] = Field(description="Specifies the unit interval for retention of Snapshots. <br>'Runs' means that the Snapshot copy retained after the number of Protection Group Runs equals the number specified in the frequency. <br>'Hours' means that the Snapshot copy retained hourly at the frequency set in the frequency, for example if scheduleFrequency is 2, the copy occurs every 2 hours. <br>'Days' means that the Snapshot copy gets retained daily at the frequency set in the frequency. <br>'Weeks' means that the Snapshot copy is retained weekly at the frequency set in the frequency. <br>'Months' means that the Snapshot copy is retained monthly at the frequency set in the Frequency. <br>'Years' means that the Snapshot copy is retained yearly at the frequency set in the Frequency.")
     __properties: ClassVar[List[str]] = ["frequency", "unit"]
 

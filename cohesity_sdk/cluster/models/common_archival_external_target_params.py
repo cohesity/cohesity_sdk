@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.cluster.models.cloud_archival_direct_config import CloudArchivalDirectConfig
 from cohesity_sdk.cluster.models.encryption_settings import EncryptionSettings
 from cohesity_sdk.cluster.models.target_bandwidth_throttlings import TargetBandwidthThrottlings
 from typing import Set
@@ -28,10 +29,11 @@ class CommonArchivalExternalTargetParams(BaseModel):
     """
     Specifies the common parameters which are specific to Archival purpose type External Targets.
     """ # noqa: E501
+    cad_config: Optional[CloudArchivalDirectConfig] = Field(default=None, alias="cadConfig")
     encryption: EncryptionSettings
     storage_type: Optional[StrictStr] = Field(description="Specifies the Storage type of the External Target. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead.", alias="storageType")
     target_bandwidth_throttlings: Optional[TargetBandwidthThrottlings] = Field(default=None, alias="targetBandwidthThrottlings")
-    __properties: ClassVar[List[str]] = ["encryption", "storageType", "targetBandwidthThrottlings"]
+    __properties: ClassVar[List[str]] = ["cadConfig", "encryption", "storageType", "targetBandwidthThrottlings"]
 
     @field_validator('storage_type')
     def storage_type_validate_enum(cls, value):
@@ -39,8 +41,8 @@ class CommonArchivalExternalTargetParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Azure', 'Google', 'AWS', 'Oracle', 'Nas', 'NAS', 'QStarTape', 'S3Compatible']):
-            raise ValueError("must be one of enum values ('Azure', 'Google', 'AWS', 'Oracle', 'Nas', 'NAS', 'QStarTape', 'S3Compatible')")
+        if value not in set(['Azure', 'Google', 'AWS', 'Oracle', 'Nas', 'NAS', 'QStarTape', 'S3Compatible', 'IBM']):
+            raise ValueError("must be one of enum values ('Azure', 'Google', 'AWS', 'Oracle', 'Nas', 'NAS', 'QStarTape', 'S3Compatible', 'IBM')")
         return value
 
     model_config = ConfigDict(
@@ -82,6 +84,9 @@ class CommonArchivalExternalTargetParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of cad_config
+        if self.cad_config:
+            _dict['cadConfig'] = self.cad_config.to_dict()
         # override the default output from pydantic by calling `to_dict()` of encryption
         if self.encryption:
             _dict['encryption'] = self.encryption.to_dict()
@@ -105,6 +110,7 @@ class CommonArchivalExternalTargetParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "cadConfig": CloudArchivalDirectConfig.from_dict(obj["cadConfig"]) if obj.get("cadConfig") is not None else None,
             "encryption": EncryptionSettings.from_dict(obj["encryption"]) if obj.get("encryption") is not None else None,
             "storageType": obj.get("storageType"),
             "targetBandwidthThrottlings": TargetBandwidthThrottlings.from_dict(obj["targetBandwidthThrottlings"]) if obj.get("targetBandwidthThrottlings") is not None else None

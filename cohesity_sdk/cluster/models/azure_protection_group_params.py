@@ -20,8 +20,18 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.azure_agent_protection_group_params import AzureAgentProtectionGroupParams
+from cohesity_sdk.cluster.models.azure_blob_storage_protection_group_params import AzureBlobStorageProtectionGroupParams
+from cohesity_sdk.cluster.models.azure_cosmos_db_cassandra_protection_group_params import AzureCosmosDBCassandraProtectionGroupParams
+from cohesity_sdk.cluster.models.azure_cosmos_db_mongo_db_protection_group_params import AzureCosmosDBMongoDBProtectionGroupParams
+from cohesity_sdk.cluster.models.azure_cosmos_dbno_sql_protection_group_params import AzureCosmosDBNoSQLProtectionGroupParams
+from cohesity_sdk.cluster.models.azure_my_sql_protection_group_params import AzureMySQLProtectionGroupParams
 from cohesity_sdk.cluster.models.azure_native_protection_group_params import AzureNativeProtectionGroupParams
+from cohesity_sdk.cluster.models.azure_postgre_sql_protection_group_params import AzurePostgreSQLProtectionGroupParams
 from cohesity_sdk.cluster.models.azure_snapshot_manager_protection_group_params import AzureSnapshotManagerProtectionGroupParams
+from cohesity_sdk.cluster.models.azure_sqldb_protection_group_params import AzureSQLDBProtectionGroupParams
+from cohesity_sdk.cluster.models.azure_sqlmi_protection_group_params import AzureSQLMIProtectionGroupParams
+from cohesity_sdk.cluster.models.azure_table_api_protection_group_params import AzureTableApiProtectionGroupParams
+from cohesity_sdk.cluster.models.azure_table_storage_protection_group_params import AzureTableStorageProtectionGroupParams
 from typing import Set
 from typing_extensions import Self
 
@@ -30,16 +40,26 @@ class AzureProtectionGroupParams(BaseModel):
     Specifies the parameters which are specific to Azure related Protection Groups.
     """ # noqa: E501
     agent_protection_type_params: Optional[AzureAgentProtectionGroupParams] = Field(default=None, alias="agentProtectionTypeParams")
+    blob_storage_protection_type_params: Optional[AzureBlobStorageProtectionGroupParams] = Field(default=None, alias="blobStorageProtectionTypeParams")
+    cassandra_protection_type_params: Optional[AzureCosmosDBCassandraProtectionGroupParams] = Field(default=None, alias="cassandraProtectionTypeParams")
+    cosmos_dbno_sql_protection_type_params: Optional[AzureCosmosDBNoSQLProtectionGroupParams] = Field(default=None, alias="cosmosDBNoSQLProtectionTypeParams")
+    cosmosdbmongodb_protection_type_params: Optional[AzureCosmosDBMongoDBProtectionGroupParams] = Field(default=None, alias="cosmosdbmongodbProtectionTypeParams")
+    mysql_protection_type_params: Optional[AzureMySQLProtectionGroupParams] = Field(default=None, alias="mysqlProtectionTypeParams")
     native_protection_type_params: Optional[AzureNativeProtectionGroupParams] = Field(default=None, alias="nativeProtectionTypeParams")
+    postgresql_protection_type_params: Optional[AzurePostgreSQLProtectionGroupParams] = Field(default=None, alias="postgresqlProtectionTypeParams")
     protection_type: StrictStr = Field(description="Specifies the Azure Protection Group type.", alias="protectionType")
     snapshot_manager_protection_type_params: Optional[AzureSnapshotManagerProtectionGroupParams] = Field(default=None, alias="snapshotManagerProtectionTypeParams")
-    __properties: ClassVar[List[str]] = ["agentProtectionTypeParams", "nativeProtectionTypeParams", "protectionType", "snapshotManagerProtectionTypeParams"]
+    sql_db_protection_type_params: Optional[AzureSQLDBProtectionGroupParams] = Field(default=None, alias="sqlDbProtectionTypeParams")
+    sql_mi_protection_type_params: Optional[AzureSQLMIProtectionGroupParams] = Field(default=None, alias="sqlMiProtectionTypeParams")
+    table_api_protection_type_params: Optional[AzureTableApiProtectionGroupParams] = Field(default=None, alias="tableApiProtectionTypeParams")
+    table_storage_protection_type_params: Optional[AzureTableStorageProtectionGroupParams] = Field(default=None, alias="tableStorageProtectionTypeParams")
+    __properties: ClassVar[List[str]] = ["agentProtectionTypeParams", "blobStorageProtectionTypeParams", "cassandraProtectionTypeParams", "cosmosDBNoSQLProtectionTypeParams", "cosmosdbmongodbProtectionTypeParams", "mysqlProtectionTypeParams", "nativeProtectionTypeParams", "postgresqlProtectionTypeParams", "protectionType", "snapshotManagerProtectionTypeParams", "sqlDbProtectionTypeParams", "sqlMiProtectionTypeParams", "tableApiProtectionTypeParams", "tableStorageProtectionTypeParams"]
 
     @field_validator('protection_type')
     def protection_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL']):
-            raise ValueError("must be one of enum values ('kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL')")
+        if value not in set(['kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzureBlobStorage', 'kAzurePostgreSQLServer', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureTableAPI', 'kKubernetes']):
+            raise ValueError("must be one of enum values ('kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzureBlobStorage', 'kAzurePostgreSQLServer', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureTableAPI', 'kKubernetes')")
         return value
 
     model_config = ConfigDict(
@@ -84,12 +104,42 @@ class AzureProtectionGroupParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of agent_protection_type_params
         if self.agent_protection_type_params:
             _dict['agentProtectionTypeParams'] = self.agent_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of blob_storage_protection_type_params
+        if self.blob_storage_protection_type_params:
+            _dict['blobStorageProtectionTypeParams'] = self.blob_storage_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of cassandra_protection_type_params
+        if self.cassandra_protection_type_params:
+            _dict['cassandraProtectionTypeParams'] = self.cassandra_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of cosmos_dbno_sql_protection_type_params
+        if self.cosmos_dbno_sql_protection_type_params:
+            _dict['cosmosDBNoSQLProtectionTypeParams'] = self.cosmos_dbno_sql_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of cosmosdbmongodb_protection_type_params
+        if self.cosmosdbmongodb_protection_type_params:
+            _dict['cosmosdbmongodbProtectionTypeParams'] = self.cosmosdbmongodb_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of mysql_protection_type_params
+        if self.mysql_protection_type_params:
+            _dict['mysqlProtectionTypeParams'] = self.mysql_protection_type_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of native_protection_type_params
         if self.native_protection_type_params:
             _dict['nativeProtectionTypeParams'] = self.native_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of postgresql_protection_type_params
+        if self.postgresql_protection_type_params:
+            _dict['postgresqlProtectionTypeParams'] = self.postgresql_protection_type_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of snapshot_manager_protection_type_params
         if self.snapshot_manager_protection_type_params:
             _dict['snapshotManagerProtectionTypeParams'] = self.snapshot_manager_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of sql_db_protection_type_params
+        if self.sql_db_protection_type_params:
+            _dict['sqlDbProtectionTypeParams'] = self.sql_db_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of sql_mi_protection_type_params
+        if self.sql_mi_protection_type_params:
+            _dict['sqlMiProtectionTypeParams'] = self.sql_mi_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of table_api_protection_type_params
+        if self.table_api_protection_type_params:
+            _dict['tableApiProtectionTypeParams'] = self.table_api_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of table_storage_protection_type_params
+        if self.table_storage_protection_type_params:
+            _dict['tableStorageProtectionTypeParams'] = self.table_storage_protection_type_params.to_dict()
         return _dict
 
     @classmethod
@@ -103,9 +153,19 @@ class AzureProtectionGroupParams(BaseModel):
 
         _obj = cls.model_validate({
             "agentProtectionTypeParams": AzureAgentProtectionGroupParams.from_dict(obj["agentProtectionTypeParams"]) if obj.get("agentProtectionTypeParams") is not None else None,
+            "blobStorageProtectionTypeParams": AzureBlobStorageProtectionGroupParams.from_dict(obj["blobStorageProtectionTypeParams"]) if obj.get("blobStorageProtectionTypeParams") is not None else None,
+            "cassandraProtectionTypeParams": AzureCosmosDBCassandraProtectionGroupParams.from_dict(obj["cassandraProtectionTypeParams"]) if obj.get("cassandraProtectionTypeParams") is not None else None,
+            "cosmosDBNoSQLProtectionTypeParams": AzureCosmosDBNoSQLProtectionGroupParams.from_dict(obj["cosmosDBNoSQLProtectionTypeParams"]) if obj.get("cosmosDBNoSQLProtectionTypeParams") is not None else None,
+            "cosmosdbmongodbProtectionTypeParams": AzureCosmosDBMongoDBProtectionGroupParams.from_dict(obj["cosmosdbmongodbProtectionTypeParams"]) if obj.get("cosmosdbmongodbProtectionTypeParams") is not None else None,
+            "mysqlProtectionTypeParams": AzureMySQLProtectionGroupParams.from_dict(obj["mysqlProtectionTypeParams"]) if obj.get("mysqlProtectionTypeParams") is not None else None,
             "nativeProtectionTypeParams": AzureNativeProtectionGroupParams.from_dict(obj["nativeProtectionTypeParams"]) if obj.get("nativeProtectionTypeParams") is not None else None,
+            "postgresqlProtectionTypeParams": AzurePostgreSQLProtectionGroupParams.from_dict(obj["postgresqlProtectionTypeParams"]) if obj.get("postgresqlProtectionTypeParams") is not None else None,
             "protectionType": obj.get("protectionType"),
-            "snapshotManagerProtectionTypeParams": AzureSnapshotManagerProtectionGroupParams.from_dict(obj["snapshotManagerProtectionTypeParams"]) if obj.get("snapshotManagerProtectionTypeParams") is not None else None
+            "snapshotManagerProtectionTypeParams": AzureSnapshotManagerProtectionGroupParams.from_dict(obj["snapshotManagerProtectionTypeParams"]) if obj.get("snapshotManagerProtectionTypeParams") is not None else None,
+            "sqlDbProtectionTypeParams": AzureSQLDBProtectionGroupParams.from_dict(obj["sqlDbProtectionTypeParams"]) if obj.get("sqlDbProtectionTypeParams") is not None else None,
+            "sqlMiProtectionTypeParams": AzureSQLMIProtectionGroupParams.from_dict(obj["sqlMiProtectionTypeParams"]) if obj.get("sqlMiProtectionTypeParams") is not None else None,
+            "tableApiProtectionTypeParams": AzureTableApiProtectionGroupParams.from_dict(obj["tableApiProtectionTypeParams"]) if obj.get("tableApiProtectionTypeParams") is not None else None,
+            "tableStorageProtectionTypeParams": AzureTableStorageProtectionGroupParams.from_dict(obj["tableStorageProtectionTypeParams"]) if obj.get("tableStorageProtectionTypeParams") is not None else None
         })
         return _obj
 

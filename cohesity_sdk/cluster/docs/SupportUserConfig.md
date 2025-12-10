@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **enable_sudo_access** | **bool** | Specifies if the support user has sudo access. | [optional] 
 **password_set** | **bool** | Specifies if the password for the support user has been set. | [optional] 
+**sudo_access_end_timestamp_msecs** | **int** | Specifies the sudo access end time stamp in milliseconds since unix epoch. | [optional] 
+**sudo_access_mode** | **int** | Specifies whether the sudo access mode is enabled or not | [optional] 
 
 ## Example
 

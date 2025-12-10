@@ -6,6 +6,7 @@ Specifies details of disk removal response.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**has_cleared_pre_check_result** | **bool** | If true, pre check results have been cleared. | [optional] [default to False]
 **id** | **int** | Specifies id of the disk. | [optional] 
 **marked_for_removal** | **bool** | If true, Disk is marked for removal. | [optional] 
 **timestamp_secs** | **int** | Specifies the last run time of the pre-checks execution in Unix epoch timestamp (in seconds). | [optional] 

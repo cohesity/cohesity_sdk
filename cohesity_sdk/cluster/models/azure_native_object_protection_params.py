@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.cluster.models.azure_disk_exclusion_params import AzureDiskExclusionParams
 from cohesity_sdk.cluster.models.azure_object_level_params import AzureObjectLevelParams
 from cohesity_sdk.cluster.models.data_transfer_info import DataTransferInfo
 from typing import Set
@@ -29,8 +30,9 @@ class AzureNativeObjectProtectionParams(BaseModel):
     Specifies the parameters which are specific to Azure Object Protection Groups using Azure native APIs. Atlease one of tags or objects must be specified.
     """ # noqa: E501
     data_transfer_info: Optional[DataTransferInfo] = Field(default=None, alias="dataTransferInfo")
+    disk_exclusion_params: Optional[AzureDiskExclusionParams] = Field(default=None, alias="diskExclusionParams")
     objects: Optional[List[AzureObjectLevelParams]] = Field(default=None, description="Specifies the objects to be protected.")
-    __properties: ClassVar[List[str]] = ["dataTransferInfo", "objects"]
+    __properties: ClassVar[List[str]] = ["dataTransferInfo", "diskExclusionParams", "objects"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -74,6 +76,9 @@ class AzureNativeObjectProtectionParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of data_transfer_info
         if self.data_transfer_info:
             _dict['dataTransferInfo'] = self.data_transfer_info.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of disk_exclusion_params
+        if self.disk_exclusion_params:
+            _dict['diskExclusionParams'] = self.disk_exclusion_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in objects (list)
         _items = []
         if self.objects:
@@ -94,6 +99,7 @@ class AzureNativeObjectProtectionParams(BaseModel):
 
         _obj = cls.model_validate({
             "dataTransferInfo": DataTransferInfo.from_dict(obj["dataTransferInfo"]) if obj.get("dataTransferInfo") is not None else None,
+            "diskExclusionParams": AzureDiskExclusionParams.from_dict(obj["diskExclusionParams"]) if obj.get("diskExclusionParams") is not None else None,
             "objects": [AzureObjectLevelParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None
         })
         return _obj

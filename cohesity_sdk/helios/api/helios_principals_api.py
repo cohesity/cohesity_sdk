@@ -41,7 +41,7 @@ class HeliosPrincipalsApi:
     @validate_call
     def create_principal(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[PrincipalParams], Field(description="Request body params to create a principal")] = None,
         _request_timeout: Union[
             None,
@@ -60,7 +60,7 @@ class HeliosPrincipalsApi:
 
         Create a principal on helios. Note: This api is only supported in Multi-Cluster Manager (MCM).
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Request body params to create a principal
         :type body: PrincipalParams
@@ -112,7 +112,7 @@ class HeliosPrincipalsApi:
     @validate_call
     def create_principal_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[PrincipalParams], Field(description="Request body params to create a principal")] = None,
         _request_timeout: Union[
             None,
@@ -131,7 +131,7 @@ class HeliosPrincipalsApi:
 
         Create a principal on helios. Note: This api is only supported in Multi-Cluster Manager (MCM).
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Request body params to create a principal
         :type body: PrincipalParams
@@ -183,7 +183,7 @@ class HeliosPrincipalsApi:
     @validate_call
     def create_principal_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[PrincipalParams], Field(description="Request body params to create a principal")] = None,
         _request_timeout: Union[
             None,
@@ -202,7 +202,7 @@ class HeliosPrincipalsApi:
 
         Create a principal on helios. Note: This api is only supported in Multi-Cluster Manager (MCM).
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Request body params to create a principal
         :type body: PrincipalParams
@@ -331,7 +331,7 @@ class HeliosPrincipalsApi:
     def delete_principal(
         self,
         sid: Annotated[StrictStr, Field(description="Specifies the SID of the Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -351,7 +351,7 @@ class HeliosPrincipalsApi:
 
         :param sid: Specifies the SID of the Principal. (required)
         :type sid: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -402,7 +402,7 @@ class HeliosPrincipalsApi:
     def delete_principal_with_http_info(
         self,
         sid: Annotated[StrictStr, Field(description="Specifies the SID of the Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -422,7 +422,7 @@ class HeliosPrincipalsApi:
 
         :param sid: Specifies the SID of the Principal. (required)
         :type sid: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -473,7 +473,7 @@ class HeliosPrincipalsApi:
     def delete_principal_without_preload_content(
         self,
         sid: Annotated[StrictStr, Field(description="Specifies the SID of the Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -493,7 +493,7 @@ class HeliosPrincipalsApi:
 
         :param sid: Specifies the SID of the Principal. (required)
         :type sid: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -607,7 +607,7 @@ class HeliosPrincipalsApi:
     def get_principal_by_id(
         self,
         sid: Annotated[StrictStr, Field(description="Specifies the SID of the Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -627,7 +627,7 @@ class HeliosPrincipalsApi:
 
         :param sid: Specifies the SID of the Principal. (required)
         :type sid: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -678,7 +678,7 @@ class HeliosPrincipalsApi:
     def get_principal_by_id_with_http_info(
         self,
         sid: Annotated[StrictStr, Field(description="Specifies the SID of the Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -698,7 +698,7 @@ class HeliosPrincipalsApi:
 
         :param sid: Specifies the SID of the Principal. (required)
         :type sid: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -749,7 +749,7 @@ class HeliosPrincipalsApi:
     def get_principal_by_id_without_preload_content(
         self,
         sid: Annotated[StrictStr, Field(description="Specifies the SID of the Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -769,7 +769,7 @@ class HeliosPrincipalsApi:
 
         :param sid: Specifies the SID of the Principal. (required)
         :type sid: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -882,7 +882,7 @@ class HeliosPrincipalsApi:
     @validate_call
     def get_principals(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -900,7 +900,7 @@ class HeliosPrincipalsApi:
 
         Get all principals on helios. Note: This api is only supported in Multi-Cluster Manager (MCM).
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -949,7 +949,7 @@ class HeliosPrincipalsApi:
     @validate_call
     def get_principals_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -967,7 +967,7 @@ class HeliosPrincipalsApi:
 
         Get all principals on helios. Note: This api is only supported in Multi-Cluster Manager (MCM).
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1016,7 +1016,7 @@ class HeliosPrincipalsApi:
     @validate_call
     def get_principals_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1034,7 +1034,7 @@ class HeliosPrincipalsApi:
 
         Get all principals on helios. Note: This api is only supported in Multi-Cluster Manager (MCM).
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1144,7 +1144,7 @@ class HeliosPrincipalsApi:
     def update_principal(
         self,
         sid: Annotated[StrictStr, Field(description="Specifies the SID of the Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[PrincipalParams], Field(description="Request body params to update the principal")] = None,
         _request_timeout: Union[
             None,
@@ -1165,7 +1165,7 @@ class HeliosPrincipalsApi:
 
         :param sid: Specifies the SID of the Principal. (required)
         :type sid: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Request body params to update the principal
         :type body: PrincipalParams
@@ -1219,7 +1219,7 @@ class HeliosPrincipalsApi:
     def update_principal_with_http_info(
         self,
         sid: Annotated[StrictStr, Field(description="Specifies the SID of the Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[PrincipalParams], Field(description="Request body params to update the principal")] = None,
         _request_timeout: Union[
             None,
@@ -1240,7 +1240,7 @@ class HeliosPrincipalsApi:
 
         :param sid: Specifies the SID of the Principal. (required)
         :type sid: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Request body params to update the principal
         :type body: PrincipalParams
@@ -1294,7 +1294,7 @@ class HeliosPrincipalsApi:
     def update_principal_without_preload_content(
         self,
         sid: Annotated[StrictStr, Field(description="Specifies the SID of the Principal.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         body: Annotated[Optional[PrincipalParams], Field(description="Request body params to update the principal")] = None,
         _request_timeout: Union[
             None,
@@ -1315,7 +1315,7 @@ class HeliosPrincipalsApi:
 
         :param sid: Specifies the SID of the Principal. (required)
         :type sid: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param body: Request body params to update the principal
         :type body: PrincipalParams

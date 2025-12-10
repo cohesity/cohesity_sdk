@@ -29,7 +29,7 @@ class RecoverKubernetesNamespaceParams(BaseModel):
     Specifies the parameters to recover Kubernetes Namespaces.
     """ # noqa: E501
     kubernetes_target_params: Optional[KubernetesTargetParamsForRecoverKubernetesNamespace] = Field(default=None, description="Specifies the params for recovering to a Kubernetes host.", alias="kubernetesTargetParams")
-    target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
+    target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out. As of now only kubernetes target environment is supported.", alias="targetEnvironment")
     vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, description="Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery.", alias="vlanConfig")
     __properties: ClassVar[List[str]] = ["kubernetesTargetParams", "targetEnvironment", "vlanConfig"]
 

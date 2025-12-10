@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.aws_target_config import AWSTargetConfig
 from cohesity_sdk.helios.models.azure_target_config import AzureTargetConfig
@@ -33,7 +33,21 @@ class ReplicationTargetSummaryInfo(BaseModel):
     cluster_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the cluster.", alias="clusterName")
     aws_target_config: Optional[AWSTargetConfig] = Field(default=None, alias="awsTargetConfig")
     azure_target_config: Optional[AzureTargetConfig] = Field(default=None, alias="azureTargetConfig")
-    __properties: ClassVar[List[str]] = ["clusterId", "clusterIncarnationId", "clusterName", "awsTargetConfig", "azureTargetConfig"]
+    logical_size_bytes: Optional[StrictInt] = Field(default=None, description="Specifies the logical size of this snapshot in bytes.", alias="logicalSizeBytes")
+    object_ids: Optional[List[StrictStr]] = Field(default=None, description="Specifies the list of object ids for which this replication run was performed.", alias="objectIds")
+    ownership_context: Optional[StrictStr] = Field(default=None, description="Specifies the ownership context for the replication. This will only be populated when the replication target is a remote cluster.", alias="ownershipContext")
+    snapshot_id: Optional[StrictStr] = Field(default=None, description="Specifies the id of the replication snapshot for the object.", alias="snapshotId")
+    __properties: ClassVar[List[str]] = ["clusterId", "clusterIncarnationId", "clusterName", "awsTargetConfig", "azureTargetConfig", "logicalSizeBytes", "objectIds", "ownershipContext", "snapshotId"]
+
+    @field_validator('ownership_context')
+    def ownership_context_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['Local', 'FortKnox', 'FortKnoxOnprem']):
+            raise ValueError("must be one of enum values ('Local', 'FortKnox', 'FortKnoxOnprem')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,6 +111,26 @@ class ReplicationTargetSummaryInfo(BaseModel):
         if self.cluster_name is None and "cluster_name" in self.model_fields_set:
             _dict['clusterName'] = None
 
+        # set to None if logical_size_bytes (nullable) is None
+        # and model_fields_set contains the field
+        if self.logical_size_bytes is None and "logical_size_bytes" in self.model_fields_set:
+            _dict['logicalSizeBytes'] = None
+
+        # set to None if object_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.object_ids is None and "object_ids" in self.model_fields_set:
+            _dict['objectIds'] = None
+
+        # set to None if ownership_context (nullable) is None
+        # and model_fields_set contains the field
+        if self.ownership_context is None and "ownership_context" in self.model_fields_set:
+            _dict['ownershipContext'] = None
+
+        # set to None if snapshot_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.snapshot_id is None and "snapshot_id" in self.model_fields_set:
+            _dict['snapshotId'] = None
+
         return _dict
 
     @classmethod
@@ -113,7 +147,11 @@ class ReplicationTargetSummaryInfo(BaseModel):
             "clusterIncarnationId": obj.get("clusterIncarnationId"),
             "clusterName": obj.get("clusterName"),
             "awsTargetConfig": AWSTargetConfig.from_dict(obj["awsTargetConfig"]) if obj.get("awsTargetConfig") is not None else None,
-            "azureTargetConfig": AzureTargetConfig.from_dict(obj["azureTargetConfig"]) if obj.get("azureTargetConfig") is not None else None
+            "azureTargetConfig": AzureTargetConfig.from_dict(obj["azureTargetConfig"]) if obj.get("azureTargetConfig") is not None else None,
+            "logicalSizeBytes": obj.get("logicalSizeBytes"),
+            "objectIds": obj.get("objectIds"),
+            "ownershipContext": obj.get("ownershipContext"),
+            "snapshotId": obj.get("snapshotId")
         })
         return _obj
 

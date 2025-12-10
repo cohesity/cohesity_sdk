@@ -38,8 +38,8 @@ class TimeSeriesStatsForMetric(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kInt64', 'kDouble', 'kString', 'kBytes']):
-            raise ValueError("must be one of enum values ('kInt64', 'kDouble', 'kString', 'kBytes')")
+        if value not in set(['kInt64', 'kDouble', 'kString']):
+            raise ValueError("must be one of enum values ('kInt64', 'kDouble', 'kString')")
         return value
 
     model_config = ConfigDict(

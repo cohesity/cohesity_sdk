@@ -22,6 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.channel_item import ChannelItem
 from cohesity_sdk.cluster.models.object_summary import ObjectSummary
 from cohesity_sdk.cluster.models.snapshot_tag_info import SnapshotTagInfo
+from cohesity_sdk.cluster.models.subsite_item import SubsiteItem
 from cohesity_sdk.cluster.models.tag_info import TagInfo
 from cohesity_sdk.cluster.models.teams_file_item import TeamsFileItem
 from typing import Set
@@ -43,8 +44,9 @@ class TeamsItem(BaseModel):
     tags: Optional[List[TagInfo]] = Field(default=None, description="Specifies tag applied to the object.")
     channel_item: Optional[ChannelItem] = Field(default=None, alias="channelItem")
     file_item: Optional[TeamsFileItem] = Field(default=None, alias="fileItem")
+    subsite_item: Optional[SubsiteItem] = Field(default=None, alias="subsiteItem")
     type: Optional[StrictStr] = Field(default=None, description="Specifies the M365 Teams item type.")
-    __properties: ClassVar[List[str]] = ["name", "path", "policyId", "policyName", "protectionGroupId", "protectionGroupName", "sourceInfo", "storageDomainId", "snapshotTags", "tags", "channelItem", "fileItem", "type"]
+    __properties: ClassVar[List[str]] = ["name", "path", "policyId", "policyName", "protectionGroupId", "protectionGroupName", "sourceInfo", "storageDomainId", "snapshotTags", "tags", "channelItem", "fileItem", "subsiteItem", "type"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -118,6 +120,9 @@ class TeamsItem(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of file_item
         if self.file_item:
             _dict['fileItem'] = self.file_item.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of subsite_item
+        if self.subsite_item:
+            _dict['subsiteItem'] = self.subsite_item.to_dict()
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
@@ -192,6 +197,7 @@ class TeamsItem(BaseModel):
             "tags": [TagInfo.from_dict(_item) for _item in obj["tags"]] if obj.get("tags") is not None else None,
             "channelItem": ChannelItem.from_dict(obj["channelItem"]) if obj.get("channelItem") is not None else None,
             "fileItem": TeamsFileItem.from_dict(obj["fileItem"]) if obj.get("fileItem") is not None else None,
+            "subsiteItem": SubsiteItem.from_dict(obj["subsiteItem"]) if obj.get("subsiteItem") is not None else None,
             "type": obj.get("type")
         })
         return _obj

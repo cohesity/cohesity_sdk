@@ -29,8 +29,8 @@ class NodeFreeDisks(BaseModel):
     """ # noqa: E501
     chassis_serial: Optional[StrictStr] = Field(default=None, description="Chassis serial number.", alias="chassisSerial")
     error_message: Optional[StrictStr] = Field(default=None, description="Error message of disks assimilation request.", alias="errorMessage")
-    free_disks: Optional[List[FreeDisk]] = Field(description="Specifies list of free disks of node.", alias="freeDisks")
-    node_id: Optional[StrictInt] = Field(description="Specifies the id of a node.", alias="nodeId")
+    free_disks: List[FreeDisk] = Field(description="Specifies list of free disks of node.", alias="freeDisks")
+    node_id: StrictInt = Field(description="Specifies the id of a node.", alias="nodeId")
     slot: Optional[StrictInt] = Field(default=None, description="Slot number of node")
     __properties: ClassVar[List[str]] = ["chassisSerial", "errorMessage", "freeDisks", "nodeId", "slot"]
 
@@ -91,16 +91,6 @@ class NodeFreeDisks(BaseModel):
         # and model_fields_set contains the field
         if self.error_message is None and "error_message" in self.model_fields_set:
             _dict['errorMessage'] = None
-
-        # set to None if free_disks (nullable) is None
-        # and model_fields_set contains the field
-        if self.free_disks is None and "free_disks" in self.model_fields_set:
-            _dict['freeDisks'] = None
-
-        # set to None if node_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.node_id is None and "node_id" in self.model_fields_set:
-            _dict['nodeId'] = None
 
         # set to None if slot (nullable) is None
         # and model_fields_set contains the field

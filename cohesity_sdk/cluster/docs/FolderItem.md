@@ -6,8 +6,9 @@ Specifies an email folder to recover.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**folder_id** | **str** | Specifies the email folder id. | [optional] 
 **item_ids** | **List[str]** | Specifies a list of item ids to recover. This field is applicable only if &#39;recoverEntireFolder&#39; is false. | [optional] 
-**key** | **int** | Specifies the email folder key. | 
+**key** | **int** | Specifies the email folder key. | [optional] 
 **recover_entire_folder** | **bool** | Specifies whether to recover the whole email folder. | [optional] 
 
 ## Example

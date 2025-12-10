@@ -7,9 +7,9 @@ Specifies the parameters which are specific to AWS RDS related Protection Groups
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **exclude_object_ids** | **List[int]** | Specifies the objects to be excluded in the Protection Group. | [optional] 
-**exclude_rds_tag_ids** | **List[List[int]]** | Array of arrays of RDS Tag Ids that Specify db instaces to Exclude. | [optional] 
+**exclude_rds_tag_ids** | **List[List[int]]** | Array of arrays of RDS Tag Ids that Specify db instances to Exclude. | [optional] 
 **objects** | [**List[AwsRdsProtectionGroupObjectParams]**](AwsRdsProtectionGroupObjectParams.md) | Specifies the objects to be included in the Protection Group. | [optional] 
-**rds_tag_ids** | **List[List[int]]** | Array of arrays of RDS Tag Ids that Specify db instaces to Protect. | [optional] 
+**rds_tag_ids** | **List[List[int]]** | Array of arrays of RDS Tag Ids that Specify db instances to Protect. | [optional] 
 **source_id** | **int** | Specifies the id of the parent of the objects. | [optional] [readonly] 
 **source_name** | **str** | Specifies the name of the parent of the objects. | [optional] [readonly] 
 

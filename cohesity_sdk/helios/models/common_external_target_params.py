@@ -29,6 +29,7 @@ class CommonExternalTargetParams(BaseModel):
     """ # noqa: E501
     cloud_domains: Optional[List[CloudDomain]] = Field(default=None, description="Specifies the cloud domain information.", alias="cloudDomains")
     compression: Optional[StrictStr] = Field(default=None, description="Specifies whether the type of compression of the External Target")
+    enable_object_lock: Optional[StrictBool] = Field(default=None, description="Whether to enable object lock for this vault. If this field is set, all the objects written to the vault will be object locked until all the archives referring to them expire.", alias="enableObjectLock")
     error_message: Optional[StrictStr] = Field(default=None, description="Specifies the error message if the event is in failed state.", alias="errorMessage")
     global_id: Optional[StrictStr] = Field(default=None, description="Specifies the global identifier of the External Target.", alias="globalId")
     id: Optional[StrictInt] = Field(default=None, description="Specifies the ID of the External Target.")
@@ -39,7 +40,9 @@ class CommonExternalTargetParams(BaseModel):
     status: Optional[StrictStr] = Field(default=None, description="Specifies the registration status of the External Target")
     storage_domain_name: Optional[StrictStr] = Field(default=None, description="Specifies the storage domain associated with the target.", alias="storageDomainName")
     tenant_ids: Optional[List[StrictStr]] = Field(default=None, description="Specifies the list of tenantIds for the External Target", alias="tenantIds")
-    __properties: ClassVar[List[str]] = ["cloudDomains", "compression", "errorMessage", "globalId", "id", "isWormCapable", "name", "ownershipContext", "purposeType", "status", "storageDomainName", "tenantIds"]
+    use_for_apollo_mr_store: Optional[StrictBool] = Field(default=None, description="Specifies whether this external target is used to store apollo mr records.", alias="useForApolloMrStore")
+    use_rolling_object_lock: Optional[StrictBool] = Field(default=None, description="Whether the vault should use rolling object lock.", alias="useRollingObjectLock")
+    __properties: ClassVar[List[str]] = ["cloudDomains", "compression", "enableObjectLock", "errorMessage", "globalId", "id", "isWormCapable", "name", "ownershipContext", "purposeType", "status", "storageDomainName", "tenantIds", "useForApolloMrStore", "useRollingObjectLock"]
 
     @field_validator('compression')
     def compression_validate_enum(cls, value):
@@ -57,8 +60,8 @@ class CommonExternalTargetParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Local', 'FortKnox']):
-            raise ValueError("must be one of enum values ('Local', 'FortKnox')")
+        if value not in set(['Local', 'FortKnox', 'FortKnoxOnprem']):
+            raise ValueError("must be one of enum values ('Local', 'FortKnox', 'FortKnoxOnprem')")
         return value
 
     @field_validator('purpose_type')
@@ -143,6 +146,11 @@ class CommonExternalTargetParams(BaseModel):
         if self.compression is None and "compression" in self.model_fields_set:
             _dict['compression'] = None
 
+        # set to None if enable_object_lock (nullable) is None
+        # and model_fields_set contains the field
+        if self.enable_object_lock is None and "enable_object_lock" in self.model_fields_set:
+            _dict['enableObjectLock'] = None
+
         # set to None if error_message (nullable) is None
         # and model_fields_set contains the field
         if self.error_message is None and "error_message" in self.model_fields_set:
@@ -188,6 +196,16 @@ class CommonExternalTargetParams(BaseModel):
         if self.storage_domain_name is None and "storage_domain_name" in self.model_fields_set:
             _dict['storageDomainName'] = None
 
+        # set to None if use_for_apollo_mr_store (nullable) is None
+        # and model_fields_set contains the field
+        if self.use_for_apollo_mr_store is None and "use_for_apollo_mr_store" in self.model_fields_set:
+            _dict['useForApolloMrStore'] = None
+
+        # set to None if use_rolling_object_lock (nullable) is None
+        # and model_fields_set contains the field
+        if self.use_rolling_object_lock is None and "use_rolling_object_lock" in self.model_fields_set:
+            _dict['useRollingObjectLock'] = None
+
         return _dict
 
     @classmethod
@@ -202,6 +220,7 @@ class CommonExternalTargetParams(BaseModel):
         _obj = cls.model_validate({
             "cloudDomains": [CloudDomain.from_dict(_item) for _item in obj["cloudDomains"]] if obj.get("cloudDomains") is not None else None,
             "compression": obj.get("compression"),
+            "enableObjectLock": obj.get("enableObjectLock"),
             "errorMessage": obj.get("errorMessage"),
             "globalId": obj.get("globalId"),
             "id": obj.get("id"),
@@ -211,7 +230,9 @@ class CommonExternalTargetParams(BaseModel):
             "purposeType": obj.get("purposeType"),
             "status": obj.get("status"),
             "storageDomainName": obj.get("storageDomainName"),
-            "tenantIds": obj.get("tenantIds")
+            "tenantIds": obj.get("tenantIds"),
+            "useForApolloMrStore": obj.get("useForApolloMrStore"),
+            "useRollingObjectLock": obj.get("useRollingObjectLock")
         })
         return _obj
 

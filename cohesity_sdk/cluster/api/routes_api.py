@@ -55,7 +55,7 @@ class RoutesApi:
     ) -> StaticRouteParams:
         """Configure a static route
 
-        Configure a static route on an interface.
+        **Privileges:** ```CLUSTER_MODIFY, CLUSTER_CREATE``` <br><br>Configure a static route on an interface.
 
         :param body: Specifies the parameters to configure a static route on an interface. (required)
         :type body: StaticRouteParams
@@ -122,7 +122,7 @@ class RoutesApi:
     ) -> ApiResponse[StaticRouteParams]:
         """Configure a static route
 
-        Configure a static route on an interface.
+        **Privileges:** ```CLUSTER_MODIFY, CLUSTER_CREATE``` <br><br>Configure a static route on an interface.
 
         :param body: Specifies the parameters to configure a static route on an interface. (required)
         :type body: StaticRouteParams
@@ -189,7 +189,7 @@ class RoutesApi:
     ) -> RESTResponseType:
         """Configure a static route
 
-        Configure a static route on an interface.
+        **Privileges:** ```CLUSTER_MODIFY, CLUSTER_CREATE``` <br><br>Configure a static route on an interface.
 
         :param body: Specifies the parameters to configure a static route on an interface. (required)
         :type body: StaticRouteParams
@@ -331,7 +331,7 @@ class RoutesApi:
     ) -> None:
         """Delete a static route
 
-        Delete a static route on a network interface.
+        ```Unknown Privileges``` <br><br>Delete a static route on a network interface.
 
         :param route_id: Specify the unique identifier for the route. (required)
         :type route_id: str
@@ -398,7 +398,7 @@ class RoutesApi:
     ) -> ApiResponse[None]:
         """Delete a static route
 
-        Delete a static route on a network interface.
+        ```Unknown Privileges``` <br><br>Delete a static route on a network interface.
 
         :param route_id: Specify the unique identifier for the route. (required)
         :type route_id: str
@@ -465,7 +465,7 @@ class RoutesApi:
     ) -> RESTResponseType:
         """Delete a static route
 
-        Delete a static route on a network interface.
+        ```Unknown Privileges``` <br><br>Delete a static route on a network interface.
 
         :param route_id: Specify the unique identifier for the route. (required)
         :type route_id: str
@@ -594,7 +594,7 @@ class RoutesApi:
     ) -> StaticRoutes:
         """List all static routes
 
-        List the static routes for the Cohesity Cluster.
+        **Privileges:** ```CLUSTER_VIEW, CLUSTER_CREATE``` <br><br>List the static routes for the Cohesity Cluster.
 
         :param interface_groups: Specifies the network interfaces name to filter.
         :type interface_groups: List[str]
@@ -661,7 +661,7 @@ class RoutesApi:
     ) -> ApiResponse[StaticRoutes]:
         """List all static routes
 
-        List the static routes for the Cohesity Cluster.
+        **Privileges:** ```CLUSTER_VIEW, CLUSTER_CREATE``` <br><br>List the static routes for the Cohesity Cluster.
 
         :param interface_groups: Specifies the network interfaces name to filter.
         :type interface_groups: List[str]
@@ -728,7 +728,7 @@ class RoutesApi:
     ) -> RESTResponseType:
         """List all static routes
 
-        List the static routes for the Cohesity Cluster.
+        **Privileges:** ```CLUSTER_VIEW, CLUSTER_CREATE``` <br><br>List the static routes for the Cohesity Cluster.
 
         :param interface_groups: Specifies the network interfaces name to filter.
         :type interface_groups: List[str]
@@ -861,7 +861,7 @@ class RoutesApi:
     ) -> StaticRouteParams:
         """Update a static route
 
-        Update static route details.
+        ```Unknown Privileges``` <br><br>Update static route details.
 
         :param route_id: Specify the unique identifier for the route. (required)
         :type route_id: str
@@ -932,7 +932,7 @@ class RoutesApi:
     ) -> ApiResponse[StaticRouteParams]:
         """Update a static route
 
-        Update static route details.
+        ```Unknown Privileges``` <br><br>Update static route details.
 
         :param route_id: Specify the unique identifier for the route. (required)
         :type route_id: str
@@ -1003,7 +1003,7 @@ class RoutesApi:
     ) -> RESTResponseType:
         """Update a static route
 
-        Update static route details.
+        ```Unknown Privileges``` <br><br>Update static route details.
 
         :param route_id: Specify the unique identifier for the route. (required)
         :type route_id: str

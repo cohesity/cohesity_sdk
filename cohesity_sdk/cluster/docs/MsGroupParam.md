@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **mailbox_restore_type** | **str** | Specifies whether mailbox restore is full or granular. | [optional] 
 **recover_entire_group** | **bool** | Specifies if the entire Group (mailbox + site) is to be restored. | [optional] 
 **recover_object** | [**CommonRecoverObjectSnapshotParams**](CommonRecoverObjectSnapshotParams.md) |  | 
-**site_restore_params** | [**List[OneDriveParam]**](OneDriveParam.md) | Specifies the parameters to recover a MSGroup site document. | [optional] 
+**site_restore_params** | [**SiteRestoreParam**](SiteRestoreParam.md) |  | [optional] 
 **site_restore_type** | **str** | Specifies whether site restore is full or granular. | [optional] 
 
 ## Example

@@ -21,8 +21,15 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.common_download_file_and_folder_params import CommonDownloadFileAndFolderParams
 from cohesity_sdk.cluster.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
+from cohesity_sdk.cluster.models.recover_gcp_alloy_db_postgre_sql_params import RecoverGCPAlloyDBPostgreSQLParams
+from cohesity_sdk.cluster.models.recover_gcp_big_query_params import RecoverGCPBigQueryParams
 from cohesity_sdk.cluster.models.recover_gcp_file_and_folder_params import RecoverGcpFileAndFolderParams
+from cohesity_sdk.cluster.models.recover_gcp_firestore_params import RecoverGCPFirestoreParams
+from cohesity_sdk.cluster.models.recover_gcp_postgre_sql_params import RecoverGCPPostgreSQLParams
+from cohesity_sdk.cluster.models.recover_gcp_sql_server_params import RecoverGCPSqlServerParams
 from cohesity_sdk.cluster.models.recover_gcp_vm_params import RecoverGcpVmParams
+from cohesity_sdk.cluster.models.recover_gcpmy_sql_params import RecoverGCPMySqlParams
+from cohesity_sdk.cluster.models.recover_google_spanner_params import RecoverGoogleSpannerParams
 from typing import Set
 from typing_extensions import Self
 
@@ -31,17 +38,24 @@ class RecoverGcpParams(BaseModel):
     Specifies the recovery options specific to GCP environment.
     """ # noqa: E501
     download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, alias="downloadFileAndFolderParams")
+    gcp_alloy_db_postgre_sql_params: Optional[RecoverGCPAlloyDBPostgreSQLParams] = Field(default=None, alias="gcpAlloyDbPostgreSqlParams")
+    gcp_big_query_params: Optional[RecoverGCPBigQueryParams] = Field(default=None, alias="gcpBigQueryParams")
+    gcp_firestore_params: Optional[RecoverGCPFirestoreParams] = Field(default=None, alias="gcpFirestoreParams")
+    gcp_my_sql_params: Optional[RecoverGCPMySqlParams] = Field(default=None, alias="gcpMySqlParams")
+    gcp_postgre_sql_params: Optional[RecoverGCPPostgreSQLParams] = Field(default=None, alias="gcpPostgreSqlParams")
+    gcp_sql_server_params: Optional[RecoverGCPSqlServerParams] = Field(default=None, alias="gcpSqlServerParams")
+    google_spanner_params: Optional[RecoverGoogleSpannerParams] = Field(default=None, alias="googleSpannerParams")
     objects: Optional[List[CommonRecoverObjectSnapshotParams]] = Field(default=None, description="Specifies the list of recover Object parameters. This property is mandatory for all recovery action types except recover vms. While recovering VMs, a user can specify snapshots of VM's or a Protection Group Run details to recover all the VM's that are backed up by that Run.")
     recover_file_and_folder_params: Optional[RecoverGcpFileAndFolderParams] = Field(default=None, alias="recoverFileAndFolderParams")
     recover_vm_params: Optional[RecoverGcpVmParams] = Field(default=None, alias="recoverVmParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recover action to be performed.", alias="recoveryAction")
-    __properties: ClassVar[List[str]] = ["downloadFileAndFolderParams", "objects", "recoverFileAndFolderParams", "recoverVmParams", "recoveryAction"]
+    __properties: ClassVar[List[str]] = ["downloadFileAndFolderParams", "gcpAlloyDbPostgreSqlParams", "gcpBigQueryParams", "gcpFirestoreParams", "gcpMySqlParams", "gcpPostgreSqlParams", "gcpSqlServerParams", "googleSpannerParams", "objects", "recoverFileAndFolderParams", "recoverVmParams", "recoveryAction"]
 
     @field_validator('recovery_action')
     def recovery_action_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['RecoverVMs', 'RecoverFiles']):
-            raise ValueError("must be one of enum values ('RecoverVMs', 'RecoverFiles')")
+        if value not in set(['RecoverVMs', 'RecoverFiles', 'RecoverGCPBigQuery', 'RecoverGoogleSpanner', 'RecoverGCPFirestore', 'RecoverGCPMySQL', 'RecoverGCPPostgreSQL', 'RecoverGCPAlloyDBPostgreSQL', 'RecoverGCPSQLServer']):
+            raise ValueError("must be one of enum values ('RecoverVMs', 'RecoverFiles', 'RecoverGCPBigQuery', 'RecoverGoogleSpanner', 'RecoverGCPFirestore', 'RecoverGCPMySQL', 'RecoverGCPPostgreSQL', 'RecoverGCPAlloyDBPostgreSQL', 'RecoverGCPSQLServer')")
         return value
 
     model_config = ConfigDict(
@@ -86,6 +100,27 @@ class RecoverGcpParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of download_file_and_folder_params
         if self.download_file_and_folder_params:
             _dict['downloadFileAndFolderParams'] = self.download_file_and_folder_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of gcp_alloy_db_postgre_sql_params
+        if self.gcp_alloy_db_postgre_sql_params:
+            _dict['gcpAlloyDbPostgreSqlParams'] = self.gcp_alloy_db_postgre_sql_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of gcp_big_query_params
+        if self.gcp_big_query_params:
+            _dict['gcpBigQueryParams'] = self.gcp_big_query_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of gcp_firestore_params
+        if self.gcp_firestore_params:
+            _dict['gcpFirestoreParams'] = self.gcp_firestore_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of gcp_my_sql_params
+        if self.gcp_my_sql_params:
+            _dict['gcpMySqlParams'] = self.gcp_my_sql_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of gcp_postgre_sql_params
+        if self.gcp_postgre_sql_params:
+            _dict['gcpPostgreSqlParams'] = self.gcp_postgre_sql_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of gcp_sql_server_params
+        if self.gcp_sql_server_params:
+            _dict['gcpSqlServerParams'] = self.gcp_sql_server_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of google_spanner_params
+        if self.google_spanner_params:
+            _dict['googleSpannerParams'] = self.google_spanner_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in objects (list)
         _items = []
         if self.objects:
@@ -117,6 +152,13 @@ class RecoverGcpParams(BaseModel):
 
         _obj = cls.model_validate({
             "downloadFileAndFolderParams": CommonDownloadFileAndFolderParams.from_dict(obj["downloadFileAndFolderParams"]) if obj.get("downloadFileAndFolderParams") is not None else None,
+            "gcpAlloyDbPostgreSqlParams": RecoverGCPAlloyDBPostgreSQLParams.from_dict(obj["gcpAlloyDbPostgreSqlParams"]) if obj.get("gcpAlloyDbPostgreSqlParams") is not None else None,
+            "gcpBigQueryParams": RecoverGCPBigQueryParams.from_dict(obj["gcpBigQueryParams"]) if obj.get("gcpBigQueryParams") is not None else None,
+            "gcpFirestoreParams": RecoverGCPFirestoreParams.from_dict(obj["gcpFirestoreParams"]) if obj.get("gcpFirestoreParams") is not None else None,
+            "gcpMySqlParams": RecoverGCPMySqlParams.from_dict(obj["gcpMySqlParams"]) if obj.get("gcpMySqlParams") is not None else None,
+            "gcpPostgreSqlParams": RecoverGCPPostgreSQLParams.from_dict(obj["gcpPostgreSqlParams"]) if obj.get("gcpPostgreSqlParams") is not None else None,
+            "gcpSqlServerParams": RecoverGCPSqlServerParams.from_dict(obj["gcpSqlServerParams"]) if obj.get("gcpSqlServerParams") is not None else None,
+            "googleSpannerParams": RecoverGoogleSpannerParams.from_dict(obj["googleSpannerParams"]) if obj.get("googleSpannerParams") is not None else None,
             "objects": [CommonRecoverObjectSnapshotParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None,
             "recoverFileAndFolderParams": RecoverGcpFileAndFolderParams.from_dict(obj["recoverFileAndFolderParams"]) if obj.get("recoverFileAndFolderParams") is not None else None,
             "recoverVmParams": RecoverGcpVmParams.from_dict(obj["recoverVmParams"]) if obj.get("recoverVmParams") is not None else None,

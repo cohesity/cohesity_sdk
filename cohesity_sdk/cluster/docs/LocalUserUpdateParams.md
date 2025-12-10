@@ -7,9 +7,7 @@ Specifies properties for LOCAL cohesity user which are updatable.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **email** | **str** | Specifies the email address of the User. | [optional] 
-**groups** | **List[str]** | Specifies additional groups the User may belong to. | [optional] [readonly] 
 **password** | **str** | Specifies the password of the User. | [optional] 
-**primary_group** | **str** | Specifies the primary group of the User. Primary group is used for file access. | [optional] [readonly] 
 **current_password** | **str** | Specifies the current password of the user. This is required when a session user tries to update his own password. | [optional] 
 
 ## Example

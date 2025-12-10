@@ -54,7 +54,7 @@ class PrivilegeApi:
     ) -> Privileges:
         """Get Privileges.
 
-        Get Privileges.
+        **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Privileges.
 
         :param names: Filter by a list of Privilege names.
         :type names: List[str]
@@ -121,7 +121,7 @@ class PrivilegeApi:
     ) -> ApiResponse[Privileges]:
         """Get Privileges.
 
-        Get Privileges.
+        **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Privileges.
 
         :param names: Filter by a list of Privilege names.
         :type names: List[str]
@@ -188,7 +188,7 @@ class PrivilegeApi:
     ) -> RESTResponseType:
         """Get Privileges.
 
-        Get Privileges.
+        **Privileges:** ```PRINCIPAL_VIEW``` <br><br>Get Privileges.
 
         :param names: Filter by a list of Privilege names.
         :type names: List[str]

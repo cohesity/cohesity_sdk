@@ -35,8 +35,8 @@ class AzureSnapshotParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL']):
-            raise ValueError("must be one of enum values ('kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL')")
+        if value not in set(['kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzureBlobStorage', 'kAzurePostgreSQLServer', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureTableAPI', 'kKubernetes']):
+            raise ValueError("must be one of enum values ('kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureCosmosDBNoSQL', 'kAzureCosmosDBMongoDB', 'kAzureCosmosDBCassandra', 'kAzureBlobStorage', 'kAzurePostgreSQLServer', 'kAzureSQLDB', 'kAzureSQLMI', 'kAzureTableStorage', 'kAzureTableAPI', 'kKubernetes')")
         return value
 
     model_config = ConfigDict(

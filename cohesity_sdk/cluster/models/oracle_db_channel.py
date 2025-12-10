@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.credentials import Credentials
+from cohesity_sdk.cluster.models.dg_role_based_backup import DgRoleBasedBackup
 from cohesity_sdk.cluster.models.oracle_database_host import OracleDatabaseHost
 from typing import Set
 from typing_extensions import Self
@@ -35,10 +36,11 @@ class OracleDbChannel(BaseModel):
     database_unique_name: Optional[StrictStr] = Field(default=None, description="Specifies the unique Name of the database.", alias="databaseUniqueName")
     database_uuid: Optional[StrictStr] = Field(default=None, description="Specifies the database unique id. This is an internal field and is filled by magneto master based on corresponding app entity id.", alias="databaseUuid")
     default_channel_count: Optional[StrictInt] = Field(default=None, description="Specifies the default number of channels to use per node per database. This value is used on all Oracle Database Nodes unless databaseNodeList item's channelCount is specified for the node. Default value for the number of channels will be calculated as the minimum of number of nodes in Cohesity cluster and 2 * number of CPU on the host. If the number of channels is unspecified here and unspecified within databaseNodeList, the above formula will be used to determine the same.", alias="defaultChannelCount")
+    dg_role_based_backup: Optional[DgRoleBasedBackup] = Field(default=None, alias="dgRoleBasedBackup")
     enable_dg_primary_backup: Optional[StrictBool] = Field(default=None, description="Specifies whether the database having the Primary role within Data Guard configuration is to be backed up.", alias="enableDgPrimaryBackup")
     max_host_count: Optional[StrictInt] = Field(default=None, description="Specifies the maximum number of hosts from which backup/restore is allowed in parallel. This will be less than or equal to the number of databaseNode specified within databaseNodeList.", alias="maxHostCount")
     rman_backup_type: Optional[StrictStr] = Field(default=None, description="Specifies the type of Oracle RMAN backup requested", alias="rmanBackupType")
-    __properties: ClassVar[List[str]] = ["archiveLogRetentionDays", "archiveLogRetentionHours", "credentials", "databaseNodeList", "databaseUniqueName", "databaseUuid", "defaultChannelCount", "enableDgPrimaryBackup", "maxHostCount", "rmanBackupType"]
+    __properties: ClassVar[List[str]] = ["archiveLogRetentionDays", "archiveLogRetentionHours", "credentials", "databaseNodeList", "databaseUniqueName", "databaseUuid", "defaultChannelCount", "dgRoleBasedBackup", "enableDgPrimaryBackup", "maxHostCount", "rmanBackupType"]
 
     @field_validator('rman_backup_type')
     def rman_backup_type_validate_enum(cls, value):
@@ -99,6 +101,9 @@ class OracleDbChannel(BaseModel):
                 if _item_database_node_list:
                     _items.append(_item_database_node_list.to_dict())
             _dict['databaseNodeList'] = _items
+        # override the default output from pydantic by calling `to_dict()` of dg_role_based_backup
+        if self.dg_role_based_backup:
+            _dict['dgRoleBasedBackup'] = self.dg_role_based_backup.to_dict()
         # set to None if archive_log_retention_days (nullable) is None
         # and model_fields_set contains the field
         if self.archive_log_retention_days is None and "archive_log_retention_days" in self.model_fields_set:
@@ -158,6 +163,7 @@ class OracleDbChannel(BaseModel):
             "databaseUniqueName": obj.get("databaseUniqueName"),
             "databaseUuid": obj.get("databaseUuid"),
             "defaultChannelCount": obj.get("defaultChannelCount"),
+            "dgRoleBasedBackup": DgRoleBasedBackup.from_dict(obj["dgRoleBasedBackup"]) if obj.get("dgRoleBasedBackup") is not None else None,
             "enableDgPrimaryBackup": obj.get("enableDgPrimaryBackup"),
             "maxHostCount": obj.get("maxHostCount"),
             "rmanBackupType": obj.get("rmanBackupType")

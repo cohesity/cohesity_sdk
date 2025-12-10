@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **db_channels** | [**List[OracleDbChannel]**](OracleDbChannel.md) | Specifies the Oracle database node channels info. If not specified, the default values assigned by the server are applied to all the databases. | [optional] 
 **granular_restore_info** | [**RecoverOracleGranularRestoreInfo**](RecoverOracleGranularRestoreInfo.md) |  | [optional] 
+**nfs_protocol** | **str** | Specifies the preferred protocol to use if this device supports multiple protocols. | [optional] 
 **oracle_archive_log_info** | [**OracleArchiveLogInfo**](OracleArchiveLogInfo.md) |  | [optional] 
 **oracle_recovery_validation_info** | [**OracleRecoveryValidationInfo**](OracleRecoveryValidationInfo.md) |  | [optional] 
 **recovery_mode** | **bool** | Specifies if database should be left in recovery mode. | [optional] 

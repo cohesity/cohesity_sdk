@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **key_type** | **str** | Specifies the algorithm to be used to generate the key pair. RSA is the default value. | [optional] [default to 'rsa']
 **organization** | **str** | Specifies the organization attribute, which is part of the distinguished name definition. It is used to specify the name of the company. | 
 **organization_unit** | **str** | Specifies the organization unit attribute, which is part of the distinguished name definition. It is used to identify the specific department or business unit in the company that is owning the Cluster. | 
-**service_name** | **str** | Specifies the Cohesity service name for which the CSR is generated. Default service name is iris. | [optional] [default to 'iris']
+**service_name** | **str** | Specifies the Cohesity service name for which the CSR is generated. Default service name is iris.  | [optional] [default to 'iris']
 **state** | **str** | Specifies the state attribute, which is part of the distinguished name definition. It is used to identify the state where the city is located. | 
 **csr** | **str** | Specifies the CSR generated for the service. | [optional] 
 **id** | **str** | Specifies the id of the CSR. | [optional] 

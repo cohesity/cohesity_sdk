@@ -22,17 +22,23 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.aws_object_protection_response_params import AwsObjectProtectionResponseParams
 from cohesity_sdk.helios.models.azure_object_protection_response_params import AzureObjectProtectionResponseParams
 from cohesity_sdk.helios.models.elastifile_object_protection_response_params import ElastifileObjectProtectionResponseParams
+from cohesity_sdk.helios.models.experimental_adapter_object_protection_response_params import ExperimentalAdapterObjectProtectionResponseParams
 from cohesity_sdk.helios.models.flashblade_object_protection_response_params import FlashbladeObjectProtectionResponseParams
 from cohesity_sdk.helios.models.generic_nas_object_protection_response_params import GenericNasObjectProtectionResponseParams
+from cohesity_sdk.helios.models.google_workspace_object_protection_response_params import GoogleWorkspaceObjectProtectionResponseParams
 from cohesity_sdk.helios.models.gpfs_object_protection_response_params import GpfsObjectProtectionResponseParams
 from cohesity_sdk.helios.models.hyper_v_object_protection_response_params import HyperVObjectProtectionResponseParams
 from cohesity_sdk.helios.models.isilon_object_protection_response_params import IsilonObjectProtectionResponseParams
+from cohesity_sdk.helios.models.kubernetes_object_protection_response_params import KubernetesObjectProtectionResponseParams
 from cohesity_sdk.helios.models.mssql_object_protection_response_params import MssqlObjectProtectionResponseParams
 from cohesity_sdk.helios.models.netapp_object_protection_response_params import NetappObjectProtectionResponseParams
 from cohesity_sdk.helios.models.office365_object_protection_response_params import Office365ObjectProtectionResponseParams
 from cohesity_sdk.helios.models.oracle_object_protection_response_params import OracleObjectProtectionResponseParams
 from cohesity_sdk.helios.models.physical_object_protection_response_params import PhysicalObjectProtectionResponseParams
 from cohesity_sdk.helios.models.policy_config import PolicyConfig
+from cohesity_sdk.helios.models.salesforce_object_protection_response_params import SalesforceObjectProtectionResponseParams
+from cohesity_sdk.helios.models.sap_hana_object_protection_response_params import SapHanaObjectProtectionResponseParams
+from cohesity_sdk.helios.models.service_now_object_protection_response_params import ServiceNowObjectProtectionResponseParams
 from cohesity_sdk.helios.models.sfdc_object_protection_response_params import SfdcObjectProtectionResponseParams
 from cohesity_sdk.helios.models.sla_rule import SlaRule
 from cohesity_sdk.helios.models.time_of_day import TimeOfDay
@@ -59,16 +65,22 @@ class ProtectedObjectBackupConfig(BaseModel):
     azure_params: Optional[AzureObjectProtectionResponseParams] = Field(default=None, alias="azureParams")
     elastifile_params: Optional[ElastifileObjectProtectionResponseParams] = Field(default=None, alias="elastifileParams")
     environment: Optional[StrictStr] = Field(default=None, description="Specifies the environment for current object.")
+    experimental_adapter_params: Optional[ExperimentalAdapterObjectProtectionResponseParams] = Field(default=None, alias="experimentalAdapterParams")
     flashblade_params: Optional[FlashbladeObjectProtectionResponseParams] = Field(default=None, alias="flashbladeParams")
     generic_nas_params: Optional[GenericNasObjectProtectionResponseParams] = Field(default=None, alias="genericNasParams")
+    google_workspace_params: Optional[GoogleWorkspaceObjectProtectionResponseParams] = Field(default=None, alias="googleWorkspaceParams")
     gpfs_params: Optional[GpfsObjectProtectionResponseParams] = Field(default=None, alias="gpfsParams")
     hyperv_params: Optional[HyperVObjectProtectionResponseParams] = Field(default=None, alias="hypervParams")
     isilon_params: Optional[IsilonObjectProtectionResponseParams] = Field(default=None, alias="isilonParams")
+    kubernetes_params: Optional[KubernetesObjectProtectionResponseParams] = Field(default=None, alias="kubernetesParams")
     mssql_params: Optional[MssqlObjectProtectionResponseParams] = Field(default=None, alias="mssqlParams")
     netapp_params: Optional[NetappObjectProtectionResponseParams] = Field(default=None, alias="netappParams")
     office365_params: Optional[Office365ObjectProtectionResponseParams] = Field(default=None, alias="office365Params")
     oracle_params: Optional[OracleObjectProtectionResponseParams] = Field(default=None, alias="oracleParams")
     physical_params: Optional[PhysicalObjectProtectionResponseParams] = Field(default=None, alias="physicalParams")
+    salesforce_params: Optional[SalesforceObjectProtectionResponseParams] = Field(default=None, alias="salesforceParams")
+    sap_hana_params: Optional[SapHanaObjectProtectionResponseParams] = Field(default=None, alias="sapHanaParams")
+    service_now_params: Optional[ServiceNowObjectProtectionResponseParams] = Field(default=None, alias="serviceNowParams")
     sfdc_params: Optional[SfdcObjectProtectionResponseParams] = Field(default=None, alias="sfdcParams")
     uda_params: Optional[UdaObjectProtectionResponseParams] = Field(default=None, alias="udaParams")
     vmware_params: Optional[VmwareObjectProtectionResponseParams] = Field(default=None, alias="vmwareParams")
@@ -76,7 +88,7 @@ class ProtectedObjectBackupConfig(BaseModel):
     is_active: Optional[StrictBool] = Field(default=None, description="Specifies whether or not protection has been deactivated on this object.", alias="isActive")
     is_auto_protect_config: Optional[StrictBool] = Field(default=None, description="Specifies whether or not this configuration is applied to an autoprotected object rather than this specific object.", alias="isAutoProtectConfig")
     is_paused: Optional[StrictBool] = Field(default=None, description="Specifies whether or not protection has been paused on this object.", alias="isPaused")
-    __properties: ClassVar[List[str]] = ["abortInBlackouts", "endTimeUsecs", "policyConfig", "policyId", "priority", "qosPolicy", "skipRigelForBackup", "sla", "startTime", "storageDomainId", "awsParams", "azureParams", "elastifileParams", "environment", "flashbladeParams", "genericNasParams", "gpfsParams", "hypervParams", "isilonParams", "mssqlParams", "netappParams", "office365Params", "oracleParams", "physicalParams", "sfdcParams", "udaParams", "vmwareParams", "autoProtectParentId", "isActive", "isAutoProtectConfig", "isPaused"]
+    __properties: ClassVar[List[str]] = ["abortInBlackouts", "endTimeUsecs", "policyConfig", "policyId", "priority", "qosPolicy", "skipRigelForBackup", "sla", "startTime", "storageDomainId", "awsParams", "azureParams", "elastifileParams", "environment", "experimentalAdapterParams", "flashbladeParams", "genericNasParams", "googleWorkspaceParams", "gpfsParams", "hypervParams", "isilonParams", "kubernetesParams", "mssqlParams", "netappParams", "office365Params", "oracleParams", "physicalParams", "salesforceParams", "sapHanaParams", "serviceNowParams", "sfdcParams", "udaParams", "vmwareParams", "autoProtectParentId", "isActive", "isAutoProtectConfig", "isPaused"]
 
     @field_validator('priority')
     def priority_validate_enum(cls, value):
@@ -104,8 +116,8 @@ class ProtectedObjectBackupConfig(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAzureNative', 'kAzureSQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc']):
-            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAzureNative', 'kAzureSQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kUDA', 'kSfdc')")
+        if value not in set(['kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kGCPBigQuery', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAwsDynamoDB', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kS3Compatible', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kServiceNow', 'kSalesforce']):
+            raise ValueError("must be one of enum values ('kVMware', 'kHyperV', 'kVCD', 'kAzure', 'kGCP', 'kGCPBigQuery', 'kKVM', 'kAcropolis', 'kAWS', 'kAWSNative', 'kAwsS3', 'kAWSSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsRDSPostgresBackup', 'kAwsRDSPostgres', 'kAwsAuroraPostgres', 'kAWSMySQL', 'kAwsDynamoDB', 'kAzureNative', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kAzureSnapshotManager', 'kPhysical', 'kPhysicalFiles', 'kGPFS', 'kElastifile', 'kNetapp', 'kGenericNas', 'kIsilon', 'kFlashBlade', 'kPure', 'kIbmFlashSystem', 'kSQL', 'kExchange', 'kAD', 'kOracle', 'kView', 'kRemoteAdapter', 'kO365', 'kO365PublicFolders', 'kO365Teams', 'kO365Group', 'kO365Exchange', 'kO365OneDrive', 'kO365Sharepoint', 'kKubernetes', 'kCassandra', 'kMongoDB', 'kCouchbase', 'kHdfs', 'kHive', 'kHBase', 'kSAPHANA', 'kUDA', 'kS3Compatible', 'kSfdc', 'kO365ExchangeCSM', 'kO365OneDriveCSM', 'kO365SharepointCSM', 'kExperimentalAdapter', 'kMongoDBPhysical', 'kGoogleWorkspace', 'kGmail', 'kGoogleDrive', 'kDB2', 'kServiceNow', 'kSalesforce')")
         return value
 
     model_config = ConfigDict(
@@ -169,12 +181,18 @@ class ProtectedObjectBackupConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of elastifile_params
         if self.elastifile_params:
             _dict['elastifileParams'] = self.elastifile_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of experimental_adapter_params
+        if self.experimental_adapter_params:
+            _dict['experimentalAdapterParams'] = self.experimental_adapter_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of flashblade_params
         if self.flashblade_params:
             _dict['flashbladeParams'] = self.flashblade_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of generic_nas_params
         if self.generic_nas_params:
             _dict['genericNasParams'] = self.generic_nas_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of google_workspace_params
+        if self.google_workspace_params:
+            _dict['googleWorkspaceParams'] = self.google_workspace_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of gpfs_params
         if self.gpfs_params:
             _dict['gpfsParams'] = self.gpfs_params.to_dict()
@@ -184,6 +202,9 @@ class ProtectedObjectBackupConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of isilon_params
         if self.isilon_params:
             _dict['isilonParams'] = self.isilon_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of kubernetes_params
+        if self.kubernetes_params:
+            _dict['kubernetesParams'] = self.kubernetes_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of mssql_params
         if self.mssql_params:
             _dict['mssqlParams'] = self.mssql_params.to_dict()
@@ -199,6 +220,15 @@ class ProtectedObjectBackupConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of physical_params
         if self.physical_params:
             _dict['physicalParams'] = self.physical_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of salesforce_params
+        if self.salesforce_params:
+            _dict['salesforceParams'] = self.salesforce_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of sap_hana_params
+        if self.sap_hana_params:
+            _dict['sapHanaParams'] = self.sap_hana_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of service_now_params
+        if self.service_now_params:
+            _dict['serviceNowParams'] = self.service_now_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of sfdc_params
         if self.sfdc_params:
             _dict['sfdcParams'] = self.sfdc_params.to_dict()
@@ -299,16 +329,22 @@ class ProtectedObjectBackupConfig(BaseModel):
             "azureParams": AzureObjectProtectionResponseParams.from_dict(obj["azureParams"]) if obj.get("azureParams") is not None else None,
             "elastifileParams": ElastifileObjectProtectionResponseParams.from_dict(obj["elastifileParams"]) if obj.get("elastifileParams") is not None else None,
             "environment": obj.get("environment"),
+            "experimentalAdapterParams": ExperimentalAdapterObjectProtectionResponseParams.from_dict(obj["experimentalAdapterParams"]) if obj.get("experimentalAdapterParams") is not None else None,
             "flashbladeParams": FlashbladeObjectProtectionResponseParams.from_dict(obj["flashbladeParams"]) if obj.get("flashbladeParams") is not None else None,
             "genericNasParams": GenericNasObjectProtectionResponseParams.from_dict(obj["genericNasParams"]) if obj.get("genericNasParams") is not None else None,
+            "googleWorkspaceParams": GoogleWorkspaceObjectProtectionResponseParams.from_dict(obj["googleWorkspaceParams"]) if obj.get("googleWorkspaceParams") is not None else None,
             "gpfsParams": GpfsObjectProtectionResponseParams.from_dict(obj["gpfsParams"]) if obj.get("gpfsParams") is not None else None,
             "hypervParams": HyperVObjectProtectionResponseParams.from_dict(obj["hypervParams"]) if obj.get("hypervParams") is not None else None,
             "isilonParams": IsilonObjectProtectionResponseParams.from_dict(obj["isilonParams"]) if obj.get("isilonParams") is not None else None,
+            "kubernetesParams": KubernetesObjectProtectionResponseParams.from_dict(obj["kubernetesParams"]) if obj.get("kubernetesParams") is not None else None,
             "mssqlParams": MssqlObjectProtectionResponseParams.from_dict(obj["mssqlParams"]) if obj.get("mssqlParams") is not None else None,
             "netappParams": NetappObjectProtectionResponseParams.from_dict(obj["netappParams"]) if obj.get("netappParams") is not None else None,
             "office365Params": Office365ObjectProtectionResponseParams.from_dict(obj["office365Params"]) if obj.get("office365Params") is not None else None,
             "oracleParams": OracleObjectProtectionResponseParams.from_dict(obj["oracleParams"]) if obj.get("oracleParams") is not None else None,
             "physicalParams": PhysicalObjectProtectionResponseParams.from_dict(obj["physicalParams"]) if obj.get("physicalParams") is not None else None,
+            "salesforceParams": SalesforceObjectProtectionResponseParams.from_dict(obj["salesforceParams"]) if obj.get("salesforceParams") is not None else None,
+            "sapHanaParams": SapHanaObjectProtectionResponseParams.from_dict(obj["sapHanaParams"]) if obj.get("sapHanaParams") is not None else None,
+            "serviceNowParams": ServiceNowObjectProtectionResponseParams.from_dict(obj["serviceNowParams"]) if obj.get("serviceNowParams") is not None else None,
             "sfdcParams": SfdcObjectProtectionResponseParams.from_dict(obj["sfdcParams"]) if obj.get("sfdcParams") is not None else None,
             "udaParams": UdaObjectProtectionResponseParams.from_dict(obj["udaParams"]) if obj.get("udaParams") is not None else None,
             "vmwareParams": VmwareObjectProtectionResponseParams.from_dict(obj["vmwareParams"]) if obj.get("vmwareParams") is not None else None,

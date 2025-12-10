@@ -7,6 +7,7 @@ Specifies the network config parameters to be applied for Acropolis VMs if recov
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **detach_network** | **bool** | If this is set to true, then the network will be detached from the recovered VMs. All the other networking parameters set will be ignored if set to true. Default value is false. | [optional] 
+**disable_network** | **bool** | Specifies whether the attached network should be left in disabled state. Default is false. | [optional] 
 
 ## Example
 

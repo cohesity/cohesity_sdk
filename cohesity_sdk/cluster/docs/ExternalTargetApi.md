@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 Create a External Target.
 
-Create a External Target.
+**Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Create a External Target.
 
 ### Example
 
@@ -114,7 +114,7 @@ Name | Type | Description  | Notes
 
 Delete a External Target.
 
-Returns Success if the External Target is deleted.
+**Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Returns Success if the External Target is deleted.
 
 ### Example
 
@@ -207,7 +207,7 @@ void (empty response body)
 
 List details about single External Target.
 
-Returns the External Target corresponding to the specified Group id.
+**Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Returns the External Target corresponding to the specified Group id.
 
 ### Example
 
@@ -301,7 +301,7 @@ Name | Type | Description  | Notes
 
 Get the encryption key info for an external target
 
-Get the encryption key info for an external target
+**Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Get the encryption key info for an external target
 
 ### Example
 
@@ -394,7 +394,7 @@ Name | Type | Description  | Notes
 
 List archive media information
 
-Returns the media information about the specified archive service uid (such as a QStar tape archive service).
+```Unknown Privileges``` <br><br>Returns the media information about the specified archive service uid (such as a QStar tape archive service).
 
 ### Example
 
@@ -496,7 +496,7 @@ Name | Type | Description  | Notes
 
 Get the list of External Target Settings.
 
-Get the list of External Target Settings
+**Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Get the list of External Target Settings
 
 ### Example
 
@@ -586,7 +586,7 @@ This endpoint does not need any parameter.
 
 Get the list of External Targets.
 
-Get the list of External Targets.
+**Privileges:** ```CLUSTER_EXTERNAL_TARGET_VIEW``` <br><br>Get the list of External Targets.
 
 ### Example
 
@@ -692,7 +692,7 @@ Name | Type | Description  | Notes
 
 Update a External Target.
 
-Update the specified External Target.
+**Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Update the specified External Target.
 
 ### Example
 
@@ -788,7 +788,7 @@ Name | Type | Description  | Notes
 
 Update External Target Settings
 
-Update External Target Settings
+**Privileges:** ```CLUSTER_EXTERNAL_TARGET_MODIFY``` <br><br>Update External Target Settings
 
 ### Example
 

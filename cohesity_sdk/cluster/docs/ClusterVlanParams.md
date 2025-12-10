@@ -13,15 +13,19 @@ Name | Type | Description | Notes
 **ecmp_enabled** | **bool** | Set to true to enable ECMP in the vlan. | [optional] [default to False]
 **fqdn** | **str** | FQDN of the vlan. | [optional] 
 **gateway** | **str** | Subnet gateway of the vlan. This can be Ipv4 or Ipv6 gateway based on the IP addresses type. | [optional] 
+**gateway_v6** | **str** | Ipv6 gateway of the vlan. | [optional] 
+**interface_name** | **str** | Name of the interface. | [optional] 
 **ip_addresses_type** | **str** | Type of IP addresses. The default value is Ipv4. | [optional] 
 **ip_pools** | [**List[IpPool]**](IpPool.md) | IP pools from the vlan ip addresses, the IPs in a pool goes together. One IP from each pool forms a VIP group. | [optional] 
 **ip_ranges** | [**List[IpRange]**](IpRange.md) | Vlan IP address ranges, only one of ips or ipRanges parameters should be given. | [optional] 
 **ips** | **List[str]** | Vlan IP addresses, only one of ips or ipRanges parameters should be given. | [optional] 
+**loopback_interface_group_id** | **int** | Id of the Loopback Interface group. Used only in get, for display | [optional] 
 **mtu** | **int** | MTU of the vlan. | [optional] 
-**subnet** | **str** | IPv6 or IPv6 subnet in CIDR format i.e ip-address/prefix. Examples: IPv4 subnet&#39;192.168.0.101/24&#39;, &#39;10.10.1.32/27&#39;. IPv6 subnet &#39;3005:1231:2006:0025::0/96&#39;, 3005:1231:2006:0025::0/128 | [optional] 
+**subnet** | **str** | IPv4 or IPv6 subnet in CIDR format i.e ip-address/prefix. Examples: IPv4 subnet&#39;192.168.0.101/24&#39;, &#39;10.10.1.32/27&#39;. IPv6 subnet &#39;3005:1231:2006:0025::0/96&#39;, 3005:1231:2006:0025::0/128 | [optional] 
+**subnet_v6** | **str** | IPv6 subnet in CIDR format i.e ip-address/prefix | [optional] 
 **tenant_id** | **str** | Tenant id to assign vlan to a tenant. | [optional] 
 **vlan_name** | **str** | Name of the Vlan. | [optional] 
-**interface_name** | **str** | Vlan interface name, it should be in interface_group_name.vlan_id format. | 
+**vlan_interface_group_name** | **str** | Vlan interface group name, it should be in interface_group_name.vlan_id format. | 
 **app_ips_in_use** | **bool** | Set to true when vlan app IP addresses are being used by apps. When this is set to true, the vlan interface can&#39;t be deleted. | [optional] 
 
 ## Example

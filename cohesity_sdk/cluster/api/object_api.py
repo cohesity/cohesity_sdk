@@ -32,6 +32,8 @@ from cohesity_sdk.cluster.models.get_object_runs_response_body import GetObjectR
 from cohesity_sdk.cluster.models.get_object_snapshots_response_body import GetObjectSnapshotsResponseBody
 from cohesity_sdk.cluster.models.get_pit_ranges_protected_object_response_body import GetPITRangesProtectedObjectResponseBody
 from cohesity_sdk.cluster.models.get_protected_objects_response import GetProtectedObjectsResponse
+from cohesity_sdk.cluster.models.modify_source_hierarchy_objects_request import ModifySourceHierarchyObjectsRequest
+from cohesity_sdk.cluster.models.modify_source_hierarchy_objects_result import ModifySourceHierarchyObjectsResult
 from cohesity_sdk.cluster.models.object_action_request import ObjectActionRequest
 from cohesity_sdk.cluster.models.object_browse_request import ObjectBrowseRequest
 from cohesity_sdk.cluster.models.object_protection_run_summary import ObjectProtectionRunSummary
@@ -83,7 +85,7 @@ class ObjectApi:
     ) -> AssociateEntityMetadataResult:
         """Associate Metadata with Entity
 
-        Associates metadata with entities in the entity hierarchy. This metadata can be of various types (eg. Credentials). Returns a list of entity id and corresponding errors encountered (if any) while associating metadata with that entity. Note that a partial success response is possible where we succeed in associating metadata with some of the entities but fail for others. The API also expects the entities being updated belong to same source.
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Associates metadata with entities in the entity hierarchy. This metadata can be of various types (eg. Credentials). Returns a list of entity id and corresponding errors encountered (if any) while associating metadata with that entity. Note that a partial success response is possible where we succeed in associating metadata with some of the entities but fail for others. The API also expects the entities being updated belong to same source.
 
         :param body: Specifies the parameters to associate metadata with entities in the entity hierarchy. (required)
         :type body: AssociateEntityMetadataRequest
@@ -150,7 +152,7 @@ class ObjectApi:
     ) -> ApiResponse[AssociateEntityMetadataResult]:
         """Associate Metadata with Entity
 
-        Associates metadata with entities in the entity hierarchy. This metadata can be of various types (eg. Credentials). Returns a list of entity id and corresponding errors encountered (if any) while associating metadata with that entity. Note that a partial success response is possible where we succeed in associating metadata with some of the entities but fail for others. The API also expects the entities being updated belong to same source.
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Associates metadata with entities in the entity hierarchy. This metadata can be of various types (eg. Credentials). Returns a list of entity id and corresponding errors encountered (if any) while associating metadata with that entity. Note that a partial success response is possible where we succeed in associating metadata with some of the entities but fail for others. The API also expects the entities being updated belong to same source.
 
         :param body: Specifies the parameters to associate metadata with entities in the entity hierarchy. (required)
         :type body: AssociateEntityMetadataRequest
@@ -217,7 +219,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Associate Metadata with Entity
 
-        Associates metadata with entities in the entity hierarchy. This metadata can be of various types (eg. Credentials). Returns a list of entity id and corresponding errors encountered (if any) while associating metadata with that entity. Note that a partial success response is possible where we succeed in associating metadata with some of the entities but fail for others. The API also expects the entities being updated belong to same source.
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Associates metadata with entities in the entity hierarchy. This metadata can be of various types (eg. Credentials). Returns a list of entity id and corresponding errors encountered (if any) while associating metadata with that entity. Note that a partial success response is possible where we succeed in associating metadata with some of the entities but fail for others. The API also expects the entities being updated belong to same source.
 
         :param body: Specifies the parameters to associate metadata with entities in the entity hierarchy. (required)
         :type body: AssociateEntityMetadataRequest
@@ -360,7 +362,7 @@ class ObjectApi:
     ) -> FileFolderInfo:
         """Fetch the contents (files & folders) for the specified object.
 
-        Fetch the contents (files & folders) of the specified path inside the specified object.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Fetch the contents (files & folders) of the specified path inside the specified object.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -431,7 +433,7 @@ class ObjectApi:
     ) -> ApiResponse[FileFolderInfo]:
         """Fetch the contents (files & folders) for the specified object.
 
-        Fetch the contents (files & folders) of the specified path inside the specified object.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Fetch the contents (files & folders) of the specified path inside the specified object.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -502,7 +504,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Fetch the contents (files & folders) for the specified object.
 
-        Fetch the contents (files & folders) of the specified path inside the specified object.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Fetch the contents (files & folders) of the specified path inside the specified object.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -650,7 +652,7 @@ class ObjectApi:
     ) -> CancelObjectRunsResults:
         """Cancel object runs.
 
-        Cancel object runs for object based protection. This does not apply to Group based protection.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Cancel object runs for object based protection. This does not apply to Group based protection.
 
         :param body: Specifies the parameters to cancel object runs. (required)
         :type body: CancelObjectRunsRequest
@@ -717,7 +719,7 @@ class ObjectApi:
     ) -> ApiResponse[CancelObjectRunsResults]:
         """Cancel object runs.
 
-        Cancel object runs for object based protection. This does not apply to Group based protection.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Cancel object runs for object based protection. This does not apply to Group based protection.
 
         :param body: Specifies the parameters to cancel object runs. (required)
         :type body: CancelObjectRunsRequest
@@ -784,7 +786,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Cancel object runs.
 
-        Cancel object runs for object based protection. This does not apply to Group based protection.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Cancel object runs for object based protection. This does not apply to Group based protection.
 
         :param body: Specifies the parameters to cancel object runs. (required)
         :type body: CancelObjectRunsRequest
@@ -927,7 +929,7 @@ class ObjectApi:
     ) -> ConstructMetaInfoResult:
         """Construct meta info for any workflow from object snapshot and some other information.
 
-        Construct meta info from object snapshot and some additional params.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Construct meta info from object snapshot and some additional params.
 
         :param snapshot_id: Specifies the snapshot id. (required)
         :type snapshot_id: str
@@ -998,7 +1000,7 @@ class ObjectApi:
     ) -> ApiResponse[ConstructMetaInfoResult]:
         """Construct meta info for any workflow from object snapshot and some other information.
 
-        Construct meta info from object snapshot and some additional params.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Construct meta info from object snapshot and some additional params.
 
         :param snapshot_id: Specifies the snapshot id. (required)
         :type snapshot_id: str
@@ -1069,7 +1071,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Construct meta info for any workflow from object snapshot and some other information.
 
-        Construct meta info from object snapshot and some additional params.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Construct meta info from object snapshot and some additional params.
 
         :param snapshot_id: Specifies the snapshot id. (required)
         :type snapshot_id: str
@@ -1199,6 +1201,303 @@ class ObjectApi:
 
 
     @validate_call
+    def delete_entity_metadata(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies a unique id of the Entity.")],
+        metadata_type: Annotated[Optional[StrictStr], Field(description="Specifies the metadata type to be deleted. This is a required field currently and the API will error out if this field is not provided.")] = None,
+        environment_type: Annotated[Optional[StrictStr], Field(description="Specifies the environment type for the Credentials metadata to be deleted. This will be only set when the metadata type is Credentials.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete Metadata with Entity
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Deletes entity metadata for the given entity Id. Currently only supported for RDS and Aurora Postgres Credential metadata.
+
+        :param id: Specifies a unique id of the Entity. (required)
+        :type id: int
+        :param metadata_type: Specifies the metadata type to be deleted. This is a required field currently and the API will error out if this field is not provided.
+        :type metadata_type: str
+        :param environment_type: Specifies the environment type for the Credentials metadata to be deleted. This will be only set when the metadata type is Credentials.
+        :type environment_type: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_entity_metadata_serialize(
+            id=id,
+            metadata_type=metadata_type,
+            environment_type=environment_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def delete_entity_metadata_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies a unique id of the Entity.")],
+        metadata_type: Annotated[Optional[StrictStr], Field(description="Specifies the metadata type to be deleted. This is a required field currently and the API will error out if this field is not provided.")] = None,
+        environment_type: Annotated[Optional[StrictStr], Field(description="Specifies the environment type for the Credentials metadata to be deleted. This will be only set when the metadata type is Credentials.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete Metadata with Entity
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Deletes entity metadata for the given entity Id. Currently only supported for RDS and Aurora Postgres Credential metadata.
+
+        :param id: Specifies a unique id of the Entity. (required)
+        :type id: int
+        :param metadata_type: Specifies the metadata type to be deleted. This is a required field currently and the API will error out if this field is not provided.
+        :type metadata_type: str
+        :param environment_type: Specifies the environment type for the Credentials metadata to be deleted. This will be only set when the metadata type is Credentials.
+        :type environment_type: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_entity_metadata_serialize(
+            id=id,
+            metadata_type=metadata_type,
+            environment_type=environment_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def delete_entity_metadata_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies a unique id of the Entity.")],
+        metadata_type: Annotated[Optional[StrictStr], Field(description="Specifies the metadata type to be deleted. This is a required field currently and the API will error out if this field is not provided.")] = None,
+        environment_type: Annotated[Optional[StrictStr], Field(description="Specifies the environment type for the Credentials metadata to be deleted. This will be only set when the metadata type is Credentials.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete Metadata with Entity
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Deletes entity metadata for the given entity Id. Currently only supported for RDS and Aurora Postgres Credential metadata.
+
+        :param id: Specifies a unique id of the Entity. (required)
+        :type id: int
+        :param metadata_type: Specifies the metadata type to be deleted. This is a required field currently and the API will error out if this field is not provided.
+        :type metadata_type: str
+        :param environment_type: Specifies the environment type for the Credentials metadata to be deleted. This will be only set when the metadata type is Credentials.
+        :type environment_type: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_entity_metadata_serialize(
+            id=id,
+            metadata_type=metadata_type,
+            environment_type=environment_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _delete_entity_metadata_serialize(
+        self,
+        id,
+        metadata_type,
+        environment_type,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        if metadata_type is not None:
+            
+            _query_params.append(('metadataType', metadata_type))
+            
+        if environment_type is not None:
+            
+            _query_params.append(('environmentType', environment_type))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/data-protect/objects/metadata/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def filter_objects(
         self,
         body: Annotated[FilterObjectsRequest, Field(description="Specifies the parameters to filter objects.")],
@@ -1217,7 +1516,7 @@ class ObjectApi:
     ) -> FilteredObjectsResponseBody:
         """List all the filtered objects.
 
-        List all the filtered objects using given regular expressions and wildcard supported search strings. We are currenly supporting this for only SQL adapter.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>List all the filtered objects using given regular expressions and wildcard supported search strings. We are currenly supporting this for only SQL adapter.
 
         :param body: Specifies the parameters to filter objects. (required)
         :type body: FilterObjectsRequest
@@ -1284,7 +1583,7 @@ class ObjectApi:
     ) -> ApiResponse[FilteredObjectsResponseBody]:
         """List all the filtered objects.
 
-        List all the filtered objects using given regular expressions and wildcard supported search strings. We are currenly supporting this for only SQL adapter.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>List all the filtered objects using given regular expressions and wildcard supported search strings. We are currenly supporting this for only SQL adapter.
 
         :param body: Specifies the parameters to filter objects. (required)
         :type body: FilterObjectsRequest
@@ -1351,7 +1650,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """List all the filtered objects.
 
-        List all the filtered objects using given regular expressions and wildcard supported search strings. We are currenly supporting this for only SQL adapter.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>List all the filtered objects using given regular expressions and wildcard supported search strings. We are currenly supporting this for only SQL adapter.
 
         :param body: Specifies the parameters to filter objects. (required)
         :type body: FilterObjectsRequest
@@ -1486,6 +1785,7 @@ class ObjectApi:
         run_types: Annotated[Optional[List[StrictStr]], Field(description="Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         object_action_key: Annotated[Optional[StrictStr], Field(description="Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.")] = None,
+        filename: Annotated[Optional[StrictStr], Field(description="Specifies the name of the file or folder to find in the snapshots.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1501,7 +1801,7 @@ class ObjectApi:
     ) -> GetIndexedObjectSnapshotsResponseBody:
         """Get snapshots of indexed object.
 
-        Get snapshots of indexed object.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get snapshots of indexed object.
 
         :param object_id: Specifies the object id. (required)
         :type object_id: int
@@ -1521,6 +1821,8 @@ class ObjectApi:
         :type use_cached_data: bool
         :param object_action_key: Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.
         :type object_action_key: str
+        :param filename: Specifies the name of the file or folder to find in the snapshots.
+        :type filename: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1553,6 +1855,7 @@ class ObjectApi:
             run_types=run_types,
             use_cached_data=use_cached_data,
             object_action_key=object_action_key,
+            filename=filename,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1585,6 +1888,7 @@ class ObjectApi:
         run_types: Annotated[Optional[List[StrictStr]], Field(description="Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         object_action_key: Annotated[Optional[StrictStr], Field(description="Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.")] = None,
+        filename: Annotated[Optional[StrictStr], Field(description="Specifies the name of the file or folder to find in the snapshots.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1600,7 +1904,7 @@ class ObjectApi:
     ) -> ApiResponse[GetIndexedObjectSnapshotsResponseBody]:
         """Get snapshots of indexed object.
 
-        Get snapshots of indexed object.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get snapshots of indexed object.
 
         :param object_id: Specifies the object id. (required)
         :type object_id: int
@@ -1620,6 +1924,8 @@ class ObjectApi:
         :type use_cached_data: bool
         :param object_action_key: Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.
         :type object_action_key: str
+        :param filename: Specifies the name of the file or folder to find in the snapshots.
+        :type filename: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1652,6 +1958,7 @@ class ObjectApi:
             run_types=run_types,
             use_cached_data=use_cached_data,
             object_action_key=object_action_key,
+            filename=filename,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1684,6 +1991,7 @@ class ObjectApi:
         run_types: Annotated[Optional[List[StrictStr]], Field(description="Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         object_action_key: Annotated[Optional[StrictStr], Field(description="Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.")] = None,
+        filename: Annotated[Optional[StrictStr], Field(description="Specifies the name of the file or folder to find in the snapshots.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1699,7 +2007,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Get snapshots of indexed object.
 
-        Get snapshots of indexed object.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get snapshots of indexed object.
 
         :param object_id: Specifies the object id. (required)
         :type object_id: int
@@ -1719,6 +2027,8 @@ class ObjectApi:
         :type use_cached_data: bool
         :param object_action_key: Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.
         :type object_action_key: str
+        :param filename: Specifies the name of the file or folder to find in the snapshots.
+        :type filename: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1751,6 +2061,7 @@ class ObjectApi:
             run_types=run_types,
             use_cached_data=use_cached_data,
             object_action_key=object_action_key,
+            filename=filename,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1778,6 +2089,7 @@ class ObjectApi:
         run_types,
         use_cached_data,
         object_action_key,
+        filename,
         _request_auth,
         _content_type,
         _headers,
@@ -1834,6 +2146,10 @@ class ObjectApi:
         if object_action_key is not None:
             
             _query_params.append(('objectActionKey', object_action_key))
+            
+        if filename is not None:
+            
+            _query_params.append(('filename', filename))
             
         # process the header parameters
         # process the form parameters
@@ -1894,7 +2210,7 @@ class ObjectApi:
     ) -> GetEntityMetadataResult:
         """Get Metadata of Entities
 
-        Gets entity metadata for entities. This can be used as a input for the PUT API. 
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Gets entity metadata for entities. This can be used as a input for the PUT API. 
 
         :param source_id: Specifies the source ID for which objects should be returned. (required)
         :type source_id: int
@@ -1965,7 +2281,7 @@ class ObjectApi:
     ) -> ApiResponse[GetEntityMetadataResult]:
         """Get Metadata of Entities
 
-        Gets entity metadata for entities. This can be used as a input for the PUT API. 
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Gets entity metadata for entities. This can be used as a input for the PUT API. 
 
         :param source_id: Specifies the source ID for which objects should be returned. (required)
         :type source_id: int
@@ -2036,7 +2352,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Get Metadata of Entities
 
-        Gets entity metadata for entities. This can be used as a input for the PUT API. 
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Gets entity metadata for entities. This can be used as a input for the PUT API. 
 
         :param source_id: Specifies the source ID for which objects should be returned. (required)
         :type source_id: int
@@ -2167,6 +2483,8 @@ class ObjectApi:
         run_types: Annotated[Optional[List[StrictStr]], Field(description="Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         object_action_key: Annotated[Optional[StrictStr], Field(description="Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.")] = None,
+        from_file_mtime_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime after and equal to this value. If not specified and toFileMtimeUsecs is specified, then the fromFileMtimeUsecs will be set to 7 days before toFileMtimeUsecs.")] = None,
+        to_file_mtime_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime before and equal to this value. If not specified and fromFileMtimeUsecs is specified, then the toFileMtimeUsecs will be set to current time.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2182,7 +2500,7 @@ class ObjectApi:
     ) -> GetIndexedObjectSnapshotsResponseBody:
         """Get snapshots of indexed object.
 
-        Get snapshots of indexed object.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get snapshots of indexed object.
 
         :param protection_group_id: Specifies the protection group id. (required)
         :type protection_group_id: str
@@ -2202,6 +2520,10 @@ class ObjectApi:
         :type use_cached_data: bool
         :param object_action_key: Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.
         :type object_action_key: str
+        :param from_file_mtime_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime after and equal to this value. If not specified and toFileMtimeUsecs is specified, then the fromFileMtimeUsecs will be set to 7 days before toFileMtimeUsecs.
+        :type from_file_mtime_usecs: int
+        :param to_file_mtime_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime before and equal to this value. If not specified and fromFileMtimeUsecs is specified, then the toFileMtimeUsecs will be set to current time.
+        :type to_file_mtime_usecs: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2234,6 +2556,8 @@ class ObjectApi:
             run_types=run_types,
             use_cached_data=use_cached_data,
             object_action_key=object_action_key,
+            from_file_mtime_usecs=from_file_mtime_usecs,
+            to_file_mtime_usecs=to_file_mtime_usecs,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2266,6 +2590,8 @@ class ObjectApi:
         run_types: Annotated[Optional[List[StrictStr]], Field(description="Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         object_action_key: Annotated[Optional[StrictStr], Field(description="Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.")] = None,
+        from_file_mtime_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime after and equal to this value. If not specified and toFileMtimeUsecs is specified, then the fromFileMtimeUsecs will be set to 7 days before toFileMtimeUsecs.")] = None,
+        to_file_mtime_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime before and equal to this value. If not specified and fromFileMtimeUsecs is specified, then the toFileMtimeUsecs will be set to current time.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2281,7 +2607,7 @@ class ObjectApi:
     ) -> ApiResponse[GetIndexedObjectSnapshotsResponseBody]:
         """Get snapshots of indexed object.
 
-        Get snapshots of indexed object.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get snapshots of indexed object.
 
         :param protection_group_id: Specifies the protection group id. (required)
         :type protection_group_id: str
@@ -2301,6 +2627,10 @@ class ObjectApi:
         :type use_cached_data: bool
         :param object_action_key: Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.
         :type object_action_key: str
+        :param from_file_mtime_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime after and equal to this value. If not specified and toFileMtimeUsecs is specified, then the fromFileMtimeUsecs will be set to 7 days before toFileMtimeUsecs.
+        :type from_file_mtime_usecs: int
+        :param to_file_mtime_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime before and equal to this value. If not specified and fromFileMtimeUsecs is specified, then the toFileMtimeUsecs will be set to current time.
+        :type to_file_mtime_usecs: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2333,6 +2663,8 @@ class ObjectApi:
             run_types=run_types,
             use_cached_data=use_cached_data,
             object_action_key=object_action_key,
+            from_file_mtime_usecs=from_file_mtime_usecs,
+            to_file_mtime_usecs=to_file_mtime_usecs,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2365,6 +2697,8 @@ class ObjectApi:
         run_types: Annotated[Optional[List[StrictStr]], Field(description="Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         object_action_key: Annotated[Optional[StrictStr], Field(description="Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.")] = None,
+        from_file_mtime_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime after and equal to this value. If not specified and toFileMtimeUsecs is specified, then the fromFileMtimeUsecs will be set to 7 days before toFileMtimeUsecs.")] = None,
+        to_file_mtime_usecs: Annotated[Optional[StrictInt], Field(description="Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime before and equal to this value. If not specified and fromFileMtimeUsecs is specified, then the toFileMtimeUsecs will be set to current time.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2380,7 +2714,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Get snapshots of indexed object.
 
-        Get snapshots of indexed object.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get snapshots of indexed object.
 
         :param protection_group_id: Specifies the protection group id. (required)
         :type protection_group_id: str
@@ -2400,6 +2734,10 @@ class ObjectApi:
         :type use_cached_data: bool
         :param object_action_key: Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.
         :type object_action_key: str
+        :param from_file_mtime_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime after and equal to this value. If not specified and toFileMtimeUsecs is specified, then the fromFileMtimeUsecs will be set to 7 days before toFileMtimeUsecs.
+        :type from_file_mtime_usecs: int
+        :param to_file_mtime_usecs: Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots based on file mtime before and equal to this value. If not specified and fromFileMtimeUsecs is specified, then the toFileMtimeUsecs will be set to current time.
+        :type to_file_mtime_usecs: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2432,6 +2770,8 @@ class ObjectApi:
             run_types=run_types,
             use_cached_data=use_cached_data,
             object_action_key=object_action_key,
+            from_file_mtime_usecs=from_file_mtime_usecs,
+            to_file_mtime_usecs=to_file_mtime_usecs,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2459,6 +2799,8 @@ class ObjectApi:
         run_types,
         use_cached_data,
         object_action_key,
+        from_file_mtime_usecs,
+        to_file_mtime_usecs,
         _request_auth,
         _content_type,
         _headers,
@@ -2513,6 +2855,14 @@ class ObjectApi:
         if object_action_key is not None:
             
             _query_params.append(('objectActionKey', object_action_key))
+            
+        if from_file_mtime_usecs is not None:
+            
+            _query_params.append(('fromFileMtimeUsecs', from_file_mtime_usecs))
+            
+        if to_file_mtime_usecs is not None:
+            
+            _query_params.append(('toFileMtimeUsecs', to_file_mtime_usecs))
             
         # process the header parameters
         # process the form parameters
@@ -2573,7 +2923,7 @@ class ObjectApi:
     ) -> ObjectProtectionRunSummary:
         """Get a run for an object.
 
-        Get a run for an object.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get a run for an object.
 
         :param id: Specifies a unique id of the object. (required)
         :type id: int
@@ -2644,7 +2994,7 @@ class ObjectApi:
     ) -> ApiResponse[ObjectProtectionRunSummary]:
         """Get a run for an object.
 
-        Get a run for an object.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get a run for an object.
 
         :param id: Specifies a unique id of the object. (required)
         :type id: int
@@ -2715,7 +3065,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Get a run for an object.
 
-        Get a run for an object.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get a run for an object.
 
         :param id: Specifies a unique id of the object. (required)
         :type id: int
@@ -2832,6 +3182,613 @@ class ObjectApi:
 
 
     @validate_call
+    def get_object_run_messages_report(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the object.")],
+        run_id: Annotated[StrictStr, Field(description="Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>.")],
+        object_action_key: Annotated[Optional[StrictStr], Field(description="Specifies the backup type for the run.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> bytearray:
+        """Get the CSV of various Messages for a given run.
+
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get an CSV report for given run id and object id. Each row in CSV report contains all errors and warnings during run. File format: error_<objectId>_<runStartTime>.csv
+
+        :param id: Specifies the id of the object. (required)
+        :type id: int
+        :param run_id: Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>. (required)
+        :type run_id: str
+        :param object_action_key: Specifies the backup type for the run.
+        :type object_action_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_object_run_messages_report_serialize(
+            id=id,
+            run_id=run_id,
+            object_action_key=object_action_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "bytearray",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_object_run_messages_report_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the object.")],
+        run_id: Annotated[StrictStr, Field(description="Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>.")],
+        object_action_key: Annotated[Optional[StrictStr], Field(description="Specifies the backup type for the run.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[bytearray]:
+        """Get the CSV of various Messages for a given run.
+
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get an CSV report for given run id and object id. Each row in CSV report contains all errors and warnings during run. File format: error_<objectId>_<runStartTime>.csv
+
+        :param id: Specifies the id of the object. (required)
+        :type id: int
+        :param run_id: Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>. (required)
+        :type run_id: str
+        :param object_action_key: Specifies the backup type for the run.
+        :type object_action_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_object_run_messages_report_serialize(
+            id=id,
+            run_id=run_id,
+            object_action_key=object_action_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "bytearray",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_object_run_messages_report_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the object.")],
+        run_id: Annotated[StrictStr, Field(description="Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>.")],
+        object_action_key: Annotated[Optional[StrictStr], Field(description="Specifies the backup type for the run.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get the CSV of various Messages for a given run.
+
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get an CSV report for given run id and object id. Each row in CSV report contains all errors and warnings during run. File format: error_<objectId>_<runStartTime>.csv
+
+        :param id: Specifies the id of the object. (required)
+        :type id: int
+        :param run_id: Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>. (required)
+        :type run_id: str
+        :param object_action_key: Specifies the backup type for the run.
+        :type object_action_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_object_run_messages_report_serialize(
+            id=id,
+            run_id=run_id,
+            object_action_key=object_action_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "bytearray",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_object_run_messages_report_serialize(
+        self,
+        id,
+        run_id,
+        object_action_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        if run_id is not None:
+            _path_params['runId'] = run_id
+        # process the query parameters
+        if object_action_key is not None:
+            
+            _query_params.append(('objectActionKey', object_action_key))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/octet-stream'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/data-protect/objects/{id}/runs/{runId}/messages',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_object_run_success_files(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the object.")],
+        run_id: Annotated[StrictStr, Field(description="Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>.")],
+        name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the source being backed up")] = None,
+        file_type: Annotated[Optional[StrictStr], Field(description="Specifies the downloaded type, i.e: success_files_list, default: success_files_list")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Get the CSV of errors/warnings for a given run and an object.
+
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get an CSV report for given objectId and run id. Report will depend on the query parameter fileType, default will be: success_files_list where each row contains the name of file backedup successfully.
+
+        :param id: Specifies the id of the object. (required)
+        :type id: int
+        :param run_id: Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>. (required)
+        :type run_id: str
+        :param name: Specifies the name of the source being backed up
+        :type name: str
+        :param file_type: Specifies the downloaded type, i.e: success_files_list, default: success_files_list
+        :type file_type: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_object_run_success_files_serialize(
+            id=id,
+            run_id=run_id,
+            name=name,
+            file_type=file_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_object_run_success_files_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the object.")],
+        run_id: Annotated[StrictStr, Field(description="Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>.")],
+        name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the source being backed up")] = None,
+        file_type: Annotated[Optional[StrictStr], Field(description="Specifies the downloaded type, i.e: success_files_list, default: success_files_list")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Get the CSV of errors/warnings for a given run and an object.
+
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get an CSV report for given objectId and run id. Report will depend on the query parameter fileType, default will be: success_files_list where each row contains the name of file backedup successfully.
+
+        :param id: Specifies the id of the object. (required)
+        :type id: int
+        :param run_id: Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>. (required)
+        :type run_id: str
+        :param name: Specifies the name of the source being backed up
+        :type name: str
+        :param file_type: Specifies the downloaded type, i.e: success_files_list, default: success_files_list
+        :type file_type: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_object_run_success_files_serialize(
+            id=id,
+            run_id=run_id,
+            name=name,
+            file_type=file_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_object_run_success_files_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the object.")],
+        run_id: Annotated[StrictStr, Field(description="Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>.")],
+        name: Annotated[Optional[StrictStr], Field(description="Specifies the name of the source being backed up")] = None,
+        file_type: Annotated[Optional[StrictStr], Field(description="Specifies the downloaded type, i.e: success_files_list, default: success_files_list")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get the CSV of errors/warnings for a given run and an object.
+
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get an CSV report for given objectId and run id. Report will depend on the query parameter fileType, default will be: success_files_list where each row contains the name of file backedup successfully.
+
+        :param id: Specifies the id of the object. (required)
+        :type id: int
+        :param run_id: Specifies the id of the run in the format OBJECT-<objectId>:<runStartTime>. (required)
+        :type run_id: str
+        :param name: Specifies the name of the source being backed up
+        :type name: str
+        :param file_type: Specifies the downloaded type, i.e: success_files_list, default: success_files_list
+        :type file_type: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_object_run_success_files_serialize(
+            id=id,
+            run_id=run_id,
+            name=name,
+            file_type=file_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_object_run_success_files_serialize(
+        self,
+        id,
+        run_id,
+        name,
+        file_type,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        if run_id is not None:
+            _path_params['runId'] = run_id
+        # process the query parameters
+        if name is not None:
+            
+            _query_params.append(('name', name))
+            
+        if file_type is not None:
+            
+            _query_params.append(('fileType', file_type))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/octet-stream'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/data-protect/objects/{id}/runs/{runId}/downloadFiles',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_object_runs(
         self,
         id: Annotated[StrictInt, Field(description="Specifies a unique id of the object.")],
@@ -2863,7 +3820,7 @@ class ObjectApi:
     ) -> GetObjectRunsResponseBody:
         """Get the list of runs for an object.
 
-        Get the runs for a particular object.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get the runs for a particular object.
 
         :param id: Specifies a unique id of the object. (required)
         :type id: int
@@ -2982,7 +3939,7 @@ class ObjectApi:
     ) -> ApiResponse[GetObjectRunsResponseBody]:
         """Get the list of runs for an object.
 
-        Get the runs for a particular object.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get the runs for a particular object.
 
         :param id: Specifies a unique id of the object. (required)
         :type id: int
@@ -3101,7 +4058,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Get the list of runs for an object.
 
-        Get the runs for a particular object.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get the runs for a particular object.
 
         :param id: Specifies a unique id of the object. (required)
         :type id: int
@@ -3340,7 +4297,7 @@ class ObjectApi:
     ) -> ObjectSnapshot:
         """Get details of object snapshot.
 
-        Get details of object snapshot.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get details of object snapshot.
 
         :param snapshot_id: Specifies the snapshot id. (required)
         :type snapshot_id: str
@@ -3407,7 +4364,7 @@ class ObjectApi:
     ) -> ApiResponse[ObjectSnapshot]:
         """Get details of object snapshot.
 
-        Get details of object snapshot.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get details of object snapshot.
 
         :param snapshot_id: Specifies the snapshot id. (required)
         :type snapshot_id: str
@@ -3474,7 +4431,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Get details of object snapshot.
 
-        Get details of object snapshot.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get details of object snapshot.
 
         :param snapshot_id: Specifies the snapshot id. (required)
         :type snapshot_id: str
@@ -3606,7 +4563,7 @@ class ObjectApi:
     ) -> CommonObjectSnapshotVolumeParams:
         """Get volume info of object snapshot.
 
-        Get volume info of object snapshot.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get volume info of object snapshot.
 
         :param snapshot_id: Specifies the snapshot id. (required)
         :type snapshot_id: str
@@ -3685,7 +4642,7 @@ class ObjectApi:
     ) -> ApiResponse[CommonObjectSnapshotVolumeParams]:
         """Get volume info of object snapshot.
 
-        Get volume info of object snapshot.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get volume info of object snapshot.
 
         :param snapshot_id: Specifies the snapshot id. (required)
         :type snapshot_id: str
@@ -3764,7 +4721,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Get volume info of object snapshot.
 
-        Get volume info of object snapshot.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get volume info of object snapshot.
 
         :param snapshot_id: Specifies the snapshot id. (required)
         :type snapshot_id: str
@@ -3912,6 +4869,7 @@ class ObjectApi:
         run_instance_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list run instance ids. If specified, only snapshots created by these protection runs will be returned.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
         object_action_keys: Annotated[Optional[List[StrictStr]], Field(description="Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, only snapshots matching given action keys are returned for corresponding object.")] = None,
+        fetch_fast_restore_points_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to fetch only fast restore points. This is applicable only for M365 CSM Restore.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3927,7 +4885,7 @@ class ObjectApi:
     ) -> GetObjectSnapshotsResponseBody:
         """List the snapshots for a given object.
 
-        List the snapshots for a given object.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>List the snapshots for a given object.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -3951,6 +4909,8 @@ class ObjectApi:
         :type region_ids: List[str]
         :param object_action_keys: Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, only snapshots matching given action keys are returned for corresponding object.
         :type object_action_keys: List[str]
+        :param fetch_fast_restore_points_only: Specifies whether to fetch only fast restore points. This is applicable only for M365 CSM Restore.
+        :type fetch_fast_restore_points_only: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3985,6 +4945,7 @@ class ObjectApi:
             run_instance_ids=run_instance_ids,
             region_ids=region_ids,
             object_action_keys=object_action_keys,
+            fetch_fast_restore_points_only=fetch_fast_restore_points_only,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4019,6 +4980,7 @@ class ObjectApi:
         run_instance_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list run instance ids. If specified, only snapshots created by these protection runs will be returned.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
         object_action_keys: Annotated[Optional[List[StrictStr]], Field(description="Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, only snapshots matching given action keys are returned for corresponding object.")] = None,
+        fetch_fast_restore_points_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to fetch only fast restore points. This is applicable only for M365 CSM Restore.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4034,7 +4996,7 @@ class ObjectApi:
     ) -> ApiResponse[GetObjectSnapshotsResponseBody]:
         """List the snapshots for a given object.
 
-        List the snapshots for a given object.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>List the snapshots for a given object.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -4058,6 +5020,8 @@ class ObjectApi:
         :type region_ids: List[str]
         :param object_action_keys: Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, only snapshots matching given action keys are returned for corresponding object.
         :type object_action_keys: List[str]
+        :param fetch_fast_restore_points_only: Specifies whether to fetch only fast restore points. This is applicable only for M365 CSM Restore.
+        :type fetch_fast_restore_points_only: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4092,6 +5056,7 @@ class ObjectApi:
             run_instance_ids=run_instance_ids,
             region_ids=region_ids,
             object_action_keys=object_action_keys,
+            fetch_fast_restore_points_only=fetch_fast_restore_points_only,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4126,6 +5091,7 @@ class ObjectApi:
         run_instance_ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list run instance ids. If specified, only snapshots created by these protection runs will be returned.")] = None,
         region_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by a list of region ids.")] = None,
         object_action_keys: Annotated[Optional[List[StrictStr]], Field(description="Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, only snapshots matching given action keys are returned for corresponding object.")] = None,
+        fetch_fast_restore_points_only: Annotated[Optional[StrictBool], Field(description="Specifies whether to fetch only fast restore points. This is applicable only for M365 CSM Restore.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4141,7 +5107,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """List the snapshots for a given object.
 
-        List the snapshots for a given object.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>List the snapshots for a given object.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -4165,6 +5131,8 @@ class ObjectApi:
         :type region_ids: List[str]
         :param object_action_keys: Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, only snapshots matching given action keys are returned for corresponding object.
         :type object_action_keys: List[str]
+        :param fetch_fast_restore_points_only: Specifies whether to fetch only fast restore points. This is applicable only for M365 CSM Restore.
+        :type fetch_fast_restore_points_only: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4199,6 +5167,7 @@ class ObjectApi:
             run_instance_ids=run_instance_ids,
             region_ids=region_ids,
             object_action_keys=object_action_keys,
+            fetch_fast_restore_points_only=fetch_fast_restore_points_only,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4228,6 +5197,7 @@ class ObjectApi:
         run_instance_ids,
         region_ids,
         object_action_keys,
+        fetch_fast_restore_points_only,
         _request_auth,
         _content_type,
         _headers,
@@ -4298,6 +5268,10 @@ class ObjectApi:
             
             _query_params.append(('objectActionKeys', object_action_keys))
             
+        if fetch_fast_restore_points_only is not None:
+            
+            _query_params.append(('fetchFastRestorePointsOnly', fetch_fast_restore_points_only))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -4357,7 +5331,7 @@ class ObjectApi:
     ) -> ObjectStats:
         """Get stats for a given object.
 
-        Get stats for a given object.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get stats for a given object.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -4428,7 +5402,7 @@ class ObjectApi:
     ) -> ApiResponse[ObjectStats]:
         """Get stats for a given object.
 
-        Get stats for a given object.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get stats for a given object.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -4499,7 +5473,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Get stats for a given object.
 
-        Get stats for a given object.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Get stats for a given object.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -4637,7 +5611,7 @@ class ObjectApi:
     ) -> ObjectWithChildren:
         """Get the objects tree hierarchy for for an Object.
 
-        Get the objects tree hierarchy for for an Object. If the object does not have a hierarchy then a single object will be returned.
+        ```Unknown Privileges``` <br><br>Get the objects tree hierarchy for for an Object. If the object does not have a hierarchy then a single object will be returned.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -4704,7 +5678,7 @@ class ObjectApi:
     ) -> ApiResponse[ObjectWithChildren]:
         """Get the objects tree hierarchy for for an Object.
 
-        Get the objects tree hierarchy for for an Object. If the object does not have a hierarchy then a single object will be returned.
+        ```Unknown Privileges``` <br><br>Get the objects tree hierarchy for for an Object. If the object does not have a hierarchy then a single object will be returned.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -4771,7 +5745,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Get the objects tree hierarchy for for an Object.
 
-        Get the objects tree hierarchy for for an Object. If the object does not have a hierarchy then a single object will be returned.
+        ```Unknown Privileges``` <br><br>Get the objects tree hierarchy for for an Object. If the object does not have a hierarchy then a single object will be returned.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -4904,7 +5878,7 @@ class ObjectApi:
     ) -> ObjectsLastRun:
         """Get last protection run of objects.
 
-        Get last protection run of objects.
+        ```Unknown Privileges``` <br><br>Get last protection run of objects.
 
         :param ids: Specifies a list of object ids, only last runs for these objects will be returned.
         :type ids: List[int]
@@ -4987,7 +5961,7 @@ class ObjectApi:
     ) -> ApiResponse[ObjectsLastRun]:
         """Get last protection run of objects.
 
-        Get last protection run of objects.
+        ```Unknown Privileges``` <br><br>Get last protection run of objects.
 
         :param ids: Specifies a list of object ids, only last runs for these objects will be returned.
         :type ids: List[int]
@@ -5070,7 +6044,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Get last protection run of objects.
 
-        Get last protection run of objects.
+        ```Unknown Privileges``` <br><br>Get last protection run of objects.
 
         :param ids: Specifies a list of object ids, only last runs for these objects will be returned.
         :type ids: List[int]
@@ -5238,7 +6212,7 @@ class ObjectApi:
     ) -> GetPITRangesProtectedObjectResponseBody:
         """Get PIT ranges for an object
 
-        Returns the ranges in various types like time, SCN etc. within which the specified protected object can be restored to any Point in time.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Returns the ranges in various types like time, SCN etc. within which the specified protected object can be restored to any Point in time.
 
         :param id: Specifies the ID of the protected object. (required)
         :type id: int
@@ -5317,7 +6291,7 @@ class ObjectApi:
     ) -> ApiResponse[GetPITRangesProtectedObjectResponseBody]:
         """Get PIT ranges for an object
 
-        Returns the ranges in various types like time, SCN etc. within which the specified protected object can be restored to any Point in time.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Returns the ranges in various types like time, SCN etc. within which the specified protected object can be restored to any Point in time.
 
         :param id: Specifies the ID of the protected object. (required)
         :type id: int
@@ -5396,7 +6370,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Get PIT ranges for an object
 
-        Returns the ranges in various types like time, SCN etc. within which the specified protected object can be restored to any Point in time.
+        **Privileges:** ```RESTORE_VIEW``` <br><br>Returns the ranges in various types like time, SCN etc. within which the specified protected object can be restored to any Point in time.
 
         :param id: Specifies the ID of the protected object. (required)
         :type id: int
@@ -5560,7 +6534,7 @@ class ObjectApi:
     ) -> ProtectedObjectInfo:
         """Get an Object.
 
-        Get Object configurations for given object id.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get Object configurations for given object id.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -5667,7 +6641,7 @@ class ObjectApi:
     ) -> ApiResponse[ProtectedObjectInfo]:
         """Get an Object.
 
-        Get Object configurations for given object id.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get Object configurations for given object id.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -5774,7 +6748,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Get an Object.
 
-        Get Object configurations for given object id.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get Object configurations for given object id.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -5969,7 +6943,7 @@ class ObjectApi:
     def get_protected_objects_of_any_type(
         self,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
-        ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Object ids.")] = None,
+        ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Object ids. Only one of ids or globalHashes should be used.")] = None,
         object_action_keys: Annotated[Optional[List[StrictStr]], Field(description="Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id. The vec's size needs to be of either length one or same as the length of 'ids'. If the length of objectActionKey is one, it will be repeated as many number of times equal to the length of objectIds, as mandated by backend validation. If the length of objectActionKey and object ids are same then it will be passed as it is.")] = None,
         policy_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by Policy ids that are associated with Protected Objects.")] = None,
         parent_id: Annotated[Optional[StrictInt], Field(description="Filter by Parent Id. Parent id is a unique object Id which may contain protected objects underneath in the source tree.")] = None,
@@ -5977,6 +6951,8 @@ class ObjectApi:
         storage_domain_id: Annotated[Optional[StrictInt], Field(description="Filter by Storage Domain id. Only Objects protected to this Storage Domain will be returned.")] = None,
         environments: Annotated[Optional[List[StrictStr]], Field(description="Filter by environment types such as 'kVMware', 'kView', etc. Only Protected objects protecting the specified environment types are returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
+        global_ids: Annotated[Optional[List[StrictStr]], Field(description="Unique id to uniquely identify an object across clusters, if the same object is present on multiple clusters. For example, in case of a replication workflow, the object could be present on both local and remote cluster. In such scenarios, using the globalId, information about the object can be collected across the clusters. This is also applicable when object gets mapped to another cluster during tenant migration. Only one of ids or globalIds should be used.")] = None,
+        global_hashes: Annotated[Optional[List[StrictStr]], Field(description="Unique id to identify an object across clusters, using hash of the object")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Objects which were protected by all tenants which the current user has permission to see. If false, then only objects protected by the current user will be returned.")] = None,
         include_last_run_info: Annotated[Optional[StrictBool], Field(description="If true, the response will include information about the last protection run on this object.")] = None,
         only_auto_protected_objects: Annotated[Optional[StrictBool], Field(description="If true, the response will include only the auto protected objects.")] = None,
@@ -5999,11 +6975,11 @@ class ObjectApi:
     ) -> GetProtectedObjectsResponse:
         """Get Objects.
 
-        Get Objects Configurations.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get Objects Configurations.
 
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
-        :param ids: Filter by a list of Object ids.
+        :param ids: Filter by a list of Object ids. Only one of ids or globalHashes should be used.
         :type ids: List[int]
         :param object_action_keys: Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id. The vec's size needs to be of either length one or same as the length of 'ids'. If the length of objectActionKey is one, it will be repeated as many number of times equal to the length of objectIds, as mandated by backend validation. If the length of objectActionKey and object ids are same then it will be passed as it is.
         :type object_action_keys: List[str]
@@ -6019,6 +6995,10 @@ class ObjectApi:
         :type environments: List[str]
         :param tenant_ids: TenantIds contains ids of the tenants for which objects are to be returned.
         :type tenant_ids: List[str]
+        :param global_ids: Unique id to uniquely identify an object across clusters, if the same object is present on multiple clusters. For example, in case of a replication workflow, the object could be present on both local and remote cluster. In such scenarios, using the globalId, information about the object can be collected across the clusters. This is also applicable when object gets mapped to another cluster during tenant migration. Only one of ids or globalIds should be used.
+        :type global_ids: List[str]
+        :param global_hashes: Unique id to identify an object across clusters, using hash of the object
+        :type global_hashes: List[str]
         :param include_tenants: If true, the response will include Objects which were protected by all tenants which the current user has permission to see. If false, then only objects protected by the current user will be returned.
         :type include_tenants: bool
         :param include_last_run_info: If true, the response will include information about the last protection run on this object.
@@ -6065,6 +7045,8 @@ class ObjectApi:
             storage_domain_id=storage_domain_id,
             environments=environments,
             tenant_ids=tenant_ids,
+            global_ids=global_ids,
+            global_hashes=global_hashes,
             include_tenants=include_tenants,
             include_last_run_info=include_last_run_info,
             only_auto_protected_objects=only_auto_protected_objects,
@@ -6096,7 +7078,7 @@ class ObjectApi:
     def get_protected_objects_of_any_type_with_http_info(
         self,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
-        ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Object ids.")] = None,
+        ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Object ids. Only one of ids or globalHashes should be used.")] = None,
         object_action_keys: Annotated[Optional[List[StrictStr]], Field(description="Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id. The vec's size needs to be of either length one or same as the length of 'ids'. If the length of objectActionKey is one, it will be repeated as many number of times equal to the length of objectIds, as mandated by backend validation. If the length of objectActionKey and object ids are same then it will be passed as it is.")] = None,
         policy_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by Policy ids that are associated with Protected Objects.")] = None,
         parent_id: Annotated[Optional[StrictInt], Field(description="Filter by Parent Id. Parent id is a unique object Id which may contain protected objects underneath in the source tree.")] = None,
@@ -6104,6 +7086,8 @@ class ObjectApi:
         storage_domain_id: Annotated[Optional[StrictInt], Field(description="Filter by Storage Domain id. Only Objects protected to this Storage Domain will be returned.")] = None,
         environments: Annotated[Optional[List[StrictStr]], Field(description="Filter by environment types such as 'kVMware', 'kView', etc. Only Protected objects protecting the specified environment types are returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
+        global_ids: Annotated[Optional[List[StrictStr]], Field(description="Unique id to uniquely identify an object across clusters, if the same object is present on multiple clusters. For example, in case of a replication workflow, the object could be present on both local and remote cluster. In such scenarios, using the globalId, information about the object can be collected across the clusters. This is also applicable when object gets mapped to another cluster during tenant migration. Only one of ids or globalIds should be used.")] = None,
+        global_hashes: Annotated[Optional[List[StrictStr]], Field(description="Unique id to identify an object across clusters, using hash of the object")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Objects which were protected by all tenants which the current user has permission to see. If false, then only objects protected by the current user will be returned.")] = None,
         include_last_run_info: Annotated[Optional[StrictBool], Field(description="If true, the response will include information about the last protection run on this object.")] = None,
         only_auto_protected_objects: Annotated[Optional[StrictBool], Field(description="If true, the response will include only the auto protected objects.")] = None,
@@ -6126,11 +7110,11 @@ class ObjectApi:
     ) -> ApiResponse[GetProtectedObjectsResponse]:
         """Get Objects.
 
-        Get Objects Configurations.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get Objects Configurations.
 
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
-        :param ids: Filter by a list of Object ids.
+        :param ids: Filter by a list of Object ids. Only one of ids or globalHashes should be used.
         :type ids: List[int]
         :param object_action_keys: Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id. The vec's size needs to be of either length one or same as the length of 'ids'. If the length of objectActionKey is one, it will be repeated as many number of times equal to the length of objectIds, as mandated by backend validation. If the length of objectActionKey and object ids are same then it will be passed as it is.
         :type object_action_keys: List[str]
@@ -6146,6 +7130,10 @@ class ObjectApi:
         :type environments: List[str]
         :param tenant_ids: TenantIds contains ids of the tenants for which objects are to be returned.
         :type tenant_ids: List[str]
+        :param global_ids: Unique id to uniquely identify an object across clusters, if the same object is present on multiple clusters. For example, in case of a replication workflow, the object could be present on both local and remote cluster. In such scenarios, using the globalId, information about the object can be collected across the clusters. This is also applicable when object gets mapped to another cluster during tenant migration. Only one of ids or globalIds should be used.
+        :type global_ids: List[str]
+        :param global_hashes: Unique id to identify an object across clusters, using hash of the object
+        :type global_hashes: List[str]
         :param include_tenants: If true, the response will include Objects which were protected by all tenants which the current user has permission to see. If false, then only objects protected by the current user will be returned.
         :type include_tenants: bool
         :param include_last_run_info: If true, the response will include information about the last protection run on this object.
@@ -6192,6 +7180,8 @@ class ObjectApi:
             storage_domain_id=storage_domain_id,
             environments=environments,
             tenant_ids=tenant_ids,
+            global_ids=global_ids,
+            global_hashes=global_hashes,
             include_tenants=include_tenants,
             include_last_run_info=include_last_run_info,
             only_auto_protected_objects=only_auto_protected_objects,
@@ -6223,7 +7213,7 @@ class ObjectApi:
     def get_protected_objects_of_any_type_without_preload_content(
         self,
         request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
-        ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Object ids.")] = None,
+        ids: Annotated[Optional[List[StrictInt]], Field(description="Filter by a list of Object ids. Only one of ids or globalHashes should be used.")] = None,
         object_action_keys: Annotated[Optional[List[StrictStr]], Field(description="Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id. The vec's size needs to be of either length one or same as the length of 'ids'. If the length of objectActionKey is one, it will be repeated as many number of times equal to the length of objectIds, as mandated by backend validation. If the length of objectActionKey and object ids are same then it will be passed as it is.")] = None,
         policy_ids: Annotated[Optional[List[StrictStr]], Field(description="Filter by Policy ids that are associated with Protected Objects.")] = None,
         parent_id: Annotated[Optional[StrictInt], Field(description="Filter by Parent Id. Parent id is a unique object Id which may contain protected objects underneath in the source tree.")] = None,
@@ -6231,6 +7221,8 @@ class ObjectApi:
         storage_domain_id: Annotated[Optional[StrictInt], Field(description="Filter by Storage Domain id. Only Objects protected to this Storage Domain will be returned.")] = None,
         environments: Annotated[Optional[List[StrictStr]], Field(description="Filter by environment types such as 'kVMware', 'kView', etc. Only Protected objects protecting the specified environment types are returned.")] = None,
         tenant_ids: Annotated[Optional[List[StrictStr]], Field(description="TenantIds contains ids of the tenants for which objects are to be returned.")] = None,
+        global_ids: Annotated[Optional[List[StrictStr]], Field(description="Unique id to uniquely identify an object across clusters, if the same object is present on multiple clusters. For example, in case of a replication workflow, the object could be present on both local and remote cluster. In such scenarios, using the globalId, information about the object can be collected across the clusters. This is also applicable when object gets mapped to another cluster during tenant migration. Only one of ids or globalIds should be used.")] = None,
+        global_hashes: Annotated[Optional[List[StrictStr]], Field(description="Unique id to identify an object across clusters, using hash of the object")] = None,
         include_tenants: Annotated[Optional[StrictBool], Field(description="If true, the response will include Objects which were protected by all tenants which the current user has permission to see. If false, then only objects protected by the current user will be returned.")] = None,
         include_last_run_info: Annotated[Optional[StrictBool], Field(description="If true, the response will include information about the last protection run on this object.")] = None,
         only_auto_protected_objects: Annotated[Optional[StrictBool], Field(description="If true, the response will include only the auto protected objects.")] = None,
@@ -6253,11 +7245,11 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Get Objects.
 
-        Get Objects Configurations.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get Objects Configurations.
 
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
-        :param ids: Filter by a list of Object ids.
+        :param ids: Filter by a list of Object ids. Only one of ids or globalHashes should be used.
         :type ids: List[int]
         :param object_action_keys: Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id. The vec's size needs to be of either length one or same as the length of 'ids'. If the length of objectActionKey is one, it will be repeated as many number of times equal to the length of objectIds, as mandated by backend validation. If the length of objectActionKey and object ids are same then it will be passed as it is.
         :type object_action_keys: List[str]
@@ -6273,6 +7265,10 @@ class ObjectApi:
         :type environments: List[str]
         :param tenant_ids: TenantIds contains ids of the tenants for which objects are to be returned.
         :type tenant_ids: List[str]
+        :param global_ids: Unique id to uniquely identify an object across clusters, if the same object is present on multiple clusters. For example, in case of a replication workflow, the object could be present on both local and remote cluster. In such scenarios, using the globalId, information about the object can be collected across the clusters. This is also applicable when object gets mapped to another cluster during tenant migration. Only one of ids or globalIds should be used.
+        :type global_ids: List[str]
+        :param global_hashes: Unique id to identify an object across clusters, using hash of the object
+        :type global_hashes: List[str]
         :param include_tenants: If true, the response will include Objects which were protected by all tenants which the current user has permission to see. If false, then only objects protected by the current user will be returned.
         :type include_tenants: bool
         :param include_last_run_info: If true, the response will include information about the last protection run on this object.
@@ -6319,6 +7315,8 @@ class ObjectApi:
             storage_domain_id=storage_domain_id,
             environments=environments,
             tenant_ids=tenant_ids,
+            global_ids=global_ids,
+            global_hashes=global_hashes,
             include_tenants=include_tenants,
             include_last_run_info=include_last_run_info,
             only_auto_protected_objects=only_auto_protected_objects,
@@ -6353,6 +7351,8 @@ class ObjectApi:
         storage_domain_id,
         environments,
         tenant_ids,
+        global_ids,
+        global_hashes,
         include_tenants,
         include_last_run_info,
         only_auto_protected_objects,
@@ -6374,6 +7374,8 @@ class ObjectApi:
             'policyIds': 'csv',
             'environments': 'csv',
             'tenantIds': 'csv',
+            'globalIds': 'csv',
+            'globalHashes': 'csv',
             'regionIds': 'csv',
         }
 
@@ -6419,6 +7421,14 @@ class ObjectApi:
         if tenant_ids is not None:
             
             _query_params.append(('tenantIds', tenant_ids))
+            
+        if global_ids is not None:
+            
+            _query_params.append(('globalIds', global_ids))
+            
+        if global_hashes is not None:
+            
+            _query_params.append(('globalHashes', global_hashes))
             
         if include_tenants is not None:
             
@@ -6509,7 +7519,7 @@ class ObjectApi:
     ) -> SnapshotDiffResult:
         """Get diff between two snapshots of a given object.
 
-        Get diff (files added/deleted) between two snapshots of a given object.
+        **Privileges:** ```ALERT_VIEW``` <br><br>Get diff (files added/deleted) between two snapshots of a given object.
 
         :param id: (required)
         :type id: int
@@ -6580,7 +7590,7 @@ class ObjectApi:
     ) -> ApiResponse[SnapshotDiffResult]:
         """Get diff between two snapshots of a given object.
 
-        Get diff (files added/deleted) between two snapshots of a given object.
+        **Privileges:** ```ALERT_VIEW``` <br><br>Get diff (files added/deleted) between two snapshots of a given object.
 
         :param id: (required)
         :type id: int
@@ -6651,7 +7661,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Get diff between two snapshots of a given object.
 
-        Get diff (files added/deleted) between two snapshots of a given object.
+        **Privileges:** ```ALERT_VIEW``` <br><br>Get diff (files added/deleted) between two snapshots of a given object.
 
         :param id: (required)
         :type id: int
@@ -6804,6 +7814,7 @@ class ObjectApi:
         acropolis_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Acropolis object types to filter objects.")] = None,
         generic_nas_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the generic NAS object types to filter objects.")] = None,
         isilon_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Isilon object types to filter objects.")] = None,
+        nutanix_fs_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Nutanix FS object types to filter objects.")] = None,
         flashblade_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Flashblade object types to filter objects.")] = None,
         elastifile_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Elastifile object types to filter objects.")] = None,
         gpfs_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the GPFS object types to filter objects.")] = None,
@@ -6831,7 +7842,7 @@ class ObjectApi:
     ) -> SourceHierarchyObjectSummaries:
         """List objects on a source which can be used for data protection.
 
-        List objects which can be used for data protection.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>List objects which can be used for data protection.
 
         :param source_id: Specifies the source ID for which objects should be returned. (required)
         :type source_id: int
@@ -6875,6 +7886,8 @@ class ObjectApi:
         :type generic_nas_object_types: List[str]
         :param isilon_object_types: Specifies the Isilon object types to filter objects.
         :type isilon_object_types: List[str]
+        :param nutanix_fs_object_types: Specifies the Nutanix FS object types to filter objects.
+        :type nutanix_fs_object_types: List[str]
         :param flashblade_object_types: Specifies the Flashblade object types to filter objects.
         :type flashblade_object_types: List[str]
         :param elastifile_object_types: Specifies the Elastifile object types to filter objects.
@@ -6943,6 +7956,7 @@ class ObjectApi:
             acropolis_object_types=acropolis_object_types,
             generic_nas_object_types=generic_nas_object_types,
             isilon_object_types=isilon_object_types,
+            nutanix_fs_object_types=nutanix_fs_object_types,
             flashblade_object_types=flashblade_object_types,
             elastifile_object_types=elastifile_object_types,
             gpfs_object_types=gpfs_object_types,
@@ -6999,6 +8013,7 @@ class ObjectApi:
         acropolis_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Acropolis object types to filter objects.")] = None,
         generic_nas_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the generic NAS object types to filter objects.")] = None,
         isilon_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Isilon object types to filter objects.")] = None,
+        nutanix_fs_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Nutanix FS object types to filter objects.")] = None,
         flashblade_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Flashblade object types to filter objects.")] = None,
         elastifile_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Elastifile object types to filter objects.")] = None,
         gpfs_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the GPFS object types to filter objects.")] = None,
@@ -7026,7 +8041,7 @@ class ObjectApi:
     ) -> ApiResponse[SourceHierarchyObjectSummaries]:
         """List objects on a source which can be used for data protection.
 
-        List objects which can be used for data protection.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>List objects which can be used for data protection.
 
         :param source_id: Specifies the source ID for which objects should be returned. (required)
         :type source_id: int
@@ -7070,6 +8085,8 @@ class ObjectApi:
         :type generic_nas_object_types: List[str]
         :param isilon_object_types: Specifies the Isilon object types to filter objects.
         :type isilon_object_types: List[str]
+        :param nutanix_fs_object_types: Specifies the Nutanix FS object types to filter objects.
+        :type nutanix_fs_object_types: List[str]
         :param flashblade_object_types: Specifies the Flashblade object types to filter objects.
         :type flashblade_object_types: List[str]
         :param elastifile_object_types: Specifies the Elastifile object types to filter objects.
@@ -7138,6 +8155,7 @@ class ObjectApi:
             acropolis_object_types=acropolis_object_types,
             generic_nas_object_types=generic_nas_object_types,
             isilon_object_types=isilon_object_types,
+            nutanix_fs_object_types=nutanix_fs_object_types,
             flashblade_object_types=flashblade_object_types,
             elastifile_object_types=elastifile_object_types,
             gpfs_object_types=gpfs_object_types,
@@ -7194,6 +8212,7 @@ class ObjectApi:
         acropolis_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Acropolis object types to filter objects.")] = None,
         generic_nas_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the generic NAS object types to filter objects.")] = None,
         isilon_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Isilon object types to filter objects.")] = None,
+        nutanix_fs_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Nutanix FS object types to filter objects.")] = None,
         flashblade_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Flashblade object types to filter objects.")] = None,
         elastifile_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the Elastifile object types to filter objects.")] = None,
         gpfs_object_types: Annotated[Optional[List[StrictStr]], Field(description="Specifies the GPFS object types to filter objects.")] = None,
@@ -7221,7 +8240,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """List objects on a source which can be used for data protection.
 
-        List objects which can be used for data protection.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>List objects which can be used for data protection.
 
         :param source_id: Specifies the source ID for which objects should be returned. (required)
         :type source_id: int
@@ -7265,6 +8284,8 @@ class ObjectApi:
         :type generic_nas_object_types: List[str]
         :param isilon_object_types: Specifies the Isilon object types to filter objects.
         :type isilon_object_types: List[str]
+        :param nutanix_fs_object_types: Specifies the Nutanix FS object types to filter objects.
+        :type nutanix_fs_object_types: List[str]
         :param flashblade_object_types: Specifies the Flashblade object types to filter objects.
         :type flashblade_object_types: List[str]
         :param elastifile_object_types: Specifies the Elastifile object types to filter objects.
@@ -7333,6 +8354,7 @@ class ObjectApi:
             acropolis_object_types=acropolis_object_types,
             generic_nas_object_types=generic_nas_object_types,
             isilon_object_types=isilon_object_types,
+            nutanix_fs_object_types=nutanix_fs_object_types,
             flashblade_object_types=flashblade_object_types,
             elastifile_object_types=elastifile_object_types,
             gpfs_object_types=gpfs_object_types,
@@ -7384,6 +8406,7 @@ class ObjectApi:
         acropolis_object_types,
         generic_nas_object_types,
         isilon_object_types,
+        nutanix_fs_object_types,
         flashblade_object_types,
         elastifile_object_types,
         gpfs_object_types,
@@ -7423,6 +8446,7 @@ class ObjectApi:
             'acropolisObjectTypes': 'csv',
             'genericNasObjectTypes': 'csv',
             'isilonObjectTypes': 'csv',
+            'nutanixFSObjectTypes': 'csv',
             'flashbladeObjectTypes': 'csv',
             'elastifileObjectTypes': 'csv',
             'gpfsObjectTypes': 'csv',
@@ -7529,6 +8553,10 @@ class ObjectApi:
             
             _query_params.append(('isilonObjectTypes', isilon_object_types))
             
+        if nutanix_fs_object_types is not None:
+            
+            _query_params.append(('nutanixFSObjectTypes', nutanix_fs_object_types))
+            
         if flashblade_object_types is not None:
             
             _query_params.append(('flashbladeObjectTypes', flashblade_object_types))
@@ -7617,6 +8645,312 @@ class ObjectApi:
 
 
     @validate_call
+    def modify_source_hierarchy_objects(
+        self,
+        source_id: Annotated[StrictInt, Field(description="Specifies the source ID where objects are to be modified.")],
+        body: Annotated[ModifySourceHierarchyObjectsRequest, Field(description="Specifies the parameters to add/update objects in entity hierarchy.")],
+        request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ModifySourceHierarchyObjectsResult:
+        """Modify objects in source hierarchy.
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Add/Update objects to/from an entity hierarchy for a given source.
+
+        :param source_id: Specifies the source ID where objects are to be modified. (required)
+        :type source_id: int
+        :param body: Specifies the parameters to add/update objects in entity hierarchy. (required)
+        :type body: ModifySourceHierarchyObjectsRequest
+        :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
+        :type request_initiator_type: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._modify_source_hierarchy_objects_serialize(
+            source_id=source_id,
+            body=body,
+            request_initiator_type=request_initiator_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '207': "ModifySourceHierarchyObjectsResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def modify_source_hierarchy_objects_with_http_info(
+        self,
+        source_id: Annotated[StrictInt, Field(description="Specifies the source ID where objects are to be modified.")],
+        body: Annotated[ModifySourceHierarchyObjectsRequest, Field(description="Specifies the parameters to add/update objects in entity hierarchy.")],
+        request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ModifySourceHierarchyObjectsResult]:
+        """Modify objects in source hierarchy.
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Add/Update objects to/from an entity hierarchy for a given source.
+
+        :param source_id: Specifies the source ID where objects are to be modified. (required)
+        :type source_id: int
+        :param body: Specifies the parameters to add/update objects in entity hierarchy. (required)
+        :type body: ModifySourceHierarchyObjectsRequest
+        :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
+        :type request_initiator_type: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._modify_source_hierarchy_objects_serialize(
+            source_id=source_id,
+            body=body,
+            request_initiator_type=request_initiator_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '207': "ModifySourceHierarchyObjectsResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def modify_source_hierarchy_objects_without_preload_content(
+        self,
+        source_id: Annotated[StrictInt, Field(description="Specifies the source ID where objects are to be modified.")],
+        body: Annotated[ModifySourceHierarchyObjectsRequest, Field(description="Specifies the parameters to add/update objects in entity hierarchy.")],
+        request_initiator_type: Annotated[Optional[StrictStr], Field(description="Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Modify objects in source hierarchy.
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Add/Update objects to/from an entity hierarchy for a given source.
+
+        :param source_id: Specifies the source ID where objects are to be modified. (required)
+        :type source_id: int
+        :param body: Specifies the parameters to add/update objects in entity hierarchy. (required)
+        :type body: ModifySourceHierarchyObjectsRequest
+        :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
+        :type request_initiator_type: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._modify_source_hierarchy_objects_serialize(
+            source_id=source_id,
+            body=body,
+            request_initiator_type=request_initiator_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '207': "ModifySourceHierarchyObjectsResult",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _modify_source_hierarchy_objects_serialize(
+        self,
+        source_id,
+        body,
+        request_initiator_type,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if source_id is not None:
+            _path_params['sourceId'] = source_id
+        # process the query parameters
+        # process the header parameters
+        if request_initiator_type is not None:
+            _header_params['requestInitiatorType'] = request_initiator_type
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/data-protect/sources/{sourceId}/objects',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def objects_actions(
         self,
         body: Annotated[ObjectsActionRequest, Field(description="Specifies the parameters to execute actions on given list of objects.")],
@@ -7635,7 +8969,7 @@ class ObjectApi:
     ) -> None:
         """Actions on Objects
 
-        Specifies the request to perform various actions on multiple objects.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Specifies the request to perform various actions on multiple objects.
 
         :param body: Specifies the parameters to execute actions on given list of objects. (required)
         :type body: ObjectsActionRequest
@@ -7702,7 +9036,7 @@ class ObjectApi:
     ) -> ApiResponse[None]:
         """Actions on Objects
 
-        Specifies the request to perform various actions on multiple objects.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Specifies the request to perform various actions on multiple objects.
 
         :param body: Specifies the parameters to execute actions on given list of objects. (required)
         :type body: ObjectsActionRequest
@@ -7769,7 +9103,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Actions on Objects
 
-        Specifies the request to perform various actions on multiple objects.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Specifies the request to perform various actions on multiple objects.
 
         :param body: Specifies the parameters to execute actions on given list of objects. (required)
         :type body: ObjectsActionRequest
@@ -7912,7 +9246,7 @@ class ObjectApi:
     ) -> None:
         """Perform an action on an object.
 
-        Perform an action on an object. Depending on the object environment type, different actions are available.
+        **Privileges:** ```RESTORE_MODIFY``` <br><br>Perform an action on an object. Depending on the object environment type, different actions are available.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -7983,7 +9317,7 @@ class ObjectApi:
     ) -> ApiResponse[None]:
         """Perform an action on an object.
 
-        Perform an action on an object. Depending on the object environment type, different actions are available.
+        **Privileges:** ```RESTORE_MODIFY``` <br><br>Perform an action on an object. Depending on the object environment type, different actions are available.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -8054,7 +9388,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Perform an action on an object.
 
-        Perform an action on an object. Depending on the object environment type, different actions are available.
+        **Privileges:** ```RESTORE_MODIFY``` <br><br>Perform an action on an object. Depending on the object environment type, different actions are available.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -8204,7 +9538,7 @@ class ObjectApi:
     ) -> ObjectSnapshot:
         """Update an object snapshot.
 
-        Update an object snapshot.
+        **Privileges:** ```RESTORE_MODIFY``` <br><br>Update an object snapshot.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -8279,7 +9613,7 @@ class ObjectApi:
     ) -> ApiResponse[ObjectSnapshot]:
         """Update an object snapshot.
 
-        Update an object snapshot.
+        **Privileges:** ```RESTORE_MODIFY``` <br><br>Update an object snapshot.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int
@@ -8354,7 +9688,7 @@ class ObjectApi:
     ) -> RESTResponseType:
         """Update an object snapshot.
 
-        Update an object snapshot.
+        **Privileges:** ```RESTORE_MODIFY``` <br><br>Update an object snapshot.
 
         :param id: Specifies the id of the Object. (required)
         :type id: int

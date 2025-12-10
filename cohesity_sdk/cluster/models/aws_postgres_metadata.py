@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.cluster.models.credentials import Credentials
+from cohesity_sdk.cluster.models.aws_credentials import AwsCredentials
 from typing import Set
 from typing_extensions import Self
 
@@ -28,7 +28,7 @@ class AwsPostgresMetadata(BaseModel):
     Specifies the metadata types and values of aws postgres.
     """ # noqa: E501
     metadata_type: Optional[StrictStr] = Field(description="Specifies the type of metadata being sent in the request.", alias="metadataType")
-    standard_credentials: Optional[Credentials] = Field(default=None, alias="standardCredentials")
+    standard_credentials: Optional[AwsCredentials] = Field(default=None, alias="standardCredentials")
     __properties: ClassVar[List[str]] = ["metadataType", "standardCredentials"]
 
     @field_validator('metadata_type')
@@ -101,7 +101,7 @@ class AwsPostgresMetadata(BaseModel):
 
         _obj = cls.model_validate({
             "metadataType": obj.get("metadataType"),
-            "standardCredentials": Credentials.from_dict(obj["standardCredentials"]) if obj.get("standardCredentials") is not None else None
+            "standardCredentials": AwsCredentials.from_dict(obj["standardCredentials"]) if obj.get("standardCredentials") is not None else None
         })
         return _obj
 

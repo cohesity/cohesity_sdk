@@ -16,12 +16,19 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictBool
+from cohesity_sdk.cluster.models.application_servers_registration_request_params import ApplicationServersRegistrationRequestParams
+from cohesity_sdk.cluster.models.common_application_servers_registration_params import CommonApplicationServersRegistrationParams
 from cohesity_sdk.cluster.models.create_azure_application_request_params import CreateAzureApplicationRequestParams
 from cohesity_sdk.cluster.models.create_azure_application_response_params import CreateAzureApplicationResponseParams
+from cohesity_sdk.cluster.models.create_m365_self_service_config_request_params import CreateM365SelfServiceConfigRequestParams
+from cohesity_sdk.cluster.models.delete_azure_application_request_params import DeleteAzureApplicationRequestParams
 from cohesity_sdk.cluster.models.generate_m365_device_access_token_request_params import GenerateM365DeviceAccessTokenRequestParams
 from cohesity_sdk.cluster.models.generate_m365_device_access_token_response_params import GenerateM365DeviceAccessTokenResponseParams
 from cohesity_sdk.cluster.models.generate_m365_device_code_request_params import GenerateM365DeviceCodeRequestParams
 from cohesity_sdk.cluster.models.generate_m365_device_code_response_params import GenerateM365DeviceCodeResponseParams
+from cohesity_sdk.cluster.models.get_m365_backup_controller_response_params import GetM365BackupControllerResponseParams
+from cohesity_sdk.cluster.models.list_app_servers_response import ListAppServersResponse
+from cohesity_sdk.cluster.models.m365_backup_controller_billing_response_params import M365BackupControllerBillingResponseParams
 from cohesity_sdk.cluster.models.source import Source
 from cohesity_sdk.cluster.models.source_attribute_filters_response_params import SourceAttributeFiltersResponseParams
 from cohesity_sdk.cluster.models.source_connection_request_params import SourceConnectionRequestParams
@@ -31,7 +38,9 @@ from cohesity_sdk.cluster.models.source_registration_patch_request_params import
 from cohesity_sdk.cluster.models.source_registration_request_params import SourceRegistrationRequestParams
 from cohesity_sdk.cluster.models.source_registration_update_request_params import SourceRegistrationUpdateRequestParams
 from cohesity_sdk.cluster.models.source_registrations import SourceRegistrations
+from cohesity_sdk.cluster.models.source_un_register_request_params import SourceUnRegisterRequestParams
 from cohesity_sdk.cluster.models.sources import Sources
+from cohesity_sdk.cluster.models.un_register_application_servers_params import UnRegisterApplicationServersParams
 from cohesity_sdk.cluster.models.vdc_object import VdcObject
 
 from cohesity_sdk.cluster.api_client import ApiClient, RequestSerialized
@@ -71,7 +80,7 @@ class SourceApi:
     ) -> CreateAzureApplicationResponseParams:
         """Create Microsoft 365 Azure Applications for a given domain.
 
-        Creates Microsoft 365 Azure Applications
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Creates Microsoft 365 Azure Applications
 
         :param body: Specifies the parameters to create Azure applications within a given Microsoft365 source. (required)
         :type body: CreateAzureApplicationRequestParams
@@ -138,7 +147,7 @@ class SourceApi:
     ) -> ApiResponse[CreateAzureApplicationResponseParams]:
         """Create Microsoft 365 Azure Applications for a given domain.
 
-        Creates Microsoft 365 Azure Applications
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Creates Microsoft 365 Azure Applications
 
         :param body: Specifies the parameters to create Azure applications within a given Microsoft365 source. (required)
         :type body: CreateAzureApplicationRequestParams
@@ -205,7 +214,7 @@ class SourceApi:
     ) -> RESTResponseType:
         """Create Microsoft 365 Azure Applications for a given domain.
 
-        Creates Microsoft 365 Azure Applications
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Creates Microsoft 365 Azure Applications
 
         :param body: Specifies the parameters to create Azure applications within a given Microsoft365 source. (required)
         :type body: CreateAzureApplicationRequestParams
@@ -347,7 +356,7 @@ class SourceApi:
     ) -> CreateAzureApplicationResponseParams:
         """Create/Update Microsoft 365 Azure Applications for a given domain.
 
-        Creates/Updates Microsoft 365 Azure Applications
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Creates/Updates Microsoft 365 Azure Applications
 
         :param body: Specifies the parameters to create/update Azure applications within a given Microsoft365 source. (required)
         :type body: CreateAzureApplicationRequestParams
@@ -414,7 +423,7 @@ class SourceApi:
     ) -> ApiResponse[CreateAzureApplicationResponseParams]:
         """Create/Update Microsoft 365 Azure Applications for a given domain.
 
-        Creates/Updates Microsoft 365 Azure Applications
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Creates/Updates Microsoft 365 Azure Applications
 
         :param body: Specifies the parameters to create/update Azure applications within a given Microsoft365 source. (required)
         :type body: CreateAzureApplicationRequestParams
@@ -481,7 +490,7 @@ class SourceApi:
     ) -> RESTResponseType:
         """Create/Update Microsoft 365 Azure Applications for a given domain.
 
-        Creates/Updates Microsoft 365 Azure Applications
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Creates/Updates Microsoft 365 Azure Applications
 
         :param body: Specifies the parameters to create/update Azure applications within a given Microsoft365 source. (required)
         :type body: CreateAzureApplicationRequestParams
@@ -605,9 +614,10 @@ class SourceApi:
 
 
     @validate_call
-    def delete_protection_source_registration(
+    def delete_application_servers_registration(
         self,
-        id: Annotated[StrictInt, Field(description="Specifies the ID of the Protection Source Registration.")],
+        id: Annotated[StrictInt, Field(description="Specifies the id of the Application Server.")],
+        body: Annotated[UnRegisterApplicationServersParams, Field(description="Specifies the request to unregister a an application server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -621,12 +631,14 @@ class SourceApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> None:
-        """Delete Protection Source Registration.
+        """Delete an application server registration.
 
-        Delete Protection Source Registration.
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Delete an application server registration.
 
-        :param id: Specifies the ID of the Protection Source Registration. (required)
+        :param id: Specifies the id of the Application Server. (required)
         :type id: int
+        :param body: Specifies the request to unregister a an application server. (required)
+        :type body: UnRegisterApplicationServersParams
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -649,8 +661,9 @@ class SourceApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_protection_source_registration_serialize(
+        _param = self._delete_application_servers_registration_serialize(
             id=id,
+            body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -672,9 +685,10 @@ class SourceApi:
 
 
     @validate_call
-    def delete_protection_source_registration_with_http_info(
+    def delete_application_servers_registration_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="Specifies the ID of the Protection Source Registration.")],
+        id: Annotated[StrictInt, Field(description="Specifies the id of the Application Server.")],
+        body: Annotated[UnRegisterApplicationServersParams, Field(description="Specifies the request to unregister a an application server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -688,12 +702,14 @@ class SourceApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[None]:
-        """Delete Protection Source Registration.
+        """Delete an application server registration.
 
-        Delete Protection Source Registration.
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Delete an application server registration.
 
-        :param id: Specifies the ID of the Protection Source Registration. (required)
+        :param id: Specifies the id of the Application Server. (required)
         :type id: int
+        :param body: Specifies the request to unregister a an application server. (required)
+        :type body: UnRegisterApplicationServersParams
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -716,8 +732,9 @@ class SourceApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_protection_source_registration_serialize(
+        _param = self._delete_application_servers_registration_serialize(
             id=id,
+            body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -739,9 +756,10 @@ class SourceApi:
 
 
     @validate_call
-    def delete_protection_source_registration_without_preload_content(
+    def delete_application_servers_registration_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="Specifies the ID of the Protection Source Registration.")],
+        id: Annotated[StrictInt, Field(description="Specifies the id of the Application Server.")],
+        body: Annotated[UnRegisterApplicationServersParams, Field(description="Specifies the request to unregister a an application server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -755,12 +773,14 @@ class SourceApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Delete Protection Source Registration.
+        """Delete an application server registration.
 
-        Delete Protection Source Registration.
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Delete an application server registration.
 
-        :param id: Specifies the ID of the Protection Source Registration. (required)
+        :param id: Specifies the id of the Application Server. (required)
         :type id: int
+        :param body: Specifies the request to unregister a an application server. (required)
+        :type body: UnRegisterApplicationServersParams
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -783,8 +803,9 @@ class SourceApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_protection_source_registration_serialize(
+        _param = self._delete_application_servers_registration_serialize(
             id=id,
+            body=body,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -801,9 +822,10 @@ class SourceApi:
         return response_data.response
 
 
-    def _delete_protection_source_registration_serialize(
+    def _delete_application_servers_registration_serialize(
         self,
         id,
+        body,
         _request_auth,
         _content_type,
         _headers,
@@ -831,6 +853,560 @@ class SourceApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/data-protect/sources/application-servers/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def delete_azure_applications(
+        self,
+        body: Annotated[DeleteAzureApplicationRequestParams, Field(description="Specifies the parameters to delete Azure applications")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Deletes Azure Applications
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Deletes Azure Applications
+
+        :param body: Specifies the parameters to delete Azure applications (required)
+        :type body: DeleteAzureApplicationRequestParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_azure_applications_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def delete_azure_applications_with_http_info(
+        self,
+        body: Annotated[DeleteAzureApplicationRequestParams, Field(description="Specifies the parameters to delete Azure applications")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Deletes Azure Applications
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Deletes Azure Applications
+
+        :param body: Specifies the parameters to delete Azure applications (required)
+        :type body: DeleteAzureApplicationRequestParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_azure_applications_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def delete_azure_applications_without_preload_content(
+        self,
+        body: Annotated[DeleteAzureApplicationRequestParams, Field(description="Specifies the parameters to delete Azure applications")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Deletes Azure Applications
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Deletes Azure Applications
+
+        :param body: Specifies the parameters to delete Azure applications (required)
+        :type body: DeleteAzureApplicationRequestParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_azure_applications_serialize(
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _delete_azure_applications_serialize(
+        self,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/data-protect/sources/microsoft365/azure-applications',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def delete_m365_self_service_config(
+        self,
+        uuid: Annotated[StrictStr, Field(description="Specifies the UUID of the Microsoft365 Source.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Deletes the Self-Service configuration for a Microsoft365 source.
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Delete the configuration for Self-Service for a Microsoft365 source. This includes deletion of both Mailbox & OneDrive workload configuration.
+
+        :param uuid: Specifies the UUID of the Microsoft365 Source. (required)
+        :type uuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_m365_self_service_config_serialize(
+            uuid=uuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def delete_m365_self_service_config_with_http_info(
+        self,
+        uuid: Annotated[StrictStr, Field(description="Specifies the UUID of the Microsoft365 Source.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Deletes the Self-Service configuration for a Microsoft365 source.
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Delete the configuration for Self-Service for a Microsoft365 source. This includes deletion of both Mailbox & OneDrive workload configuration.
+
+        :param uuid: Specifies the UUID of the Microsoft365 Source. (required)
+        :type uuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_m365_self_service_config_serialize(
+            uuid=uuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def delete_m365_self_service_config_without_preload_content(
+        self,
+        uuid: Annotated[StrictStr, Field(description="Specifies the UUID of the Microsoft365 Source.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Deletes the Self-Service configuration for a Microsoft365 source.
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Delete the configuration for Self-Service for a Microsoft365 source. This includes deletion of both Mailbox & OneDrive workload configuration.
+
+        :param uuid: Specifies the UUID of the Microsoft365 Source. (required)
+        :type uuid: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_m365_self_service_config_serialize(
+            uuid=uuid,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _delete_m365_self_service_config_serialize(
+        self,
+        uuid,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if uuid is not None:
+            _path_params['uuid'] = uuid
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
 
 
         # set the HTTP header `Accept`
@@ -851,7 +1427,561 @@ class SourceApi:
 
         return self.api_client.param_serialize(
             method='DELETE',
+            resource_path='/data-protect/sources/microsoft365/self-service-config/{uuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def delete_protection_source_registration(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the ID of the Protection Source Registration.")],
+        body: Annotated[Optional[SourceUnRegisterRequestParams], Field(description="Specifies the request to unregister a source.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete Protection Source Registration.
+
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Delete Protection Source Registration.
+
+        :param id: Specifies the ID of the Protection Source Registration. (required)
+        :type id: int
+        :param body: Specifies the request to unregister a source.
+        :type body: SourceUnRegisterRequestParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_protection_source_registration_serialize(
+            id=id,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def delete_protection_source_registration_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the ID of the Protection Source Registration.")],
+        body: Annotated[Optional[SourceUnRegisterRequestParams], Field(description="Specifies the request to unregister a source.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete Protection Source Registration.
+
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Delete Protection Source Registration.
+
+        :param id: Specifies the ID of the Protection Source Registration. (required)
+        :type id: int
+        :param body: Specifies the request to unregister a source.
+        :type body: SourceUnRegisterRequestParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_protection_source_registration_serialize(
+            id=id,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def delete_protection_source_registration_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the ID of the Protection Source Registration.")],
+        body: Annotated[Optional[SourceUnRegisterRequestParams], Field(description="Specifies the request to unregister a source.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete Protection Source Registration.
+
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Delete Protection Source Registration.
+
+        :param id: Specifies the ID of the Protection Source Registration. (required)
+        :type id: int
+        :param body: Specifies the request to unregister a source.
+        :type body: SourceUnRegisterRequestParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_protection_source_registration_serialize(
+            id=id,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _delete_protection_source_registration_serialize(
+        self,
+        id,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
             resource_path='/data-protect/sources/registrations/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def enable_mbs_billing_profile(
+        self,
+        azure_token: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> M365BackupControllerBillingResponseParams:
+        """Enables billing profile for the MBS service for the tenant.
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Enables the M365 Backup Storage(MBS) service for the tenant.
+
+        :param azure_token: (required)
+        :type azure_token: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._enable_mbs_billing_profile_serialize(
+            azure_token=azure_token,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "M365BackupControllerBillingResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def enable_mbs_billing_profile_with_http_info(
+        self,
+        azure_token: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[M365BackupControllerBillingResponseParams]:
+        """Enables billing profile for the MBS service for the tenant.
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Enables the M365 Backup Storage(MBS) service for the tenant.
+
+        :param azure_token: (required)
+        :type azure_token: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._enable_mbs_billing_profile_serialize(
+            azure_token=azure_token,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "M365BackupControllerBillingResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def enable_mbs_billing_profile_without_preload_content(
+        self,
+        azure_token: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Enables billing profile for the MBS service for the tenant.
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Enables the M365 Backup Storage(MBS) service for the tenant.
+
+        :param azure_token: (required)
+        :type azure_token: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._enable_mbs_billing_profile_serialize(
+            azure_token=azure_token,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "M365BackupControllerBillingResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _enable_mbs_billing_profile_serialize(
+        self,
+        azure_token,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if azure_token is not None:
+            _header_params['azureToken'] = azure_token
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/data-protect/sources/microsoft365/backup-controllers/billing',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -886,7 +2016,7 @@ class SourceApi:
     ) -> GenerateM365DeviceAccessTokenResponseParams:
         """Generate access token for Microsoft365 Device Authorization Grant flow.
 
-        Generates the access token if the device code has been granted authorization as part of device login flow.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Generates the access token if the device code has been granted authorization as part of device login flow.
 
         :param body: Specifies the parameters to validate and generate access token for authorizing the client within Microsoft365. (required)
         :type body: GenerateM365DeviceAccessTokenRequestParams
@@ -953,7 +2083,7 @@ class SourceApi:
     ) -> ApiResponse[GenerateM365DeviceAccessTokenResponseParams]:
         """Generate access token for Microsoft365 Device Authorization Grant flow.
 
-        Generates the access token if the device code has been granted authorization as part of device login flow.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Generates the access token if the device code has been granted authorization as part of device login flow.
 
         :param body: Specifies the parameters to validate and generate access token for authorizing the client within Microsoft365. (required)
         :type body: GenerateM365DeviceAccessTokenRequestParams
@@ -1020,7 +2150,7 @@ class SourceApi:
     ) -> RESTResponseType:
         """Generate access token for Microsoft365 Device Authorization Grant flow.
 
-        Generates the access token if the device code has been granted authorization as part of device login flow.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Generates the access token if the device code has been granted authorization as part of device login flow.
 
         :param body: Specifies the parameters to validate and generate access token for authorizing the client within Microsoft365. (required)
         :type body: GenerateM365DeviceAccessTokenRequestParams
@@ -1162,7 +2292,7 @@ class SourceApi:
     ) -> GenerateM365DeviceCodeResponseParams:
         """Generate device code for Microsoft365 Device Authorization Grant flow.
 
-        Generates User and Device code for Microsoft365 Device Authorization Grant for a given domain.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Generates User and Device code for Microsoft365 Device Authorization Grant for a given domain.
 
         :param body: Specifies the parameters to generate the user and device code to initiate authentication with Microsoft365. (required)
         :type body: GenerateM365DeviceCodeRequestParams
@@ -1229,7 +2359,7 @@ class SourceApi:
     ) -> ApiResponse[GenerateM365DeviceCodeResponseParams]:
         """Generate device code for Microsoft365 Device Authorization Grant flow.
 
-        Generates User and Device code for Microsoft365 Device Authorization Grant for a given domain.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Generates User and Device code for Microsoft365 Device Authorization Grant for a given domain.
 
         :param body: Specifies the parameters to generate the user and device code to initiate authentication with Microsoft365. (required)
         :type body: GenerateM365DeviceCodeRequestParams
@@ -1296,7 +2426,7 @@ class SourceApi:
     ) -> RESTResponseType:
         """Generate device code for Microsoft365 Device Authorization Grant flow.
 
-        Generates User and Device code for Microsoft365 Device Authorization Grant for a given domain.
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Generates User and Device code for Microsoft365 Device Authorization Grant for a given domain.
 
         :param body: Specifies the parameters to generate the user and device code to initiate authentication with Microsoft365. (required)
         :type body: GenerateM365DeviceCodeRequestParams
@@ -1420,6 +2550,866 @@ class SourceApi:
 
 
     @validate_call
+    def get_m365_backup_controller(
+        self,
+        azure_token: Annotated[Optional[StrictStr], Field(description="Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Fetches the Microsoft 365 registered Backup Controller by the Cohesity App for the owner tenant
+
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Fetches the registered Backup Controller by the Cohesity App for the tenant id within the JWT specified within the header.
+
+        :param azure_token: Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All
+        :type azure_token: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_m365_backup_controller_serialize(
+            azure_token=azure_token,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_m365_backup_controller_with_http_info(
+        self,
+        azure_token: Annotated[Optional[StrictStr], Field(description="Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Fetches the Microsoft 365 registered Backup Controller by the Cohesity App for the owner tenant
+
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Fetches the registered Backup Controller by the Cohesity App for the tenant id within the JWT specified within the header.
+
+        :param azure_token: Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All
+        :type azure_token: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_m365_backup_controller_serialize(
+            azure_token=azure_token,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_m365_backup_controller_without_preload_content(
+        self,
+        azure_token: Annotated[Optional[StrictStr], Field(description="Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Fetches the Microsoft 365 registered Backup Controller by the Cohesity App for the owner tenant
+
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Fetches the registered Backup Controller by the Cohesity App for the tenant id within the JWT specified within the header.
+
+        :param azure_token: Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All
+        :type azure_token: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_m365_backup_controller_serialize(
+            azure_token=azure_token,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_m365_backup_controller_serialize(
+        self,
+        azure_token,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if azure_token is not None:
+            _header_params['azureToken'] = azure_token
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/data-protect/sources/microsoft365/backup-controllers',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_microsoft365_self_service_config(
+        self,
+        domain: Annotated[Optional[StrictStr], Field(description="Specifies the domain name for the Microsoft365 source.")] = None,
+        tenant_id: Annotated[Optional[StrictStr], Field(description="Specifies the Cohesity Tenant ID for the source owner.")] = None,
+        workload_type: Annotated[Optional[StrictStr], Field(description="Specifies the workload type as filter for fetching Self-Service configuration types.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[CreateM365SelfServiceConfigRequestParams]:
+        """Get the list of Microsoft365 Self-Service configurations
+
+        ```No Privileges Required``` <br><br>Get the list of Self-Service configurations for all Microsoft365 sources for the given tenant ID.
+
+        :param domain: Specifies the domain name for the Microsoft365 source.
+        :type domain: str
+        :param tenant_id: Specifies the Cohesity Tenant ID for the source owner.
+        :type tenant_id: str
+        :param workload_type: Specifies the workload type as filter for fetching Self-Service configuration types.
+        :type workload_type: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_microsoft365_self_service_config_serialize(
+            domain=domain,
+            tenant_id=tenant_id,
+            workload_type=workload_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[CreateM365SelfServiceConfigRequestParams]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_microsoft365_self_service_config_with_http_info(
+        self,
+        domain: Annotated[Optional[StrictStr], Field(description="Specifies the domain name for the Microsoft365 source.")] = None,
+        tenant_id: Annotated[Optional[StrictStr], Field(description="Specifies the Cohesity Tenant ID for the source owner.")] = None,
+        workload_type: Annotated[Optional[StrictStr], Field(description="Specifies the workload type as filter for fetching Self-Service configuration types.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[CreateM365SelfServiceConfigRequestParams]]:
+        """Get the list of Microsoft365 Self-Service configurations
+
+        ```No Privileges Required``` <br><br>Get the list of Self-Service configurations for all Microsoft365 sources for the given tenant ID.
+
+        :param domain: Specifies the domain name for the Microsoft365 source.
+        :type domain: str
+        :param tenant_id: Specifies the Cohesity Tenant ID for the source owner.
+        :type tenant_id: str
+        :param workload_type: Specifies the workload type as filter for fetching Self-Service configuration types.
+        :type workload_type: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_microsoft365_self_service_config_serialize(
+            domain=domain,
+            tenant_id=tenant_id,
+            workload_type=workload_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[CreateM365SelfServiceConfigRequestParams]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_microsoft365_self_service_config_without_preload_content(
+        self,
+        domain: Annotated[Optional[StrictStr], Field(description="Specifies the domain name for the Microsoft365 source.")] = None,
+        tenant_id: Annotated[Optional[StrictStr], Field(description="Specifies the Cohesity Tenant ID for the source owner.")] = None,
+        workload_type: Annotated[Optional[StrictStr], Field(description="Specifies the workload type as filter for fetching Self-Service configuration types.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get the list of Microsoft365 Self-Service configurations
+
+        ```No Privileges Required``` <br><br>Get the list of Self-Service configurations for all Microsoft365 sources for the given tenant ID.
+
+        :param domain: Specifies the domain name for the Microsoft365 source.
+        :type domain: str
+        :param tenant_id: Specifies the Cohesity Tenant ID for the source owner.
+        :type tenant_id: str
+        :param workload_type: Specifies the workload type as filter for fetching Self-Service configuration types.
+        :type workload_type: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_microsoft365_self_service_config_serialize(
+            domain=domain,
+            tenant_id=tenant_id,
+            workload_type=workload_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[CreateM365SelfServiceConfigRequestParams]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_microsoft365_self_service_config_serialize(
+        self,
+        domain,
+        tenant_id,
+        workload_type,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if domain is not None:
+            
+            _query_params.append(('domain', domain))
+            
+        if tenant_id is not None:
+            
+            _query_params.append(('tenantId', tenant_id))
+            
+        if workload_type is not None:
+            
+            _query_params.append(('workloadType', workload_type))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/data-protect/sources/microsoft365/self-service-config',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_network_entities(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the entity Id of the resource pool")],
+        v_center_id: Annotated[StrictInt, Field(description="Specifies the entity Id of the vCenter")],
+        ancestor_entity_type: Annotated[StrictStr, Field(description="Specifies the ancestor entity type i.e. the node in the entity hierarchy which lies at a higher level than the resource pool entity id.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Sources:
+        """Get Network Entities within a Resource pool
+
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>List network entities for a resource pool.
+
+        :param id: Specifies the entity Id of the resource pool (required)
+        :type id: int
+        :param v_center_id: Specifies the entity Id of the vCenter (required)
+        :type v_center_id: int
+        :param ancestor_entity_type: Specifies the ancestor entity type i.e. the node in the entity hierarchy which lies at a higher level than the resource pool entity id. (required)
+        :type ancestor_entity_type: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_network_entities_serialize(
+            id=id,
+            v_center_id=v_center_id,
+            ancestor_entity_type=ancestor_entity_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "Sources",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_network_entities_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the entity Id of the resource pool")],
+        v_center_id: Annotated[StrictInt, Field(description="Specifies the entity Id of the vCenter")],
+        ancestor_entity_type: Annotated[StrictStr, Field(description="Specifies the ancestor entity type i.e. the node in the entity hierarchy which lies at a higher level than the resource pool entity id.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[Sources]:
+        """Get Network Entities within a Resource pool
+
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>List network entities for a resource pool.
+
+        :param id: Specifies the entity Id of the resource pool (required)
+        :type id: int
+        :param v_center_id: Specifies the entity Id of the vCenter (required)
+        :type v_center_id: int
+        :param ancestor_entity_type: Specifies the ancestor entity type i.e. the node in the entity hierarchy which lies at a higher level than the resource pool entity id. (required)
+        :type ancestor_entity_type: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_network_entities_serialize(
+            id=id,
+            v_center_id=v_center_id,
+            ancestor_entity_type=ancestor_entity_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "Sources",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_network_entities_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the entity Id of the resource pool")],
+        v_center_id: Annotated[StrictInt, Field(description="Specifies the entity Id of the vCenter")],
+        ancestor_entity_type: Annotated[StrictStr, Field(description="Specifies the ancestor entity type i.e. the node in the entity hierarchy which lies at a higher level than the resource pool entity id.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Network Entities within a Resource pool
+
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>List network entities for a resource pool.
+
+        :param id: Specifies the entity Id of the resource pool (required)
+        :type id: int
+        :param v_center_id: Specifies the entity Id of the vCenter (required)
+        :type v_center_id: int
+        :param ancestor_entity_type: Specifies the ancestor entity type i.e. the node in the entity hierarchy which lies at a higher level than the resource pool entity id. (required)
+        :type ancestor_entity_type: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_network_entities_serialize(
+            id=id,
+            v_center_id=v_center_id,
+            ancestor_entity_type=ancestor_entity_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "Sources",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_network_entities_serialize(
+        self,
+        id,
+        v_center_id,
+        ancestor_entity_type,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        if v_center_id is not None:
+            _path_params['vCenterId'] = v_center_id
+        # process the query parameters
+        if ancestor_entity_type is not None:
+            
+            _query_params.append(('ancestorEntityType', ancestor_entity_type))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/data-protect/sources/{vCenterId}/resource-pools/{id}/entities',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_protection_source_registration(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protection Source registration.")],
@@ -1439,7 +3429,7 @@ class SourceApi:
     ) -> SourceRegistration:
         """Get a Protection Source registration.
 
-        Get a Protection Source registration.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get a Protection Source registration.
 
         :param id: Specifies the id of the Protection Source registration. (required)
         :type id: int
@@ -1510,7 +3500,7 @@ class SourceApi:
     ) -> ApiResponse[SourceRegistration]:
         """Get a Protection Source registration.
 
-        Get a Protection Source registration.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get a Protection Source registration.
 
         :param id: Specifies the id of the Protection Source registration. (required)
         :type id: int
@@ -1581,7 +3571,7 @@ class SourceApi:
     ) -> RESTResponseType:
         """Get a Protection Source registration.
 
-        Get a Protection Source registration.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get a Protection Source registration.
 
         :param id: Specifies the id of the Protection Source registration. (required)
         :type id: int
@@ -1720,7 +3710,7 @@ class SourceApi:
     ) -> Sources:
         """Get a List of Protection Sources.
 
-        Get a List of Protection Sources.
+        ```Unknown Privileges``` <br><br>Get a List of Protection Sources.
 
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
@@ -1803,7 +3793,7 @@ class SourceApi:
     ) -> ApiResponse[Sources]:
         """Get a List of Protection Sources.
 
-        Get a List of Protection Sources.
+        ```Unknown Privileges``` <br><br>Get a List of Protection Sources.
 
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
@@ -1886,7 +3876,7 @@ class SourceApi:
     ) -> RESTResponseType:
         """Get a List of Protection Sources.
 
-        Get a List of Protection Sources.
+        ```Unknown Privileges``` <br><br>Get a List of Protection Sources.
 
         :param request_initiator_type: Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
         :type request_initiator_type: str
@@ -2049,7 +4039,7 @@ class SourceApi:
     ) -> SourceAttributeFiltersResponseParams:
         """List attribute filters for a source.
 
-        Get a List of attribute filters for leaf entities within a a source
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get a List of attribute filters for leaf entities within a a source
 
         :param source_uuid: Specifies the source UUID of the parent entity. (required)
         :type source_uuid: str
@@ -2120,7 +4110,7 @@ class SourceApi:
     ) -> ApiResponse[SourceAttributeFiltersResponseParams]:
         """List attribute filters for a source.
 
-        Get a List of attribute filters for leaf entities within a a source
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get a List of attribute filters for leaf entities within a a source
 
         :param source_uuid: Specifies the source UUID of the parent entity. (required)
         :type source_uuid: str
@@ -2191,7 +4181,7 @@ class SourceApi:
     ) -> RESTResponseType:
         """List attribute filters for a source.
 
-        Get a List of attribute filters for leaf entities within a a source
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get a List of attribute filters for leaf entities within a a source
 
         :param source_uuid: Specifies the source UUID of the parent entity. (required)
         :type source_uuid: str
@@ -2321,6 +4311,7 @@ class SourceApi:
         encryption_key: Annotated[Optional[StrictStr], Field(description="Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         include_external_metadata: Annotated[Optional[StrictBool], Field(description="If true, the external entity metadata like maintenance mode config for the registered sources will be included.")] = None,
+        ignore_tenant_migration_in_progress_check: Annotated[Optional[StrictBool], Field(description="If true, tenant migration check will be ignored")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2336,7 +4327,7 @@ class SourceApi:
     ) -> SourceRegistrations:
         """Get the list of Protection Source registrations.
 
-        Get the list of Protection Source registrations.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get the list of Protection Source registrations.
 
         :param ids: Ids specifies the list of source registration ids to return. If left empty, every source registration will be returned by default.
         :type ids: List[int]
@@ -2352,6 +4343,8 @@ class SourceApi:
         :type use_cached_data: bool
         :param include_external_metadata: If true, the external entity metadata like maintenance mode config for the registered sources will be included.
         :type include_external_metadata: bool
+        :param ignore_tenant_migration_in_progress_check: If true, tenant migration check will be ignored
+        :type ignore_tenant_migration_in_progress_check: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2382,6 +4375,7 @@ class SourceApi:
             encryption_key=encryption_key,
             use_cached_data=use_cached_data,
             include_external_metadata=include_external_metadata,
+            ignore_tenant_migration_in_progress_check=ignore_tenant_migration_in_progress_check,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2412,6 +4406,7 @@ class SourceApi:
         encryption_key: Annotated[Optional[StrictStr], Field(description="Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         include_external_metadata: Annotated[Optional[StrictBool], Field(description="If true, the external entity metadata like maintenance mode config for the registered sources will be included.")] = None,
+        ignore_tenant_migration_in_progress_check: Annotated[Optional[StrictBool], Field(description="If true, tenant migration check will be ignored")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2427,7 +4422,7 @@ class SourceApi:
     ) -> ApiResponse[SourceRegistrations]:
         """Get the list of Protection Source registrations.
 
-        Get the list of Protection Source registrations.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get the list of Protection Source registrations.
 
         :param ids: Ids specifies the list of source registration ids to return. If left empty, every source registration will be returned by default.
         :type ids: List[int]
@@ -2443,6 +4438,8 @@ class SourceApi:
         :type use_cached_data: bool
         :param include_external_metadata: If true, the external entity metadata like maintenance mode config for the registered sources will be included.
         :type include_external_metadata: bool
+        :param ignore_tenant_migration_in_progress_check: If true, tenant migration check will be ignored
+        :type ignore_tenant_migration_in_progress_check: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2473,6 +4470,7 @@ class SourceApi:
             encryption_key=encryption_key,
             use_cached_data=use_cached_data,
             include_external_metadata=include_external_metadata,
+            ignore_tenant_migration_in_progress_check=ignore_tenant_migration_in_progress_check,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2503,6 +4501,7 @@ class SourceApi:
         encryption_key: Annotated[Optional[StrictStr], Field(description="Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified.")] = None,
         use_cached_data: Annotated[Optional[StrictBool], Field(description="Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.")] = None,
         include_external_metadata: Annotated[Optional[StrictBool], Field(description="If true, the external entity metadata like maintenance mode config for the registered sources will be included.")] = None,
+        ignore_tenant_migration_in_progress_check: Annotated[Optional[StrictBool], Field(description="If true, tenant migration check will be ignored")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2518,7 +4517,7 @@ class SourceApi:
     ) -> RESTResponseType:
         """Get the list of Protection Source registrations.
 
-        Get the list of Protection Source registrations.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get the list of Protection Source registrations.
 
         :param ids: Ids specifies the list of source registration ids to return. If left empty, every source registration will be returned by default.
         :type ids: List[int]
@@ -2534,6 +4533,8 @@ class SourceApi:
         :type use_cached_data: bool
         :param include_external_metadata: If true, the external entity metadata like maintenance mode config for the registered sources will be included.
         :type include_external_metadata: bool
+        :param ignore_tenant_migration_in_progress_check: If true, tenant migration check will be ignored
+        :type ignore_tenant_migration_in_progress_check: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2564,6 +4565,7 @@ class SourceApi:
             encryption_key=encryption_key,
             use_cached_data=use_cached_data,
             include_external_metadata=include_external_metadata,
+            ignore_tenant_migration_in_progress_check=ignore_tenant_migration_in_progress_check,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2589,6 +4591,7 @@ class SourceApi:
         encryption_key,
         use_cached_data,
         include_external_metadata,
+        ignore_tenant_migration_in_progress_check,
         _request_auth,
         _content_type,
         _headers,
@@ -2640,6 +4643,10 @@ class SourceApi:
         if include_external_metadata is not None:
             
             _query_params.append(('includeExternalMetadata', include_external_metadata))
+            
+        if ignore_tenant_migration_in_progress_check is not None:
+            
+            _query_params.append(('ignoreTenantMigrationInProgressCheck', ignore_tenant_migration_in_progress_check))
             
         # process the header parameters
         # process the form parameters
@@ -2699,7 +4706,7 @@ class SourceApi:
     ) -> VdcObject:
         """Get VDC Details.
 
-        Get the details such as catelogs, Org networks associated with a VMware virtual datacenter (VDC).
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get the details such as catelogs, Org networks associated with a VMware virtual datacenter (VDC).
 
         :param id: Specifies the ID of the VMware virtual datacenter. (required)
         :type id: int
@@ -2766,7 +4773,7 @@ class SourceApi:
     ) -> ApiResponse[VdcObject]:
         """Get VDC Details.
 
-        Get the details such as catelogs, Org networks associated with a VMware virtual datacenter (VDC).
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get the details such as catelogs, Org networks associated with a VMware virtual datacenter (VDC).
 
         :param id: Specifies the ID of the VMware virtual datacenter. (required)
         :type id: int
@@ -2833,7 +4840,7 @@ class SourceApi:
     ) -> RESTResponseType:
         """Get VDC Details.
 
-        Get the details such as catelogs, Org networks associated with a VMware virtual datacenter (VDC).
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Get the details such as catelogs, Org networks associated with a VMware virtual datacenter (VDC).
 
         :param id: Specifies the ID of the VMware virtual datacenter. (required)
         :type id: int
@@ -2944,6 +4951,390 @@ class SourceApi:
 
 
     @validate_call
+    def list_application_servers(
+        self,
+        root_node_id: Annotated[StrictInt, Field(description="Specifies the Protection Source Id of the root node of a Protection Sources tree. A root node represents a registered Source on the Cohesity Cluster, such as a vCenter Server.")],
+        application_environment: Annotated[StrictStr, Field(description="Specifies the types of applications such as 'kSQL', 'kExchange', 'kAD' etc. running on the Protection Source.")],
+        environment: Annotated[Optional[StrictStr], Field(description="Specifies the environment of the Protection Source tree.")] = None,
+        node_id: Annotated[Optional[StrictInt], Field(description="Specifies the Protection Source Id of the entity in the Protection Source tree hosting the applications.")] = None,
+        next_entity_id: Annotated[Optional[StrictInt], Field(description="Specifies the entity id for the Node at any level within the Source entity hierarchy whose children are to be paginated.")] = None,
+        page_size: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of entities to be returned within the page.")] = None,
+        after_cursor_entity_id: Annotated[Optional[StrictInt], Field(description="Specifies the entity id starting from which the items are to be returned")] = None,
+        before_cursor_entity_id: Annotated[Optional[StrictInt], Field(description="Specifies the entity id upto which the items are to be returned")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ListAppServersResponse:
+        """The Application Servers in a Protection Source tree.
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Returns the registered Application Servers and their Object subtrees. Given the root node id of a Protection Source tree, returns the list of Application Servers registered under that tree based on the filters.
+
+        :param root_node_id: Specifies the Protection Source Id of the root node of a Protection Sources tree. A root node represents a registered Source on the Cohesity Cluster, such as a vCenter Server. (required)
+        :type root_node_id: int
+        :param application_environment: Specifies the types of applications such as 'kSQL', 'kExchange', 'kAD' etc. running on the Protection Source. (required)
+        :type application_environment: str
+        :param environment: Specifies the environment of the Protection Source tree.
+        :type environment: str
+        :param node_id: Specifies the Protection Source Id of the entity in the Protection Source tree hosting the applications.
+        :type node_id: int
+        :param next_entity_id: Specifies the entity id for the Node at any level within the Source entity hierarchy whose children are to be paginated.
+        :type next_entity_id: int
+        :param page_size: Specifies the maximum number of entities to be returned within the page.
+        :type page_size: int
+        :param after_cursor_entity_id: Specifies the entity id starting from which the items are to be returned
+        :type after_cursor_entity_id: int
+        :param before_cursor_entity_id: Specifies the entity id upto which the items are to be returned
+        :type before_cursor_entity_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_application_servers_serialize(
+            root_node_id=root_node_id,
+            application_environment=application_environment,
+            environment=environment,
+            node_id=node_id,
+            next_entity_id=next_entity_id,
+            page_size=page_size,
+            after_cursor_entity_id=after_cursor_entity_id,
+            before_cursor_entity_id=before_cursor_entity_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListAppServersResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def list_application_servers_with_http_info(
+        self,
+        root_node_id: Annotated[StrictInt, Field(description="Specifies the Protection Source Id of the root node of a Protection Sources tree. A root node represents a registered Source on the Cohesity Cluster, such as a vCenter Server.")],
+        application_environment: Annotated[StrictStr, Field(description="Specifies the types of applications such as 'kSQL', 'kExchange', 'kAD' etc. running on the Protection Source.")],
+        environment: Annotated[Optional[StrictStr], Field(description="Specifies the environment of the Protection Source tree.")] = None,
+        node_id: Annotated[Optional[StrictInt], Field(description="Specifies the Protection Source Id of the entity in the Protection Source tree hosting the applications.")] = None,
+        next_entity_id: Annotated[Optional[StrictInt], Field(description="Specifies the entity id for the Node at any level within the Source entity hierarchy whose children are to be paginated.")] = None,
+        page_size: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of entities to be returned within the page.")] = None,
+        after_cursor_entity_id: Annotated[Optional[StrictInt], Field(description="Specifies the entity id starting from which the items are to be returned")] = None,
+        before_cursor_entity_id: Annotated[Optional[StrictInt], Field(description="Specifies the entity id upto which the items are to be returned")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ListAppServersResponse]:
+        """The Application Servers in a Protection Source tree.
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Returns the registered Application Servers and their Object subtrees. Given the root node id of a Protection Source tree, returns the list of Application Servers registered under that tree based on the filters.
+
+        :param root_node_id: Specifies the Protection Source Id of the root node of a Protection Sources tree. A root node represents a registered Source on the Cohesity Cluster, such as a vCenter Server. (required)
+        :type root_node_id: int
+        :param application_environment: Specifies the types of applications such as 'kSQL', 'kExchange', 'kAD' etc. running on the Protection Source. (required)
+        :type application_environment: str
+        :param environment: Specifies the environment of the Protection Source tree.
+        :type environment: str
+        :param node_id: Specifies the Protection Source Id of the entity in the Protection Source tree hosting the applications.
+        :type node_id: int
+        :param next_entity_id: Specifies the entity id for the Node at any level within the Source entity hierarchy whose children are to be paginated.
+        :type next_entity_id: int
+        :param page_size: Specifies the maximum number of entities to be returned within the page.
+        :type page_size: int
+        :param after_cursor_entity_id: Specifies the entity id starting from which the items are to be returned
+        :type after_cursor_entity_id: int
+        :param before_cursor_entity_id: Specifies the entity id upto which the items are to be returned
+        :type before_cursor_entity_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_application_servers_serialize(
+            root_node_id=root_node_id,
+            application_environment=application_environment,
+            environment=environment,
+            node_id=node_id,
+            next_entity_id=next_entity_id,
+            page_size=page_size,
+            after_cursor_entity_id=after_cursor_entity_id,
+            before_cursor_entity_id=before_cursor_entity_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListAppServersResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def list_application_servers_without_preload_content(
+        self,
+        root_node_id: Annotated[StrictInt, Field(description="Specifies the Protection Source Id of the root node of a Protection Sources tree. A root node represents a registered Source on the Cohesity Cluster, such as a vCenter Server.")],
+        application_environment: Annotated[StrictStr, Field(description="Specifies the types of applications such as 'kSQL', 'kExchange', 'kAD' etc. running on the Protection Source.")],
+        environment: Annotated[Optional[StrictStr], Field(description="Specifies the environment of the Protection Source tree.")] = None,
+        node_id: Annotated[Optional[StrictInt], Field(description="Specifies the Protection Source Id of the entity in the Protection Source tree hosting the applications.")] = None,
+        next_entity_id: Annotated[Optional[StrictInt], Field(description="Specifies the entity id for the Node at any level within the Source entity hierarchy whose children are to be paginated.")] = None,
+        page_size: Annotated[Optional[StrictInt], Field(description="Specifies the maximum number of entities to be returned within the page.")] = None,
+        after_cursor_entity_id: Annotated[Optional[StrictInt], Field(description="Specifies the entity id starting from which the items are to be returned")] = None,
+        before_cursor_entity_id: Annotated[Optional[StrictInt], Field(description="Specifies the entity id upto which the items are to be returned")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """The Application Servers in a Protection Source tree.
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Returns the registered Application Servers and their Object subtrees. Given the root node id of a Protection Source tree, returns the list of Application Servers registered under that tree based on the filters.
+
+        :param root_node_id: Specifies the Protection Source Id of the root node of a Protection Sources tree. A root node represents a registered Source on the Cohesity Cluster, such as a vCenter Server. (required)
+        :type root_node_id: int
+        :param application_environment: Specifies the types of applications such as 'kSQL', 'kExchange', 'kAD' etc. running on the Protection Source. (required)
+        :type application_environment: str
+        :param environment: Specifies the environment of the Protection Source tree.
+        :type environment: str
+        :param node_id: Specifies the Protection Source Id of the entity in the Protection Source tree hosting the applications.
+        :type node_id: int
+        :param next_entity_id: Specifies the entity id for the Node at any level within the Source entity hierarchy whose children are to be paginated.
+        :type next_entity_id: int
+        :param page_size: Specifies the maximum number of entities to be returned within the page.
+        :type page_size: int
+        :param after_cursor_entity_id: Specifies the entity id starting from which the items are to be returned
+        :type after_cursor_entity_id: int
+        :param before_cursor_entity_id: Specifies the entity id upto which the items are to be returned
+        :type before_cursor_entity_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_application_servers_serialize(
+            root_node_id=root_node_id,
+            application_environment=application_environment,
+            environment=environment,
+            node_id=node_id,
+            next_entity_id=next_entity_id,
+            page_size=page_size,
+            after_cursor_entity_id=after_cursor_entity_id,
+            before_cursor_entity_id=before_cursor_entity_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListAppServersResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_application_servers_serialize(
+        self,
+        root_node_id,
+        application_environment,
+        environment,
+        node_id,
+        next_entity_id,
+        page_size,
+        after_cursor_entity_id,
+        before_cursor_entity_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if root_node_id is not None:
+            
+            _query_params.append(('rootNodeId', root_node_id))
+            
+        if environment is not None:
+            
+            _query_params.append(('environment', environment))
+            
+        if node_id is not None:
+            
+            _query_params.append(('nodeId', node_id))
+            
+        if application_environment is not None:
+            
+            _query_params.append(('applicationEnvironment', application_environment))
+            
+        if next_entity_id is not None:
+            
+            _query_params.append(('nextEntityId', next_entity_id))
+            
+        if page_size is not None:
+            
+            _query_params.append(('pageSize', page_size))
+            
+        if after_cursor_entity_id is not None:
+            
+            _query_params.append(('afterCursorEntityId', after_cursor_entity_id))
+            
+        if before_cursor_entity_id is not None:
+            
+            _query_params.append(('beforeCursorEntityId', before_cursor_entity_id))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/data-protect/sources/application-servers',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def patch_protection_source_registration(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protection Source registration.")],
@@ -2963,7 +5354,7 @@ class SourceApi:
     ) -> SourceRegistration:
         """Perform Partial Update on Protection Source registration. Currently this API is supported only for Cassandra
 
-        Patches a Protection Source.
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Patches a Protection Source.
 
         :param id: Specifies the id of the Protection Source registration. (required)
         :type id: int
@@ -3034,7 +5425,7 @@ class SourceApi:
     ) -> ApiResponse[SourceRegistration]:
         """Perform Partial Update on Protection Source registration. Currently this API is supported only for Cassandra
 
-        Patches a Protection Source.
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Patches a Protection Source.
 
         :param id: Specifies the id of the Protection Source registration. (required)
         :type id: int
@@ -3105,7 +5496,7 @@ class SourceApi:
     ) -> RESTResponseType:
         """Perform Partial Update on Protection Source registration. Currently this API is supported only for Cassandra
 
-        Patches a Protection Source.
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Patches a Protection Source.
 
         :param id: Specifies the id of the Protection Source registration. (required)
         :type id: int
@@ -3253,7 +5644,7 @@ class SourceApi:
     ) -> Source:
         """Get a Protection Sources.
 
-        Get a Protection Source.
+        ```Unknown Privileges``` <br><br>Get a Protection Source.
 
         :param id: Specifies the id of the Protection Source. (required)
         :type id: int
@@ -3320,7 +5711,7 @@ class SourceApi:
     ) -> ApiResponse[Source]:
         """Get a Protection Sources.
 
-        Get a Protection Source.
+        ```Unknown Privileges``` <br><br>Get a Protection Source.
 
         :param id: Specifies the id of the Protection Source. (required)
         :type id: int
@@ -3387,7 +5778,7 @@ class SourceApi:
     ) -> RESTResponseType:
         """Get a Protection Sources.
 
-        Get a Protection Source.
+        ```Unknown Privileges``` <br><br>Get a Protection Source.
 
         :param id: Specifies the id of the Protection Source. (required)
         :type id: int
@@ -3516,7 +5907,7 @@ class SourceApi:
     ) -> None:
         """Refresh a Protection Source.
 
-        Refresh a Protection Source.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Refresh a Protection Source.
 
         :param id: Specifies the id of the Protection Source. (required)
         :type id: int
@@ -3583,7 +5974,7 @@ class SourceApi:
     ) -> ApiResponse[None]:
         """Refresh a Protection Source.
 
-        Refresh a Protection Source.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Refresh a Protection Source.
 
         :param id: Specifies the id of the Protection Source. (required)
         :type id: int
@@ -3650,7 +6041,7 @@ class SourceApi:
     ) -> RESTResponseType:
         """Refresh a Protection Source.
 
-        Refresh a Protection Source.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Refresh a Protection Source.
 
         :param id: Specifies the id of the Protection Source. (required)
         :type id: int
@@ -3761,6 +6152,269 @@ class SourceApi:
 
 
     @validate_call
+    def register_m365_backup_controller(
+        self,
+        azure_token: Annotated[StrictStr, Field(description="Specifies the JWT obtained through user with the scope for BackupRestore-Control.ReadWrite.All")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetM365BackupControllerResponseParams:
+        """Registers the Cohesity App to be the Microsoft 365 Backup Controller
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Registers the Cohesity App to be the Microsoft365 Backup Controller
+
+        :param azure_token: Specifies the JWT obtained through user with the scope for BackupRestore-Control.ReadWrite.All (required)
+        :type azure_token: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._register_m365_backup_controller_serialize(
+            azure_token=azure_token,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "GetM365BackupControllerResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def register_m365_backup_controller_with_http_info(
+        self,
+        azure_token: Annotated[StrictStr, Field(description="Specifies the JWT obtained through user with the scope for BackupRestore-Control.ReadWrite.All")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetM365BackupControllerResponseParams]:
+        """Registers the Cohesity App to be the Microsoft 365 Backup Controller
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Registers the Cohesity App to be the Microsoft365 Backup Controller
+
+        :param azure_token: Specifies the JWT obtained through user with the scope for BackupRestore-Control.ReadWrite.All (required)
+        :type azure_token: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._register_m365_backup_controller_serialize(
+            azure_token=azure_token,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "GetM365BackupControllerResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def register_m365_backup_controller_without_preload_content(
+        self,
+        azure_token: Annotated[StrictStr, Field(description="Specifies the JWT obtained through user with the scope for BackupRestore-Control.ReadWrite.All")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Registers the Cohesity App to be the Microsoft 365 Backup Controller
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Registers the Cohesity App to be the Microsoft365 Backup Controller
+
+        :param azure_token: Specifies the JWT obtained through user with the scope for BackupRestore-Control.ReadWrite.All (required)
+        :type azure_token: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._register_m365_backup_controller_serialize(
+            azure_token=azure_token,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "GetM365BackupControllerResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _register_m365_backup_controller_serialize(
+        self,
+        azure_token,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if azure_token is not None:
+            _header_params['azureToken'] = azure_token
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/data-protect/sources/microsoft365/backup-controllers',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def register_protection_source(
         self,
         body: Annotated[SourceRegistrationRequestParams, Field(description="Specifies the parameters to register a Protection Source.")],
@@ -3779,7 +6433,7 @@ class SourceApi:
     ) -> SourceRegistration:
         """Register a Protection Source.
 
-        Register a Protection Source.
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Register a Protection Source.
 
         :param body: Specifies the parameters to register a Protection Source. (required)
         :type body: SourceRegistrationRequestParams
@@ -3846,7 +6500,7 @@ class SourceApi:
     ) -> ApiResponse[SourceRegistration]:
         """Register a Protection Source.
 
-        Register a Protection Source.
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Register a Protection Source.
 
         :param body: Specifies the parameters to register a Protection Source. (required)
         :type body: SourceRegistrationRequestParams
@@ -3913,7 +6567,7 @@ class SourceApi:
     ) -> RESTResponseType:
         """Register a Protection Source.
 
-        Register a Protection Source.
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Register a Protection Source.
 
         :param body: Specifies the parameters to register a Protection Source. (required)
         :type body: SourceRegistrationRequestParams
@@ -4055,7 +6709,7 @@ class SourceApi:
     ) -> SourceConnectionResponseParams:
         """Test connection to a source.
 
-        Test connection to a source.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Test connection to a source.
 
         :param body: Specifies the parameters to test connectivity with a source. (required)
         :type body: SourceConnectionRequestParams
@@ -4122,7 +6776,7 @@ class SourceApi:
     ) -> ApiResponse[SourceConnectionResponseParams]:
         """Test connection to a source.
 
-        Test connection to a source.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Test connection to a source.
 
         :param body: Specifies the parameters to test connectivity with a source. (required)
         :type body: SourceConnectionRequestParams
@@ -4189,7 +6843,7 @@ class SourceApi:
     ) -> RESTResponseType:
         """Test connection to a source.
 
-        Test connection to a source.
+        **Privileges:** ```PROTECTION_VIEW``` <br><br>Test connection to a source.
 
         :param body: Specifies the parameters to test connectivity with a source. (required)
         :type body: SourceConnectionRequestParams
@@ -4313,6 +6967,1164 @@ class SourceApi:
 
 
     @validate_call
+    def unregister_m365_backup_controller(
+        self,
+        id: Annotated[Optional[StrictStr], Field(description="Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller.")],
+        azure_token: Annotated[Optional[StrictStr], Field(description="Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Unregisters the Cohesity App as the Microsoft 365 Backup Controller
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Unregisters the Cohesity App as the Microsoft 365 Backup Controller
+
+        :param id: Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller. (required)
+        :type id: str
+        :param azure_token: Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All
+        :type azure_token: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._unregister_m365_backup_controller_serialize(
+            id=id,
+            azure_token=azure_token,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def unregister_m365_backup_controller_with_http_info(
+        self,
+        id: Annotated[Optional[StrictStr], Field(description="Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller.")],
+        azure_token: Annotated[Optional[StrictStr], Field(description="Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Unregisters the Cohesity App as the Microsoft 365 Backup Controller
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Unregisters the Cohesity App as the Microsoft 365 Backup Controller
+
+        :param id: Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller. (required)
+        :type id: str
+        :param azure_token: Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All
+        :type azure_token: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._unregister_m365_backup_controller_serialize(
+            id=id,
+            azure_token=azure_token,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def unregister_m365_backup_controller_without_preload_content(
+        self,
+        id: Annotated[Optional[StrictStr], Field(description="Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller.")],
+        azure_token: Annotated[Optional[StrictStr], Field(description="Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Unregisters the Cohesity App as the Microsoft 365 Backup Controller
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Unregisters the Cohesity App as the Microsoft 365 Backup Controller
+
+        :param id: Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller. (required)
+        :type id: str
+        :param azure_token: Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All
+        :type azure_token: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._unregister_m365_backup_controller_serialize(
+            id=id,
+            azure_token=azure_token,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _unregister_m365_backup_controller_serialize(
+        self,
+        id,
+        azure_token,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if azure_token is not None:
+            _header_params['azureToken'] = azure_token
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/data-protect/sources/microsoft365/backup-controllers/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_application_servers_registration(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the source entity for application registration.")],
+        body: Annotated[ApplicationServersRegistrationRequestParams, Field(description="Specifies the parameters to register an application entity.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> CommonApplicationServersRegistrationParams:
+        """Registers or update owner entity with applications.
+
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Register or update applications on an owner entity
+
+        :param id: Specifies the id of the source entity for application registration. (required)
+        :type id: int
+        :param body: Specifies the parameters to register an application entity. (required)
+        :type body: ApplicationServersRegistrationRequestParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_application_servers_registration_serialize(
+            id=id,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CommonApplicationServersRegistrationParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_application_servers_registration_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the source entity for application registration.")],
+        body: Annotated[ApplicationServersRegistrationRequestParams, Field(description="Specifies the parameters to register an application entity.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[CommonApplicationServersRegistrationParams]:
+        """Registers or update owner entity with applications.
+
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Register or update applications on an owner entity
+
+        :param id: Specifies the id of the source entity for application registration. (required)
+        :type id: int
+        :param body: Specifies the parameters to register an application entity. (required)
+        :type body: ApplicationServersRegistrationRequestParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_application_servers_registration_serialize(
+            id=id,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CommonApplicationServersRegistrationParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_application_servers_registration_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="Specifies the id of the source entity for application registration.")],
+        body: Annotated[ApplicationServersRegistrationRequestParams, Field(description="Specifies the parameters to register an application entity.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Registers or update owner entity with applications.
+
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Register or update applications on an owner entity
+
+        :param id: Specifies the id of the source entity for application registration. (required)
+        :type id: int
+        :param body: Specifies the parameters to register an application entity. (required)
+        :type body: ApplicationServersRegistrationRequestParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_application_servers_registration_serialize(
+            id=id,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CommonApplicationServersRegistrationParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_application_servers_registration_serialize(
+        self,
+        id,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/data-protect/sources/application-servers/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_m365_backup_controller(
+        self,
+        azure_token: Annotated[StrictStr, Field(description="Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All")],
+        id: Annotated[Optional[StrictStr], Field(description="Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller.")],
+        state: Annotated[Optional[StrictStr], Field(description="Specifies the state of the Backup Controller. The state parameter can only be either set to Active/Inactive within the request. The other states like PendingInactive & PendingActive are not applicable.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetM365BackupControllerResponseParams:
+        """Updates the status of the registered M365 Backup Controller
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Updates the Backup Controller status of the registered M365 Backup Controller
+
+        :param azure_token: Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All (required)
+        :type azure_token: str
+        :param id: Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller. (required)
+        :type id: str
+        :param state: Specifies the state of the Backup Controller. The state parameter can only be either set to Active/Inactive within the request. The other states like PendingInactive & PendingActive are not applicable.
+        :type state: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_m365_backup_controller_serialize(
+            azure_token=azure_token,
+            id=id,
+            state=state,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetM365BackupControllerResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_m365_backup_controller_with_http_info(
+        self,
+        azure_token: Annotated[StrictStr, Field(description="Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All")],
+        id: Annotated[Optional[StrictStr], Field(description="Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller.")],
+        state: Annotated[Optional[StrictStr], Field(description="Specifies the state of the Backup Controller. The state parameter can only be either set to Active/Inactive within the request. The other states like PendingInactive & PendingActive are not applicable.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetM365BackupControllerResponseParams]:
+        """Updates the status of the registered M365 Backup Controller
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Updates the Backup Controller status of the registered M365 Backup Controller
+
+        :param azure_token: Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All (required)
+        :type azure_token: str
+        :param id: Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller. (required)
+        :type id: str
+        :param state: Specifies the state of the Backup Controller. The state parameter can only be either set to Active/Inactive within the request. The other states like PendingInactive & PendingActive are not applicable.
+        :type state: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_m365_backup_controller_serialize(
+            azure_token=azure_token,
+            id=id,
+            state=state,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetM365BackupControllerResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_m365_backup_controller_without_preload_content(
+        self,
+        azure_token: Annotated[StrictStr, Field(description="Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All")],
+        id: Annotated[Optional[StrictStr], Field(description="Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller.")],
+        state: Annotated[Optional[StrictStr], Field(description="Specifies the state of the Backup Controller. The state parameter can only be either set to Active/Inactive within the request. The other states like PendingInactive & PendingActive are not applicable.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Updates the status of the registered M365 Backup Controller
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Updates the Backup Controller status of the registered M365 Backup Controller
+
+        :param azure_token: Specifies the JWT obtained through user with the scope as BackupRestore-Control.ReadWrite.All (required)
+        :type azure_token: str
+        :param id: Specifies the Service App ID for the registered M365 Backup Controller when Cohesity App is the active Controller. (required)
+        :type id: str
+        :param state: Specifies the state of the Backup Controller. The state parameter can only be either set to Active/Inactive within the request. The other states like PendingInactive & PendingActive are not applicable.
+        :type state: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_m365_backup_controller_serialize(
+            azure_token=azure_token,
+            id=id,
+            state=state,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetM365BackupControllerResponseParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_m365_backup_controller_serialize(
+        self,
+        azure_token,
+        id,
+        state,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        if state is not None:
+            
+            _query_params.append(('state', state))
+            
+        # process the header parameters
+        if azure_token is not None:
+            _header_params['azureToken'] = azure_token
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PATCH',
+            resource_path='/data-protect/sources/microsoft365/backup-controllers/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_m365_self_service_config(
+        self,
+        uuid: Annotated[StrictStr, Field(description="Specifies the UUID of the Microsoft365 Source.")],
+        body: Annotated[CreateM365SelfServiceConfigRequestParams, Field(description="Specifies the parameters to enable Self-Service for a Microsoft365 source. This configuration will apply to all regions incase the same source is registered across regions.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> CreateM365SelfServiceConfigRequestParams:
+        """Create or Update the Self-Service configuration for a Microsoft365 source.
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Create or Update the configuration for enabling Self-Service for a Microsoft365 source through Security Groups. The configuration can be done for Mailbox & OneDrive workload only.
+
+        :param uuid: Specifies the UUID of the Microsoft365 Source. (required)
+        :type uuid: str
+        :param body: Specifies the parameters to enable Self-Service for a Microsoft365 source. This configuration will apply to all regions incase the same source is registered across regions. (required)
+        :type body: CreateM365SelfServiceConfigRequestParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_m365_self_service_config_serialize(
+            uuid=uuid,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CreateM365SelfServiceConfigRequestParams",
+            '201': "CreateM365SelfServiceConfigRequestParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_m365_self_service_config_with_http_info(
+        self,
+        uuid: Annotated[StrictStr, Field(description="Specifies the UUID of the Microsoft365 Source.")],
+        body: Annotated[CreateM365SelfServiceConfigRequestParams, Field(description="Specifies the parameters to enable Self-Service for a Microsoft365 source. This configuration will apply to all regions incase the same source is registered across regions.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[CreateM365SelfServiceConfigRequestParams]:
+        """Create or Update the Self-Service configuration for a Microsoft365 source.
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Create or Update the configuration for enabling Self-Service for a Microsoft365 source through Security Groups. The configuration can be done for Mailbox & OneDrive workload only.
+
+        :param uuid: Specifies the UUID of the Microsoft365 Source. (required)
+        :type uuid: str
+        :param body: Specifies the parameters to enable Self-Service for a Microsoft365 source. This configuration will apply to all regions incase the same source is registered across regions. (required)
+        :type body: CreateM365SelfServiceConfigRequestParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_m365_self_service_config_serialize(
+            uuid=uuid,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CreateM365SelfServiceConfigRequestParams",
+            '201': "CreateM365SelfServiceConfigRequestParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_m365_self_service_config_without_preload_content(
+        self,
+        uuid: Annotated[StrictStr, Field(description="Specifies the UUID of the Microsoft365 Source.")],
+        body: Annotated[CreateM365SelfServiceConfigRequestParams, Field(description="Specifies the parameters to enable Self-Service for a Microsoft365 source. This configuration will apply to all regions incase the same source is registered across regions.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create or Update the Self-Service configuration for a Microsoft365 source.
+
+        **Privileges:** ```PROTECTION_MODIFY``` <br><br>Create or Update the configuration for enabling Self-Service for a Microsoft365 source through Security Groups. The configuration can be done for Mailbox & OneDrive workload only.
+
+        :param uuid: Specifies the UUID of the Microsoft365 Source. (required)
+        :type uuid: str
+        :param body: Specifies the parameters to enable Self-Service for a Microsoft365 source. This configuration will apply to all regions incase the same source is registered across regions. (required)
+        :type body: CreateM365SelfServiceConfigRequestParams
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_m365_self_service_config_serialize(
+            uuid=uuid,
+            body=body,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CreateM365SelfServiceConfigRequestParams",
+            '201': "CreateM365SelfServiceConfigRequestParams",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_m365_self_service_config_serialize(
+        self,
+        uuid,
+        body,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if uuid is not None:
+            _path_params['uuid'] = uuid
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if body is not None:
+            _body_params = body
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'APIKeyHeader', 
+            'SessionIdHeader', 
+            'Bearer'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/data-protect/sources/microsoft365/self-service-config/{uuid}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def update_protection_source_registration(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the Protection Source registration.")],
@@ -4332,7 +8144,7 @@ class SourceApi:
     ) -> SourceRegistration:
         """Update Protection Source registration.
 
-        Update Protection Source registration.
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Update Protection Source registration.
 
         :param id: Specifies the id of the Protection Source registration. (required)
         :type id: int
@@ -4403,7 +8215,7 @@ class SourceApi:
     ) -> ApiResponse[SourceRegistration]:
         """Update Protection Source registration.
 
-        Update Protection Source registration.
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Update Protection Source registration.
 
         :param id: Specifies the id of the Protection Source registration. (required)
         :type id: int
@@ -4474,7 +8286,7 @@ class SourceApi:
     ) -> RESTResponseType:
         """Update Protection Source registration.
 
-        Update Protection Source registration.
+        **Privileges:** ```PROTECTION_SOURCE_MODIFY``` <br><br>Update Protection Source registration.
 
         :param id: Specifies the id of the Protection Source registration. (required)
         :type id: int

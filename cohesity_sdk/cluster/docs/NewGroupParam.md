@@ -6,6 +6,7 @@ Specifies the parameters for using a new protection group.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**indexing_policy** | [**IndexingPolicy**](IndexingPolicy.md) |  | [optional] 
 **name** | **str** | Specifies the name of the new protection group. | 
 **policy_id** | **str** | Specifies the policy id of the new protection group. | 
 **storage_domain_id** | **int** | Specifies the storage domain id of the new protection group. | 

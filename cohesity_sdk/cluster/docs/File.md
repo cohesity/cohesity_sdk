@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **snapshot_tags** | [**List[SnapshotTagInfo]**](SnapshotTagInfo.md) | Specifies snapshot tags applied to the object. | [optional] 
 **tags** | [**List[TagInfo]**](TagInfo.md) | Specifies tag applied to the object. | [optional] 
+**hash** | **str** | Specifies hash value for this file. | [optional] 
+**modified_time_usecs** | **int** | Specifies modification time for this file in usecs. | [optional] 
 **name** | **str** | Specifies the file name. | [optional] 
 **path** | **str** | Specifies the path to this file. | [optional] 
 **policy_id** | **str** | Specifies the protection policy id for this file. | [optional] 

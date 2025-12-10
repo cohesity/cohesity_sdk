@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.aws_aurora_snapshot_manager_object_protection_params import AwsAuroraSnapshotManagerObjectProtectionParams
+from cohesity_sdk.cluster.models.aws_dynamo_db_protection_params import AwsDynamoDBProtectionParams
 from cohesity_sdk.cluster.models.aws_native_object_protection_params import AwsNativeObjectProtectionParams
 from cohesity_sdk.cluster.models.aws_rds_postgres_protection_params import AwsRdsPostgresProtectionParams
 from cohesity_sdk.cluster.models.aws_rds_snapshot_manager_object_protection_params import AwsRdsSnapshotManagerObjectProtectionParams
@@ -34,12 +35,13 @@ class AwsObjectProtectionRequestParams(BaseModel):
     """ # noqa: E501
     protection_type: Optional[StrictStr] = Field(default=None, description="Specifies the AWS Protection Job type.", alias="protectionType")
     aurora_snapshot_manager_protection_type_params: Optional[AwsAuroraSnapshotManagerObjectProtectionParams] = Field(default=None, alias="auroraSnapshotManagerProtectionTypeParams")
+    dynamo_db_protection_type_params: Optional[AwsDynamoDBProtectionParams] = Field(default=None, alias="dynamoDBProtectionTypeParams")
     native_protection_type_params: Optional[AwsNativeObjectProtectionParams] = Field(default=None, alias="nativeProtectionTypeParams")
     rds_postgres_protection_type_params: Optional[AwsRdsPostgresProtectionParams] = Field(default=None, alias="rdsPostgresProtectionTypeParams")
     rds_snapshot_manager_protection_type_params: Optional[AwsRdsSnapshotManagerObjectProtectionParams] = Field(default=None, alias="rdsSnapshotManagerProtectionTypeParams")
     s3_protection_type_params: Optional[AwsS3ProtectionParams] = Field(default=None, alias="s3ProtectionTypeParams")
     snapshot_manager_protection_type_params: Optional[AwsSnapshotManagerObjectProtectionParams] = Field(default=None, alias="snapshotManagerProtectionTypeParams")
-    __properties: ClassVar[List[str]] = ["protectionType", "auroraSnapshotManagerProtectionTypeParams", "nativeProtectionTypeParams", "rdsPostgresProtectionTypeParams", "rdsSnapshotManagerProtectionTypeParams", "s3ProtectionTypeParams", "snapshotManagerProtectionTypeParams"]
+    __properties: ClassVar[List[str]] = ["protectionType", "auroraSnapshotManagerProtectionTypeParams", "dynamoDBProtectionTypeParams", "nativeProtectionTypeParams", "rdsPostgresProtectionTypeParams", "rdsSnapshotManagerProtectionTypeParams", "s3ProtectionTypeParams", "snapshotManagerProtectionTypeParams"]
 
     @field_validator('protection_type')
     def protection_type_validate_enum(cls, value):
@@ -47,8 +49,8 @@ class AwsObjectProtectionRequestParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kAgent', 'kNative', 'kSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup']):
-            raise ValueError("must be one of enum values ('kAgent', 'kNative', 'kSnapshotManager', 'kRDSSnapshotManager', 'kAuroraSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup')")
+        if value not in set(['kAgent', 'kNative', 'kSnapshotManager', 'kRDSSnapshotManager', 'kRDSPostgresSnapshotManager', 'kRDSMySQLSnapshotManager', 'kRDSMSSQLSnapshotManager', 'kRDSOracleSnapshotManager', 'kRDSMariaDBSnapshotManager', 'kRDSCustomMSSQLSnapshotManager', 'kRDSCustomOracleSnapshotManager', 'kAuroraSnapshotManager', 'kAuroraPostgresSnapshotManager', 'kAuroraMySQLSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup', 'kAwsAuroraPostgres', 'kAwsRDSPostgres', 'kAWSMySQL', 'kAWSSnapshotManager', 'kAwsDynamoDB', 'kAWSAuroraMySQL', 'kAWSRdsOracle', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRDSMSSQL', 'kAWSRedshift']):
+            raise ValueError("must be one of enum values ('kAgent', 'kNative', 'kSnapshotManager', 'kRDSSnapshotManager', 'kRDSPostgresSnapshotManager', 'kRDSMySQLSnapshotManager', 'kRDSMSSQLSnapshotManager', 'kRDSOracleSnapshotManager', 'kRDSMariaDBSnapshotManager', 'kRDSCustomMSSQLSnapshotManager', 'kRDSCustomOracleSnapshotManager', 'kAuroraSnapshotManager', 'kAuroraPostgresSnapshotManager', 'kAuroraMySQLSnapshotManager', 'kAwsS3', 'kAwsRDSPostgresBackup', 'kAwsAuroraPostgres', 'kAwsRDSPostgres', 'kAWSMySQL', 'kAWSSnapshotManager', 'kAwsDynamoDB', 'kAWSAuroraMySQL', 'kAWSRdsOracle', 'kAWSDocumentDB', 'kAWSRDSPostgresDB', 'kAWSAuroraPostgresDB', 'kAWSRDSMSSQL', 'kAWSRedshift')")
         return value
 
     model_config = ConfigDict(
@@ -93,6 +95,9 @@ class AwsObjectProtectionRequestParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of aurora_snapshot_manager_protection_type_params
         if self.aurora_snapshot_manager_protection_type_params:
             _dict['auroraSnapshotManagerProtectionTypeParams'] = self.aurora_snapshot_manager_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of dynamo_db_protection_type_params
+        if self.dynamo_db_protection_type_params:
+            _dict['dynamoDBProtectionTypeParams'] = self.dynamo_db_protection_type_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of native_protection_type_params
         if self.native_protection_type_params:
             _dict['nativeProtectionTypeParams'] = self.native_protection_type_params.to_dict()
@@ -122,6 +127,7 @@ class AwsObjectProtectionRequestParams(BaseModel):
         _obj = cls.model_validate({
             "protectionType": obj.get("protectionType"),
             "auroraSnapshotManagerProtectionTypeParams": AwsAuroraSnapshotManagerObjectProtectionParams.from_dict(obj["auroraSnapshotManagerProtectionTypeParams"]) if obj.get("auroraSnapshotManagerProtectionTypeParams") is not None else None,
+            "dynamoDBProtectionTypeParams": AwsDynamoDBProtectionParams.from_dict(obj["dynamoDBProtectionTypeParams"]) if obj.get("dynamoDBProtectionTypeParams") is not None else None,
             "nativeProtectionTypeParams": AwsNativeObjectProtectionParams.from_dict(obj["nativeProtectionTypeParams"]) if obj.get("nativeProtectionTypeParams") is not None else None,
             "rdsPostgresProtectionTypeParams": AwsRdsPostgresProtectionParams.from_dict(obj["rdsPostgresProtectionTypeParams"]) if obj.get("rdsPostgresProtectionTypeParams") is not None else None,
             "rdsSnapshotManagerProtectionTypeParams": AwsRdsSnapshotManagerObjectProtectionParams.from_dict(obj["rdsSnapshotManagerProtectionTypeParams"]) if obj.get("rdsSnapshotManagerProtectionTypeParams") is not None else None,

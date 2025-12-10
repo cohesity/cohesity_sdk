@@ -26,6 +26,7 @@ class StaticRouteParams(BaseModel):
     """
     Specifies the static route parameters.
     """ # noqa: E501
+    adv_mss: Optional[StrictInt] = Field(default=None, description="Specifies AdvMss setting per route.", alias="advMss")
     description: Optional[StrictStr] = Field(default=None, description="Specifies a description of the Static Route.")
     destination_network: Optional[StrictStr] = Field(description="Specifies the destination network of the Static Route.", alias="destinationNetwork")
     id: Optional[StrictStr] = Field(default=None, description="Specifies the unique identifier for the route.")
@@ -34,7 +35,7 @@ class StaticRouteParams(BaseModel):
     mtu: Optional[StrictInt] = Field(default=None, description="Specifies MTU setting per route.")
     next_hop: Optional[StrictStr] = Field(description="Specifies the next hop to the destination network.", alias="nextHop")
     node_group_name: Optional[StrictStr] = Field(default=None, description="Specifies the network node group to represent a group of nodes.", alias="nodeGroupName")
-    __properties: ClassVar[List[str]] = ["description", "destinationNetwork", "id", "interface", "interfaceGroup", "mtu", "nextHop", "nodeGroupName"]
+    __properties: ClassVar[List[str]] = ["advMss", "description", "destinationNetwork", "id", "interface", "interfaceGroup", "mtu", "nextHop", "nodeGroupName"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,6 +78,11 @@ class StaticRouteParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if adv_mss (nullable) is None
+        # and model_fields_set contains the field
+        if self.adv_mss is None and "adv_mss" in self.model_fields_set:
+            _dict['advMss'] = None
+
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
@@ -129,6 +135,7 @@ class StaticRouteParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "advMss": obj.get("advMss"),
             "description": obj.get("description"),
             "destinationNetwork": obj.get("destinationNetwork"),
             "id": obj.get("id"),

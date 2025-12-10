@@ -35,8 +35,8 @@ class AzureCommonObjectProtectionParams(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL']):
-            raise ValueError("must be one of enum values ('kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL')")
+        if value not in set(['kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kKubernetes']):
+            raise ValueError("must be one of enum values ('kAgent', 'kNative', 'kSnapshotManager', 'kAzureSQL', 'kAzureEntraID', 'kAzureMySQL', 'kKubernetes')")
         return value
 
     model_config = ConfigDict(

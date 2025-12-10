@@ -24,7 +24,9 @@ Name | Type | Description | Notes
 **ldap_provider_id** | **int** | Specifies the LDAP provider id that this Storage Domain is mapped to. | [optional] 
 **name** | **str** | Specifies the Storage Domain name. | 
 **nis_domain_names** | **List[str]** | Specifies the NIS domain names that this Storage Domain is mapped to. | [optional] 
+**optimize_throughput_settings** | **bool** | Indicates whether the storage domain supports workload/throughput optimized performance settings for its Views. Note: This value cannot be modified after the storage domain is created. | [optional] 
 **physical_quota** | [**QuotaPolicy**](QuotaPolicy.md) |  | [optional] 
+**purpose** | [**StorageDomainPurposeParam**](StorageDomainPurposeParam.md) |  | [optional] 
 **recommended** | **bool** | Specifies whether Storage Domain is recommended for the specified View template. | [optional] [readonly] 
 **removal_state** | **str** | Specifies the current removal state of the Storage Domain. &#39;DontRemove&#39; means the state of object is functional and it is not being removed. &#39;MarkedForRemoval&#39; means the object is being removed. &#39;OkToRemove&#39; means the object has been removed on the Cohesity Cluster and if the object is physical, it can be removed from the Cohesity Cluster. | [optional] [readonly] 
 **s3_buckets_enabled** | **bool** | Specifies whether to enable creation of S3 bucket on this Storage Domain. | [optional] 

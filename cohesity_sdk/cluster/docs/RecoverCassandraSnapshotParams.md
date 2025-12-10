@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **protection_group_id** | **str** | Specifies the protection group id of the object snapshot. | [optional] 
 **protection_group_name** | **str** | Specifies the protection group name of the object snapshot. | [optional] 
 **recover_from_standby** | **bool** | Specifies that user wants to perform standby restore if it is enabled for this object. | [optional] 
+**replication_target_info** | [**ReplicationTargetSummaryInfo**](ReplicationTargetSummaryInfo.md) |  | [optional] 
 **snapshot_creation_time_usecs** | **int** | Specifies the time when the snapshot is created in Unix timestamp epoch in microseconds. | [optional] [readonly] 
 **snapshot_id** | **str** | Specifies the snapshot id. | 
 **snapshot_target_type** | **str** | Specifies the snapshot target type. | [optional] [readonly] 

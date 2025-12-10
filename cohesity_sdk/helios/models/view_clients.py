@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.view_client import ViewClient
+from cohesity_sdk.helios.models.view_clients_clients_summary import ViewClientsClientsSummary
 from typing import Set
 from typing_extensions import Self
 
@@ -28,7 +29,8 @@ class ViewClients(BaseModel):
     Specifies a list of View Clients.
     """ # noqa: E501
     clients: Optional[List[ViewClient]] = Field(default=None, description="Specifies the list of Clients.")
-    __properties: ClassVar[List[str]] = ["clients"]
+    clients_summary: Optional[ViewClientsClientsSummary] = Field(default=None, alias="clientsSummary")
+    __properties: ClassVar[List[str]] = ["clients", "clientsSummary"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,10 +78,18 @@ class ViewClients(BaseModel):
                 if _item_clients:
                     _items.append(_item_clients.to_dict())
             _dict['clients'] = _items
+        # override the default output from pydantic by calling `to_dict()` of clients_summary
+        if self.clients_summary:
+            _dict['clientsSummary'] = self.clients_summary.to_dict()
         # set to None if clients (nullable) is None
         # and model_fields_set contains the field
         if self.clients is None and "clients" in self.model_fields_set:
             _dict['clients'] = None
+
+        # set to None if clients_summary (nullable) is None
+        # and model_fields_set contains the field
+        if self.clients_summary is None and "clients_summary" in self.model_fields_set:
+            _dict['clientsSummary'] = None
 
         return _dict
 
@@ -93,7 +103,8 @@ class ViewClients(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "clients": [ViewClient.from_dict(_item) for _item in obj["clients"]] if obj.get("clients") is not None else None
+            "clients": [ViewClient.from_dict(_item) for _item in obj["clients"]] if obj.get("clients") is not None else None,
+            "clientsSummary": ViewClientsClientsSummary.from_dict(obj["clientsSummary"]) if obj.get("clientsSummary") is not None else None
         })
         return _obj
 

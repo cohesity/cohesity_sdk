@@ -28,7 +28,7 @@ class CreateAzureApplicationResponseParams(BaseModel):
     """
     Specifies the response parameters containing the Azure apps created within the Microsoft365 domain.
     """ # noqa: E501
-    microsoft365_app_credentials_list: Optional[Annotated[List[Office365AppCredentials], Field(min_length=1)]] = Field(default=None, description="Specifies a list of Microsoft365 azure application credentials needed to authenticate & authorize users for Office 365.", alias="microsoft365AppCredentialsList")
+    microsoft365_app_credentials_list: Optional[Annotated[List[Office365AppCredentials], Field(min_length=1)]] = Field(default=None, description="Specifies a list of Microsoft365 azure application credentials needed to authenticate & authorize users for Office 365/Azure Workflows.", alias="microsoft365AppCredentialsList")
     __properties: ClassVar[List[str]] = ["microsoft365AppCredentialsList"]
 
     model_config = ConfigDict(

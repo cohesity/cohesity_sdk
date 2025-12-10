@@ -17,12 +17,13 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.helios_bmr_backup_policy import HeliosBmrBackupPolicy
 from cohesity_sdk.helios.models.helios_cdp_backup_policy import HeliosCdpBackupPolicy
 from cohesity_sdk.helios.models.helios_log_backup_policy import HeliosLogBackupPolicy
 from cohesity_sdk.helios.models.helios_regular_backup_policy import HeliosRegularBackupPolicy
+from cohesity_sdk.helios.models.helios_storage_array_snapshot_backup_policy import HeliosStorageArraySnapshotBackupPolicy
 from typing import Set
 from typing_extensions import Self
 
@@ -34,7 +35,8 @@ class HeliosBackupPolicy(BaseModel):
     cdp: Optional[HeliosCdpBackupPolicy] = None
     log: Optional[HeliosLogBackupPolicy] = None
     regular: Optional[HeliosRegularBackupPolicy] = None
-    __properties: ClassVar[List[str]] = ["bmr", "cdp", "log", "regular"]
+    storage_array_snapshot: Optional[HeliosStorageArraySnapshotBackupPolicy] = Field(default=None, alias="storageArraySnapshot")
+    __properties: ClassVar[List[str]] = ["bmr", "cdp", "log", "regular", "storageArraySnapshot"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,6 +89,9 @@ class HeliosBackupPolicy(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of regular
         if self.regular:
             _dict['regular'] = self.regular.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of storage_array_snapshot
+        if self.storage_array_snapshot:
+            _dict['storageArraySnapshot'] = self.storage_array_snapshot.to_dict()
         return _dict
 
     @classmethod
@@ -102,7 +107,8 @@ class HeliosBackupPolicy(BaseModel):
             "bmr": HeliosBmrBackupPolicy.from_dict(obj["bmr"]) if obj.get("bmr") is not None else None,
             "cdp": HeliosCdpBackupPolicy.from_dict(obj["cdp"]) if obj.get("cdp") is not None else None,
             "log": HeliosLogBackupPolicy.from_dict(obj["log"]) if obj.get("log") is not None else None,
-            "regular": HeliosRegularBackupPolicy.from_dict(obj["regular"]) if obj.get("regular") is not None else None
+            "regular": HeliosRegularBackupPolicy.from_dict(obj["regular"]) if obj.get("regular") is not None else None,
+            "storageArraySnapshot": HeliosStorageArraySnapshotBackupPolicy.from_dict(obj["storageArraySnapshot"]) if obj.get("storageArraySnapshot") is not None else None
         })
         return _obj
 

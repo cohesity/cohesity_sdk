@@ -7,6 +7,7 @@ Specifies parameters to initiate/cancel disk removal.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cancel** | **bool** | If true, cancels disk removal which is already in progress. | 
+**is_clear_pre_check_result_only** | **bool** | Specifies whether request is for clearing pre-check result only | [optional] [default to False]
 **is_validate_only** | **bool** | Specifies whether request is for pre-check validations only | [optional] [default to False]
 
 ## Example

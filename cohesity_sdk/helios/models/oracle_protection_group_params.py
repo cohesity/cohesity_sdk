@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.oracle_protection_group_object_params import OracleProtectionGroupObjectParams
@@ -33,11 +33,22 @@ class OracleProtectionGroupParams(BaseModel):
     full_auto_kill_timeout_secs: Optional[StrictInt] = Field(default=None, description="Time in seconds after which the full backup of the database in given backup job should be auto-killed.", alias="fullAutoKillTimeoutSecs")
     incr_auto_kill_timeout_secs: Optional[StrictInt] = Field(default=None, description="Time in seconds after which the incremental backup of the database in given backup job should be auto-killed.", alias="incrAutoKillTimeoutSecs")
     log_auto_kill_timeout_secs: Optional[StrictInt] = Field(default=None, description="Time in seconds after which the log backup of the database in given backup job should be auto-killed.", alias="logAutoKillTimeoutSecs")
+    nfs_protocol: Optional[StrictStr] = Field(default=None, description="Specifies the preferred protocol to use if this device supports multiple protocols.", alias="nfsProtocol")
     objects: Optional[Annotated[List[OracleProtectionGroupObjectParams], Field(min_length=1)]] = Field(description="Specifies the list of object ids to be protected.")
     persist_mountpoints: Optional[StrictBool] = Field(default=True, description="Specifies whether the mountpoints created while backing up Oracle DBs should be persisted. Defaults to true if value is null to handle the backward compatibility for the upgrade case.", alias="persistMountpoints")
     pre_post_script: Optional[PrePostScriptParams] = Field(default=None, alias="prePostScript")
     vlan_params: Optional[VlanParams] = Field(default=None, alias="vlanParams")
-    __properties: ClassVar[List[str]] = ["fullAutoKillTimeoutSecs", "incrAutoKillTimeoutSecs", "logAutoKillTimeoutSecs", "objects", "persistMountpoints", "prePostScript", "vlanParams"]
+    __properties: ClassVar[List[str]] = ["fullAutoKillTimeoutSecs", "incrAutoKillTimeoutSecs", "logAutoKillTimeoutSecs", "nfsProtocol", "objects", "persistMountpoints", "prePostScript", "vlanParams"]
+
+    @field_validator('nfs_protocol')
+    def nfs_protocol_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['kNoProtocol', 'kNfs3', 'kNfs4_1', 'kCifs1', 'kCifs2', 'kCifs3']):
+            raise ValueError("must be one of enum values ('kNoProtocol', 'kNfs3', 'kNfs4_1', 'kCifs1', 'kCifs2', 'kCifs3')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,6 +117,11 @@ class OracleProtectionGroupParams(BaseModel):
         if self.log_auto_kill_timeout_secs is None and "log_auto_kill_timeout_secs" in self.model_fields_set:
             _dict['logAutoKillTimeoutSecs'] = None
 
+        # set to None if nfs_protocol (nullable) is None
+        # and model_fields_set contains the field
+        if self.nfs_protocol is None and "nfs_protocol" in self.model_fields_set:
+            _dict['nfsProtocol'] = None
+
         # set to None if objects (nullable) is None
         # and model_fields_set contains the field
         if self.objects is None and "objects" in self.model_fields_set:
@@ -131,6 +147,7 @@ class OracleProtectionGroupParams(BaseModel):
             "fullAutoKillTimeoutSecs": obj.get("fullAutoKillTimeoutSecs"),
             "incrAutoKillTimeoutSecs": obj.get("incrAutoKillTimeoutSecs"),
             "logAutoKillTimeoutSecs": obj.get("logAutoKillTimeoutSecs"),
+            "nfsProtocol": obj.get("nfsProtocol"),
             "objects": [OracleProtectionGroupObjectParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None,
             "persistMountpoints": obj.get("persistMountpoints") if obj.get("persistMountpoints") is not None else True,
             "prePostScript": PrePostScriptParams.from_dict(obj["prePostScript"]) if obj.get("prePostScript") is not None else None,

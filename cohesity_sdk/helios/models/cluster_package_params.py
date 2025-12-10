@@ -17,8 +17,12 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.cluster_package_fixed_issue import ClusterPackageFixedIssue
+from cohesity_sdk.helios.models.cluster_package_status import ClusterPackageStatus
+from cohesity_sdk.helios.models.package_component import PackageComponent
 from typing import Set
 from typing_extensions import Self
 
@@ -26,9 +30,52 @@ class ClusterPackageParams(BaseModel):
     """
     Cluster software package parameters.
     """ # noqa: E501
-    release_date: Optional[StrictStr] = Field(default=None, description="Release date of the package.", alias="releaseDate")
-    version_name: Optional[StrictStr] = Field(default=None, description="Name of the package version. Example: 6.3.1h_release-20210714_0fad884e", alias="versionName")
-    __properties: ClassVar[List[str]] = ["releaseDate", "versionName"]
+    compatible_packages: Optional[List[StrictStr]] = Field(default=None, description="Array of versionName values, representing compatible packages that are available on system. ", alias="compatiblePackages")
+    components: Optional[List[PackageComponent]] = Field(default=None, description="List of package componenets. Aplicable for one helios package ")
+    file_size_bytes: Optional[StrictInt] = Field(default=None, description="Size of file in bytes", alias="fileSizeBytes")
+    fixed_issues: Optional[List[ClusterPackageFixedIssue]] = Field(default=None, description="List of issues fixed in a package.", alias="fixedIssues")
+    is_downtime_required: Optional[StrictBool] = Field(default=False, description="Indicates whether package need downtime during installation", alias="isDowntimeRequired")
+    md5_checksum: Optional[StrictStr] = Field(default=None, description="MD5 Checksum", alias="md5Checksum")
+    node_ids: Optional[List[StrictInt]] = Field(default=None, description="Node IDs where package is available", alias="nodeIds")
+    node_type: Optional[StrictStr] = Field(default=None, description="Type of node where upgrade has to be performed using the provided package. * `CLUSTER` * `CONNECTOR` ", alias="nodeType")
+    package_sub_type: Optional[StrictStr] = Field(default=None, description="Sub-type of package - Security Patch or Product Patch", alias="packageSubType")
+    package_type: Optional[StrictStr] = Field(default=None, description="Type of the package - Upgrade or Patch", alias="packageType")
+    release_date: Optional[datetime] = Field(default=None, description="Release date of the package.", alias="releaseDate")
+    release_version: Optional[StrictStr] = Field(default=None, description="Release version of the package. Examples: For upgrade package: '6.6.0d_u6', '7.0.' For patch package - '6.8.1-p1s1' ", alias="releaseVersion")
+    sha256_checksum: Optional[StrictStr] = Field(default=None, description="SHA256 Checksum", alias="sha256Checksum")
+    status: Optional[ClusterPackageStatus] = None
+    version_name: Optional[StrictStr] = Field(default=None, description="Name of the package version. Example: '6.6.0d_u6_release-20210714_0fad884e',   '7.0.1_release-20230623_ddbb8c79' for upgrade packages, '6.8.1-p1s1-2023Jun26-221b8a5c' for patch packages ", alias="versionName")
+    __properties: ClassVar[List[str]] = ["compatiblePackages", "components", "fileSizeBytes", "fixedIssues", "isDowntimeRequired", "md5Checksum", "nodeIds", "nodeType", "packageSubType", "packageType", "releaseDate", "releaseVersion", "sha256Checksum", "status", "versionName"]
+
+    @field_validator('node_type')
+    def node_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['ClusterNode', 'FreeNode', 'ConnectorNode']):
+            raise ValueError("must be one of enum values ('ClusterNode', 'FreeNode', 'ConnectorNode')")
+        return value
+
+    @field_validator('package_sub_type')
+    def package_sub_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['SecurityPatch', 'ProductPatch']):
+            raise ValueError("must be one of enum values ('SecurityPatch', 'ProductPatch')")
+        return value
+
+    @field_validator('package_type')
+    def package_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['Upgrade', 'Patch']):
+            raise ValueError("must be one of enum values ('Upgrade', 'Patch')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,6 +116,28 @@ class ClusterPackageParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in components (list)
+        _items = []
+        if self.components:
+            for _item_components in self.components:
+                if _item_components:
+                    _items.append(_item_components.to_dict())
+            _dict['components'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in fixed_issues (list)
+        _items = []
+        if self.fixed_issues:
+            for _item_fixed_issues in self.fixed_issues:
+                if _item_fixed_issues:
+                    _items.append(_item_fixed_issues.to_dict())
+            _dict['fixedIssues'] = _items
+        # override the default output from pydantic by calling `to_dict()` of status
+        if self.status:
+            _dict['status'] = self.status.to_dict()
+        # set to None if is_downtime_required (nullable) is None
+        # and model_fields_set contains the field
+        if self.is_downtime_required is None and "is_downtime_required" in self.model_fields_set:
+            _dict['isDowntimeRequired'] = None
+
         # set to None if release_date (nullable) is None
         # and model_fields_set contains the field
         if self.release_date is None and "release_date" in self.model_fields_set:
@@ -91,7 +160,20 @@ class ClusterPackageParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "compatiblePackages": obj.get("compatiblePackages"),
+            "components": [PackageComponent.from_dict(_item) for _item in obj["components"]] if obj.get("components") is not None else None,
+            "fileSizeBytes": obj.get("fileSizeBytes"),
+            "fixedIssues": [ClusterPackageFixedIssue.from_dict(_item) for _item in obj["fixedIssues"]] if obj.get("fixedIssues") is not None else None,
+            "isDowntimeRequired": obj.get("isDowntimeRequired") if obj.get("isDowntimeRequired") is not None else False,
+            "md5Checksum": obj.get("md5Checksum"),
+            "nodeIds": obj.get("nodeIds"),
+            "nodeType": obj.get("nodeType"),
+            "packageSubType": obj.get("packageSubType"),
+            "packageType": obj.get("packageType"),
             "releaseDate": obj.get("releaseDate"),
+            "releaseVersion": obj.get("releaseVersion"),
+            "sha256Checksum": obj.get("sha256Checksum"),
+            "status": ClusterPackageStatus.from_dict(obj["status"]) if obj.get("status") is not None else None,
             "versionName": obj.get("versionName")
         })
         return _obj

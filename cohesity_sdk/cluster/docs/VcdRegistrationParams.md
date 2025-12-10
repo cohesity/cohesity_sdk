@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **username** | **str** | Specifies the username to access target entity. | 
 **description** | **str** | Specifies the description of the source being registered. | [optional] 
 **endpoint** | **str** | Specifies the endpoint IPaddress, URL or hostname of the host. | 
+**link_vms_across_vcenter** | **bool** | Specifies if the VM linking feature is enabled for the VCD. If enabled, migrated VMs present in the VCD which earlier belonged to some other VCD/Vcenter will be linked during EH refresh. | [optional] 
 **vcenter_credential_info_list** | [**List[VcenterCredentialInfo]**](VcenterCredentialInfo.md) | Specifies the credentials information for all the vcenters in vcloud director. | 
 
 ## Example

@@ -19,6 +19,9 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.cluster.models.common_download_file_and_folder_params import CommonDownloadFileAndFolderParams
+from cohesity_sdk.cluster.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
+from cohesity_sdk.cluster.models.recover_kubernetes_file_and_folder_params import RecoverKubernetesFileAndFolderParams
 from cohesity_sdk.cluster.models.recover_kubernetes_namespace_params import RecoverKubernetesNamespaceParams
 from typing import Set
 from typing_extensions import Self
@@ -27,15 +30,18 @@ class RecoverKubernetesParams(BaseModel):
     """
     Specifies the recovery options specific to Kubernetes environment.
     """ # noqa: E501
+    download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, alias="downloadFileAndFolderParams")
+    objects: Optional[List[CommonRecoverObjectSnapshotParams]] = Field(default=None, description="Specifies the list of objects which need to be recovered.")
+    recover_file_and_folder_params: Optional[RecoverKubernetesFileAndFolderParams] = Field(default=None, alias="recoverFileAndFolderParams")
     recover_namespace_params: Optional[RecoverKubernetesNamespaceParams] = Field(default=None, alias="recoverNamespaceParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recover action to be performed.", alias="recoveryAction")
-    __properties: ClassVar[List[str]] = ["recoverNamespaceParams", "recoveryAction"]
+    __properties: ClassVar[List[str]] = ["downloadFileAndFolderParams", "objects", "recoverFileAndFolderParams", "recoverNamespaceParams", "recoveryAction"]
 
     @field_validator('recovery_action')
     def recovery_action_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['RecoverNamespaces']):
-            raise ValueError("must be one of enum values ('RecoverNamespaces')")
+        if value not in set(['RecoverNamespaces', 'RecoverFiles', 'DownloadFilesAndFolders']):
+            raise ValueError("must be one of enum values ('RecoverNamespaces', 'RecoverFiles', 'DownloadFilesAndFolders')")
         return value
 
     model_config = ConfigDict(
@@ -77,9 +83,27 @@ class RecoverKubernetesParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of download_file_and_folder_params
+        if self.download_file_and_folder_params:
+            _dict['downloadFileAndFolderParams'] = self.download_file_and_folder_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in objects (list)
+        _items = []
+        if self.objects:
+            for _item_objects in self.objects:
+                if _item_objects:
+                    _items.append(_item_objects.to_dict())
+            _dict['objects'] = _items
+        # override the default output from pydantic by calling `to_dict()` of recover_file_and_folder_params
+        if self.recover_file_and_folder_params:
+            _dict['recoverFileAndFolderParams'] = self.recover_file_and_folder_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of recover_namespace_params
         if self.recover_namespace_params:
             _dict['recoverNamespaceParams'] = self.recover_namespace_params.to_dict()
+        # set to None if objects (nullable) is None
+        # and model_fields_set contains the field
+        if self.objects is None and "objects" in self.model_fields_set:
+            _dict['objects'] = None
+
         return _dict
 
     @classmethod
@@ -92,6 +116,9 @@ class RecoverKubernetesParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "downloadFileAndFolderParams": CommonDownloadFileAndFolderParams.from_dict(obj["downloadFileAndFolderParams"]) if obj.get("downloadFileAndFolderParams") is not None else None,
+            "objects": [CommonRecoverObjectSnapshotParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None,
+            "recoverFileAndFolderParams": RecoverKubernetesFileAndFolderParams.from_dict(obj["recoverFileAndFolderParams"]) if obj.get("recoverFileAndFolderParams") is not None else None,
             "recoverNamespaceParams": RecoverKubernetesNamespaceParams.from_dict(obj["recoverNamespaceParams"]) if obj.get("recoverNamespaceParams") is not None else None,
             "recoveryAction": obj.get("recoveryAction")
         })

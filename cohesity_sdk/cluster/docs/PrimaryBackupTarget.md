@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **archival_target_settings** | [**PrimaryArchivalTarget**](PrimaryArchivalTarget.md) |  | [optional] 
 **target_type** | **str** | Specifies the primary backup location where backups will be stored. If not specified, then default is assumed as local backup on Cohesity cluster. | [optional] [default to 'Local']
+**use_default_backup_target** | **bool** | Specifies if the default primary backup target must be used for backups. If this is not specified or set to false, then targets specified in &#39;archivalTargetSettings&#39; will be used for backups. If the value is specified as true, then default backup target is used internally. This field should only be set in the environment where tenant policy management is enabled and external targets are assigned to tenant when provisioning tenants. | [optional] 
 
 ## Example
 

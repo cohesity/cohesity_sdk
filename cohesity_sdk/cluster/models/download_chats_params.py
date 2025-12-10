@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.cluster.models.channel import Channel
 from typing import Set
 from typing_extensions import Self
 
@@ -26,10 +27,11 @@ class DownloadChatsParams(BaseModel):
     """
     Specifies the Download chat/posts specific parameters.
     """ # noqa: E501
-    channel_ids: Optional[List[StrictStr]] = Field(default=None, description="Specifies channel IDs whose posts needs to be downloaded. If channelIds is nil or empty then full teams' posts will be downloaded.", alias="channelIds")
+    channel_ids: Optional[List[StrictStr]] = Field(default=None, description="Specifies channel IDs whose posts needs to be downloaded. If channelIds is nil or empty then full teams' posts will be downloaded. This is deprecated and clients should now use channelList instead of channelIds. If both are populated, only channelList will be considered for processing.", alias="channelIds")
+    channel_list: Optional[List[Optional[Channel]]] = Field(default=None, description="Specifies list of channel's details, whose chats needs to be downloaded", alias="channelList")
     download_file_type: StrictStr = Field(description="Specifies the file type for the downloaded content.", alias="downloadFileType")
     html_template: Optional[StrictStr] = Field(default=None, description="Specifies the html template for the downloaded chats.", alias="htmlTemplate")
-    __properties: ClassVar[List[str]] = ["channelIds", "downloadFileType", "htmlTemplate"]
+    __properties: ClassVar[List[str]] = ["channelIds", "channelList", "downloadFileType", "htmlTemplate"]
 
     @field_validator('download_file_type')
     def download_file_type_validate_enum(cls, value):
@@ -77,10 +79,22 @@ class DownloadChatsParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in channel_list (list)
+        _items = []
+        if self.channel_list:
+            for _item_channel_list in self.channel_list:
+                if _item_channel_list:
+                    _items.append(_item_channel_list.to_dict())
+            _dict['channelList'] = _items
         # set to None if channel_ids (nullable) is None
         # and model_fields_set contains the field
         if self.channel_ids is None and "channel_ids" in self.model_fields_set:
             _dict['channelIds'] = None
+
+        # set to None if channel_list (nullable) is None
+        # and model_fields_set contains the field
+        if self.channel_list is None and "channel_list" in self.model_fields_set:
+            _dict['channelList'] = None
 
         # set to None if html_template (nullable) is None
         # and model_fields_set contains the field
@@ -100,6 +114,7 @@ class DownloadChatsParams(BaseModel):
 
         _obj = cls.model_validate({
             "channelIds": obj.get("channelIds"),
+            "channelList": [Channel.from_dict(_item) for _item in obj["channelList"]] if obj.get("channelList") is not None else None,
             "downloadFileType": obj.get("downloadFileType"),
             "htmlTemplate": obj.get("htmlTemplate")
         })

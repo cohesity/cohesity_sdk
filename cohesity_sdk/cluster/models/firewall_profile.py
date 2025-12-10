@@ -17,10 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.cluster.models.attachment import Attachment
-from cohesity_sdk.cluster.models.gateway_params import GatewayParams
 from typing import Set
 from typing_extensions import Self
 
@@ -28,10 +26,21 @@ class FirewallProfile(BaseModel):
     """
     Specifies the firewall profile & their attachments.
     """ # noqa: E501
-    attachments: Optional[List[Attachment]] = Field(default=None, description="Specifies the profile attachments.")
-    gateway_params: Optional[List[GatewayParams]] = Field(default=None, description="Specifies the port & direction settings.", alias="gatewayParams")
+    directions: Optional[List[StrictStr]] = Field(default=None, description="Specifies the packet direction settings.")
     name: Optional[StrictStr] = Field(description="Specifies the name of the profile.")
-    __properties: ClassVar[List[str]] = ["attachments", "gatewayParams", "name"]
+    ports: Optional[List[StrictStr]] = Field(default=None, description="Specifies the port along with the protocol settings. For example 22/tcp, 68/udp.")
+    __properties: ClassVar[List[str]] = ["directions", "name", "ports"]
+
+    @field_validator('directions')
+    def directions_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        for i in value:
+            if i not in set(['INPUT', 'OUTPUT', 'NAT_INPUT']):
+                raise ValueError("each list item must be one of ('INPUT', 'OUTPUT', 'NAT_INPUT')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,20 +81,6 @@ class FirewallProfile(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in attachments (list)
-        _items = []
-        if self.attachments:
-            for _item_attachments in self.attachments:
-                if _item_attachments:
-                    _items.append(_item_attachments.to_dict())
-            _dict['attachments'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in gateway_params (list)
-        _items = []
-        if self.gateway_params:
-            for _item_gateway_params in self.gateway_params:
-                if _item_gateway_params:
-                    _items.append(_item_gateway_params.to_dict())
-            _dict['gatewayParams'] = _items
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
@@ -103,9 +98,9 @@ class FirewallProfile(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "attachments": [Attachment.from_dict(_item) for _item in obj["attachments"]] if obj.get("attachments") is not None else None,
-            "gatewayParams": [GatewayParams.from_dict(_item) for _item in obj["gatewayParams"]] if obj.get("gatewayParams") is not None else None,
-            "name": obj.get("name")
+            "directions": obj.get("directions"),
+            "name": obj.get("name"),
+            "ports": obj.get("ports")
         })
         return _obj
 

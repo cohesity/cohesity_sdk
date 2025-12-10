@@ -17,9 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.kubernetes_filter_params import KubernetesFilterParams
 from cohesity_sdk.helios.models.kubernetes_pvc_info import KubernetesPvcInfo
+from cohesity_sdk.helios.models.quiesce_group import QuiesceGroup
 from typing import Set
 from typing_extensions import Self
 
@@ -27,11 +29,19 @@ class KubernetesProtectionGroupObjectParams(BaseModel):
     """
     Specifies the object parameters to create Kubernetes Protection Group.
     """ # noqa: E501
+    backup_only_pvc: Optional[StrictBool] = Field(default=None, description="Specifies whether to backup pvc and related resources only", alias="backupOnlyPvc")
+    exclude_object_ids: Optional[List[StrictInt]] = Field(default=None, description="Specifies the object ids to be excluded for protection. This is supported for object protection on helios only", alias="excludeObjectIds")
+    exclude_params: Optional[KubernetesFilterParams] = Field(default=None, alias="excludeParams")
     exclude_pvcs: Optional[List[Optional[KubernetesPvcInfo]]] = Field(default=None, description="Specifies a list of pvcs to exclude from being protected. This is only applicable to kubernetes.", alias="excludePvcs")
+    excluded_resources: Optional[List[StrictStr]] = Field(default=None, description="Specifies the resources to exclude during backup", alias="excludedResources")
+    fail_backup_on_hook_failure: Optional[StrictBool] = Field(default=None, description="If true, fail backups when quiesce hook executions fail.", alias="failBackupOnHookFailure")
     id: StrictInt = Field(description="Specifies the id of the object.")
+    include_params: Optional[KubernetesFilterParams] = Field(default=None, alias="includeParams")
     include_pvcs: Optional[List[Optional[KubernetesPvcInfo]]] = Field(default=None, description="Specifies a list of Pvcs to include in the protection. This is only applicable to kubernetes.", alias="includePvcs")
+    included_resources: Optional[List[StrictStr]] = Field(default=None, description="Specifies the resources to include during backup", alias="includedResources")
     name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the object.")
-    __properties: ClassVar[List[str]] = ["excludePvcs", "id", "includePvcs", "name"]
+    quiesce_groups: Optional[List[QuiesceGroup]] = Field(default=None, description="Specifies the quiescing rules are which specified by the user for doing backup.", alias="quiesceGroups")
+    __properties: ClassVar[List[str]] = ["backupOnlyPvc", "excludeObjectIds", "excludeParams", "excludePvcs", "excludedResources", "failBackupOnHookFailure", "id", "includeParams", "includePvcs", "includedResources", "name", "quiesceGroups"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -74,6 +84,9 @@ class KubernetesProtectionGroupObjectParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of exclude_params
+        if self.exclude_params:
+            _dict['excludeParams'] = self.exclude_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in exclude_pvcs (list)
         _items = []
         if self.exclude_pvcs:
@@ -81,6 +94,9 @@ class KubernetesProtectionGroupObjectParams(BaseModel):
                 if _item_exclude_pvcs:
                     _items.append(_item_exclude_pvcs.to_dict())
             _dict['excludePvcs'] = _items
+        # override the default output from pydantic by calling `to_dict()` of include_params
+        if self.include_params:
+            _dict['includeParams'] = self.include_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in include_pvcs (list)
         _items = []
         if self.include_pvcs:
@@ -88,20 +104,67 @@ class KubernetesProtectionGroupObjectParams(BaseModel):
                 if _item_include_pvcs:
                     _items.append(_item_include_pvcs.to_dict())
             _dict['includePvcs'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in quiesce_groups (list)
+        _items = []
+        if self.quiesce_groups:
+            for _item_quiesce_groups in self.quiesce_groups:
+                if _item_quiesce_groups:
+                    _items.append(_item_quiesce_groups.to_dict())
+            _dict['quiesceGroups'] = _items
+        # set to None if backup_only_pvc (nullable) is None
+        # and model_fields_set contains the field
+        if self.backup_only_pvc is None and "backup_only_pvc" in self.model_fields_set:
+            _dict['backupOnlyPvc'] = None
+
+        # set to None if exclude_object_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.exclude_object_ids is None and "exclude_object_ids" in self.model_fields_set:
+            _dict['excludeObjectIds'] = None
+
+        # set to None if exclude_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.exclude_params is None and "exclude_params" in self.model_fields_set:
+            _dict['excludeParams'] = None
+
         # set to None if exclude_pvcs (nullable) is None
         # and model_fields_set contains the field
         if self.exclude_pvcs is None and "exclude_pvcs" in self.model_fields_set:
             _dict['excludePvcs'] = None
+
+        # set to None if excluded_resources (nullable) is None
+        # and model_fields_set contains the field
+        if self.excluded_resources is None and "excluded_resources" in self.model_fields_set:
+            _dict['excludedResources'] = None
+
+        # set to None if fail_backup_on_hook_failure (nullable) is None
+        # and model_fields_set contains the field
+        if self.fail_backup_on_hook_failure is None and "fail_backup_on_hook_failure" in self.model_fields_set:
+            _dict['failBackupOnHookFailure'] = None
+
+        # set to None if include_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.include_params is None and "include_params" in self.model_fields_set:
+            _dict['includeParams'] = None
 
         # set to None if include_pvcs (nullable) is None
         # and model_fields_set contains the field
         if self.include_pvcs is None and "include_pvcs" in self.model_fields_set:
             _dict['includePvcs'] = None
 
+        # set to None if included_resources (nullable) is None
+        # and model_fields_set contains the field
+        if self.included_resources is None and "included_resources" in self.model_fields_set:
+            _dict['includedResources'] = None
+
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
+
+        # set to None if quiesce_groups (nullable) is None
+        # and model_fields_set contains the field
+        if self.quiesce_groups is None and "quiesce_groups" in self.model_fields_set:
+            _dict['quiesceGroups'] = None
 
         return _dict
 
@@ -115,10 +178,18 @@ class KubernetesProtectionGroupObjectParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "backupOnlyPvc": obj.get("backupOnlyPvc"),
+            "excludeObjectIds": obj.get("excludeObjectIds"),
+            "excludeParams": KubernetesFilterParams.from_dict(obj["excludeParams"]) if obj.get("excludeParams") is not None else None,
             "excludePvcs": [KubernetesPvcInfo.from_dict(_item) for _item in obj["excludePvcs"]] if obj.get("excludePvcs") is not None else None,
+            "excludedResources": obj.get("excludedResources"),
+            "failBackupOnHookFailure": obj.get("failBackupOnHookFailure"),
             "id": obj.get("id"),
+            "includeParams": KubernetesFilterParams.from_dict(obj["includeParams"]) if obj.get("includeParams") is not None else None,
             "includePvcs": [KubernetesPvcInfo.from_dict(_item) for _item in obj["includePvcs"]] if obj.get("includePvcs") is not None else None,
-            "name": obj.get("name")
+            "includedResources": obj.get("includedResources"),
+            "name": obj.get("name"),
+            "quiesceGroups": [QuiesceGroup.from_dict(_item) for _item in obj["quiesceGroups"]] if obj.get("quiesceGroups") is not None else None
         })
         return _obj
 

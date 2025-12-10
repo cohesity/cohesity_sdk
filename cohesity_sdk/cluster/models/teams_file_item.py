@@ -38,8 +38,8 @@ class TeamsFileItem(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['File', 'Directory', 'Symlink']):
-            raise ValueError("must be one of enum values ('File', 'Directory', 'Symlink')")
+        if value not in set(['File', 'Directory', 'Symlink', 'OneNoteNotebook']):
+            raise ValueError("must be one of enum values ('File', 'Directory', 'Symlink', 'OneNoteNotebook')")
         return value
 
     model_config = ConfigDict(

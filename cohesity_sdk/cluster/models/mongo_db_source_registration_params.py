@@ -34,9 +34,10 @@ class MongoDBSourceRegistrationParams(BaseModel):
     password: Optional[StrictStr] = Field(default=None, description="Specifies the password for the MongoDB cluster. Should be set if 'authType' is 'LDAP' or 'SCRAM'.")
     principal: Optional[StrictStr] = Field(default=None, description="Specifies the principal name of the MongoDB cluster. Should be set if 'authType' is 'KERBEROS'.")
     secondary_node_tag: Optional[StrictStr] = Field(default=None, description="MongoDB Secondary node tag. Required only if 'useSecondaryForBackup' is true.The system will use this to identify the secondary nodes for reading backup data.", alias="secondaryNodeTag")
+    use_fixed_node_for_backup: StrictBool = Field(description="Set this to true if you want the system to peform backups from fixed node.", alias="useFixedNodeForBackup")
     use_secondary_for_backup: StrictBool = Field(description="Set this to true if you want the system to peform backups from secondary nodes.", alias="useSecondaryForBackup")
     username: Optional[StrictStr] = Field(default=None, description="Specifies the username of the MongoDB cluster. Should be set if 'authType' is 'LDAP' or 'SCRAM'.")
-    __properties: ClassVar[List[str]] = ["authType", "authenticatingDatabase", "hosts", "isSslRequired", "password", "principal", "secondaryNodeTag", "useSecondaryForBackup", "username"]
+    __properties: ClassVar[List[str]] = ["authType", "authenticatingDatabase", "hosts", "isSslRequired", "password", "principal", "secondaryNodeTag", "useFixedNodeForBackup", "useSecondaryForBackup", "username"]
 
     @field_validator('auth_type')
     def auth_type_validate_enum(cls, value):
@@ -131,6 +132,7 @@ class MongoDBSourceRegistrationParams(BaseModel):
             "password": obj.get("password"),
             "principal": obj.get("principal"),
             "secondaryNodeTag": obj.get("secondaryNodeTag"),
+            "useFixedNodeForBackup": obj.get("useFixedNodeForBackup"),
             "useSecondaryForBackup": obj.get("useSecondaryForBackup"),
             "username": obj.get("username")
         })

@@ -56,7 +56,7 @@ class KeystoneApi:
     ) -> Keystone:
         """Create a Keystone configuration.
 
-        Create a Keystone configuration.
+        **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Create a Keystone configuration.
 
         :param body: Specifies the paremters to create a Keystone configuration. (required)
         :type body: Keystone
@@ -123,7 +123,7 @@ class KeystoneApi:
     ) -> ApiResponse[Keystone]:
         """Create a Keystone configuration.
 
-        Create a Keystone configuration.
+        **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Create a Keystone configuration.
 
         :param body: Specifies the paremters to create a Keystone configuration. (required)
         :type body: Keystone
@@ -190,7 +190,7 @@ class KeystoneApi:
     ) -> RESTResponseType:
         """Create a Keystone configuration.
 
-        Create a Keystone configuration.
+        **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Create a Keystone configuration.
 
         :param body: Specifies the paremters to create a Keystone configuration. (required)
         :type body: Keystone
@@ -333,7 +333,7 @@ class KeystoneApi:
     ) -> None:
         """Delete a Keystone configuration.
 
-        Delete a Keystone configuration.
+        **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Delete a Keystone configuration.
 
         :param id: Specifies the Keystone id. (required)
         :type id: int
@@ -404,7 +404,7 @@ class KeystoneApi:
     ) -> ApiResponse[None]:
         """Delete a Keystone configuration.
 
-        Delete a Keystone configuration.
+        **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Delete a Keystone configuration.
 
         :param id: Specifies the Keystone id. (required)
         :type id: int
@@ -475,7 +475,7 @@ class KeystoneApi:
     ) -> RESTResponseType:
         """Delete a Keystone configuration.
 
-        Delete a Keystone configuration.
+        **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Delete a Keystone configuration.
 
         :param id: Specifies the Keystone id. (required)
         :type id: int
@@ -612,7 +612,7 @@ class KeystoneApi:
     ) -> Keystones:
         """Get Keystones.
 
-        Get Keystones.
+        **Privileges:** ```KEYSTONE_VIEW``` <br><br>Get Keystones.
 
         :param names: Specifies a list of Keystone names.
         :type names: List[str]
@@ -687,7 +687,7 @@ class KeystoneApi:
     ) -> ApiResponse[Keystones]:
         """Get Keystones.
 
-        Get Keystones.
+        **Privileges:** ```KEYSTONE_VIEW``` <br><br>Get Keystones.
 
         :param names: Specifies a list of Keystone names.
         :type names: List[str]
@@ -762,7 +762,7 @@ class KeystoneApi:
     ) -> RESTResponseType:
         """Get Keystones.
 
-        Get Keystones.
+        **Privileges:** ```KEYSTONE_VIEW``` <br><br>Get Keystones.
 
         :param names: Specifies a list of Keystone names.
         :type names: List[str]
@@ -911,7 +911,7 @@ class KeystoneApi:
     ) -> Keystone:
         """Get a Keystone by its id.
 
-        Get a Keystone by its id.
+        **Privileges:** ```KEYSTONE_VIEW``` <br><br>Get a Keystone by its id.
 
         :param id: Specifies the Keystone id. (required)
         :type id: int
@@ -978,7 +978,7 @@ class KeystoneApi:
     ) -> ApiResponse[Keystone]:
         """Get a Keystone by its id.
 
-        Get a Keystone by its id.
+        **Privileges:** ```KEYSTONE_VIEW``` <br><br>Get a Keystone by its id.
 
         :param id: Specifies the Keystone id. (required)
         :type id: int
@@ -1045,7 +1045,7 @@ class KeystoneApi:
     ) -> RESTResponseType:
         """Get a Keystone by its id.
 
-        Get a Keystone by its id.
+        **Privileges:** ```KEYSTONE_VIEW``` <br><br>Get a Keystone by its id.
 
         :param id: Specifies the Keystone id. (required)
         :type id: int
@@ -1175,7 +1175,7 @@ class KeystoneApi:
     ) -> Keystone:
         """Update a Keystone configuration.
 
-        Update a Keystone configuration.
+        **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Update a Keystone configuration.
 
         :param id: Specifies the Keystone id. (required)
         :type id: int
@@ -1246,7 +1246,7 @@ class KeystoneApi:
     ) -> ApiResponse[Keystone]:
         """Update a Keystone configuration.
 
-        Update a Keystone configuration.
+        **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Update a Keystone configuration.
 
         :param id: Specifies the Keystone id. (required)
         :type id: int
@@ -1317,7 +1317,7 @@ class KeystoneApi:
     ) -> RESTResponseType:
         """Update a Keystone configuration.
 
-        Update a Keystone configuration.
+        **Privileges:** ```KEYSTONE_MODIFY``` <br><br>Update a Keystone configuration.
 
         :param id: Specifies the Keystone id. (required)
         :type id: int

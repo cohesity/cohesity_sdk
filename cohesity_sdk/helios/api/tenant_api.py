@@ -63,7 +63,7 @@ class TenantApi:
         self,
         id: Optional[Annotated[str, Field(min_length=2, strict=True)]],
         body: AssignClusterToTenantParamsBody,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -84,7 +84,7 @@ class TenantApi:
         :type id: str
         :param body: (required)
         :type body: AssignClusterToTenantParamsBody
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -137,7 +137,7 @@ class TenantApi:
         self,
         id: Optional[Annotated[str, Field(min_length=2, strict=True)]],
         body: AssignClusterToTenantParamsBody,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -158,7 +158,7 @@ class TenantApi:
         :type id: str
         :param body: (required)
         :type body: AssignClusterToTenantParamsBody
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -211,7 +211,7 @@ class TenantApi:
         self,
         id: Optional[Annotated[str, Field(min_length=2, strict=True)]],
         body: AssignClusterToTenantParamsBody,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -232,7 +232,7 @@ class TenantApi:
         :type id: str
         :param body: (required)
         :type body: AssignClusterToTenantParamsBody
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -364,8 +364,8 @@ class TenantApi:
         self,
         id: Annotated[str, Field(strict=True, description="The Tenant id.")],
         body: TenantAssignmentsParams,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -387,9 +387,9 @@ class TenantApi:
         :type id: str
         :param body: (required)
         :type body: TenantAssignmentsParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -443,8 +443,8 @@ class TenantApi:
         self,
         id: Annotated[str, Field(strict=True, description="The Tenant id.")],
         body: TenantAssignmentsParams,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -466,9 +466,9 @@ class TenantApi:
         :type id: str
         :param body: (required)
         :type body: TenantAssignmentsParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -522,8 +522,8 @@ class TenantApi:
         self,
         id: Annotated[str, Field(strict=True, description="The Tenant id.")],
         body: TenantAssignmentsParams,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -545,9 +545,9 @@ class TenantApi:
         :type id: str
         :param body: (required)
         :type body: TenantAssignmentsParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -683,7 +683,7 @@ class TenantApi:
         self,
         id: Optional[Annotated[str, Field(min_length=2, strict=True)]],
         body: ConfirmTenantParamsBody,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -705,7 +705,7 @@ class TenantApi:
         :type id: str
         :param body: (required)
         :type body: ConfirmTenantParamsBody
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -758,7 +758,7 @@ class TenantApi:
         self,
         id: Optional[Annotated[str, Field(min_length=2, strict=True)]],
         body: ConfirmTenantParamsBody,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -780,7 +780,7 @@ class TenantApi:
         :type id: str
         :param body: (required)
         :type body: ConfirmTenantParamsBody
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -833,7 +833,7 @@ class TenantApi:
         self,
         id: Optional[Annotated[str, Field(min_length=2, strict=True)]],
         body: ConfirmTenantParamsBody,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -855,7 +855,7 @@ class TenantApi:
         :type id: str
         :param body: (required)
         :type body: ConfirmTenantParamsBody
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -986,7 +986,7 @@ class TenantApi:
     def create_helios_tenant(
         self,
         body: CreateTenantParams,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1005,7 +1005,7 @@ class TenantApi:
 
         :param body: (required)
         :type body: CreateTenantParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1056,7 +1056,7 @@ class TenantApi:
     def create_helios_tenant_with_http_info(
         self,
         body: CreateTenantParams,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1075,7 +1075,7 @@ class TenantApi:
 
         :param body: (required)
         :type body: CreateTenantParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1126,7 +1126,7 @@ class TenantApi:
     def create_helios_tenant_without_preload_content(
         self,
         body: CreateTenantParams,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1145,7 +1145,7 @@ class TenantApi:
 
         :param body: (required)
         :type body: CreateTenantParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1272,8 +1272,8 @@ class TenantApi:
     def create_tenant(
         self,
         body: CreateTenantRequest,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1292,9 +1292,9 @@ class TenantApi:
 
         :param body: (required)
         :type body: CreateTenantRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1346,8 +1346,8 @@ class TenantApi:
     def create_tenant_with_http_info(
         self,
         body: CreateTenantRequest,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1366,9 +1366,9 @@ class TenantApi:
 
         :param body: (required)
         :type body: CreateTenantRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1420,8 +1420,8 @@ class TenantApi:
     def create_tenant_without_preload_content(
         self,
         body: CreateTenantRequest,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1440,9 +1440,9 @@ class TenantApi:
 
         :param body: (required)
         :type body: CreateTenantRequest
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1573,8 +1573,8 @@ class TenantApi:
     def delete_helios_tenant(
         self,
         id: Annotated[str, Field(min_length=2, strict=True)],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         delete_cluster_tenants: Annotated[Optional[StrictBool], Field(description="Whether or not to delete the tenants on the cluster, default is true.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1593,10 +1593,10 @@ class TenantApi:
 
         :param id: (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param delete_cluster_tenants: Whether or not to delete the tenants on the cluster, default is true.
         :type delete_cluster_tenants: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1621,8 +1621,8 @@ class TenantApi:
 
         _param = self._delete_helios_tenant_serialize(
             id=id,
-            region_id=region_id,
             delete_cluster_tenants=delete_cluster_tenants,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1647,8 +1647,8 @@ class TenantApi:
     def delete_helios_tenant_with_http_info(
         self,
         id: Annotated[str, Field(min_length=2, strict=True)],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         delete_cluster_tenants: Annotated[Optional[StrictBool], Field(description="Whether or not to delete the tenants on the cluster, default is true.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1667,10 +1667,10 @@ class TenantApi:
 
         :param id: (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param delete_cluster_tenants: Whether or not to delete the tenants on the cluster, default is true.
         :type delete_cluster_tenants: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1695,8 +1695,8 @@ class TenantApi:
 
         _param = self._delete_helios_tenant_serialize(
             id=id,
-            region_id=region_id,
             delete_cluster_tenants=delete_cluster_tenants,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1721,8 +1721,8 @@ class TenantApi:
     def delete_helios_tenant_without_preload_content(
         self,
         id: Annotated[str, Field(min_length=2, strict=True)],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         delete_cluster_tenants: Annotated[Optional[StrictBool], Field(description="Whether or not to delete the tenants on the cluster, default is true.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1741,10 +1741,10 @@ class TenantApi:
 
         :param id: (required)
         :type id: str
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param delete_cluster_tenants: Whether or not to delete the tenants on the cluster, default is true.
         :type delete_cluster_tenants: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1769,8 +1769,8 @@ class TenantApi:
 
         _param = self._delete_helios_tenant_serialize(
             id=id,
-            region_id=region_id,
             delete_cluster_tenants=delete_cluster_tenants,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1790,8 +1790,8 @@ class TenantApi:
     def _delete_helios_tenant_serialize(
         self,
         id,
-        region_id,
         delete_cluster_tenants,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1863,8 +1863,8 @@ class TenantApi:
     def delete_tenant(
         self,
         id: Annotated[str, Field(strict=True, description="The Tenant id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1883,9 +1883,9 @@ class TenantApi:
 
         :param id: The Tenant id. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1937,8 +1937,8 @@ class TenantApi:
     def delete_tenant_with_http_info(
         self,
         id: Annotated[str, Field(strict=True, description="The Tenant id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1957,9 +1957,9 @@ class TenantApi:
 
         :param id: The Tenant id. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2011,8 +2011,8 @@ class TenantApi:
     def delete_tenant_without_preload_content(
         self,
         id: Annotated[str, Field(strict=True, description="The Tenant id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2031,9 +2031,9 @@ class TenantApi:
 
         :param id: The Tenant id. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2150,7 +2150,7 @@ class TenantApi:
     @validate_call
     def get_account_tenant_config(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2168,7 +2168,7 @@ class TenantApi:
 
         Get Tenant related configurations for the account.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2217,7 +2217,7 @@ class TenantApi:
     @validate_call
     def get_account_tenant_config_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2235,7 +2235,7 @@ class TenantApi:
 
         Get Tenant related configurations for the account.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2284,7 +2284,7 @@ class TenantApi:
     @validate_call
     def get_account_tenant_config_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2302,7 +2302,7 @@ class TenantApi:
 
         Get Tenant related configurations for the account.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2412,8 +2412,8 @@ class TenantApi:
     def get_assigned_properties_for_tenant(
         self,
         id: Annotated[str, Field(strict=True, description="The Tenant id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2433,9 +2433,9 @@ class TenantApi:
 
         :param id: The Tenant id. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2487,8 +2487,8 @@ class TenantApi:
     def get_assigned_properties_for_tenant_with_http_info(
         self,
         id: Annotated[str, Field(strict=True, description="The Tenant id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2508,9 +2508,9 @@ class TenantApi:
 
         :param id: The Tenant id. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2562,8 +2562,8 @@ class TenantApi:
     def get_assigned_properties_for_tenant_without_preload_content(
         self,
         id: Annotated[str, Field(strict=True, description="The Tenant id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2583,9 +2583,9 @@ class TenantApi:
 
         :param id: The Tenant id. (required)
         :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2702,7 +2702,7 @@ class TenantApi:
     @validate_call
     def get_clusters_tenant_config(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2720,7 +2720,7 @@ class TenantApi:
 
         Get Tenant related configurations for all the clusters.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2769,7 +2769,7 @@ class TenantApi:
     @validate_call
     def get_clusters_tenant_config_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2787,7 +2787,7 @@ class TenantApi:
 
         Get Tenant related configurations for all the clusters.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2836,7 +2836,7 @@ class TenantApi:
     @validate_call
     def get_clusters_tenant_config_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2854,7 +2854,7 @@ class TenantApi:
 
         Get Tenant related configurations for all the clusters.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2963,12 +2963,13 @@ class TenantApi:
     @validate_call
     def get_helios_tenants(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         cluster_identifiers: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies the list of cluster identifiers. The format is clusterId:clusterIncarnationId.")] = None,
         tenant_ids: Annotated[Optional[List[Optional[Annotated[str, Field(min_length=2, strict=True)]]]], Field(description="List of Tenant Ids to filter from.")] = None,
         statuses: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Status of the tenant on Helios. Active and Inactive tenants are returned if this field is not specified. Also, if specified, only helios managed tenants are returned.")] = None,
         managed_on_helios: Annotated[Optional[StrictBool], Field(description="Whether managed on helios or not.")] = None,
-        include_deleted_systems: Annotated[Optional[StrictBool], Field(description="Whether tenants deleted on clusters should be included.")] = None,
+        include_systems: Annotated[Optional[StrictBool], Field(description="Whether tenants clusters should be included or not. If this param is set to false, includeDeletedSystems is ignored.")] = None,
+        include_deleted_systems: Annotated[Optional[StrictBool], Field(description="Whether tenants deleted on clusters should be included. This is applicable only when includeSystems is set to true.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2985,8 +2986,6 @@ class TenantApi:
         """Get a list of tenants.
 
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param cluster_identifiers: Specifies the list of cluster identifiers. The format is clusterId:clusterIncarnationId.
         :type cluster_identifiers: List[str]
         :param tenant_ids: List of Tenant Ids to filter from.
@@ -2995,8 +2994,12 @@ class TenantApi:
         :type statuses: List[Optional[str]]
         :param managed_on_helios: Whether managed on helios or not.
         :type managed_on_helios: bool
-        :param include_deleted_systems: Whether tenants deleted on clusters should be included.
+        :param include_systems: Whether tenants clusters should be included or not. If this param is set to false, includeDeletedSystems is ignored.
+        :type include_systems: bool
+        :param include_deleted_systems: Whether tenants deleted on clusters should be included. This is applicable only when includeSystems is set to true.
         :type include_deleted_systems: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3020,12 +3023,13 @@ class TenantApi:
         """ # noqa: E501
 
         _param = self._get_helios_tenants_serialize(
-            region_id=region_id,
             cluster_identifiers=cluster_identifiers,
             tenant_ids=tenant_ids,
             statuses=statuses,
             managed_on_helios=managed_on_helios,
+            include_systems=include_systems,
             include_deleted_systems=include_deleted_systems,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3049,12 +3053,13 @@ class TenantApi:
     @validate_call
     def get_helios_tenants_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         cluster_identifiers: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies the list of cluster identifiers. The format is clusterId:clusterIncarnationId.")] = None,
         tenant_ids: Annotated[Optional[List[Optional[Annotated[str, Field(min_length=2, strict=True)]]]], Field(description="List of Tenant Ids to filter from.")] = None,
         statuses: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Status of the tenant on Helios. Active and Inactive tenants are returned if this field is not specified. Also, if specified, only helios managed tenants are returned.")] = None,
         managed_on_helios: Annotated[Optional[StrictBool], Field(description="Whether managed on helios or not.")] = None,
-        include_deleted_systems: Annotated[Optional[StrictBool], Field(description="Whether tenants deleted on clusters should be included.")] = None,
+        include_systems: Annotated[Optional[StrictBool], Field(description="Whether tenants clusters should be included or not. If this param is set to false, includeDeletedSystems is ignored.")] = None,
+        include_deleted_systems: Annotated[Optional[StrictBool], Field(description="Whether tenants deleted on clusters should be included. This is applicable only when includeSystems is set to true.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3071,8 +3076,6 @@ class TenantApi:
         """Get a list of tenants.
 
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param cluster_identifiers: Specifies the list of cluster identifiers. The format is clusterId:clusterIncarnationId.
         :type cluster_identifiers: List[str]
         :param tenant_ids: List of Tenant Ids to filter from.
@@ -3081,8 +3084,12 @@ class TenantApi:
         :type statuses: List[Optional[str]]
         :param managed_on_helios: Whether managed on helios or not.
         :type managed_on_helios: bool
-        :param include_deleted_systems: Whether tenants deleted on clusters should be included.
+        :param include_systems: Whether tenants clusters should be included or not. If this param is set to false, includeDeletedSystems is ignored.
+        :type include_systems: bool
+        :param include_deleted_systems: Whether tenants deleted on clusters should be included. This is applicable only when includeSystems is set to true.
         :type include_deleted_systems: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3106,12 +3113,13 @@ class TenantApi:
         """ # noqa: E501
 
         _param = self._get_helios_tenants_serialize(
-            region_id=region_id,
             cluster_identifiers=cluster_identifiers,
             tenant_ids=tenant_ids,
             statuses=statuses,
             managed_on_helios=managed_on_helios,
+            include_systems=include_systems,
             include_deleted_systems=include_deleted_systems,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3135,12 +3143,13 @@ class TenantApi:
     @validate_call
     def get_helios_tenants_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         cluster_identifiers: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="Specifies the list of cluster identifiers. The format is clusterId:clusterIncarnationId.")] = None,
         tenant_ids: Annotated[Optional[List[Optional[Annotated[str, Field(min_length=2, strict=True)]]]], Field(description="List of Tenant Ids to filter from.")] = None,
         statuses: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Status of the tenant on Helios. Active and Inactive tenants are returned if this field is not specified. Also, if specified, only helios managed tenants are returned.")] = None,
         managed_on_helios: Annotated[Optional[StrictBool], Field(description="Whether managed on helios or not.")] = None,
-        include_deleted_systems: Annotated[Optional[StrictBool], Field(description="Whether tenants deleted on clusters should be included.")] = None,
+        include_systems: Annotated[Optional[StrictBool], Field(description="Whether tenants clusters should be included or not. If this param is set to false, includeDeletedSystems is ignored.")] = None,
+        include_deleted_systems: Annotated[Optional[StrictBool], Field(description="Whether tenants deleted on clusters should be included. This is applicable only when includeSystems is set to true.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3157,8 +3166,6 @@ class TenantApi:
         """Get a list of tenants.
 
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param cluster_identifiers: Specifies the list of cluster identifiers. The format is clusterId:clusterIncarnationId.
         :type cluster_identifiers: List[str]
         :param tenant_ids: List of Tenant Ids to filter from.
@@ -3167,8 +3174,12 @@ class TenantApi:
         :type statuses: List[Optional[str]]
         :param managed_on_helios: Whether managed on helios or not.
         :type managed_on_helios: bool
-        :param include_deleted_systems: Whether tenants deleted on clusters should be included.
+        :param include_systems: Whether tenants clusters should be included or not. If this param is set to false, includeDeletedSystems is ignored.
+        :type include_systems: bool
+        :param include_deleted_systems: Whether tenants deleted on clusters should be included. This is applicable only when includeSystems is set to true.
         :type include_deleted_systems: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3192,12 +3203,13 @@ class TenantApi:
         """ # noqa: E501
 
         _param = self._get_helios_tenants_serialize(
-            region_id=region_id,
             cluster_identifiers=cluster_identifiers,
             tenant_ids=tenant_ids,
             statuses=statuses,
             managed_on_helios=managed_on_helios,
+            include_systems=include_systems,
             include_deleted_systems=include_deleted_systems,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3216,12 +3228,13 @@ class TenantApi:
 
     def _get_helios_tenants_serialize(
         self,
-        region_id,
         cluster_identifiers,
         tenant_ids,
         statuses,
         managed_on_helios,
+        include_systems,
         include_deleted_systems,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -3262,6 +3275,10 @@ class TenantApi:
         if managed_on_helios is not None:
             
             _query_params.append(('managedOnHelios', managed_on_helios))
+            
+        if include_systems is not None:
+            
+            _query_params.append(('includeSystems', include_systems))
             
         if include_deleted_systems is not None:
             
@@ -3309,8 +3326,8 @@ class TenantApi:
     @validate_call
     def get_on_prem_tenant_config(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3328,9 +3345,9 @@ class TenantApi:
 
         Get Tenant related configurations for the cluster.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3380,8 +3397,8 @@ class TenantApi:
     @validate_call
     def get_on_prem_tenant_config_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3399,9 +3416,9 @@ class TenantApi:
 
         Get Tenant related configurations for the cluster.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3451,8 +3468,8 @@ class TenantApi:
     @validate_call
     def get_on_prem_tenant_config_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3470,9 +3487,9 @@ class TenantApi:
 
         Get Tenant related configurations for the cluster.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3583,299 +3600,11 @@ class TenantApi:
 
 
     @validate_call
-    def get_tenant_by_id(
-        self,
-        id: Annotated[str, Field(strict=True, description="The Tenant id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> TenantInfo:
-        """Get Tenant by ID.
-
-
-        :param id: The Tenant id. (required)
-        :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_tenant_by_id_serialize(
-            id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TenantInfo",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def get_tenant_by_id_with_http_info(
-        self,
-        id: Annotated[str, Field(strict=True, description="The Tenant id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[TenantInfo]:
-        """Get Tenant by ID.
-
-
-        :param id: The Tenant id. (required)
-        :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_tenant_by_id_serialize(
-            id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TenantInfo",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def get_tenant_by_id_without_preload_content(
-        self,
-        id: Annotated[str, Field(strict=True, description="The Tenant id.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Get Tenant by ID.
-
-
-        :param id: The Tenant id. (required)
-        :type id: str
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._get_tenant_by_id_serialize(
-            id=id,
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TenantInfo",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _get_tenant_by_id_serialize(
-        self,
-        id,
-        access_cluster_id,
-        region_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if id is not None:
-            _path_params['id'] = id
-        # process the query parameters
-        # process the header parameters
-        if access_cluster_id is not None:
-            _header_params['accessClusterId'] = access_cluster_id
-        if region_id is not None:
-            _header_params['regionId'] = region_id
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'APIKeyHeader'
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/tenants/{id}',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
     def get_tenant_stats(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         tenant_ids: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="List of Tenant Ids to filter from.")] = None,
         include_deleted: Annotated[Optional[StrictBool], Field(description="If deleted tenants stats need to be included.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3893,12 +3622,12 @@ class TenantApi:
 
         Get Statistics on Sources and Storage Domains assigned to the Tenants belonging to an account.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param tenant_ids: List of Tenant Ids to filter from.
         :type tenant_ids: List[str]
         :param include_deleted: If deleted tenants stats need to be included.
         :type include_deleted: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3922,9 +3651,9 @@ class TenantApi:
         """ # noqa: E501
 
         _param = self._get_tenant_stats_serialize(
-            region_id=region_id,
             tenant_ids=tenant_ids,
             include_deleted=include_deleted,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3948,9 +3677,9 @@ class TenantApi:
     @validate_call
     def get_tenant_stats_with_http_info(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         tenant_ids: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="List of Tenant Ids to filter from.")] = None,
         include_deleted: Annotated[Optional[StrictBool], Field(description="If deleted tenants stats need to be included.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3968,12 +3697,12 @@ class TenantApi:
 
         Get Statistics on Sources and Storage Domains assigned to the Tenants belonging to an account.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param tenant_ids: List of Tenant Ids to filter from.
         :type tenant_ids: List[str]
         :param include_deleted: If deleted tenants stats need to be included.
         :type include_deleted: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3997,9 +3726,9 @@ class TenantApi:
         """ # noqa: E501
 
         _param = self._get_tenant_stats_serialize(
-            region_id=region_id,
             tenant_ids=tenant_ids,
             include_deleted=include_deleted,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4023,9 +3752,9 @@ class TenantApi:
     @validate_call
     def get_tenant_stats_without_preload_content(
         self,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         tenant_ids: Annotated[Optional[List[Annotated[str, Field(strict=True)]]], Field(description="List of Tenant Ids to filter from.")] = None,
         include_deleted: Annotated[Optional[StrictBool], Field(description="If deleted tenants stats need to be included.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4043,12 +3772,12 @@ class TenantApi:
 
         Get Statistics on Sources and Storage Domains assigned to the Tenants belonging to an account.
 
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param tenant_ids: List of Tenant Ids to filter from.
         :type tenant_ids: List[str]
         :param include_deleted: If deleted tenants stats need to be included.
         :type include_deleted: bool
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4072,9 +3801,9 @@ class TenantApi:
         """ # noqa: E501
 
         _param = self._get_tenant_stats_serialize(
-            region_id=region_id,
             tenant_ids=tenant_ids,
             include_deleted=include_deleted,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4093,9 +3822,9 @@ class TenantApi:
 
     def _get_tenant_stats_serialize(
         self,
-        region_id,
         tenant_ids,
         include_deleted,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -4169,9 +3898,9 @@ class TenantApi:
     @validate_call
     def get_tenant_swift(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         tenant_id: Annotated[Optional[StrictStr], Field(description="Specifies the tenant Id.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4189,12 +3918,12 @@ class TenantApi:
 
         Get a Swift configuration.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param tenant_id: Specifies the tenant Id.
         :type tenant_id: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4218,9 +3947,9 @@ class TenantApi:
         """ # noqa: E501
 
         _param = self._get_tenant_swift_serialize(
+            tenant_id=tenant_id,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            tenant_id=tenant_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4244,9 +3973,9 @@ class TenantApi:
     @validate_call
     def get_tenant_swift_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         tenant_id: Annotated[Optional[StrictStr], Field(description="Specifies the tenant Id.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4264,12 +3993,12 @@ class TenantApi:
 
         Get a Swift configuration.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param tenant_id: Specifies the tenant Id.
         :type tenant_id: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4293,9 +4022,9 @@ class TenantApi:
         """ # noqa: E501
 
         _param = self._get_tenant_swift_serialize(
+            tenant_id=tenant_id,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            tenant_id=tenant_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4319,9 +4048,9 @@ class TenantApi:
     @validate_call
     def get_tenant_swift_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         tenant_id: Annotated[Optional[StrictStr], Field(description="Specifies the tenant Id.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4339,12 +4068,12 @@ class TenantApi:
 
         Get a Swift configuration.
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param tenant_id: Specifies the tenant Id.
         :type tenant_id: str
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4368,9 +4097,9 @@ class TenantApi:
         """ # noqa: E501
 
         _param = self._get_tenant_swift_serialize(
+            tenant_id=tenant_id,
             access_cluster_id=access_cluster_id,
             region_id=region_id,
-            tenant_id=tenant_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4389,9 +4118,9 @@ class TenantApi:
 
     def _get_tenant_swift_serialize(
         self,
+        tenant_id,
         access_cluster_id,
         region_id,
-        tenant_id,
         _request_auth,
         _content_type,
         _headers,
@@ -4464,7 +4193,7 @@ class TenantApi:
         self,
         id: Annotated[StrictStr, Field(description="The Tenant id.")],
         body: HeliosTenantAssignmentsParams,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4486,7 +4215,7 @@ class TenantApi:
         :type id: str
         :param body: (required)
         :type body: HeliosTenantAssignmentsParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4539,7 +4268,7 @@ class TenantApi:
         self,
         id: Annotated[StrictStr, Field(description="The Tenant id.")],
         body: HeliosTenantAssignmentsParams,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4561,7 +4290,7 @@ class TenantApi:
         :type id: str
         :param body: (required)
         :type body: HeliosTenantAssignmentsParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4614,7 +4343,7 @@ class TenantApi:
         self,
         id: Annotated[StrictStr, Field(description="The Tenant id.")],
         body: HeliosTenantAssignmentsParams,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4636,7 +4365,7 @@ class TenantApi:
         :type id: str
         :param body: (required)
         :type body: HeliosTenantAssignmentsParams
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4766,10 +4495,12 @@ class TenantApi:
     @validate_call
     def list_tenants(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[Optional[StrictStr]]], Field(description="List of tenantIds to filter.")] = None,
         statuses: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by current status of tenant. If left blank, only active and inactive tenants are returned.")] = None,
+        liveness_modes: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by liveness modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.")] = None,
+        ownership_modes: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by ownership modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4786,14 +4517,18 @@ class TenantApi:
         """Get a list of Tenants.
 
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: List of tenantIds to filter.
         :type ids: List[Optional[str]]
         :param statuses: Filter by current status of tenant. If left blank, only active and inactive tenants are returned.
         :type statuses: List[Optional[str]]
+        :param liveness_modes: Filter by liveness modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.
+        :type liveness_modes: List[Optional[str]]
+        :param ownership_modes: Filter by ownership modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.
+        :type ownership_modes: List[Optional[str]]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4817,10 +4552,12 @@ class TenantApi:
         """ # noqa: E501
 
         _param = self._list_tenants_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             statuses=statuses,
+            liveness_modes=liveness_modes,
+            ownership_modes=ownership_modes,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4844,10 +4581,12 @@ class TenantApi:
     @validate_call
     def list_tenants_with_http_info(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[Optional[StrictStr]]], Field(description="List of tenantIds to filter.")] = None,
         statuses: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by current status of tenant. If left blank, only active and inactive tenants are returned.")] = None,
+        liveness_modes: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by liveness modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.")] = None,
+        ownership_modes: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by ownership modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4864,14 +4603,18 @@ class TenantApi:
         """Get a list of Tenants.
 
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: List of tenantIds to filter.
         :type ids: List[Optional[str]]
         :param statuses: Filter by current status of tenant. If left blank, only active and inactive tenants are returned.
         :type statuses: List[Optional[str]]
+        :param liveness_modes: Filter by liveness modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.
+        :type liveness_modes: List[Optional[str]]
+        :param ownership_modes: Filter by ownership modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.
+        :type ownership_modes: List[Optional[str]]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4895,10 +4638,12 @@ class TenantApi:
         """ # noqa: E501
 
         _param = self._list_tenants_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             statuses=statuses,
+            liveness_modes=liveness_modes,
+            ownership_modes=ownership_modes,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4922,10 +4667,12 @@ class TenantApi:
     @validate_call
     def list_tenants_without_preload_content(
         self,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         ids: Annotated[Optional[List[Optional[StrictStr]]], Field(description="List of tenantIds to filter.")] = None,
         statuses: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by current status of tenant. If left blank, only active and inactive tenants are returned.")] = None,
+        liveness_modes: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by liveness modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.")] = None,
+        ownership_modes: Annotated[Optional[List[Optional[StrictStr]]], Field(description="Filter by ownership modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4942,14 +4689,18 @@ class TenantApi:
         """Get a list of Tenants.
 
 
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
-        :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
-        :type region_id: str
         :param ids: List of tenantIds to filter.
         :type ids: List[Optional[str]]
         :param statuses: Filter by current status of tenant. If left blank, only active and inactive tenants are returned.
         :type statuses: List[Optional[str]]
+        :param liveness_modes: Filter by liveness modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.
+        :type liveness_modes: List[Optional[str]]
+        :param ownership_modes: Filter by ownership modes of the tenant. This filter only applies is tenant metadata is added for external vendor such as 'IBM'. In all other cases, the values provided for this filter will be ignored.
+        :type ownership_modes: List[Optional[str]]
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
+        :type access_cluster_id: int
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
+        :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4973,10 +4724,12 @@ class TenantApi:
         """ # noqa: E501
 
         _param = self._list_tenants_serialize(
-            access_cluster_id=access_cluster_id,
-            region_id=region_id,
             ids=ids,
             statuses=statuses,
+            liveness_modes=liveness_modes,
+            ownership_modes=ownership_modes,
+            access_cluster_id=access_cluster_id,
+            region_id=region_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4995,10 +4748,12 @@ class TenantApi:
 
     def _list_tenants_serialize(
         self,
-        access_cluster_id,
-        region_id,
         ids,
         statuses,
+        liveness_modes,
+        ownership_modes,
+        access_cluster_id,
+        region_id,
         _request_auth,
         _content_type,
         _headers,
@@ -5010,6 +4765,8 @@ class TenantApi:
         _collection_formats: Dict[str, str] = {
             'ids': 'csv',
             'statuses': 'csv',
+            'livenessModes': 'csv',
+            'ownershipModes': 'csv',
         }
 
         _path_params: Dict[str, str] = {}
@@ -5030,6 +4787,14 @@ class TenantApi:
         if statuses is not None:
             
             _query_params.append(('statuses', statuses))
+            
+        if liveness_modes is not None:
+            
+            _query_params.append(('livenessModes', liveness_modes))
+            
+        if ownership_modes is not None:
+            
+            _query_params.append(('ownershipModes', ownership_modes))
             
         # process the header parameters
         if access_cluster_id is not None:
@@ -5077,7 +4842,7 @@ class TenantApi:
         self,
         id: Annotated[StrictStr, Field(description="The Tenant id.")],
         body: Annotated[TenantActionBody, Field(description="Specifies the parameters to perform an action on a Tenant.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5099,7 +4864,7 @@ class TenantApi:
         :type id: str
         :param body: Specifies the parameters to perform an action on a Tenant. (required)
         :type body: TenantActionBody
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5152,7 +4917,7 @@ class TenantApi:
         self,
         id: Annotated[StrictStr, Field(description="The Tenant id.")],
         body: Annotated[TenantActionBody, Field(description="Specifies the parameters to perform an action on a Tenant.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5174,7 +4939,7 @@ class TenantApi:
         :type id: str
         :param body: Specifies the parameters to perform an action on a Tenant. (required)
         :type body: TenantActionBody
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5227,7 +4992,7 @@ class TenantApi:
         self,
         id: Annotated[StrictStr, Field(description="The Tenant id.")],
         body: Annotated[TenantActionBody, Field(description="Specifies the parameters to perform an action on a Tenant.")],
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5249,7 +5014,7 @@ class TenantApi:
         :type id: str
         :param body: Specifies the parameters to perform an action on a Tenant. (required)
         :type body: TenantActionBody
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5381,8 +5146,8 @@ class TenantApi:
         self,
         id: Annotated[str, Field(strict=True, description="The Tenant id.")],
         body: Annotated[TenantActionBody, Field(description="Specifies the parameters to perform an action on a Tenant.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5404,9 +5169,9 @@ class TenantApi:
         :type id: str
         :param body: Specifies the parameters to perform an action on a Tenant. (required)
         :type body: TenantActionBody
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5460,8 +5225,8 @@ class TenantApi:
         self,
         id: Annotated[str, Field(strict=True, description="The Tenant id.")],
         body: Annotated[TenantActionBody, Field(description="Specifies the parameters to perform an action on a Tenant.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5483,9 +5248,9 @@ class TenantApi:
         :type id: str
         :param body: Specifies the parameters to perform an action on a Tenant. (required)
         :type body: TenantActionBody
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5539,8 +5304,8 @@ class TenantApi:
         self,
         id: Annotated[str, Field(strict=True, description="The Tenant id.")],
         body: Annotated[TenantActionBody, Field(description="Specifies the parameters to perform an action on a Tenant.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5562,9 +5327,9 @@ class TenantApi:
         :type id: str
         :param body: Specifies the parameters to perform an action on a Tenant. (required)
         :type body: TenantActionBody
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5699,8 +5464,8 @@ class TenantApi:
     def register_swift(
         self,
         body: Annotated[RegisterSwiftParams, Field(description="Specifies the parameters to register a Swift service on Keystone server.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5720,9 +5485,9 @@ class TenantApi:
 
         :param body: Specifies the parameters to register a Swift service on Keystone server. (required)
         :type body: RegisterSwiftParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5774,8 +5539,8 @@ class TenantApi:
     def register_swift_with_http_info(
         self,
         body: Annotated[RegisterSwiftParams, Field(description="Specifies the parameters to register a Swift service on Keystone server.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5795,9 +5560,9 @@ class TenantApi:
 
         :param body: Specifies the parameters to register a Swift service on Keystone server. (required)
         :type body: RegisterSwiftParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -5849,8 +5614,8 @@ class TenantApi:
     def register_swift_without_preload_content(
         self,
         body: Annotated[RegisterSwiftParams, Field(description="Specifies the parameters to register a Swift service on Keystone server.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5870,9 +5635,9 @@ class TenantApi:
 
         :param body: Specifies the parameters to register a Swift service on Keystone server. (required)
         :type body: RegisterSwiftParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6003,8 +5768,8 @@ class TenantApi:
     def unregister_swift(
         self,
         body: Annotated[UnregisterSwiftParams, Field(description="Specifies the parameters to unregister a Swift service from Keystone server.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6024,9 +5789,9 @@ class TenantApi:
 
         :param body: Specifies the parameters to unregister a Swift service from Keystone server. (required)
         :type body: UnregisterSwiftParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6078,8 +5843,8 @@ class TenantApi:
     def unregister_swift_with_http_info(
         self,
         body: Annotated[UnregisterSwiftParams, Field(description="Specifies the parameters to unregister a Swift service from Keystone server.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6099,9 +5864,9 @@ class TenantApi:
 
         :param body: Specifies the parameters to unregister a Swift service from Keystone server. (required)
         :type body: UnregisterSwiftParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6153,8 +5918,8 @@ class TenantApi:
     def unregister_swift_without_preload_content(
         self,
         body: Annotated[UnregisterSwiftParams, Field(description="Specifies the parameters to unregister a Swift service from Keystone server.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6174,9 +5939,9 @@ class TenantApi:
 
         :param body: Specifies the parameters to unregister a Swift service from Keystone server. (required)
         :type body: UnregisterSwiftParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6307,7 +6072,7 @@ class TenantApi:
     def update_account_tenant_config(
         self,
         body: TenantConfig,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6327,7 +6092,7 @@ class TenantApi:
 
         :param body: (required)
         :type body: TenantConfig
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6378,7 +6143,7 @@ class TenantApi:
     def update_account_tenant_config_with_http_info(
         self,
         body: TenantConfig,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6398,7 +6163,7 @@ class TenantApi:
 
         :param body: (required)
         :type body: TenantConfig
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6449,7 +6214,7 @@ class TenantApi:
     def update_account_tenant_config_without_preload_content(
         self,
         body: TenantConfig,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6469,7 +6234,7 @@ class TenantApi:
 
         :param body: (required)
         :type body: TenantConfig
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6596,7 +6361,7 @@ class TenantApi:
     def update_clusters_tenant_config(
         self,
         body: ClustersTenantConfigs,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6616,7 +6381,7 @@ class TenantApi:
 
         :param body: (required)
         :type body: ClustersTenantConfigs
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6667,7 +6432,7 @@ class TenantApi:
     def update_clusters_tenant_config_with_http_info(
         self,
         body: ClustersTenantConfigs,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6687,7 +6452,7 @@ class TenantApi:
 
         :param body: (required)
         :type body: ClustersTenantConfigs
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6738,7 +6503,7 @@ class TenantApi:
     def update_clusters_tenant_config_without_preload_content(
         self,
         body: ClustersTenantConfigs,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6758,7 +6523,7 @@ class TenantApi:
 
         :param body: (required)
         :type body: ClustersTenantConfigs
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6886,7 +6651,7 @@ class TenantApi:
         self,
         id: Optional[Annotated[str, Field(min_length=2, strict=True)]],
         body: UpdateHeliosTenantBody,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6907,7 +6672,7 @@ class TenantApi:
         :type id: str
         :param body: (required)
         :type body: UpdateHeliosTenantBody
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6960,7 +6725,7 @@ class TenantApi:
         self,
         id: Optional[Annotated[str, Field(min_length=2, strict=True)]],
         body: UpdateHeliosTenantBody,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6981,7 +6746,7 @@ class TenantApi:
         :type id: str
         :param body: (required)
         :type body: UpdateHeliosTenantBody
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7034,7 +6799,7 @@ class TenantApi:
         self,
         id: Optional[Annotated[str, Field(min_length=2, strict=True)]],
         body: UpdateHeliosTenantBody,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7055,7 +6820,7 @@ class TenantApi:
         :type id: str
         :param body: (required)
         :type body: UpdateHeliosTenantBody
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7186,8 +6951,8 @@ class TenantApi:
     def update_on_prem_tenant_config(
         self,
         body: OnPremTenantConfig,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7207,9 +6972,9 @@ class TenantApi:
 
         :param body: (required)
         :type body: OnPremTenantConfig
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7261,8 +7026,8 @@ class TenantApi:
     def update_on_prem_tenant_config_with_http_info(
         self,
         body: OnPremTenantConfig,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7282,9 +7047,9 @@ class TenantApi:
 
         :param body: (required)
         :type body: OnPremTenantConfig
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7336,8 +7101,8 @@ class TenantApi:
     def update_on_prem_tenant_config_without_preload_content(
         self,
         body: OnPremTenantConfig,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7357,9 +7122,9 @@ class TenantApi:
 
         :param body: (required)
         :type body: OnPremTenantConfig
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7491,8 +7256,8 @@ class TenantApi:
         self,
         id: Optional[Annotated[str, Field(min_length=2, strict=True)]],
         body: UpdateTenantBody,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7514,9 +7279,9 @@ class TenantApi:
         :type id: str
         :param body: (required)
         :type body: UpdateTenantBody
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7570,8 +7335,8 @@ class TenantApi:
         self,
         id: Optional[Annotated[str, Field(min_length=2, strict=True)]],
         body: UpdateTenantBody,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7593,9 +7358,9 @@ class TenantApi:
         :type id: str
         :param body: (required)
         :type body: UpdateTenantBody
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7649,8 +7414,8 @@ class TenantApi:
         self,
         id: Optional[Annotated[str, Field(min_length=2, strict=True)]],
         body: UpdateTenantBody,
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7672,9 +7437,9 @@ class TenantApi:
         :type id: str
         :param body: (required)
         :type body: UpdateTenantBody
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7809,8 +7574,8 @@ class TenantApi:
     def update_tenant_swift(
         self,
         body: Annotated[SwiftParams, Field(description="Specifies the parameters to update a Swift configuration.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7830,9 +7595,9 @@ class TenantApi:
 
         :param body: Specifies the parameters to update a Swift configuration. (required)
         :type body: SwiftParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7884,8 +7649,8 @@ class TenantApi:
     def update_tenant_swift_with_http_info(
         self,
         body: Annotated[SwiftParams, Field(description="Specifies the parameters to update a Swift configuration.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7905,9 +7670,9 @@ class TenantApi:
 
         :param body: Specifies the parameters to update a Swift configuration. (required)
         :type body: SwiftParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7959,8 +7724,8 @@ class TenantApi:
     def update_tenant_swift_without_preload_content(
         self,
         body: Annotated[SwiftParams, Field(description="Specifies the parameters to update a Swift configuration.")],
-        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
-        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
+        access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.")] = None,
+        region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region        and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7980,9 +7745,9 @@ class TenantApi:
 
         :param body: Specifies the parameters to update a Swift configuration. (required)
         :type body: SwiftParams
-        :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
+        :param access_cluster_id: This field uniquely represents a Cohesity        Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
-        :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
+        :param region_id: This field uniquely represents a region        and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

@@ -6,7 +6,11 @@ Specifies the entity metadata of aws entities.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**aurora_params** | [**AwsAuroraEntityMetadata**](AwsAuroraEntityMetadata.md) |  | [optional] 
+**child_metadata** | [**AwsEntityChildMetadata**](AwsEntityChildMetadata.md) |  | [optional] 
+**document_db_params** | [**AwsDocumentDBEntityMetadata**](AwsDocumentDBEntityMetadata.md) |  | [optional] 
 **postgres_params** | [**AwsPostgresEntityMetadata**](AwsPostgresEntityMetadata.md) |  | [optional] 
+**rds_params** | [**AwsRdsEntityMetadata**](AwsRdsEntityMetadata.md) |  | [optional] 
 
 ## Example
 

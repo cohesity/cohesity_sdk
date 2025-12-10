@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.common_protection_group_run_response_parameters import CommonProtectionGroupRunResponseParameters
 from typing import Set
@@ -27,10 +27,11 @@ class ProtectionGroupRuns(BaseModel):
     """
     Protection runs.
     """ # noqa: E501
+    is_response_truncated: Optional[StrictBool] = Field(default=None, description="Indicates whether the result is truncated due to hitting maximum size limit governed by magneto_http_rpc_response_size_limit_bytes", alias="isResponseTruncated")
     pagination_cookie: Optional[StrictStr] = Field(default=None, description="Specifies the information needed in order to support pagination. This will not be included for the last page of results.", alias="paginationCookie")
     runs: Optional[List[CommonProtectionGroupRunResponseParameters]] = Field(default=None, description="Specifies the list of Protection Group runs.")
     total_runs: Optional[StrictInt] = Field(default=None, description="Specifies the count of total runs exist for the given set of filters. The number of runs in single API call are limited and this count can be used to estimate query filter values to get next set of remaining runs. Please note that this field will only be populated if startTimeUsecs or endTimeUsecs or both are specified in query parameters.", alias="totalRuns")
-    __properties: ClassVar[List[str]] = ["paginationCookie", "runs", "totalRuns"]
+    __properties: ClassVar[List[str]] = ["isResponseTruncated", "paginationCookie", "runs", "totalRuns"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,6 +79,11 @@ class ProtectionGroupRuns(BaseModel):
                 if _item_runs:
                     _items.append(_item_runs.to_dict())
             _dict['runs'] = _items
+        # set to None if is_response_truncated (nullable) is None
+        # and model_fields_set contains the field
+        if self.is_response_truncated is None and "is_response_truncated" in self.model_fields_set:
+            _dict['isResponseTruncated'] = None
+
         # set to None if pagination_cookie (nullable) is None
         # and model_fields_set contains the field
         if self.pagination_cookie is None and "pagination_cookie" in self.model_fields_set:
@@ -105,6 +111,7 @@ class ProtectionGroupRuns(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "isResponseTruncated": obj.get("isResponseTruncated"),
             "paginationCookie": obj.get("paginationCookie"),
             "runs": [CommonProtectionGroupRunResponseParameters.from_dict(_item) for _item in obj["runs"]] if obj.get("runs") is not None else None,
             "totalRuns": obj.get("totalRuns")

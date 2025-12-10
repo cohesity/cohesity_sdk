@@ -29,7 +29,10 @@ class UpdateProtectionGroupsStateRequest(BaseModel):
     """ # noqa: E501
     action: Optional[StrictStr] = Field(description="Specifies the action to be performed on all the specfied Protection Groups. 'kActivate' specifies that Protection Group should be activated. 'kDeactivate' sepcifies that Protection Group should be deactivated. 'kPause' specifies that Protection Group should be paused. 'kResume' specifies that Protection Group should be resumed.")
     ids: Optional[Annotated[List[StrictStr], Field(min_length=1)]] = Field(description="Specifies a list of Protection Group ids for which the state should change.")
-    __properties: ClassVar[List[str]] = ["action", "ids"]
+    last_pause_reason: Optional[StrictStr] = Field(default=None, description="Specifies the reason why the protection group was paused", alias="lastPauseReason")
+    paused_note: Optional[StrictStr] = Field(default=None, description="A note from the current user explaining the reason for pausing future runs, if applicable.", alias="pausedNote")
+    tenant_id: Optional[StrictStr] = Field(default=None, description="Specifies the tenant id who has access to these protection groups.", alias="tenantId")
+    __properties: ClassVar[List[str]] = ["action", "ids", "lastPauseReason", "pausedNote", "tenantId"]
 
     @field_validator('action')
     def action_validate_enum(cls, value):
@@ -37,8 +40,18 @@ class UpdateProtectionGroupsStateRequest(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['kPause', 'kResume']):
-            raise ValueError("must be one of enum values ('kPause', 'kResume')")
+        if value not in set(['kPause', 'kResume', 'kActivate', 'kDeactivate']):
+            raise ValueError("must be one of enum values ('kPause', 'kResume', 'kActivate', 'kDeactivate')")
+        return value
+
+    @field_validator('last_pause_reason')
+    def last_pause_reason_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['kTenantDeactivation']):
+            raise ValueError("must be one of enum values ('kTenantDeactivation')")
         return value
 
     model_config = ConfigDict(
@@ -90,6 +103,21 @@ class UpdateProtectionGroupsStateRequest(BaseModel):
         if self.ids is None and "ids" in self.model_fields_set:
             _dict['ids'] = None
 
+        # set to None if last_pause_reason (nullable) is None
+        # and model_fields_set contains the field
+        if self.last_pause_reason is None and "last_pause_reason" in self.model_fields_set:
+            _dict['lastPauseReason'] = None
+
+        # set to None if paused_note (nullable) is None
+        # and model_fields_set contains the field
+        if self.paused_note is None and "paused_note" in self.model_fields_set:
+            _dict['pausedNote'] = None
+
+        # set to None if tenant_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.tenant_id is None and "tenant_id" in self.model_fields_set:
+            _dict['tenantId'] = None
+
         return _dict
 
     @classmethod
@@ -103,7 +131,10 @@ class UpdateProtectionGroupsStateRequest(BaseModel):
 
         _obj = cls.model_validate({
             "action": obj.get("action"),
-            "ids": obj.get("ids")
+            "ids": obj.get("ids"),
+            "lastPauseReason": obj.get("lastPauseReason"),
+            "pausedNote": obj.get("pausedNote"),
+            "tenantId": obj.get("tenantId")
         })
         return _obj
 

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **hostname** | **str** | Specifies the IP address or the FQDN of the SMTP server. | 
 **is_active** | **bool** | Specifies if the SMTP configuration is active. | [optional] [default to True]
 **port** | **int** | Specifies the SMTP port. Usually 465 or 587. For authenticated connection, it is generally 587. | 
+**sender_email_address** | **str** | This is used for setting \&quot;Sender\&quot; field in SMTP header. This has to be in valid email format, and could be different from username, and it&#39;s a required field if the username is not of valid email address.  | [optional] 
 **use_ssl** | **bool** | This is set to true when the SMTP server uses SSL/TLS without supporting STARTTLS. Typically, this is used for port 465. | [optional] [default to False]
 **username** | **str** | Specifies the username which will be used to connect to the SMTP server. If username is not specified, then it would imply that SMTP server is set up for unauthenticated access. | [optional] 
 

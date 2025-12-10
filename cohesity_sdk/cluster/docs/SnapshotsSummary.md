@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **cluster_id** | **int** | Specifies the cluster id where the snapshots is stored. | [optional] 
 **cluster_incarnation_id** | **int** | Specifies the cluster incarnation id where the snapshots is stored. | [optional] 
 **external_target_info** | [**ArchivalTargetSummaryInfo**](ArchivalTargetSummaryInfo.md) |  | [optional] 
+**latest_end_time_usecs** | **int** | Specifies the timestamp in Unix time epoch in microseconds representing the latest end time. | [optional] 
 **latest_run_start_time_usecs** | **int** | Specifies the timestamp in Unix time epoch in microseconds when the latest run started. | [optional] 
 **latest_run_status** | **str** | Specifies the status of latest run. | [optional] 
 **latest_snapshot_timestamp_usecs** | **int** | Specifies the timestamp in Unix time epoch in microseconds when the latest snapshot is taken. | [optional] 

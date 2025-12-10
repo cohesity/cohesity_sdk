@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.cluster.models.indexing_policy import IndexingPolicy
 from typing import Set
 from typing_extensions import Self
 
@@ -26,10 +27,11 @@ class NewGroupParam(BaseModel):
     """
     Specifies the parameters for using a new protection group.
     """ # noqa: E501
+    indexing_policy: Optional[IndexingPolicy] = Field(default=None, alias="indexingPolicy")
     name: Optional[StrictStr] = Field(description="Specifies the name of the new protection group.")
     policy_id: Optional[StrictStr] = Field(description="Specifies the policy id of the new protection group.", alias="policyId")
     storage_domain_id: Optional[StrictInt] = Field(description="Specifies the storage domain id of the new protection group.", alias="storageDomainId")
-    __properties: ClassVar[List[str]] = ["name", "policyId", "storageDomainId"]
+    __properties: ClassVar[List[str]] = ["indexingPolicy", "name", "policyId", "storageDomainId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,6 +72,9 @@ class NewGroupParam(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of indexing_policy
+        if self.indexing_policy:
+            _dict['indexingPolicy'] = self.indexing_policy.to_dict()
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
@@ -97,6 +102,7 @@ class NewGroupParam(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "indexingPolicy": IndexingPolicy.from_dict(obj["indexingPolicy"]) if obj.get("indexingPolicy") is not None else None,
             "name": obj.get("name"),
             "policyId": obj.get("policyId"),
             "storageDomainId": obj.get("storageDomainId")

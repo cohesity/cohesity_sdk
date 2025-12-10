@@ -7,6 +7,7 @@ Specifies the parameters which are specific to Azure Object Protection Groups us
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **data_transfer_info** | [**DataTransferInfo**](DataTransferInfo.md) |  | [optional] 
+**disk_exclusion_params** | [**AzureDiskExclusionParams**](AzureDiskExclusionParams.md) |  | [optional] 
 **objects** | [**List[AzureObjectLevelParams]**](AzureObjectLevelParams.md) | Specifies the objects to be protected. | [optional] 
 
 ## Example

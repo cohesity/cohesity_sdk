@@ -8,13 +8,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **dhcp_network_config** | [**ClusterDhcpNetworkConfig**](ClusterDhcpNetworkConfig.md) |  | [optional] 
 **domain_names** | **List[str]** | Specifies the list of Domain Names new cluster should be configured with. | 
+**host_names** | **List[str]** | Specifies list of FQDN hostname of the cluster. | [optional] [readonly] 
 **ip_preference** | **str** | Specifies IP preference of the cluster to be Ipv4/Ipv6. It is Ipv4 by default. | [optional] 
 **manual_network_config** | [**ClusterManualNetworkConfig**](ClusterManualNetworkConfig.md) |  | [optional] 
 **ntp_servers** | **List[str]** | Specifies the list of NTP Servers new cluster should be configured with. | 
 **secondary_dhcp_network_config** | [**ClusterDhcpNetworkConfig**](ClusterDhcpNetworkConfig.md) |  | [optional] 
 **secondary_manual_network_config** | [**ClusterManualNetworkConfig**](ClusterManualNetworkConfig.md) |  | [optional] 
 **use_dhcp** | **bool** | Specifies whether or not to use DHCP to configure the network of the Cluster. | 
-**vip_host_name** | **str** | Specifies the FQDN hostname of the cluster. | [optional] 
+**vip_host_name** | **str** | Specifies the FQDN hostname of the cluster. Note: This field will be deprecated in future. Use hostNames field instead. | [optional] 
+**vips** | **List[str]** | Virtual IPs to add to the cluster. | [optional] 
 
 ## Example
 

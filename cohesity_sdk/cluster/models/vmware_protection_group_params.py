@@ -52,9 +52,10 @@ class VmwareProtectionGroupParams(BaseModel):
     vm_tag_ids: Optional[List[List[StrictInt]]] = Field(default=None, description="Array of Array of VM Tag Ids that Specify VMs to Protect. Optionally specify a list of VMs to protect by listing Protection Source ids of VM Tags in this two dimensional array. Using this two dimensional array of Tag ids, the Cluster generates a list of VMs to protect which are derived from intersections of the inner arrays and union of the outer array, as shown by the following example. To protect only 'Eng' VMs in the East and all the VMs in the West, specify the following tag id array: [ [1101, 2221], [3031] ], where 1101 is the 'Eng' VM Tag id, 2221 is the 'East' VM Tag id and 3031 is the 'West' VM Tag id. The inner array [1101, 2221] produces a list of VMs that are both tagged with 'Eng' and 'East' (an intersection). The outer array combines the list from the inner array with list of VMs tagged with 'West' (a union). The list of resulting VMs are protected by this Protection Group.", alias="vmTagIds")
     enable_cdp_sync_replication: Optional[StrictBool] = Field(default=None, description="Specifies whether synchronous replication is enabled for CDP Protection Group when replication target is specified in attached policy.", alias="enableCdpSyncReplication")
     global_exclude_disks: Optional[List[DiskInfo]] = Field(default=None, description="Specifies a list of disks to exclude from the backup.", alias="globalExcludeDisks")
+    global_include_disks: Optional[List[DiskInfo]] = Field(default=None, description="Specifies a list of disks to include in the backup.", alias="globalIncludeDisks")
     objects: Optional[List[VmwareProtectionGroupObjectParams]] = Field(default=None, description="Specifies the objects to include in the backup.")
     standby_resource_objects: Optional[List[VmwareProtectionGroupStandbyResourceParams]] = Field(default=None, description="Specifies the standby resource objects for this backup.", alias="standbyResourceObjects")
-    __properties: ClassVar[List[str]] = ["appConsistentSnapshot", "enableNBDSSLFallback", "fallbackToCrashConsistentSnapshot", "indexingPolicy", "leverageSanTransport", "prePostScript", "skipPhysicalRDMDisks", "allowParallelRuns", "cloudMigration", "excludeFilters", "excludeObjectIds", "excludeVmTagIds", "leverageHyperflexSnapshots", "leverageNutanixSnapshots", "leverageStorageSnapshots", "sourceId", "sourceName", "vmTagIds", "enableCdpSyncReplication", "globalExcludeDisks", "objects", "standbyResourceObjects"]
+    __properties: ClassVar[List[str]] = ["appConsistentSnapshot", "enableNBDSSLFallback", "fallbackToCrashConsistentSnapshot", "indexingPolicy", "leverageSanTransport", "prePostScript", "skipPhysicalRDMDisks", "allowParallelRuns", "cloudMigration", "excludeFilters", "excludeObjectIds", "excludeVmTagIds", "leverageHyperflexSnapshots", "leverageNutanixSnapshots", "leverageStorageSnapshots", "sourceId", "sourceName", "vmTagIds", "enableCdpSyncReplication", "globalExcludeDisks", "globalIncludeDisks", "objects", "standbyResourceObjects"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -119,6 +120,13 @@ class VmwareProtectionGroupParams(BaseModel):
                 if _item_global_exclude_disks:
                     _items.append(_item_global_exclude_disks.to_dict())
             _dict['globalExcludeDisks'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in global_include_disks (list)
+        _items = []
+        if self.global_include_disks:
+            for _item_global_include_disks in self.global_include_disks:
+                if _item_global_include_disks:
+                    _items.append(_item_global_include_disks.to_dict())
+            _dict['globalIncludeDisks'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in objects (list)
         _items = []
         if self.objects:
@@ -213,6 +221,11 @@ class VmwareProtectionGroupParams(BaseModel):
         if self.global_exclude_disks is None and "global_exclude_disks" in self.model_fields_set:
             _dict['globalExcludeDisks'] = None
 
+        # set to None if global_include_disks (nullable) is None
+        # and model_fields_set contains the field
+        if self.global_include_disks is None and "global_include_disks" in self.model_fields_set:
+            _dict['globalIncludeDisks'] = None
+
         # set to None if standby_resource_objects (nullable) is None
         # and model_fields_set contains the field
         if self.standby_resource_objects is None and "standby_resource_objects" in self.model_fields_set:
@@ -250,6 +263,7 @@ class VmwareProtectionGroupParams(BaseModel):
             "vmTagIds": obj.get("vmTagIds"),
             "enableCdpSyncReplication": obj.get("enableCdpSyncReplication"),
             "globalExcludeDisks": [DiskInfo.from_dict(_item) for _item in obj["globalExcludeDisks"]] if obj.get("globalExcludeDisks") is not None else None,
+            "globalIncludeDisks": [DiskInfo.from_dict(_item) for _item in obj["globalIncludeDisks"]] if obj.get("globalIncludeDisks") is not None else None,
             "objects": [VmwareProtectionGroupObjectParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None,
             "standbyResourceObjects": [VmwareProtectionGroupStandbyResourceParams.from_dict(_item) for _item in obj["standbyResourceObjects"]] if obj.get("standbyResourceObjects") is not None else None
         })

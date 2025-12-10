@@ -28,10 +28,34 @@ class AwsS3ProtectionParams(BaseModel):
     Specifies the parameters which are specific to AWS Object Protection for AWS S3. Atlease one of tags or objects must be specified.
     """ # noqa: E501
     backup_object_level_acls: Optional[StrictBool] = Field(default=None, description="Specifies whether to backup object level acls. Default value is false.", alias="backupObjectLevelACLs")
+    baseline_incremental_frequency: Optional[StrictStr] = Field(default=None, description="Specifies the baseline incremental frequency.", alias="baselineIncrementalFrequency")
+    inventory_report_destination: Optional[StrictStr] = Field(default=None, description="ARN of the inventory report destination bucket for S3 backups.", alias="inventoryReportDestination")
+    inventory_report_destination_prefix: Optional[StrictStr] = Field(default=None, description="The prefix in the S3 destination bucket where inventory reports will be stored.", alias="inventoryReportDestinationPrefix")
+    inventory_report_frequency: Optional[StrictStr] = Field(default=None, description="Specifies the frequency to generate inventory reports.", alias="inventoryReportFrequency")
     objects: Optional[List[AwsS3ObjectLevelParams]] = Field(default=None, description="Specifies the objects to be protected.")
     skip_on_error: Optional[StrictBool] = Field(default=None, description="Specifies whether to skip files on error or not. Default value is false.", alias="skipOnError")
     storage_class: Optional[List[StrictStr]] = Field(default=None, description="Specifies the AWS S3 Storage classes to backup.", alias="storageClass")
-    __properties: ClassVar[List[str]] = ["backupObjectLevelACLs", "objects", "skipOnError", "storageClass"]
+    __properties: ClassVar[List[str]] = ["backupObjectLevelACLs", "baselineIncrementalFrequency", "inventoryReportDestination", "inventoryReportDestinationPrefix", "inventoryReportFrequency", "objects", "skipOnError", "storageClass"]
+
+    @field_validator('baseline_incremental_frequency')
+    def baseline_incremental_frequency_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['Daily', 'Weekly', 'Monthly']):
+            raise ValueError("must be one of enum values ('Daily', 'Weekly', 'Monthly')")
+        return value
+
+    @field_validator('inventory_report_frequency')
+    def inventory_report_frequency_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['Weekly', 'Monthly']):
+            raise ValueError("must be one of enum values ('Weekly', 'Monthly')")
+        return value
 
     @field_validator('storage_class')
     def storage_class_validate_enum(cls, value):
@@ -95,6 +119,26 @@ class AwsS3ProtectionParams(BaseModel):
         if self.backup_object_level_acls is None and "backup_object_level_acls" in self.model_fields_set:
             _dict['backupObjectLevelACLs'] = None
 
+        # set to None if baseline_incremental_frequency (nullable) is None
+        # and model_fields_set contains the field
+        if self.baseline_incremental_frequency is None and "baseline_incremental_frequency" in self.model_fields_set:
+            _dict['baselineIncrementalFrequency'] = None
+
+        # set to None if inventory_report_destination (nullable) is None
+        # and model_fields_set contains the field
+        if self.inventory_report_destination is None and "inventory_report_destination" in self.model_fields_set:
+            _dict['inventoryReportDestination'] = None
+
+        # set to None if inventory_report_destination_prefix (nullable) is None
+        # and model_fields_set contains the field
+        if self.inventory_report_destination_prefix is None and "inventory_report_destination_prefix" in self.model_fields_set:
+            _dict['inventoryReportDestinationPrefix'] = None
+
+        # set to None if inventory_report_frequency (nullable) is None
+        # and model_fields_set contains the field
+        if self.inventory_report_frequency is None and "inventory_report_frequency" in self.model_fields_set:
+            _dict['inventoryReportFrequency'] = None
+
         # set to None if skip_on_error (nullable) is None
         # and model_fields_set contains the field
         if self.skip_on_error is None and "skip_on_error" in self.model_fields_set:
@@ -113,6 +157,10 @@ class AwsS3ProtectionParams(BaseModel):
 
         _obj = cls.model_validate({
             "backupObjectLevelACLs": obj.get("backupObjectLevelACLs"),
+            "baselineIncrementalFrequency": obj.get("baselineIncrementalFrequency"),
+            "inventoryReportDestination": obj.get("inventoryReportDestination"),
+            "inventoryReportDestinationPrefix": obj.get("inventoryReportDestinationPrefix"),
+            "inventoryReportFrequency": obj.get("inventoryReportFrequency"),
             "objects": [AwsS3ObjectLevelParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None,
             "skipOnError": obj.get("skipOnError"),
             "storageClass": obj.get("storageClass")

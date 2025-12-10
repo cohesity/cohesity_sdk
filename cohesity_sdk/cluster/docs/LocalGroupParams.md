@@ -7,6 +7,7 @@ Specifies properties for LOCAL Cohesity group.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **user_sids** | **List[str]** | Specifies the LOCAL users which are part of this group. | [optional] 
+**usernames** | **List[str]** | Specifies the usernames of the LOCAL users which are part of this group. | [optional] [readonly] 
 
 ## Example
 

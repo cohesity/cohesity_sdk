@@ -27,7 +27,8 @@ class RecoverAcropolisVmOriginalSourceNetworkConfig(BaseModel):
     Specifies the network config parameters to be applied for Acropolis VMs if recovering to original Source.
     """ # noqa: E501
     detach_network: Optional[StrictBool] = Field(default=None, description="If this is set to true, then the network will be detached from the recovered VMs. All the other networking parameters set will be ignored if set to true. Default value is false.", alias="detachNetwork")
-    __properties: ClassVar[List[str]] = ["detachNetwork"]
+    disable_network: Optional[StrictBool] = Field(default=None, description="Specifies whether the attached network should be left in disabled state. Default is false.", alias="disableNetwork")
+    __properties: ClassVar[List[str]] = ["detachNetwork", "disableNetwork"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,6 +74,11 @@ class RecoverAcropolisVmOriginalSourceNetworkConfig(BaseModel):
         if self.detach_network is None and "detach_network" in self.model_fields_set:
             _dict['detachNetwork'] = None
 
+        # set to None if disable_network (nullable) is None
+        # and model_fields_set contains the field
+        if self.disable_network is None and "disable_network" in self.model_fields_set:
+            _dict['disableNetwork'] = None
+
         return _dict
 
     @classmethod
@@ -85,7 +91,8 @@ class RecoverAcropolisVmOriginalSourceNetworkConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "detachNetwork": obj.get("detachNetwork")
+            "detachNetwork": obj.get("detachNetwork"),
+            "disableNetwork": obj.get("disableNetwork")
         })
         return _obj
 

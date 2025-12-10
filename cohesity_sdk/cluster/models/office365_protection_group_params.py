@@ -26,6 +26,7 @@ from cohesity_sdk.cluster.models.office365_outlook_protection_group_params impor
 from cohesity_sdk.cluster.models.office365_protection_group_object_params import Office365ProtectionGroupObjectParams
 from cohesity_sdk.cluster.models.office365_public_folders_protection_group_params import Office365PublicFoldersProtectionGroupParams
 from cohesity_sdk.cluster.models.office365_share_point_protection_group_params import Office365SharePointProtectionGroupParams
+from cohesity_sdk.cluster.models.office365_teams_protection_group_params import Office365TeamsProtectionGroupParams
 from typing import Set
 from typing_extensions import Self
 
@@ -43,14 +44,15 @@ class Office365ProtectionGroupParams(BaseModel):
     share_point_protection_type_params: Optional[Office365SharePointProtectionGroupParams] = Field(default=None, alias="sharePointProtectionTypeParams")
     source_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the parent of the objects.", alias="sourceId")
     source_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the parent of the objects.", alias="sourceName")
-    __properties: ClassVar[List[str]] = ["excludeObjectIds", "indexingPolicy", "objects", "oneDriveProtectionTypeParams", "outlookProtectionTypeParams", "protectionTypes", "publicFoldersProtectionTypeParams", "sharePointProtectionTypeParams", "sourceId", "sourceName"]
+    teams_protection_type_params: Optional[Office365TeamsProtectionGroupParams] = Field(default=None, alias="teamsProtectionTypeParams")
+    __properties: ClassVar[List[str]] = ["excludeObjectIds", "indexingPolicy", "objects", "oneDriveProtectionTypeParams", "outlookProtectionTypeParams", "protectionTypes", "publicFoldersProtectionTypeParams", "sharePointProtectionTypeParams", "sourceId", "sourceName", "teamsProtectionTypeParams"]
 
     @field_validator('protection_types')
     def protection_types_validate_enum(cls, value):
         """Validates the enum"""
         for i in value:
-            if i not in set(['kMailbox', 'kOneDrive', 'kSharePoint', 'kPublicFolders', 'kGroups', 'kTeams']):
-                raise ValueError("each list item must be one of ('kMailbox', 'kOneDrive', 'kSharePoint', 'kPublicFolders', 'kGroups', 'kTeams')")
+            if i not in set(['kMailbox', 'kOneDrive', 'kSharePoint', 'kPublicFolders', 'kGroups', 'kTeams', 'kMailboxCSM', 'kOneDriveCSM', 'kSharePointCSM']):
+                raise ValueError("each list item must be one of ('kMailbox', 'kOneDrive', 'kSharePoint', 'kPublicFolders', 'kGroups', 'kTeams', 'kMailboxCSM', 'kOneDriveCSM', 'kSharePointCSM')")
         return value
 
     model_config = ConfigDict(
@@ -118,6 +120,9 @@ class Office365ProtectionGroupParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of share_point_protection_type_params
         if self.share_point_protection_type_params:
             _dict['sharePointProtectionTypeParams'] = self.share_point_protection_type_params.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of teams_protection_type_params
+        if self.teams_protection_type_params:
+            _dict['teamsProtectionTypeParams'] = self.teams_protection_type_params.to_dict()
         # set to None if exclude_object_ids (nullable) is None
         # and model_fields_set contains the field
         if self.exclude_object_ids is None and "exclude_object_ids" in self.model_fields_set:
@@ -154,7 +159,8 @@ class Office365ProtectionGroupParams(BaseModel):
             "publicFoldersProtectionTypeParams": Office365PublicFoldersProtectionGroupParams.from_dict(obj["publicFoldersProtectionTypeParams"]) if obj.get("publicFoldersProtectionTypeParams") is not None else None,
             "sharePointProtectionTypeParams": Office365SharePointProtectionGroupParams.from_dict(obj["sharePointProtectionTypeParams"]) if obj.get("sharePointProtectionTypeParams") is not None else None,
             "sourceId": obj.get("sourceId"),
-            "sourceName": obj.get("sourceName")
+            "sourceName": obj.get("sourceName"),
+            "teamsProtectionTypeParams": Office365TeamsProtectionGroupParams.from_dict(obj["teamsProtectionTypeParams"]) if obj.get("teamsProtectionTypeParams") is not None else None
         })
         return _obj
 

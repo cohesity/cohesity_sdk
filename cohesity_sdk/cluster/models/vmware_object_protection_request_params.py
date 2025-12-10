@@ -38,8 +38,9 @@ class VmwareObjectProtectionRequestParams(BaseModel):
     pre_post_script: Optional[PrePostScriptParams] = Field(default=None, alias="prePostScript")
     skip_physical_rdm_disks: Optional[StrictBool] = Field(default=None, description="Specifies whether or not to skip backing up physical RDM disks. Physical RDM disks cannot be backed up, so if you attempt to backup a VM with physical RDM disks and this value is set to 'false', then those VM backups will fail.", alias="skipPhysicalRDMDisks")
     global_exclude_disks: Optional[List[DiskInfo]] = Field(default=None, description="Specifies a list of disks to exclude from the backup.", alias="globalExcludeDisks")
+    global_include_disks: Optional[List[DiskInfo]] = Field(default=None, description="Specifies a list of disks to include in the backup.", alias="globalIncludeDisks")
     objects: List[VmwareObjectProtectionRequest] = Field(description="Specifies the objects to include in the backup.")
-    __properties: ClassVar[List[str]] = ["appConsistentSnapshot", "enableNBDSSLFallback", "fallbackToCrashConsistentSnapshot", "indexingPolicy", "leverageSanTransport", "prePostScript", "skipPhysicalRDMDisks", "globalExcludeDisks", "objects"]
+    __properties: ClassVar[List[str]] = ["appConsistentSnapshot", "enableNBDSSLFallback", "fallbackToCrashConsistentSnapshot", "indexingPolicy", "leverageSanTransport", "prePostScript", "skipPhysicalRDMDisks", "globalExcludeDisks", "globalIncludeDisks", "objects"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,6 +94,13 @@ class VmwareObjectProtectionRequestParams(BaseModel):
                 if _item_global_exclude_disks:
                     _items.append(_item_global_exclude_disks.to_dict())
             _dict['globalExcludeDisks'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in global_include_disks (list)
+        _items = []
+        if self.global_include_disks:
+            for _item_global_include_disks in self.global_include_disks:
+                if _item_global_include_disks:
+                    _items.append(_item_global_include_disks.to_dict())
+            _dict['globalIncludeDisks'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in objects (list)
         _items = []
         if self.objects:
@@ -130,6 +138,11 @@ class VmwareObjectProtectionRequestParams(BaseModel):
         if self.global_exclude_disks is None and "global_exclude_disks" in self.model_fields_set:
             _dict['globalExcludeDisks'] = None
 
+        # set to None if global_include_disks (nullable) is None
+        # and model_fields_set contains the field
+        if self.global_include_disks is None and "global_include_disks" in self.model_fields_set:
+            _dict['globalIncludeDisks'] = None
+
         return _dict
 
     @classmethod
@@ -150,6 +163,7 @@ class VmwareObjectProtectionRequestParams(BaseModel):
             "prePostScript": PrePostScriptParams.from_dict(obj["prePostScript"]) if obj.get("prePostScript") is not None else None,
             "skipPhysicalRDMDisks": obj.get("skipPhysicalRDMDisks"),
             "globalExcludeDisks": [DiskInfo.from_dict(_item) for _item in obj["globalExcludeDisks"]] if obj.get("globalExcludeDisks") is not None else None,
+            "globalIncludeDisks": [DiskInfo.from_dict(_item) for _item in obj["globalIncludeDisks"]] if obj.get("globalIncludeDisks") is not None else None,
             "objects": [VmwareObjectProtectionRequest.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None
         })
         return _obj

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **connection_id** | **int** | Specifies the id of the connection. | [optional] 
 **connector_group_id** | **int** | Specifies the connector group id of connector groups. | [optional] 
-**entity_id** | **int** | Specifies the entity id of the source. The source can a non-root entity. | [optional] 
+**entity_id** | **int** | Specifies the entity id of the source. The source can a non-root entity. | 
 
 ## Example
 

@@ -6,9 +6,9 @@ Specifies version information for a cohesity service.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**last_commit_time** | **str** | LastCommitTime of the service. | [optional] 
-**service_name** | **str** | Name of the service. | [optional] 
-**service_version** | **str** | Version of the service. | [optional] 
+**last_commit_time** | **str** | LastCommitTime of the service. | 
+**service_name** | **str** | Name of the service. | 
+**service_version** | **str** | Version of the service. | 
 
 ## Example
 

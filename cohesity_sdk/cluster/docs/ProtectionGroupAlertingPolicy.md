@@ -7,7 +7,7 @@ Specifies a policy for alerting users of the status of a Protection Group.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **alert_targets** | [**List[AlertTarget]**](AlertTarget.md) | Specifies a list of targets to receive the alerts. | [optional] 
-**backup_run_status** | **List[str]** | Specifies the run status for which the user would like to receive alerts. | 
+**backup_run_status** | **List[str]** | Specifies when to send out alerts. The possible values are kSuccess , kFailure, kSlaViolation and kWarning | 
 **raise_object_level_failure_alert** | **bool** | Specifies whether object level alerts are raised for backup failures after the backup run. | [optional] 
 **raise_object_level_failure_alert_after_each_attempt** | **bool** | Specifies whether object level alerts are raised for backup failures after each backup attempt. | [optional] 
 **raise_object_level_failure_alert_after_last_attempt** | **bool** | Specifies whether object level alerts are raised for backup failures after last backup attempt. | [optional] 

@@ -20,6 +20,9 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from cohesity_sdk.cluster.models.month_schedule import MonthSchedule
+from cohesity_sdk.cluster.models.week_schedule import WeekSchedule
+from cohesity_sdk.cluster.models.year_schedule import YearSchedule
 from typing import Set
 from typing_extensions import Self
 
@@ -27,9 +30,12 @@ class TargetSchedule(BaseModel):
     """
     Specifies a schedule fregquency and schedule unit for copying Snapshots to backup targets.
     """ # noqa: E501
-    frequency: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(default=None, description="Specifies a factor to multiply the unit by, to determine the copy schedule. For example if set to 2 and the unit is hourly, then Snapshots from the first eligible Job Run for every 2 hour period is copied.")
+    frequency: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(default=None, description="Specifies a factor to multiply the unit by, to determine the copy schedule. For example if set to 2 and the unit is hourly, then Snapshots from the first eligible group Run for every 2 hour period is copied.")
+    month_schedule: Optional[MonthSchedule] = Field(default=None, alias="monthSchedule")
     unit: Optional[StrictStr] = Field(description="Specifies the frequency that Snapshots should be copied to the specified target. Used in combination with multiplier. <br>'Runs' means that the Snapshot copy occurs after the number of Protection Group Runs equals the number specified in the frequency. <br>'Hours' means that the Snapshot copy occurs hourly at the frequency set in the frequency, for example if scheduleFrequency is 2, the copy occurs every 2 hours. <br>'Days' means that the Snapshot copy occurs daily at the frequency set in the frequency. <br>'Weeks' means that the Snapshot copy occurs weekly at the frequency set in the frequency. <br>'Months' means that the Snapshot copy occurs monthly at the frequency set in the Frequency. <br>'Years' means that the Snapshot copy occurs yearly at the frequency set in the scheduleFrequency.")
-    __properties: ClassVar[List[str]] = ["frequency", "unit"]
+    week_schedule: Optional[WeekSchedule] = Field(default=None, alias="weekSchedule")
+    year_schedule: Optional[YearSchedule] = Field(default=None, alias="yearSchedule")
+    __properties: ClassVar[List[str]] = ["frequency", "monthSchedule", "unit", "weekSchedule", "yearSchedule"]
 
     @field_validator('unit')
     def unit_validate_enum(cls, value):
@@ -80,6 +86,15 @@ class TargetSchedule(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of month_schedule
+        if self.month_schedule:
+            _dict['monthSchedule'] = self.month_schedule.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of week_schedule
+        if self.week_schedule:
+            _dict['weekSchedule'] = self.week_schedule.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of year_schedule
+        if self.year_schedule:
+            _dict['yearSchedule'] = self.year_schedule.to_dict()
         # set to None if frequency (nullable) is None
         # and model_fields_set contains the field
         if self.frequency is None and "frequency" in self.model_fields_set:
@@ -103,7 +118,10 @@ class TargetSchedule(BaseModel):
 
         _obj = cls.model_validate({
             "frequency": obj.get("frequency"),
-            "unit": obj.get("unit")
+            "monthSchedule": MonthSchedule.from_dict(obj["monthSchedule"]) if obj.get("monthSchedule") is not None else None,
+            "unit": obj.get("unit"),
+            "weekSchedule": WeekSchedule.from_dict(obj["weekSchedule"]) if obj.get("weekSchedule") is not None else None,
+            "yearSchedule": YearSchedule.from_dict(obj["yearSchedule"]) if obj.get("yearSchedule") is not None else None
         })
         return _obj
 

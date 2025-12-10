@@ -24,11 +24,13 @@ from typing_extensions import Self
 
 class UserId(BaseModel):
     """
-    Specifies the User Id type. Either sid or unixUid should be set.
+    Specifies the User Id type. Either sid or unixUid should be set. If both are set, sid will be used.
     """ # noqa: E501
+    domain: Optional[StrictStr] = Field(default=None, description="Specifies the domain name of the user, where the principal' account is maintained.")
     sid: Optional[StrictStr] = Field(default=None, description="Specifies the user sid.")
     unix_uid: Optional[StrictInt] = Field(default=None, description="Specifies the unix Uid.", alias="unixUid")
-    __properties: ClassVar[List[str]] = ["sid", "unixUid"]
+    user_name: Optional[StrictStr] = Field(default=None, description="Specifies the full name of the user", alias="userName")
+    __properties: ClassVar[List[str]] = ["domain", "sid", "unixUid", "userName"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,6 +71,11 @@ class UserId(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if domain (nullable) is None
+        # and model_fields_set contains the field
+        if self.domain is None and "domain" in self.model_fields_set:
+            _dict['domain'] = None
+
         # set to None if sid (nullable) is None
         # and model_fields_set contains the field
         if self.sid is None and "sid" in self.model_fields_set:
@@ -78,6 +85,11 @@ class UserId(BaseModel):
         # and model_fields_set contains the field
         if self.unix_uid is None and "unix_uid" in self.model_fields_set:
             _dict['unixUid'] = None
+
+        # set to None if user_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.user_name is None and "user_name" in self.model_fields_set:
+            _dict['userName'] = None
 
         return _dict
 
@@ -91,8 +103,10 @@ class UserId(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "domain": obj.get("domain"),
             "sid": obj.get("sid"),
-            "unixUid": obj.get("unixUid")
+            "unixUid": obj.get("unixUid"),
+            "userName": obj.get("userName")
         })
         return _obj
 
