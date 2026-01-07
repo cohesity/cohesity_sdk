@@ -1,0 +1,17 @@
+# AzureCosmosDBMongoDBProtectionGroupParams
+
+Specifies the parameters which are specific to Azure related Protection Groups for Azure CosmosDB MongoDB workload. Objects must be specified.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**cosmos_db_mongo_db_tag_ids** | **[[int]], none_type** | Array of arrays of CosmosDB MongoDB Tag Ids that specify db instances to Protect. | [optional] 
+**exclude_cosmos_db_mongo_db_tag_ids** | **[[int]], none_type** | Array of arrays of CosmosDB MongoDB Tag Ids that specify db instances to Exclude. | [optional] 
+**exclude_object_ids** | **[int]** | Specifies the objects to be excluded in the Protection Group. | [optional] 
+**objects** | [**[AzureCosmosDBMongoDBProtectionGroupObjectParams]**](AzureCosmosDBMongoDBProtectionGroupObjectParams.md) | Specifies the objects to be included in the Protection Group. | [optional] 
+**source_id** | **int, none_type** | Specifies the id of the parent of the objects. | [optional] [readonly] 
+**source_name** | **str, none_type** | Specifies the name of the parent of the objects. | [optional] [readonly] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

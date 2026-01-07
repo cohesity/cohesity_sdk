@@ -1,80 +1,126 @@
-# cohesity_sdk.cluster.SupportApi
+# cohesity_sdk.SupportApi
 
-All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**execute_unlock_linux_user**](SupportApi.md#execute_unlock_linux_user) | **PUT** /support-user/state | Unlock the linux user account if the user gets locked out.
 [**get_support_user_config**](SupportApi.md#get_support_user_config) | **GET** /support-user/config | Get support user configuration.
 [**update_support_user_config**](SupportApi.md#update_support_user_config) | **PUT** /support-user/config | Update support user configuration.
 [**validate_support_user_creds**](SupportApi.md#validate_support_user_creds) | **POST** /support-user/config/validate | Validates the support user credentials.
 
+
+# **execute_unlock_linux_user**
+> SuccessResp execute_unlock_linux_user(body)
+
+Unlock the linux user account if the user gets locked out.
+
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Unlock the linux user account if the user gets locked out and make it active.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.success_resp import SuccessResp
+from cohesity_sdk.cluster.model.unlock_linux_user_params import UnlockLinuxUserParams
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+body = UnlockLinuxUserParams(
+        state="Active",
+        username="username_example",
+    ) # UnlockLinuxUserParams | Specifies the linux user and its state.
+
+# example passing only required values which don't have defaults set
+try:
+	# Unlock the linux user account if the user gets locked out.
+	api_response = client.support.execute_unlock_linux_user(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling SupportApi->execute_unlock_linux_user: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**UnlockLinuxUserParams**](UnlockLinuxUserParams.md)| Specifies the linux user and its state. |
+
+### Return type
+
+[**SuccessResp**](SuccessResp.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_support_user_config**
 > SupportUserConfig get_support_user_config()
 
 Get support user configuration.
 
-Cohesity provides a support user account for improved security and you need to use the support user account to log in to the Cohesity cluster bash shell using SSH. This endpoint returns the current support user configuration on the Cohesity cluster.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>Cohesity provides a support user account for improved security and you need to use the support user account to log in to the Cohesity cluster bash shell using SSH. This endpoint returns the current support user configuration on the Cohesity cluster.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
 * Api Key Authentication (Bearer):
-
+* Api Key Authentication (SessionIdHeader):
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.support_user_config import SupportUserConfig
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.support_user_config import SupportUserConfig
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.SupportApi(api_client)
-
-    try:
-        # Get support user configuration.
-        api_response = api_instance.get_support_user_config()
-        print("The response of SupportApi->get_support_user_config:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling SupportApi->get_support_user_config: %s\n" % e)
+# example, this endpoint has no required or optional parameters
+try:
+	# Get support user configuration.
+	api_response = client.support.get_support_user_config()
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling SupportApi->get_support_user_config: %s\n" % e)
 ```
 
 
-
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -83,15 +129,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -104,73 +150,52 @@ This endpoint does not need any parameter.
 
 Update support user configuration.
 
-Update support user's configuration. This allows you to update the support user's password and/or grant sudo access to the user.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Update support user's configuration. This allows you to update the support user's password and/or grant sudo access to the user.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
 * Api Key Authentication (Bearer):
-
+* Api Key Authentication (SessionIdHeader):
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.success_resp import SuccessResp
-from cohesity_sdk.cluster.models.update_support_user_params import UpdateSupportUserParams
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.success_resp import SuccessResp
+from cohesity_sdk.cluster.model.update_support_user_params import UpdateSupportUserParams
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body = UpdateSupportUserParams(
+        current_password="current_password_example",
+        enable_sudo_access=True,
+        new_password="new_password_example",
+        sudo_access_end_timestamp_msecs=1,
+    ) # UpdateSupportUserParams | Specifies the support user configuration.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.SupportApi(api_client)
-    body = cohesity_sdk.cluster.UpdateSupportUserParams() # UpdateSupportUserParams | Specifies the support user configuration.
-
-    try:
-        # Update support user configuration.
-        api_response = api_instance.update_support_user_config(body)
-        print("The response of SupportApi->update_support_user_config:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling SupportApi->update_support_user_config: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Update support user configuration.
+	api_response = client.support.update_support_user_config(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling SupportApi->update_support_user_config: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UpdateSupportUserParams**](UpdateSupportUserParams.md)| Specifies the support user configuration. | 
+ **body** | [**UpdateSupportUserParams**](UpdateSupportUserParams.md)| Specifies the support user configuration. |
 
 ### Return type
 
@@ -178,15 +203,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -199,73 +224,49 @@ Name | Type | Description  | Notes
 
 Validates the support user credentials.
 
-Validates the support user credentials.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Validates the support user credentials.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
 * Api Key Authentication (Bearer):
-
+* Api Key Authentication (SessionIdHeader):
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.success_resp import SuccessResp
-from cohesity_sdk.cluster.models.validate_support_user_cred_params import ValidateSupportUserCredParams
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.validate_support_user_cred_params import ValidateSupportUserCredParams
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.success_resp import SuccessResp
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body = ValidateSupportUserCredParams(
+        password="password_example",
+    ) # ValidateSupportUserCredParams | Specifies the support user credentials.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.SupportApi(api_client)
-    body = cohesity_sdk.cluster.ValidateSupportUserCredParams() # ValidateSupportUserCredParams | Specifies the support user credentials.
-
-    try:
-        # Validates the support user credentials.
-        api_response = api_instance.validate_support_user_creds(body)
-        print("The response of SupportApi->validate_support_user_creds:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling SupportApi->validate_support_user_creds: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Validates the support user credentials.
+	api_response = client.support.validate_support_user_creds(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling SupportApi->validate_support_user_creds: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ValidateSupportUserCredParams**](ValidateSupportUserCredParams.md)| Specifies the support user credentials. | 
+ **body** | [**ValidateSupportUserCredParams**](ValidateSupportUserCredParams.md)| Specifies the support user credentials. |
 
 ### Return type
 
@@ -273,15 +274,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
