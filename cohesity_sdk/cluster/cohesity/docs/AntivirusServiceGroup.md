@@ -1,0 +1,18 @@
+# AntivirusServiceGroup
+
+Specifies an Antivirus Service group.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**antivirus_services** | [**[AntivirusService], none_type**](AntivirusService.md) | Specifies a list of Antivirus Services for this group. | 
+**name** | **str, none_type** | Specifies the Antivirus Service group name. | 
+**description** | **str, none_type** | Specifies the description for the Antivirus Service group. | [optional] 
+**enabled** | **bool, none_type** | This field is currently deprecated. Specifies whether the Antivirus Group is enabled. | [optional] 
+**state** | **str, none_type** | Specifies the state[Enable, Disable] of the group. | [optional] 
+**id** | **int, none_type** | Specifies the Antivirus Service group id. | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

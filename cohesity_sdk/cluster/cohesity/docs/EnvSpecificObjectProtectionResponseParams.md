@@ -1,0 +1,35 @@
+# EnvSpecificObjectProtectionResponseParams
+
+Specifies the parameters which are specific to adapter identified by enviournment.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**aws_params** | [**AwsObjectProtectionResponseParams**](AwsObjectProtectionResponseParams.md) |  | [optional] 
+**azure_params** | [**AzureObjectProtectionResponseParams**](AzureObjectProtectionResponseParams.md) |  | [optional] 
+**elastifile_params** | [**ElastifileObjectProtectionResponseParams**](ElastifileObjectProtectionResponseParams.md) |  | [optional] 
+**environment** | **str, none_type** | Specifies the environment for current object. | [optional] 
+**experimental_adapter_params** | [**ExperimentalAdapterObjectProtectionParams**](ExperimentalAdapterObjectProtectionParams.md) |  | [optional] 
+**flashblade_params** | [**FlashbladeObjectProtectionResponseParams**](FlashbladeObjectProtectionResponseParams.md) |  | [optional] 
+**generic_nas_params** | [**GenericNasObjectProtectionResponseParams**](GenericNasObjectProtectionResponseParams.md) |  | [optional] 
+**google_workspace_params** | [**GoogleWorkspaceObjectProtectionParams**](GoogleWorkspaceObjectProtectionParams.md) |  | [optional] 
+**gpfs_params** | [**GpfsObjectProtectionResponseParams**](GpfsObjectProtectionResponseParams.md) |  | [optional] 
+**hyperv_params** | [**HyperVObjectProtectionResponseParams**](HyperVObjectProtectionResponseParams.md) |  | [optional] 
+**isilon_params** | [**IsilonObjectProtectionResponseParams**](IsilonObjectProtectionResponseParams.md) |  | [optional] 
+**kubernetes_params** | [**KubernetesObjectProtectionParams**](KubernetesObjectProtectionParams.md) |  | [optional] 
+**mssql_params** | [**CommonMssqlObjectProtectionParams**](CommonMssqlObjectProtectionParams.md) |  | [optional] 
+**netapp_params** | [**NetappObjectProtectionResponseParams**](NetappObjectProtectionResponseParams.md) |  | [optional] 
+**nutanix_fs_params** | [**NutanixFSObjectProtectionResponseParams**](NutanixFSObjectProtectionResponseParams.md) |  | [optional] 
+**office365_params** | [**Office365ObjectProtectionParams**](Office365ObjectProtectionParams.md) |  | [optional] 
+**oracle_params** | [**OracleObjectBasedProtectionParams**](OracleObjectBasedProtectionParams.md) |  | [optional] 
+**physical_params** | [**PhysicalObjectProtectionParams**](PhysicalObjectProtectionParams.md) |  | [optional] 
+**sap_hana_params** | [**SapHanaObjectProtectionParams**](SapHanaObjectProtectionParams.md) |  | [optional] 
+**service_now_params** | [**ServiceNowObjectProtectionParams**](ServiceNowObjectProtectionParams.md) |  | [optional] 
+**sfdc_params** | [**SfdcObjectProtectionParams**](SfdcObjectProtectionParams.md) |  | [optional] 
+**uda_params** | [**UdaObjectProtectionParams**](UdaObjectProtectionParams.md) |  | [optional] 
+**vmware_params** | [**VmwareObjectProtectionResponseParams**](VmwareObjectProtectionResponseParams.md) |  | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

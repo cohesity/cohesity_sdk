@@ -1,0 +1,19 @@
+# DownloadAgentRequestParams
+
+Specifies agent download request parameters.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**platform** | **str** | Specifies the platform for which agent needs to be downloaded. | 
+**aix_params** | [**AixAgentParams**](AixAgentParams.md) |  | [optional] 
+**linux_params** | [**LinuxAgentParams**](LinuxAgentParams.md) |  | [optional] 
+**my_sql_params** | [**MySqlAgentParams**](MySqlAgentParams.md) |  | [optional] 
+**sap_hana_params** | [**SapHanaAgentParams**](SapHanaAgentParams.md) |  | [optional] 
+**sap_oracle_params** | [**SapOracleAgentParams**](SapOracleAgentParams.md) |  | [optional] 
+**vmware_cdp_filter_params** | [**VMWareCDPFilterParams**](VMWareCDPFilterParams.md) |  | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

@@ -1,0 +1,16 @@
+# ConstructMetaInfoResult
+
+Result to store meta-info from an object snapshot and additional information.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**environment** | **str, none_type** | Specifies the environment type for fetching the meta Info. | [optional] 
+**kubernetes_params** | [**KubernetesResourceMetaInfoResult**](KubernetesResourceMetaInfoResult.md) |  | [optional] 
+**oracle_params** | [**OracleRestoreMetaInfoResult**](OracleRestoreMetaInfoResult.md) |  | [optional] 
+**sfdc_params** | [**SfdcMetaInfoResult**](SfdcMetaInfoResult.md) |  | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

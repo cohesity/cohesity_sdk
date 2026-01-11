@@ -1,0 +1,15 @@
+# RecoverKubernetesNamespaceParams
+
+Specifies the parameters to recover Kubernetes Namespaces.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**target_environment** | **str** | Specifies the environment of the recovery target. The corresponding params below must be filled out. As of now only kubernetes target environment is supported. | defaults to "kKubernetes"
+**kubernetes_target_params** | [**KubernetesTargetParamsForRecoverKubernetesNamespace**](KubernetesTargetParamsForRecoverKubernetesNamespace.md) |  | [optional] 
+**vlan_config** | [**RecoveryVlanConfig**](RecoveryVlanConfig.md) |  | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

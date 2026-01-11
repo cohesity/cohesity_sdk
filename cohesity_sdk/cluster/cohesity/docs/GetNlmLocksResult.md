@@ -1,0 +1,14 @@
+# GetNlmLocksResult
+
+Specifies the list of NLM locks.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**cookie** | **str, none_type** | Specifies the pagination cookie. | [optional] 
+**file_nlm_locks** | [**[FileNlmLocks], none_type**](FileNlmLocks.md) | Specifies the list of NLM locks. | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

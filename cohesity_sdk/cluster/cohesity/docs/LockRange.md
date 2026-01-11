@@ -1,0 +1,15 @@
+# LockRange
+
+Specifies details of an entity lock.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**is_exclusive** | **bool, none_type** | Specifies if entity lock is exclusive. | [optional] 
+**length** | **int, none_type** | Specifies the length of an entity lock. | [optional] 
+**offset** | **int, none_type** | Specifies the offset of an entity lock. | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

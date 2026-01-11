@@ -1,0 +1,19 @@
+# ArchivalExternalTargetParamsAllOf
+
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**aws_params** | [**ArchivalAwsExternalTargetParams**](ArchivalAwsExternalTargetParams.md) |  | [optional] 
+**azure_params** | [**ArchivalAzureExternalTargetParams**](ArchivalAzureExternalTargetParams.md) |  | [optional] 
+**gcp_params** | [**ArchivalGcpExternalTargetParams**](ArchivalGcpExternalTargetParams.md) |  | [optional] 
+**ibm_params** | [**ArchivalIBMExternalTargetParams**](ArchivalIBMExternalTargetParams.md) |  | [optional] 
+**nas_params** | [**ArchivalNasExternalTargetParams**](ArchivalNasExternalTargetParams.md) |  | [optional] 
+**oracle_params** | [**ArchivalOracleExternalTargetParams**](ArchivalOracleExternalTargetParams.md) |  | [optional] 
+**qstar_tape_params** | [**ArchivalQstarTapeExternalTargetParams**](ArchivalQstarTapeExternalTargetParams.md) |  | [optional] 
+**s3_comp_params** | [**ArchivalS3CompExternalTargetParams**](ArchivalS3CompExternalTargetParams.md) |  | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

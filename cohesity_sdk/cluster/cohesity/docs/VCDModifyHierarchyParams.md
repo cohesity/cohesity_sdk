@@ -1,0 +1,13 @@
+# VCDModifyHierarchyParams
+
+VCD specific parameters for modifying an object in a source hierarchy.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**urn** | **str** | Specifies the URN of the VCD object. | 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
