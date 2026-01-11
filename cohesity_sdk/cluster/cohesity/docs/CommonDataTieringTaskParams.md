@@ -1,0 +1,19 @@
+# CommonDataTieringTaskParams
+
+Specifies the data tiering task details.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**name** | **str, none_type** | Specifies the name of the data tiering task. | 
+**type** | **str, none_type** | Type of data tiering task. &#39;Downtier&#39; indicates downtiering task. &#39;Uptier&#39; indicates uptiering task. | 
+**alert_policy** | [**ProtectionGroupAlertingPolicy**](ProtectionGroupAlertingPolicy.md) |  | [optional] 
+**description** | **str, none_type** | Specifies a description of the data tiering task. | [optional] 
+**schedule** | [**DataTieringSchedule**](DataTieringSchedule.md) |  | [optional] 
+**source** | [**DataTieringSource**](DataTieringSource.md) |  | [optional] 
+**target** | [**DataTieringTarget**](DataTieringTarget.md) |  | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

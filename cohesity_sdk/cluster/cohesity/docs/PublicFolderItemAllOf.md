@@ -1,0 +1,19 @@
+# PublicFolderItemAllOf
+
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**has_attachments** | **bool, none_type** | Specifies whether the item has any attachments | [optional] 
+**id** | **str, none_type** | Specifies the id of the indexed item. | [optional] 
+**item_class** | **str, none_type** | Specifies the item class of the indexed item. | [optional] 
+**item_size** | **int, none_type** | Specifies the size in bytes for the indexed item. | [optional] 
+**parent_folder_id** | **str, none_type** | Specifies the id of parent folder the indexed item. | [optional] 
+**received_time_secs** | **int, none_type** | Specifies the Unix timestamp epoch in seconds at which this item is received. | [optional] 
+**subject** | **str, none_type** | Specifies the subject of the indexed item. | [optional] 
+**type** | **str, none_type** | Specifies the Public folder item type. | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

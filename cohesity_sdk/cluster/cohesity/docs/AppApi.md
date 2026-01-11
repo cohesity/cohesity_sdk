@@ -1,0 +1,288 @@
+# cohesity_sdk.cluster.AppApi
+
+All URIs are relative to *http://localhost/v2*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**get_images_status**](AppApi.md#get_images_status) | **GET** /apps/{appUid}/images/status | Api to get images information.
+[**perform_on_demand_service_action**](AppApi.md#perform_on_demand_service_action) | **PUT** /apps/{appUid}/images/action | Enables or disables a service.
+[**upload_app_container_image**](AppApi.md#upload_app_container_image) | **POST** /apps/{appUid}/imageUpload | Upload apps container image.
+
+
+# **get_images_status**
+> ImagesStatus get_images_status(app_uid)
+
+Api to get images information.
+
+**Privileges:** ```APPS_MANAGEMENT``` <br><br>
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
+```python
+import time
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.api import app
+from cohesity_sdk.cluster.cohesity.model.images_status import ImagesStatus
+from cohesity_sdk.cluster.cohesity.model.error import Error
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost/v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "http://localhost/v2"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = app.AppApi(api_client)
+    app_uid = 1 # int | Specifies the app Id.
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Api to get images information.
+        api_response = api_instance.get_images_status(app_uid)
+        pprint(api_response)
+    except cohesity_sdk.cluster.ApiException as e:
+        print("Exception when calling AppApi->get_images_status: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_uid** | **int**| Specifies the app Id. |
+
+### Return type
+
+[**ImagesStatus**](ImagesStatus.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | GetImagesStatusResponse specifies response for getting image status |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **perform_on_demand_service_action**
+> perform_on_demand_service_action(app_uid, body)
+
+Enables or disables a service.
+
+**Privileges:** ```APPS_MANAGEMENT``` <br><br>
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
+```python
+import time
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.api import app
+from cohesity_sdk.cluster.cohesity.model.perform_service_action_parameters import PerformServiceActionParameters
+from cohesity_sdk.cluster.cohesity.model.error import Error
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost/v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "http://localhost/v2"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = app.AppApi(api_client)
+    app_uid = 1 # int | Specifies the app Id.
+    body = PerformServiceActionParameters(
+        enable=True,
+    ) # PerformServiceActionParameters | Request to update app instance settings.
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Enables or disables a service.
+        api_instance.perform_on_demand_service_action(app_uid, body)
+    except cohesity_sdk.cluster.ApiException as e:
+        print("Exception when calling AppApi->perform_on_demand_service_action: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_uid** | **int**| Specifies the app Id. |
+ **body** | [**PerformServiceActionParameters**](PerformServiceActionParameters.md)| Request to update app instance settings. |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | No Content |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **upload_app_container_image**
+> upload_app_container_image(app_uid)
+
+Upload apps container image.
+
+**Privileges:** ```APPS_MANAGEMENT``` <br><br>
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+* Api Key Authentication (SessionIdHeader):
+```python
+import time
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.api import app
+from cohesity_sdk.cluster.cohesity.model.error import Error
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost/v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "http://localhost/v2"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = app.AppApi(api_client)
+    app_uid = 1 # int | Specifies the app Id.
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Upload apps container image.
+        api_instance.upload_app_container_image(app_uid)
+    except cohesity_sdk.cluster.ApiException as e:
+        print("Exception when calling AppApi->upload_app_container_image: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_uid** | **int**| Specifies the app Id. |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | No Content |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

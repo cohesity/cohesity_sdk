@@ -1,0 +1,20 @@
+# SelfServiceSnapshotConfig
+
+Specifies the self service snapshot config of a view.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**allow_access_sids** | **[str]** | Specifies a list of sids who has access to the snapshots. | [optional] 
+**alternate_snapshot_directory_name** | **str, none_type** | Specifies the alternate directory name for the snapshots. If it is not set, this feature for SMB protocol will not work. | [optional] 
+**deny_access_sids** | **[str]** | Specifies a list of sids who does not have access to the snapshots. This field overrides &#39;allowAccessSids&#39;. | [optional] 
+**enabled** | **bool, none_type** | Specifies if self service snapshot feature is enabled. If this is set to true, the feature will also be enabled for NFS protocol. This field is deprecated. | [optional] 
+**nfs_access_enabled** | **bool, none_type** | Specifies if self service snapshot feature is enabled for NFS protocol. | [optional] 
+**previous_versions_enabled** | **bool, none_type** | Specifies if previouse versions feature is enabled with SMB protocol. | [optional] 
+**smb_access_enabled** | **bool, none_type** | Specifies if self service snapshot feature is enabled for SMB protocol. | [optional] 
+**snapshot_directory_name** | **str, none_type** | Specifies the directory name for the snapshots. | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

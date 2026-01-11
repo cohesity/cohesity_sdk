@@ -1,0 +1,17 @@
+# ProtectionGroupAlertingPolicy
+
+Specifies a policy for alerting users of the status of a Protection Group.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**backup_run_status** | **[str]** | Specifies when to send out alerts. The possible values are kSuccess , kFailure, kSlaViolation and kWarning | 
+**alert_targets** | [**[AlertTarget]**](AlertTarget.md) | Specifies a list of targets to receive the alerts. | [optional] 
+**raise_object_level_failure_alert** | **bool** | Specifies whether object level alerts are raised for backup failures after the backup run. | [optional] 
+**raise_object_level_failure_alert_after_each_attempt** | **bool** | Specifies whether object level alerts are raised for backup failures after each backup attempt. | [optional] 
+**raise_object_level_failure_alert_after_last_attempt** | **bool** | Specifies whether object level alerts are raised for backup failures after last backup attempt. | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

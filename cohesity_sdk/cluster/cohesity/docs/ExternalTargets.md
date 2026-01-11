@@ -1,0 +1,13 @@
+# ExternalTargets
+
+List of External Target.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**external_targets** | [**[ExternalTarget], none_type**](ExternalTarget.md) | Specifies the list of External Targets which were returned by the request. | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

@@ -1,0 +1,17 @@
+# OneDriveParam
+
+Specifies parameters to recover a OneDrive.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**id** | **str, none_type** | Specifies the OneDrive id. | [optional] 
+**name** | **str, none_type** | Specifies the OneDrive name. | [optional] 
+**recover_entire_drive** | **bool, none_type** | Specifies whether to recover the whole OneDrive. This is set to false when excluding recovering specific drive items. | [optional] 
+**recover_items** | [**[OneDriveItem], none_type**](OneDriveItem.md) | Specifies a list of OneDrive items to recover. | [optional] 
+**site_uuid** | **str, none_type** | Sharepoint site uuid to which this Drive belongs. This is needed for Teams and Groups having subsites, as multiple items across different subsites can be selected for granular recovery. | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

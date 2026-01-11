@@ -1,0 +1,16 @@
+# CdpObjectInfo
+
+Specifies the CDP related information for a given object. This field will only be populated when protection group is configured with policy having CDP retention settings.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**allow_re_enable_cdp** | **bool, none_type** | Specifies if re-enabling CDP is allowed or not through UI without any job or policy update through API. | [optional] 
+**cdp_enabled** | **bool, none_type** | Specifies whether CDP is currently active or not. CDP might have been active on this object before, but it might not be anymore. | [optional] 
+**last_run_info** | [**CdpObjectLastRunInfo**](CdpObjectLastRunInfo.md) |  | [optional] 
+**protection_group_id** | **str, none_type** | Specifies the protection group id to which this CDP object belongs. | [optional] [readonly] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

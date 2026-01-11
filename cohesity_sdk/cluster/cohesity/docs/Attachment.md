@@ -1,0 +1,20 @@
+# Attachment
+
+Specifies the attachment information of a firewall profile.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**action** | **str, none_type** | Specifies the action. | [optional] 
+**description** | **str, none_type** | Specifies a description for the attachment. | [optional] 
+**interface_groups** | **[str]** | Specifies the network interface groups. | [optional] 
+**interfaces** | **[str]** | Specifies the network interfaces | [optional] 
+**ipset_names** | **[str]** | Specifies the ip sets. | [optional] 
+**is_implicit** | **bool, none_type** |  | [optional] [readonly] 
+**profile** | **str, none_type** | Specifies the firewall profile. | [optional] 
+**subnets** | **[str]** | Specifies the subnets. | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

@@ -1,0 +1,29 @@
+# ReplicationTargetProgressInfo
+
+Specifies the progress of a replication run target.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**cluster_id** | **int, none_type** | Specifies the id of the cluster. | [optional] 
+**cluster_incarnation_id** | **int, none_type** | Specifies the incarnation id of the cluster. | [optional] 
+**cluster_name** | **str, none_type** | Specifies the name of the cluster. | [optional] [readonly] 
+**aws_target_config** | [**AWSTargetConfig**](AWSTargetConfig.md) |  | [optional] 
+**azure_target_config** | [**AzureTargetConfig**](AzureTargetConfig.md) |  | [optional] 
+**logical_size_bytes** | **int, none_type** | Specifies the logical size of this snapshot in bytes. | [optional] 
+**object_ids** | **[str], none_type** | Specifies the list of object ids for which this replication run was performed. | [optional] 
+**ownership_context** | **str, none_type** | Specifies the ownership context for the replication. This will only be populated when the replication target is a remote cluster. | [optional] 
+**snapshot_id** | **str, none_type** | Specifies the id of the replication snapshot for the object. | [optional] 
+**end_time_usecs** | **int, none_type** | Specifies the end time of the progress task in Unix epoch Timestamp(in microseconds). | [optional] 
+**events** | [**[ProgressTaskEvent]**](ProgressTaskEvent.md) | Specifies the event log created for progress Task. | [optional] 
+**expected_remaining_time_usecs** | **int, none_type** | Specifies the expected remaining time of the progress task in Unix epoch Timestamp(in microseconds). | [optional] 
+**percentage_completed** | **float, none_type** | Specifies the current completed percentage of the progress task. | [optional] 
+**start_time_usecs** | **int, none_type** | Specifies the start time of the progress task in Unix epoch Timestamp(in microseconds). | [optional] 
+**stats** | [**ProgressStats**](ProgressStats.md) |  | [optional] 
+**status** | **str, none_type** | Specifies the current status of the progress task. | [optional] 
+**objects** | [**[ObjectProgressInfo], none_type**](ObjectProgressInfo.md) | Specifies progress for objects. | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
